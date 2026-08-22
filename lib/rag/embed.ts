@@ -7,6 +7,11 @@ import { pipeline, type FeatureExtractionPipeline } from "@huggingface/transform
  * changing only this file if a paid provider key is added and quality needs
  * to improve — the rest of the RAG pipeline (chunk/store/retrieve) is
  * provider-agnostic and does not need to change.
+ *
+ * Uses onnxruntime-node (native binary) under the hood. For that binary to
+ * survive on Vercel, next.config.ts must list this package under
+ * serverExternalPackages so Next.js leaves it un-bundled — see the comment
+ * there for why.
  */
 const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 

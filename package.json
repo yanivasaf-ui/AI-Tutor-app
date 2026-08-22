@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build",
+    "build": "tsx scripts/build-index.ts && next build",
     "start": "next start",
     "build-index": "tsx scripts/build-index.ts"
   },
