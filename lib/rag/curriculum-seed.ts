@@ -1,73 +1,265 @@
 /**
- * PLACEHOLDER SEED DATA — NOT sourced from the Ministry of Education.
+ * Real Ministry of Education curriculum content — Math (grades א'-ג') and
+ * Hebrew language education (grades א'-ב').
  *
- * This is illustrative starter content only, written to prove out the RAG
- * pipeline end-to-end (chunk -> embed -> retrieve -> generate). It must be
- * replaced by real ingestion from ecat.education.gov.il / pop.education.gov.il
- * (both confirmed reachable) before this ships to a single real parent.
+ * Sourced from official Ministry PDFs, extracted 2026-08-22. Full research
+ * trail, source URLs, and an honest note on what's still missing (grade-ג'
+ * Hebrew — no distinct official document was found) in:
+ * the-system-v8/P-projects/ai-tutor-il/brain/curriculum-research-math-hebrew-a-g.md
  *
- * Real ingestion is a separate, larger task: it needs someone to go through
- * the Ministry catalog/curriculum-standard documents grade by grade and pull
- * the actual approved topic sequence and terminology — not something to
- * fabricate here.
+ * This replaces the earlier placeholder seed — do not add invented content
+ * here; if a topic isn't sourced, it doesn't belong in this file.
  */
 import { CurriculumChunk } from "./types";
 
+const MATH_A_SOURCE =
+  "https://meyda.education.gov.il/files/Mazkirut_Pedagogit/math/primary-school/math2023/Newprogramgrade1.pdf";
+const MATH_B_SOURCE =
+  "https://meyda.education.gov.il/files/Mazkirut_Pedagogit/math/primary-school/math2023/Newprogramgrade2.pdf";
+const MATH_G_SOURCE =
+  "https://meyda.education.gov.il/files/Mazkirut_Pedagogit/math/primary-school/math2023/Newprogramgrade3.pdf";
+const HEBREW_AB_SOURCE = "https://meyda.education.gov.il/files/olim/hatmatyeadeyhebrew.pdf";
+
 export const curriculumSeed: CurriculumChunk[] = [
+  // ===== Math — Grade א' =====
   {
-    id: "math-a-counting",
+    id: "math-a-numbers-0-100",
     subject: "math",
     grade: "א",
-    topic: "מספרים עד 20",
-    text: "בכיתה א' התלמידים לומדים לספור, לקרוא ולכתוב מספרים עד 20, להשוות בין מספרים (גדול/קטן/שווה), ולהבין מושג הכמות באמצעות עצמים וציורים.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-100",
+    text: "ספירה קדימה ואחורה עד 100, כולל ספירה בדילוגים של 2, 5 ו-10, וספירה אחורה מ-50 בדילוגים של 2. מנייה עד 100 והתאמת כמות למספר. קריאה וכתיבה של המספרים הטבעיים בתחום ה-100 וה-0, במילים ובספרות. הכרת ישר המספרים ועבודה עם סדרות (חוקיות פשוטות ומורכבות).",
+    source: MATH_A_SOURCE,
   },
   {
     id: "math-a-addition-subtraction",
     subject: "math",
     grade: "א",
-    topic: "חיבור וחיסור עד 20",
-    text: "פעולות חיבור וחיסור במספרים עד 20, תוך שימוש באמצעים חזותיים (אצבעות, קוביות, קו מספרים) לפני מעבר לחישוב מופשט.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "פעולות חשבון בתחום ה-100 (חיבור וחיסור)",
+    text: "הצגת מצבים של חיבור (איסוף, הוספה) וחיסור (הפרדה, גריעה) מחיי היום-יום בשפה מתמטית. חיבור וחיסור בתחום ה-20, ולאחר מכן חיבור וחיסור בתחום שלמות העשרות בתחום ה-100 (למשל 20+60=80, לפי 2+6=8). חוק החילוף וחוק הקיבוץ בחיבור נלמדים באופן אינטואיטיבי, ללא צורך בשמות פורמליים.",
+    source: MATH_A_SOURCE,
   },
   {
-    id: "math-b-place-value",
+    id: "math-a-geometry",
+    subject: "math",
+    grade: "א",
+    topic: "צורות גאומטריות",
+    text: "מיון מצולעים (משולש, מרובע, ריבוע ומעוין) לפי קריטריונים שונים ולפי צלעות. פירוק והרכבה של מצולעים ממצולעים אחרים. מיקום וכיוונים בסביבה, קריאת מפות פשוטות של הכיתה או בית הספר.",
+    source: MATH_A_SOURCE,
+  },
+  {
+    id: "math-a-length",
+    subject: "math",
+    grade: "א",
+    topic: "מדידות אורך",
+    text: "תיאור והשוואה של מדידות אורך (גבוה/נמוך, עבה/דק, קצר/ארוך). השוואה ישירה של אורכי עצמים ובאמצעות אמצעי מדידה שרירותיים (מרוחקי יד, צעדים, אטבים). מעבר הדרגתי ליחידות מידה שרירותיות ולבסוף ליחידת מידה סטנדרטית (סנטימטר).",
+    source: MATH_A_SOURCE,
+  },
+  {
+    id: "math-a-time",
+    subject: "math",
+    grade: "א",
+    topic: "מדידת זמן",
+    text: "קריאת שעון אנלוגי בשעות עגולות ובחצאי שעות. חישובי משך זמן בשעות שלמות ובחצאי שעות. חיבור וחיסור בתחום ה-20 מיושם על שאלות מילוליות הקשורות למדידת זמן.",
+    source: MATH_A_SOURCE,
+  },
+  {
+    id: "math-a-data",
+    subject: "math",
+    grade: "א",
+    topic: "חקר נתונים",
+    text: "קריאת נתונים מוצגים בדיאגרמת עמודות, איסוף נתונים ובניית דיאגרמת עמודות פשוטה מתוך נושאים מחיי הכיתה (למשל חודשי לידה של תלמידי הכיתה).",
+    source: MATH_A_SOURCE,
+  },
+
+  // ===== Math — Grade ב' =====
+  {
+    id: "math-b-numbers-0-1000",
     subject: "math",
     grade: "ב",
-    topic: "ערך מקומי עד 100",
-    text: "בכיתה ב' מתרחב הטווח המספרי עד 100, עם דגש על ערך מקומי (עשרות ואחדות) וחיבור/חיסור עם ובלי פריטה.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-1,000",
+    text: "הרחבת ספירה ומנייה עד 1,000 תוך ביסוס המבנה העשרוני (יחידות, עשרות, מאות). קריאה וכתיבה של מספרים בתחום ה-1,000 במילים ובספרות. ספירה בדילוגים של 2, 5, 10, 20, 50 ו-100. הכרת מספרים זוגיים ואי-זוגיים והקשר בינם לבין ספירה בדילוגים של 2.",
+    source: MATH_B_SOURCE,
   },
   {
-    id: "math-g-multiplication",
+    id: "math-b-arithmetic",
+    subject: "math",
+    grade: "ב",
+    topic: "פעולות חשבון בתחום ה-100: חיבור, חיסור, ותחילת כפל וחילוק",
+    text: "חיבור וחיסור במאונך של מספרים דו-ספרתיים ושל עשרות שלמות. תכונות חיבור וחיסור, חוק החילוף וחוק הקיבוץ בחיבור. תחילת הכפל: הכפל כחיבור חוזר (למשל 3×4 כ-4+4+4), לוח הכפל עד 10, זיהוי מצבים כפליים בחיי היום-יום. תחילת החילוק: פעולת החילוק נלמדת בשתי משמעויות — חילוק לחלקים וחילוק לחלוקות (לכמה קבוצה שוות מתחלק כל הכמות).",
+    source: MATH_B_SOURCE,
+  },
+  {
+    id: "math-b-geometry",
+    subject: "math",
+    grade: "ב",
+    topic: "צורות גאומטריות",
+    text: "מיון משולשים לפי סוגי צלעות (שווה-צלעות, שווה-שוקיים, שונה-צלעות) ולפי זוויות. הכרת זווית ישרה וזיהויה במצולעים ובעצמים מחיי היום-יום. פירוק והרכבה של מצולעים.",
+    source: MATH_B_SOURCE,
+  },
+  {
+    id: "math-b-length",
+    subject: "math",
+    grade: "ב",
+    topic: "מדידות אורך",
+    text: "מדידת אורך וסרטוט קווים ישרים לפי אורך נתון, בסנטימטרים ובמטרים שלמים. חישוב אורך של קו שבור על ידי סיכום אורכי הקטעים המרכיבים אותו.",
+    source: MATH_B_SOURCE,
+  },
+  {
+    id: "math-b-volume",
+    subject: "math",
+    grade: "ב",
+    topic: "גופים ומדידות נפח",
+    text: "הכרת גופים תלת-ממדיים (קובייה, תיבה) ובניית מבנים פשוטים מקוביות לפי דוגמה או תמונה. חישוב מספר הקוביות המרכיבות תיבה באמצעות כפל מספר הקוביות בשכבה במספר השכבות.",
+    source: MATH_B_SOURCE,
+  },
+  {
+    id: "math-b-time",
+    subject: "math",
+    grade: "ב",
+    topic: "מדידת זמן",
+    text: "קריאת שעון בשעות, חצאי שעות ודקות מדויקות. חישובי משך זמן בשעות ובחצאי שעות בהקשרים מחיי היום-יום (לוח זמנים, שעת התחלה וסיום של פעילות).",
+    source: MATH_B_SOURCE,
+  },
+  {
+    id: "math-b-data",
+    subject: "math",
+    grade: "ב",
+    topic: "חקר נתונים",
+    text: "קריאה ובניית דיאגרמות עמודות מתוך נתונים שנאספו, כולל עמודות המייצגות כמויות שונות ומאפשרות השוואה ('יותר', 'פחות', 'הכי הרבה').",
+    source: MATH_B_SOURCE,
+  },
+
+  // ===== Math — Grade ג' =====
+  {
+    id: "math-g-numbers-0-10000",
     subject: "math",
     grade: "ג",
-    topic: "כפל וחילוק בסיסי",
-    text: "בכיתה ג' מוצג מושג הכפל כחיבור חוזר, לוח הכפל עד 10, והתחלת החילוק כפעולה הופכית לכפל.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-10,000 (הרבבה)",
+    text: "המבנה העשרוני של המספרים עד 10,000: יחידות, עשרות, מאות ואלפים. קריאה וכתיבה של מספרים במילים ובספרות בתחום הרבבה. ספירה ומנייה בדילוגים שונים (10, 25, 50, 100, 200, 500, 1,000). זיהוי חוקיות ברצף המספרים והשוואה ביניהם באמצעות הסימנים <, > ,=.",
+    source: MATH_G_SOURCE,
   },
   {
-    id: "hebrew-a-letters",
+    id: "math-g-gematria",
+    subject: "math",
+    grade: "ג",
+    topic: "גימטרייה",
+    text: "הכרת ערכי האותיות א'-ת' בשיטה הגימטרית, והשוואה בין השיטה העשרונית (המבוססת על מיקום הספרה) לבין שיטת הגימטרייה (המבוססת על ערך קבוע לכל אות).",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-arithmetic",
+    subject: "math",
+    grade: "ג",
+    topic: "פעולות חשבון בתחום הרבבה: חיבור, חיסור, אומדן",
+    text: "חיבור וחיסור במאונך של מספרים בתחום הרבבה. שימוש באומדן לפני פתרון תרגיל כדי לבדוק סבירות של תוצאה. עיסוק במשוואות ואי-שוויונות (למשל השלמת מספרים מתאימים במשוואה כמו 34+___=36+___).",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-multiplication-division",
+    subject: "math",
+    grade: "ג",
+    topic: "כפל וחילוק בתחום הרבבה",
+    text: "כפל וחילוק ב-10, 100 ו-1,000 (הגדלה/הקטנה פי 10 וכלליה). ביסוס לוח הכפל 10×10. סימני ההתחלקות ב-2, 5 ו-10. חילוק עם שארית וללא שארית — הבחנה בין חילוק לחלקים לחילוק לחלוקות גם במצבי שארית. הגורמים למכפלה, חוק הפילוג (דיסטריביוטיביות) וסדר פעולות החשבון.",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-geometry",
+    subject: "math",
+    grade: "ג",
+    topic: "צורות גאומטריות: זוויות ומשולשים",
+    text: "הכרת סוגי זוויות: זווית חדה, ישרה, קהה וחדה, ללא הגדרה פורמלית של מידת הזווית (מעלות) — זיהוי חזותי והשוואה לזווית ישרה. סיווג משולשים לפי סוגי צלעות וזוויות.",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-area",
+    subject: "math",
+    grade: "ג",
+    topic: "מדידת שטח",
+    text: "השוואת שטחים של צורות שונות (כולל צורות דו-ממדיות לא-סטנדרטיות) באמצעות פירוק והרכבה. מדידת שטח ביחידות מידה שרירותיות ולבסוף ביחידות מידה סטנדרטיות — סנטימטר-רבוע (סמ\"ר). חישוב שטח מלבן וריבוע באמצעות ספירת ריבועי שטח ברשת (grid).",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-volume",
+    subject: "math",
+    grade: "ג",
+    topic: "גופים ומדידות נפח",
+    text: "המשך העיסוק בתיבות וקוביות, כולל פריסה של תיבה (זיהוי איזו פריסה יכולה להתקפל לתיבה נתונה).",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-time",
+    subject: "math",
+    grade: "ג",
+    topic: "מדידת זמן",
+    text: "קריאת שעות ודקות בשעון אנלוגי ודיגיטלי, כולל חישובי משך זמן מדויקים יותר מבכיתה ב'.",
+    source: MATH_G_SOURCE,
+  },
+  {
+    id: "math-g-data",
+    subject: "math",
+    grade: "ג",
+    topic: "חקר נתונים",
+    text: "קריאה ובניית דיאגרמות עמודות ופיקטוגרמות, כולל דיאגרמות עם קנה-מידה (כל סמל מייצג יותר מיחידה אחת).",
+    source: MATH_G_SOURCE,
+  },
+
+  // ===== Hebrew — Grade א' (foundations) =====
+  {
+    id: "hebrew-a-alphabet-phonology",
     subject: "hebrew",
     grade: "א",
-    topic: "זיהוי אותיות וניקוד",
-    text: "בכיתה א' מתמקדים בזיהוי כל אותיות האלף-בית, הבנת הניקוד הבסיסי (קמץ, פתח, חיריק, חולם, שורוק), וקריאת מילים פשוטות בהברה פתוחה.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "הכרת יסודות הקריאה והכתיבה: מודעות פונולוגית וידע שמות האותיות",
+    text: "רכישת הקריאה והכתיבה מבוססת על שני היבטים: ידיעת מערכת הכתב (איך הכתב מייצג את מערכת הדיבור) וידיעת השיח (איך משתמשים בכתוב לתקשורת). מודעות פונולוגית — היכולת לזהות ולתפעל יחידות צליליות של המילה הדבורה (הברות, חריזה, פונמות) — היא תנאי הכרחי אך לא מספיק לרכישת קריאה. ילדים לומדים תחילה שמות האותיות ומקשרים ביניהם לצלילים, כאשר רוב הילדים מגיעים לכיתה א' עם ידע חלקי כבר מגן הילדים. חשוב ללמד את יסודות הקריאה והכתיבה מתוך פעילויות בעלות משמעות, ולא מתוך תרגול אותיות מבודד.",
+    source: HEBREW_AB_SOURCE,
   },
   {
-    id: "hebrew-b-reading-fluency",
+    id: "hebrew-a-early-reading",
+    subject: "hebrew",
+    grade: "א",
+    topic: "קידום הבנת הנקרא בתחילת הדרך",
+    text: "בתחילת כיתה א', לפני שהתלמידים שולטים בפענוח עצמאי, ההבנה מתפתחת בעיקר באמצעות הבנה נשמעת (הקראה של המורה) — הקשבה לסיפור, ולסוגי טקסט שונים (סיפורתי ומידעי), פיתוח קשב לשוני ואוצר מילים. עם התקדמות מיומנויות הפענוח, נבנה הקשר בין הבנה נשמעת להבנת הנקרא העצמאית.",
+    source: HEBREW_AB_SOURCE,
+  },
+  {
+    id: "hebrew-a-early-writing",
+    subject: "hebrew",
+    grade: "א",
+    topic: "תחילת תהליכי הכתיבה: כתיב פונטי",
+    text: "בראשית כיתה א' הכתיבה של רוב התלמידים מתבססת בעיקר על מערכת הכתיב הפונטי ('מה שאני שומע אני כותב'), עם התייחסות חלקית לעיצורים בלבד ולעיתים בלי לציין את התנועות. במהלך השנה מתפתחת בהדרגה גם מודעות פונולוגית לתנועות עצמן, ומתחיל תהליך המעבר לכתיב מדויק יותר.",
+    source: HEBREW_AB_SOURCE,
+  },
+  {
+    id: "hebrew-a-oral-vocabulary",
+    subject: "hebrew",
+    grade: "א",
+    topic: "קידום השיח הדבור והרחבת אוצר מילים",
+    text: "פעילויות שיח מובנות סביב טקסטים וחוויות מחיי היום-יום, לצד הרחבה ישירה ועקיפה של אוצר המילים דרך חשיפה חוזרת למילים חדשות בהקשרים משמעותיים (לא רשימות מילים מבודדות).",
+    source: HEBREW_AB_SOURCE,
+  },
+
+  // ===== Hebrew — Grade ב' (toward standard orthography) =====
+  {
+    id: "hebrew-b-standard-orthography",
     subject: "hebrew",
     grade: "ב",
-    topic: "שטף קריאה והבנת הנקרא",
-    text: "בכיתה ב' הדגש עובר משיטת פענוח לקריאה שוטפת, עם תרגול הבנת הנקרא בטקסטים קצרים ושאלות הבנה בסיסיות (מי, מה, איפה, מתי).",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    topic: "התקדמות לקראת כתיב תקני",
+    text: "עד סוף כיתה ב', רוב התלמידים אמורים לעבור ממערכת כתיב פונטי למערכת כתיב תקני-אורתוגרפי בסיסי, אך עדיין אינם שולטים במלואה. יש להקנות במפורש חוקי כתיב על-פי כללי האורתוגרפיה, ולתת דגש מיוחד על זוגות אותיות הומופוניות (נשמעות אותו דבר אך נכתבות שונה): ב/ו, כ/ק, ת/ט, ס/ש, א/ע, ח/כ. ההחלפות ההומופוניות מוכלות באות השורש (למשל 'כותבת' במקום 'קותבת') ובאותיות תנועות ('הפרעתי' במקום 'הפרעתי') — טיפול בהחלפות אלה נדרש בהתייחס לשורש המילה, לא רק לצליל.",
+    source: HEBREW_AB_SOURCE,
   },
   {
-    id: "hebrew-g-spelling",
+    id: "hebrew-b-metalinguistic",
     subject: "hebrew",
-    grade: "ג",
-    topic: "כללי כתיב וניתוח מילים",
-    text: "בכיתה ג' מוצגים כללי כתיב מלא, שורש ומשקל בצורה בסיסית, וכתיבת טקסטים קצרים ועצמאיים.",
-    source: "PLACEHOLDER — replace with ecat.education.gov.il sourced content",
+    grade: "ב",
+    topic: "קידום ידע מטה-לשוני",
+    text: "פיתוח מודעות מורפולוגית: זיהוי מוספיות (יחיד/רבים, נטיות גוף), זיהוי מוספיות היוצרות שמות תואר, זיהוי תבניות שורש ומשקל — ידע זה תומך הן בהבנת הנקרא והן בכתיבה תקנית.",
+    source: HEBREW_AB_SOURCE,
+  },
+  {
+    id: "hebrew-b-reading-fluency-literature",
+    subject: "hebrew",
+    grade: "ב",
+    topic: "שטף קריאה, קריאה להנאה, והוראת יצירות ספרות",
+    text: "המשך פיתוח שטף הקריאה (קריאה מהירה ומדויקת ללא מאמץ פענוח מודע), לצד חשיפה ליצירות ספרות מגוונות וטיפוח הרגלי קריאה עצמאית לשם הנאה — לא רק לצורך למידה פורמלית.",
+    source: HEBREW_AB_SOURCE,
   },
 ];
