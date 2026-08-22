@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
   // require() instead, so Vercel's file tracing picks up the real binary
   // alongside it.
   serverExternalPackages: ["@huggingface/transformers", "onnxruntime-node"],
+
+  // serverExternalPackages stops Next.js from mangling the require() call,
+  // but Vercel's own file tracer still doesn't detect this specific native
+  // binary as a dependency (it's resolved by onnxruntime-node at runtime via
+  // a computed path, not a static one an analyzer can follow) and drops it
+  // from the deployed function. Forcing it in explicitly here fixed a
+  // production 500 ("libonnxruntime.so.1: cannot open shared object file").
+  outputFileTracingIncludes: {
+    "/api/chat": ["./node_modules/onnxruntime-node/bin/**/*"],
+  },
 };
 
 export default nextConfig;
