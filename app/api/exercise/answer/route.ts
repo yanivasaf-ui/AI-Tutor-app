@@ -5,6 +5,7 @@ import { recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 
@@ -29,7 +30,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "failed to evaluate answer" }, { status: 500 });
   }
 
-  const kid = kidId ? await getKid(kidId) : null;
+  const supabase = await getSupabaseServerClient();
+  const kid = kidId ? await getKid(supabase, kidId) : null;
   if (kid) {
     // The exact, structured per-kid record Asaf asked for — which exercise,
     // which kid, right or wrong — distinct from the free-text profile
@@ -37,7 +39,7 @@ export async function POST(req: NextRequest) {
     // for "has this kid seen this exercise, and what's the bank's real
     // success-rate signal on it").
     try {
-      await recordAttempt({
+      await recordAttempt(supabase, {
         kidId: kid.id,
         exerciseId: exercise.id,
         subject: exercise.subject,
@@ -49,7 +51,8 @@ export async function POST(req: NextRequest) {
     }
 
     const current =
-      (await getSubjectProfile(kid.id, exercise.subject as Subject)) ?? emptySubjectProfile();
+      (await getSubjectProfile(supabase, kid.id, exercise.subject as Subject)) ??
+      emptySubjectProfile();
     try {
       const patch = await updateSubjectProfileFromExchange(current, {
         grade: exercise.grade,
@@ -64,7 +67,7 @@ export async function POST(req: NextRequest) {
         },
       });
       if (patch) {
-        await updateSubjectProfile(kid.id, exercise.subject as Subject, patch);
+        await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
       }
     } catch (err) {
       console.error("[exercise-answer] memory update failed:", err);

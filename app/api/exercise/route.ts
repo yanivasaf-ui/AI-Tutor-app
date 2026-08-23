@@ -3,6 +3,7 @@ import { generateExercise } from "@/lib/exercises/generate";
 import { findReusableExercise, saveExercise } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile } from "@/lib/memory/store";
 import { Subject } from "@/lib/memory/types";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 
@@ -19,20 +20,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "subject and grade are required" }, { status: 400 });
   }
 
-  const kid = kidId ? await getKid(kidId) : null;
+  const supabase = await getSupabaseServerClient();
+  const kid = kidId ? await getKid(supabase, kidId) : null;
 
   try {
     // Check the shared bank first — reuse costs nothing, a fresh LLM call
     // does. Per Asaf's own framing: pay the generation cost once, amortize
     // it across every kid who sees the exercise afterward.
-    const reused = await findReusableExercise(subject, grade, kid?.id ?? null);
+    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null);
     if (reused) {
       return NextResponse.json({ exercise: reused, reused: true });
     }
 
-    const profile = kid ? await getSubjectProfile(kid.id, subject as Subject) : null;
+    const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
     const generated = await generateExercise({ subject, grade, profile });
-    const saved = await saveExercise(generated);
+    const saved = await saveExercise(supabase, generated);
     return NextResponse.json({ exercise: saved, reused: false });
   } catch (err) {
     console.error("[exercise-generate] error:", err);

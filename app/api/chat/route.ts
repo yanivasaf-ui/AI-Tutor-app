@@ -9,6 +9,7 @@ import {
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject } from "@/lib/memory/types";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 
@@ -41,8 +42,9 @@ export async function POST(req: NextRequest) {
     console.log(`[flag-for-parent] grade=${grade} subject=${subject} message="${message}"`);
   }
 
-  const kid = kidId ? await getKid(kidId) : null;
-  const subjectProfile = kid ? await getSubjectProfile(kid.id, subject as Subject) : null;
+  const supabase = await getSupabaseServerClient();
+  const kid = kidId ? await getKid(supabase, kidId) : null;
+  const subjectProfile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
 
   const queryEmbedding = await embedText(message);
   const retrieved = search(queryEmbedding, { subject, grade, topK: 4 });
@@ -93,7 +95,7 @@ export async function POST(req: NextRequest) {
         }
       );
       if (patch) {
-        await updateSubjectProfile(kid.id, subject as Subject, patch);
+        await updateSubjectProfile(supabase, kid.id, subject as Subject, patch);
       }
     } catch (err) {
       console.error("[memory-update] error updating profile after exchange:", err);

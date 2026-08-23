@@ -1,15 +1,19 @@
-import { getSupabase } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/lib/supabase/database.types";
 import { KidProfile, Subject, SubjectProfile, emptySubjectProfile } from "./types";
 
 /**
- * Supabase-backed kid profile store. Replaces the earlier JSON-file store
- * (first on process.cwd()/data — crashed outright in production, EROFS on
- * Vercel's read-only /var/task; then on os.tmpdir() — didn't crash, but
- * didn't persist across instances/cold-starts either, confirmed directly
- * in production). This is the real fix, not another stopgap: a kid's
- * profile now survives the way the locked "derived from real exercise
- * performance, session by session" decision actually requires.
+ * Supabase-backed kid profile store. Takes the Supabase client as a
+ * parameter rather than constructing its own — since the parent-accounts
+ * migration, the `kids` table is RLS-gated on `auth.uid() = parent_id`, so
+ * every call here needs the session-bound client from
+ * lib/supabase/server.ts (which carries the logged-in parent's cookie), not
+ * the plain anon client. Passing it in explicitly makes that requirement
+ * visible at every call site instead of hiding it behind a module-level
+ * singleton that would silently start failing RLS checks.
  */
+
+type Client = SupabaseClient<Database>;
 
 interface DbSubjectProfileRow {
   subject: string;
@@ -34,20 +38,19 @@ function rowToProfile(row: DbSubjectProfileRow): SubjectProfile {
   };
 }
 
-export async function listKids(): Promise<KidProfile[]> {
-  const supabase = getSupabase();
+export async function listKids(supabase: Client): Promise<KidProfile[]> {
   const { data: kids, error } = await supabase.from("kids").select("*");
   if (error || !kids) return [];
 
   const result: KidProfile[] = [];
   for (const k of kids) {
-    result.push(await getKid(k.id as string).then((kp) => kp!));
+    const full = await getKid(supabase, k.id as string);
+    if (full) result.push(full);
   }
   return result;
 }
 
-export async function getKid(id: string): Promise<KidProfile | null> {
-  const supabase = getSupabase();
+export async function getKid(supabase: Client, id: string): Promise<KidProfile | null> {
   const { data: kid, error } = await supabase.from("kids").select("*").eq("id", id).single();
   if (error || !kid) return null;
 
@@ -70,11 +73,15 @@ export async function getKid(id: string): Promise<KidProfile | null> {
   };
 }
 
-export async function createKid(name: string, avatarId: string | null): Promise<KidProfile> {
-  const supabase = getSupabase();
+export async function createKid(
+  supabase: Client,
+  parentId: string,
+  name: string,
+  avatarId: string | null
+): Promise<KidProfile> {
   const { data, error } = await supabase
     .from("kids")
-    .insert({ name, avatar_id: avatarId })
+    .insert({ name, avatar_id: avatarId, parent_id: parentId })
     .select()
     .single();
   if (error || !data) throw new Error(`Failed to create kid: ${error?.message}`);
@@ -88,18 +95,21 @@ export async function createKid(name: string, avatarId: string | null): Promise<
   };
 }
 
-export async function setKidAvatar(id: string, avatarId: string): Promise<KidProfile | null> {
-  const supabase = getSupabase();
+export async function setKidAvatar(
+  supabase: Client,
+  id: string,
+  avatarId: string
+): Promise<KidProfile | null> {
   const { error } = await supabase.from("kids").update({ avatar_id: avatarId }).eq("id", id);
   if (error) return null;
-  return getKid(id);
+  return getKid(supabase, id);
 }
 
 export async function getSubjectProfile(
+  supabase: Client,
   kidId: string,
   subject: Subject
 ): Promise<SubjectProfile | null> {
-  const supabase = getSupabase();
   const { data, error } = await supabase
     .from("subject_profiles")
     .select("*")
@@ -114,12 +124,12 @@ export async function getSubjectProfile(
  *  corresponding field (arrays are replaced wholesale by the caller, which
  *  is expected to have already merged/deduped/truncated them). */
 export async function updateSubjectProfile(
+  supabase: Client,
   kidId: string,
   subject: Subject,
   patch: Partial<SubjectProfile>
 ): Promise<SubjectProfile | null> {
-  const supabase = getSupabase();
-  const current = (await getSubjectProfile(kidId, subject)) ?? emptySubjectProfile();
+  const current = (await getSubjectProfile(supabase, kidId, subject)) ?? emptySubjectProfile();
   const next: SubjectProfile = {
     ...current,
     ...patch,

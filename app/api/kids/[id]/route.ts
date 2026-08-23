@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getKid, setKidAvatar } from "@/lib/memory/store";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 
@@ -8,7 +9,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const kid = await getKid(id);
+  const supabase = await getSupabaseServerClient();
+  const kid = await getKid(supabase, id);
   if (!kid) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json({ kid });
 }
@@ -23,7 +25,8 @@ export async function PATCH(
   if (!avatarId) {
     return NextResponse.json({ error: "avatarId is required" }, { status: 400 });
   }
-  const kid = await setKidAvatar(id, avatarId);
+  const supabase = await getSupabaseServerClient();
+  const kid = await setKidAvatar(supabase, id, avatarId);
   if (!kid) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json({ kid });
 }

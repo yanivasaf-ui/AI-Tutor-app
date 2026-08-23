@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import AvatarPicker, { AvatarBadge } from "@/components/AvatarPicker";
 import PracticeMode from "@/components/PracticeMode";
 import { getAvatarById } from "@/lib/avatars";
+import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 
 interface Message {
   role: "user" | "assistant";
@@ -22,43 +24,53 @@ const SUBJECTS = [
   { value: "hebrew", label: "עברית" },
 ] as const;
 
-const STORAGE_KEY = "ai-tutor-il:kid";
-
+/** Real parent accounts now gate this app (Supabase Auth) — replaces the
+ *  earlier anonymous "pick a name, stored in localStorage" flow. Kids are
+ *  scoped to the logged-in parent server-side (kids table RLS), not just a
+ *  browser's local storage. Multi-kid account switching is still a real
+ *  open item (per the brief's Section 2c/2d) — this picks the first kid on
+ *  the account for now rather than building a switcher UI in this pass. */
 export default function Home() {
+  const router = useRouter();
   const [kid, setKid] = useState<Kid | null>(null);
-  const [loadingKid, setLoadingKid] = useState(true);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        setKid(JSON.parse(stored));
-      } catch {
-        // ignore corrupt storage
+    const supabase = getSupabaseBrowserClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) {
+        router.push("/login");
+        return;
       }
-    }
-    setLoadingKid(false);
-  }, []);
+      const res = await fetch("/api/kids");
+      if (res.ok) {
+        const { kids } = (await res.json()) as { kids: Kid[] };
+        if (kids.length > 0) setKid(kids[0]);
+      }
+      setCheckingAuth(false);
+    });
+  }, [router]);
 
-  function persistKid(k: Kid) {
-    setKid(k);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(k));
+  async function logout() {
+    const supabase = getSupabaseBrowserClient();
+    await supabase.auth.signOut();
+    router.push("/login");
   }
 
-  if (loadingKid) return null;
+  if (checkingAuth) return null;
 
   if (!kid) {
-    return <KidSetup onDone={persistKid} />;
+    return <KidSetup onDone={setKid} onLogout={logout} />;
   }
 
-  return <TutorChat kid={kid} onSwitchKid={() => { localStorage.removeItem(STORAGE_KEY); setKid(null); }} />;
+  return <TutorChat kid={kid} onLogout={logout} />;
 }
 
 /** Picked-once setup screen: name + avatar choice, per the locked
  *  "character avatar picked once" decision. Persists the kid via the
  *  Task 1 profile store (/api/kids) so the choice ties into the same
  *  per-kid data model used for the memory layer. */
-function KidSetup({ onDone }: { onDone: (kid: Kid) => void }) {
+function KidSetup({ onDone, onLogout }: { onDone: (kid: Kid) => void; onLogout: () => void }) {
   const [name, setName] = useState("");
   const [avatarId, setAvatarId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -87,7 +99,12 @@ function KidSetup({ onDone }: { onDone: (kid: Kid) => void }) {
   return (
     <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center p-6 font-sans">
       <div className="w-full max-w-2xl">
-        <h1 className="text-2xl font-bold text-slate-800 mb-1">בואו נכיר!</h1>
+        <div className="flex items-center justify-between mb-1">
+          <h1 className="text-2xl font-bold text-slate-800">בואו נכיר!</h1>
+          <button onClick={onLogout} className="text-sm text-slate-500 hover:text-slate-700">
+            התנתקות
+          </button>
+        </div>
         <p className="text-sm text-slate-500 mb-6">
           איך קוראים לך, ואיזו דמות תרצה/י שתלווה אותך בלימודים? אפשר לבחור פעם אחת.
         </p>
@@ -124,7 +141,7 @@ const MODES = [
   { value: "chat", label: "שיחה חופשית" },
 ] as const;
 
-function TutorChat({ kid, onSwitchKid }: { kid: Kid; onSwitchKid: () => void }) {
+function TutorChat({ kid, onLogout }: { kid: Kid; onLogout: () => void }) {
   const [grade, setGrade] = useState<(typeof GRADES)[number]>("א");
   const [subject, setSubject] = useState<(typeof SUBJECTS)[number]["value"]>("math");
   const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("practice");
@@ -172,9 +189,9 @@ function TutorChat({ kid, onSwitchKid }: { kid: Kid; onSwitchKid: () => void }) 
         <div className="flex items-center justify-between mb-1">
           <h1 className="text-2xl font-bold text-slate-800">המורה הפרטי שלי</h1>
           <button
-            onClick={onSwitchKid}
+            onClick={onLogout}
             className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
-            title="להחליף פרופיל / דמות"
+            title="התנתקות"
           >
             {avatar && <AvatarBadge avatar={avatar} size={32} />}
             <span>{kid.name}</span>

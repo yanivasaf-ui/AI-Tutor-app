@@ -1,5 +1,8 @@
-import { getSupabase } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/lib/supabase/database.types";
 import { Exercise, Grade } from "./types";
+
+type Client = SupabaseClient<Database>;
 
 /**
  * The shared exercise bank + per-kid attempt log Asaf asked for directly:
@@ -39,12 +42,11 @@ function rowToExercise(row: DbExerciseRow): Exercise {
  *  hammering the same one. Returns null when nothing fits — the caller
  *  should fall back to generating a fresh one. */
 export async function findReusableExercise(
+  supabase: Client,
   subject: "math" | "hebrew",
   grade: Grade,
   kidId: string | null
 ): Promise<Exercise | null> {
-  const supabase = getSupabase();
-
   let attemptedIds: string[] = [];
   if (kidId) {
     const { data: attempts } = await supabase
@@ -73,8 +75,10 @@ export async function findReusableExercise(
 
 /** Saves a freshly-generated exercise to the bank, returning it with the
  *  real DB-assigned id (replaces the caller's throwaway client-side id). */
-export async function saveExercise(exercise: Omit<Exercise, "id">): Promise<Exercise> {
-  const supabase = getSupabase();
+export async function saveExercise(
+  supabase: Client,
+  exercise: Omit<Exercise, "id">
+): Promise<Exercise> {
   const { data, error } = await supabase
     .from("exercises")
     .insert({
@@ -95,15 +99,16 @@ export async function saveExercise(exercise: Omit<Exercise, "id">): Promise<Exer
 /** Logs one kid's attempt at one exercise, and updates the exercise's
  *  aggregate times_used/times_correct — the real, exact per-kid record
  *  Asaf asked for, distinct from the free-text SubjectProfile summary. */
-export async function recordAttempt(opts: {
-  kidId: string;
-  exerciseId: string;
-  subject: string;
-  correct: boolean;
-  errorNote?: string;
-}): Promise<void> {
-  const supabase = getSupabase();
-
+export async function recordAttempt(
+  supabase: Client,
+  opts: {
+    kidId: string;
+    exerciseId: string;
+    subject: string;
+    correct: boolean;
+    errorNote?: string;
+  }
+): Promise<void> {
   await supabase.from("exercise_attempts").insert({
     kid_id: opts.kidId,
     exercise_id: opts.exerciseId,
