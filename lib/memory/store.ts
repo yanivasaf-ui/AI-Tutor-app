@@ -1,4 +1,5 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 import {
   KidProfile,
@@ -10,17 +11,22 @@ import {
 
 /**
  * Simple JSON-file-backed kid profile store — same pattern already used for
- * the RAG index (lib/rag/store.ts): fine for MVP/prototype scale (a handful
- * of kids, single-digit subjects), no hosted DB / auth system required.
+ * the RAG index (lib/rag/store.ts), but that file is only ever *read* at
+ * runtime (it's generated once at build time, when the filesystem is still
+ * writable). This store is written at *request* time, which is a different
+ * situation: `process.cwd()` on Vercel's Node runtime resolves to
+ * `/var/task`, the deployed bundle itself — genuinely read-only, not just
+ * ephemeral. Writing there doesn't silently fail to persist, it crashes
+ * outright (confirmed in production: "EROFS: read-only file system").
  *
- * Known limitation, stated honestly: on Vercel's serverless runtime the
- * filesystem is ephemeral per invocation/instance, so writes here are NOT
- * guaranteed to survive across deploys or across cold-started instances in
- * production the way they do in local dev. Fine for prototype/local
- * testing; swap for a real DB (Vercel KV/Postgres/etc.) before this needs
- * to reliably persist real users' data in production.
+ * os.tmpdir() (`/tmp` on Vercel) is the writable path in this runtime.
+ * Known limitation, stated honestly, unchanged from before: `/tmp` is
+ * ephemeral per invocation/instance, so data is NOT guaranteed to survive
+ * across deploys or cold starts. That's a real gap to close with a proper
+ * DB before this holds real families' data — but at least writes succeed
+ * now instead of crashing every request.
  */
-const DB_PATH = path.join(process.cwd(), "data", "kid-profiles.json");
+const DB_PATH = path.join(os.tmpdir(), "ai-tutor-il-kid-profiles.json");
 
 function load(): KidProfileStoreShape {
   if (!fs.existsSync(DB_PATH)) {
