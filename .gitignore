@@ -39,6 +39,9 @@ yarn-error.log*
 # generated RAG index (rebuild with: npm run build-index)
 /data/curriculum-index.json
 
+# kid profile store (runtime data, per-environment — see lib/memory/store.ts)
+/data/kid-profiles.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

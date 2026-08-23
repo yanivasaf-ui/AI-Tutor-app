@@ -6,6 +6,9 @@ import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
+import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
+import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
+import { Subject } from "@/lib/memory/types";
 
 export const runtime = "nodejs";
 
@@ -14,11 +17,15 @@ interface ChatRequestBody {
   subject: "math" | "hebrew";
   grade: "א" | "ב" | "ג";
   history?: { role: "user" | "assistant"; content: string }[];
+  /** Optional: when provided, wires in the persistent per-kid, per-subject
+   *  memory layer (load before replying, update after replying). Omitting
+   *  it keeps the endpoint working exactly as before (no kid selected). */
+  kidId?: string;
 }
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as ChatRequestBody;
-  const { message, subject, grade, history = [] } = body;
+  const { message, subject, grade, history = [], kidId } = body;
 
   if (!message || !subject || !grade) {
     return NextResponse.json(
@@ -34,10 +41,19 @@ export async function POST(req: NextRequest) {
     console.log(`[flag-for-parent] grade=${grade} subject=${subject} message="${message}"`);
   }
 
+  const kid = kidId ? getKid(kidId) : null;
+  const subjectProfile = kid ? getSubjectProfile(kid.id, subject as Subject) : null;
+
   const queryEmbedding = await embedText(message);
   const retrieved = search(queryEmbedding, { subject, grade, topK: 4 });
 
-  const systemPrompt = buildTutorSystemPrompt(grade, subject, retrieved);
+  const systemPrompt = buildTutorSystemPrompt(
+    grade,
+    subject,
+    retrieved,
+    subjectProfile,
+    kid?.name
+  );
   const anthropic = getAnthropicClient();
 
   const response = await anthropic.messages.create({
@@ -51,9 +67,41 @@ export async function POST(req: NextRequest) {
   });
 
   const textBlock = response.content.find((b) => b.type === "text");
+  const reply = textBlock && textBlock.type === "text" ? textBlock.text : "";
+
+  // Fire-and-forget-ish, but awaited so serverless doesn't kill it before it
+  // finishes: update the persistent per-kid, per-subject memory profile.
+  // Never let a failure here break the reply already computed above.
+  if (kid) {
+    try {
+      const patch = await updateSubjectProfileFromExchange(
+        subjectProfile ?? {
+          estimatedLevel: "",
+          topicsCovered: [],
+          errorPatterns: [],
+          emotionalSignals: [],
+          recentSummary: "",
+          sessionCount: 0,
+          lastUpdated: new Date().toISOString(),
+        },
+        {
+          grade,
+          subject,
+          kidName: kid.name,
+          userMessage: message,
+          tutorReply: reply,
+        }
+      );
+      if (patch) {
+        updateSubjectProfile(kid.id, subject as Subject, patch);
+      }
+    } catch (err) {
+      console.error("[memory-update] error updating profile after exchange:", err);
+    }
+  }
 
   return NextResponse.json({
-    reply: textBlock && textBlock.type === "text" ? textBlock.text : "",
+    reply,
     flaggedForParent: flagged,
     retrievedTopics: retrieved.map((r) => r.topic),
   });
