@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const kid = getKid(id);
+  const kid = await getKid(id);
   if (!kid) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json({ kid });
 }
@@ -23,7 +23,7 @@ export async function PATCH(
   if (!avatarId) {
     return NextResponse.json({ error: "avatarId is required" }, { status: 400 });
   }
-  const kid = setKidAvatar(id, avatarId);
+  const kid = await setKidAvatar(id, avatarId);
   if (!kid) return NextResponse.json({ error: "not found" }, { status: 404 });
   return NextResponse.json({ kid });
 }

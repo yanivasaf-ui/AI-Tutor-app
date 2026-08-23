@@ -41,8 +41,8 @@ export async function POST(req: NextRequest) {
     console.log(`[flag-for-parent] grade=${grade} subject=${subject} message="${message}"`);
   }
 
-  const kid = kidId ? getKid(kidId) : null;
-  const subjectProfile = kid ? getSubjectProfile(kid.id, subject as Subject) : null;
+  const kid = kidId ? await getKid(kidId) : null;
+  const subjectProfile = kid ? await getSubjectProfile(kid.id, subject as Subject) : null;
 
   const queryEmbedding = await embedText(message);
   const retrieved = search(queryEmbedding, { subject, grade, topK: 4 });
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
         }
       );
       if (patch) {
-        updateSubjectProfile(kid.id, subject as Subject, patch);
+        await updateSubjectProfile(kid.id, subject as Subject, patch);
       }
     } catch (err) {
       console.error("[memory-update] error updating profile after exchange:", err);

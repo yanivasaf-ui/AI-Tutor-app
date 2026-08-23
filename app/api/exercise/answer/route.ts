@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
+import { recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
@@ -28,10 +29,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "failed to evaluate answer" }, { status: 500 });
   }
 
-  const kid = kidId ? getKid(kidId) : null;
+  const kid = kidId ? await getKid(kidId) : null;
   if (kid) {
+    // The exact, structured per-kid record Asaf asked for — which exercise,
+    // which kid, right or wrong — distinct from the free-text profile
+    // summary below (that's for in-context LLM pacing judgment; this is
+    // for "has this kid seen this exercise, and what's the bank's real
+    // success-rate signal on it").
+    try {
+      await recordAttempt({
+        kidId: kid.id,
+        exerciseId: exercise.id,
+        subject: exercise.subject,
+        correct: evaluation.correct,
+        errorNote: evaluation.errorNote,
+      });
+    } catch (err) {
+      console.error("[exercise-answer] attempt logging failed:", err);
+    }
+
     const current =
-      getSubjectProfile(kid.id, exercise.subject as Subject) ?? emptySubjectProfile();
+      (await getSubjectProfile(kid.id, exercise.subject as Subject)) ?? emptySubjectProfile();
     try {
       const patch = await updateSubjectProfileFromExchange(current, {
         grade: exercise.grade,
@@ -46,7 +64,7 @@ export async function POST(req: NextRequest) {
         },
       });
       if (patch) {
-        updateSubjectProfile(kid.id, exercise.subject as Subject, patch);
+        await updateSubjectProfile(kid.id, exercise.subject as Subject, patch);
       }
     } catch (err) {
       console.error("[exercise-answer] memory update failed:", err);

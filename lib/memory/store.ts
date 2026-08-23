@@ -1,105 +1,146 @@
-import fs from "fs";
-import os from "os";
-import path from "path";
-import {
-  KidProfile,
-  KidProfileStoreShape,
-  Subject,
-  SubjectProfile,
-  emptySubjectProfile,
-} from "./types";
+import { getSupabase } from "@/lib/supabase/client";
+import { KidProfile, Subject, SubjectProfile, emptySubjectProfile } from "./types";
 
 /**
- * Simple JSON-file-backed kid profile store — same pattern already used for
- * the RAG index (lib/rag/store.ts), but that file is only ever *read* at
- * runtime (it's generated once at build time, when the filesystem is still
- * writable). This store is written at *request* time, which is a different
- * situation: `process.cwd()` on Vercel's Node runtime resolves to
- * `/var/task`, the deployed bundle itself — genuinely read-only, not just
- * ephemeral. Writing there doesn't silently fail to persist, it crashes
- * outright (confirmed in production: "EROFS: read-only file system").
- *
- * os.tmpdir() (`/tmp` on Vercel) is the writable path in this runtime.
- * Known limitation, stated honestly, unchanged from before: `/tmp` is
- * ephemeral per invocation/instance, so data is NOT guaranteed to survive
- * across deploys or cold starts. That's a real gap to close with a proper
- * DB before this holds real families' data — but at least writes succeed
- * now instead of crashing every request.
+ * Supabase-backed kid profile store. Replaces the earlier JSON-file store
+ * (first on process.cwd()/data — crashed outright in production, EROFS on
+ * Vercel's read-only /var/task; then on os.tmpdir() — didn't crash, but
+ * didn't persist across instances/cold-starts either, confirmed directly
+ * in production). This is the real fix, not another stopgap: a kid's
+ * profile now survives the way the locked "derived from real exercise
+ * performance, session by session" decision actually requires.
  */
-const DB_PATH = path.join(os.tmpdir(), "ai-tutor-il-kid-profiles.json");
 
-function load(): KidProfileStoreShape {
-  if (!fs.existsSync(DB_PATH)) {
-    return { kids: {} };
+interface DbSubjectProfileRow {
+  subject: string;
+  estimated_level: string;
+  topics_covered: string[];
+  error_patterns: string[];
+  emotional_signals: string[];
+  recent_summary: string;
+  session_count: number;
+  last_updated: string;
+}
+
+function rowToProfile(row: DbSubjectProfileRow): SubjectProfile {
+  return {
+    estimatedLevel: row.estimated_level,
+    topicsCovered: row.topics_covered ?? [],
+    errorPatterns: row.error_patterns ?? [],
+    emotionalSignals: row.emotional_signals ?? [],
+    recentSummary: row.recent_summary,
+    sessionCount: row.session_count,
+    lastUpdated: row.last_updated,
+  };
+}
+
+export async function listKids(): Promise<KidProfile[]> {
+  const supabase = getSupabase();
+  const { data: kids, error } = await supabase.from("kids").select("*");
+  if (error || !kids) return [];
+
+  const result: KidProfile[] = [];
+  for (const k of kids) {
+    result.push(await getKid(k.id as string).then((kp) => kp!));
   }
-  try {
-    return JSON.parse(fs.readFileSync(DB_PATH, "utf-8"));
-  } catch {
-    return { kids: {} };
+  return result;
+}
+
+export async function getKid(id: string): Promise<KidProfile | null> {
+  const supabase = getSupabase();
+  const { data: kid, error } = await supabase.from("kids").select("*").eq("id", id).single();
+  if (error || !kid) return null;
+
+  const { data: profiles } = await supabase
+    .from("subject_profiles")
+    .select("*")
+    .eq("kid_id", id);
+
+  const subjects: Partial<Record<Subject, SubjectProfile>> = {};
+  for (const row of profiles ?? []) {
+    subjects[row.subject as Subject] = rowToProfile(row as DbSubjectProfileRow);
   }
+
+  return {
+    id: kid.id as string,
+    name: kid.name as string,
+    avatarId: (kid.avatar_id as string) ?? null,
+    createdAt: kid.created_at as string,
+    subjects,
+  };
 }
 
-function save(data: KidProfileStoreShape) {
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
+export async function createKid(name: string, avatarId: string | null): Promise<KidProfile> {
+  const supabase = getSupabase();
+  const { data, error } = await supabase
+    .from("kids")
+    .insert({ name, avatar_id: avatarId })
+    .select()
+    .single();
+  if (error || !data) throw new Error(`Failed to create kid: ${error?.message}`);
 
-export function listKids(): KidProfile[] {
-  return Object.values(load().kids);
-}
-
-export function getKid(id: string): KidProfile | null {
-  return load().kids[id] ?? null;
-}
-
-export function createKid(name: string, avatarId: string | null): KidProfile {
-  const data = load();
-  const id = `kid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-  const kid: KidProfile = {
-    id,
-    name,
-    avatarId,
-    createdAt: new Date().toISOString(),
+  return {
+    id: data.id as string,
+    name: data.name as string,
+    avatarId: (data.avatar_id as string) ?? null,
+    createdAt: data.created_at as string,
     subjects: {},
   };
-  data.kids[id] = kid;
-  save(data);
-  return kid;
 }
 
-export function setKidAvatar(id: string, avatarId: string): KidProfile | null {
-  const data = load();
-  const kid = data.kids[id];
-  if (!kid) return null;
-  kid.avatarId = avatarId;
-  save(data);
-  return kid;
+export async function setKidAvatar(id: string, avatarId: string): Promise<KidProfile | null> {
+  const supabase = getSupabase();
+  const { error } = await supabase.from("kids").update({ avatar_id: avatarId }).eq("id", id);
+  if (error) return null;
+  return getKid(id);
 }
 
-export function getSubjectProfile(kidId: string, subject: Subject): SubjectProfile | null {
-  const kid = getKid(kidId);
-  return kid?.subjects[subject] ?? null;
+export async function getSubjectProfile(
+  kidId: string,
+  subject: Subject
+): Promise<SubjectProfile | null> {
+  const supabase = getSupabase();
+  const { data, error } = await supabase
+    .from("subject_profiles")
+    .select("*")
+    .eq("kid_id", kidId)
+    .eq("subject", subject)
+    .maybeSingle();
+  if (error || !data) return null;
+  return rowToProfile(data as DbSubjectProfileRow);
 }
 
-/** Merge-updates a subject profile. `patch` fields, when provided, replace
- *  the corresponding field (arrays are replaced wholesale by the caller,
- *  which is expected to have already merged/deduped/truncated them). */
-export function updateSubjectProfile(
+/** Upserts a subject profile. `patch` fields, when provided, replace the
+ *  corresponding field (arrays are replaced wholesale by the caller, which
+ *  is expected to have already merged/deduped/truncated them). */
+export async function updateSubjectProfile(
   kidId: string,
   subject: Subject,
   patch: Partial<SubjectProfile>
-): SubjectProfile | null {
-  const data = load();
-  const kid = data.kids[kidId];
-  if (!kid) return null;
-  const current = kid.subjects[subject] ?? emptySubjectProfile();
+): Promise<SubjectProfile | null> {
+  const supabase = getSupabase();
+  const current = (await getSubjectProfile(kidId, subject)) ?? emptySubjectProfile();
   const next: SubjectProfile = {
     ...current,
     ...patch,
     sessionCount: current.sessionCount + 1,
     lastUpdated: new Date().toISOString(),
   };
-  kid.subjects[subject] = next;
-  save(data);
+
+  const { error } = await supabase.from("subject_profiles").upsert({
+    kid_id: kidId,
+    subject,
+    estimated_level: next.estimatedLevel,
+    topics_covered: next.topicsCovered,
+    error_patterns: next.errorPatterns,
+    emotional_signals: next.emotionalSignals,
+    recent_summary: next.recentSummary,
+    session_count: next.sessionCount,
+    last_updated: next.lastUpdated,
+  });
+  if (error) {
+    console.error("[memory-store] failed to upsert subject profile:", error);
+    return null;
+  }
   return next;
 }
