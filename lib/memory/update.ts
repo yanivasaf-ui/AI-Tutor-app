@@ -12,6 +12,13 @@ import { SubjectProfile } from "./types";
  * Deliberately kept separate from the main tutoring reply call so a
  * malformed update never breaks the reply the kid actually sees — on any
  * failure we just keep the previous profile untouched.
+ *
+ * Accepts either a free-chat exchange or a structured exercise outcome
+ * (added when the exercise mechanism shipped — see lib/exercises/). The
+ * exercise path gives this same LLM-judgment call a much cleaner signal
+ * (an exact topic + correct/incorrect) than inferring from prose, without
+ * introducing a second, hardcoded update path — still one LLM judging
+ * pacing in context, per the locked decision.
  */
 export async function updateSubjectProfileFromExchange(
   current: SubjectProfile,
@@ -21,6 +28,7 @@ export async function updateSubjectProfileFromExchange(
     kidName: string;
     userMessage: string;
     tutorReply: string;
+    exercise?: { topic: string; correct: boolean; errorNote?: string };
   }
 ): Promise<Partial<SubjectProfile> | null> {
   const anthropic = getAnthropicClient();
@@ -36,7 +44,16 @@ export async function updateSubjectProfileFromExchange(
 - אותות רגשיים בולטים: ${current.emotionalSignals.join(", ") || "(אין עדיין)"}
 - תקציר קודם: ${current.recentSummary || "(אין עדיין)"}
 
-חילופי הדברים האחרונים:
+${
+  opts.exercise
+    ? `תוצאת תרגיל מובנה (איתות מדויק, לא ניחוש מתוך שיחה):
+נושא: ${opts.exercise.topic}
+תוצאה: ${opts.exercise.correct ? "נכון" : "לא נכון"}
+${opts.exercise.errorNote ? `סוג הטעות: ${opts.exercise.errorNote}` : ""}
+
+חילופי הדברים (השאלה והתשובה):`
+    : "חילופי הדברים האחרונים:"
+}
 תלמיד/ה: ${opts.userMessage}
 מורה: ${opts.tutorReply}
 

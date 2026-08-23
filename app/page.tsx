@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import AvatarPicker, { AvatarBadge } from "@/components/AvatarPicker";
+import PracticeMode from "@/components/PracticeMode";
 import { getAvatarById } from "@/lib/avatars";
 
 interface Message {
@@ -118,9 +119,15 @@ function KidSetup({ onDone }: { onDone: (kid: Kid) => void }) {
   );
 }
 
+const MODES = [
+  { value: "practice", label: "תרגול" },
+  { value: "chat", label: "שיחה חופשית" },
+] as const;
+
 function TutorChat({ kid, onSwitchKid }: { kid: Kid; onSwitchKid: () => void }) {
   const [grade, setGrade] = useState<(typeof GRADES)[number]>("א");
   const [subject, setSubject] = useState<(typeof SUBJECTS)[number]["value"]>("math");
+  const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("practice");
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -200,44 +207,68 @@ function TutorChat({ kid, onSwitchKid }: { kid: Kid; onSwitchKid: () => void }) 
           </select>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border h-96 overflow-y-auto p-4 mb-4 flex flex-col gap-3">
-          {messages.length === 0 && (
-            <p className="text-slate-400 text-sm">שאל/י אותי משהו על {subject === "math" ? "חשבון" : "עברית"}...</p>
-          )}
-          {messages.map((m, i) => (
-            <div
-              key={i}
-              className={`flex items-end gap-2 ${m.role === "user" ? "self-end flex-row-reverse" : "self-start"}`}
+        <div className="flex gap-1 mb-4 border-b">
+          {MODES.map((m) => (
+            <button
+              key={m.value}
+              onClick={() => setMode(m.value)}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px ${
+                mode === m.value
+                  ? "border-blue-600 text-blue-600"
+                  : "border-transparent text-slate-500 hover:text-slate-700"
+              }`}
             >
-              {m.role === "assistant" && avatar && <AvatarBadge avatar={avatar} size={28} />}
-              <div
-                className={`rounded-lg px-3 py-2 max-w-[85%] ${
-                  m.role === "user" ? "bg-blue-100" : "bg-slate-100"
-                }`}
-              >
-                {m.content}
-              </div>
-            </div>
+              {m.label}
+            </button>
           ))}
-          {loading && <div className="text-slate-400 text-sm">חושב/ת...</div>}
         </div>
 
-        <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send()}
-            placeholder="כתוב/י כאן..."
-            className="flex-1 border rounded px-3 py-2"
-          />
-          <button
-            onClick={send}
-            disabled={loading}
-            className="bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50"
-          >
-            שלח
-          </button>
-        </div>
+        {mode === "practice" && (
+          <PracticeMode subject={subject} grade={grade} kidId={kid.id} avatar={avatar} />
+        )}
+
+        {mode === "chat" && (
+          <>
+            <div className="bg-white rounded-lg shadow-sm border h-96 overflow-y-auto p-4 mb-4 flex flex-col gap-3">
+              {messages.length === 0 && (
+                <p className="text-slate-400 text-sm">שאל/י אותי משהו על {subject === "math" ? "חשבון" : "עברית"}...</p>
+              )}
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  className={`flex items-end gap-2 ${m.role === "user" ? "self-end flex-row-reverse" : "self-start"}`}
+                >
+                  {m.role === "assistant" && avatar && <AvatarBadge avatar={avatar} size={28} />}
+                  <div
+                    className={`rounded-lg px-3 py-2 max-w-[85%] ${
+                      m.role === "user" ? "bg-blue-100" : "bg-slate-100"
+                    }`}
+                  >
+                    {m.content}
+                  </div>
+                </div>
+              ))}
+              {loading && <div className="text-slate-400 text-sm">חושב/ת...</div>}
+            </div>
+
+            <div className="flex gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && send()}
+                placeholder="כתוב/י כאן..."
+                className="flex-1 border rounded px-3 py-2"
+              />
+              <button
+                onClick={send}
+                disabled={loading}
+                className="bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50"
+              >
+                שלח
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
