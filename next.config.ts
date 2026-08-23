@@ -15,9 +15,13 @@ const nextConfig: NextConfig = {
   // binary as a dependency (it's resolved by onnxruntime-node at runtime via
   // a computed path, not a static one an analyzer can follow) and drops it
   // from the deployed function. Forcing it in explicitly here fixed a
-  // production 500 ("libonnxruntime.so.1: cannot open shared object file").
+  // production 500 ("libonnxruntime.so.1: cannot open shared object file")
+  // on /api/chat. Each API route is traced into its OWN serverless bundle,
+  // so this recurred on /api/exercise the moment it also called embedText()
+  // — scoped to "/api/**" now instead of one route at a time, so the next
+  // route that needs embeddings doesn't hit this same crash again.
   outputFileTracingIncludes: {
-    "/api/chat": ["./node_modules/onnxruntime-node/bin/**/*"],
+    "/api/**": ["./node_modules/onnxruntime-node/bin/**/*"],
   },
 };
 
