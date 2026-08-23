@@ -31,10 +31,10 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
     setEvaluation(null);
     setAnswer("");
     try {
-      const res = await fetch("/api/exercise", {
+      const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject, grade, kidId }),
+        body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId }),
       });
       const data = await res.json();
       setExercise(data.exercise ?? null);
@@ -54,10 +54,10 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
     try {
-      const res = await fetch("/api/exercise/answer", {
+      const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ exercise, answer: value, kidId }),
+        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId }),
       });
       const data = await res.json();
       setEvaluation(data.evaluation ?? null);

@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/**": ["./node_modules/onnxruntime-node/bin/**/*"],
   },
+
 };
 
 export default nextConfig;
