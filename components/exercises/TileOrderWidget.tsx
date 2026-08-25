@@ -28,19 +28,30 @@ export default function TileOrderWidget({ data, disabled, onSubmit }: Props) {
   const allFilled = placed.every((p) => p !== null);
 
   function placeInNextSlot(itemIndex: number) {
-    if (disabled || usedIndices.has(itemIndex)) return;
-    const nextEmpty = placed.findIndex((p) => p === null);
-    if (nextEmpty === -1) return;
-    const next = [...placed];
-    next[nextEmpty] = itemIndex;
-    setPlaced(next);
+    if (disabled) return;
+    // Functional update — reading `placed`/`usedIndices` from the render
+    // closure instead would go stale when two taps land before a
+    // re-render (e.g. a fast double-tap), letting both compute the same
+    // "next empty slot" and silently overwrite each other. Found via
+    // real interactive testing, not a hypothetical.
+    setPlaced((prev) => {
+      if (prev.includes(itemIndex)) return prev;
+      const nextEmpty = prev.findIndex((p) => p === null);
+      if (nextEmpty === -1) return prev;
+      const next = [...prev];
+      next[nextEmpty] = itemIndex;
+      return next;
+    });
   }
 
   function removeFromSlot(slotIndex: number) {
-    if (disabled || placed[slotIndex] === null) return;
-    const next = [...placed];
-    next[slotIndex] = null;
-    setPlaced(next);
+    if (disabled) return;
+    setPlaced((prev) => {
+      if (prev[slotIndex] === null) return prev;
+      const next = [...prev];
+      next[slotIndex] = null;
+      return next;
+    });
   }
 
   function handleSubmit() {
