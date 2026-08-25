@@ -5,6 +5,8 @@ import AvatarPicker, { AvatarBadge } from "@/components/AvatarPicker";
 import PracticeMode from "@/components/PracticeMode";
 import { getAvatarById } from "@/lib/avatars";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
+import type { SubjectProfile } from "@/lib/memory/types";
 
 interface Message {
   role: "user" | "assistant";
@@ -15,6 +17,13 @@ interface Kid {
   id: string;
   name: string;
   avatarId: string | null;
+}
+
+interface KidDashboard {
+  kidId: string;
+  flags: ParentFlag[];
+  recentAttempts: RecentAttempt[];
+  subjectStats: SubjectStats[];
 }
 
 const GRADES = ["א", "ב", "ג"] as const;
@@ -35,6 +44,7 @@ export default function Home() {
   const [user, setUser] = useState<{ id: string } | null | undefined>(undefined);
   const [kid, setKid] = useState<Kid | null>(null);
   const [loadingKid, setLoadingKid] = useState(false);
+  const [view, setView] = useState<"kid" | "dashboard">("kid");
 
   useEffect(() => {
     const supabase = getSupabaseBrowserClient();
@@ -78,7 +88,11 @@ export default function Home() {
     return <KidSetup onDone={setKid} onLogout={logout} />;
   }
 
-  return <TutorChat kid={kid} onLogout={logout} />;
+  if (view === "dashboard") {
+    return <ParentDashboard onBack={() => setView("kid")} onLogout={logout} />;
+  }
+
+  return <TutorChat kid={kid} onLogout={logout} onOpenDashboard={() => setView("dashboard")} />;
 }
 
 function LoginScreen() {
@@ -278,7 +292,15 @@ const MODES = [
   { value: "chat", label: "שיחה חופשית" },
 ] as const;
 
-function TutorChat({ kid, onLogout }: { kid: Kid; onLogout: () => void }) {
+function TutorChat({
+  kid,
+  onLogout,
+  onOpenDashboard,
+}: {
+  kid: Kid;
+  onLogout: () => void;
+  onOpenDashboard: () => void;
+}) {
   const [grade, setGrade] = useState<(typeof GRADES)[number]>("א");
   const [subject, setSubject] = useState<(typeof SUBJECTS)[number]["value"]>("math");
   const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("practice");
@@ -326,14 +348,19 @@ function TutorChat({ kid, onLogout }: { kid: Kid; onLogout: () => void }) {
       <div className="w-full max-w-xl">
         <div className="flex items-center justify-between mb-1">
           <h1 className="text-2xl font-bold text-slate-800">המורה הפרטי שלי</h1>
-          <button
-            onClick={onLogout}
-            className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
-            title="התנתקות"
-          >
-            {avatar && <AvatarBadge avatar={avatar} size={32} />}
-            <span>{kid.name}</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={onOpenDashboard} className="text-sm text-blue-600 hover:underline">
+              לוח בקרה להורים
+            </button>
+            <button
+              onClick={onLogout}
+              className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
+              title="התנתקות"
+            >
+              {avatar && <AvatarBadge avatar={avatar} size={32} />}
+              <span>{kid.name}</span>
+            </button>
+          </div>
         </div>
         <p className="text-sm text-slate-500 mb-4">אב טיפוס פנימי — לא לשימוש חיצוני</p>
 
@@ -424,6 +451,154 @@ function TutorChat({ kid, onLogout }: { kid: Kid; onLogout: () => void }) {
             </div>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+const SUBJECT_LABELS: Record<string, string> = { math: "חשבון", hebrew: "עברית" };
+
+interface DashboardKid {
+  id: string;
+  name: string;
+  avatarId: string | null;
+  subjects: Partial<Record<"math" | "hebrew", SubjectProfile>>;
+}
+
+/**
+ * Real parent-facing view of what's already being tracked per kid — the
+ * "what does the parent see" question the brief explicitly left
+ * undesigned (Section 2c) plus the "flag to parent" half of the locked
+ * off-curriculum/emotional decision, which existed only as a console.log
+ * until this session. Reads /api/kids's dashboard payload (folded into
+ * the existing route rather than a new one, per the Vercel function-count
+ * constraint already hit twice on this app).
+ *
+ * No weekly-report delivery (email/SMS) here — that's still blocked on
+ * Twilio/email setup Asaf hasn't done yet (M-memory/decisions.md,
+ * "Twilio Chosen... Not Built Yet"). This is the in-app view, buildable
+ * now with what's already connected.
+ */
+function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: () => void }) {
+  const [kids, setKids] = useState<DashboardKid[]>([]);
+  const [dashboards, setDashboards] = useState<
+    Record<string, { flags: ParentFlag[]; recentAttempts: RecentAttempt[]; subjectStats: SubjectStats[] }>
+  >({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/kids")
+      .then((res) => (res.ok ? res.json() : { kids: [], dashboard: [] }))
+      .then(
+        ({
+          kids,
+          dashboard,
+        }: {
+          kids: DashboardKid[];
+          dashboard: { kidId: string; flags: ParentFlag[]; recentAttempts: RecentAttempt[]; subjectStats: SubjectStats[] }[];
+        }) => {
+          setKids(kids);
+          const map: typeof dashboards = {};
+          for (const d of dashboard) map[d.kidId] = d;
+          setDashboards(map);
+        }
+      )
+      .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center p-6 font-sans">
+      <div className="w-full max-w-2xl">
+        <div className="flex items-center justify-between mb-1">
+          <h1 className="text-2xl font-bold text-slate-800">לוח בקרה להורים</h1>
+          <div className="flex items-center gap-4">
+            <button onClick={onBack} className="text-sm text-blue-600 hover:underline">
+              חזרה לתרגול
+            </button>
+            <button onClick={onLogout} className="text-sm text-slate-500 hover:text-slate-700">
+              התנתקות
+            </button>
+          </div>
+        </div>
+        <p className="text-sm text-slate-500 mb-6">אב טיפוס פנימי — לא לשימוש חיצוני</p>
+
+        {loading && <p className="text-slate-400 text-sm">טוען...</p>}
+        {!loading && kids.length === 0 && <p className="text-slate-400 text-sm">אין עדיין ילדים רשומים.</p>}
+
+        <div className="flex flex-col gap-6">
+          {kids.map((kid) => {
+            const avatar = getAvatarById(kid.avatarId);
+            const d = dashboards[kid.id];
+            return (
+              <div key={kid.id} className="bg-white rounded-lg shadow-sm border p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  {avatar && <AvatarBadge avatar={avatar} size={36} />}
+                  <h2 className="text-lg font-bold text-slate-800">{kid.name}</h2>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  {(["math", "hebrew"] as const).map((subject) => {
+                    const profile = kid.subjects?.[subject];
+                    const stats = d?.subjectStats.find((s) => s.subject === subject);
+                    return (
+                      <div key={subject} className="border rounded-lg p-3">
+                        <h3 className="font-semibold text-slate-700 mb-1">{SUBJECT_LABELS[subject]}</h3>
+                        {stats && stats.totalAttempts > 0 ? (
+                          <p className="text-sm text-slate-600 mb-1">
+                            {stats.correctAttempts}/{stats.totalAttempts} תרגילים נכונים (
+                            {Math.round((stats.correctAttempts / stats.totalAttempts) * 100)}%)
+                          </p>
+                        ) : (
+                          <p className="text-sm text-slate-400 mb-1">אין עדיין תרגילים</p>
+                        )}
+                        {profile?.recentSummary && <p className="text-sm text-slate-600">{profile.recentSummary}</p>}
+                        {profile?.topicsCovered && profile.topicsCovered.length > 0 && (
+                          <p className="text-xs text-slate-400 mt-1">נושאים: {profile.topicsCovered.join(", ")}</p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {d && d.flags.length > 0 && (
+                  <div className="mb-4">
+                    <h3 className="font-semibold text-amber-700 mb-2 text-sm">רגעים לתשומת לב</h3>
+                    <div className="flex flex-col gap-2">
+                      {d.flags.map((flag) => (
+                        <div
+                          key={flag.id}
+                          className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 text-sm text-slate-700"
+                        >
+                          <span className="text-xs text-slate-400 block mb-1">
+                            {new Date(flag.createdAt).toLocaleDateString("he-IL")}
+                          </span>
+                          &quot;{flag.message}&quot;
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {d && d.recentAttempts.length > 0 && (
+                  <div>
+                    <h3 className="font-semibold text-slate-700 mb-2 text-sm">פעילות אחרונה</h3>
+                    <div className="flex flex-col gap-1">
+                      {d.recentAttempts.map((a) => (
+                        <div key={a.id} className="flex items-center gap-2 text-sm">
+                          <span className={a.correct ? "text-green-600" : "text-amber-600"}>
+                            {a.correct ? "✓" : "✗"}
+                          </span>
+                          <span className="text-slate-600 truncate">{a.question}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
+import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -85,14 +86,20 @@ async function handleChat(
   }
 
   const flagged = looksOffCurriculumOrEmotional(message);
-  if (flagged) {
-    // Parent-dashboard flagging is not built yet — this is the hook point
-    // per the locked "gentle redirect + flag to parent" decision.
-    console.log(`[flag-for-parent] grade=${grade} subject=${subject} message="${message}"`);
-  }
 
   const kid = kidId ? await getKid(supabase, kidId) : null;
   const subjectProfile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
+
+  if (flagged && kid) {
+    // The "flag to parent" half of the locked "gentle redirect + flag to
+    // parent" decision — this used to just console.log; now it's a real
+    // row a parent can actually see on the dashboard.
+    try {
+      await saveParentFlag(supabase, { kidId: kid.id, subject: subject as Subject, grade, message });
+    } catch (err) {
+      console.error("[flag-for-parent] failed to save flag:", err);
+    }
+  }
 
   const queryEmbedding = await embedText(message);
   const retrieved = search(queryEmbedding, { subject, grade, topK: 4 });

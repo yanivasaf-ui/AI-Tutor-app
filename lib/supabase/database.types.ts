@@ -142,6 +142,41 @@ export type Database = {
         }
         Relationships: []
       }
+      parent_flags: {
+        Row: {
+          created_at: string | null
+          grade: string | null
+          id: string
+          kid_id: string
+          message: string
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          grade?: string | null
+          id?: string
+          kid_id: string
+          message: string
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          grade?: string | null
+          id?: string
+          kid_id?: string
+          message?: string
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_flags_kid_id_fkey"
+            columns: ["kid_id"]
+            isOneToOne: false
+            referencedRelation: "kids"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       subject_profiles: {
         Row: {
           emotional_signals: string[]
