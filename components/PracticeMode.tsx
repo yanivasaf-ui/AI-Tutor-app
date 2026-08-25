@@ -99,6 +99,16 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
               {choice}
             </button>
           ))}
+          {/* The evaluation call is a real LLM round-trip (several seconds) —
+              without this, a kid taps an answer and sees nothing happen,
+              which reads as broken and invites frantic re-tapping. Found
+              by actually clicking through the app, not assumed. */}
+          {submitting && (
+            <div className="flex items-center gap-2 text-sm text-slate-500 pt-1">
+              <span className="inline-block w-4 h-4 border-2 border-slate-300 border-t-blue-600 rounded-full animate-spin" />
+              בודק/ת את התשובה...
+            </div>
+          )}
         </div>
       )}
 
