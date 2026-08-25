@@ -67,6 +67,7 @@ export type Database = {
           correct_answer: string
           created_at: string
           grade: string
+          grouping: Json | null
           id: string
           number_line: Json | null
           passage: string | null
@@ -84,6 +85,7 @@ export type Database = {
           correct_answer: string
           created_at?: string
           grade: string
+          grouping?: Json | null
           id?: string
           number_line?: Json | null
           passage?: string | null
@@ -101,6 +103,7 @@ export type Database = {
           correct_answer?: string
           created_at?: string
           grade?: string
+          grouping?: Json | null
           id?: string
           number_line?: Json | null
           passage?: string | null

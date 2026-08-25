@@ -2,7 +2,7 @@ import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { embedText } from "@/lib/rag/embed";
 import { search } from "@/lib/rag/store";
 import { SubjectProfile } from "@/lib/memory/types";
-import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, Grade } from "./types";
+import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
  * Tier 1 + Tier 2 subtypes from output/exercise-types-build-brief.md, each
@@ -33,6 +33,16 @@ const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
     'תן/י מילה עברית קצרה ומתאימה לגיל (מהתוכן הלימודי או קרובה אליו). type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [אותיות המילה בסדר מעורבב]} — קריטי: items חייב להכיל בדיוק את האותיות של המילה, אותה אחת אחת, בלי אף אות נוספת ובלי אף אות חסרה (רק הסדר מעורבב, לא התוכן). correctAnswer הוא אותה מילה בדיוק (האותיות ברצף הנכון, ללא רווחים ביניהן) — ודא/י ש-correctAnswer מכיל בדיוק את אותן אותיות כמו items, לא יותר ולא פחות.',
   sentence_order:
     'תן/י משפט קצר ופשוט (3-6 מילים) מתאים לגיל. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [מילות המשפט בסדר מעורבב]} — קריטי: items חייב להכיל בדיוק את מילות המשפט, אותה אחת אחת, בלי אף מילה נוספת ובלי אף מילה חסרה (רק הסדר מעורבב, לא התוכן). correctAnswer הוא אותו משפט בדיוק, עם רווחים בין המילים בסדר הנכון — ודא/י שמספר המילים ב-correctAnswer זהה למספר הפריטים ב-items.',
+  visual_grouping:
+    'תן/י N חפצים זהים (אותו אמוג\'י חוזר, כגון 🍎 או ⭐, לא מילים) שמתחלקים בדיוק ל-groupCount קבוצות שוות ללא שארית — בחר/י N ו-groupCount כך ש-N מתחלק ב-groupCount בדיוק, מתאים לרמת הכיתה (למשל 12 חפצים, 3 קבוצות). type חייב להיות "grouping". החזר/י שדה נוסף grouping: {"items": [N פעמים אותו אמוג\'י], "groupCount": מספר הקבוצות}. נסח/י את question כבקשה לחלק את החפצים ל-groupCount קבוצות שוות. correctAnswer הוא מספר הפריטים הנכון שאמור להיות בכל קבוצה (N חלקי groupCount), כמחרוזת.',
+  equation_balance:
+    'משוואת חיבור או חיסור פשוטה עם מקום ריק אחד (למשל "3 + ___ = 7"), מתאימה לרמת הכיתה. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 מספרים מעורבבים קרובים לתשובה, רק אחד מהם הופך את המשוואה לנכונה]}. נסח/י את question כמשוואה עם המקום הריק מסומן בבירור (למשל "___"). correctAnswer הוא המספר הנכון שמאזן את המשוואה, וחייב להיות אחד מהערכים ב-items.',
+  shape_match:
+    'רצף צורות עם דפוס ברור, מיוצג באמוג\'י צורות (למשל ⭐ 🔵 ⭐ 🔵 ___ או 🔺 🔺 🟦 🔺 🔺 ___), עם מקום ריק אחד בסוף. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 אמוג\'י צורות מעורבבים, רק אחד ממשיך את הדפוס נכון]}. נסח/י את question שמציג את רצף האמוג\'י עם מקום ריק בסוף. correctAnswer הוא אמוג\'י הצורה הנכונה, וחייב להיות אחד מהערכים ב-items.',
+  vowel_select_mc:
+    'תן/י מילה עברית קצרה מתאימה לגיל, ובקש/י לבחור את הניקוד הנכון שלה מבין 4 אפשרויות — כל אפשרות היא המילה המלאה עם ניקוד שונה (באמצעות תווי ניקוד יוניקוד, למשל "כֶּלֶב" לעומת "כָּלָב"), רק אחת מנוקדת נכון. type חייב להיות "multiple_choice".',
+  phonemic_visual_mc:
+    'גרסה חזותית/טקסטואלית של מודעות פונולוגית, ללא אודיו (אין השמעת קול באפליקציה הזו) — הצג/י מילת יעד ובקש/י לבחור מבין 4 מילים איזו מתחילה (או מסתיימת) באותו צליל/אות כמו מילת היעד. type חייב להיות "multiple_choice".',
 };
 
 const MATH_SUBTYPES: ExerciseSubtype[] = [
@@ -41,6 +51,9 @@ const MATH_SUBTYPES: ExerciseSubtype[] = [
   "explain_thinking",
   "number_line_placement",
   "pattern_completion",
+  "visual_grouping",
+  "equation_balance",
+  "shape_match",
 ];
 const HEBREW_SUBTYPES: ExerciseSubtype[] = [
   "comprehension",
@@ -48,7 +61,16 @@ const HEBREW_SUBTYPES: ExerciseSubtype[] = [
   "root_pattern_mc",
   "word_build",
   "sentence_order",
+  "vowel_select_mc",
+  "phonemic_visual_mc",
 ];
+
+/** Subtypes that fill exactly ONE of several offered tile_order slots
+ *  (the correct value is one of a handful of candidates) rather than
+ *  placing every offered tile — pattern_completion, equation_balance, and
+ *  shape_match all share this shape. word_build/sentence_order place
+ *  every tile instead. */
+const SINGLE_SLOT_TILE_SUBTYPES: ExerciseSubtype[] = ["pattern_completion", "equation_balance", "shape_match"];
 
 /** root_pattern_mc is flagged in the locked inventory as likely ב'-ג' only,
  *  not grade א' — excluded there rather than generated and hoped to be fine. */
@@ -116,14 +138,15 @@ ${SUBTYPE_GUIDANCE[subtype]}
 
 החזר/י אך ורק אובייקט JSON תקין, ללא טקסט נוסף, בפורמט הזה:
 {
-  "type": "open" | "multiple_choice" | "number_line" | "tile_order",
+  "type": "open" | "multiple_choice" | "number_line" | "tile_order" | "grouping",
   "topic": "שם הנושא מהרשימה לעיל",
   "passage": "רק אם התבנית דורשת קטע קריאה (comprehension) - הקטע עצמו, אחרת השמט שדה זה",
   "question": "נוסח השאלה, בעברית, מתאים לילד/ה",
   "choices": ["רק אם type הוא multiple_choice - 4 אפשרויות"],
   "numberLine": "רק אם type הוא number_line - {min, max, step}, אחרת השמט שדה זה",
   "tiles": "רק אם type הוא tile_order - {items: [...]}, אחרת השמט שדה זה",
-  "correctAnswer": "התשובה הנכונה (ראה הנחיות מיוחדות לתבניות explain_thinking / number_line_placement / pattern_completion / word_build / sentence_order לעיל)"
+  "grouping": "רק אם type הוא grouping - {items: [...], groupCount: מספר}, אחרת השמט שדה זה",
+  "correctAnswer": "התשובה הנכונה (ראה ההנחיה המיוחדת לתבנית שנבחרה לעיל — לכל תבנית כללים משלה למה correctAnswer אמור להכיל)"
 }`;
 
   const anthropic = getAnthropicClient();
@@ -147,7 +170,10 @@ ${SUBTYPE_GUIDANCE[subtype]}
   }
 
   const type: ExerciseType =
-    parsed.type === "multiple_choice" || parsed.type === "number_line" || parsed.type === "tile_order"
+    parsed.type === "multiple_choice" ||
+    parsed.type === "number_line" ||
+    parsed.type === "tile_order" ||
+    parsed.type === "grouping"
       ? parsed.type
       : "open";
 
@@ -178,15 +204,36 @@ ${SUBTYPE_GUIDANCE[subtype]}
     if (subtype === "sentence_order" && items.length !== parsed.correctAnswer.trim().split(/\s+/).length) {
       throw new Error("sentence_order tile count doesn't match correctAnswer word count.");
     }
-    if (subtype === "pattern_completion" && !items.includes(parsed.correctAnswer)) {
-      throw new Error("pattern_completion correctAnswer isn't among the offered tiles.");
+    if (subtype && SINGLE_SLOT_TILE_SUBTYPES.includes(subtype) && !items.includes(parsed.correctAnswer)) {
+      throw new Error(`${subtype} correctAnswer isn't among the offered tiles.`);
     }
 
     tiles = {
       items,
-      slotCount: subtype === "pattern_completion" ? 1 : items.length,
+      slotCount: subtype && SINGLE_SLOT_TILE_SUBTYPES.includes(subtype) ? 1 : items.length,
       joinWith: subtype === "word_build" ? "" : " ",
     };
+  }
+
+  let grouping: GroupingData | undefined;
+  if (type === "grouping") {
+    const items = Array.isArray(parsed.grouping?.items) ? parsed.grouping.items.map(String) : null;
+    const groupCount = parsed.grouping?.groupCount;
+    if (!items || items.length === 0 || typeof groupCount !== "number" || groupCount < 2) {
+      throw new Error("Exercise generation returned type=grouping with no valid grouping payload.");
+    }
+    // Must divide evenly — an uneven split has no single correct "items
+    // per group" answer, which is exactly what correctAnswer is supposed
+    // to be. Same "reject an unsolvable exercise" discipline already
+    // applied to word_build/sentence_order/pattern_completion above.
+    if (items.length % groupCount !== 0) {
+      throw new Error(`grouping items.length (${items.length}) isn't evenly divisible by groupCount (${groupCount}).`);
+    }
+    const expectedPerGroup = String(items.length / groupCount);
+    if (parsed.correctAnswer.trim() !== expectedPerGroup) {
+      throw new Error(`grouping correctAnswer "${parsed.correctAnswer}" doesn't match items.length/groupCount (${expectedPerGroup}).`);
+    }
+    grouping = { items, groupCount };
   }
 
   return {
@@ -201,6 +248,7 @@ ${SUBTYPE_GUIDANCE[subtype]}
     choices: Array.isArray(parsed.choices) ? parsed.choices.map(String) : undefined,
     numberLine,
     tiles,
+    grouping,
     correctAnswer: parsed.correctAnswer,
   };
 }

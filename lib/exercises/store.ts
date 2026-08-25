@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
-import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, Grade } from "./types";
+import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
 
@@ -25,6 +25,7 @@ interface DbExerciseRow {
   choices: string[] | null;
   number_line: unknown;
   tiles: unknown;
+  grouping: unknown;
   correct_answer: string;
 }
 
@@ -41,6 +42,7 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     choices: row.choices ?? undefined,
     numberLine: (row.number_line as NumberLineData | null) ?? undefined,
     tiles: (row.tiles as TileOrderData | null) ?? undefined,
+    grouping: (row.grouping as GroupingData | null) ?? undefined,
     correctAnswer: row.correct_answer,
   };
 }
@@ -103,6 +105,7 @@ export async function saveExercise(
       // a named interface doesn't structurally have.
       number_line: (exercise.numberLine as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["number_line"]) ?? null,
       tiles: (exercise.tiles as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["tiles"]) ?? null,
+      grouping: (exercise.grouping as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["grouping"]) ?? null,
       correct_answer: exercise.correctAnswer,
     })
     .select()

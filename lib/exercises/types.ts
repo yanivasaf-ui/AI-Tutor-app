@@ -11,7 +11,7 @@ import { Subject } from "../memory/types";
  * many-to-few grouping interaction, not a 1:1 ordering one, and didn't fit
  * this primitive cleanly enough to rush into the same pass.
  */
-export type ExerciseType = "open" | "multiple_choice" | "number_line" | "tile_order";
+export type ExerciseType = "open" | "multiple_choice" | "number_line" | "tile_order" | "grouping";
 export type Grade = "א" | "ב" | "ג";
 
 /**
@@ -20,6 +20,17 @@ export type Grade = "א" | "ב" | "ג";
  * just the render/interaction shape). Several subtypes share the same
  * `type` — e.g. "explain_thinking" and "fill_in_blank" both render as
  * "open" but need different generation and evaluation behavior.
+ *
+ * Tier 3 note: equation_balance, shape_match, and vowel_select_mc are the
+ * locked inventory's Math #3 (DragonBox-style equation balancing), Math #7
+ * (shape/pattern puzzles), and Hebrew #2 (ניקוד picker) — deliberately
+ * scoped down from real drag-onto-a-scale physics / shape rotation to the
+ * already-built, already-QA'd tile_order/multiple_choice primitives. The
+ * pedagogical shape survives (fill the blank so it balances; pick the
+ * matching next shape; pick the right vowel mark) — the fancier
+ * interaction machinery doesn't, per the build brief's own permission to
+ * scope Tier 3 conservatively rather than build all-new drag physics for
+ * each. Stated plainly, not silently: this is a real simplification.
  */
 export type ExerciseSubtype =
   // Tier 1 — near-free, existing open/multiple_choice shapes
@@ -33,7 +44,13 @@ export type ExerciseSubtype =
   | "number_line_placement" // math #1 — renders as "number_line"
   | "pattern_completion" // math #6 — renders as "tile_order", slotCount 1
   | "word_build" // hebrew #7 — renders as "tile_order", letters joined with no separator
-  | "sentence_order"; // hebrew #8 — renders as "tile_order", words joined with spaces
+  | "sentence_order" // hebrew #8 — renders as "tile_order", words joined with spaces
+  // Tier 3 + drag_group
+  | "visual_grouping" // math #2 — renders as "grouping", the one genuinely new interaction shape this pass
+  | "equation_balance" // math #3, scoped down — renders as "tile_order", slotCount 1
+  | "shape_match" // math #7, scoped down — renders as "tile_order", slotCount 1, items are shape emoji
+  | "vowel_select_mc" // hebrew #2 (ניקוד) — renders as "multiple_choice", choices are niqqud-marked forms
+  | "phonemic_visual_mc"; // hebrew #1, text/visual proxy per the build brief's own fallback recommendation — no audio. See PracticeMode.tsx note: this is a judgment call flagged to Asaf, not silently assumed.
 
 /** Payload for type === "number_line". Kid taps one tick on a rendered
  *  line; (max-min)/step+1 is kept small by generation-prompt instruction
@@ -55,6 +72,18 @@ export interface TileOrderData {
   items: string[];
   slotCount: number;
   joinWith: "" | " ";
+}
+
+/** Payload for type === "grouping" (math #2, visual counting/grouping —
+ *  the one genuinely new interaction this pass). `items.length` must be
+ *  an exact multiple of `groupCount`; the kid taps an item then taps a
+ *  bucket to place it, distributing all items across `groupCount` equal
+ *  buckets. Unlike tile_order, order within a bucket doesn't matter and
+ *  a bucket holds more than one item — a different interaction, not a
+ *  variant of the ordering primitive. */
+export interface GroupingData {
+  items: string[];
+  groupCount: number;
 }
 
 export interface Exercise {
@@ -80,6 +109,8 @@ export interface Exercise {
   numberLine?: NumberLineData;
   /** Present only when type === "tile_order". */
   tiles?: TileOrderData;
+  /** Present only when type === "grouping". */
+  grouping?: GroupingData;
   correctAnswer: string;
 }
 
