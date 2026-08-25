@@ -68,10 +68,12 @@ export type Database = {
           created_at: string
           grade: string
           id: string
+          number_line: Json | null
           passage: string | null
           question: string
           subject: string
           subtype: string | null
+          tiles: Json | null
           times_correct: number
           times_used: number
           topic: string
@@ -83,10 +85,12 @@ export type Database = {
           created_at?: string
           grade: string
           id?: string
+          number_line?: Json | null
           passage?: string | null
           question: string
           subject: string
           subtype?: string | null
+          tiles?: Json | null
           times_correct?: number
           times_used?: number
           topic: string
@@ -98,10 +102,12 @@ export type Database = {
           created_at?: string
           grade?: string
           id?: string
+          number_line?: Json | null
           passage?: string | null
           question?: string
           subject?: string
           subtype?: string | null
+          tiles?: Json | null
           times_correct?: number
           times_used?: number
           topic?: string

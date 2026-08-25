@@ -19,10 +19,22 @@ export async function evaluateExerciseAnswer(
   // description of what a good explanation looks like, not a literal
   // target. Judging it like every other subtype (fuzzy match against a
   // fixed answer) would mark a valid-but-different explanation wrong.
+  // pattern_completion/word_build/sentence_order are tile-arrangement tasks
+  // (see lib/exercises/types.ts TileOrderData) — the kid's placed tiles get
+  // serialized into one string by PracticeMode, same shape as correctAnswer.
+  // Unlike the fuzzy math/explanation judging above, exact order is the
+  // actual thing being tested here, so "close but scrambled" must not pass.
+  const isTileOrderSubtype =
+    exercise.subtype === "pattern_completion" ||
+    exercise.subtype === "word_build" ||
+    exercise.subtype === "sentence_order";
+
   const judgingInstruction =
     exercise.subtype === "explain_thinking"
       ? `אין כאן תשובה נכונה יחידה. "${exercise.correctAnswer}" הוא תיאור של מה מאפיין הסבר טוב, לא תשובה מדויקת לחפש. שפוט/י אם ההסבר של התלמיד/ה מציג חשיבה הגיונית ותקפה על הבעיה — גם אם הדרך שונה מהמתואר.`
-      : `שפוט/י אם התשובה נכונה — קבל/י ניסוחים שונים או תשובות חלקיות-אך-נכונות מבחינה מהותית, לא רק התאמה מילולית מדויקת.`;
+      : isTileOrderSubtype
+        ? `זהו תרגיל של סידור אבנים/אריחים לפי סדר נכון. הסדר עצמו הוא מה שנבדק — קבל/י כתשובה נכונה רק אם הסדר תואם בדיוק את "${exercise.correctAnswer}" (מותר להתעלם מהבדלי רווחים בין רכיבים), לא סידור "קרוב" או חלקית נכון.`
+        : `שפוט/י אם התשובה נכונה — קבל/י ניסוחים שונים או תשובות חלקיות-אך-נכונות מבחינה מהותית, לא רק התאמה מילולית מדויקת.`;
 
   const prompt = `שאלה שנשאלה לתלמיד/ה: "${exercise.question}"
 ${exercise.passage ? `קטע קריאה: "${exercise.passage}"` : ""}

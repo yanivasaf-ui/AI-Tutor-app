@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
-import { Exercise, ExerciseSubtype, Grade } from "./types";
+import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
 
@@ -23,6 +23,8 @@ interface DbExerciseRow {
   passage: string | null;
   question: string;
   choices: string[] | null;
+  number_line: unknown;
+  tiles: unknown;
   correct_answer: string;
 }
 
@@ -31,12 +33,14 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     id: row.id,
     subject: row.subject as "math" | "hebrew",
     grade: row.grade as Grade,
-    type: row.type as "open" | "multiple_choice",
+    type: row.type as ExerciseType,
     subtype: (row.subtype as ExerciseSubtype | null) ?? undefined,
     topic: row.topic,
     passage: row.passage ?? undefined,
     question: row.question,
     choices: row.choices ?? undefined,
+    numberLine: (row.number_line as NumberLineData | null) ?? undefined,
+    tiles: (row.tiles as TileOrderData | null) ?? undefined,
     correctAnswer: row.correct_answer,
   };
 }
@@ -94,6 +98,11 @@ export async function saveExercise(
       passage: exercise.passage ?? null,
       question: exercise.question,
       choices: exercise.choices ?? null,
+      // Cast: NumberLineData/TileOrderData are plain JSON-serializable
+      // objects, but TS's Json type requires a string index signature that
+      // a named interface doesn't structurally have.
+      number_line: (exercise.numberLine as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["number_line"]) ?? null,
+      tiles: (exercise.tiles as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["tiles"]) ?? null,
       correct_answer: exercise.correctAnswer,
     })
     .select()

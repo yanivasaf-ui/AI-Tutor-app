@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { AvatarBadge } from "./AvatarPicker";
+import NumberLineWidget from "./exercises/NumberLineWidget";
+import TileOrderWidget from "./exercises/TileOrderWidget";
 import type { AvatarOption } from "@/lib/avatars";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 
@@ -116,6 +118,14 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
             </div>
           )}
         </div>
+      )}
+
+      {!evaluation && exercise.type === "number_line" && exercise.numberLine && (
+        <NumberLineWidget data={exercise.numberLine} disabled={submitting} onSubmit={submitAnswer} />
+      )}
+
+      {!evaluation && exercise.type === "tile_order" && exercise.tiles && (
+        <TileOrderWidget data={exercise.tiles} disabled={submitting} onSubmit={submitAnswer} />
       )}
 
       {!evaluation && exercise.type === "open" && (
