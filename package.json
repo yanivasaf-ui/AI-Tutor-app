@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3001 --turbopack",
     "build": "tsx scripts/build-index.ts && next build --turbopack",
     "start": "next start",
     "build-index": "tsx scripts/build-index.ts"
