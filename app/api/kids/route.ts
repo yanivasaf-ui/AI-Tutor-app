@@ -27,13 +27,24 @@ export async function GET() {
   if (!user) return NextResponse.json({ error: "not authenticated" }, { status: 401 });
 
   const kids = await listKids(supabase);
+  const today = new Date().toISOString().slice(0, 10);
   const dashboard = await Promise.all(
-    kids.map(async (kid) => ({
-      kidId: kid.id,
-      flags: await getParentFlags(supabase, kid.id),
-      recentAttempts: await getRecentAttempts(supabase, kid.id),
-      subjectStats: await getSubjectStats(supabase, kid.id),
-    }))
+    kids.map(async (kid) => {
+      const recentAttempts = await getRecentAttempts(supabase, kid.id);
+      return {
+        kidId: kid.id,
+        flags: await getParentFlags(supabase, kid.id),
+        recentAttempts,
+        subjectStats: await getSubjectStats(supabase, kid.id),
+        // Ties the locked ~15-min/day session target back to the
+        // dashboard, per project-brief.md Section 2d-2's own flagged
+        // open question ("how/whether the parent-facing side reflects
+        // this daily target"). Derived from the already-fetched recent
+        // attempts rather than a separate query — good enough for "did
+        // something happen today," not a precise clock.
+        practicedToday: recentAttempts.some((a) => a.createdAt.slice(0, 10) === today),
+      };
+    })
   );
 
   return NextResponse.json({ kids, dashboard });

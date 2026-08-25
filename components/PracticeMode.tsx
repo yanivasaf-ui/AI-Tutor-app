@@ -8,11 +8,23 @@ import GroupingWidget from "./exercises/GroupingWidget";
 import type { AvatarOption } from "@/lib/avatars";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 
+const SESSION_TARGET_MS = 15 * 60 * 1000;
+
 interface Props {
   subject: "math" | "hebrew";
   grade: "א" | "ב" | "ג";
   kidId: string;
   avatar: AvatarOption | null;
+  /** When this practice visit started — owned by the parent (TutorChat),
+   *  not here, so switching subject/grade mid-session doesn't reset the
+   *  clock (project-brief.md Section 2d-2: ~15 min/day, one daily
+   *  session regardless of what's practiced within it). */
+  sessionStartedAt: number;
+  /** Whether the one-time "you've done ~15 minutes today" banner has
+   *  already been shown this visit — soft target, so it shows once, not
+   *  on every correct answer past the threshold. */
+  sessionCloseShown: boolean;
+  onSessionClose: () => void;
 }
 
 /**
@@ -22,7 +34,15 @@ interface Props {
  * for why that mattered (placement was locked to be "derived from real
  * exercise performance" with no actual exercises to derive it from).
  */
-export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
+export default function PracticeMode({
+  subject,
+  grade,
+  kidId,
+  avatar,
+  sessionStartedAt,
+  sessionCloseShown,
+  onSessionClose,
+}: Props) {
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [answer, setAnswer] = useState("");
   const [evaluation, setEvaluation] = useState<ExerciseEvaluation | null>(null);
@@ -176,12 +196,32 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
       )}
 
       {evaluation && evaluation.correct && (
-        <button
-          onClick={loadNextExercise}
-          className="self-start bg-blue-600 text-white rounded px-4 py-2 text-sm"
-        >
-          תרגיל הבא ←
-        </button>
+        <>
+          {/* Soft session target, not a hard timer (project-brief.md
+              Section 2d-2) — shown once, right after a completed exercise
+              (a natural break point, never mid-problem), and never blocks
+              continuing: the same "next exercise" button sits right below
+              it either way. */}
+          {!sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS && (
+            <div className="rounded-lg border-2 border-blue-100 bg-blue-50 px-4 py-3 flex items-center gap-3">
+              {avatar && <AvatarBadge avatar={avatar} size={32} />}
+              <p className="text-slate-700 text-sm font-medium">
+                סיימת בערך 15 דקות של עבודה מצוינת היום! אפשר לעצור כאן, או להמשיך לתרגל עוד קצת. 🎉
+              </p>
+            </div>
+          )}
+          <button
+            onClick={() => {
+              if (!sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS) {
+                onSessionClose();
+              }
+              loadNextExercise();
+            }}
+            className="self-start bg-blue-600 text-white rounded px-4 py-2 text-sm"
+          >
+            תרגיל הבא ←
+          </button>
+        </>
       )}
     </div>
   );

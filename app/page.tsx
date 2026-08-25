@@ -24,6 +24,7 @@ interface KidDashboard {
   flags: ParentFlag[];
   recentAttempts: RecentAttempt[];
   subjectStats: SubjectStats[];
+  practicedToday: boolean;
 }
 
 const GRADES = ["א", "ב", "ג"] as const;
@@ -308,6 +309,14 @@ function TutorChat({
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Session-length decision (project-brief.md Section 2d-2): ~15 min/day,
+  // soft target, not a hard timer. Started once per visit here (not in
+  // PracticeMode, which remounts on every grade/subject change) so
+  // switching subjects mid-session doesn't reset the clock — it's one
+  // daily session regardless of what the kid practices within it.
+  const [sessionStartedAt] = useState(() => Date.now());
+  const [sessionCloseShown, setSessionCloseShown] = useState(false);
+
   const avatar = getAvatarById(kid.avatarId);
 
   async function send() {
@@ -406,7 +415,15 @@ function TutorChat({
         </div>
 
         {mode === "practice" && (
-          <PracticeMode subject={subject} grade={grade} kidId={kid.id} avatar={avatar} />
+          <PracticeMode
+            subject={subject}
+            grade={grade}
+            kidId={kid.id}
+            avatar={avatar}
+            sessionStartedAt={sessionStartedAt}
+            sessionCloseShown={sessionCloseShown}
+            onSessionClose={() => setSessionCloseShown(true)}
+          />
         )}
 
         {mode === "chat" && (
@@ -481,28 +498,18 @@ interface DashboardKid {
  */
 function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: () => void }) {
   const [kids, setKids] = useState<DashboardKid[]>([]);
-  const [dashboards, setDashboards] = useState<
-    Record<string, { flags: ParentFlag[]; recentAttempts: RecentAttempt[]; subjectStats: SubjectStats[] }>
-  >({});
+  const [dashboards, setDashboards] = useState<Record<string, KidDashboard>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/kids")
       .then((res) => (res.ok ? res.json() : { kids: [], dashboard: [] }))
-      .then(
-        ({
-          kids,
-          dashboard,
-        }: {
-          kids: DashboardKid[];
-          dashboard: { kidId: string; flags: ParentFlag[]; recentAttempts: RecentAttempt[]; subjectStats: SubjectStats[] }[];
-        }) => {
-          setKids(kids);
-          const map: typeof dashboards = {};
-          for (const d of dashboard) map[d.kidId] = d;
-          setDashboards(map);
-        }
-      )
+      .then(({ kids, dashboard }: { kids: DashboardKid[]; dashboard: KidDashboard[] }) => {
+        setKids(kids);
+        const map: typeof dashboards = {};
+        for (const d of dashboard) map[d.kidId] = d;
+        setDashboards(map);
+      })
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -532,9 +539,20 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
             const d = dashboards[kid.id];
             return (
               <div key={kid.id} className="bg-white rounded-lg shadow-sm border p-5">
-                <div className="flex items-center gap-2 mb-4">
-                  {avatar && <AvatarBadge avatar={avatar} size={36} />}
-                  <h2 className="text-lg font-bold text-slate-800">{kid.name}</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    {avatar && <AvatarBadge avatar={avatar} size={36} />}
+                    <h2 className="text-lg font-bold text-slate-800">{kid.name}</h2>
+                  </div>
+                  {d && (
+                    <span
+                      className={`text-xs font-medium rounded-full px-3 py-1 ${
+                        d.practicedToday ? "bg-green-50 text-green-700" : "bg-slate-100 text-slate-500"
+                      }`}
+                    >
+                      {d.practicedToday ? "תרגל/ה היום ✓" : "עדיין לא תרגל/ה היום"}
+                    </span>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
