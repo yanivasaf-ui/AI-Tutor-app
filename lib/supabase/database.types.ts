@@ -68,8 +68,10 @@ export type Database = {
           created_at: string
           grade: string
           id: string
+          passage: string | null
           question: string
           subject: string
+          subtype: string | null
           times_correct: number
           times_used: number
           topic: string
@@ -81,8 +83,10 @@ export type Database = {
           created_at?: string
           grade: string
           id?: string
+          passage?: string | null
           question: string
           subject: string
+          subtype?: string | null
           times_correct?: number
           times_used?: number
           topic: string
@@ -94,8 +98,10 @@ export type Database = {
           created_at?: string
           grade?: string
           id?: string
+          passage?: string | null
           question?: string
           subject?: string
+          subtype?: string | null
           times_correct?: number
           times_used?: number
           topic?: string

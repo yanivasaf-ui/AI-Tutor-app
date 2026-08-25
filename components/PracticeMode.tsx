@@ -82,6 +82,12 @@ export default function PracticeMode({ subject, grade, kidId, avatar }: Props) {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border p-4 mb-4 flex flex-col gap-4">
+      {exercise.passage && (
+        <p className="text-slate-600 text-sm bg-slate-50 rounded-lg p-3 leading-relaxed">
+          {exercise.passage}
+        </p>
+      )}
+
       <div className="flex items-start gap-2">
         {avatar && <AvatarBadge avatar={avatar} size={28} />}
         <p className="text-slate-800 font-medium">{exercise.question}</p>

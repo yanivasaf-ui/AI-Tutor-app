@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
-import { Exercise, Grade } from "./types";
+import { Exercise, ExerciseSubtype, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
 
@@ -18,7 +18,9 @@ interface DbExerciseRow {
   subject: string;
   grade: string;
   type: string;
+  subtype: string | null;
   topic: string;
+  passage: string | null;
   question: string;
   choices: string[] | null;
   correct_answer: string;
@@ -30,7 +32,9 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     subject: row.subject as "math" | "hebrew",
     grade: row.grade as Grade,
     type: row.type as "open" | "multiple_choice",
+    subtype: (row.subtype as ExerciseSubtype | null) ?? undefined,
     topic: row.topic,
+    passage: row.passage ?? undefined,
     question: row.question,
     choices: row.choices ?? undefined,
     correctAnswer: row.correct_answer,
@@ -85,7 +89,9 @@ export async function saveExercise(
       subject: exercise.subject,
       grade: exercise.grade,
       type: exercise.type,
+      subtype: exercise.subtype ?? null,
       topic: exercise.topic,
+      passage: exercise.passage ?? null,
       question: exercise.question,
       choices: exercise.choices ?? null,
       correct_answer: exercise.correctAnswer,

@@ -15,12 +15,22 @@ export async function evaluateExerciseAnswer(
 ): Promise<ExerciseEvaluation> {
   const anthropic = getAnthropicClient();
 
+  // "explain_thinking" has no single right answer — correctAnswer holds a
+  // description of what a good explanation looks like, not a literal
+  // target. Judging it like every other subtype (fuzzy match against a
+  // fixed answer) would mark a valid-but-different explanation wrong.
+  const judgingInstruction =
+    exercise.subtype === "explain_thinking"
+      ? `אין כאן תשובה נכונה יחידה. "${exercise.correctAnswer}" הוא תיאור של מה מאפיין הסבר טוב, לא תשובה מדויקת לחפש. שפוט/י אם ההסבר של התלמיד/ה מציג חשיבה הגיונית ותקפה על הבעיה — גם אם הדרך שונה מהמתואר.`
+      : `שפוט/י אם התשובה נכונה — קבל/י ניסוחים שונים או תשובות חלקיות-אך-נכונות מבחינה מהותית, לא רק התאמה מילולית מדויקת.`;
+
   const prompt = `שאלה שנשאלה לתלמיד/ה: "${exercise.question}"
+${exercise.passage ? `קטע קריאה: "${exercise.passage}"` : ""}
 ${exercise.choices ? `אפשרויות: ${exercise.choices.join(" | ")}` : ""}
 התשובה הנכונה: "${exercise.correctAnswer}"
 התשובה שהתלמיד/ה נתן/ה: "${kidAnswer}"
 
-שפוט/י אם התשובה נכונה — קבל/י ניסוחים שונים או תשובות חלקיות-אך-נכונות מבחינה מהותית, לא רק התאמה מילולית מדויקת.
+${judgingInstruction}
 
 כתוב/י משוב לתלמיד/ה, בעברית, בטון חם ומעודד, במשפטים קצרים:
 - אם נכון: שבח/י על התהליך/המאמץ, לא על תכונה מולדת ("ניסית כמה דרכים ומצאת!" ולא "את/ה כל כך חכם/ה").
