@@ -46,7 +46,7 @@ export async function getParentFlags(supabase: Client, kidId: string, limit = 20
 export async function getRecentAttempts(supabase: Client, kidId: string, limit = 10): Promise<RecentAttempt[]> {
   const { data: attempts, error } = await supabase
     .from("exercise_attempts")
-    .select("id, subject, exercise_id, correct, created_at")
+    .select("id, subject, exercise_id, correct, kid_answer, correct_answer, created_at")
     .eq("kid_id", kidId)
     .order("created_at", { ascending: false })
     .limit(limit);
@@ -55,7 +55,7 @@ export async function getRecentAttempts(supabase: Client, kidId: string, limit =
   const exerciseIds = attempts.map((a) => a.exercise_id);
   const { data: exercises } = await supabase
     .from("exercises")
-    .select("id, question, topic")
+    .select("id, question, topic, correct_answer")
     .in("id", exerciseIds);
 
   const byId = new Map((exercises ?? []).map((e) => [e.id, e]));
@@ -68,6 +68,11 @@ export async function getRecentAttempts(supabase: Client, kidId: string, limit =
       question: exercise?.question ?? "",
       topic: exercise?.topic ?? "",
       correct: a.correct,
+      // Falls back to the exercise's own correct_answer for rows logged
+      // before this column existed; kidAnswer has no such fallback since
+      // it was never captured anywhere before now.
+      kidAnswer: a.kid_answer ?? "",
+      correctAnswer: a.correct_answer ?? exercise?.correct_answer ?? "",
       createdAt: a.created_at ?? "",
     };
   });

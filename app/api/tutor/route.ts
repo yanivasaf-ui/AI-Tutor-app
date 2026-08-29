@@ -195,6 +195,8 @@ async function handleAnswerExercise(
         subject: exercise.subject,
         correct: evaluation.correct,
         errorNote: evaluation.errorNote,
+        kidAnswer: answer,
+        correctAnswer: exercise.correctAnswer,
       });
     } catch (err) {
       console.error("[exercise-answer] attempt logging failed:", err);

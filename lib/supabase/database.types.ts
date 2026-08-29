@@ -19,28 +19,34 @@ export type Database = {
       exercise_attempts: {
         Row: {
           correct: boolean
+          correct_answer: string | null
           created_at: string
           error_note: string | null
           exercise_id: string
           id: string
+          kid_answer: string | null
           kid_id: string
           subject: string
         }
         Insert: {
           correct: boolean
+          correct_answer?: string | null
           created_at?: string
           error_note?: string | null
           exercise_id: string
           id?: string
+          kid_answer?: string | null
           kid_id: string
           subject: string
         }
         Update: {
           correct?: boolean
+          correct_answer?: string | null
           created_at?: string
           error_note?: string | null
           exercise_id?: string
           id?: string
+          kid_answer?: string | null
           kid_id?: string
           subject?: string
         }

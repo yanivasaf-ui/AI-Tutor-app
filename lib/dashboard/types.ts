@@ -18,13 +18,17 @@ export interface ParentFlag {
 
 /** One real exercise attempt, enriched with the exercise's question/topic
  *  for display — a parent reading "5 + ___ = 12, correct" needs the
- *  question text, not just a correct/incorrect boolean. */
+ *  question text, not just a correct/incorrect boolean. kidAnswer/
+ *  correctAnswer are logged verbatim on the attempt itself (Asaf: "log
+ *  the right answers too") rather than only the correct/incorrect flag. */
 export interface RecentAttempt {
   id: string;
   subject: Subject;
   question: string;
   topic: string;
   correct: boolean;
+  kidAnswer: string;
+  correctAnswer: string;
   createdAt: string;
 }
 

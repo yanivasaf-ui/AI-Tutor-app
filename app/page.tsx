@@ -601,13 +601,24 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                 {d && d.recentAttempts.length > 0 && (
                   <div>
                     <h3 className="font-semibold text-slate-700 mb-2 text-sm">פעילות אחרונה</h3>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                       {d.recentAttempts.map((a) => (
-                        <div key={a.id} className="flex items-center gap-2 text-sm">
+                        <div key={a.id} className="flex items-start gap-2 text-sm">
                           <span className={a.correct ? "text-green-600" : "text-amber-600"}>
                             {a.correct ? "✓" : "✗"}
                           </span>
-                          <span className="text-slate-600 truncate">{a.question}</span>
+                          <div className="min-w-0">
+                            <p className="text-slate-600 truncate">{a.question}</p>
+                            <p className="text-xs text-slate-400">
+                              ענה/תה: <span className="font-medium text-slate-500">{a.kidAnswer}</span>
+                              {!a.correct && a.correctAnswer && (
+                                <>
+                                  {" "}
+                                  · תשובה נכונה: <span className="font-medium text-slate-500">{a.correctAnswer}</span>
+                                </>
+                              )}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>

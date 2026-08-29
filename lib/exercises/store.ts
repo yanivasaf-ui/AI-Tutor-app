@@ -125,6 +125,13 @@ export async function recordAttempt(
     subject: string;
     correct: boolean;
     errorNote?: string;
+    /** The kid's actual submitted answer and the exercise's correct
+     *  answer, logged verbatim on the attempt — previously only
+     *  reconstructable (correctAnswer) via a join, or not captured at all
+     *  (kidAnswer). Asaf asked for this directly: "log the right answers
+     *  too," alongside the existing correct/incorrect + errorNote. */
+    kidAnswer: string;
+    correctAnswer: string;
   }
 ): Promise<void> {
   await supabase.from("exercise_attempts").insert({
@@ -133,6 +140,8 @@ export async function recordAttempt(
     subject: opts.subject,
     correct: opts.correct,
     error_note: opts.errorNote ?? null,
+    kid_answer: opts.kidAnswer,
+    correct_answer: opts.correctAnswer,
   });
 
   const { data: current } = await supabase
