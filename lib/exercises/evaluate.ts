@@ -49,9 +49,11 @@ ${exercise.choices ? `אפשרויות: ${exercise.choices.join(" | ")}` : ""}
 
 ${judgingInstruction}
 
-כתוב/י משוב לתלמיד/ה, בעברית, בטון חם ומעודד, במשפטים קצרים:
-- אם נכון: שבח/י על התהליך/המאמץ, לא על תכונה מולדת ("ניסית כמה דרכים ומצאת!" ולא "את/ה כל כך חכם/ה").
-- אם לא נכון: תקף/י רגשית קודם ("זה בסדר, זה קורה"), תן/י רמז אחד בלבד שמכוון לכיוון הנכון - אל תיתן/י את התשובה הנכונה במפורש, ועודד/י ניסיון נוסף.
+כתוב/י משוב לתלמיד/ה, בעברית, בטון חם ומעודד — קצר מאוד, ילד/ה בכיתה יסודית קורא/ת את זה, לא מבוגר/ת. אורך הוא כלל נוקשה כאן, לא המלצה:
+- אם נכון: משפט אחד בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה"). בלי הסבר נוסף אחרי זה.
+  דוגמה לאורך הנכון בדיוק: "כל הכבוד, מצאת את זה!"
+- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי.
+  דוגמה לאורך הנכון בדיוק: "זה בסדר, זה קורה! נסה לחבר קודם את העשרות."
 
 החזר/י אך ורק אובייקט JSON תקין:
 {
@@ -62,7 +64,12 @@ ${judgingInstruction}
 
   const response = await anthropic.messages.create({
     model: TUTOR_MODEL,
-    max_tokens: 400,
+    // Was 400 — generous headroom that let feedback run long (real
+    // examples seen: 3-4 sentences for one correct answer). The prompt
+    // above now hard-caps feedback length itself; this cap is a second,
+    // structural backstop — a shorter ceiling also bounds worst-case
+    // generation time, part of the "make it faster" pass.
+    max_tokens: 220,
     system: "את/ה מחזיר/ה אך ורק JSON תקין, ללא טקסט נוסף, ללא markdown code fences.",
     messages: [{ role: "user", content: prompt }],
   });

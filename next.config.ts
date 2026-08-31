@@ -20,8 +20,16 @@ const nextConfig: NextConfig = {
   // so this recurred on /api/exercise the moment it also called embedText()
   // — scoped to "/api/**" now instead of one route at a time, so the next
   // route that needs embeddings doesn't hit this same crash again.
+  //
+  // Scoped to linux/x64 only (not the earlier "bin/**/*" wildcard) — Vercel's
+  // actual runtime platform. onnxruntime-node ships darwin/win32/linux-arm64
+  // binaries too that will never run here; the wildcard was bundling all of
+  // them, ~210MB vs. the ~34MB linux/x64 actually needs. That's real weight
+  // on every cold start of any route that calls embedText() (chat, exercise
+  // generation) — flagged as a known follow-up when this was first written,
+  // acted on now as part of the app's real "make it faster" pass.
   outputFileTracingIncludes: {
-    "/api/**": ["./node_modules/onnxruntime-node/bin/**/*"],
+    "/api/**": ["./node_modules/onnxruntime-node/bin/napi-v6/linux/x64/**/*"],
   },
 
 };
