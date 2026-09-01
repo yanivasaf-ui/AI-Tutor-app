@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AvatarBadge } from "./AvatarPicker";
+import SpeakButton from "./SpeakButton";
 import NumberLineWidget from "./exercises/NumberLineWidget";
 import TileOrderWidget from "./exercises/TileOrderWidget";
 import GroupingWidget from "./exercises/GroupingWidget";
@@ -106,14 +107,16 @@ export default function PracticeMode({
   return (
     <div className="bg-white rounded-lg shadow-sm border p-4 mb-4 flex flex-col gap-4">
       {exercise.passage && (
-        <p className="text-slate-600 text-sm bg-slate-50 rounded-lg p-3 leading-relaxed">
-          {exercise.passage}
-        </p>
+        <div className="flex items-start gap-2 bg-slate-50 rounded-lg p-3">
+          <p className="text-slate-600 text-sm leading-relaxed flex-1">{exercise.passage}</p>
+          <SpeakButton text={exercise.passage} />
+        </div>
       )}
 
       <div className="flex items-start gap-2">
         {avatar && <AvatarBadge avatar={avatar} size={28} />}
-        <p className="text-slate-800 font-medium">{exercise.question}</p>
+        <p className="text-slate-800 font-medium flex-1">{exercise.question}</p>
+        <SpeakButton text={exercise.question} />
       </div>
 
       {!evaluation && exercise.type === "multiple_choice" && exercise.choices && (
@@ -181,7 +184,8 @@ export default function PracticeMode({
         >
           <div className="flex items-start gap-2">
             {avatar && <AvatarBadge avatar={avatar} size={24} />}
-            <p className="text-slate-700 text-sm">{evaluation.feedback}</p>
+            <p className="text-slate-700 text-sm flex-1">{evaluation.feedback}</p>
+            <SpeakButton text={evaluation.feedback} />
           </div>
         </div>
       )}
