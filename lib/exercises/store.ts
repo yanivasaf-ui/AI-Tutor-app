@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
+import { getTopicById } from "@/lib/map/topics";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -50,12 +51,23 @@ function rowToExercise(row: DbExerciseRow): Exercise {
 /** Looks for an existing bank exercise this kid hasn't already attempted.
  *  Prefers less-used exercises so reuse spreads across the bank rather than
  *  hammering the same one. Returns null when nothing fits — the caller
- *  should fall back to generating a fresh one. */
+ *  should fall back to generating a fresh one.
+ *
+ *  `topicId` (feat: topic-scoped exercise generation) narrows reuse to
+ *  exercises whose stored `topic` string matches that map node's
+ *  canonical topic. Without this, a kid tapping one topic node could get
+ *  served a reused exercise from a completely different topic in the same
+ *  subject+grade — the exact "map promises one thing, API delivers
+ *  another" gap this feature exists to close, just showing up on the
+ *  reuse path instead of the generation path. An unresolvable topicId is
+ *  treated the same as no topicId — falls back to subject+grade reuse
+ *  rather than refusing to serve anything. */
 export async function findReusableExercise(
   supabase: Client,
   subject: "math" | "hebrew",
   grade: Grade,
-  kidId: string | null
+  kidId: string | null,
+  topicId?: string
 ): Promise<Exercise | null> {
   let attemptedIds: string[] = [];
   if (kidId) {
@@ -73,6 +85,13 @@ export async function findReusableExercise(
     .eq("grade", grade)
     .order("times_used", { ascending: true })
     .limit(1);
+
+  if (topicId) {
+    const topic = getTopicById(topicId);
+    if (topic && topic.subject === subject && topic.grade === grade) {
+      query = query.eq("topic", topic.topic);
+    }
+  }
 
   if (attemptedIds.length > 0) {
     query = query.not("id", "in", `(${attemptedIds.join(",")})`);

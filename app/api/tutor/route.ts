@@ -46,6 +46,12 @@ interface GenerateExerciseBody {
   subject: "math" | "hebrew";
   grade: "א" | "ב" | "ג";
   kidId?: string;
+  /** Map node's topic id (feat: topic-scoped exercise generation).
+   *  Optional and backward compatible — omitted, it's exactly the old
+   *  subject+grade behavior. See lib/exercises/generate.ts and
+   *  lib/exercises/store.ts for how an unrecognized/mismatched id is
+   *  handled (falls back, doesn't error). */
+  topic?: string;
 }
 
 interface AnswerExerciseBody {
@@ -161,7 +167,7 @@ async function handleChat(
 
 async function handleGenerateExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { subject, grade, kidId }: GenerateExerciseBody
+  { subject, grade, kidId, topic }: GenerateExerciseBody
 ) {
   if (!subject || !grade) {
     return NextResponse.json({ error: "subject and grade are required" }, { status: 400 });
@@ -170,13 +176,13 @@ async function handleGenerateExercise(
   const kid = kidId ? await getKid(supabase, kidId) : null;
 
   try {
-    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null);
+    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic);
     if (reused) {
       return NextResponse.json({ exercise: reused, reused: true });
     }
 
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
-    const generated = await generateExercise({ subject, grade, profile });
+    const generated = await generateExercise({ subject, grade, profile, topicId: topic });
     const saved = await saveExercise(supabase, generated);
     return NextResponse.json({ exercise: saved, reused: false });
   } catch (err) {

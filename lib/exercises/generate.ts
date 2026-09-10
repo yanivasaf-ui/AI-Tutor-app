@@ -1,6 +1,7 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { embedText } from "@/lib/rag/embed";
 import { search } from "@/lib/rag/store";
+import { getTopicById } from "@/lib/map/topics";
 import { SubjectProfile } from "@/lib/memory/types";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
@@ -100,24 +101,57 @@ export async function generateExercise(opts: {
   subject: "math" | "hebrew";
   grade: Grade;
   profile: SubjectProfile | null;
+  /** Map node's topic id (feat: topic-scoped exercise generation). When
+   *  given and it resolves to a real topic matching subject+grade,
+   *  retrieval is scoped to that one curriculum chunk instead of the
+   *  usual profile/grade-level query, and the returned exercise's `topic`
+   *  is forced to that chunk's canonical topic string (not left to the
+   *  model's own free-text echo) — this is what lets
+   *  findReusableExercise() reliably match on it later. An unrecognized
+   *  or subject/grade-mismatched id is NOT an error: falls back to
+   *  normal (topic-less) behavior with a console.warn, same "don't break
+   *  the kid's session over a stale id" leniency as the rest of this
+   *  function's error handling. */
+  topicId?: string;
 }): Promise<Exercise> {
-  const { subject, grade, profile } = opts;
+  const { subject, grade, profile, topicId } = opts;
 
-  // Retrieval query: lean on the kid's real profile when it exists (recent
-  // summary + topics already covered) so a returning kid gets grounded in
-  // where they actually are, not just their nominal grade. A brand-new kid
-  // falls back to a generic grade-level query — the locked cold-start
-  // tradeoff, not a bug.
-  const retrievalQuery = profile?.recentSummary
-    ? `${profile.recentSummary} רמה: ${profile.estimatedLevel}`
-    : `תרגיל ${subject === "math" ? "בחשבון" : "בעברית"} מתאים לכיתה ${grade}`;
+  function resolveTopic(): ReturnType<typeof getTopicById> {
+    if (!topicId) return undefined;
+    const t = getTopicById(topicId);
+    if (!t) {
+      console.warn(`[exercise-generate] topicId "${topicId}" not found — falling back to topic-less generation.`);
+      return undefined;
+    }
+    if (t.subject !== subject || t.grade !== grade) {
+      console.warn(
+        `[exercise-generate] topicId "${topicId}" is subject=${t.subject} grade=${t.grade}, doesn't match requested subject=${subject} grade=${grade} — falling back to topic-less generation.`
+      );
+      return undefined;
+    }
+    return t;
+  }
+  const resolvedTopic = resolveTopic();
+
+  // Retrieval query: a resolved topic takes priority (the kid tapped this
+  // exact node) over the profile-based query, which itself beats the
+  // generic grade-level fallback. Lean on the kid's real profile when it
+  // exists (recent summary + topics already covered) so a returning kid
+  // gets grounded in where they actually are, not just their nominal
+  // grade. A brand-new kid with neither falls back to a generic
+  // grade-level query — the locked cold-start tradeoff, not a bug.
+  const retrievalQuery = resolvedTopic
+    ? resolvedTopic.topic
+    : profile?.recentSummary
+      ? `${profile.recentSummary} רמה: ${profile.estimatedLevel}`
+      : `תרגיל ${subject === "math" ? "בחשבון" : "בעברית"} מתאים לכיתה ${grade}`;
 
   const queryEmbedding = await embedText(retrievalQuery);
-  const retrieved = search(queryEmbedding, { subject, grade, topK: 3 });
+  const retrieved = search(queryEmbedding, { subject, grade, topK: 3, id: resolvedTopic?.id });
 
   if (retrieved.length === 0) {
     throw new Error(
-      `No curriculum content for subject=${subject} grade=${grade} — cannot ground an exercise.`
+      `No curriculum content for subject=${subject} grade=${grade}${resolvedTopic ? ` topic=${resolvedTopic.id}` : ""} — cannot ground an exercise.`
     );
   }
 
@@ -242,7 +276,11 @@ ${SUBTYPE_GUIDANCE[subtype]}
     grade,
     type,
     subtype,
-    topic: typeof parsed.topic === "string" ? parsed.topic : retrieved[0].topic,
+    // A resolved topic wins over whatever the model echoed back — this is
+    // what makes findReusableExercise()'s later `.eq("topic", ...)` filter
+    // reliable instead of depending on the model consistently reproducing
+    // the exact same string every time.
+    topic: resolvedTopic ? resolvedTopic.topic : typeof parsed.topic === "string" ? parsed.topic : retrieved[0].topic,
     passage: subtype === "comprehension" && typeof parsed.passage === "string" ? parsed.passage : undefined,
     question: parsed.question,
     choices: Array.isArray(parsed.choices) ? parsed.choices.map(String) : undefined,

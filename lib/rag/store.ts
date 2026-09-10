@@ -30,14 +30,20 @@ export function saveIndex(chunks: EmbeddedChunk[]) {
 
 export function search(
   queryEmbedding: number[],
-  opts: { topK?: number; subject?: string; grade?: string } = {}
+  opts: { topK?: number; subject?: string; grade?: string; id?: string } = {}
 ): RetrievedChunk[] {
-  const { topK = 4, subject, grade } = opts;
+  const { topK = 4, subject, grade, id } = opts;
   const index = loadIndex();
 
   return index
     .filter((c) => (subject ? c.subject === subject : true))
     .filter((c) => (grade ? c.grade === grade : true))
+    // Exact-chunk scoping (topic-scoped exercise generation, feat:
+    // topic-scoped exercise generation) — kept as an additional AND filter
+    // alongside subject/grade rather than a replacement for them, so a
+    // stale/mismatched id can never silently return content for the wrong
+    // subject or grade.
+    .filter((c) => (id ? c.id === id : true))
     .map((c) => ({ ...c, score: cosineSimilarity(queryEmbedding, c.embedding) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, topK)

@@ -70,3 +70,15 @@ export const TOPICS: MapTopic[] = [
 export function getTopics(subject: Subject, grade: Grade): MapTopic[] {
   return TOPICS.filter((t) => t.subject === subject && t.grade === grade);
 }
+
+/**
+ * Resolves a map node's topic id back to its full MapTopic — used to scope
+ * exercise generation/reuse to one specific curriculum chunk (see
+ * lib/exercises/generate.ts, lib/exercises/store.ts). Ids here are
+ * deliberately identical to lib/rag/curriculum-seed.ts's CurriculumChunk
+ * ids (kept in sync by convention, not by import — see the file header),
+ * so this same id is what a caller passes as the RAG chunk filter too.
+ */
+export function getTopicById(id: string): MapTopic | undefined {
+  return TOPICS.find((t) => t.id === id);
+}
