@@ -5,8 +5,11 @@ import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import HomeScreen from "@/components/home/HomeScreen";
 import ExerciseScreen from "@/components/practice/ExerciseScreen";
-import { CHARACTERS, normalizeCharacterId, type CharacterId } from "@/lib/characters";
-import { useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
+import MuteToggle from "@/components/character/MuteToggle";
+import { CHARACTERS, normalizeCharacterId, type CharacterId, type CharacterPose } from "@/lib/characters";
+import { useGuide } from "@/lib/guide/useGuide";
+import * as lines from "@/lib/guide/lines";
+import type { Line } from "@/lib/guide/lines";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
@@ -189,7 +192,7 @@ function LoginScreen() {
           dir="ltr"
         />
 
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        {error && <p className="text-[var(--color-warm)] text-sm mb-4">{error}</p>}
         {confirmMessage && <p className="text-[var(--color-success)] text-sm mb-4">{confirmMessage}</p>}
 
         <button
@@ -235,11 +238,26 @@ function LoginScreen() {
 }
 
 /**
- * Two-step, character-led onboarding (UI Revamp Brief Section 4.3),
- * replacing the old KidSetup form. `mode="repick"` runs step 2 only, for
- * a kid whose avatarId is from the pre-collapse 8-option pack and doesn't
- * normalize to boy/girl (lib/characters.ts's normalizeCharacterId) — name
- * and grade already exist for that kid, only the character needs picking.
+ * Character-led onboarding (UI Revamp Brief Section 4.3; character-led
+ * redesign, Task 5 items 1 + 5).
+ *
+ * Order changed from "name + grade, then pick a character" to "pick a
+ * character, then IT gets to know you": the companion the kid chooses is
+ * the one who asks their name and their grade. Before, a hard-coded boy
+ * character asked every kid's name — including the kids about to pick
+ * the girl — and the pick came last, as a form field. Now three short
+ * steps, one question each, each asked out loud:
+ *   pick  — both characters on offer, idle; the tapped one celebrates
+ *   name  — the chosen character waves (hello) and asks the name
+ *   grade — it explains (explaining) and asks the grade, by name
+ * The two lines said before the kid has told us their name can't include
+ * it; every line after does.
+ *
+ * `mode="repick"` runs the pick step only, for a kid whose avatarId is
+ * from the pre-collapse 8-option pack and doesn't normalize to boy/girl
+ * (lib/characters.ts's normalizeCharacterId) — name and grade already
+ * exist for that kid, so the character addresses them by name from its
+ * first line.
  */
 function Onboarding({
   mode,
@@ -252,24 +270,39 @@ function Onboarding({
   onDone: (kid: Kid) => void;
   onLogout: () => void;
 }) {
-  const [step, setStep] = useState<"greeting" | "character">(mode === "repick" ? "character" : "greeting");
+  const [step, setStep] = useState<"pick" | "name" | "grade">("pick");
   const [name, setName] = useState(existingKid?.name ?? "");
-  const [grade, setGrade] = useState<Grade>("א");
+  const [grade, setGrade] = useState<Grade | null>(null);
+  const [picked, setPicked] = useState<CharacterId | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [picked, setPicked] = useState<CharacterId | null>(null);
-
-  const { speak } = useSpeech();
   const { celebrate } = useCelebration();
 
-  useEffect(() => {
-    if (step === "greeting" && hasSeenGesture()) {
-      speak("היי! איך קוראים לך?");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step]);
+  const knownName = mode === "repick" ? existingKid?.name : undefined;
+  const trimmed = name.trim();
 
-  async function confirmCharacter() {
+  const line: Line =
+    step === "pick"
+      ? picked
+        ? lines.picked(picked, knownName)
+        : lines.pickPrompt(knownName)
+      : step === "name"
+        ? lines.askName()
+        : lines.askGrade(trimmed);
+  const guidePose: CharacterPose = step === "pick" ? "celebration" : step === "name" ? "hello" : "explaining";
+  // Each step's question is said on arrival. The pick reaction is said
+  // directly inside the tap handler instead (iOS gesture rule), so the cue
+  // is the step alone.
+  const guide = useGuide({ owner: "onboarding", pose: guidePose, line, cue: step });
+
+  function pick(id: CharacterId, el: HTMLElement) {
+    setPicked(id);
+    setError(null);
+    celebrate(1, el);
+    guide.say(lines.picked(id, knownName));
+  }
+
+  async function save() {
     if (!picked || saving) return;
     setSaving(true);
     setError(null);
@@ -287,95 +320,151 @@ function Onboarding({
         const res = await fetch("/api/kids", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: name.trim(), avatarId: picked }),
+          body: JSON.stringify({ name: trimmed, avatarId: picked }),
         });
         if (!res.ok) throw new Error("failed");
         const data = await res.json();
-        setStoredGrade(data.kid.id, grade);
+        setStoredGrade(data.kid.id, grade ?? "א");
         onDone(data.kid);
       }
     } catch {
-      setError("משהו השתבש בשמירה, נסה/י שוב.");
+      setError("משהו השתבש בשמירה. אפשר לנסות שוב.");
     } finally {
       setSaving(false);
     }
   }
 
+  const primaryButton =
+    "min-h-16 px-10 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-50";
+
   return (
     <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center p-6">
-      <div className="w-full max-w-md flex justify-end mb-2">
-        <button onClick={onLogout} className="text-sm text-[var(--color-ink-soft)]">
-          התנתקות
-        </button>
+      <div className="w-full max-w-md flex items-center justify-between mb-2">
+        <div>
+          {step !== "pick" && (
+            <button
+              onClick={() => setStep(step === "grade" ? "name" : "pick")}
+              className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]"
+            >
+              חזרה
+            </button>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <MuteToggle />
+          <button onClick={onLogout} className="min-h-11 px-2 text-sm text-[var(--color-ink-soft)]">
+            התנתקות
+          </button>
+        </div>
       </div>
 
-      {step === "greeting" && (
-        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-6">
-          <Character character="boy" pose="hello" size={160} />
-          <SpeechBubble text="היי! איך קוראים לך?" />
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="לדוגמה: נועה"
-            className="w-full min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 px-5 text-2xl text-center"
-            autoFocus
+      {step === "pick" && (
+        <div className="w-full max-w-md flex flex-col items-center gap-6 mt-4">
+          <SpeechBubble
+            key={lines.spoken(line)}
+            text={line.text}
+            lead={line.name}
+            tail="bottom"
+            tailAlign={picked === "boy" ? "start" : picked === "girl" ? "end" : "center"}
+            owner="onboarding"
+            className="w-full"
           />
-          {name.trim() && (
-            <>
-              <p className="text-lg text-[var(--color-ink)] mt-2">מה כיתה שלך?</p>
-              <div className="flex gap-3">
-                {GRADES.map((g) => (
-                  <button
-                    key={g}
-                    onClick={() => setGrade(g)}
-                    className={`w-16 h-16 rounded-full text-2xl font-bold ${
-                      grade === g ? "bg-[var(--color-teal)] text-white" : "bg-[var(--color-surface)] text-[var(--color-ink)]"
-                    }`}
-                  >
-                    {g}׳
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={() => setStep("character")}
-                className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-2"
-              >
-                הבא ←
-              </button>
-            </>
+          <div className="flex gap-6 justify-center">
+            {(Object.keys(CHARACTERS) as CharacterId[]).map((id) => {
+              const isPicked = picked === id;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={(e) => pick(id, e.currentTarget)}
+                  aria-pressed={isPicked}
+                  aria-label={CHARACTERS[id].label}
+                  className={`flex flex-col items-center gap-2 rounded-[var(--radius-bubble)] p-2 transition-opacity ${
+                    picked && !isPicked ? "opacity-50" : ""
+                  } ${isPicked ? "bg-[var(--color-surface)] shadow-sm" : ""}`}
+                >
+                  <Character character={id} pose={isPicked ? guide.pose : "idle"} size={190} />
+                  <span className="text-lg text-[var(--color-ink)] font-medium">{CHARACTERS[id].label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {error && <p className="text-[var(--color-warm)] text-sm">{error}</p>}
+
+          {picked && (
+            <button
+              onClick={() => (mode === "repick" ? save() : setStep("name"))}
+              disabled={saving}
+              className={primaryButton}
+            >
+              {mode === "repick" ? (saving ? "רגע..." : "בואו נתחיל!") : "הבא ←"}
+            </button>
           )}
         </div>
       )}
 
-      {step === "character" && (
-        <div className="w-full max-w-md flex flex-col items-center gap-5 mt-6">
-          <SpeechBubble text="מי יהיה החבר שלך?" />
-          <div className="flex gap-8">
-            {(Object.keys(CHARACTERS) as CharacterId[]).map((id) => (
+      {step === "name" && picked && (
+        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-4">
+          <Character character={picked} pose={guide.pose} size={220} />
+          <SpeechBubble
+            key={lines.spoken(line)}
+            text={line.text}
+            lead={line.name}
+            tail="top"
+            tailAlign="center"
+            owner="onboarding"
+            className="w-full"
+          />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && trimmed && setStep("grade")}
+            placeholder="לדוגמה: נועה"
+            aria-label="השם"
+            className="w-full min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] px-5 text-2xl text-center"
+            autoFocus
+          />
+          {trimmed && (
+            <button onClick={() => setStep("grade")} className={primaryButton}>
+              הבא ←
+            </button>
+          )}
+        </div>
+      )}
+
+      {step === "grade" && picked && (
+        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-4">
+          <Character character={picked} pose={guide.pose} size={220} />
+          <SpeechBubble
+            key={lines.spoken(line)}
+            text={line.text}
+            lead={line.name}
+            tail="top"
+            tailAlign="center"
+            owner="onboarding"
+            className="w-full"
+          />
+          <div className="flex gap-4 mt-1">
+            {GRADES.map((g) => (
               <button
-                key={id}
-                onClick={() => {
-                  setPicked(id);
-                  celebrate(1);
-                  if (hasSeenGesture()) speak("יש! אני שמח שנפגשנו");
-                }}
-                className="flex flex-col items-center gap-2"
+                key={g}
+                onClick={() => setGrade(g)}
+                aria-pressed={grade === g}
+                className={`w-20 h-20 rounded-full text-3xl font-bold shadow-sm ${
+                  grade === g ? "bg-[var(--color-teal)] text-white" : "bg-[var(--color-surface)] text-[var(--color-ink)]"
+                }`}
               >
-                <Character character={id} pose={picked === id ? "celebration" : "idle"} size={160} />
-                <span className="text-[var(--color-ink)] font-medium">{CHARACTERS[id].label}</span>
+                {g}׳
               </button>
             ))}
           </div>
 
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-[var(--color-warm)] text-sm">{error}</p>}
 
-          {picked && (
-            <button
-              onClick={confirmCharacter}
-              disabled={saving}
-              className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-50"
-            >
-              {saving ? "שומר/ת..." : "בואו נתחיל!"}
+          {grade && (
+            <button onClick={save} disabled={saving} className={primaryButton}>
+              {saving ? "רגע..." : "יאללה, מתחילים!"}
             </button>
           )}
         </div>
