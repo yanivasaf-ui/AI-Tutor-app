@@ -19,8 +19,12 @@ interface Props {
    *  own written name before any other word, so this is the one part of
    *  the bubble a 6-year-old can reliably read. Spoken first too. */
   lead?: string;
-  /** "passage" is reading material the character reads out, not a line
-   *  it says — so it's a tail-less card and never gets a `lead`. */
+  /** Reading material the character reads out *before* `text` in the
+   *  same breath — an exercise passage before its question. Rendered
+   *  between the name and the text, smaller, so the bubble reads in the
+   *  same order it's spoken: name, passage, question. */
+  detail?: string;
+  /** "passage" is a tail-less, lighter card. */
   variant?: "default" | "passage";
   /** Feedback colouring: success-green or warm-amber. Never red. */
   tone?: Tone;
@@ -29,7 +33,7 @@ interface Props {
   tailAlign?: "start" | "center" | "end";
   /** Exact tail position, px from the bubble's physical left edge —
    *  overrides tailAlign. For layouts that know where the character
-   *  stands (the map's guide beside its node). */
+   *  stands (the map's guide beside its stop). */
   tailX?: number;
   size?: "lg" | "md";
   /** Which character is saying this — the 🔊 replay moves that
@@ -46,6 +50,7 @@ interface Props {
 export default function SpeechBubble({
   text,
   lead,
+  detail,
   variant = "default",
   tone = "default",
   tail = "bottom",
@@ -57,7 +62,7 @@ export default function SpeechBubble({
 }: Props) {
   const isPassage = variant === "passage";
   const bg = isPassage ? "bg-[var(--color-teal-soft)]/60" : TONE_BG[tone];
-  const spokenText = lead ? `${lead}, ${text}` : text;
+  const spokenText = [lead ? `${lead},` : null, detail, text].filter(Boolean).join(" ");
   const showTail = !isPassage && tail !== "none";
   const tailY = tail === "top" ? "-top-2" : "-bottom-2";
   const tailXClass =
@@ -67,6 +72,7 @@ export default function SpeechBubble({
     : size === "md"
       ? "text-lg font-medium text-[var(--color-ink)]"
       : "text-2xl font-medium text-[var(--color-ink)]";
+  const leadClass = "font-bold text-[var(--color-teal-ink)]";
 
   return (
     <motion.div
@@ -77,10 +83,20 @@ export default function SpeechBubble({
         isPassage ? "" : "shadow-sm"
       } ${className ?? ""}`}
     >
-      <p className={`flex-1 leading-relaxed ${textClass}`}>
-        {lead && <span className="font-bold text-[var(--color-teal-ink)]">{lead}, </span>}
-        {text}
-      </p>
+      <div className="flex-1 min-w-0">
+        {detail ? (
+          <>
+            {lead && <p className={`${leadClass} ${size === "md" ? "text-lg" : "text-2xl"}`}>{lead},</p>}
+            <p className="text-lg leading-relaxed text-[var(--color-ink-soft)] mt-1 mb-3">{detail}</p>
+            <p className={`leading-relaxed ${textClass}`}>{text}</p>
+          </>
+        ) : (
+          <p className={`leading-relaxed ${textClass}`}>
+            {lead && <span className={leadClass}>{lead}, </span>}
+            {text}
+          </p>
+        )}
+      </div>
       <SpeakButton text={spokenText} owner={owner} />
       {showTail && (
         <span

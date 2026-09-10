@@ -5,39 +5,26 @@ import { AnimatePresence, motion } from "framer-motion";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import MicButton from "@/components/character/MicButton";
+import MuteToggle from "@/components/character/MuteToggle";
+import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
-import { useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
-import { useAutoSpeak } from "@/lib/speech/autoSpeak";
+import { speak, stopSpeaking, useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
+import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
+import * as lines from "@/lib/guide/lines";
+import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
 import { recordTiming } from "@/lib/voice/timing";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
 
-const NOT_HEARD_PROMPT = "לא שמעתי טוב, אפשר לומר שוב?";
-
-/**
- * Spoken "I heard you, I'm thinking" cue, gendered to the character.
- *
- * Measured: the evaluate leg is ~2.5s (real LLM round trip), which is
- * ROADMAP.md's entire ~2s budget on its own. This doesn't make the turn
- * faster — it removes the *dead silence*, which is the part a 6-year-old
- * actually can't interpret. A kid who tapped an answer is watching the
- * screen and sees the `thinking` pose; a kid who spoke may not be
- * looking, and silence reads as "it didn't hear me" -> they repeat
- * themselves over the top of the pending turn.
- *
- * Voice turns only, deliberately. Firing this on every tap answer too
- * would be chatter for a kid who already has the visual signal.
- */
-const THINKING_CUE: Record<"boy" | "girl", string> = {
-  boy: "רגע, אני חושב...",
-  girl: "רגע, אני חושבת...",
-};
+/** This screen's character, in the speech owner model — only it lip-syncs
+ *  to lines said here. */
+const OWNER = "exercise";
 
 interface Props {
   subject: "math" | "hebrew";
@@ -47,7 +34,13 @@ interface Props {
    *  Optional and passed straight through to /api/tutor; omitted, exercise
    *  generation is exactly the prior subject+grade behavior. */
   topicId?: string;
+  /** Whether the map already showed this stop as done. `false` makes the
+   *  first correct answer here a topic completion — a full-screen tier-2
+   *  moment. Omitted = unknown, and no topic celebration fires. */
+  topicWasDone?: boolean;
   kidId: string;
+  /** How the character addresses the kid, in every line (Task 5 item 5). */
+  kidName: string;
   character: CharacterId;
   /** Owned by the parent, not here, so switching subject/grade mid-session
    *  doesn't reset the clock (project-brief.md Section 2d-2: ~15 min/day,
@@ -60,19 +53,36 @@ interface Props {
 }
 
 /**
- * Replaces components/PracticeMode.tsx (UI Revamp Brief Section 4.1). The
- * generate_exercise / answer_exercise fetch calls and the evaluation flow
- * are unchanged from the original — only the presentation moved from "card
- * with a form" to "conversation with the character." Preserves the
- * hard-won fixes noted in the brief: the evaluation-loading busy signal
- * (now the `thinking` pose instead of a bare spinner) and the 15-minute
- * soft session banner logic verbatim.
+ * The exercise, as a conversation the character leads (character-led
+ * redesign, Task 5). The generate_exercise / answer_exercise calls, the
+ * evaluation flow, the voice matching and the 15-minute soft-session
+ * condition are unchanged; what changed is who's driving:
+ *
+ * - The character is the stage — 220px (170 with a reading passage),
+ *   centred at the top — and there is ONE bubble under it: whatever the
+ *   character is saying right now. The question; then "רגע, אני חושב/ת"
+ *   while the answer is evaluated; then the feedback; or "I didn't hear
+ *   you". Every one opens with the kid's name. When the bubble isn't the
+ *   question, the question stays visible underneath as a quiet reminder.
+ * - Pose follows the pose-moment map: thinking while an exercise is built
+ *   or an answer is evaluated, explaining on the question, correct /
+ *   encouraging on feedback.
+ * - Everything the character says is also said out loud (useSpeech +
+ *   useTalkingPose — the existing primitives), gated by the device mute
+ *   and the iOS gesture rule.
+ * - Topic complete and session complete are full-screen tier-2
+ *   celebrations (CelebrationOverlay), not an inline banner.
+ *
+ * Tap answers work for every exercise type, always; the mic is an extra
+ * path, never the only one (locked guardrail).
  */
 export default function ExerciseScreen({
   subject,
   grade,
   topicId,
+  topicWasDone,
   kidId,
+  kidName,
   character,
   sessionStartedAt,
   sessionCloseShown,
@@ -83,14 +93,17 @@ export default function ExerciseScreen({
   const [answer, setAnswer] = useState("");
   const [evaluation, setEvaluation] = useState<ExerciseEvaluation | null>(null);
   const [loadingExercise, setLoadingExercise] = useState(false);
+  const [loadedOnce, setLoadedOnce] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
+  const [topicCelebration, setTopicCelebration] = useState(false);
+  const [sessionGoodbye, setSessionGoodbye] = useState(false);
+  /** Set once this visit's topic has been celebrated (or was already done
+   *  before we got here) — a topic completes once. */
+  const topicDoneRef = useRef(topicWasDone !== false);
 
-  // Shared device-level mute (lib/speech/autoSpeak.ts) — the character
-  // speaks on every screen now, not just this one.
-  const [autoSpeak, setAutoSpeak] = useAutoSpeak();
-  const { speak, speaking, supported: speechSupported } = useSpeech();
+  const { speaking } = useSpeech(OWNER);
   const bubbleRef = useRef<HTMLDivElement>(null);
 
   // Latency instrumentation (ROADMAP.md's ~2s budget). turnStartedAt is
@@ -100,28 +113,26 @@ export default function ExerciseScreen({
   const turnStartedAtRef = useRef<number | null>(null);
   const speakCalledAtRef = useRef<number | null>(null);
 
-  /** Auto-speech: gated on the mute toggle AND the iOS gesture rule.
-   *  Explicit 🔊 taps inside SpeechBubble bypass this deliberately. */
-  const autoSpeakRef = useRef(autoSpeak);
-  autoSpeakRef.current = autoSpeak;
   /** True while the utterance currently starting is the thinking cue, so
    *  the "turn" metric keeps measuring time-to-*answer* rather than
    *  time-to-acknowledgement (which would flatter the number). */
   const speakingAckRef = useRef(false);
-  const speakAuto = useCallback(
-    (text: string, opts?: { ack?: boolean }) => {
-      if (!autoSpeakRef.current || !hasSeenGesture()) return;
-      speakCalledAtRef.current = performance.now();
-      speakingAckRef.current = opts?.ack === true;
-      speak(text);
-    },
-    [speak]
-  );
+
+  /** Automatic speech: gated on the device mute AND the iOS gesture rule.
+   *  Explicit 🔊 taps inside a bubble bypass this deliberately. */
+  const speakAuto = useCallback((text: string, opts?: { ack?: boolean }) => {
+    if (!isAutoSpeakOn() || !hasSeenGesture()) return;
+    speakCalledAtRef.current = performance.now();
+    speakingAckRef.current = opts?.ack === true;
+    speak(text, OWNER);
+  }, []);
+
+  // Leaving mid-sentence (back to map) must not keep talking over the map.
+  useEffect(() => () => stopSpeaking(OWNER), []);
 
   // speak() resolves asynchronously inside the speech engine, so
   // "how long until the kid actually hears something" is only knowable by
-  // watching the speaking flag flip. Measured here rather than by
-  // changing useSpeech's shared signature.
+  // watching the speaking flag flip.
   useEffect(() => {
     if (!speaking) return;
     const calledAt = speakCalledAtRef.current;
@@ -141,18 +152,25 @@ export default function ExerciseScreen({
     }
   }, [speaking]);
 
-  // Base semantic pose — the trigger table (brief Section 3.4), independent
-  // of the talk-mouth alternation layered on top by useTalkingPose.
-  const [basePose, setBasePose] = useState<CharacterPose>("hello");
+  // Base semantic pose (the pose-moment map), with the talk-mouth
+  // alternation layered on top while this character speaks.
+  const [basePose, setBasePose] = useState<CharacterPose>("thinking");
   const pose = useTalkingPose(speaking, basePose);
   const { celebrate } = useCelebration(setBasePose);
+
+  /** The question as said out loud — same words, same order as its
+   *  bubble: name, passage, question. */
+  function questionSpeech(ex: Exercise) {
+    return [`${kidName},`, ex.passage, ex.question].filter(Boolean).join(" ");
+  }
 
   async function loadNextExercise() {
     setLoadingExercise(true);
     setEvaluation(null);
     setAnswer("");
     setNoMatch(false);
-    setBasePose("idle");
+    setTopicCelebration(false);
+    setBasePose("thinking");
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
@@ -165,6 +183,7 @@ export default function ExerciseScreen({
       setExercise(null);
     } finally {
       setLoadingExercise(false);
+      setLoadedOnce(true);
     }
   }
 
@@ -173,23 +192,36 @@ export default function ExerciseScreen({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject, grade]);
 
-  // New exercise arrived → explaining pose + auto-read, per the trigger
-  // table. Gated on hasSeenGesture() (lib/speech/useSpeech.ts) — an
-  // exercise that loads before the kid's first tap must not try to speak.
+  // New exercise arrived → explaining pose + read aloud. Gated on
+  // hasSeenGesture() — an exercise that loads before the kid's first tap
+  // must not try to speak.
   useEffect(() => {
     if (!exercise) return;
     setBasePose("explaining");
-    speakAuto(exercise.passage ? `${exercise.passage} ${exercise.question}` : exercise.question);
+    speakAuto(questionSpeech(exercise));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise]);
+
+  // Nothing to practice here: say so, instead of a silent dead end.
+  useEffect(() => {
+    if (!loadedOnce || loadingExercise || exercise) return;
+    setBasePose("thinking");
+    speakAuto(lines.spoken(lines.noContent(kidName)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadedOnce, loadingExercise, exercise]);
 
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
+    setNoMatch(false);
     setBasePose("thinking");
     // Voice turns get an immediate audible acknowledgement so the ~2.5s
-    // evaluation isn't dead silence — see THINKING_CUE.
-    if (opts?.viaVoice) speakAuto(THINKING_CUE[character], { ack: true });
+    // evaluation isn't dead silence. A kid who tapped is watching the
+    // screen and sees the thinking pose; a kid who spoke may not be
+    // looking, and silence reads as "it didn't hear me" -> they repeat
+    // themselves over the pending turn. Voice turns only: on tap answers
+    // it would be chatter on top of a visual signal they already have.
+    if (opts?.viaVoice) speakAuto(lines.spoken(lines.thinking(character, kidName)), { ack: true });
     const evaluateStartedAt = performance.now();
     try {
       const res = await fetch("/api/tutor", {
@@ -199,16 +231,28 @@ export default function ExerciseScreen({
       });
       const data = await res.json();
       recordTiming("evaluate", performance.now() - evaluateStartedAt);
-      const result: ExerciseEvaluation = data.evaluation ?? { correct: false, feedback: "משהו השתבש, נסה/י שוב." };
+      const result: ExerciseEvaluation = data.evaluation ?? { correct: false, feedback: lines.somethingBroke(kidName).text };
       setEvaluation(result);
       if (result.correct) {
+        // Tier-2 moments take the whole screen and say their own line;
+        // everything else is the tier-1 burst from the bubble. The session
+        // condition is the same one the old inline banner used (see
+        // showSessionOverlay below) — only its presentation changed.
+        const sessionMoment = !sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS;
+        const topicMoment = !!topicId && !topicDoneRef.current;
+        if (topicMoment) topicDoneRef.current = true;
+        if (sessionMoment || topicMoment) {
+          setBasePose("correct");
+          if (!sessionMoment) setTopicCelebration(true);
+          return;
+        }
         celebrate(1, bubbleRef.current);
       } else {
         setBasePose("encouraging");
       }
-      speakAuto(result.feedback);
+      speakAuto(lines.spoken(lines.feedback(kidName, result.feedback)));
     } catch {
-      setEvaluation({ correct: false, feedback: "משהו השתבש, נסה/י שוב." });
+      setEvaluation({ correct: false, feedback: lines.somethingBroke(kidName).text });
       setBasePose("encouraging");
     } finally {
       setSubmitting(false);
@@ -223,27 +267,16 @@ export default function ExerciseScreen({
     turnStartedAtRef.current = null; // this turn didn't complete
     setNoMatch(true);
     setBasePose("encouraging");
-    speakAuto(NOT_HEARD_PROMPT);
-  }, [speakAuto]);
+    speakAuto(lines.spoken(lines.notHeard(kidName)));
+  }, [speakAuto, kidName]);
 
   /**
-   * Spoken answer -> exercise answer.
-   *
-   * Replaces the original exact-string comparison, which effectively
-   * never matched real speech: a kid answering a pick_operation exercise
-   * says "שמונה פחות שלוש" while the choice reads "8 - 3", and a kid
-   * answering a comprehension question says "פחד" while the choice reads
-   * "פחד והיה מופתע". Both were correct and both failed. See
-   * lib/voice/matchAnswer.ts for the normalization/matching rules.
-   *
-   * Ambiguous or unmatched input asks the kid to repeat rather than
-   * guessing — submitting a wrong answer on the tutor's behalf would get
-   * a child marked wrong for the recognizer's mistake, which is exactly
-   * the failure the roadmap's re-ask path exists to prevent.
-   *
-   * tile_order and grouping stay tap-only by design: they're spatial
-   * arrangement tasks with no natural spoken form. Tap remains fully
-   * functional for every type, voice included (locked guardrail).
+   * Spoken answer -> exercise answer. See lib/voice/matchAnswer.ts for the
+   * normalization/matching rules. Ambiguous or unmatched input asks the
+   * kid to repeat rather than guessing — submitting a wrong answer on the
+   * tutor's behalf would get a child marked wrong for the recognizer's
+   * mistake. tile_order and grouping stay tap-only by design: spatial
+   * arrangement tasks with no natural spoken form.
    */
   function handleVoiceResult(transcript: string) {
     if (!exercise) return;
@@ -274,10 +307,8 @@ export default function ExerciseScreen({
 
     if (exercise.type === "open") {
       // Free text isn't auto-submitted — the transcript fills the input
-      // and the kid confirms. Open answers have no option set to
-      // validate against, so silently submitting a mis-heard sentence
-      // would be the same "marked wrong for the recognizer's mistake"
-      // failure, just without a way to detect it.
+      // and the kid confirms (no option set to validate a mis-hearing
+      // against).
       setAnswer(transcript);
       setNoMatch(false);
       turnStartedAtRef.current = null;
@@ -288,52 +319,69 @@ export default function ExerciseScreen({
   }
 
   const sessionTargetReached = Date.now() - sessionStartedAt >= SESSION_TARGET_MS;
+  // Exactly the old banner's condition — the 15-minute soft-session logic
+  // is untouched; it now renders as a full-screen moment instead.
+  const showSessionOverlay = !!evaluation?.correct && !sessionCloseShown && sessionTargetReached;
 
-  if (loadingExercise && !exercise) {
+  const topBar = (
+    <div className="flex justify-between items-center pt-2 pb-1">
+      <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]">
+        ← חזרה למפה
+      </button>
+      <MuteToggle />
+    </div>
+  );
+
+  // Building an exercise — first load or the next one. The character
+  // thinks; the old question is gone, so it can't be answered while its
+  // replacement is on the way.
+  if (loadingExercise || (!exercise && !loadedOnce)) {
+    const l = lines.buildingExercise(character, kidName);
     return (
-      <div className="flex flex-col items-center justify-center flex-1 gap-4 py-16">
-        <Character character={character} pose="idle" size={140} />
-        <p className="text-[var(--color-ink-soft)]">בונה תרגיל...</p>
+      <div className="flex flex-col flex-1 px-4 pb-4">
+        {topBar}
+        <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
+          <Character character={character} pose={pose} size={220} />
+          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} className="w-full max-w-md" />
+        </div>
       </div>
     );
   }
 
   if (!exercise) {
+    const l = lines.noContent(kidName);
     return (
-      <div className="flex flex-col items-center justify-center flex-1 gap-4 py-16 text-center px-8">
-        <Character character={character} pose="thinking" size={140} />
-        <p className="text-[var(--color-ink-soft)]">אין עדיין תוכן לימודי לצירוף הזה, נסה/י כיתה או נושא אחר.</p>
-        <button onClick={onBackToMap} className="px-5 py-3 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white">
-          חזרה למפה
-        </button>
+      <div className="flex flex-col flex-1 px-4 pb-4">
+        {topBar}
+        <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
+          <Character character={character} pose={pose} size={220} />
+          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} className="w-full max-w-md" />
+          <button
+            onClick={onBackToMap}
+            className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium"
+          >
+            חזרה למפה
+          </button>
+        </div>
       </div>
     );
   }
 
+  // What the character is saying right now — the one bubble.
+  let main: { line: Line; detail?: string; tone: "default" | "success" | "warm" };
+  if (submitting) main = { line: lines.thinking(character, kidName), tone: "default" };
+  else if (evaluation)
+    main = { line: lines.feedback(kidName, evaluation.feedback), tone: evaluation.correct ? "success" : "warm" };
+  else if (noMatch && !listening) main = { line: lines.notHeard(kidName), tone: "warm" };
+  else main = { line: lines.question(kidName, exercise.question), detail: exercise.passage, tone: "default" };
+  const showQuestionReminder = submitting || (noMatch && !listening && !evaluation) || (!!evaluation && !evaluation.correct);
+
   return (
     <div className="flex flex-col flex-1 px-4 pb-4">
-      <div className="flex justify-between items-center pt-2 pb-1">
-        <button onClick={onBackToMap} className="text-sm text-[var(--color-ink-soft)]">
-          ← חזרה למפה
-        </button>
-        {/* Mute toggle for auto-speech (ROADMAP.md Phase 1A). Only gates
-            automatic reading — the 🔊 inside a bubble is an explicit
-            request and still speaks. Hidden entirely when the device has
-            no Hebrew voice, same rule useSpeech applies to SpeakButton. */}
-        {speechSupported && (
-          <button
-            onClick={() => setAutoSpeak(!autoSpeak)}
-            aria-label={autoSpeak ? "כיבוי הקראה אוטומטית" : "הפעלת הקראה אוטומטית"}
-            title={autoSpeak ? "כיבוי הקראה אוטומטית" : "הפעלת הקראה אוטומטית"}
-            className="w-11 h-11 rounded-full flex items-center justify-center text-xl bg-[var(--color-surface)] shadow-sm"
-          >
-            {autoSpeak ? "🔊" : "🔇"}
-          </button>
-        )}
-      </div>
+      {topBar}
 
-      <div className="flex items-end justify-between gap-2 mb-2">
-        <Character character={character} pose={pose} size={190} />
+      <div className="flex justify-center">
+        <Character character={character} pose={pose} size={exercise.passage ? 170 : 220} />
       </div>
 
       <AnimatePresence mode="wait">
@@ -343,13 +391,24 @@ export default function ExerciseScreen({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -24 }}
           transition={{ duration: 0.2 }}
-          className="flex flex-col gap-3"
+          className="flex flex-col gap-3 mt-2"
         >
-          {exercise.passage && <SpeechBubble text={exercise.passage} variant="passage" />}
-
           <div ref={bubbleRef}>
-            <SpeechBubble text={submitting ? "..." : exercise.question} />
+            <SpeechBubble
+              key={lines.spoken(main.line)}
+              text={main.line.text}
+              lead={main.line.name}
+              detail={main.detail}
+              tone={main.tone}
+              tail="top"
+              tailAlign="center"
+              owner={OWNER}
+            />
           </div>
+
+          {showQuestionReminder && (
+            <p className="text-center text-lg text-[var(--color-ink-soft)] px-2">{exercise.question}</p>
+          )}
 
           {!evaluation && exercise.type === "multiple_choice" && exercise.choices && (
             <div className="flex flex-col gap-2 mt-1">
@@ -418,60 +477,72 @@ export default function ExerciseScreen({
             </div>
           )}
 
-          {noMatch && !listening && (
-            <p className="text-center text-sm text-[var(--color-ink-soft)]">
-              {NOT_HEARD_PROMPT} אפשר גם ללחוץ על תשובה 👆
-            </p>
-          )}
-
-          {evaluation && (
-            <div
-              className={`rounded-[var(--radius-bubble)] px-5 py-4 border-2 mt-1 ${
-                evaluation.correct
-                  ? "bg-[var(--color-success-soft)] border-[var(--color-success)]"
-                  : "bg-[var(--color-warm-soft)] border-[var(--color-warm)]"
-              }`}
-            >
-              <p className="text-[var(--color-ink)] text-lg">{evaluation.feedback}</p>
-            </div>
-          )}
-
           {evaluation && !evaluation.correct && (
             <button
-              onClick={() => { setEvaluation(null); setBasePose("explaining"); }}
-              className="self-center min-h-12 px-6 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-warm)]/40 text-[var(--color-ink)]"
+              onClick={() => {
+                setEvaluation(null);
+                setBasePose("explaining");
+                speakAuto(questionSpeech(exercise));
+              }}
+              className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-warm)]/40 text-lg text-[var(--color-ink)]"
             >
               לנסות שוב
             </button>
           )}
 
           {evaluation && evaluation.correct && (
-            <>
-              {!sessionCloseShown && sessionTargetReached && (
-                <div className="rounded-[var(--radius-bubble)] bg-[var(--color-teal-soft)] px-5 py-4 flex flex-col items-center gap-3 mt-1 text-center">
-                  <Character character={character} pose="celebration" size={100} />
-                  <p className="text-[var(--color-ink)] font-medium">
-                    סיימת בערך 15 דקות של עבודה מצוינת היום! אפשר לעצור כאן, או להמשיך לתרגל עוד קצת. 🎉
-                  </p>
-                </div>
-              )}
-              <button
-                onClick={() => {
-                  if (!sessionCloseShown && sessionTargetReached) {
-                    setBasePose("goodbye");
-                    celebrate(2, bubbleRef.current);
-                    onSessionClose();
-                  }
-                  loadNextExercise();
-                }}
-                className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-1"
-              >
-                עוד תרגיל!
-              </button>
-            </>
+            <button
+              onClick={() => loadNextExercise()}
+              className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-1"
+            >
+              עוד תרגיל!
+            </button>
           )}
         </motion.div>
       </AnimatePresence>
+
+      {showSessionOverlay && (
+        <CelebrationOverlay
+          character={character}
+          pose={sessionGoodbye ? "goodbye" : "celebration"}
+          line={sessionGoodbye ? lines.goodbye(kidName) : lines.sessionComplete(kidName)}
+          actions={
+            sessionGoodbye
+              ? [
+                  {
+                    label: "למפה",
+                    primary: true,
+                    onClick: () => {
+                      onSessionClose();
+                      onBackToMap();
+                    },
+                  },
+                ]
+              : [
+                  {
+                    label: "עוד קצת!",
+                    primary: true,
+                    onClick: () => {
+                      onSessionClose();
+                      loadNextExercise();
+                    },
+                  },
+                  { label: "סיימנו להיום", onClick: () => setSessionGoodbye(true) },
+                ]
+          }
+        />
+      )}
+
+      {topicCelebration && !showSessionOverlay && (
+        <CelebrationOverlay
+          character={character}
+          line={lines.topicComplete(kidName)}
+          actions={[
+            { label: "לתחנה הבאה", primary: true, onClick: onBackToMap },
+            { label: "עוד תרגול כאן", onClick: () => loadNextExercise() },
+          ]}
+        />
+      )}
     </div>
   );
 }

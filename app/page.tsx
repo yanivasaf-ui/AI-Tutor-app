@@ -386,12 +386,12 @@ function Onboarding({
 
 /**
  * Kid-facing shell: the map is the default view (brief Section 4.2); a
- * topic tap opens ExerciseScreen. Note a real API limitation, not silently
- * routed around: generate_exercise takes {subject, grade, kidId} only —
- * no topic parameter — so a specific map-node tap can request "practice
- * this subject at this grade," not that exact topic. Adding topic-level
- * targeting would be a backend change, out of scope here (brief Section 0
- * — no new backend).
+ * topic tap opens ExerciseScreen scoped to that topic (generate_exercise
+ * takes a topic id since f119e01). The character carries across screens:
+ * the kid's name and whether the tapped stop was already done both flow
+ * into the exercise screen — the name for how the character addresses
+ * the kid, the done-flag so a first completion gets its full-screen
+ * celebration.
  */
 function KidHome({
   kid,
@@ -410,6 +410,7 @@ function KidHome({
   // one place along the chain that was discarding it. Cleared together
   // with activeSubject on both pick and back-to-map, same lifecycle.
   const [activeTopicId, setActiveTopicId] = useState<string | undefined>(undefined);
+  const [activeTopicWasDone, setActiveTopicWasDone] = useState(false);
   const [sessionStartedAt] = useState(() => Date.now());
   const [sessionCloseShown, setSessionCloseShown] = useState(false);
   const grade = getStoredGrade(kid.id);
@@ -421,7 +422,9 @@ function KidHome({
           subject={activeSubject}
           grade={grade}
           topicId={activeTopicId}
+          topicWasDone={activeTopicWasDone}
           kidId={kid.id}
+          kidName={kid.name}
           character={character}
           sessionStartedAt={sessionStartedAt}
           sessionCloseShown={sessionCloseShown}
@@ -440,9 +443,10 @@ function KidHome({
       kid={kid}
       character={character}
       grade={grade}
-      onPickTopic={(subject, topicId) => {
+      onPickTopic={(subject, topicId, wasDone) => {
         setActiveSubject(subject);
         setActiveTopicId(topicId);
+        setActiveTopicWasDone(wasDone);
       }}
       onOpenDashboard={onOpenDashboard}
     />
