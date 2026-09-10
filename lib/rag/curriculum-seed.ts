@@ -1,11 +1,23 @@
 /**
  * Real Ministry of Education curriculum content — Math (grades א'-ג') and
- * Hebrew language education (grades א'-ב').
+ * Hebrew language education (grades א'-ד', see note below).
  *
- * Sourced from official Ministry PDFs, extracted 2026-08-22. Full research
- * trail, source URLs, and an honest note on what's still missing (grade-ג'
- * Hebrew — no distinct official document was found) in:
+ * Sourced from official Ministry PDFs, extracted 2026-08-22 (Math, Hebrew
+ * א'-ב') and 2026-09-10 (Hebrew ג'). Full research trail for the
+ * 2026-08-22 pass, including the original note that a distinct grade-ג'
+ * Hebrew document hadn't yet been found, is in:
  * the-system-v8/P-projects/ai-tutor-il/brain/curriculum-research-math-hebrew-a-g.md
+ *
+ * Grade-ג' Hebrew gap closed 2026-09-10: found "תוכנית הוראה להטמעת יעדי
+ * החינוך הלשוני בכיתות ג'-ד'" (Ministry of Education, 2010) — a genuine
+ * distinct document, just not surfaced by the earlier search pass. It
+ * treats ג'-ד' as one continuous 2-year program (10 shared objectives,
+ * end-of-ד' as the target, end-of-ב' as the assumed foundation) rather
+ * than giving fully separate per-grade goal lists the way the math
+ * documents do — the hebrew-g-* entries below describe grade-ג''s
+ * starting point within that shared progression, not an isolated ג'-only
+ * curriculum, and say so explicitly where the source itself frames it
+ * that way.
  *
  * This replaces the earlier placeholder seed — do not add invented content
  * here; if a topic isn't sourced, it doesn't belong in this file.
@@ -19,6 +31,7 @@ const MATH_B_SOURCE =
 const MATH_G_SOURCE =
   "https://meyda.education.gov.il/files/Mazkirut_Pedagogit/math/primary-school/math2023/Newprogramgrade3.pdf";
 const HEBREW_AB_SOURCE = "https://meyda.education.gov.il/files/olim/hatmatyeadeyhebrew.pdf";
+const HEBREW_GD_SOURCE = "https://meyda.education.gov.il/files/Hemed/hl/209.pdf";
 
 export const curriculumSeed: CurriculumChunk[] = [
   // ===== Math — Grade א' =====
@@ -261,5 +274,59 @@ export const curriculumSeed: CurriculumChunk[] = [
     topic: "שטף קריאה, קריאה להנאה, והוראת יצירות ספרות",
     text: "המשך פיתוח שטף הקריאה (קריאה מהירה ומדויקת ללא מאמץ פענוח מודע), לצד חשיפה ליצירות ספרות מגוונות וטיפוח הרגלי קריאה עצמאית לשם הנאה — לא רק לצורך למידה פורמלית.",
     source: HEBREW_AB_SOURCE,
+  },
+
+  // ===== Hebrew — Grade ג' (first year of the combined ג'-ד' program) =====
+  // Source document treats ג'-ד' as one continuous 2-year push toward a
+  // shared set of end-of-ד' goals, building on end-of-ב' as the assumed
+  // foundation — not a fully separate ג'-only curriculum. See the file
+  // header note above.
+  {
+    id: "hebrew-g-reading-comprehension",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "השלמת תהליך רכישת הקריאה והבנת טקסטים עיוניים",
+    text: "בהמשך לביסוס הפענוח שנרכש בכיתות א'-ב', כיתה ג' ממשיכה לגבש שטף קריאה עצמאית ומתחילה להתמקד בהפקת משמעות מטקסטים עיוניים לא-מוכרים במגוון אורכים וצפיפויות. הדגש הוא על זיהוי מבנה הטקסט ומטרתו, הבחנה בין רעיון מרכזי לפרטים תומכים, יצירת קשר בין טקסטים שונים על אותו נושא, ושימוש מודע באסטרטגיות קריאה לפני הקריאה, במהלכה ואחריה. זוהי שנה ראשונה מתוך תהליך דו-שנתי (ג'-ד') — שליטה מלאה ביעדים אלה נדרשת רק עד סוף כיתה ד'.",
+    source: HEBREW_GD_SOURCE,
+  },
+  {
+    id: "hebrew-g-literary-texts-reading-pleasure",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "התנסות עם טקסטים ספרותיים וטיפוח קריאה להנאה",
+    text: "התלמידים נחשפים ליצירות ספרות מגוונות (ישראלית, יהודית ואוניברסלית) ולומדים לזהות מרכיבי סיפור — דמויות, עלילה, מקום — ולקשר אותם לעולמם. במקביל, מודגש טיפוח קריאה להנאה כערך עצמאי ולא רק ככלי ללמידה פורמלית: זמינות מאגר ספרים מגוון בבית הספר ועידוד התלמידים ליזום קריאה עצמאית מעבר לנדרש בשיעור.",
+    source: HEBREW_GD_SOURCE,
+  },
+  {
+    id: "hebrew-g-vocabulary",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "הרחבת אוצר מילים",
+    text: "המשך הרחבת אוצר המילים באמצעות חשיפה ישירה ועקיפה למילים חדשות בהקשר משמעותי, מתוך הטקסטים והנושאים הנלמדים בפועל — לא רשימות מילים מבודדות. התלמידים לומדים לשים לב למילים לא-מוכרות תוך כדי קריאה, להסיק את משמען מן ההקשר, ולפתח הרגל אישי של בירור ותיעוד מילים חדשות (מעין מילון אישי מתפתח).",
+    source: HEBREW_GD_SOURCE,
+  },
+  {
+    id: "hebrew-g-writing-process",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "קידום תהליכי כתיבה",
+    text: "הכתיבה בכיתה ג' נלמדת כתהליך רב-שלבי — תכנון, טיוטה, שיפור ועריכה, ולבסוף פרסום — ולא כתוצר חד-פעמי. התלמידים לומדים לארגן תוכן לפני הכתיבה, לקרוא מחדש ולשפר טיוטות משלהם, וליישם כללי כתיב ופיסוק ביתר מודעות. בהמשך למעבר מכתיב פונטי לכתיב תקני שהיה יעד סוף כיתה ב', כיתה ג' ממשיכה לבסס כללי כתיב תקניים ומוסיפה תשומת לב מודעת יותר למבנה משפט וארגון פסקה.",
+    source: HEBREW_GD_SOURCE,
+  },
+  {
+    id: "hebrew-g-oral-expression",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "הבעה בעל פה",
+    text: "יעדי הבעה בעל-פה מובנים: ארגון והצגת דברור קצר בנושא נתון עם פתיחה, גוף וסיום ברורים, הבעת דעה תוך מתן נימוקים לה, והשתתפות בדיון כיתתי מובנה — הקשבה לאחרים, שמירה על הנושא, ובנייה על דברי הדוברים הקודמים.",
+    source: HEBREW_GD_SOURCE,
+  },
+  {
+    id: "hebrew-g-metalinguistic",
+    subject: "hebrew",
+    grade: "ג",
+    topic: "פיתוח ידע מטה-לשוני",
+    text: "בהמשך למודעות המורפולוגית שהוקנתה בכיתה ב' (שורש ומשקל, יחיד/רבים, נטיות גוף), כיתה ג' מעמיקה את הידע המפורש על מבנה המילה בעברית — זיהוי שורש משותף במילים קרובות משמעות, זיהוי מוספיות נפוצות, ושימוש בידע זה הן לפענוח מילים לא-מוכרות בקריאה והן לכתיב נכון בכתיבה.",
+    source: HEBREW_GD_SOURCE,
   },
 ];
