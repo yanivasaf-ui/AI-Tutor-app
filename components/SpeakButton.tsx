@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSpeech } from "@/lib/speech/useSpeech";
 
 interface Props {
   text: string;
@@ -8,59 +8,20 @@ interface Props {
 }
 
 /**
- * Free, on-device Hebrew read-aloud via the browser's native
- * SpeechSynthesis API — zero cost, zero added backend latency (runs
- * entirely client-side, no network round-trip, no TTS API bill). Built
- * as the MVP answer to "grade ב kids will have a hard time reading"
- * (Asaf, 2026-08-31) — listen-only, no voice input, matching the locked
- * "no STT for MVP" scope. Cartesia (~$1.50-2/kid/month, real per-turn
- * cost) stays the fallback if real listening tests show this free voice
- * isn't warm enough for a 7-year-old — not decided yet, needs a human
- * to actually listen on a real device, which is the whole point of
- * shipping this now instead of guessing.
- *
- * Renders nothing if no Hebrew voice exists on the device — never shows
- * a button that would silently fail to speak.
+ * Thin wrapper around useSpeech (lib/speech/useSpeech.ts) — the actual
+ * SpeechSynthesis logic moved there (UI Revamp Brief Section 3.3) so
+ * Character.tsx's mouth-sync can share the same `speaking` state without
+ * duplicating voice-selection logic. This component's own API is
+ * unchanged: same props, same render-nothing-if-unsupported behavior.
  */
 export default function SpeakButton({ text, className }: Props) {
-  const [heVoice, setHeVoice] = useState<SpeechSynthesisVoice | null>(null);
-  const [speaking, setSpeaking] = useState(false);
+  const { speak, speaking, supported } = useSpeech();
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-
-    function pickVoice() {
-      const voices = speechSynthesis.getVoices();
-      const found = voices.find((v) => v.lang === "he-IL") || voices.find((v) => v.lang.startsWith("he"));
-      if (found) setHeVoice(found);
-    }
-
-    pickVoice();
-    speechSynthesis.onvoiceschanged = pickVoice;
-    return () => {
-      speechSynthesis.onvoiceschanged = null;
-    };
-  }, []);
-
-  if (!heVoice || !text) return null;
-
-  // Must run synchronously inside the click handler, no `await` before
-  // speak() — iOS Safari only allows SpeechSynthesis inside a direct
-  // user-gesture call stack and silently drops it otherwise.
-  function speak() {
-    speechSynthesis.cancel(); // stop anything already playing first
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = heVoice;
-    utterance.lang = heVoice!.lang;
-    utterance.onstart = () => setSpeaking(true);
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
-    speechSynthesis.speak(utterance);
-  }
+  if (!supported || !text) return null;
 
   return (
     <button
-      onClick={speak}
+      onClick={() => speak(text)}
       type="button"
       aria-label="הקרא בקול"
       title="הקרא בקול"

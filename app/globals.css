@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand — sampled from the characters */
+  --color-teal: #14b8a6; /* boy body / girl bow tie */
+  --color-teal-soft: #ccfbf1;
+  --color-purple: #8b5cf6; /* boy scarf */
+  --color-purple-soft: #ede9fe;
+  --color-pink: #ec4899; /* girl body */
+  --color-pink-soft: #fce7f3;
+
+  /* Semantic */
+  --color-surface: #ffffff;
+  --color-canvas: #f0fdfa; /* app background — soft teal tint, warm not clinical */
+  --color-ink: #1e293b; /* primary text */
+  --color-ink-soft: #64748b;
+  --color-success: #22c55e;
+  --color-success-soft: #dcfce7;
+  --color-warm: #f59e0b; /* "try again" — warm, never red */
+  --color-warm-soft: #fef3c7;
+
+  /* Shape — kids' UI is round */
+  --radius-bubble: 1.5rem; /* speech bubbles, cards */
+  --radius-button: 9999px; /* all kid-facing buttons are pills */
+
+  /* Motion */
+  --animate-bob: bob 3s ease-in-out infinite;
+  --animate-pop: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bob {
+    animation: none;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-heebo), Arial, Helvetica, sans-serif;
 }

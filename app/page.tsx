@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AvatarPicker, { AvatarBadge } from "@/components/AvatarPicker";
-import PracticeMode from "@/components/PracticeMode";
-import { getAvatarById } from "@/lib/avatars";
+import Character from "@/components/character/Character";
+import SpeechBubble from "@/components/character/SpeechBubble";
+import HomeScreen from "@/components/home/HomeScreen";
+import ExerciseScreen from "@/components/practice/ExerciseScreen";
+import { CHARACTERS, normalizeCharacterId, type CharacterId } from "@/lib/characters";
+import { useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
+import { useCelebration } from "@/lib/celebration/useCelebration";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
 import type { SubjectProfile } from "@/lib/memory/types";
-
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
+import type { Grade } from "@/lib/exercises/types";
 
 interface Kid {
   id: string;
@@ -27,20 +27,24 @@ interface KidDashboard {
   practicedToday: boolean;
 }
 
-const GRADES = ["א", "ב", "ג"] as const;
-const SUBJECTS = [
-  { value: "math", label: "חשבון" },
-  { value: "hebrew", label: "עברית" },
-] as const;
+const GRADES: Grade[] = ["א", "ב", "ג"];
+const GRADE_STORAGE_PREFIX = "ai-tutor-grade-"; // known gap, see Section 4.2 — no kids.grade column yet
 
-/** Real parent accounts gate this app (Supabase Auth). The login screen
- *  used to be its own page (/login) — folded in here as a third render
- *  branch instead, to cut Vercel's per-deployment serverless function
- *  count (each Next.js route/page compiles to its own function on the
- *  Hobby plan's 12-function cap; this app was structurally over it with
- *  6 API routes + 2 pages before any consolidation). Multi-kid account
- *  switching is still a real open item (brief Section 2c/2d) — this picks
- *  the first kid on the account rather than building a switcher UI here. */
+function getStoredGrade(kidId: string): Grade {
+  if (typeof window === "undefined") return "א";
+  const v = window.localStorage.getItem(GRADE_STORAGE_PREFIX + kidId);
+  return (v as Grade) ?? "א";
+}
+
+function setStoredGrade(kidId: string, grade: Grade) {
+  window.localStorage.setItem(GRADE_STORAGE_PREFIX + kidId, grade);
+}
+
+/** Real parent accounts gate this app (Supabase Auth). Single-page render
+ *  branches, deliberately — see the "hard constraints" note in the UI
+ *  Revamp Brief Section 0: every route/page is its own serverless
+ *  function on the Vercel Hobby plan's 12-function cap; this app was
+ *  structurally over it before consolidating into one page. */
 export default function Home() {
   const [user, setUser] = useState<{ id: string } | null | undefined>(undefined);
   const [kid, setKid] = useState<Kid | null>(null);
@@ -78,22 +82,34 @@ export default function Home() {
   }
 
   if (user === undefined) return null;
-
-  if (!user) {
-    return <LoginScreen />;
-  }
-
+  if (!user) return <LoginScreen />;
   if (loadingKid) return null;
 
+  const characterId = kid ? normalizeCharacterId(kid.avatarId) : null;
+
+  // No kid yet → full onboarding. Kid exists but avatarId is from the old
+  // 8-option pack and doesn't normalize → character-repick only (brief
+  // Section 4.3: "route them through the character-pick step once, step 2
+  // only"), skipping the name/grade step since those already exist.
   if (!kid) {
-    return <KidSetup onDone={setKid} onLogout={logout} />;
+    return <Onboarding mode="full" onDone={setKid} onLogout={logout} />;
+  }
+  if (!characterId) {
+    return (
+      <Onboarding
+        mode="repick"
+        existingKid={kid}
+        onDone={(updated) => setKid(updated)}
+        onLogout={logout}
+      />
+    );
   }
 
   if (view === "dashboard") {
     return <ParentDashboard onBack={() => setView("kid")} onLogout={logout} />;
   }
 
-  return <TutorChat kid={kid} onLogout={logout} onOpenDashboard={() => setView("dashboard")} />;
+  return <KidHome kid={kid} character={characterId} onOpenDashboard={() => setView("dashboard")} onLogout={logout} />;
 }
 
 function LoginScreen() {
@@ -146,40 +162,40 @@ function LoginScreen() {
   }
 
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-sm bg-white rounded-lg shadow-sm border p-6">
-        <h1 className="text-2xl font-bold text-slate-800 mb-1">המורה הפרטי שלי</h1>
-        <p className="text-sm text-slate-500 mb-6">
+    <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-sm bg-[var(--color-surface)] rounded-[var(--radius-bubble)] shadow-sm p-6">
+        <h1 className="text-2xl font-bold text-[var(--color-ink)] mb-1">המורה הפרטי שלי</h1>
+        <p className="text-sm text-[var(--color-ink-soft)] mb-6">
           {mode === "login" ? "התחברות להורים" : "יצירת חשבון הורה חדש"}
         </p>
 
-        <label className="block text-sm font-semibold text-slate-600 mb-1">אימייל</label>
+        <label className="block text-sm font-semibold text-[var(--color-ink-soft)] mb-1">אימייל</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          className="w-full border rounded px-3 py-2 bg-white mb-4"
+          className="w-full border rounded-[var(--radius-button)] px-4 py-3 bg-white mb-4"
           dir="ltr"
         />
 
-        <label className="block text-sm font-semibold text-slate-600 mb-1">סיסמה</label>
+        <label className="block text-sm font-semibold text-[var(--color-ink-soft)] mb-1">סיסמה</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          className="w-full border rounded px-3 py-2 bg-white mb-4"
+          className="w-full border rounded-[var(--radius-button)] px-4 py-3 bg-white mb-4"
           dir="ltr"
         />
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        {confirmMessage && <p className="text-green-600 text-sm mb-4">{confirmMessage}</p>}
+        {confirmMessage && <p className="text-[var(--color-success)] text-sm mb-4">{confirmMessage}</p>}
 
         <button
           onClick={submit}
           disabled={loading || !email.trim() || !password}
-          className="w-full bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50 mb-3"
+          className="w-full bg-[var(--color-teal)] text-white rounded-[var(--radius-button)] px-4 py-3 disabled:opacity-50 mb-3"
         >
           {loading ? "רגע..." : mode === "login" ? "התחברות" : "יצירת חשבון"}
         </button>
@@ -190,7 +206,7 @@ function LoginScreen() {
             setError(null);
             setConfirmMessage(null);
           }}
-          className="w-full text-sm text-blue-600 hover:underline mb-4"
+          className="w-full text-sm text-[var(--color-teal)] hover:underline mb-4"
         >
           {mode === "login" ? "אין לך חשבון? צור/י אחד" : "כבר יש לך חשבון? התחבר/י"}
         </button>
@@ -203,7 +219,7 @@ function LoginScreen() {
 
         <button
           onClick={signInWithGoogle}
-          className="w-full border rounded px-4 py-2 flex items-center justify-center gap-2 hover:bg-slate-50"
+          className="w-full border rounded-[var(--radius-button)] px-4 py-3 flex items-center justify-center gap-2 hover:bg-slate-50"
         >
           <svg width="18" height="18" viewBox="0 0 18 18">
             <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.61z" />
@@ -211,36 +227,73 @@ function LoginScreen() {
             <path fill="#FBBC05" d="M3.95 10.69A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.16.28-1.69V4.98H.98A9 9 0 0 0 0 9c0 1.45.35 2.83.98 4.02z" />
             <path fill="#EA4335" d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .98 4.98l2.97 2.33C4.66 5.17 6.65 3.58 9 3.58z" />
           </svg>
-          <span className="text-sm text-slate-700">התחברות עם Google</span>
+          <span className="text-sm text-[var(--color-ink)]">התחברות עם Google</span>
         </button>
       </div>
     </div>
   );
 }
 
-/** Picked-once setup screen: name + avatar choice, per the locked
- *  "character avatar picked once" decision. Persists the kid via
- *  /api/kids so the choice ties into the same per-kid data model used
- *  for the memory layer. */
-function KidSetup({ onDone, onLogout }: { onDone: (kid: Kid) => void; onLogout: () => void }) {
-  const [name, setName] = useState("");
-  const [avatarId, setAvatarId] = useState<string | null>(null);
+/**
+ * Two-step, character-led onboarding (UI Revamp Brief Section 4.3),
+ * replacing the old KidSetup form. `mode="repick"` runs step 2 only, for
+ * a kid whose avatarId is from the pre-collapse 8-option pack and doesn't
+ * normalize to boy/girl (lib/characters.ts's normalizeCharacterId) — name
+ * and grade already exist for that kid, only the character needs picking.
+ */
+function Onboarding({
+  mode,
+  existingKid,
+  onDone,
+  onLogout,
+}: {
+  mode: "full" | "repick";
+  existingKid?: Kid;
+  onDone: (kid: Kid) => void;
+  onLogout: () => void;
+}) {
+  const [step, setStep] = useState<"greeting" | "character">(mode === "repick" ? "character" : "greeting");
+  const [name, setName] = useState(existingKid?.name ?? "");
+  const [grade, setGrade] = useState<Grade>("א");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [picked, setPicked] = useState<CharacterId | null>(null);
 
-  async function submit() {
-    if (!name.trim() || !avatarId) return;
+  const { speak } = useSpeech();
+  const { celebrate } = useCelebration();
+
+  useEffect(() => {
+    if (step === "greeting" && hasSeenGesture()) {
+      speak("היי! איך קוראים לך?");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
+
+  async function confirmCharacter() {
+    if (!picked || saving) return;
     setSaving(true);
     setError(null);
     try {
-      const res = await fetch("/api/kids", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), avatarId }),
-      });
-      if (!res.ok) throw new Error("failed");
-      const data = await res.json();
-      onDone(data.kid);
+      if (mode === "repick" && existingKid) {
+        const res = await fetch("/api/kids", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: existingKid.id, avatarId: picked }),
+        });
+        if (!res.ok) throw new Error("failed");
+        const data = await res.json();
+        onDone(data.kid);
+      } else {
+        const res = await fetch("/api/kids", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name.trim(), avatarId: picked }),
+        });
+        if (!res.ok) throw new Error("failed");
+        const data = await res.json();
+        setStoredGrade(data.kid.id, grade);
+        onDone(data.kid);
+      }
     } catch {
       setError("משהו השתבש בשמירה, נסה/י שוב.");
     } finally {
@@ -249,227 +302,150 @@ function KidSetup({ onDone, onLogout }: { onDone: (kid: Kid) => void; onLogout: 
   }
 
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center p-6 font-sans">
-      <div className="w-full max-w-2xl">
-        <div className="flex items-center justify-between mb-1">
-          <h1 className="text-2xl font-bold text-slate-800">בואו נכיר!</h1>
-          <button onClick={onLogout} className="text-sm text-slate-500 hover:text-slate-700">
-            התנתקות
-          </button>
-        </div>
-        <p className="text-sm text-slate-500 mb-6">
-          איך קוראים לך, ואיזו דמות תרצה/י שתלווה אותך בלימודים? אפשר לבחור פעם אחת.
-        </p>
-
-        <label className="block text-sm font-semibold text-slate-600 mb-1">השם שלי</label>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="לדוגמה: נועה"
-          className="w-full border rounded px-3 py-2 bg-white mb-6"
-        />
-
-        <label className="block text-sm font-semibold text-slate-600 mb-2">
-          הדמות שלי
-        </label>
-        <AvatarPicker selectedId={avatarId} onSelect={setAvatarId} />
-
-        {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
-
-        <button
-          onClick={submit}
-          disabled={!name.trim() || !avatarId || saving}
-          className="mt-6 bg-blue-600 text-white rounded px-5 py-2 disabled:opacity-40"
-        >
-          {saving ? "שומר/ת..." : "בואו נתחיל!"}
+    <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center p-6">
+      <div className="w-full max-w-md flex justify-end mb-2">
+        <button onClick={onLogout} className="text-sm text-[var(--color-ink-soft)]">
+          התנתקות
         </button>
       </div>
+
+      {step === "greeting" && (
+        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-6">
+          <Character character="boy" pose="hello" size={160} />
+          <SpeechBubble text="היי! איך קוראים לך?" />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="לדוגמה: נועה"
+            className="w-full min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 px-5 text-2xl text-center"
+            autoFocus
+          />
+          {name.trim() && (
+            <>
+              <p className="text-lg text-[var(--color-ink)] mt-2">מה כיתה שלך?</p>
+              <div className="flex gap-3">
+                {GRADES.map((g) => (
+                  <button
+                    key={g}
+                    onClick={() => setGrade(g)}
+                    className={`w-16 h-16 rounded-full text-2xl font-bold ${
+                      grade === g ? "bg-[var(--color-teal)] text-white" : "bg-[var(--color-surface)] text-[var(--color-ink)]"
+                    }`}
+                  >
+                    {g}׳
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setStep("character")}
+                className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-2"
+              >
+                הבא ←
+              </button>
+            </>
+          )}
+        </div>
+      )}
+
+      {step === "character" && (
+        <div className="w-full max-w-md flex flex-col items-center gap-5 mt-6">
+          <SpeechBubble text="מי יהיה החבר שלך?" />
+          <div className="flex gap-8">
+            {(Object.keys(CHARACTERS) as CharacterId[]).map((id) => (
+              <button
+                key={id}
+                onClick={() => {
+                  setPicked(id);
+                  celebrate(1);
+                  if (hasSeenGesture()) speak("יש! אני שמח שנפגשנו");
+                }}
+                className="flex flex-col items-center gap-2"
+              >
+                <Character character={id} pose={picked === id ? "celebration" : "idle"} size={160} />
+                <span className="text-[var(--color-ink)] font-medium">{CHARACTERS[id].label}</span>
+              </button>
+            ))}
+          </div>
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          {picked && (
+            <button
+              onClick={confirmCharacter}
+              disabled={saving}
+              className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-50"
+            >
+              {saving ? "שומר/ת..." : "בואו נתחיל!"}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
-const MODES = [
-  { value: "practice", label: "תרגול" },
-  { value: "chat", label: "שיחה חופשית" },
-] as const;
-
-function TutorChat({
+/**
+ * Kid-facing shell: the map is the default view (brief Section 4.2); a
+ * topic tap opens ExerciseScreen. Note a real API limitation, not silently
+ * routed around: generate_exercise takes {subject, grade, kidId} only —
+ * no topic parameter — so a specific map-node tap can request "practice
+ * this subject at this grade," not that exact topic. Adding topic-level
+ * targeting would be a backend change, out of scope here (brief Section 0
+ * — no new backend).
+ */
+function KidHome({
   kid,
-  onLogout,
+  character,
   onOpenDashboard,
+  onLogout,
 }: {
   kid: Kid;
-  onLogout: () => void;
+  character: CharacterId;
   onOpenDashboard: () => void;
+  onLogout: () => void;
 }) {
-  const [grade, setGrade] = useState<(typeof GRADES)[number]>("א");
-  const [subject, setSubject] = useState<(typeof SUBJECTS)[number]["value"]>("math");
-  const [mode, setMode] = useState<(typeof MODES)[number]["value"]>("practice");
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  // Session-length decision (project-brief.md Section 2d-2): ~15 min/day,
-  // soft target, not a hard timer. Started once per visit here (not in
-  // PracticeMode, which remounts on every grade/subject change) so
-  // switching subjects mid-session doesn't reset the clock — it's one
-  // daily session regardless of what the kid practices within it.
+  const [activeSubject, setActiveSubject] = useState<"math" | "hebrew" | null>(null);
+  // feat: topic-scoped exercise generation — the map already emits the
+  // tapped node's topic id (ProgressMap.tsx's onPickTopic), this was the
+  // one place along the chain that was discarding it. Cleared together
+  // with activeSubject on both pick and back-to-map, same lifecycle.
+  const [activeTopicId, setActiveTopicId] = useState<string | undefined>(undefined);
   const [sessionStartedAt] = useState(() => Date.now());
   const [sessionCloseShown, setSessionCloseShown] = useState(false);
+  const grade = getStoredGrade(kid.id);
 
-  const avatar = getAvatarById(kid.avatarId);
-
-  async function send() {
-    if (!input.trim() || loading) return;
-    const userMessage: Message = { role: "user", content: input };
-    const nextMessages = [...messages, userMessage];
-    setMessages(nextMessages);
-    setInput("");
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/tutor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: "chat",
-          message: userMessage.content,
-          subject,
-          grade,
-          history: messages,
-          kidId: kid.id,
-        }),
-      });
-      const data = await res.json();
-      setMessages([...nextMessages, { role: "assistant", content: data.reply }]);
-    } catch {
-      setMessages([
-        ...nextMessages,
-        { role: "assistant", content: "משהו השתבש, נסה/י שוב." },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+  if (activeSubject) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[var(--color-canvas)]">
+        <ExerciseScreen
+          subject={activeSubject}
+          grade={grade}
+          topicId={activeTopicId}
+          kidId={kid.id}
+          character={character}
+          sessionStartedAt={sessionStartedAt}
+          sessionCloseShown={sessionCloseShown}
+          onSessionClose={() => setSessionCloseShown(true)}
+          onBackToMap={() => {
+            setActiveSubject(null);
+            setActiveTopicId(undefined);
+          }}
+        />
+      </div>
+    );
   }
 
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center p-6 font-sans">
-      <div className="w-full max-w-xl">
-        <div className="flex items-center justify-between mb-1">
-          <h1 className="text-2xl font-bold text-slate-800">המורה הפרטי שלי</h1>
-          <div className="flex items-center gap-4">
-            <button onClick={onOpenDashboard} className="text-sm text-blue-600 hover:underline">
-              לוח בקרה להורים
-            </button>
-            <button
-              onClick={onLogout}
-              className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
-              title="התנתקות"
-            >
-              {avatar && <AvatarBadge avatar={avatar} size={32} />}
-              <span>{kid.name}</span>
-            </button>
-          </div>
-        </div>
-        <p className="text-sm text-slate-500 mb-4">אב טיפוס פנימי — לא לשימוש חיצוני</p>
-
-        <div className="flex gap-3 mb-4">
-          <select
-            value={grade}
-            onChange={(e) => setGrade(e.target.value as (typeof GRADES)[number])}
-            className="border rounded px-3 py-2 bg-white"
-          >
-            {GRADES.map((g) => (
-              <option key={g} value={g}>
-                כיתה {g}
-              </option>
-            ))}
-          </select>
-          <select
-            value={subject}
-            onChange={(e) => setSubject(e.target.value as typeof subject)}
-            className="border rounded px-3 py-2 bg-white"
-          >
-            {SUBJECTS.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex gap-1 mb-4 border-b">
-          {MODES.map((m) => (
-            <button
-              key={m.value}
-              onClick={() => setMode(m.value)}
-              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px ${
-                mode === m.value
-                  ? "border-blue-600 text-blue-600"
-                  : "border-transparent text-slate-500 hover:text-slate-700"
-              }`}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-
-        {mode === "practice" && (
-          <PracticeMode
-            subject={subject}
-            grade={grade}
-            kidId={kid.id}
-            avatar={avatar}
-            sessionStartedAt={sessionStartedAt}
-            sessionCloseShown={sessionCloseShown}
-            onSessionClose={() => setSessionCloseShown(true)}
-          />
-        )}
-
-        {mode === "chat" && (
-          <>
-            <div className="bg-white rounded-lg shadow-sm border h-96 overflow-y-auto p-4 mb-4 flex flex-col gap-3">
-              {messages.length === 0 && (
-                <p className="text-slate-400 text-sm">שאל/י אותי משהו על {subject === "math" ? "חשבון" : "עברית"}...</p>
-              )}
-              {messages.map((m, i) => (
-                <div
-                  key={i}
-                  className={`flex items-end gap-2 ${m.role === "user" ? "self-end flex-row-reverse" : "self-start"}`}
-                >
-                  {m.role === "assistant" && avatar && <AvatarBadge avatar={avatar} size={28} />}
-                  <div
-                    className={`rounded-lg px-3 py-2 max-w-[85%] ${
-                      m.role === "user" ? "bg-blue-100" : "bg-slate-100"
-                    }`}
-                  >
-                    {m.content}
-                  </div>
-                </div>
-              ))}
-              {loading && <div className="text-slate-400 text-sm">חושב/ת...</div>}
-            </div>
-
-            <div className="flex gap-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && send()}
-                placeholder="כתוב/י כאן..."
-                className="flex-1 border rounded px-3 py-2"
-              />
-              <button
-                onClick={send}
-                disabled={loading}
-                className="bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50"
-              >
-                שלח
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+    <HomeScreen
+      kid={kid}
+      character={character}
+      grade={grade}
+      onPickTopic={(subject, topicId) => {
+        setActiveSubject(subject);
+        setActiveTopicId(topicId);
+      }}
+      onOpenDashboard={onOpenDashboard}
+    />
   );
 }
 
@@ -483,18 +459,11 @@ interface DashboardKid {
 }
 
 /**
- * Real parent-facing view of what's already being tracked per kid — the
- * "what does the parent see" question the brief explicitly left
- * undesigned (Section 2c) plus the "flag to parent" half of the locked
- * off-curriculum/emotional decision, which existed only as a console.log
- * until this session. Reads /api/kids's dashboard payload (folded into
- * the existing route rather than a new one, per the Vercel function-count
- * constraint already hit twice on this app).
- *
- * No weekly-report delivery (email/SMS) here — that's still blocked on
- * Twilio/email setup Asaf hasn't done yet (M-memory/decisions.md,
- * "Twilio Chosen... Not Built Yet"). This is the in-app view, buildable
- * now with what's already connected.
+ * Real parent-facing view of what's already being tracked per kid.
+ * Content/logic unchanged from the original — restyled to the token
+ * system (UI Revamp Brief Section 4.4): white cards, radius-bubble,
+ * AvatarBadge swapped for a Character thumbnail. Reached only through
+ * HomeScreen's parent gate now, not a bare link.
  */
 function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: () => void }) {
   const [kids, setKids] = useState<DashboardKid[]>([]);
@@ -515,39 +484,39 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
   }, []);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center p-6 font-sans">
+    <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center p-6">
       <div className="w-full max-w-2xl">
         <div className="flex items-center justify-between mb-1">
-          <h1 className="text-2xl font-bold text-slate-800">לוח בקרה להורים</h1>
+          <h1 className="text-2xl font-bold text-[var(--color-ink)]">לוח בקרה להורים</h1>
           <div className="flex items-center gap-4">
-            <button onClick={onBack} className="text-sm text-blue-600 hover:underline">
-              חזרה לתרגול
+            <button onClick={onBack} className="text-sm text-[var(--color-teal)] hover:underline">
+              חזרה למפה
             </button>
-            <button onClick={onLogout} className="text-sm text-slate-500 hover:text-slate-700">
+            <button onClick={onLogout} className="text-sm text-[var(--color-ink-soft)]">
               התנתקות
             </button>
           </div>
         </div>
-        <p className="text-sm text-slate-500 mb-6">אב טיפוס פנימי — לא לשימוש חיצוני</p>
+        <p className="text-sm text-[var(--color-ink-soft)] mb-6">אב טיפוס פנימי — לא לשימוש חיצוני</p>
 
-        {loading && <p className="text-slate-400 text-sm">טוען...</p>}
-        {!loading && kids.length === 0 && <p className="text-slate-400 text-sm">אין עדיין ילדים רשומים.</p>}
+        {loading && <p className="text-[var(--color-ink-soft)] text-sm">טוען...</p>}
+        {!loading && kids.length === 0 && <p className="text-[var(--color-ink-soft)] text-sm">אין עדיין ילדים רשומים.</p>}
 
         <div className="flex flex-col gap-6">
           {kids.map((kid) => {
-            const avatar = getAvatarById(kid.avatarId);
+            const character = normalizeCharacterId(kid.avatarId);
             const d = dashboards[kid.id];
             return (
-              <div key={kid.id} className="bg-white rounded-lg shadow-sm border p-5">
+              <div key={kid.id} className="bg-[var(--color-surface)] rounded-[var(--radius-bubble)] shadow-sm p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    {avatar && <AvatarBadge avatar={avatar} size={36} />}
-                    <h2 className="text-lg font-bold text-slate-800">{kid.name}</h2>
+                    {character && <Character character={character} pose="idle" size={40} />}
+                    <h2 className="text-lg font-bold text-[var(--color-ink)]">{kid.name}</h2>
                   </div>
                   {d && (
                     <span
-                      className={`text-xs font-medium rounded-full px-3 py-1 ${
-                        d.practicedToday ? "bg-green-50 text-green-700" : "bg-slate-100 text-slate-500"
+                      className={`text-xs font-medium rounded-[var(--radius-button)] px-3 py-1 ${
+                        d.practicedToday ? "bg-[var(--color-success-soft)] text-[var(--color-success)]" : "bg-slate-100 text-slate-500"
                       }`}
                     >
                       {d.practicedToday ? "תרגל/ה היום ✓" : "עדיין לא תרגל/ה היום"}
@@ -560,17 +529,17 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                     const profile = kid.subjects?.[subject];
                     const stats = d?.subjectStats.find((s) => s.subject === subject);
                     return (
-                      <div key={subject} className="border rounded-lg p-3">
-                        <h3 className="font-semibold text-slate-700 mb-1">{SUBJECT_LABELS[subject]}</h3>
+                      <div key={subject} className="border rounded-2xl p-3">
+                        <h3 className="font-semibold text-[var(--color-ink)] mb-1">{SUBJECT_LABELS[subject]}</h3>
                         {stats && stats.totalAttempts > 0 ? (
-                          <p className="text-sm text-slate-600 mb-1">
+                          <p className="text-sm text-[var(--color-ink-soft)] mb-1">
                             {stats.correctAttempts}/{stats.totalAttempts} תרגילים נכונים (
                             {Math.round((stats.correctAttempts / stats.totalAttempts) * 100)}%)
                           </p>
                         ) : (
                           <p className="text-sm text-slate-400 mb-1">אין עדיין תרגילים</p>
                         )}
-                        {profile?.recentSummary && <p className="text-sm text-slate-600">{profile.recentSummary}</p>}
+                        {profile?.recentSummary && <p className="text-sm text-[var(--color-ink-soft)]">{profile.recentSummary}</p>}
                         {profile?.topicsCovered && profile.topicsCovered.length > 0 && (
                           <p className="text-xs text-slate-400 mt-1">נושאים: {profile.topicsCovered.join(", ")}</p>
                         )}
@@ -581,13 +550,10 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
 
                 {d && d.flags.length > 0 && (
                   <div className="mb-4">
-                    <h3 className="font-semibold text-amber-700 mb-2 text-sm">רגעים לתשומת לב</h3>
+                    <h3 className="font-semibold text-[var(--color-warm)] mb-2 text-sm">רגעים לתשומת לב</h3>
                     <div className="flex flex-col gap-2">
                       {d.flags.map((flag) => (
-                        <div
-                          key={flag.id}
-                          className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 text-sm text-slate-700"
-                        >
+                        <div key={flag.id} className="bg-[var(--color-warm-soft)] rounded-2xl px-3 py-2 text-sm text-[var(--color-ink)]">
                           <span className="text-xs text-slate-400 block mb-1">
                             {new Date(flag.createdAt).toLocaleDateString("he-IL")}
                           </span>
@@ -600,15 +566,15 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
 
                 {d && d.recentAttempts.length > 0 && (
                   <div>
-                    <h3 className="font-semibold text-slate-700 mb-2 text-sm">פעילות אחרונה</h3>
+                    <h3 className="font-semibold text-[var(--color-ink)] mb-2 text-sm">פעילות אחרונה</h3>
                     <div className="flex flex-col gap-2">
                       {d.recentAttempts.map((a) => (
                         <div key={a.id} className="flex items-start gap-2 text-sm">
-                          <span className={a.correct ? "text-green-600" : "text-amber-600"}>
+                          <span className={a.correct ? "text-[var(--color-success)]" : "text-[var(--color-warm)]"}>
                             {a.correct ? "✓" : "✗"}
                           </span>
                           <div className="min-w-0">
-                            <p className="text-slate-600 truncate">{a.question}</p>
+                            <p className="text-[var(--color-ink-soft)] truncate">{a.question}</p>
                             <p className="text-xs text-slate-400">
                               ענה/תה: <span className="font-medium text-slate-500">{a.kidAnswer}</span>
                               {!a.correct && a.correctAnswer && (

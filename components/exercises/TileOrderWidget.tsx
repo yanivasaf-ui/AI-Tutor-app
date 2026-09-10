@@ -60,28 +60,31 @@ export default function TileOrderWidget({ data, disabled, onSubmit }: Props) {
     onSubmit(value);
   }
 
+  const isNumericItem = (v: string) => /^[\d+\-*/=.,\s]+$/.test(v);
+
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-3 justify-center">
         {placed.map((itemIndex, slotIndex) => (
           <button
             key={slotIndex}
             onClick={() => removeFromSlot(slotIndex)}
             disabled={disabled || itemIndex === null}
-            className="min-w-[2.5rem] h-10 px-2 rounded border-2 border-dashed border-slate-300 bg-slate-50 flex items-center justify-center font-medium text-slate-800 disabled:cursor-default"
+            className="h-14 min-w-14 px-3 rounded-2xl border-2 border-dashed border-[var(--color-teal)]/50 bg-[var(--color-teal-soft)]/40 flex items-center justify-center font-medium text-xl text-[var(--color-ink)] disabled:cursor-default"
           >
             {itemIndex !== null ? data.items[itemIndex] : ""}
           </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap gap-3 justify-center">
         {data.items.map((item, i) => (
           <button
             key={i}
             onClick={() => placeInNextSlot(i)}
             disabled={disabled || usedIndices.has(i)}
-            className="min-w-[2.5rem] h-10 px-3 rounded-lg bg-blue-50 border border-blue-200 font-medium text-blue-800 hover:bg-blue-100 disabled:opacity-30 disabled:cursor-default"
+            dir={isNumericItem(item) ? "ltr" : undefined}
+            className="h-14 min-w-14 px-4 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-teal)]/40 font-medium text-xl text-[var(--color-ink)] hover:bg-[var(--color-teal-soft)] disabled:opacity-30 disabled:cursor-default"
           >
             {item}
           </button>
@@ -91,7 +94,7 @@ export default function TileOrderWidget({ data, disabled, onSubmit }: Props) {
       <button
         onClick={handleSubmit}
         disabled={disabled || !allFilled}
-        className="self-center bg-blue-600 text-white rounded px-4 py-2 text-sm disabled:opacity-30"
+        className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-30"
       >
         {disabled ? "בודק/ת..." : "בדוק/י תשובה"}
       </button>

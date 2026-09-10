@@ -77,14 +77,14 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {Array.from({ length: data.groupCount }, (_, bucketIndex) => (
           <div
             key={bucketIndex}
             onClick={() => dropInBucket(bucketIndex)}
-            className={`min-h-[3rem] rounded-lg border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
-              selectedItem !== null ? "border-blue-400 bg-blue-50" : "border-slate-300 bg-slate-50"
+            className={`min-h-16 rounded-2xl border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
+              selectedItem !== null ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)]" : "border-[var(--color-teal)]/40 bg-[var(--color-surface)]"
             }`}
           >
             {data.items.map((item, i) =>
@@ -96,7 +96,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
                     removeFromBucket(i);
                   }}
                   disabled={disabled}
-                  className="text-xl leading-none"
+                  className="text-2xl leading-none"
                 >
                   {item}
                 </button>
@@ -106,15 +106,15 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap gap-3 justify-center">
         {data.items.map((item, i) =>
           assignments[i] === null ? (
             <button
               key={i}
               onClick={() => pickUpItem(i)}
               disabled={disabled}
-              className={`text-xl leading-none w-10 h-10 rounded-lg border flex items-center justify-center ${
-                selectedItem === i ? "border-blue-500 bg-blue-100 scale-110" : "border-slate-200 bg-white"
+              className={`text-2xl leading-none h-14 w-14 rounded-full border-2 flex items-center justify-center ${
+                selectedItem === i ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)] scale-110" : "border-[var(--color-teal)]/30 bg-[var(--color-surface)]"
               }`}
             >
               {item}
@@ -126,7 +126,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
       <button
         onClick={handleSubmit}
         disabled={disabled || !allAssigned}
-        className="self-center bg-blue-600 text-white rounded px-4 py-2 text-sm disabled:opacity-30"
+        className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-30"
       >
         {disabled ? "בודק/ת..." : "בדוק/י תשובה"}
       </button>
