@@ -4,6 +4,7 @@
   /* Brand — sampled from the characters */
   --color-teal: #14b8a6; /* boy body / girl bow tie */
   --color-teal-soft: #ccfbf1;
+  --color-teal-ink: #0f766e; /* teal for TEXT — --color-teal is 2.5:1 on white, fails for type */
   --color-purple: #8b5cf6; /* boy scarf */
   --color-purple-soft: #ede9fe;
   --color-pink: #ec4899; /* girl body */
@@ -18,6 +19,7 @@
   --color-success-soft: #dcfce7;
   --color-warm: #f59e0b; /* "try again" — warm, never red */
   --color-warm-soft: #fef3c7;
+  --color-trail-locked: #cbd5e1; /* the path not yet walked */
 
   /* Shape — kids' UI is round */
   --radius-bubble: 1.5rem; /* speech bubbles, cards */
@@ -26,6 +28,13 @@
   /* Motion */
   --animate-bob: bob 3s ease-in-out infinite;
   --animate-pop: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Character-led redesign (Task 5) */
+  --animate-alive: alive 3.2s ease-in-out infinite; /* ambient life on every pose */
+  --animate-pose-in: pose-in 150ms ease-out; /* the pose crossfade */
+  --animate-trail: trail 0.9s linear infinite; /* the path ahead flows forward */
+  --animate-chevron: chevron 1.5s ease-in-out infinite; /* chevrons march toward the next node */
+  --animate-rays: rays 30s linear infinite; /* tier-2 celebration sunburst */
+  --animate-nudge: nudge 0.45s ease-in-out; /* a locked node shakes its head */
 }
 
 @keyframes bob {
@@ -38,8 +47,49 @@
   100% { transform: scale(1); }
 }
 
+@keyframes alive {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-5px) scaleY(1.012); }
+}
+
+@keyframes pose-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes trail {
+  to { stroke-dashoffset: -32; }
+}
+
+@keyframes chevron {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes rays {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* Everything that moves by itself stops for users who ask for less
+   motion. Tailwind's own ping/pulse were missing from this list — the
+   map's current-node ring pinged regardless, despite MapNode's comment
+   saying this rule covered it. The pose crossfade (pose-in) deliberately
+   stays: a fade isn't motion. */
 @media (prefers-reduced-motion: reduce) {
-  .animate-bob {
+  .animate-bob,
+  .animate-alive,
+  .animate-trail,
+  .animate-chevron,
+  .animate-rays,
+  .animate-nudge,
+  .animate-ping,
+  .animate-pulse {
     animation: none;
   }
 }
