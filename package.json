@@ -13,7 +13,10 @@
     "@huggingface/transformers": "^4.2.0",
     "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.112.3",
-    "next": "^15.5.23",
+    "@types/canvas-confetti": "^1.9.0",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^13.2.0",
+    "next": "^15.5.25",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -25,5 +28,8 @@
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
     "typescript": "^5"
+  },
+  "overrides": {
+    "sharp": "0.35.4"
   }
 }
