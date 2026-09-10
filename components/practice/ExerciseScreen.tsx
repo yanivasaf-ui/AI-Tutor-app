@@ -9,6 +9,7 @@ import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
+import { useAutoSpeak } from "@/lib/speech/autoSpeak";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
@@ -16,18 +17,6 @@ import { recordTiming } from "@/lib/voice/timing";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
-
-/** Auto-speak preference (ROADMAP.md Phase 1A: "wire it to auto-play on
- *  tutor responses (with mute toggle)"). Per-device, not per-kid — it's a
- *  "we're in a quiet room" setting, not a profile attribute. Only gates
- *  *automatic* speech; tapping the 🔊 in a bubble is an explicit request
- *  and always speaks. */
-const AUTO_SPEAK_KEY = "ai-tutor-auto-speak";
-
-function readAutoSpeak(): boolean {
-  if (typeof window === "undefined") return true;
-  return window.localStorage.getItem(AUTO_SPEAK_KEY) !== "off";
-}
 
 const NOT_HEARD_PROMPT = "לא שמעתי טוב, אפשר לומר שוב?";
 
@@ -98,7 +87,9 @@ export default function ExerciseScreen({
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
 
-  const [autoSpeak, setAutoSpeak] = useState(true);
+  // Shared device-level mute (lib/speech/autoSpeak.ts) — the character
+  // speaks on every screen now, not just this one.
+  const [autoSpeak, setAutoSpeak] = useAutoSpeak();
   const { speak, speaking, supported: speechSupported } = useSpeech();
   const bubbleRef = useRef<HTMLDivElement>(null);
 
@@ -108,10 +99,6 @@ export default function ExerciseScreen({
   // voice-out span the kid actually experiences.
   const turnStartedAtRef = useRef<number | null>(null);
   const speakCalledAtRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    setAutoSpeak(readAutoSpeak());
-  }, []);
 
   /** Auto-speech: gated on the mute toggle AND the iOS gesture rule.
    *  Explicit 🔊 taps inside SpeechBubble bypass this deliberately. */
@@ -335,12 +322,7 @@ export default function ExerciseScreen({
             no Hebrew voice, same rule useSpeech applies to SpeakButton. */}
         {speechSupported && (
           <button
-            onClick={() => {
-              const next = !autoSpeak;
-              setAutoSpeak(next);
-              window.localStorage.setItem(AUTO_SPEAK_KEY, next ? "on" : "off");
-              if (!next) window.speechSynthesis?.cancel();
-            }}
+            onClick={() => setAutoSpeak(!autoSpeak)}
             aria-label={autoSpeak ? "כיבוי הקראה אוטומטית" : "הפעלת הקראה אוטומטית"}
             title={autoSpeak ? "כיבוי הקראה אוטומטית" : "הפעלת הקראה אוטומטית"}
             className="w-11 h-11 rounded-full flex items-center justify-center text-xl bg-[var(--color-surface)] shadow-sm"

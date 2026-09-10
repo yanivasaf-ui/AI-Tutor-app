@@ -4,18 +4,21 @@ import { useSpeech } from "@/lib/speech/useSpeech";
 
 interface Props {
   text: string;
+  /** The character this line belongs to — so the replay moves *that*
+   *  character's mouth (lib/speech/useSpeech.ts owner model). */
+  owner?: string;
   className?: string;
 }
 
 /**
- * Thin wrapper around useSpeech (lib/speech/useSpeech.ts) — the actual
- * SpeechSynthesis logic moved there (UI Revamp Brief Section 3.3) so
- * Character.tsx's mouth-sync can share the same `speaking` state without
- * duplicating voice-selection logic. This component's own API is
- * unchanged: same props, same render-nothing-if-unsupported behavior.
+ * Thin wrapper around useSpeech (lib/speech/useSpeech.ts). Same
+ * render-nothing-if-unsupported behavior as always. Restyled onto the
+ * token layer (was ad-hoc blue) and grown to a 44px hit target — it's a
+ * kid-facing control, and the kids who need replay most are the ones
+ * with the least precise taps.
  */
-export default function SpeakButton({ text, className }: Props) {
-  const { speak, speaking, supported } = useSpeech();
+export default function SpeakButton({ text, owner, className }: Props) {
+  const { speak, speaking, supported } = useSpeech(owner);
 
   if (!supported || !text) return null;
 
@@ -25,8 +28,8 @@ export default function SpeakButton({ text, className }: Props) {
       type="button"
       aria-label="הקרא בקול"
       title="הקרא בקול"
-      className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center border text-sm ${
-        speaking ? "bg-blue-100 border-blue-300 animate-pulse" : "bg-slate-50 border-slate-200 hover:bg-blue-50"
+      className={`shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-lg transition-colors ${
+        speaking ? "bg-[var(--color-teal-soft)] animate-pulse" : "bg-[var(--color-canvas)] hover:bg-[var(--color-teal-soft)]"
       } ${className ?? ""}`}
     >
       🔊
