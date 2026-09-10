@@ -38,9 +38,12 @@ export const POSES: CharacterPose[] = [
   "goodbye",
 ];
 
+/** Accents match the art: the girl is the teal one (purple scarf), the
+ *  boy the raspberry one (teal bow tie) — per the 2026-09-10 roster
+ *  decision (Sweet One = girl, Quirky One = boy). These were swapped. */
 export const CHARACTERS: Record<CharacterId, { id: CharacterId; label: string; accent: string }> = {
-  boy: { id: "boy", label: "החבר", accent: "var(--color-teal)" },
-  girl: { id: "girl", label: "החברה", accent: "var(--color-pink)" },
+  boy: { id: "boy", label: "החבר", accent: "var(--color-pink)" },
+  girl: { id: "girl", label: "החברה", accent: "var(--color-teal)" },
 };
 
 export function poseSrc(id: CharacterId, pose: CharacterPose): string {

@@ -2,12 +2,12 @@
 
 @theme {
   /* Brand — sampled from the characters */
-  --color-teal: #14b8a6; /* boy body / girl bow tie */
+  --color-teal: #14b8a6; /* girl body / boy bow tie */
   --color-teal-soft: #ccfbf1;
   --color-teal-ink: #0f766e; /* teal for TEXT — --color-teal is 2.5:1 on white, fails for type */
-  --color-purple: #8b5cf6; /* boy scarf */
+  --color-purple: #8b5cf6; /* girl scarf */
   --color-purple-soft: #ede9fe;
-  --color-pink: #ec4899; /* girl body */
+  --color-pink: #ec4899; /* boy body (raspberry) */
   --color-pink-soft: #fce7f3;
 
   /* Semantic */
