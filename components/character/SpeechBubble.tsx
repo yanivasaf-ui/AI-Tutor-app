@@ -27,6 +27,10 @@ interface Props {
   /** Which edge points at the speaking character. */
   tail?: "top" | "bottom" | "none";
   tailAlign?: "start" | "center" | "end";
+  /** Exact tail position, px from the bubble's physical left edge —
+   *  overrides tailAlign. For layouts that know where the character
+   *  stands (the map's guide beside its node). */
+  tailX?: number;
   size?: "lg" | "md";
   /** Which character is saying this — the 🔊 replay moves that
    *  character's mouth (lib/speech/useSpeech.ts owner model). */
@@ -46,6 +50,7 @@ export default function SpeechBubble({
   tone = "default",
   tail = "bottom",
   tailAlign = "end",
+  tailX,
   size = "lg",
   owner,
   className,
@@ -55,7 +60,8 @@ export default function SpeechBubble({
   const spokenText = lead ? `${lead}, ${text}` : text;
   const showTail = !isPassage && tail !== "none";
   const tailY = tail === "top" ? "-top-2" : "-bottom-2";
-  const tailX = tailAlign === "center" ? "inset-x-0 mx-auto" : tailAlign === "start" ? "start-8" : "end-8";
+  const tailXClass =
+    tailX !== undefined ? "" : tailAlign === "center" ? "inset-x-0 mx-auto" : tailAlign === "start" ? "start-8" : "end-8";
   const textClass = isPassage
     ? "text-lg text-[var(--color-ink-soft)]"
     : size === "md"
@@ -76,7 +82,13 @@ export default function SpeechBubble({
         {text}
       </p>
       <SpeakButton text={spokenText} owner={owner} />
-      {showTail && <span aria-hidden className={`absolute ${tailY} ${tailX} w-4 h-4 rotate-45 ${bg}`} />}
+      {showTail && (
+        <span
+          aria-hidden
+          className={`absolute ${tailY} ${tailXClass} w-4 h-4 rotate-45 ${bg}`}
+          style={tailX !== undefined ? { left: tailX - 8 } : undefined}
+        />
+      )}
     </motion.div>
   );
 }
