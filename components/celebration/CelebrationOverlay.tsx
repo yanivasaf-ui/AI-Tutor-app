@@ -40,7 +40,7 @@ const OWNER = "celebration";
  * sound and the spoken line; drops the rays, spring and confetti.
  */
 export default function CelebrationOverlay({ character, line, pose = "celebration", actions }: Props) {
-  const guide = useGuide({ owner: OWNER, pose, line });
+  const guide = useGuide({ owner: OWNER, character, pose, line });
   const { celebrate } = useCelebration();
 
   useEffect(() => {
@@ -90,6 +90,7 @@ export default function CelebrationOverlay({ character, line, pose = "celebratio
         tail="top"
         tailAlign="center"
         owner={OWNER}
+        character={character}
         className="relative w-full max-w-md"
       />
 

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import SpeakButton from "@/components/SpeakButton";
+import type { CharacterId } from "@/lib/characters";
 
 type Tone = "default" | "success" | "warm";
 
@@ -39,6 +40,8 @@ interface Props {
   /** Which character is saying this — the 🔊 replay moves that
    *  character's mouth (lib/speech/useSpeech.ts owner model). */
   owner?: string;
+  /** ...and the 🔊 replay is said in that character's own voice. */
+  character?: CharacterId | null;
   className?: string;
 }
 
@@ -58,6 +61,7 @@ export default function SpeechBubble({
   tailX,
   size = "lg",
   owner,
+  character,
   className,
 }: Props) {
   const isPassage = variant === "passage";
@@ -97,7 +101,7 @@ export default function SpeechBubble({
           </p>
         )}
       </div>
-      <SpeakButton text={spokenText} owner={owner} />
+      <SpeakButton text={spokenText} owner={owner} character={character} />
       {showTail && (
         <span
           aria-hidden

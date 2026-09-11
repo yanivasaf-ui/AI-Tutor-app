@@ -293,13 +293,17 @@ function Onboarding({
   // Each step's question is said on arrival. The pick reaction is said
   // directly inside the tap handler instead (iOS gesture rule), so the cue
   // is the step alone.
-  const guide = useGuide({ owner: "onboarding", pose: guidePose, line, cue: step });
+  // Before a pick there's no character to speak as, so the prompt uses the
+  // browser voice; from the pick on, the chosen character's own voice.
+  const guide = useGuide({ owner: "onboarding", character: picked, pose: guidePose, line, cue: step });
 
   function pick(id: CharacterId, el: HTMLElement) {
     setPicked(id);
     setError(null);
     celebrate(1, el);
-    guide.say(lines.picked(id, knownName));
+    // `as: id` — `picked` state hasn't updated inside this handler yet, and
+    // tapping a character should let the kid hear *its* voice right away.
+    guide.say(lines.picked(id, knownName), id);
   }
 
   async function save() {
@@ -366,7 +370,7 @@ function Onboarding({
             lead={line.name}
             tail="bottom"
             tailAlign={picked === "boy" ? "start" : picked === "girl" ? "end" : "center"}
-            owner="onboarding"
+            owner="onboarding" character={picked}
             className="w-full"
           />
           <div className="flex gap-6 justify-center">
@@ -413,7 +417,7 @@ function Onboarding({
             lead={line.name}
             tail="top"
             tailAlign="center"
-            owner="onboarding"
+            owner="onboarding" character={picked}
             className="w-full"
           />
           <input
@@ -442,7 +446,7 @@ function Onboarding({
             lead={line.name}
             tail="top"
             tailAlign="center"
-            owner="onboarding"
+            owner="onboarding" character={picked}
             className="w-full"
           />
           <div className="flex gap-4 mt-1">

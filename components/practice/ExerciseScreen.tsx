@@ -124,8 +124,8 @@ export default function ExerciseScreen({
     if (!isAutoSpeakOn() || !hasSeenGesture()) return;
     speakCalledAtRef.current = performance.now();
     speakingAckRef.current = opts?.ack === true;
-    speak(text, OWNER);
-  }, []);
+    speak(text, OWNER, character);
+  }, [character]);
 
   // Leaving mid-sentence (back to map) must not keep talking over the map.
   useEffect(() => () => stopSpeaking(OWNER), []);
@@ -342,7 +342,7 @@ export default function ExerciseScreen({
         {topBar}
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
-          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} className="w-full max-w-md" />
+          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} character={character} className="w-full max-w-md" />
         </div>
       </div>
     );
@@ -355,7 +355,7 @@ export default function ExerciseScreen({
         {topBar}
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
-          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} className="w-full max-w-md" />
+          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} character={character} className="w-full max-w-md" />
           <button
             onClick={onBackToMap}
             className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium"
@@ -402,7 +402,7 @@ export default function ExerciseScreen({
               tone={main.tone}
               tail="top"
               tailAlign="center"
-              owner={OWNER}
+              owner={OWNER} character={character}
             />
           </div>
 

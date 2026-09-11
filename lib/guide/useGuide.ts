@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { hasSeenGesture, speak, stopSpeaking, useSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
-import { useTalkingPose, type CharacterPose } from "@/lib/characters";
+import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
 import { spoken, type Line } from "@/lib/guide/lines";
 
 interface Options {
@@ -18,6 +18,10 @@ interface Options {
    *  i.e. "say it whenever it's a new line". Pass something explicit when
    *  the same words should be said again on a new event. */
   cue?: string | number | null;
+  /** Whose voice to speak in (each character has its own Cartesia
+   *  voice). Omitted/null = the browser voice — only the onboarding prompt
+   *  said before any character has been picked. */
+  character?: CharacterId | null;
 }
 
 /**
@@ -26,12 +30,15 @@ interface Options {
  * useTalkingPose for the mouth — not a replacement for them. One call per
  * on-screen character:
  *
- * - says `line` aloud whenever `cue` changes;
+ * - says `line` aloud, in the character's own voice, whenever `cue`
+ *   changes;
  * - returns the pose to render: the caller's semantic pose, with the
  *   talk-mouth alternation layered on while *this* character speaks;
  * - returns `say()` for lines triggered by a tap — call it synchronously
  *   inside the handler, which is what iOS Safari needs for the first
- *   speech of a session;
+ *   speech of a session. `say(line, as)` speaks as a specific character,
+ *   for the tap that *chooses* the character (its state hasn't updated
+ *   yet inside that handler);
  * - stops its own speech when it leaves the screen, so a line doesn't
  *   keep playing over the next screen.
  *
@@ -39,7 +46,7 @@ interface Options {
  * device mute (lib/speech/autoSpeak.ts). The 🔊 in a bubble bypasses both
  * — it's an explicit request.
  */
-export function useGuide({ owner, pose, line, cue }: Options) {
+export function useGuide({ owner, pose, line, cue, character }: Options) {
   const { speaking } = useSpeech(owner);
   const shownPose = useTalkingPose(speaking, pose);
 
@@ -47,19 +54,24 @@ export function useGuide({ owner, pose, line, cue }: Options) {
   lineRef.current = line;
 
   const say = useCallback(
-    (l: Line | string) => {
+    (l: Line | string, as?: CharacterId) => {
       if (!isAutoSpeakOn()) return;
-      speak(typeof l === "string" ? l : spoken(l), owner);
+      speak(typeof l === "string" ? l : spoken(l), owner, as ?? character);
     },
-    [owner]
+    [owner, character]
   );
+  // Read through a ref in the cue effect: `say` changes identity when the
+  // character changes (the onboarding pick), and that alone must not
+  // re-say the line — the pick handler already said it.
+  const sayRef = useRef(say);
+  sayRef.current = say;
 
   const cueKey = cue !== undefined ? cue : line ? spoken(line) : null;
   useEffect(() => {
     const l = lineRef.current;
     if (!l || cueKey === null || !hasSeenGesture()) return;
-    say(l);
-  }, [cueKey, say]);
+    sayRef.current(l);
+  }, [cueKey]);
 
   useEffect(() => () => stopSpeaking(owner), [owner]);
 

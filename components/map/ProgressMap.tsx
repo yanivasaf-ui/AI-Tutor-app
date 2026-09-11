@@ -136,6 +136,7 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
   const basePose: CharacterPose = !loaded || topics.length === 0 ? "thinking" : allDone ? "celebration" : "idle";
   const guide = useGuide({
     owner: OWNER,
+    character,
     pose: basePose,
     line,
     // Speak on arrival, and again whenever the stop or subject changes —
@@ -218,7 +219,7 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
               lead={line.name}
               tail="top"
               tailAlign="center"
-              owner={OWNER}
+              owner={OWNER} character={character}
               className="w-full max-w-sm"
             />
           )}
@@ -313,7 +314,7 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
                   size="md"
                   tail="bottom"
                   tailX={guideCenterX - 4}
-                  owner={OWNER}
+                  owner={OWNER} character={character}
                 />
               </div>
               <button

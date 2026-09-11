@@ -15,6 +15,8 @@ import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { synthesizeSpeech, TtsNotConfiguredError, MAX_TTS_CHARS } from "@/lib/tts/cartesia";
+import type { CharacterId } from "@/lib/characters";
 
 export const runtime = "nodejs";
 
@@ -30,7 +32,7 @@ export const runtime = "nodejs";
  * individual action, only which URL/shape groups them.
  */
 
-type Action = "chat" | "generate_exercise" | "answer_exercise";
+type Action = "chat" | "generate_exercise" | "answer_exercise" | "speak";
 
 interface ChatBody {
   action: "chat";
@@ -61,7 +63,15 @@ interface AnswerExerciseBody {
   kidId?: string;
 }
 
-type RequestBody = ChatBody | GenerateExerciseBody | AnswerExerciseBody;
+interface SpeakBody {
+  action: "speak";
+  /** The line the character says. */
+  text: string;
+  /** Whose voice (lib/voices.ts). */
+  character: CharacterId;
+}
+
+type RequestBody = ChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody & { action?: Action };
@@ -75,6 +85,8 @@ export async function POST(req: NextRequest) {
       return handleGenerateExercise(supabase, body);
     case "answer_exercise":
       return handleAnswerExercise(supabase, body);
+    case "speak":
+      return handleSpeak(supabase, body, req.signal);
     default:
       return NextResponse.json({ error: "unknown or missing action" }, { status: 400 });
   }
@@ -260,4 +272,61 @@ async function handleAnswerExercise(
   }
 
   return NextResponse.json({ evaluation });
+}
+
+/**
+ * The characters' voices: text -> Cartesia -> MP3, streamed straight
+ * back. Lives in this route as an action rather than its own route file
+ * so it costs zero extra serverless functions (Vercel Hobby 12-function
+ * cap — see the note at the top of this file).
+ *
+ * Requires a signed-in parent, unlike the other actions: every call here
+ * spends Cartesia credit, so an open endpoint would be a free TTS proxy
+ * for anyone who found the URL. Status codes are part of the client
+ * contract (lib/speech/useSpeech.ts): 401/503 switch the client to the
+ * browser voice for the session; 502 falls back for that one line.
+ *
+ * Never logs the text — lines address the kid by name.
+ */
+async function handleSpeak(
+  supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
+  { text, character }: SpeakBody,
+  signal: AbortSignal
+) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
+  }
+  if (typeof text !== "string" || !text.trim() || text.length > MAX_TTS_CHARS) {
+    return NextResponse.json({ error: `text is required, max ${MAX_TTS_CHARS} characters` }, { status: 400 });
+  }
+  if (character !== "boy" && character !== "girl") {
+    return NextResponse.json({ error: "character must be boy or girl" }, { status: 400 });
+  }
+
+  let upstream: Response;
+  try {
+    upstream = await synthesizeSpeech(text, character, signal);
+  } catch (err) {
+    if (err instanceof TtsNotConfiguredError) {
+      return NextResponse.json({ error: "tts_not_configured" }, { status: 503 });
+    }
+    console.error("[tts] cartesia request failed:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+  }
+
+  if (!upstream.ok || !upstream.body) {
+    const detail = await upstream.text().catch(() => "");
+    console.error("[tts] cartesia error:", upstream.status, detail.slice(0, 300));
+    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+  }
+
+  return new Response(upstream.body, {
+    headers: {
+      "Content-Type": upstream.headers.get("content-type") ?? "audio/mpeg",
+      "Cache-Control": "private, no-store",
+    },
+  });
 }

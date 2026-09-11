@@ -1,24 +1,26 @@
 "use client";
 
 import { useSpeech } from "@/lib/speech/useSpeech";
+import type { CharacterId } from "@/lib/characters";
 
 interface Props {
   text: string;
   /** The character this line belongs to — so the replay moves *that*
-   *  character's mouth (lib/speech/useSpeech.ts owner model). */
+   *  character's mouth (lib/speech/useSpeech.ts owner model)... */
   owner?: string;
+  /** ...and is said in that character's own voice. */
+  character?: CharacterId | null;
   className?: string;
 }
 
 /**
- * Thin wrapper around useSpeech (lib/speech/useSpeech.ts). Same
- * render-nothing-if-unsupported behavior as always. Restyled onto the
- * token layer (was ad-hoc blue) and grown to a 44px hit target — it's a
- * kid-facing control, and the kids who need replay most are the ones
- * with the least precise taps.
+ * Thin wrapper around useSpeech (lib/speech/useSpeech.ts). Renders nothing
+ * if neither voice can speak. Token colours, 44px hit target — it's a
+ * kid-facing control, and the kids who need replay most are the ones with
+ * the least precise taps.
  */
-export default function SpeakButton({ text, owner, className }: Props) {
-  const { speak, speaking, supported } = useSpeech(owner);
+export default function SpeakButton({ text, owner, character, className }: Props) {
+  const { speak, speaking, supported } = useSpeech(owner, character);
 
   if (!supported || !text) return null;
 

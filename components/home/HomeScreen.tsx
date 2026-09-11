@@ -122,7 +122,7 @@ function ParentGate({
   const [wrong, setWrong] = useState(false);
 
   const line = lines.parentGate(kidName);
-  const guide = useGuide({ owner: "gate", pose: "idle", line });
+  const guide = useGuide({ owner: "gate", character, pose: "idle", line });
 
   function submit() {
     if (Number(answer) === a * b) {
@@ -149,7 +149,7 @@ function ParentGate({
         className="w-full max-w-xs flex flex-col items-center gap-3"
       >
         <Character character={character} pose={guide.pose} size={170} />
-        <SpeechBubble text={line.text} lead={line.name} size="md" tail="top" tailAlign="center" owner="gate" className="w-full" />
+        <SpeechBubble text={line.text} lead={line.name} size="md" tail="top" tailAlign="center" owner="gate" character={character} className="w-full" />
 
         <div className="bg-[var(--color-surface)] rounded-[var(--radius-bubble)] p-6 w-full text-center mt-1">
           <p className="text-[var(--color-ink-soft)] mb-2">שאלת הורים</p>
