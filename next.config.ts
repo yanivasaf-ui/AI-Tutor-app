@@ -28,8 +28,23 @@ const nextConfig: NextConfig = {
   // on every cold start of any route that calls embedText() (chat, exercise
   // generation) — flagged as a known follow-up when this was first written,
   // acted on now as part of the app's real "make it faster" pass.
+  //
+  // Same failure, second library (2026-09-11): @huggingface/transformers
+  // also loads `sharp` at import time, and sharp 0.35 (the security bump,
+  // c9321be) resolves its prebuilt binary through a computed
+  // `@img/sharp-<platform>` path the tracer can't follow. The binary was
+  // dropped from the function and every /api/tutor call — chat, exercises,
+  // voice — 500'd at module load: "Could not load the sharp module using
+  // the linux-x64 runtime". Production's /api/tutor has been down since
+  // that deploy (2026-09-10 15:36). Forcing in sharp's linux-x64 binary and
+  // the libvips it links against (loaded relative to the .node file) keeps
+  // the security fix instead of pinning sharp back to 0.34.
   outputFileTracingIncludes: {
-    "/api/**": ["./node_modules/onnxruntime-node/bin/napi-v6/linux/x64/**/*"],
+    "/api/**": [
+      "./node_modules/onnxruntime-node/bin/napi-v6/linux/x64/**/*",
+      "./node_modules/@img/sharp-linux-x64/**/*",
+      "./node_modules/@img/sharp-libvips-linux-x64/**/*",
+    ],
   },
 
 };
