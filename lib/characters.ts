@@ -40,10 +40,20 @@ export const POSES: CharacterPose[] = [
 
 /** Accents match the art: the girl is the teal one (purple scarf), the
  *  boy the raspberry one (teal bow tie) — per the 2026-09-10 roster
- *  decision (Sweet One = girl, Quirky One = boy). These were swapped. */
-export const CHARACTERS: Record<CharacterId, { id: CharacterId; label: string; accent: string }> = {
-  boy: { id: "boy", label: "החבר", accent: "var(--color-pink)" },
-  girl: { id: "girl", label: "החברה", accent: "var(--color-teal)" },
+ *  decision (Sweet One = girl, Quirky One = boy). These were swapped.
+ *
+ *  `cartesiaVoiceId` — each character's chosen Cartesia (Sonic) voice,
+ *  picked by Asaf. Not wired to anything yet: speech currently runs on the
+ *  free browser SpeechSynthesis voice (Carmit), with Cartesia as the
+ *  documented fallback if that isn't warm enough for a 7-year-old. Voice
+ *  IDs are public identifiers, not secrets — the API key lives only in
+ *  Vercel env (CARTESIA_API_KEY). */
+export const CHARACTERS: Record<
+  CharacterId,
+  { id: CharacterId; label: string; accent: string; cartesiaVoiceId: string }
+> = {
+  boy: { id: "boy", label: "החבר", accent: "var(--color-pink)", cartesiaVoiceId: "86e30c1d-714b-4074-a1f2-1cb6b552fb49" },
+  girl: { id: "girl", label: "החברה", accent: "var(--color-teal)", cartesiaVoiceId: "9626c31c-bec5-4cca-baa8-f8ba9e84c8bc" },
 };
 
 export function poseSrc(id: CharacterId, pose: CharacterPose): string {
