@@ -111,7 +111,7 @@ interface SpeechRecognitionLike extends EventTarget {
   start(): void;
   stop(): void;
   onresult: ((event: unknown) => void) | null;
-  onerror: (() => void) | null;
+  onerror: ((event: unknown) => void) | null;
   onend: (() => void) | null;
 }
 
@@ -163,8 +163,16 @@ export const browserSpeechProvider: SttProvider = {
       const transcript = e.results?.[0]?.[0]?.transcript ?? "";
       if (transcript) onResult(transcript);
     };
-    recognition.onerror = () => {
-      onError?.("recognition error");
+    recognition.onerror = (event: unknown) => {
+      // Was a hardcoded "recognition error" string, which meant a UI
+      // couldn't tell "the OS refused microphone access" (not-allowed /
+      // service-not-allowed — every retry fails the same way until a
+      // setting changes) apart from "no-speech" or a transient "network"
+      // blip. SpeechRecognitionErrorEvent.error carries the real reason;
+      // it just wasn't being read. See lib.dom's SpeechRecognitionErrorCode
+      // for the full value set this can take.
+      const e = event as { error?: string };
+      onError?.(e?.error ?? "recognition error");
       endOnce();
     };
     recognition.onend = endOnce;

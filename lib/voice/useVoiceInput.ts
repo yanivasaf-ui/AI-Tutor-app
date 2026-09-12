@@ -27,9 +27,16 @@ export function useVoiceInput(opts: {
   /** Fired when capture ended with nothing usable heard — drives the
    *  roadmap's "מה? לא שמעתי, אפשר שוב?" re-ask path. */
   onNothingHeard?: () => void;
+  /** Fired with the provider's raw error reason (lib/stt/provider.ts —
+   *  e.g. "not-allowed", "no-speech", "network") whenever capture ends via
+   *  an error, ALONGSIDE onEnd's usual onNothingHeard call (a permission
+   *  refusal is also "nothing heard"; this is the extra signal for a
+   *  caller that wants to say something more specific than the generic
+   *  re-ask for that case). */
+  onError?: (reason: string) => void;
   disabled?: boolean;
 }) {
-  const { onTranscript, onNothingHeard, disabled } = opts;
+  const { onTranscript, onNothingHeard, onError, disabled } = opts;
 
   const [state, setState] = useState<VoiceInputState>("idle");
   const [available, setAvailable] = useState(false);
@@ -44,10 +51,12 @@ export function useVoiceInput(opts: {
   // calling a stale closure over the previous exercise.
   const onTranscriptRef = useRef(onTranscript);
   const onNothingHeardRef = useRef(onNothingHeard);
+  const onErrorRef = useRef(onError);
   useEffect(() => {
     onTranscriptRef.current = onTranscript;
     onNothingHeardRef.current = onNothingHeard;
-  }, [onTranscript, onNothingHeard]);
+    onErrorRef.current = onError;
+  }, [onTranscript, onNothingHeard, onError]);
 
   useEffect(() => {
     const provider = getSttProvider();
@@ -75,9 +84,11 @@ export function useVoiceInput(opts: {
         setState("idle");
         if (!gotResultRef.current) onNothingHeardRef.current?.();
       },
-      onError: () => {
-        // Errors end the session via onEnd; nothing-heard handling there
-        // covers the "kid held the button but said nothing" case too.
+      onError: (reason) => {
+        // The session still ends via onEnd (which fires onNothingHeard) —
+        // this is the extra, more specific signal for callers that want to
+        // distinguish e.g. a blocked microphone from silence.
+        onErrorRef.current?.(reason);
       },
     });
 

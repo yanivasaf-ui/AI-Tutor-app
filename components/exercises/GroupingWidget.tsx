@@ -20,6 +20,15 @@ interface Props {
  * drop it there (tap-to-place, same paradigm as TileOrderWidget). Tap an
  * item already in a bucket to send it back to the pool.
  *
+ * A placement counter and an alternate numeric path were added after
+ * 2026-09-12 iPhone QA found this an unexplained dead end: nothing on
+ * screen said what to do, and a kid facing up to 20 stars with no progress
+ * feedback had no way to tell whether they were nearly done or barely
+ * started. ExerciseScreen renders the actual how-to caption (see
+ * lines.groupingInstructions) above this component — this widget owns
+ * only the counter and the numeric shortcut, which need its live
+ * `assignments` state.
+ *
  * State updates use the functional setState form throughout, and
  * `assignments` + `selectedItem` live in ONE combined state object updated
  * by a single functional call per action — not two separate useState
@@ -37,9 +46,11 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
     assignments: Array(data.items.length).fill(null),
     selectedItem: null,
   });
+  const [manualCount, setManualCount] = useState("");
   const { assignments, selectedItem } = state;
 
-  const allAssigned = assignments.every((a) => a !== null);
+  const placedCount = assignments.filter((a) => a !== null).length;
+  const allAssigned = placedCount === assignments.length;
 
   function pickUpItem(itemIndex: number) {
     if (disabled) return;
@@ -76,8 +87,23 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
     onSubmit(sizes.join(", "));
   }
 
+  /** The fallback path for a kid (or a parent helping) who'd rather just
+   *  answer "how many per group" than tap every star into a bucket.
+   *  Submits through the exact same onSubmit the tap-to-place path uses —
+   *  evaluateExerciseAnswer's grouping instruction accepts any answer
+   *  whose numbers all equal the correct per-group count, and a single
+   *  typed number trivially satisfies that. */
+  function handleManualSubmit() {
+    if (disabled || !manualCount.trim()) return;
+    onSubmit(manualCount.trim());
+  }
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
+      <p className="text-center text-sm font-medium text-[var(--color-ink-soft)]">
+        {placedCount} מתוך {data.items.length}
+      </p>
+
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {Array.from({ length: data.groupCount }, (_, bucketIndex) => (
           <div
@@ -130,6 +156,30 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
       >
         {disabled ? "בודק/ת..." : "בדוק/י תשובה"}
       </button>
+
+      <div className="flex flex-col items-center gap-2 mt-1">
+        <p className="text-sm text-[var(--color-ink-soft)]">או כתוב כמה בכל קבוצה</p>
+        <div className="flex gap-2">
+          <input
+            type="number"
+            inputMode="numeric"
+            value={manualCount}
+            onChange={(e) => setManualCount(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleManualSubmit()}
+            disabled={disabled}
+            dir="ltr"
+            aria-label="כמה בכל קבוצה"
+            className="w-20 min-h-12 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] px-3 text-xl text-center"
+          />
+          <button
+            onClick={handleManualSubmit}
+            disabled={disabled || !manualCount.trim()}
+            className="min-h-12 px-6 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-teal)]/30 text-[var(--color-ink)] font-medium disabled:opacity-30"
+          >
+            שלח
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

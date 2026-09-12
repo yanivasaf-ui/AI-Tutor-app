@@ -40,7 +40,10 @@ const W = 340;
 const NODE = 76;
 const NODE_CURRENT = 86;
 const ROW = 128; // centre-to-centre between ordinary stops
-const STAGE = 170; // extra room above the guide's stop, for its bubble
+const STAGE = 196; // extra room above the guide's stop, for its bubble
+// (170 -> 196, 2026-09-12: the topic-name eyebrow line added a row of
+// text to the bubble, tall enough on the first stop to clip against the
+// scroll container's top edge before this bump.)
 const PAD_TOP = 40;
 const PAD_BOTTOM = 72;
 const OFFSETS = [0, 68, -68];
@@ -123,6 +126,9 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
 
   // ---- What the character says and does ----
   const otherLabel = SUBJECTS.find((s) => s.value !== subject)!.label;
+  // Valid whenever topics.length > 0, since stageIndex is either
+  // currentIndex or (once every stop is done) the last topic's index.
+  const currentTopic = topics[stageIndex]?.topic;
   const autoLine: Line | null = !loaded
     ? null
     : topics.length === 0
@@ -130,8 +136,8 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
       : allDone
         ? lines.mapAllDone(kidName)
         : doneIds.size === 0
-          ? lines.mapFirst(kidName)
-          : lines.mapNext(kidName);
+          ? lines.mapFirst(kidName, currentTopic!)
+          : lines.mapNext(kidName, currentTopic!);
   const line = override ?? autoLine;
   const basePose: CharacterPose = !loaded || topics.length === 0 ? "thinking" : allDone ? "celebration" : "idle";
   const guide = useGuide({
@@ -310,6 +316,7 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
                 <SpeechBubble
                   key={lines.spoken(line)}
                   text={line.text}
+                  eyebrow={!allDone ? currentTopic : undefined}
                   lead={line.name}
                   size="md"
                   tail="bottom"

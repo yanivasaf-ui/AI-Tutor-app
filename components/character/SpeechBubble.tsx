@@ -15,6 +15,13 @@ const TONE_BG: Record<Tone, string> = {
 interface Props {
   /** What's shown and (via the built-in SpeakButton) what's read aloud. */
   text: string;
+  /** Small caption line above everything else — independent of what the
+   *  character is currently saying. Only consumer today: the map's stage
+   *  bubble names the current stop's topic (QA: "the map never shows the
+   *  topic name" — it lived only in the node's aria-label/title before).
+   *  Not read aloud by SpeakButton; the spoken line already names the
+   *  topic in its own sentence. */
+  eyebrow?: string;
   /** The kid's name (character-led redesign, Task 5 item 5). Rendered
    *  first, bold, in the brand ink — a pre-reader often recognises their
    *  own written name before any other word, so this is the one part of
@@ -52,6 +59,7 @@ interface Props {
  */
 export default function SpeechBubble({
   text,
+  eyebrow,
   lead,
   detail,
   variant = "default",
@@ -88,6 +96,9 @@ export default function SpeechBubble({
       } ${className ?? ""}`}
     >
       <div className="flex-1 min-w-0">
+        {eyebrow && (
+          <p className="text-xs font-bold text-[var(--color-teal-ink)]/70 mb-1 line-clamp-2">{eyebrow}</p>
+        )}
         {detail ? (
           <>
             {lead && <p className={`${leadClass} ${size === "md" ? "text-lg" : "text-2xl"}`}>{lead},</p>}

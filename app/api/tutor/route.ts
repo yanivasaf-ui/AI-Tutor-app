@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
-import { embedText } from "@/lib/rag/embed";
 import { search } from "@/lib/rag/store";
 import {
   buildTutorSystemPrompt,
@@ -30,6 +29,18 @@ export const runtime = "nodejs";
  * route files cost 6 functions for logic that's really one feature area.
  * One file with an action dispatcher costs 2. No behavior changed for any
  * individual action, only which URL/shape groups them.
+ *
+ * One consequence of that consolidation (2026-09-12 iPhone QA — "everything
+ * is slow"): all four actions share ONE Vercel function, so a static
+ * top-level import anywhere in this file is paid by every cold start of
+ * that function, regardless of which action woke it. `embedText`
+ * (lib/rag/embed.ts) pulls in @huggingface/transformers — onnxruntime,
+ * sharp, and the ~100MB MiniLM weights — and only `chat` and (sometimes)
+ * `generate_exercise` actually need it; `speak` and `answer_exercise`
+ * never do. It's dynamically imported inside the two functions that
+ * actually call it (here and in lib/exercises/generate.ts) instead of
+ * statically at the top of either file — keep it that way; a static
+ * import at either module's top reintroduces the cost for every action.
  */
 
 type Action = "chat" | "generate_exercise" | "answer_exercise" | "speak";
@@ -106,14 +117,15 @@ async function handleChat(
   const flagged = looksOffCurriculumOrEmotional(message);
 
   // embedText() is the slowest single step here (a local ONNX model
-  // inference) and doesn't depend on the kid/profile lookup at all — was
-  // previously awaited only after both DB calls finished. Running them
-  // concurrently shaves a real round-trip off every chat turn, part of
-  // the "make it faster" pass (Asaf, 2026-08-31) — not a behavior change,
-  // same three results, just not serialized for no reason.
+  // inference) and doesn't depend on the kid/profile lookup at all — runs
+  // concurrently with it, part of the "make it faster" pass (Asaf,
+  // 2026-08-31). The import is dynamic (not a static top-of-file import —
+  // see the file header) so a cold start of this shared function only
+  // pays @huggingface/transformers's load cost when a `chat` request
+  // actually arrives, not on every cold start regardless of action.
   const [kid, queryEmbedding] = await Promise.all([
     kidId ? getKid(supabase, kidId) : Promise.resolve(null),
-    embedText(message),
+    import("@/lib/rag/embed").then((m) => m.embedText(message)),
   ]);
   const subjectProfile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
 
@@ -153,21 +165,32 @@ async function handleChat(
   const textBlock = response.content.find((b) => b.type === "text");
   const reply = textBlock && textBlock.type === "text" ? textBlock.text : "";
 
+  // The kid reads `reply` the moment the model returns it — the memory-
+  // layer update is a SECOND LLM call the kid was, until now, waiting on
+  // for no reason (2026-09-12 iPhone QA: "everything is slow"). after()
+  // (next/server) runs this once the response is on its way, on the same
+  // warm invocation rather than a new one. Same calls, same order, same
+  // error handling as before — only when they run changed. (The brief for
+  // this task named `waitUntil` from next/server; this Next version
+  // exports `after`, not `waitUntil` — same fire-and-forget-after-response
+  // primitive, different name.)
   if (kid) {
-    try {
-      const patch = await updateSubjectProfileFromExchange(subjectProfile ?? emptySubjectProfile(), {
-        grade,
-        subject,
-        kidName: kid.name,
-        userMessage: message,
-        tutorReply: reply,
-      });
-      if (patch) {
-        await updateSubjectProfile(supabase, kid.id, subject as Subject, patch);
+    after(async () => {
+      try {
+        const patch = await updateSubjectProfileFromExchange(subjectProfile ?? emptySubjectProfile(), {
+          grade,
+          subject,
+          kidName: kid.name,
+          userMessage: message,
+          tutorReply: reply,
+        });
+        if (patch) {
+          await updateSubjectProfile(supabase, kid.id, subject as Subject, patch);
+        }
+      } catch (err) {
+        console.error("[memory-update] error updating profile after exchange:", err);
       }
-    } catch (err) {
-      console.error("[memory-update] error updating profile after exchange:", err);
-    }
+    });
   }
 
   return NextResponse.json({
@@ -238,44 +261,53 @@ async function handleAnswerExercise(
   }
   const evaluation = evaluationOutcome.value;
 
+  // The kid gets `evaluation` (right/wrong + feedback) the moment it's
+  // judged — recordAttempt and the memory-layer update (a second LLM
+  // call) are bookkeeping the kid was, until now, waiting on for no
+  // reason (2026-09-12 iPhone QA: "everything is slow"). after()
+  // (next/server) defers exactly this block to run once the response is
+  // on its way; same calls, same order, same error handling as before.
+  // (See handleChat's after() comment on the waitUntil/after naming.)
   if (kid) {
-    // recordAttempt (the attempt log) and getSubjectProfile (needed for
-    // the memory-layer update below) are also independent of each other
-    // — same parallelization reasoning as above.
-    const [, current] = await Promise.all([
-      recordAttempt(supabase, {
-        kidId: kid.id,
-        exerciseId: exercise.id,
-        subject: exercise.subject,
-        correct: evaluation.correct,
-        errorNote: evaluation.errorNote,
-        kidAnswer: answer,
-        correctAnswer: exercise.correctAnswer,
-      }).catch((err) => {
-        console.error("[exercise-answer] attempt logging failed:", err);
-      }),
-      getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
-    ]);
-    const profileBase = current ?? emptySubjectProfile();
-    try {
-      const patch = await updateSubjectProfileFromExchange(profileBase, {
-        grade: exercise.grade,
-        subject: exercise.subject,
-        kidName: kid.name,
-        userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
-        tutorReply: evaluation.feedback,
-        exercise: {
-          topic: exercise.topic,
-          correct: evaluation.correct,
-          errorNote: evaluation.errorNote,
-        },
-      });
-      if (patch) {
-        await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
+    after(async () => {
+      try {
+        // recordAttempt (the attempt log) and getSubjectProfile (needed
+        // for the memory-layer update below) are independent of each
+        // other — same parallelization reasoning as elsewhere in this file.
+        const [, current] = await Promise.all([
+          recordAttempt(supabase, {
+            kidId: kid.id,
+            exerciseId: exercise.id,
+            subject: exercise.subject,
+            correct: evaluation.correct,
+            errorNote: evaluation.errorNote,
+            kidAnswer: answer,
+            correctAnswer: exercise.correctAnswer,
+          }).catch((err) => {
+            console.error("[exercise-answer] attempt logging failed:", err);
+          }),
+          getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
+        ]);
+        const profileBase = current ?? emptySubjectProfile();
+        const patch = await updateSubjectProfileFromExchange(profileBase, {
+          grade: exercise.grade,
+          subject: exercise.subject,
+          kidName: kid.name,
+          userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
+          tutorReply: evaluation.feedback,
+          exercise: {
+            topic: exercise.topic,
+            correct: evaluation.correct,
+            errorNote: evaluation.errorNote,
+          },
+        });
+        if (patch) {
+          await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
+        }
+      } catch (err) {
+        console.error("[exercise-answer] memory update failed:", err);
       }
-    } catch (err) {
-      console.error("[exercise-answer] memory update failed:", err);
-    }
+    });
   }
 
   return NextResponse.json({ evaluation });

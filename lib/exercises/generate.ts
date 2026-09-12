@@ -1,5 +1,4 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
-import { embedText } from "@/lib/rag/embed";
 import { search } from "@/lib/rag/store";
 import { getTopicById } from "@/lib/map/topics";
 import { SubjectProfile } from "@/lib/memory/types";
@@ -34,8 +33,13 @@ const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
     'תן/י מילה עברית קצרה ומתאימה לגיל (מהתוכן הלימודי או קרובה אליו). type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [אותיות המילה בסדר מעורבב]} — קריטי: items חייב להכיל בדיוק את האותיות של המילה, אותה אחת אחת, בלי אף אות נוספת ובלי אף אות חסרה (רק הסדר מעורבב, לא התוכן). correctAnswer הוא אותה מילה בדיוק (האותיות ברצף הנכון, ללא רווחים ביניהן) — ודא/י ש-correctAnswer מכיל בדיוק את אותן אותיות כמו items, לא יותר ולא פחות.',
   sentence_order:
     'תן/י משפט קצר ופשוט (3-6 מילים) מתאים לגיל. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [מילות המשפט בסדר מעורבב]} — קריטי: items חייב להכיל בדיוק את מילות המשפט, אותה אחת אחת, בלי אף מילה נוספת ובלי אף מילה חסרה (רק הסדר מעורבב, לא התוכן). correctAnswer הוא אותו משפט בדיוק, עם רווחים בין המילים בסדר הנכון — ודא/י שמספר המילים ב-correctAnswer זהה למספר הפריטים ב-items.',
+  // {MAX_GROUPING_ITEMS} is substituted per-grade in subtypeGuidance()
+  // below — a kid tapping N items one-by-one into buckets is the actual
+  // interaction cost here (GroupingWidget.tsx), and that cost scales with
+  // N regardless of how easy the arithmetic is, so the cap is a UX limit
+  // on tap count, not a difficulty limit.
   visual_grouping:
-    'תן/י N חפצים זהים (אותו אמוג\'י חוזר, כגון 🍎 או ⭐, לא מילים) שמתחלקים בדיוק ל-groupCount קבוצות שוות ללא שארית — בחר/י N ו-groupCount כך ש-N מתחלק ב-groupCount בדיוק, מתאים לרמת הכיתה (למשל 12 חפצים, 3 קבוצות). type חייב להיות "grouping". החזר/י שדה נוסף grouping: {"items": [N פעמים אותו אמוג\'י], "groupCount": מספר הקבוצות}. נסח/י את question כבקשה לחלק את החפצים ל-groupCount קבוצות שוות. correctAnswer הוא מספר הפריטים הנכון שאמור להיות בכל קבוצה (N חלקי groupCount), כמחרוזת.',
+    'תן/י N חפצים זהים (אותו אמוג\'י חוזר, כגון 🍎 או ⭐, לא מילים) שמתחלקים בדיוק ל-groupCount קבוצות שוות ללא שארית — בחר/י N ו-groupCount כך ש-N מתחלק ב-groupCount בדיוק, N הכולל לא יעלה על {MAX_GROUPING_ITEMS}, ומתאים לרמת הכיתה (למשל 12 חפצים, 3 קבוצות). type חייב להיות "grouping". החזר/י שדה נוסף grouping: {"items": [N פעמים אותו אמוג\'י], "groupCount": מספר הקבוצות}. נסח/י את question כבקשה לחלק את החפצים ל-groupCount קבוצות שוות. correctAnswer הוא מספר הפריטים הנכון שאמור להיות בכל קבוצה (N חלקי groupCount), כמחרוזת.',
   equation_balance:
     'משוואת חיבור או חיסור פשוטה עם מקום ריק אחד (למשל "3 + ___ = 7"), מתאימה לרמת הכיתה. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 מספרים מעורבבים קרובים לתשובה, רק אחד מהם הופך את המשוואה לנכונה]}. נסח/י את question כמשוואה עם המקום הריק מסומן בבירור (למשל "___"). correctAnswer הוא המספר הנכון שמאזן את המשוואה, וחייב להיות אחד מהערכים ב-items.',
   shape_match:
@@ -96,6 +100,18 @@ function pickSubtype(subject: "math" | "hebrew", grade: Grade): ExerciseSubtype 
       ? MATH_SUBTYPES
       : HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/** grouping's per-grade item cap (2026-09-12 iPhone QA: tapped through 20+
+ *  stars one-by-one with no counter and no instructions — a real UX dead
+ *  end, not just a big number). Grade ג gets more room since equal-split
+ *  arithmetic there already reaches higher totals (e.g. dividing 20 into 4
+ *  groups of 5) than א/ב's curriculum calls for. Prompt guidance only —
+ *  not code-enforced, same trust-the-prompt pattern already used for "4
+ *  choices" on multiple_choice (see NumberLineData's doc comment). */
+function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade): string {
+  const maxGroupingItems = grade === "ג" ? 20 : 12;
+  return SUBTYPE_GUIDANCE[subtype].replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems));
 }
 
 /**
@@ -161,7 +177,22 @@ export async function generateExercise(opts: {
       ? `${profile.recentSummary} רמה: ${profile.estimatedLevel}`
       : `תרגיל ${subject === "math" ? "בחשבון" : "בעברית"} מתאים לכיתה ${grade}`;
 
-  const queryEmbedding = await embedText(retrievalQuery);
+  // A resolved topic makes search() below filter by exact chunk id, which
+  // (ids are unique per chunk) returns at most one result — the query
+  // embedding's score never affects which chunk comes back, only ITS
+  // OWN relative ranking among candidates that don't exist here. Skipping
+  // the call entirely avoids paying for both the embedding inference AND
+  // — since this was the only static top-level import pulling
+  // @huggingface/transformers into this module — the onnxruntime/sharp/
+  // MiniLM-weights load on every generate_exercise cold start, topic-scoped
+  // or not (2026-09-12 iPhone QA: "everything is slow"). The import is
+  // dynamic and only reached on the path that genuinely needs semantic
+  // ranking across multiple candidates (no topic resolved, so search()
+  // falls back to subject/grade filtering) — keep it that way; a static
+  // import at this module's top reintroduces the cost unconditionally.
+  const queryEmbedding = resolvedTopic
+    ? []
+    : await import("@/lib/rag/embed").then((m) => m.embedText(retrievalQuery));
   const retrieved = search(queryEmbedding, { subject, grade, topK: 3, id: resolvedTopic?.id });
 
   if (retrieved.length === 0) {
@@ -183,7 +214,7 @@ ${profile ? `רמה משוערת נוכחית של התלמיד/ה: ${profile.es
 ${avoidTopics ? `נושאים שתורגלו לאחרונה (עדיף לגוון, לא חובה להימנע לגמרי): ${avoidTopics}` : ""}
 
 בחר/י את אחד הנושאים לעיל ובנה/י תרגיל אחד קצר, ברור, ומתאים לגיל, לפי התבנית הבאה בדיוק:
-${SUBTYPE_GUIDANCE[subtype]}
+${subtypeGuidance(subtype, grade)}
 
 החזר/י אך ורק אובייקט JSON תקין, ללא טקסט נוסף, בפורמט הזה:
 {

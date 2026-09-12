@@ -57,14 +57,17 @@ export const askGrade = (name: string): Line => ({ name, text: "נעים מאו�
 
 // ---- Map ---------------------------------------------------------------
 
-export const mapFirst = (name: string): Line => ({
+/** `topic` names the stop (QA: "the map never shows the topic name") —
+ *  both the character's spoken/written line and the visible name near the
+ *  node itself (SpeechBubble's `eyebrow`, see ProgressMap.tsx). */
+export const mapFirst = (name: string, topic: string): Line => ({
   name,
-  text: "זו התחנה הראשונה שלנו. לוחצים על העיגול ומתחילים!",
+  text: `זו התחנה הראשונה שלנו: ${topic}. לוחצים על העיגול ומתחילים!`,
 });
 
-export const mapNext = (name: string): Line => ({
+export const mapNext = (name: string, topic: string): Line => ({
   name,
-  text: "הנה התחנה הבאה שלנו! לוחצים על העיגול וממשיכים.",
+  text: `התחנה הבאה שלנו: ${topic}. לוחצים על העיגול וממשיכים.`,
 });
 
 export const mapAllDone = (name: string): Line => ({ name, text: "עברנו את כל התחנות! כל הכבוד!" });
@@ -101,6 +104,25 @@ export const thinking = (c: CharacterId, name: string): Line => ({
 export const notHeard = (name: string): Line => ({
   name,
   text: "לא שמעתי טוב. אפשר לומר שוב, או ללחוץ על תשובה.",
+});
+
+/** SpeechRecognition's "not-allowed"/"service-not-allowed" — the OS or
+ *  browser refused microphone access, as opposed to genuinely hearing
+ *  nothing (notHeard, above). Distinct copy because "I didn't hear you"
+ *  invites trying again louder, which does nothing when the mic is
+ *  blocked — every retry would fail the same way until a permission
+ *  setting changes. Tap answers stay the way forward either way. */
+export const micBlocked = (name: string): Line => ({
+  name,
+  text: "אין גישה למיקרופון. אפשר ללחוץ על תשובה בעצם.",
+});
+
+/** Grouping's tap-to-place interaction (star -> bucket) has no affordance
+ *  a kid can infer just from looking at it — said in the same breath as
+ *  the question and shown as a caption under it (see ExerciseScreen). No
+ *  `name`: it's appended to a line that already opens with one. */
+export const groupingInstructions = (): Line => ({
+  text: "לוחצים על כוכב, ואז על הקבוצה.",
 });
 
 export const noContent = (name: string): Line => ({

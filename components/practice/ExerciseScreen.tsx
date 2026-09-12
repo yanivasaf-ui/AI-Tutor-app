@@ -101,6 +101,11 @@ export default function ExerciseScreen({
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
+  /** The OS/browser refused microphone access on the last attempt — a
+   *  more specific dead end than noMatch's generic "didn't hear you"
+   *  (2026-09-12 iPhone QA: "voice input fails"). Cleared the moment
+   *  listening starts again, same as noMatch. */
+  const [micDenied, setMicDenied] = useState(false);
   const [topicCelebration, setTopicCelebration] = useState(false);
   const [sessionGoodbye, setSessionGoodbye] = useState(false);
   /** Set once this visit's topic has been celebrated (or was already done
@@ -163,9 +168,14 @@ export default function ExerciseScreen({
   const { celebrate } = useCelebration(setBasePose);
 
   /** The question as said out loud — same words, same order as its
-   *  bubble: name, passage, question. */
+   *  bubble: name, passage, question. Grouping's tap-to-place instruction
+   *  is appended in the same breath (also shown as a caption — see the
+   *  render below) since the interaction isn't otherwise self-explanatory
+   *  (2026-09-12 iPhone QA: grouping was an unexplained dead end). */
   function questionSpeech(ex: Exercise) {
-    return [`${kidName},`, ex.passage, ex.question].filter(Boolean).join(" ");
+    return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions().text : null]
+      .filter(Boolean)
+      .join(" ");
   }
 
   async function loadNextExercise() {
@@ -290,6 +300,25 @@ export default function ExerciseScreen({
     speakAuto(lines.spoken(lines.notHeard(kidName)));
   }, [speakAuto, kidName]);
 
+  /** Distinguishes "the OS refused microphone access" from genuinely
+   *  hearing nothing (2026-09-12 iPhone QA: "voice input fails" — the
+   *  generic notHeard copy invites trying again louder, which does
+   *  nothing when the mic is blocked; every retry would fail the same
+   *  way until a permission setting changes). Every other reason
+   *  ("no-speech", "network", ...) already gets the generic re-ask via
+   *  onNothingHeard/askToRepeat — this only adds a distinct branch for
+   *  the one reason that isn't actually "try again". */
+  const handleMicError = useCallback(
+    (reason: string) => {
+      if (reason !== "not-allowed" && reason !== "service-not-allowed") return;
+      turnStartedAtRef.current = null;
+      setMicDenied(true);
+      setBasePose("encouraging");
+      speakAuto(lines.spoken(lines.micBlocked(kidName)));
+    },
+    [speakAuto, kidName]
+  );
+
   /**
    * Spoken answer -> exercise answer. See lib/voice/matchAnswer.ts for the
    * normalization/matching rules. Ambiguous or unmatched input asks the
@@ -404,14 +433,23 @@ export default function ExerciseScreen({
     );
   }
 
-  // What the character is saying right now — the one bubble.
+  // What the character is saying right now — the one bubble. micDenied
+  // ranks ahead of noMatch: it's a more specific, more actionable dead end
+  // than the generic "didn't hear you".
   let main: { line: Line; detail?: string; tone: "default" | "success" | "warm" };
   if (submitting) main = { line: lines.thinking(character, kidName), tone: "default" };
   else if (evaluation)
     main = { line: lines.feedback(kidName, evaluation.feedback), tone: evaluation.correct ? "success" : "warm" };
+  else if (micDenied && !listening) main = { line: lines.micBlocked(kidName), tone: "warm" };
   else if (noMatch && !listening) main = { line: lines.notHeard(kidName), tone: "warm" };
   else main = { line: lines.question(kidName, exercise.question), detail: exercise.passage, tone: "default" };
-  const showQuestionReminder = submitting || (noMatch && !listening && !evaluation) || (!!evaluation && !evaluation.correct);
+  const showQuestionReminder = submitting || ((noMatch || micDenied) && !listening && !evaluation) || (!!evaluation && !evaluation.correct);
+  // Voice never works for these two: tile_order/grouping are spatial
+  // arrangement tasks with no natural spoken form (locked design), and
+  // grouping specifically was a real dead end in iPhone QA even before
+  // voice entered into it — showing a mic that can only ever fail is
+  // worse than no mic at all. Tap stays fully usable either way.
+  const micApplies = exercise.type !== "tile_order" && exercise.type !== "grouping";
 
   return (
     <div className="flex flex-col flex-1 px-4 pb-4">
@@ -445,6 +483,12 @@ export default function ExerciseScreen({
 
           {showQuestionReminder && (
             <p className="text-center text-lg text-[var(--color-ink-soft)] px-2">{exercise.question}</p>
+          )}
+
+          {!evaluation && exercise.type === "grouping" && (
+            <p className="text-center text-base text-[var(--color-ink-soft)] px-2 -mt-1">
+              {lines.groupingInstructions().text}
+            </p>
           )}
 
           {!evaluation && exercise.type === "multiple_choice" && exercise.choices && (
@@ -496,17 +540,21 @@ export default function ExerciseScreen({
             </div>
           )}
 
-          {!evaluation && (
+          {!evaluation && micApplies && (
             <div className="flex justify-center mt-2">
               <MicButton
                 onResult={handleVoiceResult}
                 onNothingHeard={askToRepeat}
+                onError={handleMicError}
                 onListeningChange={(isListening) => {
                   setListening(isListening);
                   // Turn clock starts when the kid stops talking — that's
                   // the moment they begin waiting on the character.
                   if (!isListening) turnStartedAtRef.current = performance.now();
-                  if (isListening) setNoMatch(false);
+                  if (isListening) {
+                    setNoMatch(false);
+                    setMicDenied(false);
+                  }
                 }}
                 busyPhase={submitting ? "thinking" : speaking ? "speaking" : null}
                 disabled={submitting}
