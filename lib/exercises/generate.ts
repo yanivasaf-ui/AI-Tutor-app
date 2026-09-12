@@ -46,6 +46,21 @@ const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
     'גרסה חזותית/טקסטואלית של מודעות פונולוגית, ללא אודיו (אין השמעת קול באפליקציה הזו) — הצג/י מילת יעד ובקש/י לבחור מבין 4 מילים איזו מתחילה (או מסתיימת) באותו צליל/אות כמו מילת היעד. type חייב להיות "multiple_choice".',
 };
 
+/**
+ * The one *expected* reason there's no exercise: the curriculum index has
+ * nothing for this subject/grade/topic. Its own type so the route can
+ * answer it distinctly (404 `no_content`) and the kid's screen can say
+ * "nothing here yet" — every other failure (LLM error, malformed output,
+ * DB error) is a real fault and stays a 500, which the screen shows as
+ * "something broke, try again".
+ */
+export class NoCurriculumContentError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "NoCurriculumContentError";
+  }
+}
+
 const MATH_SUBTYPES: ExerciseSubtype[] = [
   "fill_in_blank",
   "pick_operation",
@@ -150,7 +165,7 @@ export async function generateExercise(opts: {
   const retrieved = search(queryEmbedding, { subject, grade, topK: 3, id: resolvedTopic?.id });
 
   if (retrieved.length === 0) {
-    throw new Error(
+    throw new NoCurriculumContentError(
       `No curriculum content for subject=${subject} grade=${grade}${resolvedTopic ? ` topic=${resolvedTopic.id}` : ""} — cannot ground an exercise.`
     );
   }

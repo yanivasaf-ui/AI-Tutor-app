@@ -94,6 +94,10 @@ export default function ExerciseScreen({
   const [evaluation, setEvaluation] = useState<ExerciseEvaluation | null>(null);
   const [loadingExercise, setLoadingExercise] = useState(false);
   const [loadedOnce, setLoadedOnce] = useState(false);
+  /** The last load failed (network, 5xx, unreadable response) — as opposed
+   *  to the API genuinely having nothing for this topic. Different
+   *  screens: one offers a retry, the other a way back to the map. */
+  const [loadFailed, setLoadFailed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
@@ -171,16 +175,31 @@ export default function ExerciseScreen({
     setNoMatch(false);
     setTopicCelebration(false);
     setBasePose("thinking");
+    setLoadFailed(false);
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId }),
       });
-      const data = await res.json();
-      setExercise(data.exercise ?? null);
+      // A body that isn't JSON (a platform error page, a cut-off response)
+      // is a failure, not an empty topic.
+      const data = (await res.json().catch(() => null)) as { exercise?: Exercise | null; error?: string } | null;
+      if (res.ok && data?.exercise) {
+        setExercise(data.exercise);
+      } else if (res.status === 404 && data?.error === "no_content") {
+        // The one genuine "nothing to practice here" answer — see
+        // NoCurriculumContentError in lib/exercises/generate.ts.
+        setExercise(null);
+      } else {
+        // 5xx, any other error status, or a 200 with no exercise in it.
+        setExercise(null);
+        setLoadFailed(true);
+      }
     } catch {
+      // fetch itself threw: offline, DNS, connection dropped.
       setExercise(null);
+      setLoadFailed(true);
     } finally {
       setLoadingExercise(false);
       setLoadedOnce(true);
@@ -202,13 +221,14 @@ export default function ExerciseScreen({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise]);
 
-  // Nothing to practice here: say so, instead of a silent dead end.
+  // No exercise: say which dead end this is, out loud — "nothing here yet"
+  // and "something broke" are different situations with different ways out.
   useEffect(() => {
     if (!loadedOnce || loadingExercise || exercise) return;
     setBasePose("thinking");
-    speakAuto(lines.spoken(lines.noContent(kidName)));
+    speakAuto(lines.spoken(loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadedOnce, loadingExercise, exercise]);
+  }, [loadedOnce, loadingExercise, exercise, loadFailed]);
 
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
@@ -348,18 +368,35 @@ export default function ExerciseScreen({
     );
   }
 
+  // No exercise. A failed load gets "something broke" and a retry; a
+  // genuinely empty topic gets "nothing here yet" and the way back. Both
+  // keep the `thinking` pose — `encouraging` is the wrong-answer pose, and
+  // a server hiccup isn't the kid's mistake.
   if (!exercise) {
-    const l = lines.noContent(kidName);
+    const l = loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName);
+    const primary = "min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium";
+    const secondary = "min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-medium shadow-sm";
     return (
       <div className="flex flex-col flex-1 px-4 pb-4">
         {topBar}
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
-          <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} character={character} className="w-full max-w-md" />
-          <button
-            onClick={onBackToMap}
-            className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium"
-          >
+          <SpeechBubble
+            text={l.text}
+            lead={l.name}
+            tone={loadFailed ? "warm" : "default"}
+            tail="top"
+            tailAlign="center"
+            owner={OWNER}
+            character={character}
+            className="w-full max-w-md"
+          />
+          {loadFailed && (
+            <button onClick={() => loadNextExercise()} className={primary}>
+              לנסות שוב
+            </button>
+          )}
+          <button onClick={onBackToMap} className={loadFailed ? secondary : primary}>
             חזרה למפה
           </button>
         </div>

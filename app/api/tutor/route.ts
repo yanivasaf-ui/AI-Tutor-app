@@ -6,7 +6,7 @@ import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
-import { generateExercise } from "@/lib/exercises/generate";
+import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
 import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
@@ -198,6 +198,13 @@ async function handleGenerateExercise(
     const saved = await saveExercise(supabase, generated);
     return NextResponse.json({ exercise: saved, reused: false });
   } catch (err) {
+    // Genuinely nothing to practice for this subject/grade/topic — an
+    // expected answer, not a fault, so it gets its own status the client
+    // can tell apart from a real failure (which stays a 500).
+    if (err instanceof NoCurriculumContentError) {
+      console.warn("[exercise-generate] no content:", err.message);
+      return NextResponse.json({ exercise: null, error: "no_content" }, { status: 404 });
+    }
     console.error("[exercise-generate] error:", err);
     return NextResponse.json({ error: "failed to generate exercise" }, { status: 500 });
   }
