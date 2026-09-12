@@ -12,6 +12,7 @@ import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import { authErrorMessage } from "@/lib/auth/errors";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
 import type { SubjectProfile } from "@/lib/memory/types";
 import type { Grade } from "@/lib/exercises/types";
@@ -129,39 +130,52 @@ function LoginScreen() {
     setError(null);
     setConfirmMessage(null);
 
-    const supabase = getSupabaseBrowserClient();
+    // Network-level failures (offline, Supabase down) come back as raw
+    // browser strings like "Failed to fetch" — authErrorMessage turns
+    // those into one clear Hebrew line (lib/auth/errors.ts). The try/catch
+    // covers the same failures if they're thrown instead of returned.
+    try {
+      const supabase = getSupabaseBrowserClient();
 
-    if (mode === "signup") {
-      const { error: signUpError, data } = await supabase.auth.signUp({
+      if (mode === "signup") {
+        const { error: signUpError, data } = await supabase.auth.signUp({
+          email: email.trim(),
+          password,
+        });
+        if (signUpError) {
+          setError(authErrorMessage(signUpError));
+          return;
+        }
+        if (!data.session) {
+          setConfirmMessage("נשלח מייל אישור — יש לאשר לפני התחברות.");
+        }
+        return;
+      }
+
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password,
       });
+      if (signInError) setError(authErrorMessage(signInError));
+    } catch (err) {
+      setError(authErrorMessage(err));
+    } finally {
       setLoading(false);
-      if (signUpError) {
-        setError(signUpError.message);
-        return;
-      }
-      if (!data.session) {
-        setConfirmMessage("נשלח מייל אישור — יש לאשר לפני התחברות.");
-        return;
-      }
-      return;
     }
-
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
-      password,
-    });
-    setLoading(false);
-    if (signInError) setError(signInError.message);
   }
 
   async function signInWithGoogle() {
-    const supabase = getSupabaseBrowserClient();
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
-    });
+    setError(null);
+    try {
+      const supabase = getSupabaseBrowserClient();
+      const { error: oauthError } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
+      });
+      if (oauthError) setError(authErrorMessage(oauthError));
+    } catch (err) {
+      setError(authErrorMessage(err));
+    }
   }
 
   return (
