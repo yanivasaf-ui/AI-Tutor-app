@@ -79,7 +79,11 @@ export default function MicButton({
   });
   const pressStartedAtRef = useRef(0);
 
-  const phase: MicPhase = state === "listening" ? "listening" : (busyPhase ?? "idle");
+  // "processing" = released, the cloud engine is uploading/transcribing —
+  // shown as thinking (⏳), and not tappable, so a second press can't race
+  // the transcript that's still on its way.
+  const phase: MicPhase =
+    state === "listening" ? "listening" : state === "processing" ? "thinking" : (busyPhase ?? "idle");
 
   if (!available) return null;
 

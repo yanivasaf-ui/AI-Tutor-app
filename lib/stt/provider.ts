@@ -44,44 +44,49 @@
  *    this interface.
  *
  * ============================================================
- * DECISION: browser SpeechRecognition as the default provider, for now.
+ * DECISION (2026-09-13): cloud recognition by default, browser as fallback.
  * ============================================================
  *
- * ROADMAP.md sketches MediaRecorder -> POST /api/stt -> cloud vendor. The
- * UI revamp already shipped browser SpeechRecognition in MicButton, and
- * the brief for this task says build on what exists. Shipping the browser
- * provider as the default because it is free, adds zero serverless
- * functions (the app is at 3 route files; /api/stt would add one more
- * against a 12-function cap), and has no upload round-trip so it is the
- * lowest-latency staged option.
+ * The first cut shipped the browser's SpeechRecognition as the default —
+ * free, no upload, no extra serverless function. iPhone QA (2026-09-12)
+ * found it unreliable for Hebrew child speech on iOS Safari, which is
+ * exactly the swap this adapter was built for. Now:
  *
- * The roadmap's real requirement is not "use a cloud vendor" — it is
- * "make the vendor swappable so the WER spike can change the answer."
- * That is what this file delivers. When the spike says browser he-IL is
- * not good enough for 6-year-olds (a genuinely likely outcome), swapping
- * is one file, not a re-architecture.
+ * - cloudSpeechProvider (default): MediaRecorder captures the hold-to-talk
+ *   press; on release the clip is uploaded to POST /api/stt, which
+ *   transcribes it with OpenAI (lib/stt/openai.ts — model and why there).
+ *   Returns a real confidence number, which the browser engine never did.
+ * - browserSpeechProvider (fallback): unchanged, still here.
+ * - autoSpeechProvider — what getSttProvider() hands out — picks per
+ *   press: cloud unless the route has said it's unusable this session
+ *   (401/503: not signed in, or no key configured — neither fixes itself
+ *   mid-session), in which case browser from then on; after a transient
+ *   cloud failure (5xx, network, timeout) or an empty transcript, the
+ *   browser engine gets the kid's retry, then cloud resumes.
  *
- * Two honest costs of this choice, stated rather than buried:
+ * Why fallback is "for the retry" and not "for this same utterance": the
+ * browser recognizer listens to a live microphone — it can't be handed a
+ * clip that's already been recorded. Rescuing the same utterance would
+ * mean running both engines on the one microphone at once, and on iOS
+ * Safari (two consumers of the same audio session) that's untested here
+ * and could break the primary engine on precisely the platform this change
+ * is for. So a cloud failure costs the kid one re-ask — the existing
+ * "לא שמעתי טוב" line — and the retry goes through the other engine.
  *
- * - No usable confidence score. Chrome's he-IL recognizer reports
- *   `confidence` as 0/undefined in practice, so ROADMAP.md's
- *   confidence-gated "מה? לא שמעתי, אפשר שוב?" cannot be driven by a
- *   real confidence number on this provider. It is implemented on match
- *   failure instead (see lib/voice/matchAnswer.ts). True confidence
- *   gating arrives with a cloud provider.
- *
- * - Privacy: Chrome's implementation streams captured audio to Google's
- *   servers for recognition. For a children's product that is a real
- *   fact a parent could reasonably care about, not an implementation
- *   detail. It is one more reason the cloud-provider swap may end up
- *   being a policy decision rather than only a quality one.
+ * Privacy, stated rather than buried: the cloud engine sends the kid's
+ * recorded answer to OpenAI. The browser engine (Chrome) already streamed
+ * captured audio to Google. Neither is a new category of exposure, but
+ * it's a real fact a parent could reasonably ask about.
  */
 
-export type SttProviderId = "browser" | "cloud";
+export type SttProviderId = "browser" | "cloud" | "auto";
 
 export interface SttSession {
   /** Stop capture. The provider resolves its onResult/onEnd callbacks. */
   stop(): void;
+  /** Abandon the session: no upload, no callbacks. Used on unmount (kid
+   *  taps back to the map mid-press). Falls back to stop() if absent. */
+  cancel?(): void;
 }
 
 export interface SttStartOptions {
@@ -89,21 +94,33 @@ export interface SttStartOptions {
   onResult: (transcript: string) => void;
   /** Fired when the session ends for any reason (result, error, or stop). */
   onEnd: () => void;
+  /** Why the session failed or came back empty. Browser recognizer codes
+   *  pass through as-is ("not-allowed", "no-speech", "network", ...); the
+   *  cloud engine reuses them where they mean the same thing and adds
+   *  "cloud-unavailable" (route 401/503) and "cloud-failed" (anything
+   *  else). */
   onError?: (reason: string) => void;
+  /** Capture has stopped and the audio is being turned into text — for the
+   *  cloud engine, the upload + transcription wait after release. */
+  onCaptureEnd?: () => void;
 }
 
 export interface SttProvider {
   id: SttProviderId;
   /** False when this environment can't run the provider at all — callers
    *  must not render a mic affordance that would silently do nothing.
-   *  Safe to call during render; must not throw. */
+   *  Safe to call during render; must not throw; must NOT request
+   *  microphone permission (that only ever happens inside start(), i.e.
+   *  on the kid's first actual mic press). */
   isAvailable(): boolean;
   /** Begins capture. Must be called from inside a user-gesture handler. */
   start(opts: SttStartOptions): SttSession;
 }
 
+// ---- Browser engine ---------------------------------------------------------
+
 // Minimal shape of the Web Speech API surface actually used here — not in
-// lib.dom.d.ts by default. Moved from MicButton.tsx, unchanged in meaning.
+// lib.dom.d.ts by default.
 interface SpeechRecognitionLike extends EventTarget {
   lang: string;
   interimResults: boolean;
@@ -128,8 +145,9 @@ function getRecognitionCtor(): (new () => SpeechRecognitionLike) | undefined {
 }
 
 /**
- * Default provider: the browser's built-in recognizer. Free, no upload,
- * no serverless function. `he-IL`, single utterance, final results only.
+ * The browser's built-in recognizer. Free, no upload, no serverless
+ * function. `he-IL`, single utterance, final results only. Now the
+ * fallback engine (see the decision above).
  */
 export const browserSpeechProvider: SttProvider = {
   id: "browser",
@@ -138,7 +156,7 @@ export const browserSpeechProvider: SttProvider = {
     return !!getRecognitionCtor();
   },
 
-  start({ onResult, onEnd, onError }) {
+  start({ onResult, onEnd, onError, onCaptureEnd }) {
     const Ctor = getRecognitionCtor();
     if (!Ctor) {
       onError?.("SpeechRecognition unavailable");
@@ -164,13 +182,9 @@ export const browserSpeechProvider: SttProvider = {
       if (transcript) onResult(transcript);
     };
     recognition.onerror = (event: unknown) => {
-      // Was a hardcoded "recognition error" string, which meant a UI
-      // couldn't tell "the OS refused microphone access" (not-allowed /
-      // service-not-allowed — every retry fails the same way until a
-      // setting changes) apart from "no-speech" or a transient "network"
-      // blip. SpeechRecognitionErrorEvent.error carries the real reason;
-      // it just wasn't being read. See lib.dom's SpeechRecognitionErrorCode
-      // for the full value set this can take.
+      // SpeechRecognitionErrorEvent.error carries the real reason
+      // ("not-allowed", "no-speech", "network", ...) — a UI needs it to
+      // tell a blocked microphone apart from silence.
       const e = event as { error?: string };
       onError?.(e?.error ?? "recognition error");
       endOnce();
@@ -181,40 +195,244 @@ export const browserSpeechProvider: SttProvider = {
 
     return {
       stop() {
+        onCaptureEnd?.();
         recognition.stop();
       },
     };
   },
 };
 
+// ---- Cloud engine -------------------------------------------------------------
+
+/** Hard stop, whether or not the kid has let go — matches /api/stt's upload
+ *  cap (lib/stt/openai.ts). */
+const CLOUD_MAX_MS = 15_000;
+/** Shorter than this between capture start and release is a tap, not an
+ *  answer: treated as nothing heard, never uploaded. */
+const CLOUD_MIN_MS = 400;
+/** A little longer than the route's own vendor timeout, so a slow vendor
+ *  surfaces as the route's clean 502 rather than a client-side abort. */
+const UPLOAD_TIMEOUT_MS = 9_000;
+
 /**
- * Cloud provider seam — deliberately NOT implemented.
+ * Container preference, first supported wins. webm/opus is small and is
+ * what Chrome (and recent Safari) record; iOS Safari before webm support
+ * records mp4/AAC only — so mp4 is the fallback, never the first ask.
+ * Both are containers OpenAI accepts; ogg (Firefox's other option) is not,
+ * so it's deliberately not in the list.
+ */
+const PREFERRED_MIME_TYPES = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4;codecs=mp4a.40.2", "audio/mp4"];
+
+export function pickRecordingMimeType(): string | null {
+  if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") return null;
+  return PREFERRED_MIME_TYPES.find((t) => MediaRecorder.isTypeSupported(t)) ?? null;
+}
+
+function captureErrorReason(err: unknown): string {
+  const name = (err as { name?: string })?.name;
+  // Same codes the browser recognizer uses, so ExerciseScreen's existing
+  // "microphone blocked" branch (micBlocked) catches both engines.
+  if (name === "NotAllowedError" || name === "SecurityError") return "not-allowed";
+  return "audio-capture";
+}
+
+/**
+ * MediaRecorder capture on the hold-to-talk press, uploaded on release to
+ * POST /api/stt.
  *
- * This is the swap point the whole adapter exists for: when the Hebrew
- * child-speech WER spike (ROADMAP.md Phase 1A risk flag) says the browser
- * recognizer isn't good enough, implement this against a real vendor and
- * change getSttProvider()'s default. Doing so means:
- *
- *   1. Capture audio with MediaRecorder instead of SpeechRecognition
- *      (this provider's start() would own that).
- *   2. POST the resulting Blob to a new app/api/stt/route.ts — budget 1
- *      more route file against the 12-function Hobby cap.
- *   3. Return the vendor's transcript AND its confidence, which is what
- *      finally makes ROADMAP.md's confidence-gated re-ask path real
- *      rather than the match-failure approximation used today.
- *
- * It throws rather than silently degrading, so a mis-set default surfaces
- * immediately instead of producing a mic button that does nothing.
+ * iOS Safari specifics:
+ * - Microphone permission is requested only here, inside start() — the
+ *   kid's first real mic press — never on mount or render. On that very
+ *   first press the permission prompt usually outlives the press itself;
+ *   if the finger lifts before the stream is live, the press ends as
+ *   "nothing heard" (the kid presses again, now with permission).
+ * - The microphone stream is released at the end of EVERY press, not kept
+ *   warm between presses. While a capture stream is open, iOS routes audio
+ *   playback to the earpiece at phone-call volume — the characters'
+ *   Cartesia voice would go near-silent. Re-acquiring after permission is
+ *   granted is fast.
+ * - The shared <audio> unlock (lib/speech/useSpeech.ts) runs on the
+ *   page's first pointerdown in the capture phase — before this press's
+ *   own handler — and is a muted 0.1s blip. Recording only begins once
+ *   the stream is live, and useVoiceInput cancels any line the character
+ *   is saying or about to say before calling start() (its audio would
+ *   otherwise be recorded and transcribed as the kid's answer). So the
+ *   two don't contend for the audio session on the same gesture. Not
+ *   verified on a physical iPhone from here.
  */
 export const cloudSpeechProvider: SttProvider = {
   id: "cloud",
+
   isAvailable() {
-    return false;
+    return typeof navigator !== "undefined" && !!navigator.mediaDevices?.getUserMedia && !!pickRecordingMimeType();
   },
-  start() {
-    throw new Error(
-      "cloudSpeechProvider is not implemented. See lib/stt/provider.ts — implement MediaRecorder capture + POST /api/stt before selecting this provider."
-    );
+
+  start({ onResult, onEnd, onError, onCaptureEnd }) {
+    const mimeType = pickRecordingMimeType();
+    if (!mimeType || !navigator.mediaDevices?.getUserMedia) {
+      onError?.("audio-capture");
+      onEnd();
+      return { stop() {} };
+    }
+
+    let stream: MediaStream | null = null;
+    let recorder: MediaRecorder | null = null;
+    let capturedAt = 0;
+    let maxTimer: ReturnType<typeof setTimeout> | undefined;
+    let stopRequested = false;
+    let cancelled = false;
+    let captureEnded = false;
+    let finished = false;
+    const chunks: Blob[] = [];
+    const upload = new AbortController();
+
+    const release = () => {
+      clearTimeout(maxTimer);
+      stream?.getTracks().forEach((t) => t.stop());
+      stream = null;
+    };
+    const endCapture = () => {
+      if (captureEnded) return;
+      captureEnded = true;
+      onCaptureEnd?.();
+    };
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      release();
+      if (!cancelled) onEnd();
+    };
+
+    async function transcribe(blob: Blob) {
+      const timeout = setTimeout(() => upload.abort(), UPLOAD_TIMEOUT_MS);
+      try {
+        const res = await fetch("/api/stt", {
+          method: "POST",
+          headers: { "Content-Type": blob.type },
+          body: blob,
+          signal: upload.signal,
+        });
+        if (cancelled) return;
+        if (res.status === 401 || res.status === 503) {
+          onError?.("cloud-unavailable");
+          return;
+        }
+        if (!res.ok) {
+          onError?.("cloud-failed");
+          return;
+        }
+        const data = (await res.json().catch(() => null)) as { text?: unknown } | null;
+        const text = typeof data?.text === "string" ? data.text.trim() : "";
+        if (text) onResult(text);
+        else onError?.("no-speech");
+      } catch {
+        if (!cancelled) onError?.("cloud-failed");
+      } finally {
+        clearTimeout(timeout);
+        finish();
+      }
+    }
+
+    navigator.mediaDevices
+      .getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } })
+      .then((s) => {
+        if (cancelled || stopRequested) {
+          // Released (or unmounted) before the microphone came up — most
+          // often the permission prompt on the very first press.
+          s.getTracks().forEach((t) => t.stop());
+          if (!cancelled) {
+            endCapture();
+            finish();
+          }
+          return;
+        }
+        stream = s;
+        recorder = new MediaRecorder(s, { mimeType, audioBitsPerSecond: 32_000 });
+        recorder.ondataavailable = (e) => {
+          if (e.data && e.data.size > 0) chunks.push(e.data);
+        };
+        recorder.onstop = () => {
+          const heldMs = performance.now() - capturedAt;
+          release();
+          if (cancelled) return;
+          const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType });
+          if (heldMs < CLOUD_MIN_MS || blob.size < 1024) {
+            finish(); // a tap, not an answer — nothing heard, nothing uploaded
+            return;
+          }
+          void transcribe(blob);
+        };
+        recorder.start();
+        capturedAt = performance.now();
+        maxTimer = setTimeout(() => session.stop(), CLOUD_MAX_MS);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        onError?.(captureErrorReason(err));
+        endCapture();
+        finish();
+      });
+
+    const session: SttSession = {
+      stop() {
+        if (stopRequested) return;
+        stopRequested = true;
+        endCapture();
+        // If the stream isn't live yet, the getUserMedia .then above sees
+        // stopRequested and ends the session there.
+        if (recorder && recorder.state !== "inactive") recorder.stop();
+      },
+      cancel() {
+        cancelled = true;
+        upload.abort();
+        if (recorder && recorder.state !== "inactive") recorder.stop();
+        release();
+      },
+    };
+    return session;
+  },
+};
+
+// ---- Engine choice ----------------------------------------------------------
+
+/** The route said cloud can't work this session (401 not signed in, 503 no
+ *  key). Neither fixes itself mid-session: browser engine from now on. */
+let cloudOffForSession = false;
+/** The last cloud press failed transiently or heard nothing: give the
+ *  browser engine the kid's retry, then go back to cloud. */
+let browserForNextPress = false;
+
+/** Cloud first, browser as automatic fallback — see the decision above. */
+export const autoSpeechProvider: SttProvider = {
+  id: "auto",
+
+  isAvailable() {
+    return cloudSpeechProvider.isAvailable() || browserSpeechProvider.isAvailable();
+  },
+
+  start(opts) {
+    const cloudUsable = !cloudOffForSession && cloudSpeechProvider.isAvailable();
+    const browserUsable = browserSpeechProvider.isAvailable();
+    const useBrowser = browserUsable && (!cloudUsable || browserForNextPress);
+    browserForNextPress = false;
+
+    if (useBrowser) return browserSpeechProvider.start(opts);
+    if (!cloudUsable) {
+      opts.onError?.("cloud-unavailable");
+      opts.onEnd();
+      return { stop() {} };
+    }
+
+    return cloudSpeechProvider.start({
+      ...opts,
+      onError: (reason) => {
+        if (reason === "cloud-unavailable") cloudOffForSession = true;
+        else if (reason === "cloud-failed" || reason === "no-speech") browserForNextPress = true;
+        // "not-allowed" / "audio-capture" deliberately flip nothing: a
+        // blocked or missing microphone blocks the browser engine too.
+        opts.onError?.(reason);
+      },
+    });
   },
 };
 
@@ -223,5 +441,5 @@ export const cloudSpeechProvider: SttProvider = {
  * const) so a future env-var / remote-config switch has an obvious home.
  */
 export function getSttProvider(): SttProvider {
-  return browserSpeechProvider;
+  return autoSpeechProvider;
 }
