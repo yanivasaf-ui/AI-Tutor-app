@@ -19,6 +19,7 @@ import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
 import { recordTiming } from "@/lib/voice/timing";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
+import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
 
@@ -50,6 +51,12 @@ interface Props {
   sessionCloseShown: boolean;
   onSessionClose: () => void;
   onBackToMap: () => void;
+  /** Where this exercise was started from. "journey" answers can complete
+   *  the map stop; "free" answers never touch map progress — the server
+   *  enforces it (lib/practice/state.ts recordAnswer). */
+  mode?: PracticeMode;
+  /** The back button's words — the map, or the free-practice list. */
+  backLabel?: string;
 }
 
 /**
@@ -75,6 +82,13 @@ interface Props {
  *
  * Tap answers work for every exercise type, always; the mic is an extra
  * path, never the only one (locked guardrail).
+ *
+ * Adaptive levels (lib/practice/state.ts): every answer goes to the
+ * server with its topic, mode and attempt number, and comes back with the
+ * kid's level on this topic (the stars in the top bar). A wrong first
+ * answer gets a hint and "לנסות שוב"; a wrong second answer on the same
+ * question gets the full explanation and "לתרגיל הבא", whose exercise is
+ * built a level lower.
  */
 export default function ExerciseScreen({
   subject,
@@ -88,6 +102,8 @@ export default function ExerciseScreen({
   sessionCloseShown,
   onSessionClose,
   onBackToMap,
+  mode = "journey",
+  backLabel = "חזרה למפה",
 }: Props) {
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [answer, setAnswer] = useState("");
@@ -108,6 +124,16 @@ export default function ExerciseScreen({
   const [micDenied, setMicDenied] = useState(false);
   const [topicCelebration, setTopicCelebration] = useState(false);
   const [sessionGoodbye, setSessionGoodbye] = useState(false);
+  /** 1 on a fresh question, 2 on the retry after a hint. */
+  const [attempt, setAttempt] = useState<1 | 2>(1);
+  /** The last evaluation is the "something broke" stand-in, not a real
+   *  judgement — a retry after it doesn't use up the kid's second try. */
+  const [evalFailed, setEvalFailed] = useState(false);
+  /** The kid's level on this topic, from the server. Null until known,
+   *  and while the first-visit diagnostic is still placing them. */
+  const [practice, setPractice] = useState<PracticeSummary | null>(null);
+  /** Bumped when the level changes, to replay the stars' pop. */
+  const [levelBump, setLevelBump] = useState(0);
   /** Set once this visit's topic has been celebrated (or was already done
    *  before we got here) — a topic completes once. */
   const topicDoneRef = useRef(topicWasDone !== false);
@@ -186,6 +212,8 @@ export default function ExerciseScreen({
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
+    setAttempt(1);
+    setEvalFailed(false);
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
@@ -194,9 +222,14 @@ export default function ExerciseScreen({
       });
       // A body that isn't JSON (a platform error page, a cut-off response)
       // is a failure, not an empty topic.
-      const data = (await res.json().catch(() => null)) as { exercise?: Exercise | null; error?: string } | null;
+      const data = (await res.json().catch(() => null)) as {
+        exercise?: Exercise | null;
+        error?: string;
+        practice?: PracticeSummary;
+      } | null;
       if (res.ok && data?.exercise) {
         setExercise(data.exercise);
+        setPractice((p) => data.practice ?? (p && { ...p, change: null }));
       } else if (res.status === 404 && data?.error === "no_content") {
         // The one genuine "nothing to practice here" answer — see
         // NoCurriculumContentError in lib/exercises/generate.ts.
@@ -219,7 +252,7 @@ export default function ExerciseScreen({
   useEffect(() => {
     loadNextExercise();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subject, grade]);
+  }, [subject, grade, topicId]);
 
   // New exercise arrived → explaining pose + read aloud. Gated on
   // hasSeenGesture() — an exercise that loads before the kid's first tap
@@ -257,12 +290,18 @@ export default function ExerciseScreen({
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId }),
+        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId, topicId, mode, attempt }),
       });
       const data = await res.json();
       recordTiming("evaluate", performance.now() - evaluateStartedAt);
       const result: ExerciseEvaluation = data.evaluation ?? { correct: false, feedback: lines.somethingBroke(kidName).text };
+      setEvalFailed(!data.evaluation);
       setEvaluation(result);
+      const nextPractice = data.practice as PracticeSummary | undefined;
+      if (nextPractice) {
+        setPractice(nextPractice);
+        if (nextPractice.change) setLevelBump((n) => n + 1);
+      }
       if (result.correct) {
         // Tier-2 moments take the whole screen and say their own line;
         // everything else is the tier-1 burst from the bubble. The session
@@ -282,6 +321,7 @@ export default function ExerciseScreen({
       }
       speakAuto(lines.spoken(lines.feedback(kidName, result.feedback)));
     } catch {
+      setEvalFailed(true);
       setEvaluation({ correct: false, feedback: lines.somethingBroke(kidName).text });
       setBasePose("encouraging");
     } finally {
@@ -375,9 +415,12 @@ export default function ExerciseScreen({
   const topBar = (
     <div className="flex justify-between items-center pt-2 pb-1">
       <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]">
-        ← חזרה למפה
+        ← {backLabel}
       </button>
-      <MuteToggle />
+      <div className="flex items-center gap-3">
+        {practice?.level && <LevelStars level={practice.level} bump={levelBump} />}
+        <MuteToggle />
+      </div>
     </div>
   );
 
@@ -426,7 +469,7 @@ export default function ExerciseScreen({
             </button>
           )}
           <button onClick={onBackToMap} className={loadFailed ? secondary : primary}>
-            חזרה למפה
+            {backLabel}
           </button>
         </div>
       </div>
@@ -450,6 +493,9 @@ export default function ExerciseScreen({
   // voice entered into it — showing a mic that can only ever fail is
   // worse than no mic at all. Tap stays fully usable either way.
   const micApplies = exercise.type !== "tile_order" && exercise.type !== "grouping";
+  // Second miss on the same question: the feedback is the full
+  // explanation, and the way on is a new (easier) exercise, not a retry.
+  const finalMiss = !!evaluation && !evaluation.correct && attempt === 2 && !evalFailed;
 
   return (
     <div className="flex flex-col flex-1 px-4 pb-4">
@@ -562,9 +608,10 @@ export default function ExerciseScreen({
             </div>
           )}
 
-          {evaluation && !evaluation.correct && (
+          {evaluation && !evaluation.correct && !finalMiss && (
             <button
               onClick={() => {
+                if (!evalFailed) setAttempt(2);
                 setEvaluation(null);
                 setBasePose("explaining");
                 speakAuto(questionSpeech(exercise));
@@ -573,6 +620,25 @@ export default function ExerciseScreen({
             >
               לנסות שוב
             </button>
+          )}
+
+          {finalMiss && (
+            <button
+              onClick={() => loadNextExercise()}
+              className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-1"
+            >
+              לתרגיל הבא
+            </button>
+          )}
+
+          {evaluation && practice?.change === "up" && (
+            <motion.p
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="self-center rounded-full bg-[var(--color-teal-soft)] text-[var(--color-teal-ink)] font-bold px-4 py-1"
+            >
+              עלינו רמה! ⭐
+            </motion.p>
           )}
 
           {evaluation && evaluation.correct && (
@@ -595,7 +661,7 @@ export default function ExerciseScreen({
             sessionGoodbye
               ? [
                   {
-                    label: "למפה",
+                    label: mode === "free" ? "לנושאים" : "למפה",
                     primary: true,
                     onClick: () => {
                       onSessionClose();
@@ -629,5 +695,26 @@ export default function ExerciseScreen({
         />
       )}
     </div>
+  );
+}
+
+/** The kid's level on this topic, as stars — no numbers, no words a
+ *  pre-reader has to parse. Pops when the level changes. */
+function LevelStars({ level, bump }: { level: 1 | 2 | 3; bump: number }) {
+  return (
+    <motion.span
+      key={bump}
+      initial={bump > 0 ? { scale: 1.5 } : false}
+      animate={{ scale: 1 }}
+      transition={{ type: "spring", stiffness: 320, damping: 12 }}
+      role="img"
+      aria-label={`רמה ${level} מתוך 3`}
+      data-level={level}
+      className="text-xl tracking-wide text-[var(--color-teal)]"
+      dir="ltr"
+    >
+      {"★".repeat(level)}
+      <span className="text-slate-300">{"☆".repeat(3 - level)}</span>
+    </motion.span>
   );
 }

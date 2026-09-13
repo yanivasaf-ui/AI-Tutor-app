@@ -16,6 +16,15 @@ import { Subject, emptySubjectProfile } from "@/lib/memory/types";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { synthesizeSpeech, TtsNotConfiguredError, MAX_TTS_CHARS } from "@/lib/tts/cartesia";
 import type { CharacterId } from "@/lib/characters";
+import { getTopicById } from "@/lib/map/topics";
+import { getPracticeState, savePracticeState } from "@/lib/practice/store";
+import {
+  levelForNextExercise,
+  recordAnswer,
+  summarize,
+  type PracticeMode,
+  type PracticeSummary,
+} from "@/lib/practice/state";
 
 export const runtime = "nodejs";
 
@@ -72,6 +81,14 @@ interface AnswerExerciseBody {
   exercise: Exercise;
   answer: string;
   kidId?: string;
+  /** The topic the exercise was served for — the adaptive level and journey
+   *  completion are tracked per topic (lib/practice/state.ts). Omitted,
+   *  nothing practice-related is written. */
+  topicId?: string;
+  /** "journey" (from the map) may complete the stop; "free" never does. */
+  mode?: PracticeMode;
+  /** 1 = first answer to this question, 2 = the retry after a hint. */
+  attempt?: 1 | 2;
 }
 
 interface SpeakBody {
@@ -210,16 +227,24 @@ async function handleGenerateExercise(
 
   const kid = kidId ? await getKid(supabase, kidId) : null;
 
+  // The kid's adaptive level on this topic decides what gets reused or
+  // built. getKid() already read the profile rows, practice state
+  // included — no extra query. No level yet = the diagnostic, which runs
+  // at the default level.
+  const topicState = kid && topic ? kid.subjects[subject as Subject]?.practice?.topics?.[topic] : undefined;
+  const level = levelForNextExercise(topicState);
+  const practice = kid && topic ? summarize(topicState) : undefined;
+
   try {
-    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic);
+    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic, level);
     if (reused) {
-      return NextResponse.json({ exercise: reused, reused: true });
+      return NextResponse.json({ exercise: reused, reused: true, practice });
     }
 
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
-    const generated = await generateExercise({ subject, grade, profile, topicId: topic });
+    const generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
     const saved = await saveExercise(supabase, generated);
-    return NextResponse.json({ exercise: saved, reused: false });
+    return NextResponse.json({ exercise: saved, reused: false, practice });
   } catch (err) {
     // Genuinely nothing to practice for this subject/grade/topic — an
     // expected answer, not a fault, so it gets its own status the client
@@ -235,11 +260,12 @@ async function handleGenerateExercise(
 
 async function handleAnswerExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { exercise, answer, kidId }: AnswerExerciseBody
+  { exercise, answer, kidId, topicId, mode, attempt }: AnswerExerciseBody
 ) {
   if (!exercise || !answer) {
     return NextResponse.json({ error: "exercise and answer are required" }, { status: 400 });
   }
+  const tryNumber: 1 | 2 = attempt === 2 ? 2 : 1;
 
   // evaluateExerciseAnswer (the LLM call) and getKid (a DB lookup) don't
   // depend on each other — was previously two sequential awaits, meaning
@@ -248,7 +274,7 @@ async function handleAnswerExercise(
   // and early-return behavior as before, just not serialized for no
   // reason. Part of the "make it faster" pass (Asaf, 2026-08-31).
   const [evaluationOutcome, kid] = await Promise.all([
-    evaluateExerciseAnswer(exercise, answer).then(
+    evaluateExerciseAnswer(exercise, answer, { secondAttempt: tryNumber === 2 }).then(
       (value) => ({ ok: true as const, value }),
       (err) => ({ ok: false as const, err })
     ),
@@ -260,6 +286,31 @@ async function handleAnswerExercise(
     return NextResponse.json({ error: "failed to evaluate answer" }, { status: 500 });
   }
   const evaluation = evaluationOutcome.value;
+
+  // Adaptive level + journey completion (lib/practice/state.ts). Written
+  // BEFORE the response, unlike the bookkeeping below: the next exercise
+  // is built at the level this sets, and the screen shows the change.
+  // Only for a kid this parent owns (getKid runs under the parent's RLS)
+  // and a topic that belongs to the exercise's subject. Completion needs
+  // an explicit mode "journey" — free practice never moves the map.
+  let practice: PracticeSummary | undefined;
+  const topicMeta = topicId ? getTopicById(topicId) : undefined;
+  if (kid && topicMeta && topicMeta.subject === exercise.subject) {
+    try {
+      const current = await getPracticeState(supabase, kid.id, topicMeta.subject);
+      const result = recordAnswer(current, topicMeta.id, {
+        correct: evaluation.correct,
+        attempt: tryNumber,
+        mode: mode === "journey" ? "journey" : "free",
+        at: new Date().toISOString(),
+      });
+      await savePracticeState(supabase, kid.id, topicMeta.subject, result.state);
+      practice = summarize(result.topic, result.change);
+    } catch (err) {
+      // The kid still gets their feedback; the level just doesn't move.
+      console.error("[exercise-answer] practice state update failed:", err instanceof Error ? err.message : err);
+    }
+  }
 
   // The kid gets `evaluation` (right/wrong + feedback) the moment it's
   // judged — recordAttempt and the memory-layer update (a second LLM
@@ -310,7 +361,7 @@ async function handleAnswerExercise(
     });
   }
 
-  return NextResponse.json({ evaluation });
+  return NextResponse.json({ evaluation, practice });
 }
 
 /**

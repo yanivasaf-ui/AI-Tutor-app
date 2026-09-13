@@ -114,6 +114,15 @@ function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade): string {
   return SUBTYPE_GUIDANCE[subtype].replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems));
 }
 
+/** The kid's adaptive level on this topic (lib/practice/state.ts), as a
+ *  concrete instruction. Always inside the grade's curriculum — level 1 is
+ *  gentler, not a grade down; level 3 is a stretch, not the next grade. */
+const LEVEL_GUIDANCE: Record<1 | 2 | 3, string> = {
+  1: "רמת קושי 1 מתוך 3 (קלה): בתוך תוכנית הכיתה, אבל בגרסה הפשוטה ביותר — מספרים קטנים ועגולים, צעד אחד בלבד, מילים מוכרות, ניסוח קצר מאוד.",
+  2: "רמת קושי 2 מתוך 3 (רגילה): תרגיל טיפוסי לרמת הכיתה.",
+  3: "רמת קושי 3 מתוך 3 (מאתגרת): עדיין בתוך תוכנית הכיתה, אבל עם מספרים גדולים יותר, שני צעדים, או מילים ומשפטים ארוכים יותר.",
+};
+
 /**
  * Generates one new exercise, grounded in the RAG curriculum content at
  * (roughly) the kid's current level — not a fixed problem bank. This is the
@@ -144,8 +153,12 @@ export async function generateExercise(opts: {
    *  the kid's session over a stale id" leniency as the rest of this
    *  function's error handling. */
   topicId?: string;
+  /** Adaptive level for this topic (lib/practice/state.ts). Defaults to 2,
+   *  the middle level — which is also what diagnostic questions use. */
+  level?: 1 | 2 | 3;
 }): Promise<Exercise> {
   const { subject, grade, profile, topicId } = opts;
+  const level = opts.level ?? 2;
 
   function resolveTopic(): ReturnType<typeof getTopicById> {
     if (!topicId) return undefined;
@@ -212,6 +225,7 @@ ${contextBlock}
 
 ${profile ? `רמה משוערת נוכחית של התלמיד/ה: ${profile.estimatedLevel || "ברירת מחדל לפי כיתה"}` : ""}
 ${avoidTopics ? `נושאים שתורגלו לאחרונה (עדיף לגוון, לא חובה להימנע לגמרי): ${avoidTopics}` : ""}
+${LEVEL_GUIDANCE[level]}
 
 בחר/י את אחד הנושאים לעיל ובנה/י תרגיל אחד קצר, ברור, ומתאים לגיל, לפי התבנית הבאה בדיוק:
 ${subtypeGuidance(subtype, grade)}
@@ -334,5 +348,6 @@ ${subtypeGuidance(subtype, grade)}
     tiles,
     grouping,
     correctAnswer: parsed.correctAnswer,
+    difficulty: level,
   };
 }

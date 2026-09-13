@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
-import HomeScreen from "@/components/home/HomeScreen";
-import ExerciseScreen from "@/components/practice/ExerciseScreen";
+import KidHome, { type KidSummary } from "@/components/home/KidHome";
+import SuggestPractice from "@/components/parent/SuggestPractice";
 import MuteToggle from "@/components/character/MuteToggle";
 import { CHARACTERS, normalizeCharacterId, type CharacterId, type CharacterPose } from "@/lib/characters";
 import { useGuide } from "@/lib/guide/useGuide";
@@ -16,12 +16,10 @@ import { authErrorMessage } from "@/lib/auth/errors";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
 import type { SubjectProfile } from "@/lib/memory/types";
 import type { Grade } from "@/lib/exercises/types";
+import { GRADES } from "@/lib/kids/grade";
+import { activeSuggestion } from "@/lib/practice/state";
 
-interface Kid {
-  id: string;
-  name: string;
-  avatarId: string | null;
-}
+type Kid = KidSummary;
 
 interface KidDashboard {
   kidId: string;
@@ -29,19 +27,6 @@ interface KidDashboard {
   recentAttempts: RecentAttempt[];
   subjectStats: SubjectStats[];
   practicedToday: boolean;
-}
-
-const GRADES: Grade[] = ["א", "ב", "ג"];
-const GRADE_STORAGE_PREFIX = "ai-tutor-grade-"; // known gap, see Section 4.2 — no kids.grade column yet
-
-function getStoredGrade(kidId: string): Grade {
-  if (typeof window === "undefined") return "א";
-  const v = window.localStorage.getItem(GRADE_STORAGE_PREFIX + kidId);
-  return (v as Grade) ?? "א";
-}
-
-function setStoredGrade(kidId: string, grade: Grade) {
-  window.localStorage.setItem(GRADE_STORAGE_PREFIX + kidId, grade);
 }
 
 /** Real parent accounts gate this app (Supabase Auth). Single-page render
@@ -113,7 +98,7 @@ export default function Home() {
     return <ParentDashboard onBack={() => setView("kid")} onLogout={logout} />;
   }
 
-  return <KidHome kid={kid} character={characterId} onOpenDashboard={() => setView("dashboard")} onLogout={logout} />;
+  return <KidHome kid={kid} character={characterId} onOpenDashboard={() => setView("dashboard")} />;
 }
 
 function LoginScreen() {
@@ -338,11 +323,10 @@ function Onboarding({
         const res = await fetch("/api/kids", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: trimmed, avatarId: picked }),
+          body: JSON.stringify({ name: trimmed, avatarId: picked, grade: grade ?? "א" }),
         });
         if (!res.ok) throw new Error("failed");
         const data = await res.json();
-        setStoredGrade(data.kid.id, grade ?? "א");
         onDone(data.kid);
       }
     } catch {
@@ -491,75 +475,6 @@ function Onboarding({
   );
 }
 
-/**
- * Kid-facing shell: the map is the default view (brief Section 4.2); a
- * topic tap opens ExerciseScreen scoped to that topic (generate_exercise
- * takes a topic id since f119e01). The character carries across screens:
- * the kid's name and whether the tapped stop was already done both flow
- * into the exercise screen — the name for how the character addresses
- * the kid, the done-flag so a first completion gets its full-screen
- * celebration.
- */
-function KidHome({
-  kid,
-  character,
-  onOpenDashboard,
-  onLogout,
-}: {
-  kid: Kid;
-  character: CharacterId;
-  onOpenDashboard: () => void;
-  onLogout: () => void;
-}) {
-  const [activeSubject, setActiveSubject] = useState<"math" | "hebrew" | null>(null);
-  // feat: topic-scoped exercise generation — the map already emits the
-  // tapped node's topic id (ProgressMap.tsx's onPickTopic), this was the
-  // one place along the chain that was discarding it. Cleared together
-  // with activeSubject on both pick and back-to-map, same lifecycle.
-  const [activeTopicId, setActiveTopicId] = useState<string | undefined>(undefined);
-  const [activeTopicWasDone, setActiveTopicWasDone] = useState(false);
-  const [sessionStartedAt] = useState(() => Date.now());
-  const [sessionCloseShown, setSessionCloseShown] = useState(false);
-  const grade = getStoredGrade(kid.id);
-
-  if (activeSubject) {
-    return (
-      <div className="min-h-screen flex flex-col bg-[var(--color-canvas)]">
-        <ExerciseScreen
-          subject={activeSubject}
-          grade={grade}
-          topicId={activeTopicId}
-          topicWasDone={activeTopicWasDone}
-          kidId={kid.id}
-          kidName={kid.name}
-          character={character}
-          sessionStartedAt={sessionStartedAt}
-          sessionCloseShown={sessionCloseShown}
-          onSessionClose={() => setSessionCloseShown(true)}
-          onBackToMap={() => {
-            setActiveSubject(null);
-            setActiveTopicId(undefined);
-          }}
-        />
-      </div>
-    );
-  }
-
-  return (
-    <HomeScreen
-      kid={kid}
-      character={character}
-      grade={grade}
-      onPickTopic={(subject, topicId, wasDone) => {
-        setActiveSubject(subject);
-        setActiveTopicId(topicId);
-        setActiveTopicWasDone(wasDone);
-      }}
-      onOpenDashboard={onOpenDashboard}
-    />
-  );
-}
-
 const SUBJECT_LABELS: Record<string, string> = { math: "חשבון", hebrew: "עברית" };
 
 interface DashboardKid {
@@ -581,8 +496,8 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
   const [dashboards, setDashboards] = useState<Record<string, KidDashboard>>({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/kids")
+  function load() {
+    return fetch("/api/kids")
       .then((res) => (res.ok ? res.json() : { kids: [], dashboard: [] }))
       .then(({ kids, dashboard }: { kids: DashboardKid[]; dashboard: KidDashboard[] }) => {
         setKids(kids);
@@ -591,6 +506,10 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
         setDashboards(map);
       })
       .finally(() => setLoading(false));
+  }
+
+  useEffect(() => {
+    load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -601,7 +520,7 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
           <h1 className="text-2xl font-bold text-[var(--color-ink)]">לוח בקרה להורים</h1>
           <div className="flex items-center gap-4">
             <button onClick={onBack} className="text-sm text-[var(--color-teal)] hover:underline">
-              חזרה למפה
+              חזרה
             </button>
             <button onClick={onLogout} className="text-sm text-[var(--color-ink-soft)]">
               התנתקות
@@ -658,6 +577,15 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                     );
                   })}
                 </div>
+
+                <SuggestPractice
+                  kidId={kid.id}
+                  kidName={kid.name}
+                  currentTopicId={
+                    activeSuggestion({ math: kid.subjects?.math?.practice, hebrew: kid.subjects?.hebrew?.practice })?.topicId
+                  }
+                  onChanged={load}
+                />
 
                 {d && d.flags.length > 0 && (
                   <div className="mb-4">

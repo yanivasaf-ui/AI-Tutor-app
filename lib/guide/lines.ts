@@ -55,7 +55,56 @@ export const askName = (): Line => ({ text: "היי! בואו נכיר — מה 
 
 export const askGrade = (name: string): Line => ({ name, text: "נעים מאוד! באיזו כיתה?" });
 
+// ---- Entry: mode choice --------------------------------------------------
+
+/** Asked after sign-in, before anything else. Neutral on purpose — the
+ *  journey isn't presented as the "right" answer. */
+export const modeQuestion = (name: string): Line => ({
+  name,
+  text: "נמשיך במסלול שלנו, או שיש משהו שרוצים לתרגל?",
+});
+
+// ---- Free practice -----------------------------------------------------
+
+export const freePickSubject = (name: string): Line => ({
+  name,
+  text: "מה מתרגלים — מתמטיקה או עברית? אפשר ללחוץ, או לומר.",
+});
+
+/** The suggestion itself is tagged in the list; the spoken line only says
+ *  it's there — "ההורים", not a slash form. */
+export const freePickTopic = (name: string, hasSuggestion: boolean): Line => ({
+  name,
+  text: hasSuggestion
+    ? "מה רוצים לתרגל? ההצעה של ההורים ראשונה ברשימה."
+    : "מה רוצים לתרגל? אפשר ללחוץ על נושא, או לומר אותו.",
+});
+
+export const topicNotFound = (name: string): Line => ({
+  name,
+  text: "לא מצאתי נושא כזה. אפשר לומר שוב, או ללחוץ על נושא.",
+});
+
 // ---- Map ---------------------------------------------------------------
+
+/** Said once per subject, the first time the kid opens that subject's
+ *  map — frames the path as the school year. */
+export const journeyIntro = (name: string, started: boolean): Line => ({
+  name,
+  text: `זו הדרך שלנו לכל השנה — מספטמבר ועד יוני, עם עצירות בחנוכה ובפסח. לוחצים על העיגול ו${
+    started ? "ממשיכים" : "מתחילים"
+  }!`,
+});
+
+export const milestoneReached = (name: string, holiday: string): Line => ({
+  name,
+  text: `הגענו ל${holiday}! איזו דרך עשינו עד כאן.`,
+});
+
+export const milestoneAhead = (name: string, holiday: string): Line => ({
+  name,
+  text: `ל${holiday} נגיע בהמשך הדרך. קודם — התחנה שלנו!`,
+});
 
 /** `topic` names the stop (QA: "the map never shows the topic name") —
  *  both the character's spoken/written line and the visible name near the

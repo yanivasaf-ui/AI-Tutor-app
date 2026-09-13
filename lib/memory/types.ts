@@ -1,3 +1,6 @@
+import type { PracticeState } from "@/lib/practice/state";
+import type { Grade } from "@/lib/exercises/types";
+
 export type Subject = "math" | "hebrew";
 
 /**
@@ -28,12 +31,19 @@ export interface SubjectProfile {
   recentSummary: string;
   sessionCount: number;
   lastUpdated: string; // ISO timestamp
+  /** Adaptive levels, journey completion and the entry-flow flags — see
+   *  lib/practice/state.ts. Read with the profile; written only through
+   *  lib/practice/store.ts, never by updateSubjectProfile(). */
+  practice?: PracticeState;
 }
 
 export interface KidProfile {
   id: string;
   name: string;
   avatarId: string | null;
+  /** Null for kids created before kids.grade existed (their grade lived in
+   *  localStorage only; the kid screen backfills it). */
+  grade: Grade | null;
   createdAt: string;
   subjects: Partial<Record<Subject, SubjectProfile>>;
 }

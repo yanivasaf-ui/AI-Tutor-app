@@ -72,6 +72,7 @@ export type Database = {
           choices: string[] | null
           correct_answer: string
           created_at: string
+          difficulty: number | null
           grade: string
           grouping: Json | null
           id: string
@@ -90,6 +91,7 @@ export type Database = {
           choices?: string[] | null
           correct_answer: string
           created_at?: string
+          difficulty?: number | null
           grade: string
           grouping?: Json | null
           id?: string
@@ -108,6 +110,7 @@ export type Database = {
           choices?: string[] | null
           correct_answer?: string
           created_at?: string
+          difficulty?: number | null
           grade?: string
           grouping?: Json | null
           id?: string
@@ -128,6 +131,7 @@ export type Database = {
         Row: {
           avatar_id: string | null
           created_at: string
+          grade: string | null
           id: string
           name: string
           parent_id: string | null
@@ -135,6 +139,7 @@ export type Database = {
         Insert: {
           avatar_id?: string | null
           created_at?: string
+          grade?: string | null
           id?: string
           name: string
           parent_id?: string | null
@@ -142,6 +147,7 @@ export type Database = {
         Update: {
           avatar_id?: string | null
           created_at?: string
+          grade?: string | null
           id?: string
           name?: string
           parent_id?: string | null
@@ -190,6 +196,7 @@ export type Database = {
           estimated_level: string
           kid_id: string
           last_updated: string
+          practice_state: Json
           recent_summary: string
           session_count: number
           subject: string
@@ -201,6 +208,7 @@ export type Database = {
           estimated_level?: string
           kid_id: string
           last_updated?: string
+          practice_state?: Json
           recent_summary?: string
           session_count?: number
           subject: string
@@ -212,6 +220,7 @@ export type Database = {
           estimated_level?: string
           kid_id?: string
           last_updated?: string
+          practice_state?: Json
           recent_summary?: string
           session_count?: number
           subject?: string

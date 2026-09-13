@@ -8,11 +8,19 @@ import { Exercise, ExerciseEvaluation } from "./types";
  * same locked pedagogy as free chat (lib/prompts/tutor-system-prompt.ts):
  * process praise if right, validate-then-hint (never just reveal the
  * answer) if wrong.
+ *
+ * `secondAttempt` (adaptive levels): the kid already got the hint for this
+ * question and tried again. Still wrong means the hint didn't land, so the
+ * feedback becomes the full explanation — the method and the answer —
+ * before the screen moves on to an easier exercise. Hint first, always;
+ * the explanation only on the second miss.
  */
 export async function evaluateExerciseAnswer(
   exercise: Exercise,
-  kidAnswer: string
+  kidAnswer: string,
+  opts?: { secondAttempt?: boolean }
 ): Promise<ExerciseEvaluation> {
+  const secondAttempt = opts?.secondAttempt === true;
   const anthropic = getAnthropicClient();
 
   // "explain_thinking" has no single right answer — correctAnswer holds a
@@ -52,8 +60,13 @@ ${judgingInstruction}
 כתוב/י משוב לתלמיד/ה, בעברית, בטון חם ומעודד — קצר מאוד, ילד/ה בכיתה יסודית קורא/ת את זה, לא מבוגר/ת. אורך הוא כלל נוקשה כאן, לא המלצה:
 - אם נכון: משפט אחד בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה"). בלי הסבר נוסף אחרי זה.
   דוגמה לאורך הנכון בדיוק: "כל הכבוד, מצאת את זה!"
-- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי.
-  דוגמה לאורך הנכון בדיוק: "זה בסדר, זה קורה! נסה לחבר קודם את העשרות."
+${
+    secondAttempt
+      ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים עד הסוף. עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה, (3) התשובה הנכונה, במפורש. בלי שאלה בסוף. נסח/י בלשון רבים או סתמית ("מחברים", "בואו נספור"), לא בלשון זכר ולא בלשון נקבה.
+  דוגמה לאורך הנכון בדיוק: "זה בסדר, זו שאלה לא פשוטה! קודם מחברים את העשרות: 20 ועוד 30 זה 50, ואז את היחידות: 4 ועוד 3 זה 7. אז התשובה היא 57."`
+      : `- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי.
+  דוגמה לאורך הנכון בדיוק: "זה בסדר, זה קורה! נסה לחבר קודם את העשרות."`
+  }
 
 החזר/י אך ורק אובייקט JSON תקין:
 {
@@ -69,7 +82,9 @@ ${judgingInstruction}
     // above now hard-caps feedback length itself; this cap is a second,
     // structural backstop — a shorter ceiling also bounds worst-case
     // generation time, part of the "make it faster" pass.
-    max_tokens: 220,
+    // The second-attempt explanation (method + answer, up to three
+    // sentences) needs more room than a one-line hint.
+    max_tokens: secondAttempt ? 320 : 220,
     system: "את/ה מחזיר/ה אך ורק JSON תקין, ללא טקסט נוסף, ללא markdown code fences.",
     messages: [{ role: "user", content: prompt }],
   });

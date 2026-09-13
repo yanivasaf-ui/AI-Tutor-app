@@ -112,6 +112,10 @@ export interface Exercise {
   /** Present only when type === "grouping". */
   grouping?: GroupingData;
   correctAnswer: string;
+  /** The adaptive level (1-3) this exercise was built at — see
+   *  lib/practice/state.ts. Absent on exercises from before levels, which
+   *  reuse treats as level 2. */
+  difficulty?: 1 | 2 | 3;
 }
 
 export interface ExerciseEvaluation {

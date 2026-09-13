@@ -28,9 +28,11 @@ interface DbExerciseRow {
   tiles: unknown;
   grouping: unknown;
   correct_answer: string;
+  difficulty?: number | null;
 }
 
 function rowToExercise(row: DbExerciseRow): Exercise {
+  const d = row.difficulty;
   return {
     id: row.id,
     subject: row.subject as "math" | "hebrew",
@@ -45,6 +47,7 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     tiles: (row.tiles as TileOrderData | null) ?? undefined,
     grouping: (row.grouping as GroupingData | null) ?? undefined,
     correctAnswer: row.correct_answer,
+    difficulty: d === 1 || d === 2 || d === 3 ? d : undefined,
   };
 }
 
@@ -61,13 +64,20 @@ function rowToExercise(row: DbExerciseRow): Exercise {
  *  another" gap this feature exists to close, just showing up on the
  *  reuse path instead of the generation path. An unresolvable topicId is
  *  treated the same as no topicId — falls back to subject+grade reuse
- *  rather than refusing to serve anything. */
+ *  rather than refusing to serve anything.
+ *
+ *  `difficulty` (adaptive levels, lib/practice/state.ts) narrows reuse to
+ *  exercises built at that level, so a kid who just dropped a level isn't
+ *  handed a banked exercise from the level they struggled at. Exercises
+ *  banked before levels existed have no difficulty and count as level 2,
+ *  the level every exercise was implicitly built at back then. */
 export async function findReusableExercise(
   supabase: Client,
   subject: "math" | "hebrew",
   grade: Grade,
   kidId: string | null,
-  topicId?: string
+  topicId?: string,
+  difficulty?: 1 | 2 | 3
 ): Promise<Exercise | null> {
   let attemptedIds: string[] = [];
   if (kidId) {
@@ -91,6 +101,12 @@ export async function findReusableExercise(
     if (topic && topic.subject === subject && topic.grade === grade) {
       query = query.eq("topic", topic.topic);
     }
+  }
+
+  if (difficulty === 2) {
+    query = query.or("difficulty.eq.2,difficulty.is.null");
+  } else if (difficulty) {
+    query = query.eq("difficulty", difficulty);
   }
 
   if (attemptedIds.length > 0) {
@@ -126,6 +142,7 @@ export async function saveExercise(
       tiles: (exercise.tiles as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["tiles"]) ?? null,
       grouping: (exercise.grouping as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["grouping"]) ?? null,
       correct_answer: exercise.correctAnswer,
+      difficulty: exercise.difficulty ?? null,
     })
     .select()
     .single();

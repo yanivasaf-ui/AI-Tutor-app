@@ -5,19 +5,21 @@ import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import MapNode, { type NodeState } from "@/components/map/MapNode";
 import { getTopics } from "@/lib/map/topics";
+import { buildJourney, type Milestone } from "@/lib/practice/journey";
+import { journeyDoneIds, type PracticeState } from "@/lib/practice/state";
 import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
 import type { CharacterId, CharacterPose } from "@/lib/characters";
 import type { Grade } from "@/lib/exercises/types";
 import type { Subject } from "@/lib/memory/types";
-import type { RecentAttempt } from "@/lib/dashboard/types";
 
 interface Props {
   character: CharacterId;
   kidName: string;
   grade: Grade;
-  recentAttempts: RecentAttempt[];
+  /** Per-subject practice state — journey completion is read from here. */
+  practice: Partial<Record<Subject, PracticeState>>;
   /** False until /api/kids has answered — the character thinks meanwhile
    *  instead of standing on a stop that's about to move. */
   loaded: boolean;
@@ -25,6 +27,9 @@ interface Props {
    *  completes the topic for the first time (a tier-2 moment) or is a
    *  replay of a stop already walked. */
   onPickTopic: (subject: Subject, topicId: string, wasDone: boolean) => void;
+  /** Called once when a subject's map is shown with its one-time intro
+   *  line, so the parent can record it. */
+  onIntroSeen: (subject: Subject) => void;
 }
 
 const SUBJECTS: { value: Subject; label: string }[] = [
@@ -39,11 +44,13 @@ const OWNER = "map";
 const W = 340;
 const NODE = 76;
 const NODE_CURRENT = 86;
+const MILESTONE = 58; // a square turned 45°, so its diagonal is ~82
 const ROW = 128; // centre-to-centre between ordinary stops
 const STAGE = 196; // extra room above the guide's stop, for its bubble
 // (170 -> 196, 2026-09-12: the topic-name eyebrow line added a row of
 // text to the bubble, tall enough on the first stop to clip against the
 // scroll container's top edge before this bump.)
+const INTRO_EXTRA = 44; // the year-intro line is a sentence longer
 const PAD_TOP = 40;
 const PAD_BOTTOM = 72;
 const OFFSETS = [0, 68, -68];
@@ -53,6 +60,7 @@ const GUIDE_GAP = 8;
 /** Bubble bottom sits this far above the guide's stop centre — clear of
  *  the character's head. */
 const BUBBLE_LIFT = GUIDE_H - NODE / 2 - 6 + 14;
+const SIDE_GAP = 6; // month / holiday label, beside its stop
 
 interface Pt {
   x: number;
@@ -71,11 +79,29 @@ function trailAt(p: Pt, q: Pt, t: number) {
   return { x, y, angle: (Math.atan2(dy, dx) * 180) / Math.PI };
 }
 
+/** A label beside a stop, on the outer side of the zigzag (the centre
+ *  column's labels go left) — the side the guide never stands on, and
+ *  clear of the trail, which leaves and enters every stop vertically. */
+function sideLabelStyle(p: Pt, size: number): React.CSSProperties {
+  const edge = size / 2 + SIDE_GAP;
+  return p.x > W / 2
+    ? { left: p.x + edge, top: p.y, transform: "translateY(-50%)" }
+    : { right: W - (p.x - edge), top: p.y, transform: "translateY(-50%)" };
+}
+
 /**
- * The map, led by the character (character-led redesign, Task 5 item 2).
+ * The school-year journey, led by the character (character-led redesign,
+ * Task 5 item 2; school-year framing added with the entry flow).
  *
  * The character stands at the kid's current stop, full-size and talking —
- * not a 64px thumbnail beside it — and says where we are, by name.
+ * not a 64px thumbnail beside it — and says where we are, by name. A
+ * "עד כאן הגעת" marker sits on that stop.
+ *
+ * The year: every topic carries a rough month (September → June, spread
+ * by list order), and two holiday stops — חנוכה and פסח — sit on the path
+ * as distinct milestones (a gold diamond, not a circle). Months and
+ * milestones are framing only: they never lock or unlock anything.
+ * Tapping a milestone gets a line about it, nothing else.
  *
  * Decision B (locked): the art has no pointing pose, so the character
  * stands in `idle` and DIRECTION IS CARRIED BY THE PATH:
@@ -88,26 +114,32 @@ function trailAt(p: Pt, q: Pt, t: number) {
  * wrong-answer pose, and using it for navigation would teach a kid it
  * means "you did something wrong" on every map visit.
  *
- * The character reacts to the state of the path: first stop → an
+ * The character reacts to the state of the path: the first time a
+ * subject's map opens → one line framing the year; first stop → an
  * invitation; mid-path → "here's our next stop"; every stop done → it
  * stands on the last one in `celebration`; a locked tap → it redirects
  * (still `idle`, talking). Tapping the character repeats its line.
  *
- * Stop completion is still derived from `recentAttempts` (the dashboard
- * payload's recent-activity slice, not full history) — a topic completed
- * long enough ago to fall out of that window will show as not-done again.
- * Known approximation from the UI revamp, unchanged here.
+ * Stop completion is explicit: `practice_state.topics[id].journeyDoneAt`,
+ * written only when a topic is answered correctly from this map (never
+ * from free practice) — see lib/practice/state.ts. Replaces the old
+ * derivation from the dashboard's last-10 attempts, which forgot stops
+ * once they scrolled out of that window.
  */
-export default function ProgressMap({ character, kidName, grade, recentAttempts, loaded, onPickTopic }: Props) {
+export default function ProgressMap({ character, kidName, grade, practice, loaded, onPickTopic, onIntroSeen }: Props) {
   const [subject, setSubject] = useState<Subject>("math");
   const [override, setOverride] = useState<Line | null>(null);
   const [attention, setAttention] = useState(0);
+  // Subjects whose intro this visit is showing. Held here, not re-derived
+  // from `practice`, so the line doesn't swap mid-sentence once the parent
+  // records it as seen.
+  const [introFor, setIntroFor] = useState<Subject[]>([]);
   const stageRef = useRef<HTMLDivElement>(null);
 
   const topics = getTopics(subject, grade);
-  const doneIds = new Set(
-    recentAttempts.filter((a) => a.correct).map((a) => topics.find((t) => t.topic === a.topic)?.id).filter(Boolean)
-  );
+  const stops = buildJourney(topics);
+  const doneIds = journeyDoneIds(practice[subject]);
+  const doneCount = topics.filter((t) => doneIds.has(t.id)).length;
 
   let currentAssigned = false;
   const states: NodeState[] = topics.map((t) => {
@@ -121,8 +153,29 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
   const currentIndex = states.indexOf("current");
   const allDone = topics.length > 0 && currentIndex === -1;
   // Where the character stands: the current stop, or the last one once
-  // every stop is walked.
+  // every stop is walked. (Topic index; stageStop below is its place on
+  // the path, milestones included.)
   const stageIndex = allDone ? topics.length - 1 : currentIndex;
+
+  // Per path stop: walked past it (a done topic, or a milestone every
+  // earlier topic is done for), and is it the current topic.
+  const passed = stops.map((s, i) =>
+    s.kind === "topic"
+      ? states[s.topicIndex] === "done"
+      : stops.slice(0, i).every((p) => p.kind !== "topic" || states[p.topicIndex] === "done")
+  );
+  const isCurrent = stops.map((s) => s.kind === "topic" && s.topicIndex === currentIndex);
+  const stageStop = stops.findIndex((s) => s.kind === "topic" && s.topicIndex === stageIndex);
+
+  // ---- The year-intro line ----
+  const needsIntro = loaded && topics.length > 0 && !practice[subject]?.journeyIntroSeenAt;
+  const showIntro = needsIntro || introFor.includes(subject);
+  useEffect(() => {
+    if (!needsIntro || introFor.includes(subject)) return;
+    setIntroFor((s) => [...s, subject]);
+    onIntroSeen(subject);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [needsIntro, subject]);
 
   // ---- What the character says and does ----
   const otherLabel = SUBJECTS.find((s) => s.value !== subject)!.label;
@@ -135,9 +188,11 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
       ? lines.mapEmpty(kidName, otherLabel)
       : allDone
         ? lines.mapAllDone(kidName)
-        : doneIds.size === 0
-          ? lines.mapFirst(kidName, currentTopic!)
-          : lines.mapNext(kidName, currentTopic!);
+        : showIntro
+          ? lines.journeyIntro(kidName, doneCount > 0)
+          : doneCount === 0
+            ? lines.mapFirst(kidName, currentTopic!)
+            : lines.mapNext(kidName, currentTopic!);
   const line = override ?? autoLine;
   const basePose: CharacterPose = !loaded || topics.length === 0 ? "thinking" : allDone ? "celebration" : "idle";
   const guide = useGuide({
@@ -146,9 +201,9 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
     pose: basePose,
     line,
     // Speak on arrival, and again whenever the stop or subject changes —
-    // not when a locked-tap override swaps the words (that's said
-    // directly in the tap handler).
-    cue: loaded ? `${subject}:${stageIndex}:${topics.length}` : null,
+    // not when a tap override swaps the words (that's said directly in
+    // the tap handler).
+    cue: loaded ? `${subject}:${stageIndex}:${topics.length}:${showIntro ? "intro" : ""}` : null,
   });
 
   useEffect(() => {
@@ -168,11 +223,17 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
     setAttention((n) => n + 1);
   }
 
+  function onMilestoneTap(m: Milestone, reached: boolean) {
+    const l = reached ? lines.milestoneReached(kidName, m.label) : lines.milestoneAhead(kidName, m.label);
+    setOverride(l);
+    guide.say(l);
+  }
+
   // ---- Layout ----
   const pts: Pt[] = [];
   let y = PAD_TOP + NODE / 2;
-  topics.forEach((_, i) => {
-    if (i === stageIndex) y += STAGE;
+  stops.forEach((_, i) => {
+    if (i === stageStop) y += STAGE + (showIntro ? INTRO_EXTRA : 0);
     pts.push({ x: W / 2 + OFFSETS[i % 3], y });
     y += ROW;
   });
@@ -180,13 +241,17 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
 
   const segments = pts.slice(0, -1).map((p, i) => {
     const q = pts[i + 1];
-    const kind: "walked" | "ahead" | "locked" =
-      states[i] === "current" ? "ahead" : states[i] === "done" && states[i + 1] !== "locked" ? "walked" : "locked";
+    const kind: "walked" | "ahead" | "locked" = isCurrent[i]
+      ? "ahead"
+      : passed[i] && (passed[i + 1] || isCurrent[i + 1])
+        ? "walked"
+        : "locked";
     const ym = (p.y + q.y) / 2;
     return { key: i, kind, p, q, d: `M ${p.x} ${p.y} C ${p.x} ${ym}, ${q.x} ${ym}, ${q.x} ${q.y}` };
   });
 
-  const stage = stageIndex >= 0 ? pts[stageIndex] : null;
+  const stage = stageStop >= 0 ? pts[stageStop] : null;
+  const stageSize = stageIndex === currentIndex ? NODE_CURRENT : NODE;
   const guideOnLeft = stage ? stage.x > W / 2 : false;
   const guideLeft = stage
     ? guideOnLeft
@@ -288,23 +353,82 @@ export default function ProgressMap({ character, kidName, grade, recentAttempts,
             )}
           </svg>
 
-          {topics.map((t, i) => {
-            const size = i === currentIndex ? NODE_CURRENT : NODE;
+          {stops.map((s, i) => {
+            const p = pts[i];
+            if (s.kind === "milestone") {
+              const reached = passed[i];
+              const { milestone: m } = s;
+              return (
+                <div key={m.id}>
+                  <button
+                    type="button"
+                    data-milestone={m.id}
+                    onClick={() => onMilestoneTap(m, reached)}
+                    aria-label={`${m.label} — ${reached ? "הגענו" : "בהמשך הדרך"}`}
+                    className="absolute flex items-center justify-center"
+                    style={{ left: p.x - MILESTONE / 2, top: p.y - MILESTONE / 2, width: MILESTONE, height: MILESTONE }}
+                  >
+                    <span
+                      aria-hidden
+                      className={`absolute inset-0 rotate-45 rounded-[16px] shadow-md border-4 ${
+                        reached ? "bg-amber-300 border-amber-500" : "bg-amber-50 border-amber-300 border-dashed"
+                      }`}
+                    />
+                    <span aria-hidden className={`relative text-3xl ${reached ? "" : "opacity-70"}`}>
+                      {m.emoji}
+                    </span>
+                  </button>
+                  <span
+                    aria-hidden
+                    className="absolute whitespace-nowrap text-sm font-bold text-amber-700"
+                    style={sideLabelStyle(p, MILESTONE * 1.42)}
+                  >
+                    {m.label}
+                  </span>
+                </div>
+              );
+            }
+            const size = s.topicIndex === currentIndex ? NODE_CURRENT : NODE;
+            const state = states[s.topicIndex];
             return (
-              <div key={t.id} className="absolute" style={{ left: pts[i].x - size / 2, top: pts[i].y - size / 2 }}>
-                <MapNode
-                  topic={t.topic}
-                  state={states[i]}
-                  size={size}
-                  attention={i === currentIndex ? attention : 0}
-                  onTap={() => {
-                    if (states[i] === "locked") onLockedTap();
-                    else onPickTopic(subject, t.id, states[i] === "done");
-                  }}
-                />
+              <div key={s.topic.id}>
+                <div className="absolute" style={{ left: p.x - size / 2, top: p.y - size / 2 }}>
+                  <MapNode
+                    topic={s.topic.topic}
+                    state={state}
+                    size={size}
+                    attention={s.topicIndex === currentIndex ? attention : 0}
+                    onTap={() => {
+                      if (state === "locked") onLockedTap();
+                      else onPickTopic(subject, s.topic.id, state === "done");
+                    }}
+                  />
+                </div>
+                <span
+                  aria-hidden
+                  className={`absolute whitespace-nowrap text-[11px] font-semibold ${
+                    state === "locked" ? "text-slate-400" : "text-[var(--color-ink-soft)]"
+                  }`}
+                  style={sideLabelStyle(p, size)}
+                >
+                  {s.month}
+                </span>
               </div>
             );
           })}
+
+          {stage && (
+            <div
+              aria-hidden
+              className="absolute pointer-events-none flex flex-col items-center"
+              style={{ left: stage.x, top: stage.y - stageSize / 2 - 4, transform: "translate(-50%, -100%)" }}
+            >
+              <span className="whitespace-nowrap rounded-full bg-[var(--color-teal-ink)] text-white text-xs font-bold px-3 py-1 shadow-sm">
+                עד כאן הגעת
+              </span>
+              <span className="w-2.5 h-2.5 rotate-45 -mt-1.5 bg-[var(--color-teal-ink)]" />
+            </div>
+          )}
 
           {stage && line && (
             <>
