@@ -211,8 +211,25 @@ const CLOUD_MAX_MS = 15_000;
  *  answer: treated as nothing heard, never uploaded. */
 const CLOUD_MIN_MS = 400;
 /** A little longer than the route's own vendor timeout, so a slow vendor
- *  surfaces as the route's clean 502 rather than a client-side abort. */
+ *  surfaces as the route's clean 502 rather than a client-side abort. This
+ *  budget covers a 401 retry too (see transcribe() below) — a 401 never
+ *  reaches OpenAI, so it and the retry pause cost well under a second,
+ *  leaving the retried request nearly the full window for its own vendor
+ *  call in the ordinary case. */
 const UPLOAD_TIMEOUT_MS = 9_000;
+/** 2026-09-13: the first authenticated /api/stt call right after a fresh
+ *  sign-in was intermittently 401ing — a session-propagation race, not a
+ *  real "not signed in" — which killed cloud STT for the rest of the
+ *  session on nothing more than bad timing. Considered a warm-up ping
+ *  right after login instead (an early, throwaway call to settle the
+ *  race before the kid ever presses the mic) and rejected it: it needs a
+ *  new authenticated round trip at a DIFFERENT moment than the real
+ *  recording, so it can settle the race and still leave the actual mic
+ *  press exposed to a fresh one, and it adds a call that runs for every
+ *  device whether or not that device would ever have hit the race. A
+ *  short delay-then-retry on the SAME failing request, right here, fixes
+ *  the exact call that failed. */
+const AUTH_RACE_RETRY_DELAY_MS = 400;
 
 /**
  * Container preference, first supported wins. webm/opus is small and is
@@ -303,15 +320,35 @@ export const cloudSpeechProvider: SttProvider = {
       if (!cancelled) onEnd();
     };
 
+    async function postAudio(blob: Blob): Promise<Response> {
+      return fetch("/api/stt", {
+        method: "POST",
+        headers: { "Content-Type": blob.type },
+        body: blob,
+        signal: upload.signal,
+      });
+    }
+
     async function transcribe(blob: Blob) {
       const timeout = setTimeout(() => upload.abort(), UPLOAD_TIMEOUT_MS);
       try {
-        const res = await fetch("/api/stt", {
-          method: "POST",
-          headers: { "Content-Type": blob.type },
-          body: blob,
-          signal: upload.signal,
-        });
+        let res = await postAudio(blob);
+        if (res.status === 401 && !cancelled) {
+          // A 401 on the FIRST call right after a fresh sign-in can be a
+          // transient race — the server re-reads the Supabase session
+          // (lib/supabase/server.ts's cookies()) fresh on every request,
+          // and that read can lose the race against the just-set auth
+          // cookie propagating, especially on a cold container. That's
+          // not "this session can never use cloud" — the same request,
+          // retried once after a short pause, lets the server re-read the
+          // session and almost always succeeds. A 503 (no API key
+          // configured) never gets this: that's a real misconfiguration,
+          // not a race, and retrying cannot fix it — falls straight
+          // through to cloud-unavailable below, unchanged.
+          await new Promise((resolve) => setTimeout(resolve, AUTH_RACE_RETRY_DELAY_MS));
+          if (cancelled) return;
+          res = await postAudio(blob);
+        }
         if (cancelled) return;
         if (res.status === 401 || res.status === 503) {
           onError?.("cloud-unavailable");
