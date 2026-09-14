@@ -281,13 +281,85 @@ export function statesWrongAnswer(text: string, answer: number): boolean {
 }
 
 /**
- * The gate every answer-bearing line passes before the character says it.
- * True = safe to speak: it asserts no false arithmetic and contradicts no
- * verified answer.
+ * Place-value vocabulary the guard checks the same way it checks numbers
+ * (2026-09-14, FIX 3: a real guard sweep line said "עשיריות" — tenths —
+ * where "עשרות" — tens — was meant; one letter apart, a completely wrong
+ * concept). `magnitude` is the power of ten the word names; negative =
+ * a fraction of one.
  */
-export function lineIsArithmeticallySafe(text: string, answer: number | null): boolean {
+const MATH_TERMS: { word: string; magnitude: number }[] = [
+  { word: "יחידות", magnitude: 0 },
+  { word: "יחידה", magnitude: 0 },
+  { word: "עשרות", magnitude: 1 },
+  { word: "עשרה", magnitude: 1 },
+  { word: "מאות", magnitude: 2 },
+  { word: "מאה", magnitude: 2 },
+  { word: "אלפים", magnitude: 3 },
+  { word: "אלף", magnitude: 3 },
+  { word: "עשיריות", magnitude: -1 },
+  { word: "עשירית", magnitude: -1 },
+  { word: "מאיות", magnitude: -2 },
+  { word: "מאית", magnitude: -2 },
+  { word: "אלפיות", magnitude: -3 },
+  { word: "אלפית", magnitude: -3 },
+];
+/** Same one-Hebrew-prefix-letter allowance matchTopic.ts uses ("העשרות",
+ *  "לעשרות", "מהיחידות" ...) so a real sentence's grammar doesn't hide the
+ *  term from the scan. */
+const TERM_PREFIXES = "והבלמשכ";
+
+interface MathTermMention {
+  word: string;
+  magnitude: number;
+}
+
+function mathTermMentionsIn(text: string): MathTermMention[] {
+  const found: MathTermMention[] = [];
+  for (const raw of tokenize(normalizeMathText(text))) {
+    const w = TERM_PREFIXES.includes(raw[0]) ? raw.slice(1) : raw;
+    const term = MATH_TERMS.find((m) => m.word === raw || m.word === w);
+    if (term) found.push({ word: raw, magnitude: term.magnitude });
+  }
+  return found;
+}
+
+/** How many digits before the decimal point `n` has — 42 -> magnitude 1
+ *  (its highest whole place is tens), 100 -> 2, 7 -> 0. */
+function wholeMagnitude(n: number): number {
+  return Math.max(0, String(Math.trunc(Math.abs(n))).length - 1);
+}
+
+/**
+ * Place-value terms in `text` that don't fit `computation` — the same
+ * "wrong word for this exercise" idea as falseClaimsIn, for vocabulary
+ * instead of numbers. Two ways a term can be wrong:
+ * - it names a FRACTION of one (עשיריות/מאיות/אלפית) — this app's whole
+ *   curriculum is natural numbers (lib/map/topics.ts), so these are wrong
+ *   in every line, computation or not;
+ * - it names a whole place (מאות/אלפים) bigger than anything the
+ *   computation's operands OR its result actually reach — "מאות" for
+ *   25 + 17 (=42), where nothing involved ever has a hundreds digit.
+ *   Skipped when `computation` is unavailable (nothing to check against).
+ */
+export function wrongMathTermsIn(text: string, computation?: Computation | null): MathTermMention[] {
+  const mentions = mathTermMentionsIn(text);
+  const fractional = mentions.filter((m) => m.magnitude < 0);
+  if (!computation) return fractional;
+  const answer = computeAnswer(computation);
+  const maxMagnitude = Math.max(...computation.operands.map(wholeMagnitude), answer === null ? 0 : wholeMagnitude(answer));
+  const tooLarge = mentions.filter((m) => m.magnitude >= 0 && m.magnitude > maxMagnitude);
+  return [...fractional, ...tooLarge];
+}
+
+/**
+ * The gate every answer-bearing line passes before the character says it.
+ * True = safe to speak: it asserts no false arithmetic, contradicts no
+ * verified answer, and uses no place-value word that doesn't fit.
+ */
+export function lineIsArithmeticallySafe(text: string, answer: number | null, computation?: Computation | null): boolean {
   if (falseClaimsIn(text).length > 0) return false;
   if (answer !== null && statesWrongAnswer(text, answer)) return false;
+  if (wrongMathTermsIn(text, computation).length > 0) return false;
   return true;
 }
 

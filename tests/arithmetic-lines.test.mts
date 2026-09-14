@@ -19,6 +19,7 @@ import {
   parseComputation,
   questionStatesComputation,
   statesWrongAnswer,
+  wrongMathTermsIn,
   type Computation,
 } from "../lib/exercises/arithmetic";
 import { numericAnswerMatches, safeFeedback } from "../lib/exercises/evaluate";
@@ -153,6 +154,50 @@ t("a balancing tile passes and a non-balancing one fails", () => {
   assert.equal(balancesEquation("3 + ___ = 7", "4"), true);
   assert.equal(balancesEquation("3 + ___ = 7", "5"), false);
   assert.equal(balancesEquation("10 - ___ = 4", "6"), true);
+});
+
+console.log("\nFIX 3 (2026-09-14): a wrong place-value word is caught like a wrong number");
+console.log("  regression: a real sweep line said 'עשיריות' (tenths) where 'עשרות' (tens) was meant");
+t("a fractional term (עשיריות/מאיות/אלפית) is always wrong — this app has no decimals", () => {
+  const comp: Computation = { operands: [25, 17], operators: ["+"] };
+  assert.equal(wrongMathTermsIn("מחברים את העשיריות: 5 ועוד 7", comp).length, 1);
+  assert.equal(wrongMathTermsIn("קודם המאיות ואז השאר", comp).length, 1);
+  assert.equal(wrongMathTermsIn("אלפית אחת קטנה", comp).length, 1);
+  // Even with no computation to compare against at all.
+  assert.equal(wrongMathTermsIn("מחברים את העשיריות", null).length, 1);
+});
+t("the correct whole-number term for a 2-digit computation passes", () => {
+  const comp: Computation = { operands: [25, 17], operators: ["+"] };
+  const line = "קודם מחברים את העשרות: 20 ועוד 10 זה 30, ואז את היחידות: 5 ועוד 7 זה 12.";
+  assert.equal(wrongMathTermsIn(line, comp).length, 0);
+  assert.equal(lineIsArithmeticallySafe(line, 42, comp), true);
+});
+t("a whole-number term bigger than anything in the computation is wrong", () => {
+  const comp: Computation = { operands: [25, 17], operators: ["+"] }; // = 42, never reaches hundreds
+  const line = "קודם מחברים את המאות, ואז את השאר.";
+  assert.equal(wrongMathTermsIn(line, comp).length, 1);
+  assert.equal(lineIsArithmeticallySafe(line, 42, comp), false);
+});
+t("a carry that genuinely reaches the next place is allowed to name it", () => {
+  const comp: Computation = { operands: [87, 39], operators: ["+"] }; // = 126, a real carry into hundreds
+  const line = "87 ועוד 39 קופץ למאות: התוצאה היא 126.";
+  assert.equal(wrongMathTermsIn(line, comp).length, 0);
+});
+t("a single-digit computation still rejects 'עשרות'", () => {
+  const comp: Computation = { operands: [7, 2], operators: ["+"] }; // = 9
+  assert.equal(wrongMathTermsIn("סופרים את העשרות: 7 ועוד 2", comp).length, 1);
+});
+t("subtraction and multiplication are covered the same way", () => {
+  const sub: Computation = { operands: [50, 20], operators: ["-"] }; // = 30
+  assert.equal(wrongMathTermsIn("מחסרים את המאות", sub).length, 1);
+  assert.equal(wrongMathTermsIn("מחסרים את העשרות: 5 פחות 2 זה 3", sub).length, 0);
+  const mul: Computation = { operands: [10, 4], operators: ["*"] }; // = 40, the reported 10x4 bug's own shape
+  assert.equal(wrongMathTermsIn("זה עשיריות של הכפל", mul).length, 1);
+});
+t("safeFeedback rejects a model line with a wrong place-value term, even with the right final number", () => {
+  const comp: Computation = { operands: [25, 17], operators: ["+"] };
+  const line = safeFeedback("קודם מחברים את העשיריות, ואז מגיעים ל-42.", { verifiedAnswer: 42, correct: true, secondAttempt: false, computation: comp });
+  assert.notEqual(line, "קודם מחברים את העשיריות, ואז מגיעים ל-42.");
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);

@@ -1,6 +1,6 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { tokenize } from "@/lib/voice/matchAnswer";
-import { computeAnswer, falseClaimsIn, formatAnswer, lineIsArithmeticallySafe } from "./arithmetic";
+import { Computation, computeAnswer, falseClaimsIn, formatAnswer, lineIsArithmeticallySafe, wrongMathTermsIn } from "./arithmetic";
 import { Exercise, ExerciseEvaluation } from "./types";
 
 /**
@@ -56,17 +56,17 @@ export function numericAnswerMatches(kidAnswer: string, answer: number): boolean
  */
 export function safeFeedback(
   modelText: string,
-  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean }
+  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null }
 ): string {
-  const { verifiedAnswer, correct, secondAttempt } = opts;
+  const { verifiedAnswer, correct, secondAttempt, computation } = opts;
   const text = modelText.trim();
-  if (text && lineIsArithmeticallySafe(text, verifiedAnswer)) return text;
+  if (text && lineIsArithmeticallySafe(text, verifiedAnswer, computation)) return text;
   // Worth knowing about: either the model asserted arithmetic that isn't
-  // true, or it returned nothing usable. Never logged with the kid's own
-  // answer attached.
+  // true, misused a place-value word, or returned nothing usable. Never
+  // logged with the kid's own answer attached.
   if (text) {
     console.warn(
-      `[exercise-evaluate] replaced an unsafe feedback line (verifiedAnswer=${verifiedAnswer}): ${JSON.stringify(text)} claims=${JSON.stringify(falseClaimsIn(text))}`
+      `[exercise-evaluate] replaced an unsafe feedback line (verifiedAnswer=${verifiedAnswer}): ${JSON.stringify(text)} claims=${JSON.stringify(falseClaimsIn(text))} badTerms=${JSON.stringify(wrongMathTermsIn(text, computation))}`
     );
   } else {
     console.warn("[exercise-evaluate] model returned empty feedback; using a deterministic line");
@@ -178,7 +178,7 @@ ${wrongBranch}
   // only ever gets to decide it for the non-arithmetic subtypes.
   const correct = codeGraded ? correctByCode : parsed.correct === true;
   const modelText = typeof parsed.feedback === "string" ? parsed.feedback : "";
-  let feedback = safeFeedback(modelText, { verifiedAnswer, correct, secondAttempt });
+  let feedback = safeFeedback(modelText, { verifiedAnswer, correct, secondAttempt, computation: exercise.computation });
 
   // The verified answer is stated by code, not by the model — and only
   // when the child has already had their hint and missed again.
