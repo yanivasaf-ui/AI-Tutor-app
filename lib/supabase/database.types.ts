@@ -26,6 +26,7 @@ export type Database = {
           id: string
           kid_answer: string | null
           kid_id: string
+          spoken_line: string | null
           subject: string
         }
         Insert: {
@@ -37,6 +38,7 @@ export type Database = {
           id?: string
           kid_answer?: string | null
           kid_id: string
+          spoken_line?: string | null
           subject: string
         }
         Update: {
@@ -48,6 +50,7 @@ export type Database = {
           id?: string
           kid_answer?: string | null
           kid_id?: string
+          spoken_line?: string | null
           subject?: string
         }
         Relationships: [

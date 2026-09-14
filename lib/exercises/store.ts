@@ -191,6 +191,12 @@ export async function recordAttempt(
      *  too," alongside the existing correct/incorrect + errorNote. */
     kidAnswer: string;
     correctAnswer: string;
+    /** FIX 5 (2026-09-14): the exact line the character spoke back for
+     *  this attempt (ExerciseEvaluation.feedback) — the 10×4=14 incident
+     *  was undiagnosable because this was never persisted anywhere, only
+     *  ever shown once and gone. Write-only for now: no screen reads it
+     *  back yet, this is what makes a future incident diagnosable at all. */
+    spokenLine?: string;
   }
 ): Promise<void> {
   await supabase.from("exercise_attempts").insert({
@@ -201,6 +207,7 @@ export async function recordAttempt(
     error_note: opts.errorNote ?? null,
     kid_answer: opts.kidAnswer,
     correct_answer: opts.correctAnswer,
+    spoken_line: opts.spokenLine ?? null,
   });
 
   const { data: current } = await supabase
