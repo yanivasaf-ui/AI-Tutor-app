@@ -33,10 +33,16 @@ import type { CharacterId } from "@/lib/characters";
 export interface Line {
   name?: string;
   text: string;
+  /** When set, spoken() says THIS instead of `text` — for a line whose
+   *  BUBBLE stays short while its SPOKEN form says more (e.g. reading a
+   *  list of options aloud after a short visible prompt, so the bubble
+   *  isn't a wall of text duplicating buttons already on screen). */
+  spokenText?: string;
 }
 
 export function spoken(line: Line): string {
-  return line.name ? `${line.name}, ${line.text}` : line.text;
+  const body = line.spokenText ?? line.text;
+  return line.name ? `${line.name}, ${body}` : body;
 }
 
 const self = (c: CharacterId, boy: string, girl: string) => (c === "girl" ? girl : boy);
@@ -79,6 +85,16 @@ export const freePickTopic = (name: string, hasSuggestion: boolean): Line => ({
     ? "מה רוצים לתרגל? ההצעה של ההורים ראשונה ברשימה."
     : "מה רוצים לתרגל? אפשר ללחוץ על נושא, או לומר אותו.",
 });
+
+/** Reads the free-practice topic list aloud, in the order it renders —
+ *  the only way a pre-reader can choose (2026-09-14, grade-1 QA: the
+ *  Ministry-phrasing labels were both unreadable and never spoken). Takes
+ *  the already-built prompt text and the kid-facing labels
+ *  (MapTopic.displayNameKid, lib/map/topics.ts) rather than a Line, since
+ *  it composes into Line.spokenText at the call site (components/
+ *  practice/FreePractice.tsx), not a line on its own. */
+export const readTopicList = (promptText: string, labels: { displayNameKid: string }[]): string =>
+  [promptText.replace(/[.!?]+$/, ""), ...labels.map((t) => t.displayNameKid)].join(". ") + ".";
 
 export const topicNotFound = (name: string): Line => ({
   name,

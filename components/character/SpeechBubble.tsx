@@ -15,6 +15,14 @@ const TONE_BG: Record<Tone, string> = {
 interface Props {
   /** What's shown and (via the built-in SpeakButton) what's read aloud. */
   text: string;
+  /** When set, the 🔊 replay reads THIS instead of `text` — for a bubble
+   *  that stays short on screen while saying more out loud (e.g. free
+   *  practice's topic list: the prompt is one line, the read-aloud names
+   *  every option). Mirrors lib/guide/lines.ts's Line.spokenText, which
+   *  drives the automatic (non-🔊) speech for the same line — keep the
+   *  two in sync at the call site so tapping 🔊 repeats what was already
+   *  said, not a shorter version of it. */
+  spokenText?: string;
   /** Small caption line above everything else — independent of what the
    *  character is currently saying. Only consumer today: the map's stage
    *  bubble names the current stop's topic (QA: "the map never shows the
@@ -59,6 +67,7 @@ interface Props {
  */
 export default function SpeechBubble({
   text,
+  spokenText: spokenTextOverride,
   eyebrow,
   lead,
   detail,
@@ -74,7 +83,7 @@ export default function SpeechBubble({
 }: Props) {
   const isPassage = variant === "passage";
   const bg = isPassage ? "bg-[var(--color-teal-soft)]/60" : TONE_BG[tone];
-  const spokenText = [lead ? `${lead},` : null, detail, text].filter(Boolean).join(" ");
+  const spokenText = [lead ? `${lead},` : null, detail, spokenTextOverride ?? text].filter(Boolean).join(" ");
   const showTail = !isPassage && tail !== "none";
   const tailY = tail === "top" ? "-top-2" : "-bottom-2";
   const tailXClass =

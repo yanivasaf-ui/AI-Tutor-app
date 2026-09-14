@@ -71,7 +71,34 @@ export default function FreePractice({
   const suggestion = suggestionTopicId ? getTopicById(suggestionTopicId) : undefined;
   const suggestionHere = !!suggestion && suggestion.subject === subject;
 
-  const line = override ?? (subject ? lines.freePickTopic(kidName, suggestionHere) : lines.freePickSubject(kidName));
+  // The kid's own grade first, then the rest in order. The suggested
+  // topic is pulled out to the top rather than listed twice. Computed
+  // before `line` below: the read-aloud needs the exact order the list
+  // renders in, buttons included.
+  const gradeOrder = [kidGrade, ...GRADES.filter((g) => g !== kidGrade)];
+  const groups = subject
+    ? gradeOrder
+        .map((g) => ({
+          grade: g,
+          topics: TOPICS.filter(
+            (t) => t.subject === subject && t.grade === g && !(suggestionHere && t.id === suggestion!.id)
+          ),
+        }))
+        .filter((g) => g.topics.length > 0)
+    : [];
+  const visibleTopics: MapTopic[] = subject
+    ? [...(suggestionHere ? [suggestion!] : []), ...groups.flatMap((g) => g.topics)]
+    : [];
+
+  const basePromptLine = subject ? lines.freePickTopic(kidName, suggestionHere) : lines.freePickSubject(kidName);
+  // Read every option aloud, in the order the buttons render — a
+  // pre-reader's only way to choose is by ear (2026-09-14, grade-1 QA).
+  // The BUBBLE stays the short prompt; the spoken form is longer —
+  // Line.spokenText (lib/guide/lines.ts) is exactly this split, and
+  // SpeechBubble's own spokenText prop keeps its 🔊 replay in sync with
+  // it below.
+  const line: Line =
+    override ?? (visibleTopics.length > 0 ? { ...basePromptLine, spokenText: lines.readTopicList(basePromptLine.text, visibleTopics) } : basePromptLine);
   const guide = useGuide({ owner: OWNER, character, pose: "explaining", line, cue: subject ?? "subjects" });
 
   function chooseSubject(next: Subject | null) {
@@ -84,6 +111,14 @@ export default function FreePractice({
     guide.say(l);
   }
 
+  /** Tap always works on its own — this is a spoken acknowledgement on
+   *  top of it, not a replacement. Said synchronously in the tap handler
+   *  (iOS gesture rule), same pattern Onboarding's character pick uses. */
+  function pickTopic(t: MapTopic) {
+    guide.say(t.displayNameKid);
+    onPick(t);
+  }
+
   // The ONE place a spoken utterance turns into an action — resolved by
   // lib/voice/freePracticeIntent.ts, DOM-free and unit-tested there. Every
   // branch below dispatches into the exact same functions a tap uses
@@ -94,7 +129,7 @@ export default function FreePractice({
     const intent = resolveFreePracticeIntent(transcript, subject, kidGrade);
     switch (intent.kind) {
       case "topic":
-        onPick(intent.topic);
+        pickTopic(intent.topic);
         return;
       case "subject":
         chooseSubject(intent.subject);
@@ -111,20 +146,6 @@ export default function FreePractice({
         say(lines.topicNotFound(kidName));
     }
   }
-
-  // The kid's own grade first, then the rest in order. The suggested
-  // topic is pulled out to the top rather than listed twice.
-  const gradeOrder = [kidGrade, ...GRADES.filter((g) => g !== kidGrade)];
-  const groups = subject
-    ? gradeOrder
-        .map((g) => ({
-          grade: g,
-          topics: TOPICS.filter(
-            (t) => t.subject === subject && t.grade === g && !(suggestionHere && t.id === suggestion!.id)
-          ),
-        }))
-        .filter((g) => g.topics.length > 0)
-    : [];
 
   const mic = (
     <MicButton
@@ -161,6 +182,7 @@ export default function FreePractice({
         <SpeechBubble
           key={lines.spoken(line)}
           text={line.text}
+          spokenText={line.spokenText}
           lead={line.name}
           size={subject ? "md" : "lg"}
           tail="top"
@@ -194,12 +216,12 @@ export default function FreePractice({
           <>
             {mic}
             <div className="w-full max-w-md flex flex-col gap-2">
-              {suggestionHere && <TopicButton topic={suggestion!} tag={SUGGESTION_TAG} onPick={onPick} />}
+              {suggestionHere && <TopicButton topic={suggestion!} tag={SUGGESTION_TAG} onPick={pickTopic} />}
               {groups.map((g) => (
                 <section key={g.grade} className="flex flex-col gap-2">
                   <h2 className="text-sm font-bold text-[var(--color-ink-soft)] mt-3">כיתה {g.grade}׳</h2>
                   {g.topics.map((t) => (
-                    <TopicButton key={t.id} topic={t} onPick={onPick} />
+                    <TopicButton key={t.id} topic={t} onPick={pickTopic} />
                   ))}
                 </section>
               ))}
@@ -227,7 +249,13 @@ function TopicButton({ topic, tag, onPick }: { topic: MapTopic; tag?: string; on
           {tag}
         </span>
       )}
-      <span className="block leading-snug">{topic.topic}</span>
+      {/* Kid-facing label (lib/map/topics.ts's displayNameKid), never the
+          Ministry-phrasing `topic` string — a grade-1 kid, often not yet
+          reading fluently, can't parse "הכרת יסודות הקריאה והכתיבה:
+          מודעות פונולוגית וידע שמות האותיות." `topic.topic` still drives
+          everything this button doesn't render: exercise generation,
+          reuse, and matching all key on it, untouched. */}
+      <span className="block leading-snug">{topic.displayNameKid}</span>
     </motion.button>
   );
 }

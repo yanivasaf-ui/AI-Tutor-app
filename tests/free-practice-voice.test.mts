@@ -91,3 +91,31 @@ if (failures.length > 0) {
   console.error("failed: " + failures.join(" | "));
   process.exit(1);
 }
+
+console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
+{
+  const linesMod = await import("../lib/guide/lines");
+  t("every topic has a short kid label; only already-simple ones (gematria) match the curriculum string verbatim", () => {
+    for (const topic of TOPICS) {
+      assert.ok(topic.displayNameKid.length > 0, `${topic.id} has no displayNameKid`);
+      assert.ok(topic.displayNameKid.split(/\s+/).length <= 5, `${topic.id}'s kid label is too long: "${topic.displayNameKid}"`);
+      if (topic.id !== "math-g-gematria") {
+        assert.notEqual(topic.displayNameKid, topic.topic, `${topic.id}'s kid label is just the curriculum string`);
+      }
+    }
+  });
+  t("readTopicList reads the prompt then every label, no doubled punctuation", () => {
+    const text = linesMod.readTopicList("מה רוצים לתרגל? אפשר ללחוץ.", [
+      { displayNameKid: "אותיות וצלילים" },
+      { displayNameKid: "להתחיל לקרוא" },
+    ]);
+    assert.equal(text, "מה רוצים לתרגל? אפשר ללחוץ. אותיות וצלילים. להתחיל לקרוא.");
+    assert.ok(!text.includes(".."), "doubled period");
+  });
+  t("readTopicList strips any trailing prompt punctuation before joining", () => {
+    for (const trailing of ["?", "!", "."]) {
+      const text = linesMod.readTopicList(`שאלה${trailing}`, [{ displayNameKid: "תשובה" }]);
+      assert.equal(text, "שאלה. תשובה.");
+    }
+  });
+}
