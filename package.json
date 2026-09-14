@@ -7,7 +7,7 @@
     "build": "tsx scripts/build-index.ts && next build --turbopack",
     "start": "next start",
     "build-index": "tsx scripts/build-index.ts",
-    "test": "tsx tests/arithmetic-lines.test.mts && tsx tests/free-practice-voice.test.mts && tsx tests/speech-survive-unmount.test.mts"
+    "test": "tsx tests/arithmetic-lines.test.mts && tsx tests/free-practice-voice.test.mts && tsx tests/speech-survive-unmount.test.mts && tsx tests/speech-cached-replay.test.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",

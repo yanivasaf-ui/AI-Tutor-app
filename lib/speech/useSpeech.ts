@@ -259,6 +259,18 @@ async function speakCloud(text: string, character: CharacterId, owner: string | 
   };
   a.muted = false;
   a.src = url;
+  // FIX 6 (2026-09-14): replaying a cached line — a 🔊 tap on the same
+  // bubble twice, or the identical line said again right after — can
+  // silently produce no audio at all. Assigning `.src` the SAME string it
+  // already holds (audioCache means a repeated line reuses the exact same
+  // blob URL) doesn't reliably reset playback position across browsers —
+  // notably iOS Safari, this app's main target. play() on an element
+  // already at the end of that clip just... does nothing audible: no
+  // error, onerror never fires, onplaying may or may not fire either.
+  // Explicitly resetting the position before every play() call — cached
+  // replay or a first play, tap or voice, since both go through this one
+  // function — costs nothing on a fresh src and fixes the stale one.
+  a.currentTime = 0;
   await a.play();
   return true;
 }
