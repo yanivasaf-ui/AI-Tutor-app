@@ -54,9 +54,16 @@ export function useGuide({ owner, pose, line, cue, character }: Options) {
   lineRef.current = line;
 
   const say = useCallback(
-    (l: Line | string, as?: CharacterId) => {
+    // `surviveUnmount`: for a line said synchronously right before the same
+    // handler navigates away (2026-09-14, FIX 1) — e.g. FreePractice's
+    // pickTopic says the topic's kid label then immediately unmounts this
+    // screen. Without it, this component's own unmount cleanup below
+    // (stopSpeaking(owner)) cancels the very line it just said, since
+    // nothing else has spoken yet to change currentOwner. See
+    // lib/speech/useSpeech.ts's protectedUtteranceId for the mechanism.
+    (l: Line | string, as?: CharacterId, opts?: { surviveUnmount?: boolean }) => {
       if (!isAutoSpeakOn()) return;
-      speak(typeof l === "string" ? l : spoken(l), owner, as ?? character);
+      speak(typeof l === "string" ? l : spoken(l), owner, as ?? character, { surviveOwnerUnmount: opts?.surviveUnmount });
     },
     [owner, character]
   );

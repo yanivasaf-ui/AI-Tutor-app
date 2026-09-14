@@ -113,9 +113,13 @@ export default function FreePractice({
 
   /** Tap always works on its own — this is a spoken acknowledgement on
    *  top of it, not a replacement. Said synchronously in the tap handler
-   *  (iOS gesture rule), same pattern Onboarding's character pick uses. */
+   *  (iOS gesture rule), same pattern Onboarding's character pick uses.
+   *  surviveUnmount (2026-09-14, FIX 1): onPick immediately unmounts this
+   *  screen, and without it useGuide's own unmount cleanup silenced the
+   *  label the instant after it was said — the tap never audibly spoke
+   *  the topic name at all. */
   function pickTopic(t: MapTopic) {
-    guide.say(t.displayNameKid);
+    guide.say(t.displayNameKid, undefined, { surviveUnmount: true });
     onPick(t);
   }
 

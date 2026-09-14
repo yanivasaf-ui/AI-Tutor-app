@@ -63,6 +63,17 @@ let utteranceId = 0;
  *  when audio starts — so a guide that unmounts while its Cartesia line is
  *  still being fetched can still cancel it. */
 let currentOwner: string | null = null;
+/** The one utterance (by id) an owner-scoped stopSpeaking() must let
+ *  through even though it matches currentOwner — set by speak()'s
+ *  `surviveOwnerUnmount` (2026-09-14, FIX 1: tapping a topic label never
+ *  spoke it). A screen that says something and unmounts in the same tick
+ *  (pickTopic: say the label, then navigate) has its own useGuide unmount
+ *  cleanup call stopSpeaking(itsOwnOwner) right after — currentOwner is
+ *  still that owner, so without this the guide silenced the very line it
+ *  just said. Consumed once: the NEXT real interruption (the mute toggle's
+ *  ownerless stopSpeaking(), voice barge-in, or another speak()) cancels it
+ *  normally — this only exempts the specific bogus self-cancellation. */
+let protectedUtteranceId: number | null = null;
 
 function emit(patch: Partial<SpeechState>) {
   state = { ...state, ...patch };
@@ -282,11 +293,23 @@ function speakBrowser(text: string, owner: string | null, id: number) {
  * For the first speech of a session, call this synchronously inside the
  * tap handler — the tap is what unlocks audio on iOS. Callers that speak
  * from effects or async callbacks must check hasSeenGesture().
+ *
+ * `surviveOwnerUnmount`: for a line said right before the same handler
+ * navigates away (e.g. FreePractice's pickTopic: say the topic's name,
+ * then switch screens) — see protectedUtteranceId's comment. Leave unset
+ * for every ordinary line; an unprotected owner-unmount stop still works
+ * exactly as before.
  */
-export function speak(text: string, owner: string | null = null, character?: CharacterId | null) {
+export function speak(
+  text: string,
+  owner: string | null = null,
+  character?: CharacterId | null,
+  opts?: { surviveOwnerUnmount?: boolean }
+) {
   if (!text) return;
   const id = ++utteranceId;
   currentOwner = owner;
+  protectedUtteranceId = opts?.surviveOwnerUnmount ? id : null;
   stopPlayback();
   if (state.speaking) emit({ speaking: false, owner: null });
 
@@ -310,10 +333,22 @@ export function speak(text: string, owner: string | null = null, character?: Cha
  * said the current line — so a guide unmounting (the kid leaving the map
  * mid-sentence) silences its own line, even one still being fetched,
  * without cutting off whoever spoke next. Used by the mute toggle (no
- * owner: stop everything).
+ * owner: stop everything, ignoring any protected utterance — a genuine
+ * mute always wins).
+ *
+ * Exception: an owner-scoped call never cancels the one utterance that
+ * owner just marked surviveOwnerUnmount — its own unmount cleanup running
+ * right after `say(line, {surviveUnmount: true})` must not silence the
+ * line it was told to protect. Consumed the first time it's checked, so a
+ * later, real owner-scoped stop for that owner (should this ever happen
+ * twice) behaves normally again.
  */
 export function stopSpeaking(owner?: string) {
   if (owner !== undefined && currentOwner !== owner) return;
+  if (owner !== undefined && protectedUtteranceId !== null && utteranceId === protectedUtteranceId) {
+    protectedUtteranceId = null;
+    return;
+  }
   utteranceId++;
   currentOwner = null;
   stopPlayback();
