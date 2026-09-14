@@ -100,6 +100,13 @@ export interface Exercise {
    *  this is what makes the outcome a clean, structured signal instead of
    *  a fuzzy inference from a chat transcript. */
   topic: string;
+  /** lib/map/topics.ts's stable MapTopic.id (e.g. "math-a-numbers-0-100")
+   *  — the exact-match key the bank is served on (lib/exercises/store.ts's
+   *  findReusableExercise), added 2026-09-14 alongside the pre-generated
+   *  bank. `topic` (the long curriculum string) still exists for display
+   *  and legacy rows; this is what matching keys on going forward. Unset
+   *  for an exercise generated with no map node tapped. */
+  topicId?: string;
   /** Present only for subtype === "comprehension" — a short passage shown
    *  above the question. */
   passage?: string;

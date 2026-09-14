@@ -86,6 +86,7 @@ export type Database = {
           times_correct: number
           times_used: number
           topic: string
+          topic_id: string | null
           type: string
         }
         Insert: {
@@ -106,6 +107,7 @@ export type Database = {
           times_correct?: number
           times_used?: number
           topic: string
+          topic_id?: string | null
           type: string
         }
         Update: {
@@ -126,6 +128,7 @@ export type Database = {
           times_correct?: number
           times_used?: number
           topic?: string
+          topic_id?: string | null
           type?: string
         }
         Relationships: []

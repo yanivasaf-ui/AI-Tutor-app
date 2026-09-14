@@ -36,7 +36,7 @@ const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
   number_line_placement:
     'תרגיל מיקום על ציר מספרים. type חייב להיות "number_line". קבע/י min, max, step כך שמספר הסימונים על הציר — ((max-min)/step)+1 — לא יעלה על 9, ומתאים לרמת הכיתה. החזר/י שדה נוסף numberLine: {"min": מספר, "max": מספר, "step": מספר}. נסח/י את question כשאלה שמבקשת למקם ערך מסוים על הציר (למשל "היכן נמצא המספר 42 על הציר?"), ו-correctAnswer הוא הערך הנכון (כמחרוזת).',
   pattern_completion:
-    'רצף מספרים עם דפוס ברור (למשל דילוגים קבועים), עם ערך אחד חסר בסוף הרצף. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 מספרים מעורבבים, קרובים לתשובה הנכונה, אחד מהם נכון]}. correctAnswer הוא הערך הנכון להשלמת הרצף.',
+    'רצף של לפחות 4 מספרים עם קפיצה קבועה (אותו הפרש בין כל שני מספרים סמוכים — חיבור או חיסור, לא כפל), עם ערך אחד חסר בסוף הרצף. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 מספרים מעורבבים, קרובים לתשובה הנכונה, אחד מהם נכון]}. correctAnswer הוא הערך הנכון להשלמת הרצף — בדיוק המספר האחרון בתוספת אותו הפרש קבוע.',
   word_build:
     'תן/י מילה עברית קצרה ומתאימה לגיל (מהתוכן הלימודי או קרובה אליו). type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [אותיות המילה בסדר מעורבב]} — קריטי: items חייב להכיל בדיוק את האותיות של המילה, אותה אחת אחת, בלי אף אות נוספת ובלי אף אות חסרה (רק הסדר מעורבב, לא התוכן). correctAnswer הוא אותה מילה בדיוק (האותיות ברצף הנכון, ללא רווחים ביניהן) — ודא/י ש-correctAnswer מכיל בדיוק את אותן אותיות כמו items, לא יותר ולא פחות.',
   sentence_order:
@@ -193,6 +193,18 @@ async function generateExerciseOnce(opts: {
   /** Adaptive level for this topic (lib/practice/state.ts). Defaults to 2,
    *  the middle level — which is also what diagnostic questions use. */
   level?: 1 | 2 | 3;
+  /** Forces the subtype instead of picking one at random — the bank seed
+   *  script's own way of cycling through every bankable subtype for
+   *  variety, and of never landing on explain_thinking/shape_match
+   *  (lib/exercises/bank-guard.ts's UNVERIFIABLE_SUBTYPES), which live
+   *  generation's own random pickSubtype() is otherwise free to choose. */
+  forceSubtype?: ExerciseSubtype;
+  /** Extra prompt line — the bank seed script's way of steering away from
+   *  names/scenarios already used in the same topic+level batch, so a kid
+   *  doing several in a row doesn't feel the template ("no template
+   *  smell", the task's own words). Ignored by live generation, which
+   *  never sets it. */
+  varietyHint?: string;
 }): Promise<Exercise> {
   const { subject, grade, profile, topicId } = opts;
   const level = opts.level ?? 2;
@@ -253,7 +265,7 @@ async function generateExerciseOnce(opts: {
 
   const contextBlock = retrieved.map((c) => `- [${c.topic}] ${c.text}`).join("\n");
   const avoidTopics = profile?.topicsCovered.slice(-4).join(", ") || "";
-  const subtype = pickSubtype(subject, grade);
+  const subtype = opts.forceSubtype ?? pickSubtype(subject, grade);
 
   const prompt = `את/ה בונה תרגיל אחד לתלמיד/ה בכיתה ${grade}, בנושא ${subject === "math" ? "חשבון" : "עברית"}.
 
@@ -263,6 +275,7 @@ ${contextBlock}
 ${profile ? `רמה משוערת נוכחית של התלמיד/ה: ${profile.estimatedLevel || "ברירת מחדל לפי כיתה"}` : ""}
 ${avoidTopics ? `נושאים שתורגלו לאחרונה (עדיף לגוון, לא חובה להימנע לגמרי): ${avoidTopics}` : ""}
 ${LEVEL_GUIDANCE[level]}
+${opts.varietyHint ?? ""}
 
 בחר/י את אחד הנושאים לעיל ובנה/י תרגיל אחד קצר, ברור, ומתאים לגיל, לפי התבנית הבאה בדיוק:
 ${subtypeGuidance(subtype, grade)}
@@ -414,6 +427,7 @@ ${subtypeGuidance(subtype, grade)}
     // reliable instead of depending on the model consistently reproducing
     // the exact same string every time.
     topic: resolvedTopic ? resolvedTopic.topic : typeof parsed.topic === "string" ? parsed.topic : retrieved[0].topic,
+    topicId: resolvedTopic?.id,
     passage: subtype === "comprehension" && typeof parsed.passage === "string" ? parsed.passage : undefined,
     question: parsed.question,
     choices: Array.isArray(parsed.choices) ? parsed.choices.map(String) : undefined,

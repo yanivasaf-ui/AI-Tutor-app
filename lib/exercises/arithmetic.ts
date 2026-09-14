@@ -328,12 +328,27 @@ export function evaluateLinearExpression(text: string): number | null {
  * equation_balance previously checked only that the answer was one of the
  * offered tiles, which let a tile that doesn't balance the equation ship as
  * the correct one. Both sides get evaluated in code instead.
+ *
+ * Only the trailing equation CLAUSE is evaluated, not the whole question
+ * (2026-09-14, found while seeding the pre-generated bank): a natural word
+ * problem states other numbers first ("לאילנה יש 5 משולשים... 5 - ___ = 2"),
+ * and mathTokens() has no concept of sentence boundaries — every number in
+ * the story got swept into the same token stream as the real equation, so
+ * a CORRECTLY-balancing "5 - ___ = 2" was rejected outright as soon as the
+ * question had any narrative before it (i.e. almost always, since that's
+ * how this subtype is prompted). Splitting on sentence-ending punctuation
+ * and evaluating only the last segment isolates the actual equation clause
+ * the same way a person reading the question would.
  */
 export function balancesEquation(question: string, answer: string): boolean {
   const filled = normalizeMathText(question)
-    .replace(/_{2,}|…|\?/g, ` ${answer} `)
-    .replace(/\s+/g, " ");
-  const sides = filled.split("=");
+    .replace(/_{2,}|…/g, ` ${answer} `)
+    .replace(/\s+/g, " ")
+    .trim();
+  const clauses = filled.split(/[.?!\n]+/).map((s) => s.trim()).filter(Boolean);
+  const equationClause = [...clauses].reverse().find((c) => c.includes("="));
+  if (!equationClause) return false;
+  const sides = equationClause.split("=");
   if (sides.length !== 2) return false;
   const left = evaluateLinearExpression(sides[0]);
   const right = evaluateLinearExpression(sides[1]);
