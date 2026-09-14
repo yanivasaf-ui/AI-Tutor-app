@@ -52,15 +52,15 @@ export const TOPICS: MapTopic[] = [
   { id: "math-a-geometry", subject: "math", grade: "א", topic: "צורות גאומטריות", displayNameKid: "צורות" },
   { id: "math-a-length", subject: "math", grade: "א", topic: "מדידות אורך", displayNameKid: "למדוד אורך" },
   { id: "math-a-time", subject: "math", grade: "א", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-a-data", subject: "math", grade: "א", topic: "חקר נתונים", displayNameKid: "לספור ולמיין" },
+  { id: "math-a-data", subject: "math", grade: "א", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
 
   { id: "math-b-numbers-0-1000", subject: "math", grade: "ב", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-1,000", displayNameKid: "מספרים עד 1,000" },
-  { id: "math-b-arithmetic", subject: "math", grade: "ב", topic: "פעולות חשבון בתחום ה-100: חיבור, חיסור, ותחילת כפל וחילוק", displayNameKid: "חיבור, חיסור וכפל" },
+  { id: "math-b-arithmetic", subject: "math", grade: "ב", topic: "פעולות חשבון בתחום ה-100: חיבור, חיסור, ותחילת כפל וחילוק", displayNameKid: "לחבר, לחסר, לכפול ולחלק" },
   { id: "math-b-geometry", subject: "math", grade: "ב", topic: "צורות גאומטריות", displayNameKid: "צורות" },
   { id: "math-b-length", subject: "math", grade: "ב", topic: "מדידות אורך", displayNameKid: "למדוד אורך" },
-  { id: "math-b-volume", subject: "math", grade: "ב", topic: "גופים ומדידות נפח", displayNameKid: "קוביות וכדורים" },
+  { id: "math-b-volume", subject: "math", grade: "ב", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים" },
   { id: "math-b-time", subject: "math", grade: "ב", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-b-data", subject: "math", grade: "ב", topic: "חקר נתונים", displayNameKid: "לספור ולמיין" },
+  { id: "math-b-data", subject: "math", grade: "ב", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
 
   { id: "math-g-numbers-0-10000", subject: "math", grade: "ג", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-10,000 (הרבבה)", displayNameKid: "מספרים גדולים" },
   { id: "math-g-gematria", subject: "math", grade: "ג", topic: "גימטרייה", displayNameKid: "גימטרייה" },
@@ -68,9 +68,9 @@ export const TOPICS: MapTopic[] = [
   { id: "math-g-multiplication-division", subject: "math", grade: "ג", topic: "כפל וחילוק בתחום הרבבה", displayNameKid: "כפל וחילוק" },
   { id: "math-g-geometry", subject: "math", grade: "ג", topic: "צורות גאומטריות: זוויות ומשולשים", displayNameKid: "זוויות ומשולשים" },
   { id: "math-g-area", subject: "math", grade: "ג", topic: "מדידת שטח", displayNameKid: "למדוד שטח" },
-  { id: "math-g-volume", subject: "math", grade: "ג", topic: "גופים ומדידות נפח", displayNameKid: "קוביות וכדורים" },
+  { id: "math-g-volume", subject: "math", grade: "ג", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים" },
   { id: "math-g-time", subject: "math", grade: "ג", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-g-data", subject: "math", grade: "ג", topic: "חקר נתונים", displayNameKid: "לספור ולמיין" },
+  { id: "math-g-data", subject: "math", grade: "ג", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
 
   { id: "hebrew-a-alphabet-phonology", subject: "hebrew", grade: "א", topic: "הכרת יסודות הקריאה והכתיבה: מודעות פונולוגית וידע שמות האותיות", displayNameKid: "אותיות וצלילים" },
   { id: "hebrew-a-early-reading", subject: "hebrew", grade: "א", topic: "קידום הבנת הנקרא בתחילת הדרך", displayNameKid: "להתחיל לקרוא" },
@@ -83,10 +83,10 @@ export const TOPICS: MapTopic[] = [
 
   { id: "hebrew-g-reading-comprehension", subject: "hebrew", grade: "ג", topic: "השלמת תהליך רכישת הקריאה והבנת טקסטים עיוניים", displayNameKid: "להבין מה שקוראים" },
   { id: "hebrew-g-literary-texts-reading-pleasure", subject: "hebrew", grade: "ג", topic: "התנסות עם טקסטים ספרותיים וטיפוח קריאה להנאה", displayNameKid: "לקרוא סיפורים" },
-  { id: "hebrew-g-vocabulary", subject: "hebrew", grade: "ג", topic: "הרחבת אוצר מילים", displayNameKid: "מילים חדשות" },
-  { id: "hebrew-g-writing-process", subject: "hebrew", grade: "ג", topic: "קידום תהליכי כתיבה", displayNameKid: "לכתוב טקסט קצר" },
+  { id: "hebrew-g-vocabulary", subject: "hebrew", grade: "ג", topic: "הרחבת אוצר מילים", displayNameKid: "מילים חכמות" },
+  { id: "hebrew-g-writing-process", subject: "hebrew", grade: "ג", topic: "קידום תהליכי כתיבה", displayNameKid: "לכתוב חיבור קצר" },
   { id: "hebrew-g-oral-expression", subject: "hebrew", grade: "ג", topic: "הבעה בעל פה", displayNameKid: "לדבר ולהסביר" },
-  { id: "hebrew-g-metalinguistic", subject: "hebrew", grade: "ג", topic: "פיתוח ידע מטה-לשוני", displayNameKid: "משחקים במילים" },
+  { id: "hebrew-g-metalinguistic", subject: "hebrew", grade: "ג", topic: "פיתוח ידע מטה-לשוני", displayNameKid: "לגלות איך מילים עובדות" },
 ];
 
 export function getTopics(subject: Subject, grade: Grade): MapTopic[] {

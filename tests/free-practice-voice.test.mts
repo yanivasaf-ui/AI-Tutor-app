@@ -118,4 +118,36 @@ console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
       assert.equal(text, "שאלה. תשובה.");
     }
   });
+  // FIX 2 (2026-09-14, product review): FreePractice renders every grade's
+  // topics for a subject in ONE list (components/practice/FreePractice.tsx's
+  // visibleTopics), so two DIFFERENT topics sharing a displayNameKid look
+  // and sound identical to a kid in that same list — the exact bug that
+  // shipped "מילים חדשות" for both hebrew-a-oral-vocabulary and
+  // hebrew-g-vocabulary, and "משחקים במילים" for both hebrew-b-metalinguistic
+  // and hebrew-g-metalinguistic. A label repeating for the SAME skill
+  // recurring across grades (e.g. "השעון" — telling time, harder each year)
+  // is a deliberate, different thing: allowlisted below by exact id set, not
+  // exempted by pattern, so a new accidental collision still fails loudly.
+  const RECURRING_SKILL_LABELS: Record<string, string[]> = {
+    השעון: ["math-a-time", "math-b-time", "math-g-time"],
+    צורות: ["math-a-geometry", "math-b-geometry"],
+    "למדוד אורך": ["math-a-length", "math-b-length"],
+    "לספור ולסדר": ["math-a-data", "math-b-data", "math-g-data"],
+    "גופים: קוביות וכדורים": ["math-b-volume", "math-g-volume"],
+  };
+  t("no two topics of the same subject share a kid label, except deliberately recurring skills", () => {
+    for (const subject of ["math", "hebrew"] as const) {
+      const bySubject = TOPICS.filter((topic) => topic.subject === subject);
+      const byLabel = new Map<string, string[]>();
+      for (const topic of bySubject) {
+        byLabel.set(topic.displayNameKid, [...(byLabel.get(topic.displayNameKid) ?? []), topic.id]);
+      }
+      for (const [label, ids] of byLabel) {
+        if (ids.length <= 1) continue;
+        const allowed = RECURRING_SKILL_LABELS[label];
+        assert.ok(allowed, `"${label}" is shared by ${ids.join(", ")} with no allowlist entry — two different topics with the same spoken name`);
+        assert.deepEqual([...ids].sort(), [...allowed].sort(), `"${label}"'s topic set changed (${ids.join(", ")}) — update RECURRING_SKILL_LABELS or the labels`);
+      }
+    }
+  });
 }
