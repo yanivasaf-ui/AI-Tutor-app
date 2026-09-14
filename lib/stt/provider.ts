@@ -245,6 +245,74 @@ export function pickRecordingMimeType(): string | null {
   return PREFERRED_MIME_TYPES.find((t) => MediaRecorder.isTypeSupported(t)) ?? null;
 }
 
+// ---- Shared microphone stream (page-lifetime, not per-press) ---------------
+//
+// One getUserMedia() call for the whole page session — see the DECISION
+// note in this file's header for why. Module-level (not component-level)
+// deliberately: ExerciseScreen remounts per topic, so anything scoped to
+// one component's lifetime would still re-acquire (and iOS would still
+// re-prompt) on the very next exercise.
+
+let sharedStream: MediaStream | null = null;
+/** In-flight acquisition, so a second press that lands while the first
+ *  getUserMedia() call is still pending (e.g. the kid taps again while
+ *  the permission prompt from the first press is still up) reuses that
+ *  SAME call instead of firing a second, possibly duplicate, prompt. */
+let sharedStreamPromise: Promise<MediaStream> | null = null;
+
+/** True if the currently-held stream is still actually usable. A track
+ *  can end on its own — the device is revoked in Settings, unplugged,
+ *  another app takes exclusive capture — leaving `sharedStream` non-null
+ *  but dead; re-checking readyState here is what makes that case
+ *  re-acquire instead of silently recording nothing. */
+function sharedStreamIsLive(): boolean {
+  return !!sharedStream && sharedStream.getAudioTracks().some((t) => t.readyState === "live");
+}
+
+async function getSharedMicStream(): Promise<MediaStream> {
+  if (sharedStreamIsLive()) return sharedStream!;
+  sharedStream = null;
+  if (!sharedStreamPromise) {
+    sharedStreamPromise = navigator.mediaDevices
+      .getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } })
+      .then((s) => {
+        sharedStream = s;
+        sharedStreamPromise = null;
+        return s;
+      })
+      .catch((err) => {
+        sharedStreamPromise = null;
+        throw err;
+      });
+  }
+  return sharedStreamPromise;
+}
+
+/** Stops drawing from the stream between presses WITHOUT releasing the
+ *  device/permission — re-acquiring via a fresh getUserMedia() call is
+ *  exactly the re-prompt this whole mechanism exists to avoid. Safe to
+ *  call even if nothing is held (e.g. permission was never granted). */
+function parkSharedMicStream(): void {
+  sharedStream?.getAudioTracks().forEach((t) => (t.enabled = false));
+}
+
+/** The one place tracks actually stop. Call when the kid leaves the
+ *  voice-capable part of the app — signing out (app/page.tsx's logout())
+ *  — or the page unloads (wired below). Never call this between presses;
+ *  that reintroduces the re-prompt bug this file was changed to fix. */
+export function releaseSharedMicStream(): void {
+  sharedStream?.getTracks().forEach((t) => t.stop());
+  sharedStream = null;
+  sharedStreamPromise = null;
+}
+
+if (typeof window !== "undefined") {
+  // Covers a real navigation away, closing the tab, and iOS backgrounding
+  // the tab hard enough to terminate it — the one case "on logout" alone
+  // wouldn't catch.
+  window.addEventListener("pagehide", releaseSharedMicStream);
+}
+
 function captureErrorReason(err: unknown): string {
   const name = (err as { name?: string })?.name;
   // Same codes the browser recognizer uses, so ExerciseScreen's existing
@@ -258,16 +326,35 @@ function captureErrorReason(err: unknown): string {
  * POST /api/stt.
  *
  * iOS Safari specifics:
- * - Microphone permission is requested only here, inside start() — the
- *   kid's first real mic press — never on mount or render. On that very
- *   first press the permission prompt usually outlives the press itself;
- *   if the finger lifts before the stream is live, the press ends as
- *   "nothing heard" (the kid presses again, now with permission).
- * - The microphone stream is released at the end of EVERY press, not kept
- *   warm between presses. While a capture stream is open, iOS routes audio
- *   playback to the earpiece at phone-call volume — the characters'
- *   Cartesia voice would go near-silent. Re-acquiring after permission is
- *   granted is fast.
+ * - Microphone permission is requested only on the kid's first real mic
+ *   press — never on mount or render. On that very first press the
+ *   permission prompt usually outlives the press itself; if the finger
+ *   lifts before the stream is live, the press ends as "nothing heard"
+ *   (the kid presses again, now with permission already granted).
+ * - DECISION (2026-09-14): the microphone stream is now acquired ONCE and
+ *   kept alive for the page's lifetime — see getSharedMicStream() below —
+ *   instead of being released at the end of every press. Confirmed root
+ *   cause of the prior behavior: releasing the stream's tracks after each
+ *   recording made iOS Safari re-prompt for permission on every single
+ *   getUserMedia() call after, not just once per session. Compounding it,
+ *   ExerciseScreen remounts per topic (its `key` in KidHome.tsx), so even
+ *   a stream kept alive only for one component's lifetime would still
+ *   have re-prompted on the next exercise — the shared stream lives at
+ *   module scope for exactly this reason, and survives every such
+ *   remount. Tracks are only stopped on releaseSharedMicStream() (wired
+ *   to `pagehide` and to sign-out — see app/page.tsx's logout()), never
+ *   between presses.
+ * - Tradeoff, stated rather than buried: while a getUserMedia() stream's
+ *   tracks are live, iOS shows its own microphone-in-use indicator, and —
+ *   per this file's own prior note — was observed routing audio playback
+ *   to the earpiece at phone-call volume while a capture stream was open.
+ *   Mitigation here: getSharedMicStream() disables (never stops) the
+ *   tracks between presses, so the browser keeps holding the granted
+ *   device/permission (no re-prompt) without continuously drawing audio
+ *   from it, and re-enables them right before each new recording. Whether
+ *   this fully avoids the earpiece-routing symptom is NOT verified on a
+ *   physical iPhone from here — if it resurfaces, that disable/enable
+ *   toggle is the next thing to check.
  * - The shared <audio> unlock (lib/speech/useSpeech.ts) runs on the
  *   page's first pointerdown in the capture phase — before this press's
  *   own handler — and is a muted 0.1s blip. Recording only begins once
@@ -305,7 +392,10 @@ export const cloudSpeechProvider: SttProvider = {
 
     const release = () => {
       clearTimeout(maxTimer);
-      stream?.getTracks().forEach((t) => t.stop());
+      // Park, don't stop — see getSharedMicStream()'s header note. Stopping
+      // these tracks is exactly what caused iOS to re-prompt for
+      // permission on every subsequent recording.
+      if (stream) parkSharedMicStream();
       stream = null;
     };
     const endCapture = () => {
@@ -370,13 +460,14 @@ export const cloudSpeechProvider: SttProvider = {
       }
     }
 
-    navigator.mediaDevices
-      .getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } })
+    getSharedMicStream()
       .then((s) => {
         if (cancelled || stopRequested) {
           // Released (or unmounted) before the microphone came up — most
-          // often the permission prompt on the very first press.
-          s.getTracks().forEach((t) => t.stop());
+          // often the permission prompt on the very first press. Park
+          // rather than stop: this is the SHARED stream, other presses
+          // will reuse it.
+          parkSharedMicStream();
           if (!cancelled) {
             endCapture();
             finish();
@@ -384,6 +475,10 @@ export const cloudSpeechProvider: SttProvider = {
           return;
         }
         stream = s;
+        // A prior press's release() disabled these; a fresh acquisition
+        // (the very first press) already has them enabled by default —
+        // this covers both.
+        s.getAudioTracks().forEach((t) => (t.enabled = true));
         recorder = new MediaRecorder(s, { mimeType, audioBitsPerSecond: 32_000 });
         recorder.ondataavailable = (e) => {
           if (e.data && e.data.size > 0) chunks.push(e.data);

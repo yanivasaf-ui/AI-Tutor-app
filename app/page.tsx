@@ -18,6 +18,7 @@ import type { SubjectProfile } from "@/lib/memory/types";
 import type { Grade } from "@/lib/exercises/types";
 import { GRADES } from "@/lib/kids/grade";
 import { activeSuggestion } from "@/lib/practice/state";
+import { releaseSharedMicStream } from "@/lib/stt/provider";
 
 type Kid = KidSummary;
 
@@ -65,6 +66,11 @@ export default function Home() {
   }, [user]);
 
   async function logout() {
+    // Signing out doesn't unload the page (this is a single-page app —
+    // see the file header) — pagehide never fires, so the shared mic
+    // stream (lib/stt/provider.ts) would otherwise sit open, permission
+    // granted and indicator lit, through the whole logged-out state.
+    releaseSharedMicStream();
     const supabase = getSupabaseBrowserClient();
     await supabase.auth.signOut();
     setKid(null);
