@@ -46,26 +46,32 @@ function toGrade(v: unknown): Grade | null {
   return v === "א" || v === "ב" || v === "ג" ? v : null;
 }
 
+/** 2026-09-14: was a sequential for-loop awaiting getKid() one kid at a
+ *  time — a real N+1 waterfall for any parent with more than one kid, and
+ *  part of what the post-Google-sign-in wait was paying for (see
+ *  app/page.tsx). Every kid's data is independent, so fetch them all at
+ *  once. */
 export async function listKids(supabase: Client): Promise<KidProfile[]> {
   const { data: kids, error } = await supabase.from("kids").select("*");
   if (error || !kids) return [];
 
-  const result: KidProfile[] = [];
-  for (const k of kids) {
-    const full = await getKid(supabase, k.id as string);
-    if (full) result.push(full);
-  }
-  return result;
+  const full = await Promise.all(kids.map((k) => getKid(supabase, k.id as string)));
+  return full.filter((k): k is KidProfile => k !== null);
 }
 
 export async function getKid(supabase: Client, id: string): Promise<KidProfile | null> {
-  const { data: kid, error } = await supabase.from("kids").select("*").eq("id", id).single();
+  // The kids-row and subject_profiles queries don't depend on each other —
+  // only the RESULT does (a kid that doesn't exist has no profiles to
+  // report). Running them concurrently means a missing/errored kid pays
+  // for one wasted profiles query instead of every real kid paying for
+  // two round trips in series.
+  const [kidResult, profilesResult] = await Promise.all([
+    supabase.from("kids").select("*").eq("id", id).single(),
+    supabase.from("subject_profiles").select("*").eq("kid_id", id),
+  ]);
+  const { data: kid, error } = kidResult;
   if (error || !kid) return null;
-
-  const { data: profiles } = await supabase
-    .from("subject_profiles")
-    .select("*")
-    .eq("kid_id", id);
+  const { data: profiles } = profilesResult;
 
   const subjects: Partial<Record<Subject, SubjectProfile>> = {};
   for (const row of profiles ?? []) {

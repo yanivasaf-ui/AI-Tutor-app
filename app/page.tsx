@@ -30,21 +30,75 @@ interface KidDashboard {
   practicedToday: boolean;
 }
 
+/** Whether the kid profile fetch has ever completed for the CURRENT
+ *  signed-in user. "pending" gates every render decision that looks at
+ *  `kid` — see the 2026-09-14 fix note below for why a plain boolean
+ *  (defaulting to false) wasn't enough. */
+type KidLoadState = "pending" | "loaded";
+
+const KIDS_FETCH_RETRY_DELAY_MS = 400;
+
+/** GET /api/kids, tolerating the same fresh-sign-in cookie-propagation
+ *  race already found and fixed for /api/stt (lib/stt/provider.ts,
+ *  AUTH_RACE_RETRY_DELAY_MS): the server re-reads the session fresh on
+ *  every request, and right after a sign-in that read can lose the race
+ *  against the just-set auth cookie, returning 401 for a genuinely
+ *  signed-in parent. Retried once after a short pause; any other
+ *  failure (offline, 5xx) is treated as "no kids found for now" the same
+ *  as before — the retry is specifically for the race, not a general
+ *  network-resilience layer. */
+async function fetchKids(): Promise<Kid[]> {
+  let res = await fetch("/api/kids?view=kid").catch(() => null);
+  if (res?.status === 401) {
+    await new Promise((resolve) => setTimeout(resolve, KIDS_FETCH_RETRY_DELAY_MS));
+    res = await fetch("/api/kids?view=kid").catch(() => null);
+  }
+  if (!res?.ok) return [];
+  const { kids } = (await res.json()) as { kids: Kid[] };
+  return kids;
+}
+
 /** Real parent accounts gate this app (Supabase Auth). Single-page render
  *  branches, deliberately — see the "hard constraints" note in the UI
  *  Revamp Brief Section 0: every route/page is its own serverless
  *  function on the Vercel Hobby plan's 12-function cap; this app was
- *  structurally over it before consolidating into one page. */
+ *  structurally over it before consolidating into one page.
+ *
+ * 2026-09-14 fix: the character-select/onboarding screen was flashing for
+ * a few real seconds after a fresh Google sign-in, for a RETURNING parent
+ * with an existing profile, before the app corrected itself to the real
+ * destination. Root cause: `kidLoadState` (previously a plain `loadingKid`
+ * boolean) DEFAULTED to "not loading" — so the one render where `user` had
+ * just resolved but the kid-fetch effect hadn't yet run (a guaranteed gap:
+ * effects run after commit/paint, not before) treated `kid === null` as
+ * "confirmed no kid," and rendered full onboarding. Made worse by two real
+ * waits stacking in front of that render: this file's own initial auth
+ * check used auth.getUser() (network round trip to Supabase, needed for a
+ * SERVER-side trust decision, not for gating a CLIENT render) instead of
+ * the local, non-network getSession(); and GET /api/kids itself had an
+ * N+1 query waterfall for multi-kid parents (lib/memory/store.ts's
+ * listKids(), fixed alongside this). Fixed here by never treating `kid`
+ * as meaningful until `kidLoadState` has genuinely settled to "loaded" —
+ * closes the race regardless of how long the wait in front of it turns
+ * out to be — plus the getSession() swap and a real loading screen
+ * instead of blank `null` while it settles. */
 export default function Home() {
   const [user, setUser] = useState<{ id: string } | null | undefined>(undefined);
   const [kid, setKid] = useState<Kid | null>(null);
-  const [loadingKid, setLoadingKid] = useState(false);
+  const [kidLoadState, setKidLoadState] = useState<KidLoadState>("pending");
   const [view, setView] = useState<"kid" | "dashboard">("kid");
 
   useEffect(() => {
     const supabase = getSupabaseBrowserClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user ? { id: user.id } : null);
+    // getSession() reads the already-persisted local session (cookies, via
+    // @supabase/ssr) with no network round trip — the right call for "is
+    // there a signed-in user, for deciding what to render." getUser()
+    // (server-verified, needs the network) stays reserved for the actual
+    // security check, which every API route already does for itself via
+    // getSupabaseServerClient(); duplicating that trust check here just to
+    // gate a render was the redundant network call in the sign-in wait.
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ? { id: session.user.id } : null);
     });
     const {
       data: { subscription },
@@ -54,16 +108,30 @@ export default function Home() {
     return () => subscription.unsubscribe();
   }, []);
 
+  const userId = user?.id;
   useEffect(() => {
-    if (!user) return;
-    setLoadingKid(true);
-    fetch("/api/kids")
-      .then((res) => (res.ok ? res.json() : { kids: [] }))
-      .then(({ kids }: { kids: Kid[] }) => {
-        if (kids.length > 0) setKid(kids[0]);
+    if (!userId) return;
+    let cancelled = false;
+    setKidLoadState("pending");
+    fetchKids()
+      .then((kids) => {
+        // Always reflect the fetch, not just the found-a-kid case — a kid
+        // from a PREVIOUS signed-in user (Supabase can hand this effect a
+        // new userId without an intervening logout()) must not linger as
+        // stale state once this user's own fetch comes back with none.
+        if (!cancelled) setKid(kids.length > 0 ? kids[0] : null);
       })
-      .finally(() => setLoadingKid(false));
-  }, [user]);
+      .finally(() => {
+        if (!cancelled) setKidLoadState("loaded");
+      });
+    return () => {
+      cancelled = true;
+    };
+    // userId (a stable string), not `user` (a fresh object literal on
+    // every onAuthStateChange firing) — otherwise this effect, and the
+    // "pending" flip it opens with, re-runs on every such event even when
+    // the signed-in user hasn't actually changed.
+  }, [userId]);
 
   async function logout() {
     // Signing out doesn't unload the page (this is a single-page app —
@@ -74,11 +142,14 @@ export default function Home() {
     const supabase = getSupabaseBrowserClient();
     await supabase.auth.signOut();
     setKid(null);
+    setKidLoadState("pending");
   }
 
   if (user === undefined) return null;
   if (!user) return <LoginScreen />;
-  if (loadingKid) return null;
+  // Never look at `kid` until its fetch has genuinely settled for THIS
+  // user — this is the actual fix; see the file-level note above.
+  if (kidLoadState === "pending") return <AppLoadingScreen />;
 
   const characterId = kid ? normalizeCharacterId(kid.avatarId) : null;
 
@@ -105,6 +176,28 @@ export default function Home() {
   }
 
   return <KidHome kid={kid} character={characterId} onOpenDashboard={() => setView("dashboard")} />;
+}
+
+/** Shown for the one real wait this app can't hide: signed in, but the kid
+ *  fetch hasn't resolved yet — so nothing is known about whether onboarding,
+ *  a character repick, or the kid's own home screen is next. No character
+ *  here (avatarId, if any, is exactly the thing not yet known) — a plain,
+ *  brand-toned pulse, matching the "thinking" treatment other loading
+ *  moments in this app already use. */
+function AppLoadingScreen() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[var(--color-canvas)]">
+      <div className="flex gap-2" role="status" aria-label="טוען...">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="w-3 h-3 rounded-full bg-[var(--color-teal)] animate-bounce"
+            style={{ animationDelay: `${i * 0.15}s` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function LoginScreen() {
