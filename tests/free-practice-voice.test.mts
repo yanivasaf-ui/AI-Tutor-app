@@ -86,12 +86,6 @@ t("every topic voice can resolve to, from any subject state, is a real topic in 
   }
 });
 
-console.log(`\n${passed} passed, ${failures.length} failed`);
-if (failures.length > 0) {
-  console.error("failed: " + failures.join(" | "));
-  process.exit(1);
-}
-
 console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
 {
   const linesMod = await import("../lib/guide/lines");
@@ -150,4 +144,15 @@ console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
       }
     }
   });
+}
+
+// Moved here from right after the voice-intent block (2026-09-14, found
+// while extending the kid-facing-labels block above): the exit check was
+// running BEFORE these labels tests existed, so a failure here was printed
+// but never failed the `npm test` command — this is the one place per file
+// it belongs.
+console.log(`\n${passed} passed, ${failures.length} failed`);
+if (failures.length > 0) {
+  console.error("failed: " + failures.join(" | "));
+  process.exit(1);
 }
