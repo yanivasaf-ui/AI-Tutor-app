@@ -70,6 +70,7 @@ export type Database = {
       exercises: {
         Row: {
           choices: string[] | null
+          computation: Json | null
           correct_answer: string
           created_at: string
           difficulty: number | null
@@ -89,6 +90,7 @@ export type Database = {
         }
         Insert: {
           choices?: string[] | null
+          computation?: Json | null
           correct_answer: string
           created_at?: string
           difficulty?: number | null
@@ -108,6 +110,7 @@ export type Database = {
         }
         Update: {
           choices?: string[] | null
+          computation?: Json | null
           correct_answer?: string
           created_at?: string
           difficulty?: number | null

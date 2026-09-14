@@ -6,7 +6,8 @@
     "dev": "next dev -p 3001 --turbopack",
     "build": "tsx scripts/build-index.ts && next build --turbopack",
     "start": "next start",
-    "build-index": "tsx scripts/build-index.ts"
+    "build-index": "tsx scripts/build-index.ts",
+    "test": "tsx tests/arithmetic-lines.test.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",

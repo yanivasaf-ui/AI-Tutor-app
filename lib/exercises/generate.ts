@@ -1,6 +1,14 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { search } from "@/lib/rag/store";
 import { getTopicById } from "@/lib/map/topics";
+import {
+  balancesEquation,
+  computeAnswer,
+  formatAnswer,
+  parseComputation,
+  questionStatesComputation,
+  type Computation,
+} from "./arithmetic";
 import { SubjectProfile } from "@/lib/memory/types";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
@@ -14,7 +22,7 @@ import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData,
  */
 const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
   fill_in_blank:
-    'תרגיל חישוב בסיסי (חיבור/חיסור/כפל/חילוק, לפי המתאים לכיתה). type חייב להיות "open", והתשובה היא מספר.',
+    'תרגיל חישוב בסיסי (חיבור/חיסור/כפל/חילוק, לפי המתאים לכיתה). type חייב להיות "open". חובה: השאלה חייבת להציג את התרגיל עצמו בספרות ובסימן הפעולה (למשל "כמה זה 10 × 4?"), לא כבעיה מילולית. החזר/י שדה נוסף computation: {"operands": [המספרים לפי סדר הופעתם בשאלה], "operators": [סימני הפעולה ביניהם, אחד מתוך + - * /]} — לדוגמה לשאלה "10 × 4" החזר/י {"operands": [10, 4], "operators": ["*"]}. אל תחשב/י את התוצאה: האפליקציה מחשבת אותה בעצמה מהשדה הזה, ושדה correctAnswer שלך יוחלף. מותר לשרשר רק + ו- (למשל 87 - 39 + 24); כפל או חילוק חייבים להיות פעולה אחת בלבד. בחילוק — רק חלוקה ללא שארית. התוצאה חייבת להיות מספר שלם ולא שלילי.',
   pick_operation:
     'בעיית מילה קצרה. השאלה מבקשת מהתלמיד/ה לבחור איזו פעולה חשבונית פותרת אותה — לא לחשב את התוצאה עצמה. type חייב להיות "multiple_choice", 4 אפשרויות מתוך פעולות חשבון (חיבור/חיסור/כפל/חילוק, הרלוונטיות בלבד).',
   explain_thinking:
@@ -137,7 +145,36 @@ const LEVEL_GUIDANCE: Record<1 | 2 | 3, string> = {
  * distinct pedagogical patterns instead of drifting toward whichever shape
  * the model finds easiest.
  */
-export async function generateExercise(opts: {
+/** How many times a rejected draft is re-requested before giving up. A
+ *  draft is rejected for failing one of the code checks below (an answer
+ *  that doesn't match its own computation, tiles that can't spell the
+ *  word, an equation that doesn't balance). Those are model slips and
+ *  usually don't repeat, so asking again costs one more call and saves the
+ *  child a "משהו השתבש" screen. */
+const MAX_GENERATION_ATTEMPTS = 3;
+
+/**
+ * Generates one exercise, retrying a draft the code checks reject.
+ * NoCurriculumContentError is not a rejected draft — there is genuinely
+ * nothing to build from — so it propagates immediately.
+ */
+export async function generateExercise(opts: Parameters<typeof generateExerciseOnce>[0]): Promise<Exercise> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_GENERATION_ATTEMPTS; attempt++) {
+    try {
+      return await generateExerciseOnce(opts);
+    } catch (err) {
+      if (err instanceof NoCurriculumContentError) throw err;
+      lastError = err;
+      console.warn(
+        `[exercise-generate] draft ${attempt}/${MAX_GENERATION_ATTEMPTS} rejected: ${err instanceof Error ? err.message : err}`
+      );
+    }
+  }
+  throw lastError;
+}
+
+async function generateExerciseOnce(opts: {
   subject: "math" | "hebrew";
   grade: Grade;
   profile: SubjectProfile | null;
@@ -240,6 +277,7 @@ ${subtypeGuidance(subtype, grade)}
   "numberLine": "רק אם type הוא number_line - {min, max, step}, אחרת השמט שדה זה",
   "tiles": "רק אם type הוא tile_order - {items: [...]}, אחרת השמט שדה זה",
   "grouping": "רק אם type הוא grouping - {items: [...], groupCount: מספר}, אחרת השמט שדה זה",
+  "computation": "רק אם התבנית דורשת זאת (fill_in_blank) - {operands: [...], operators: [...]}, אחרת השמט שדה זה",
   "correctAnswer": "התשובה הנכונה (ראה ההנחיה המיוחדת לתבנית שנבחרה לעיל — לכל תבנית כללים משלה למה correctAnswer אמור להכיל)"
 }`;
 
@@ -301,12 +339,47 @@ ${subtypeGuidance(subtype, grade)}
     if (subtype && SINGLE_SLOT_TILE_SUBTYPES.includes(subtype) && !items.includes(parsed.correctAnswer)) {
       throw new Error(`${subtype} correctAnswer isn't among the offered tiles.`);
     }
+    // Membership in the tiles was the only check here, which let a tile that
+    // doesn't actually balance the equation through ("3 + ___ = 7" with the
+    // answer 5, as long as 5 was on offer). Solve it in code instead.
+    if (subtype === "equation_balance" && !balancesEquation(parsed.question, parsed.correctAnswer)) {
+      throw new Error(
+        `equation_balance answer "${parsed.correctAnswer}" doesn't balance "${parsed.question}".`
+      );
+    }
 
     tiles = {
       items,
       slotCount: subtype && SINGLE_SLOT_TILE_SUBTYPES.includes(subtype) ? 1 : items.length,
       joinWith: subtype === "word_build" ? "" : " ",
     };
+  }
+
+  // ---- Arithmetic: code computes, the model only supplies the operands ----
+  // The model is not trusted to state what 10 × 4 is. It hands over the
+  // computation as data; computeAnswer() produces the number, and the
+  // question the child will SEE has to state that same computation, so the
+  // rendered text and the verified answer cannot drift apart.
+  let computation: Computation | undefined;
+  let verifiedAnswer: string | undefined;
+  if (subtype === "fill_in_blank") {
+    const parsedComputation = parseComputation(parsed.computation);
+    if (!parsedComputation) {
+      throw new Error(
+        `fill_in_blank returned no usable computation payload (got ${JSON.stringify(parsed.computation)}).`
+      );
+    }
+    if (!questionStatesComputation(parsed.question, parsedComputation)) {
+      throw new Error(
+        `fill_in_blank question "${parsed.question}" doesn't state its own computation ${JSON.stringify(parsedComputation)}.`
+      );
+    }
+    const answer = computeAnswer(parsedComputation);
+    if (answer === null) {
+      throw new Error(`fill_in_blank computation ${JSON.stringify(parsedComputation)} has no valid result.`);
+    }
+    computation = parsedComputation;
+    verifiedAnswer = formatAnswer(answer);
   }
 
   let grouping: GroupingData | undefined;
@@ -347,7 +420,10 @@ ${subtypeGuidance(subtype, grade)}
     numberLine,
     tiles,
     grouping,
-    correctAnswer: parsed.correctAnswer,
+    // For a computation exercise this is the code-computed number, never
+    // the model's own arithmetic (see ./arithmetic.ts).
+    correctAnswer: verifiedAnswer ?? parsed.correctAnswer,
+    computation,
     difficulty: level,
   };
 }

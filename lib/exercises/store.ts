@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 import { getTopicById } from "@/lib/map/topics";
+import { parseComputation } from "./arithmetic";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -29,6 +30,7 @@ interface DbExerciseRow {
   grouping: unknown;
   correct_answer: string;
   difficulty?: number | null;
+  computation?: unknown;
 }
 
 function rowToExercise(row: DbExerciseRow): Exercise {
@@ -47,6 +49,10 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     tiles: (row.tiles as TileOrderData | null) ?? undefined,
     grouping: (row.grouping as GroupingData | null) ?? undefined,
     correctAnswer: row.correct_answer,
+    // Re-validated on the way out, not trusted because it's in our own
+    // table: a spec that no longer parses means the exercise falls back to
+    // the non-computation path rather than grading against a bad number.
+    computation: parseComputation(row.computation) ?? undefined,
     difficulty: d === 1 || d === 2 || d === 3 ? d : undefined,
   };
 }
@@ -142,6 +148,7 @@ export async function saveExercise(
       tiles: (exercise.tiles as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["tiles"]) ?? null,
       grouping: (exercise.grouping as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["grouping"]) ?? null,
       correct_answer: exercise.correctAnswer,
+      computation: (exercise.computation as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["computation"]) ?? null,
       difficulty: exercise.difficulty ?? null,
     })
     .select()

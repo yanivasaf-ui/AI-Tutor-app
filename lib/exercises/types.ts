@@ -1,4 +1,5 @@
 import { Subject } from "../memory/types";
+import type { Computation } from "./arithmetic";
 
 /**
  * "number_line" and "tile_order" are Tier 2 (output/exercise-types-build-brief.md)
@@ -112,6 +113,11 @@ export interface Exercise {
   /** Present only when type === "grouping". */
   grouping?: GroupingData;
   correctAnswer: string;
+  /** The structured arithmetic behind a computation exercise (operands +
+   *  operators). When present, `correctAnswer` was computed from THIS by
+   *  lib/exercises/arithmetic.ts — never stated by a model — and it is what
+   *  grading and every answer-bearing line are checked against. */
+  computation?: Computation;
   /** The adaptive level (1-3) this exercise was built at — see
    *  lib/practice/state.ts. Absent on exercises from before levels, which
    *  reuse treats as level 2. */
