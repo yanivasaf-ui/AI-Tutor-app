@@ -22,7 +22,7 @@ import {
   wrongMathTermsIn,
   type Computation,
 } from "../lib/exercises/arithmetic";
-import { numericAnswerMatches, safeFeedback } from "../lib/exercises/evaluate";
+import { isWrongBareNumberAgainstRubric, numericAnswerMatches, safeFeedback } from "../lib/exercises/evaluate";
 
 let passed = 0;
 const failures: string[] = [];
@@ -198,6 +198,26 @@ t("safeFeedback rejects a model line with a wrong place-value term, even with th
   const comp: Computation = { operands: [25, 17], operators: ["+"] };
   const line = safeFeedback("קודם מחברים את העשיריות, ואז מגיעים ל-42.", { verifiedAnswer: 42, correct: true, secondAttempt: false, computation: comp });
   assert.notEqual(line, "קודם מחברים את העשיריות, ואז מגיעים ל-42.");
+});
+
+console.log("\nFIX 4 (2026-09-14): a wrong bare numeric answer is wrong, with or without an explanation");
+console.log("  regression: '45 ממתקים' (answer 20) got \"התשובה 20 היא נכונה, אבל השאלה ביקשה להסביר\"");
+t("the reported repro: a bare wrong number against a rubric naming the real one", () => {
+  assert.equal(isWrongBareNumberAgainstRubric("45 ממתקים", "הסבר טוב מזכיר חיסור 25-5=20 ומגיע ל-20 ממתקים"), true);
+});
+t("a bare CORRECT number is not flagged — only a wrong one forces the override", () => {
+  assert.equal(isWrongBareNumberAgainstRubric("20 ממתקים", "הסבר טוב מזכיר חיסור 25-5=20 ומגיע ל-20 ממתקים"), false);
+});
+t("real reasoning (not a bare number) is never second-guessed, even if it lands on the wrong number", () => {
+  // This subtype exists to judge the REASONING, not re-grade the number —
+  // the override only ever fires for a bare number with nothing else said.
+  assert.equal(isWrongBareNumberAgainstRubric("לקחתי 25 ופחתתי 5 ויצא לי 45 בטעות", "הסבר טוב מזכיר חיסור 25-5=20"), false);
+});
+t("a rubric with no number at all names nothing to contradict", () => {
+  assert.equal(isWrongBareNumberAgainstRubric("45", "הסבר שמזכיר פירוק למאות/עשרות/יחידות"), false);
+});
+t("more than one number in the kid's answer is not treated as 'bare' — left to the model", () => {
+  assert.equal(isWrongBareNumberAgainstRubric("45 או אולי 20", "התשובה היא 20"), false);
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);

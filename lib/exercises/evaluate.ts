@@ -51,6 +51,41 @@ export function numericAnswerMatches(kidAnswer: string, answer: number): boolean
 }
 
 /**
+ * FIX 4 (2026-09-14, production bug): a kid answered an explain_thinking
+ * story exercise with a bare wrong number ("45 ממתקים", answer 20) and the
+ * feedback came back "התשובה 20 היא נכונה, אבל השאלה ביקשה להסביר" — the
+ * child heard the RIGHT number affirmed, never told THEIRS was wrong. This
+ * subtype has no single fixed answer by design (correctAnswer is a rubric
+ * describing what a good explanation looks like, not a target — see
+ * lib/exercises/types.ts), so the model alone decides `correct`; nothing
+ * in code was checking its verdict against a number at all.
+ *
+ * True only when there's something solid to contradict: the kid's whole
+ * answer is a single bare number (so this never second-guesses real
+ * reasoning, which is the actual point of this subtype), the rubric names
+ * exactly one number worth trusting as the implied target (its last
+ * number — the same "final number is the answer" reading
+ * numericAnswerMatches uses for a restatement), and the two disagree.
+ * Whenever the rubric describes reasoning with no number at all, or the
+ * kid wrote more than a bare number, this stays false and the model's own
+ * judgment is left alone — the rule this enforces is asymmetric on
+ * purpose: "a wrong numeric answer is wrong, with or without an
+ * explanation," not "a bare number is graded like a computation exercise."
+ */
+export function isWrongBareNumberAgainstRubric(kidAnswer: string, rubricCorrectAnswer: string): boolean {
+  const kidNumbers = tokenize(kidAnswer)
+    .filter((t) => /^\d+$/.test(t))
+    .map(Number);
+  if (kidNumbers.length !== 1) return false;
+  const rubricNumbers = tokenize(rubricCorrectAnswer)
+    .filter((t) => /^\d+$/.test(t))
+    .map(Number);
+  if (rubricNumbers.length === 0) return false;
+  const impliedAnswer = rubricNumbers[rubricNumbers.length - 1];
+  return kidNumbers[0] !== impliedAnswer;
+}
+
+/**
  * The last gate before the character speaks. Returns the model's line when
  * it is arithmetically clean, and a deterministic line when it is not.
  */
@@ -176,8 +211,19 @@ ${wrongBranch}
 
   // Code decides correctness whenever there's a verified number; the model
   // only ever gets to decide it for the non-arithmetic subtypes.
-  const correct = codeGraded ? correctByCode : parsed.correct === true;
-  const modelText = typeof parsed.feedback === "string" ? parsed.feedback : "";
+  const modelSaysCorrect = codeGraded ? correctByCode : parsed.correct === true;
+  // FIX 4: overrides the model's own verdict — never its opposite. A bare
+  // wrong number against the rubric forces `correct = false` regardless of
+  // what parsed.correct said; it never flips a false to true.
+  const wrongBareNumber = !codeGraded && isRubric && isWrongBareNumberAgainstRubric(kidAnswer, exercise.correctAnswer);
+  const correct = wrongBareNumber ? false : modelSaysCorrect;
+  // The model's own prose can't be trusted once its verdict is overridden
+  // — it was very possibly written to affirm the number it thought was
+  // right, which is exactly the confusing "20 is correct, but explain"
+  // sentence this fix exists for. Discarding it here (not passing it to
+  // safeFeedback at all) falls through to that function's own existing
+  // deterministic fallback, the same safety net the arithmetic guard uses.
+  const modelText = wrongBareNumber ? "" : typeof parsed.feedback === "string" ? parsed.feedback : "";
   let feedback = safeFeedback(modelText, { verifiedAnswer, correct, secondAttempt, computation: exercise.computation });
 
   // The verified answer is stated by code, not by the model — and only
