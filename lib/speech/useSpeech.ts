@@ -189,7 +189,19 @@ function stopPlayback() {
   pendingFetch?.abort();
   pendingFetch = null;
   if (audioEl && !audioEl.paused) audioEl.pause();
-  if (available()) speechSynthesis.cancel();
+  // Only when the engine actually has something in flight. speak() calls
+  // this unconditionally on every utterance, and useVoiceInput's barge-in
+  // (lib/voice/useVoiceInput.ts's start()) calls stopSpeaking() — which
+  // calls this — on every single mic press, whether or not the character
+  // is talking. Calling cancel() on an idle engine cancels nothing, but
+  // WebKit and Chromium both have long-documented bugs where a cancel()
+  // issued back-to-back with the next speak() — exactly what a rapid
+  // press-then-answer voice turn produces — can leave the synthesis queue
+  // wedged, silently dropping every speak() after it for the rest of the
+  // page's life. Gating on "is there actually something to cancel" removes
+  // the redundant calls without changing behavior when something really is
+  // playing or queued.
+  if (available() && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel();
 }
 
 /** Resolves true when the line is handled (playing, or superseded by a

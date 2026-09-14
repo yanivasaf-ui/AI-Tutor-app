@@ -8,7 +8,7 @@ import MicButton from "@/components/character/MicButton";
 import KidHeader from "@/components/home/KidHeader";
 import { TOPICS, getTopicById, type MapTopic } from "@/lib/map/topics";
 import { GRADES } from "@/lib/kids/grade";
-import { matchSubject, matchTopic } from "@/lib/voice/matchTopic";
+import { resolveFreePracticeIntent } from "@/lib/voice/freePracticeIntent";
 import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
@@ -84,19 +84,32 @@ export default function FreePractice({
     guide.say(l);
   }
 
+  // The ONE place a spoken utterance turns into an action — resolved by
+  // lib/voice/freePracticeIntent.ts, DOM-free and unit-tested there. Every
+  // branch below dispatches into the exact same functions a tap uses
+  // (chooseSubject, onPick), so the character's line can never differ by
+  // input modality: whichever path sets (subject, override), useGuide's
+  // cue effect is what speaks it, uniformly.
   function handleVoice(transcript: string) {
-    const pool = subject ? TOPICS.filter((t) => t.subject === subject) : TOPICS;
-    const topic = matchTopic(transcript, pool, kidGrade);
-    if (topic) {
-      onPick(topic);
-      return;
+    const intent = resolveFreePracticeIntent(transcript, subject, kidGrade);
+    switch (intent.kind) {
+      case "topic":
+        onPick(intent.topic);
+        return;
+      case "subject":
+        chooseSubject(intent.subject);
+        return;
+      case "same-subject":
+        // A tap can never produce this — picking a subject immediately
+        // swaps the subject grid for the topic list, so there's no button
+        // to re-tap. Re-say the topic prompt rather than silently doing
+        // nothing or claiming the topic wasn't found: the kid gets an
+        // acknowledgement either way, and the state was already correct.
+        say(lines.freePickTopic(kidName, suggestionHere));
+        return;
+      case "not-found":
+        say(lines.topicNotFound(kidName));
     }
-    const spokenSubject = matchSubject(transcript);
-    if (spokenSubject && spokenSubject !== subject) {
-      chooseSubject(spokenSubject);
-      return;
-    }
-    say(lines.topicNotFound(kidName));
   }
 
   // The kid's own grade first, then the rest in order. The suggested
