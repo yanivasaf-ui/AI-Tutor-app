@@ -12,7 +12,13 @@
 
   /* Semantic */
   --color-surface: #ffffff;
-  --color-canvas: #f0fdfa; /* app background — soft teal tint, warm not clinical */
+  /* Kid-scene reskin (2026-09-15): warmer than the old teal-tinted white —
+     the "warm cream stage" the reskin brief asked for, app-wide so every
+     screen shares one backdrop rather than the 6 redesigned screens
+     looking warm and everything else looking clinical by contrast. Visual
+     only: nothing reads this value for anything but paint. */
+  --color-canvas: #fff8ec;
+  --color-canvas-deep: #fcefd8; /* the deeper cream a card/stage gradient settles into */
   --color-ink: #1e293b; /* primary text */
   --color-ink-soft: #64748b;
   --color-success: #22c55e;
@@ -21,9 +27,32 @@
   --color-warm-soft: #fef3c7;
   --color-trail-locked: #cbd5e1; /* the path not yet walked */
 
+  /* Kid-scene reskin: per-subject saturated exercise themes (item 4 of the
+     brief) and the milestone/landmark gold — distinct from the app's
+     general teal/purple/pink brand triad above, used only on the screens
+     the reskin brief names (exercise stage, topic-picker stage, milestone,
+     path landmarks), not repurposed onto unrelated existing UI. */
+  --color-math: #ff7a57;
+  --color-math-deep: #e85d3a;
+  --color-math-soft: #ffeadf;
+  --color-math-bg: #ffb199; /* the exercise/topic-picker stage's gradient top */
+  --color-hebrew: #8b5cf6;
+  --color-hebrew-deep: #6d3fd6;
+  --color-hebrew-soft: #efe7ff;
+  --color-hebrew-bg: #b79cfa;
+  --color-gold: #ffb627;
+  --color-gold-deep: #e8961a;
+
+  /* Type — the reskin's heavy rounded Hebrew display face, next to Heebo's
+     existing body/UI weights (kept as-is: this is a headline face, not a
+     body replacement). --font-rubik is wired in app/layout.tsx exactly
+     like --font-heebo already was. */
+  --font-display: var(--font-rubik), var(--font-heebo), Arial, Helvetica, sans-serif;
+
   /* Shape — kids' UI is round */
   --radius-bubble: 1.5rem; /* speech bubbles, cards */
   --radius-button: 9999px; /* all kid-facing buttons are pills */
+  --radius-stage: 2rem; /* the reskin's larger play-card / scene panels */
 
   /* Motion */
   --animate-bob: bob 3s ease-in-out infinite;
@@ -98,4 +127,12 @@ body {
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-heebo), Arial, Helvetica, sans-serif;
+}
+
+/* Kid-scene reskin: the ONE headline every redesigned screen gets, in the
+ * heavy rounded display face — deliberately not the default body font, so
+ * reaching for it stays a decision (one h1 per screen), not a drift. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
 }

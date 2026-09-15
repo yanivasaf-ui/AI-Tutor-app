@@ -40,8 +40,13 @@ interface Props {
    *  between the name and the text, smaller, so the bubble reads in the
    *  same order it's spoken: name, passage, question. */
   detail?: string;
-  /** "passage" is a tail-less, lighter card. */
-  variant?: "default" | "passage";
+  /** "passage" is a tail-less, lighter card. "hero" (kid-scene reskin,
+   *  2026-09-15) is the "one strong headline" style — no bubble chrome
+   *  (transparent, no shadow, no tail), big display-weight text — while
+   *  keeping the exact same SpeakButton/voice-sync machinery every other
+   *  variant has. Text color follows `tone`'s ink, or pass one via
+   *  `className` for a saturated backdrop. */
+  variant?: "default" | "passage" | "hero";
   /** Feedback colouring: success-green or warm-amber. Never red. */
   tone?: Tone;
   /** Which edge points at the speaking character. */
@@ -82,17 +87,20 @@ export default function SpeechBubble({
   className,
 }: Props) {
   const isPassage = variant === "passage";
-  const bg = isPassage ? "bg-[var(--color-teal-soft)]/60" : TONE_BG[tone];
+  const isHero = variant === "hero";
+  const bg = isHero ? "bg-transparent" : isPassage ? "bg-[var(--color-teal-soft)]/60" : TONE_BG[tone];
   const spokenText = [lead ? `${lead},` : null, detail, spokenTextOverride ?? text].filter(Boolean).join(" ");
-  const showTail = !isPassage && tail !== "none";
+  const showTail = !isPassage && !isHero && tail !== "none";
   const tailY = tail === "top" ? "-top-2" : "-bottom-2";
   const tailXClass =
     tailX !== undefined ? "" : tailAlign === "center" ? "inset-x-0 mx-auto" : tailAlign === "start" ? "start-8" : "end-8";
-  const textClass = isPassage
-    ? "text-lg text-[var(--color-ink-soft)]"
-    : size === "md"
-      ? "text-lg font-medium text-[var(--color-ink)]"
-      : "text-2xl font-medium text-[var(--color-ink)]";
+  const textClass = isHero
+    ? "display text-3xl text-center"
+    : isPassage
+      ? "text-lg text-[var(--color-ink-soft)]"
+      : size === "md"
+        ? "text-lg font-medium text-[var(--color-ink)]"
+        : "text-2xl font-medium text-[var(--color-ink)]";
   const leadClass = "font-bold text-[var(--color-teal-ink)]";
 
   return (
@@ -100,11 +108,11 @@ export default function SpeechBubble({
       initial={{ opacity: 0, y: tail === "top" ? -8 : 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className={`relative rounded-[var(--radius-bubble)] px-5 py-4 flex items-start gap-3 ${bg} ${
-        isPassage ? "" : "shadow-sm"
+      className={`relative rounded-[var(--radius-bubble)] flex items-start gap-3 ${bg} ${
+        isHero ? "justify-center px-2 py-1" : isPassage ? "px-5 py-4" : "px-5 py-4 shadow-sm"
       } ${className ?? ""}`}
     >
-      <div className="flex-1 min-w-0">
+      <div className={isHero ? "min-w-0" : "flex-1 min-w-0"}>
         {eyebrow && (
           <p className="text-xs font-bold text-[var(--color-teal-ink)]/70 mb-1 line-clamp-2">{eyebrow}</p>
         )}
