@@ -59,6 +59,12 @@ interface Props {
   sessionCloseShown: boolean;
   onSessionClose: () => void;
   onBackToMap: () => void;
+  /** Voice-experience fix item 6 (2026-09-15): a real exit all the way to
+   *  ModeChoice, distinct from onBackToMap (which only returns to the map
+   *  or topic list this exercise was opened from). Offered from the
+   *  correct-answer burst and the topic-complete milestone, alongside
+   *  their existing "keep going" action. */
+  onGoHome: () => void;
   /** Where this exercise was started from. "journey" answers can complete
    *  the map stop; "free" answers never touch map progress — the server
    *  enforces it (lib/practice/state.ts recordAnswer). */
@@ -111,6 +117,7 @@ export default function ExerciseScreen({
   sessionCloseShown,
   onSessionClose,
   onBackToMap,
+  onGoHome,
   mode = "journey",
   backLabel = "חזרה למפה",
 }: Props) {
@@ -133,6 +140,11 @@ export default function ExerciseScreen({
   const [micDenied, setMicDenied] = useState(false);
   const [topicCelebration, setTopicCelebration] = useState(false);
   const [sessionGoodbye, setSessionGoodbye] = useState(false);
+  /** Voice-experience fix item 6: the top bar's back arrow used to leave
+   *  the exercise the instant it was tapped — one stray tap mid-question
+   *  and the kid lost their place with no chance to reconsider. Now it
+   *  opens this confirm step instead of calling onBackToMap directly. */
+  const [confirmingLeave, setConfirmingLeave] = useState(false);
   /** 1 on a fresh question, 2 on the retry after a hint. */
   const [attempt, setAttempt] = useState<1 | 2>(1);
   /** The last evaluation is the "something broke" stand-in, not a real
@@ -498,7 +510,7 @@ export default function ExerciseScreen({
   const topBar = (
     <div className="pt-2 pb-1">
       <div className="flex justify-between items-center">
-        <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-white/80">
+        <button onClick={() => setConfirmingLeave(true)} className="min-h-11 px-1 text-sm text-white/80">
           ← {backLabel}
         </button>
         <div className="flex items-center gap-3">
@@ -773,12 +785,20 @@ export default function ExerciseScreen({
           )}
 
           {evaluation && evaluation.correct && (
-            <button
-              onClick={() => loadNextExercise()}
-              className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-1"
-            >
-              עוד תרגיל!
-            </button>
+            <div className="self-center flex flex-col items-center gap-2 mt-1">
+              <button
+                onClick={() => loadNextExercise()}
+                className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium"
+              >
+                עוד תרגיל!
+              </button>
+              {/* Voice-experience fix item 6: the burst used to offer only
+                  "עוד תרגיל!" — no way home without answering another
+                  question first. */}
+              <button onClick={onGoHome} className="min-h-11 px-4 text-sm text-[var(--color-ink-soft)] underline">
+                חזרה הביתה
+              </button>
+            </div>
           )}
         </motion.div>
       </AnimatePresence>
@@ -838,8 +858,35 @@ export default function ExerciseScreen({
           actions={[
             { label: "לתחנה הבאה", primary: true, onClick: onBackToMap },
             { label: "עוד תרגול כאן", onClick: () => loadNextExercise() },
+            { label: "חזרה הביתה", onClick: onGoHome },
           ]}
         />
+      )}
+
+      {/* Voice-experience fix item 6: the back arrow's confirm step —
+          discreet trigger (the existing top-bar link), a real pause
+          before anything is lost. */}
+      {confirmingLeave && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
+          <div className="w-full max-w-xs bg-[var(--color-surface)] rounded-[var(--radius-stage)] shadow-lg p-5 flex flex-col items-center gap-4 text-center">
+            <p className="text-lg font-bold text-[var(--color-ink)]">לצאת מהתרגיל?</p>
+            <p className="text-sm text-[var(--color-ink-soft)]">התרגיל הנוכחי לא יישמר.</p>
+            <div className="w-full flex flex-col gap-2">
+              <button
+                onClick={() => setConfirmingLeave(false)}
+                className="min-h-14 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-medium"
+              >
+                להישאר
+              </button>
+              <button
+                onClick={onBackToMap}
+                className="min-h-12 rounded-[var(--radius-button)] bg-transparent text-[var(--color-ink-soft)] text-base"
+              >
+                כן, לצאת
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

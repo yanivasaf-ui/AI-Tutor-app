@@ -146,6 +146,10 @@ export default function KidHome({
             setView(from.mode === "journey" ? { name: "journey" } : { name: "free", subject: from.subject });
             refresh();
           }}
+          onGoHome={() => {
+            setView({ name: "choose" });
+            refresh();
+          }}
         />
       </div>
     );
