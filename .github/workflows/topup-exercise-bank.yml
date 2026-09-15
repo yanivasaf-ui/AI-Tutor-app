@@ -1,0 +1,46 @@
+name: Top up exercise bank
+
+# Keeps lib/exercises/store.ts's shared `exercises` table full: as kids
+# consume banked exercises (findReusableExercise excludes ones they've
+# already attempted), this refills only the shortfall per topic+level —
+# scripts/seed-exercise-bank.ts is idempotent, so a normal run here does
+# nothing to slots that are already at target.
+#
+# Chosen over Vercel Cron: this app runs on Vercel's Hobby plan, already
+# near its 12-serverless-function cap (see lib/exercises/generate.ts's own
+# notes on cold-start budget) — a topup route would be another function on
+# that budget for something that isn't user-facing and doesn't need to run
+# inside the Next.js runtime at all. A GitHub Actions cron runs the same
+# scripts/seed-exercise-bank.ts used for the initial seed, on a schedule,
+# with no impact on the deployed app's function count or cold starts.
+#
+# Requires two repo secrets (Settings > Secrets and variables > Actions):
+#   ANTHROPIC_API_KEY        - same key used by the app's own generation
+#   SUPABASE_SERVICE_ROLE_KEY - lets the script write directly to `exercises`,
+#                               bypassing RLS (the app's own policies require
+#                               a signed-in user; this is a maintenance job,
+#                               not a kid's session) — see the Supabase
+#                               project's API settings for this key. Not yet
+#                               added as of 2026-09-14: this workflow is
+#                               wired and ready, but won't run until both
+#                               secrets are set.
+on:
+  schedule:
+    - cron: "0 3 * * *" # daily, 03:00 UTC — well outside typical usage hours
+  workflow_dispatch: {} # manual trigger, e.g. right after raising TARGET_PER_SLOT
+
+jobs:
+  topup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx tsx scripts/seed-exercise-bank.ts --target 10 --concurrency 8
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}

@@ -20,6 +20,15 @@ interface Props {
  * drop it there (tap-to-place, same paradigm as TileOrderWidget). Tap an
  * item already in a bucket to send it back to the pool.
  *
+ * A placement counter and an alternate numeric path were added after
+ * 2026-09-12 iPhone QA found this an unexplained dead end: nothing on
+ * screen said what to do, and a kid facing up to 20 stars with no progress
+ * feedback had no way to tell whether they were nearly done or barely
+ * started. ExerciseScreen renders the actual how-to caption (see
+ * lines.groupingInstructions) above this component — this widget owns
+ * only the counter and the numeric shortcut, which need its live
+ * `assignments` state.
+ *
  * State updates use the functional setState form throughout, and
  * `assignments` + `selectedItem` live in ONE combined state object updated
  * by a single functional call per action — not two separate useState
@@ -37,9 +46,11 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
     assignments: Array(data.items.length).fill(null),
     selectedItem: null,
   });
+  const [manualCount, setManualCount] = useState("");
   const { assignments, selectedItem } = state;
 
-  const allAssigned = assignments.every((a) => a !== null);
+  const placedCount = assignments.filter((a) => a !== null).length;
+  const allAssigned = placedCount === assignments.length;
 
   function pickUpItem(itemIndex: number) {
     if (disabled) return;
@@ -76,15 +87,30 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
     onSubmit(sizes.join(", "));
   }
 
+  /** The fallback path for a kid (or a parent helping) who'd rather just
+   *  answer "how many per group" than tap every star into a bucket.
+   *  Submits through the exact same onSubmit the tap-to-place path uses —
+   *  evaluateExerciseAnswer's grouping instruction accepts any answer
+   *  whose numbers all equal the correct per-group count, and a single
+   *  typed number trivially satisfies that. */
+  function handleManualSubmit() {
+    if (disabled || !manualCount.trim()) return;
+    onSubmit(manualCount.trim());
+  }
+
   return (
     <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+      <p className="text-center text-sm font-medium text-[var(--color-ink-soft)]">
+        {placedCount} מתוך {data.items.length}
+      </p>
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {Array.from({ length: data.groupCount }, (_, bucketIndex) => (
           <div
             key={bucketIndex}
             onClick={() => dropInBucket(bucketIndex)}
-            className={`min-h-[3rem] rounded-lg border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
-              selectedItem !== null ? "border-blue-400 bg-blue-50" : "border-slate-300 bg-slate-50"
+            className={`min-h-16 rounded-2xl border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
+              selectedItem !== null ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)]" : "border-[var(--color-teal)]/40 bg-[var(--color-surface)]"
             }`}
           >
             {data.items.map((item, i) =>
@@ -96,7 +122,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
                     removeFromBucket(i);
                   }}
                   disabled={disabled}
-                  className="text-xl leading-none"
+                  className="text-2xl leading-none"
                 >
                   {item}
                 </button>
@@ -106,15 +132,15 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap gap-3 justify-center">
         {data.items.map((item, i) =>
           assignments[i] === null ? (
             <button
               key={i}
               onClick={() => pickUpItem(i)}
               disabled={disabled}
-              className={`text-xl leading-none w-10 h-10 rounded-lg border flex items-center justify-center ${
-                selectedItem === i ? "border-blue-500 bg-blue-100 scale-110" : "border-slate-200 bg-white"
+              className={`text-2xl leading-none h-14 w-14 rounded-full border-2 flex items-center justify-center ${
+                selectedItem === i ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)] scale-110" : "border-[var(--color-teal)]/30 bg-[var(--color-surface)]"
               }`}
             >
               {item}
@@ -126,10 +152,34 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
       <button
         onClick={handleSubmit}
         disabled={disabled || !allAssigned}
-        className="self-center bg-blue-600 text-white rounded px-4 py-2 text-sm disabled:opacity-30"
+        className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium disabled:opacity-30"
       >
         {disabled ? "בודק/ת..." : "בדוק/י תשובה"}
       </button>
+
+      <div className="flex flex-col items-center gap-2 mt-1">
+        <p className="text-sm text-[var(--color-ink-soft)]">או כתוב כמה בכל קבוצה</p>
+        <div className="flex gap-2">
+          <input
+            type="number"
+            inputMode="numeric"
+            value={manualCount}
+            onChange={(e) => setManualCount(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleManualSubmit()}
+            disabled={disabled}
+            dir="ltr"
+            aria-label="כמה בכל קבוצה"
+            className="w-20 min-h-12 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] px-3 text-xl text-center"
+          />
+          <button
+            onClick={handleManualSubmit}
+            disabled={disabled || !manualCount.trim()}
+            className="min-h-12 px-6 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-teal)]/30 text-[var(--color-ink)] font-medium disabled:opacity-30"
+          >
+            שלח
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

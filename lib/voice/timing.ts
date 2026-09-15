@@ -15,6 +15,7 @@
 
 export type VoiceLeg =
   | "listen" // mic down -> transcript in hand (STT)
+  | "transcribe" // mic up -> transcript in hand (cloud STT: upload + vendor). The number the ~2s-after-release target is about.
   | "match" // transcript -> matched answer (local, expected ~0ms)
   | "evaluate" // POST /api/tutor answer_exercise round trip (LLM)
   | "speak-start" // speak() called -> audio actually began (TTS)

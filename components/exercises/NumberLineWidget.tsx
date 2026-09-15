@@ -20,13 +20,13 @@ export default function NumberLineWidget({ data, disabled, onSubmit }: Props) {
   for (let v = data.min; v <= data.max; v += data.step) ticks.push(v);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 py-2">
+    <div className="flex flex-wrap items-center justify-center gap-3 py-2" dir="ltr">
       {ticks.map((v) => (
         <button
           key={v}
           onClick={() => onSubmit(String(v))}
           disabled={disabled}
-          className="min-w-[2.75rem] h-11 px-2 rounded-full border-2 border-slate-300 bg-white font-medium text-slate-700 hover:border-blue-400 hover:bg-blue-50 disabled:opacity-50"
+          className="h-14 min-w-14 px-2 rounded-full border-2 border-[var(--color-teal)]/40 bg-[var(--color-surface)] font-medium text-xl text-[var(--color-ink)] hover:border-[var(--color-teal)] hover:bg-[var(--color-teal-soft)] disabled:opacity-50"
         >
           {v}
         </button>

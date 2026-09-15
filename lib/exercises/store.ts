@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 import { getTopicById } from "@/lib/map/topics";
+import { parseComputation } from "./arithmetic";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -21,6 +22,7 @@ interface DbExerciseRow {
   type: string;
   subtype: string | null;
   topic: string;
+  topic_id?: string | null;
   passage: string | null;
   question: string;
   choices: string[] | null;
@@ -28,9 +30,12 @@ interface DbExerciseRow {
   tiles: unknown;
   grouping: unknown;
   correct_answer: string;
+  difficulty?: number | null;
+  computation?: unknown;
 }
 
 function rowToExercise(row: DbExerciseRow): Exercise {
+  const d = row.difficulty;
   return {
     id: row.id,
     subject: row.subject as "math" | "hebrew",
@@ -38,6 +43,7 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     type: row.type as ExerciseType,
     subtype: (row.subtype as ExerciseSubtype | null) ?? undefined,
     topic: row.topic,
+    topicId: row.topic_id ?? undefined,
     passage: row.passage ?? undefined,
     question: row.question,
     choices: row.choices ?? undefined,
@@ -45,29 +51,52 @@ function rowToExercise(row: DbExerciseRow): Exercise {
     tiles: (row.tiles as TileOrderData | null) ?? undefined,
     grouping: (row.grouping as GroupingData | null) ?? undefined,
     correctAnswer: row.correct_answer,
+    // Re-validated on the way out, not trusted because it's in our own
+    // table: a spec that no longer parses means the exercise falls back to
+    // the non-computation path rather than grading against a bad number.
+    computation: parseComputation(row.computation) ?? undefined,
+    difficulty: d === 1 || d === 2 || d === 3 ? d : undefined,
   };
 }
 
-/** Looks for an existing bank exercise this kid hasn't already attempted.
- *  Prefers less-used exercises so reuse spreads across the bank rather than
- *  hammering the same one. Returns null when nothing fits — the caller
- *  should fall back to generating a fresh one.
+/** How many unseen candidates to pull before picking one — the pre-
+ *  generated bank (2026-09-14) targets 10 per topic+level, so this
+ *  comfortably covers a whole slot without a second round trip; the
+ *  random pick among them is what makes serving feel like "a bank",
+ *  not "the same three questions in rotation". */
+const REUSE_CANDIDATE_LIMIT = 20;
+
+/** Looks for an existing bank exercise this kid hasn't already attempted,
+ *  and returns a RANDOM one among the matches — not the least-used one.
+ *  (2026-09-14: was `order("times_used").limit(1)`, which serves the
+ *  bank round-robin; a kid doing several in a row would notice the
+ *  pattern. PostgREST's JS client has no supported "order by random()",
+ *  so this pulls a candidate page and picks client-side instead — cheap
+ *  at the bank's actual scale, ~10-20 rows per slot.) Returns null when
+ *  nothing fits — the caller falls back to generating a fresh one.
  *
  *  `topicId` (feat: topic-scoped exercise generation) narrows reuse to
- *  exercises whose stored `topic` string matches that map node's
- *  canonical topic. Without this, a kid tapping one topic node could get
- *  served a reused exercise from a completely different topic in the same
- *  subject+grade — the exact "map promises one thing, API delivers
- *  another" gap this feature exists to close, just showing up on the
- *  reuse path instead of the generation path. An unresolvable topicId is
- *  treated the same as no topicId — falls back to subject+grade reuse
- *  rather than refusing to serve anything. */
+ *  this exact map node — matched on the stable topic_id column
+ *  (2026-09-14: added alongside the pre-generated bank) when the row has
+ *  one, falling back to the long curriculum `topic` string for older
+ *  rows that predate it. Without this, a kid tapping one topic node could
+ *  get served a reused exercise from a completely different topic in the
+ *  same subject+grade. An unresolvable topicId is treated the same as no
+ *  topicId — falls back to subject+grade reuse rather than refusing to
+ *  serve anything.
+ *
+ *  `difficulty` (adaptive levels, lib/practice/state.ts) narrows reuse to
+ *  exercises built at that level, so a kid who just dropped a level isn't
+ *  handed a banked exercise from the level they struggled at. Exercises
+ *  banked before levels existed have no difficulty and count as level 2,
+ *  the level every exercise was implicitly built at back then. */
 export async function findReusableExercise(
   supabase: Client,
   subject: "math" | "hebrew",
   grade: Grade,
   kidId: string | null,
-  topicId?: string
+  topicId?: string,
+  difficulty?: 1 | 2 | 3
 ): Promise<Exercise | null> {
   let attemptedIds: string[] = [];
   if (kidId) {
@@ -83,23 +112,31 @@ export async function findReusableExercise(
     .select("*")
     .eq("subject", subject)
     .eq("grade", grade)
-    .order("times_used", { ascending: true })
-    .limit(1);
+    .limit(REUSE_CANDIDATE_LIMIT);
 
-  if (topicId) {
-    const topic = getTopicById(topicId);
-    if (topic && topic.subject === subject && topic.grade === grade) {
-      query = query.eq("topic", topic.topic);
-    }
+  const topic = topicId ? getTopicById(topicId) : undefined;
+  const topicScoped = topic && topic.subject === subject && topic.grade === grade;
+  if (topicScoped) {
+    // Rows from before topic_id existed have it NULL but do carry the
+    // matching `topic` string — the `or` keeps them servable instead of
+    // orphaning them the moment this column shipped.
+    query = query.or(`topic_id.eq.${topic!.id},and(topic_id.is.null,topic.eq.${topic!.topic})`);
+  }
+
+  if (difficulty === 2) {
+    query = query.or("difficulty.eq.2,difficulty.is.null");
+  } else if (difficulty) {
+    query = query.eq("difficulty", difficulty);
   }
 
   if (attemptedIds.length > 0) {
     query = query.not("id", "in", `(${attemptedIds.join(",")})`);
   }
 
-  const { data, error } = await query.maybeSingle();
-  if (error || !data) return null;
-  return rowToExercise(data as DbExerciseRow);
+  const { data, error } = await query;
+  if (error || !data || data.length === 0) return null;
+  const pick = data[Math.floor(Math.random() * data.length)];
+  return rowToExercise(pick as DbExerciseRow);
 }
 
 /** Saves a freshly-generated exercise to the bank, returning it with the
@@ -116,6 +153,7 @@ export async function saveExercise(
       type: exercise.type,
       subtype: exercise.subtype ?? null,
       topic: exercise.topic,
+      topic_id: exercise.topicId ?? null,
       passage: exercise.passage ?? null,
       question: exercise.question,
       choices: exercise.choices ?? null,
@@ -126,6 +164,8 @@ export async function saveExercise(
       tiles: (exercise.tiles as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["tiles"]) ?? null,
       grouping: (exercise.grouping as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["grouping"]) ?? null,
       correct_answer: exercise.correctAnswer,
+      computation: (exercise.computation as unknown as Database["public"]["Tables"]["exercises"]["Insert"]["computation"]) ?? null,
+      difficulty: exercise.difficulty ?? null,
     })
     .select()
     .single();
@@ -151,6 +191,12 @@ export async function recordAttempt(
      *  too," alongside the existing correct/incorrect + errorNote. */
     kidAnswer: string;
     correctAnswer: string;
+    /** FIX 5 (2026-09-14): the exact line the character spoke back for
+     *  this attempt (ExerciseEvaluation.feedback) — the 10×4=14 incident
+     *  was undiagnosable because this was never persisted anywhere, only
+     *  ever shown once and gone. Write-only for now: no screen reads it
+     *  back yet, this is what makes a future incident diagnosable at all. */
+    spokenLine?: string;
   }
 ): Promise<void> {
   await supabase.from("exercise_attempts").insert({
@@ -161,6 +207,7 @@ export async function recordAttempt(
     error_note: opts.errorNote ?? null,
     kid_answer: opts.kidAnswer,
     correct_answer: opts.correctAnswer,
+    spoken_line: opts.spokenLine ?? null,
   });
 
   const { data: current } = await supabase

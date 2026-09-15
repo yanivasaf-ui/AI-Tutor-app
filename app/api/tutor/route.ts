@@ -1,12 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
-import { embedText } from "@/lib/rag/embed";
 import { search } from "@/lib/rag/store";
 import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
-import { generateExercise } from "@/lib/exercises/generate";
+import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
 import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
@@ -15,6 +14,17 @@ import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { synthesizeSpeech, TtsNotConfiguredError, MAX_TTS_CHARS } from "@/lib/tts/cartesia";
+import type { CharacterId } from "@/lib/characters";
+import { getTopicById } from "@/lib/map/topics";
+import { getPracticeState, savePracticeState } from "@/lib/practice/store";
+import {
+  levelForNextExercise,
+  recordAnswer,
+  summarize,
+  type PracticeMode,
+  type PracticeSummary,
+} from "@/lib/practice/state";
 
 export const runtime = "nodejs";
 
@@ -28,9 +38,21 @@ export const runtime = "nodejs";
  * route files cost 6 functions for logic that's really one feature area.
  * One file with an action dispatcher costs 2. No behavior changed for any
  * individual action, only which URL/shape groups them.
+ *
+ * One consequence of that consolidation (2026-09-12 iPhone QA — "everything
+ * is slow"): all four actions share ONE Vercel function, so a static
+ * top-level import anywhere in this file is paid by every cold start of
+ * that function, regardless of which action woke it. `embedText`
+ * (lib/rag/embed.ts) pulls in @huggingface/transformers — onnxruntime,
+ * sharp, and the ~100MB MiniLM weights — and only `chat` and (sometimes)
+ * `generate_exercise` actually need it; `speak` and `answer_exercise`
+ * never do. It's dynamically imported inside the two functions that
+ * actually call it (here and in lib/exercises/generate.ts) instead of
+ * statically at the top of either file — keep it that way; a static
+ * import at either module's top reintroduces the cost for every action.
  */
 
-type Action = "chat" | "generate_exercise" | "answer_exercise";
+type Action = "chat" | "generate_exercise" | "answer_exercise" | "speak";
 
 interface ChatBody {
   action: "chat";
@@ -59,9 +81,25 @@ interface AnswerExerciseBody {
   exercise: Exercise;
   answer: string;
   kidId?: string;
+  /** The topic the exercise was served for — the adaptive level and journey
+   *  completion are tracked per topic (lib/practice/state.ts). Omitted,
+   *  nothing practice-related is written. */
+  topicId?: string;
+  /** "journey" (from the map) may complete the stop; "free" never does. */
+  mode?: PracticeMode;
+  /** 1 = first answer to this question, 2 = the retry after a hint. */
+  attempt?: 1 | 2;
 }
 
-type RequestBody = ChatBody | GenerateExerciseBody | AnswerExerciseBody;
+interface SpeakBody {
+  action: "speak";
+  /** The line the character says. */
+  text: string;
+  /** Whose voice (lib/voices.ts). */
+  character: CharacterId;
+}
+
+type RequestBody = ChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody & { action?: Action };
@@ -75,6 +113,8 @@ export async function POST(req: NextRequest) {
       return handleGenerateExercise(supabase, body);
     case "answer_exercise":
       return handleAnswerExercise(supabase, body);
+    case "speak":
+      return handleSpeak(supabase, body, req.signal);
     default:
       return NextResponse.json({ error: "unknown or missing action" }, { status: 400 });
   }
@@ -94,14 +134,15 @@ async function handleChat(
   const flagged = looksOffCurriculumOrEmotional(message);
 
   // embedText() is the slowest single step here (a local ONNX model
-  // inference) and doesn't depend on the kid/profile lookup at all — was
-  // previously awaited only after both DB calls finished. Running them
-  // concurrently shaves a real round-trip off every chat turn, part of
-  // the "make it faster" pass (Asaf, 2026-08-31) — not a behavior change,
-  // same three results, just not serialized for no reason.
+  // inference) and doesn't depend on the kid/profile lookup at all — runs
+  // concurrently with it, part of the "make it faster" pass (Asaf,
+  // 2026-08-31). The import is dynamic (not a static top-of-file import —
+  // see the file header) so a cold start of this shared function only
+  // pays @huggingface/transformers's load cost when a `chat` request
+  // actually arrives, not on every cold start regardless of action.
   const [kid, queryEmbedding] = await Promise.all([
     kidId ? getKid(supabase, kidId) : Promise.resolve(null),
-    embedText(message),
+    import("@/lib/rag/embed").then((m) => m.embedText(message)),
   ]);
   const subjectProfile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
 
@@ -141,21 +182,32 @@ async function handleChat(
   const textBlock = response.content.find((b) => b.type === "text");
   const reply = textBlock && textBlock.type === "text" ? textBlock.text : "";
 
+  // The kid reads `reply` the moment the model returns it — the memory-
+  // layer update is a SECOND LLM call the kid was, until now, waiting on
+  // for no reason (2026-09-12 iPhone QA: "everything is slow"). after()
+  // (next/server) runs this once the response is on its way, on the same
+  // warm invocation rather than a new one. Same calls, same order, same
+  // error handling as before — only when they run changed. (The brief for
+  // this task named `waitUntil` from next/server; this Next version
+  // exports `after`, not `waitUntil` — same fire-and-forget-after-response
+  // primitive, different name.)
   if (kid) {
-    try {
-      const patch = await updateSubjectProfileFromExchange(subjectProfile ?? emptySubjectProfile(), {
-        grade,
-        subject,
-        kidName: kid.name,
-        userMessage: message,
-        tutorReply: reply,
-      });
-      if (patch) {
-        await updateSubjectProfile(supabase, kid.id, subject as Subject, patch);
+    after(async () => {
+      try {
+        const patch = await updateSubjectProfileFromExchange(subjectProfile ?? emptySubjectProfile(), {
+          grade,
+          subject,
+          kidName: kid.name,
+          userMessage: message,
+          tutorReply: reply,
+        });
+        if (patch) {
+          await updateSubjectProfile(supabase, kid.id, subject as Subject, patch);
+        }
+      } catch (err) {
+        console.error("[memory-update] error updating profile after exchange:", err);
       }
-    } catch (err) {
-      console.error("[memory-update] error updating profile after exchange:", err);
-    }
+    });
   }
 
   return NextResponse.json({
@@ -175,17 +227,32 @@ async function handleGenerateExercise(
 
   const kid = kidId ? await getKid(supabase, kidId) : null;
 
+  // The kid's adaptive level on this topic decides what gets reused or
+  // built. getKid() already read the profile rows, practice state
+  // included — no extra query. No level yet = the diagnostic, which runs
+  // at the default level.
+  const topicState = kid && topic ? kid.subjects[subject as Subject]?.practice?.topics?.[topic] : undefined;
+  const level = levelForNextExercise(topicState);
+  const practice = kid && topic ? summarize(topicState) : undefined;
+
   try {
-    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic);
+    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic, level);
     if (reused) {
-      return NextResponse.json({ exercise: reused, reused: true });
+      return NextResponse.json({ exercise: reused, reused: true, practice });
     }
 
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
-    const generated = await generateExercise({ subject, grade, profile, topicId: topic });
+    const generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
     const saved = await saveExercise(supabase, generated);
-    return NextResponse.json({ exercise: saved, reused: false });
+    return NextResponse.json({ exercise: saved, reused: false, practice });
   } catch (err) {
+    // Genuinely nothing to practice for this subject/grade/topic — an
+    // expected answer, not a fault, so it gets its own status the client
+    // can tell apart from a real failure (which stays a 500).
+    if (err instanceof NoCurriculumContentError) {
+      console.warn("[exercise-generate] no content:", err.message);
+      return NextResponse.json({ exercise: null, error: "no_content" }, { status: 404 });
+    }
     console.error("[exercise-generate] error:", err);
     return NextResponse.json({ error: "failed to generate exercise" }, { status: 500 });
   }
@@ -193,11 +260,12 @@ async function handleGenerateExercise(
 
 async function handleAnswerExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { exercise, answer, kidId }: AnswerExerciseBody
+  { exercise, answer, kidId, topicId, mode, attempt }: AnswerExerciseBody
 ) {
   if (!exercise || !answer) {
     return NextResponse.json({ error: "exercise and answer are required" }, { status: 400 });
   }
+  const tryNumber: 1 | 2 = attempt === 2 ? 2 : 1;
 
   // evaluateExerciseAnswer (the LLM call) and getKid (a DB lookup) don't
   // depend on each other — was previously two sequential awaits, meaning
@@ -206,7 +274,7 @@ async function handleAnswerExercise(
   // and early-return behavior as before, just not serialized for no
   // reason. Part of the "make it faster" pass (Asaf, 2026-08-31).
   const [evaluationOutcome, kid] = await Promise.all([
-    evaluateExerciseAnswer(exercise, answer).then(
+    evaluateExerciseAnswer(exercise, answer, { secondAttempt: tryNumber === 2 }).then(
       (value) => ({ ok: true as const, value }),
       (err) => ({ ok: false as const, err })
     ),
@@ -219,45 +287,137 @@ async function handleAnswerExercise(
   }
   const evaluation = evaluationOutcome.value;
 
-  if (kid) {
-    // recordAttempt (the attempt log) and getSubjectProfile (needed for
-    // the memory-layer update below) are also independent of each other
-    // — same parallelization reasoning as above.
-    const [, current] = await Promise.all([
-      recordAttempt(supabase, {
-        kidId: kid.id,
-        exerciseId: exercise.id,
-        subject: exercise.subject,
-        correct: evaluation.correct,
-        errorNote: evaluation.errorNote,
-        kidAnswer: answer,
-        correctAnswer: exercise.correctAnswer,
-      }).catch((err) => {
-        console.error("[exercise-answer] attempt logging failed:", err);
-      }),
-      getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
-    ]);
-    const profileBase = current ?? emptySubjectProfile();
+  // Adaptive level + journey completion (lib/practice/state.ts). Written
+  // BEFORE the response, unlike the bookkeeping below: the next exercise
+  // is built at the level this sets, and the screen shows the change.
+  // Only for a kid this parent owns (getKid runs under the parent's RLS)
+  // and a topic that belongs to the exercise's subject. Completion needs
+  // an explicit mode "journey" — free practice never moves the map.
+  let practice: PracticeSummary | undefined;
+  const topicMeta = topicId ? getTopicById(topicId) : undefined;
+  if (kid && topicMeta && topicMeta.subject === exercise.subject) {
     try {
-      const patch = await updateSubjectProfileFromExchange(profileBase, {
-        grade: exercise.grade,
-        subject: exercise.subject,
-        kidName: kid.name,
-        userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
-        tutorReply: evaluation.feedback,
-        exercise: {
-          topic: exercise.topic,
-          correct: evaluation.correct,
-          errorNote: evaluation.errorNote,
-        },
+      const current = await getPracticeState(supabase, kid.id, topicMeta.subject);
+      const result = recordAnswer(current, topicMeta.id, {
+        correct: evaluation.correct,
+        attempt: tryNumber,
+        mode: mode === "journey" ? "journey" : "free",
+        at: new Date().toISOString(),
       });
-      if (patch) {
-        await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
-      }
+      await savePracticeState(supabase, kid.id, topicMeta.subject, result.state);
+      practice = summarize(result.topic, result.change);
     } catch (err) {
-      console.error("[exercise-answer] memory update failed:", err);
+      // The kid still gets their feedback; the level just doesn't move.
+      console.error("[exercise-answer] practice state update failed:", err instanceof Error ? err.message : err);
     }
   }
 
-  return NextResponse.json({ evaluation });
+  // The kid gets `evaluation` (right/wrong + feedback) the moment it's
+  // judged — recordAttempt and the memory-layer update (a second LLM
+  // call) are bookkeeping the kid was, until now, waiting on for no
+  // reason (2026-09-12 iPhone QA: "everything is slow"). after()
+  // (next/server) defers exactly this block to run once the response is
+  // on its way; same calls, same order, same error handling as before.
+  // (See handleChat's after() comment on the waitUntil/after naming.)
+  if (kid) {
+    after(async () => {
+      try {
+        // recordAttempt (the attempt log) and getSubjectProfile (needed
+        // for the memory-layer update below) are independent of each
+        // other — same parallelization reasoning as elsewhere in this file.
+        const [, current] = await Promise.all([
+          recordAttempt(supabase, {
+            kidId: kid.id,
+            exerciseId: exercise.id,
+            subject: exercise.subject,
+            correct: evaluation.correct,
+            errorNote: evaluation.errorNote,
+            kidAnswer: answer,
+            correctAnswer: exercise.correctAnswer,
+            spokenLine: evaluation.feedback,
+          }).catch((err) => {
+            console.error("[exercise-answer] attempt logging failed:", err);
+          }),
+          getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
+        ]);
+        const profileBase = current ?? emptySubjectProfile();
+        const patch = await updateSubjectProfileFromExchange(profileBase, {
+          grade: exercise.grade,
+          subject: exercise.subject,
+          kidName: kid.name,
+          userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
+          tutorReply: evaluation.feedback,
+          exercise: {
+            topic: exercise.topic,
+            correct: evaluation.correct,
+            errorNote: evaluation.errorNote,
+          },
+        });
+        if (patch) {
+          await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
+        }
+      } catch (err) {
+        console.error("[exercise-answer] memory update failed:", err);
+      }
+    });
+  }
+
+  return NextResponse.json({ evaluation, practice });
+}
+
+/**
+ * The characters' voices: text -> Cartesia -> MP3, streamed straight
+ * back. Lives in this route as an action rather than its own route file
+ * so it costs zero extra serverless functions (Vercel Hobby 12-function
+ * cap — see the note at the top of this file).
+ *
+ * Requires a signed-in parent, unlike the other actions: every call here
+ * spends Cartesia credit, so an open endpoint would be a free TTS proxy
+ * for anyone who found the URL. Status codes are part of the client
+ * contract (lib/speech/useSpeech.ts): 401/503 switch the client to the
+ * browser voice for the session; 502 falls back for that one line.
+ *
+ * Never logs the text — lines address the kid by name.
+ */
+async function handleSpeak(
+  supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
+  { text, character }: SpeakBody,
+  signal: AbortSignal
+) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
+  }
+  if (typeof text !== "string" || !text.trim() || text.length > MAX_TTS_CHARS) {
+    return NextResponse.json({ error: `text is required, max ${MAX_TTS_CHARS} characters` }, { status: 400 });
+  }
+  if (character !== "boy" && character !== "girl") {
+    return NextResponse.json({ error: "character must be boy or girl" }, { status: 400 });
+  }
+
+  let upstream: Response;
+  try {
+    upstream = await synthesizeSpeech(text, character, signal);
+  } catch (err) {
+    if (err instanceof TtsNotConfiguredError) {
+      return NextResponse.json({ error: "tts_not_configured" }, { status: 503 });
+    }
+    console.error("[tts] cartesia request failed:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+  }
+
+  if (!upstream.ok || !upstream.body) {
+    const detail = await upstream.text().catch(() => "");
+    console.error("[tts] cartesia error:", upstream.status, detail.slice(0, 300));
+    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+  }
+
+  return new Response(upstream.body, {
+    headers: {
+      "Content-Type": upstream.headers.get("content-type") ?? "audio/mpeg",
+      "Cache-Control": "private, no-store",
+    },
+  });
 }

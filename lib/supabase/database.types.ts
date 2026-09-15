@@ -26,6 +26,7 @@ export type Database = {
           id: string
           kid_answer: string | null
           kid_id: string
+          spoken_line: string | null
           subject: string
         }
         Insert: {
@@ -37,6 +38,7 @@ export type Database = {
           id?: string
           kid_answer?: string | null
           kid_id: string
+          spoken_line?: string | null
           subject: string
         }
         Update: {
@@ -48,6 +50,7 @@ export type Database = {
           id?: string
           kid_answer?: string | null
           kid_id?: string
+          spoken_line?: string | null
           subject?: string
         }
         Relationships: [
@@ -70,8 +73,10 @@ export type Database = {
       exercises: {
         Row: {
           choices: string[] | null
+          computation: Json | null
           correct_answer: string
           created_at: string
+          difficulty: number | null
           grade: string
           grouping: Json | null
           id: string
@@ -84,12 +89,15 @@ export type Database = {
           times_correct: number
           times_used: number
           topic: string
+          topic_id: string | null
           type: string
         }
         Insert: {
           choices?: string[] | null
+          computation?: Json | null
           correct_answer: string
           created_at?: string
+          difficulty?: number | null
           grade: string
           grouping?: Json | null
           id?: string
@@ -102,12 +110,15 @@ export type Database = {
           times_correct?: number
           times_used?: number
           topic: string
+          topic_id?: string | null
           type: string
         }
         Update: {
           choices?: string[] | null
+          computation?: Json | null
           correct_answer?: string
           created_at?: string
+          difficulty?: number | null
           grade?: string
           grouping?: Json | null
           id?: string
@@ -120,6 +131,7 @@ export type Database = {
           times_correct?: number
           times_used?: number
           topic?: string
+          topic_id?: string | null
           type?: string
         }
         Relationships: []
@@ -128,6 +140,7 @@ export type Database = {
         Row: {
           avatar_id: string | null
           created_at: string
+          grade: string | null
           id: string
           name: string
           parent_id: string | null
@@ -135,6 +148,7 @@ export type Database = {
         Insert: {
           avatar_id?: string | null
           created_at?: string
+          grade?: string | null
           id?: string
           name: string
           parent_id?: string | null
@@ -142,6 +156,7 @@ export type Database = {
         Update: {
           avatar_id?: string | null
           created_at?: string
+          grade?: string | null
           id?: string
           name?: string
           parent_id?: string | null
@@ -190,6 +205,7 @@ export type Database = {
           estimated_level: string
           kid_id: string
           last_updated: string
+          practice_state: Json
           recent_summary: string
           session_count: number
           subject: string
@@ -201,6 +217,7 @@ export type Database = {
           estimated_level?: string
           kid_id: string
           last_updated?: string
+          practice_state?: Json
           recent_summary?: string
           session_count?: number
           subject: string
@@ -212,6 +229,7 @@ export type Database = {
           estimated_level?: string
           kid_id?: string
           last_updated?: string
+          practice_state?: Json
           recent_summary?: string
           session_count?: number
           subject?: string

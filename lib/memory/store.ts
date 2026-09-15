@@ -1,6 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 import { KidProfile, Subject, SubjectProfile, emptySubjectProfile } from "./types";
+import { parsePracticeState } from "@/lib/practice/state";
+import type { Grade } from "@/lib/exercises/types";
 
 /**
  * Supabase-backed kid profile store. Takes the Supabase client as a
@@ -24,6 +26,7 @@ interface DbSubjectProfileRow {
   recent_summary: string;
   session_count: number;
   last_updated: string;
+  practice_state?: unknown;
 }
 
 function rowToProfile(row: DbSubjectProfileRow): SubjectProfile {
@@ -35,29 +38,40 @@ function rowToProfile(row: DbSubjectProfileRow): SubjectProfile {
     recentSummary: row.recent_summary,
     sessionCount: row.session_count,
     lastUpdated: row.last_updated,
+    practice: parsePracticeState(row.practice_state),
   };
 }
 
+function toGrade(v: unknown): Grade | null {
+  return v === "א" || v === "ב" || v === "ג" ? v : null;
+}
+
+/** 2026-09-14: was a sequential for-loop awaiting getKid() one kid at a
+ *  time — a real N+1 waterfall for any parent with more than one kid, and
+ *  part of what the post-Google-sign-in wait was paying for (see
+ *  app/page.tsx). Every kid's data is independent, so fetch them all at
+ *  once. */
 export async function listKids(supabase: Client): Promise<KidProfile[]> {
   const { data: kids, error } = await supabase.from("kids").select("*");
   if (error || !kids) return [];
 
-  const result: KidProfile[] = [];
-  for (const k of kids) {
-    const full = await getKid(supabase, k.id as string);
-    if (full) result.push(full);
-  }
-  return result;
+  const full = await Promise.all(kids.map((k) => getKid(supabase, k.id as string)));
+  return full.filter((k): k is KidProfile => k !== null);
 }
 
 export async function getKid(supabase: Client, id: string): Promise<KidProfile | null> {
-  const { data: kid, error } = await supabase.from("kids").select("*").eq("id", id).single();
+  // The kids-row and subject_profiles queries don't depend on each other —
+  // only the RESULT does (a kid that doesn't exist has no profiles to
+  // report). Running them concurrently means a missing/errored kid pays
+  // for one wasted profiles query instead of every real kid paying for
+  // two round trips in series.
+  const [kidResult, profilesResult] = await Promise.all([
+    supabase.from("kids").select("*").eq("id", id).single(),
+    supabase.from("subject_profiles").select("*").eq("kid_id", id),
+  ]);
+  const { data: kid, error } = kidResult;
   if (error || !kid) return null;
-
-  const { data: profiles } = await supabase
-    .from("subject_profiles")
-    .select("*")
-    .eq("kid_id", id);
+  const { data: profiles } = profilesResult;
 
   const subjects: Partial<Record<Subject, SubjectProfile>> = {};
   for (const row of profiles ?? []) {
@@ -68,6 +82,7 @@ export async function getKid(supabase: Client, id: string): Promise<KidProfile |
     id: kid.id as string,
     name: kid.name as string,
     avatarId: (kid.avatar_id as string) ?? null,
+    grade: toGrade(kid.grade),
     createdAt: kid.created_at as string,
     subjects,
   };
@@ -77,11 +92,12 @@ export async function createKid(
   supabase: Client,
   parentId: string,
   name: string,
-  avatarId: string | null
+  avatarId: string | null,
+  grade: Grade | null
 ): Promise<KidProfile> {
   const { data, error } = await supabase
     .from("kids")
-    .insert({ name, avatar_id: avatarId, parent_id: parentId })
+    .insert({ name, avatar_id: avatarId, parent_id: parentId, grade })
     .select()
     .single();
   if (error || !data) throw new Error(`Failed to create kid: ${error?.message}`);
@@ -90,9 +106,15 @@ export async function createKid(
     id: data.id as string,
     name: data.name as string,
     avatarId: (data.avatar_id as string) ?? null,
+    grade: toGrade(data.grade),
     createdAt: data.created_at as string,
     subjects: {},
   };
+}
+
+export async function setKidGrade(supabase: Client, id: string, grade: Grade): Promise<boolean> {
+  const { error } = await supabase.from("kids").update({ grade }).eq("id", id);
+  return !error;
 }
 
 export async function setKidAvatar(

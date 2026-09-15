@@ -47,6 +47,28 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  // Character pose assets (public/characters/{boy,girl}/*.webp) — content-
+  // stable: each filename is a fixed pose (idle, hello, ...) drawn once,
+  // not a per-deploy hash. Without this rule Next.js falls back to the
+  // platform default for anything under /public, "public, max-age=0,
+  // must-revalidate" (unlike /_next/static, which is content-hashed and
+  // already cached forever) — so on an iPhone, every screen change that
+  // swaps poses was re-fetching all ~37KB webps instead of hitting the
+  // device cache, a real, avoidable slice of the "everything is slow" QA
+  // finding. A year-long immutable cache is safe exactly because the
+  // filename is the identity: if a pose's ART is ever regenerated in
+  // place under the SAME filename, viewers who cached the old bytes keep
+  // them for up to a year — ship pose art changes under a new filename
+  // (or bump a version query string) if that ever happens, not an
+  // in-place overwrite.
+  async headers() {
+    return [
+      {
+        source: "/characters/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -1,0 +1,86 @@
+"use client";
+
+import { useCallback, useEffect, useRef } from "react";
+import { hasSeenGesture, speak, stopSpeaking, useSpeech } from "@/lib/speech/useSpeech";
+import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
+import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
+import { spoken, type Line } from "@/lib/guide/lines";
+
+interface Options {
+  /** Identity of this on-screen character (lib/speech/useSpeech.ts owner
+   *  model) — only the character actually talking moves its mouth. */
+  owner: string;
+  /** The semantic pose from the pose-moment map. */
+  pose: CharacterPose;
+  /** What the character is saying right now. */
+  line: Line | null;
+  /** Re-say the line whenever this changes. Defaults to the line's text,
+   *  i.e. "say it whenever it's a new line". Pass something explicit when
+   *  the same words should be said again on a new event. */
+  cue?: string | number | null;
+  /** Whose voice to speak in (each character has its own Cartesia
+   *  voice). Omitted/null = the browser voice — only the onboarding prompt
+   *  said before any character has been picked. */
+  character?: CharacterId | null;
+}
+
+/**
+ * The character as a guide (character-led redesign, Task 5 items 3-4).
+ * Built on the existing primitives — useSpeech for the voice,
+ * useTalkingPose for the mouth — not a replacement for them. One call per
+ * on-screen character:
+ *
+ * - says `line` aloud, in the character's own voice, whenever `cue`
+ *   changes;
+ * - returns the pose to render: the caller's semantic pose, with the
+ *   talk-mouth alternation layered on while *this* character speaks;
+ * - returns `say()` for lines triggered by a tap — call it synchronously
+ *   inside the handler, which is what iOS Safari needs for the first
+ *   speech of a session. `say(line, as)` speaks as a specific character,
+ *   for the tap that *chooses* the character (its state hasn't updated
+ *   yet inside that handler);
+ * - stops its own speech when it leaves the screen, so a line doesn't
+ *   keep playing over the next screen.
+ *
+ * Automatic lines honour the iOS gesture rule (hasSeenGesture) and the
+ * device mute (lib/speech/autoSpeak.ts). The 🔊 in a bubble bypasses both
+ * — it's an explicit request.
+ */
+export function useGuide({ owner, pose, line, cue, character }: Options) {
+  const { speaking } = useSpeech(owner);
+  const shownPose = useTalkingPose(speaking, pose);
+
+  const lineRef = useRef(line);
+  lineRef.current = line;
+
+  const say = useCallback(
+    // `surviveUnmount`: for a line said synchronously right before the same
+    // handler navigates away (2026-09-14, FIX 1) — e.g. FreePractice's
+    // pickTopic says the topic's kid label then immediately unmounts this
+    // screen. Without it, this component's own unmount cleanup below
+    // (stopSpeaking(owner)) cancels the very line it just said, since
+    // nothing else has spoken yet to change currentOwner. See
+    // lib/speech/useSpeech.ts's protectedUtteranceId for the mechanism.
+    (l: Line | string, as?: CharacterId, opts?: { surviveUnmount?: boolean }) => {
+      if (!isAutoSpeakOn()) return;
+      speak(typeof l === "string" ? l : spoken(l), owner, as ?? character, { surviveOwnerUnmount: opts?.surviveUnmount });
+    },
+    [owner, character]
+  );
+  // Read through a ref in the cue effect: `say` changes identity when the
+  // character changes (the onboarding pick), and that alone must not
+  // re-say the line — the pick handler already said it.
+  const sayRef = useRef(say);
+  sayRef.current = say;
+
+  const cueKey = cue !== undefined ? cue : line ? spoken(line) : null;
+  useEffect(() => {
+    const l = lineRef.current;
+    if (!l || cueKey === null || !hasSeenGesture()) return;
+    sayRef.current(l);
+  }, [cueKey]);
+
+  useEffect(() => () => stopSpeaking(owner), [owner]);
+
+  return { pose: shownPose, say, speaking };
+}
