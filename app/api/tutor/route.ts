@@ -225,7 +225,16 @@ async function handleGenerateExercise(
     return NextResponse.json({ error: "subject and grade are required" }, { status: 400 });
   }
 
+  // Source marker + server-side timing breakdown (2026-09-15, production
+  // QA: a bank hit was taking 2.3-4.25s — indistinguishable from the
+  // pre-bank live-generation baseline from outside the request). Every
+  // branch below reports which path was actually taken and how long each
+  // piece cost, in BOTH the JSON response and a server log line, so a
+  // future "the bank feels slow" report can be diagnosed from real
+  // numbers instead of guessed at again.
+  const t0 = Date.now();
   const kid = kidId ? await getKid(supabase, kidId) : null;
+  const getKidMs = Date.now() - t0;
 
   // The kid's adaptive level on this topic decides what gets reused or
   // built. getKid() already read the profile rows, practice state
@@ -236,15 +245,43 @@ async function handleGenerateExercise(
   const practice = kid && topic ? summarize(topicState) : undefined;
 
   try {
+    const tFind = Date.now();
     const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic, level);
+    const findMs = Date.now() - tFind;
     if (reused) {
-      return NextResponse.json({ exercise: reused, reused: true, practice });
+      const totalMs = Date.now() - t0;
+      console.log(
+        `[exercise-generate] source=bank-hit topic=${topic ?? "(none)"} difficulty=${level} getKidMs=${getKidMs} findMs=${findMs} totalMs=${totalMs}`
+      );
+      return NextResponse.json({
+        exercise: reused,
+        reused: true,
+        practice,
+        source: "bank-hit",
+        timings: { getKidMs, dbLookupMs: findMs, totalMs },
+      });
     }
 
+    const tProfile = Date.now();
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
+    const profileMs = Date.now() - tProfile;
+    const tGenerate = Date.now();
     const generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
+    const generateMs = Date.now() - tGenerate;
+    const tSave = Date.now();
     const saved = await saveExercise(supabase, generated);
-    return NextResponse.json({ exercise: saved, reused: false, practice });
+    const saveMs = Date.now() - tSave;
+    const totalMs = Date.now() - t0;
+    console.log(
+      `[exercise-generate] source=bank-miss-fallback topic=${topic ?? "(none)"} difficulty=${level} getKidMs=${getKidMs} findMs=${findMs} profileMs=${profileMs} generateMs=${generateMs} saveMs=${saveMs} totalMs=${totalMs}`
+    );
+    return NextResponse.json({
+      exercise: saved,
+      reused: false,
+      practice,
+      source: "bank-miss-fallback",
+      timings: { getKidMs, dbLookupMs: findMs, profileMs, generateMs, saveMs, totalMs },
+    });
   } catch (err) {
     // Genuinely nothing to practice for this subject/grade/topic — an
     // expected answer, not a fault, so it gets its own status the client
