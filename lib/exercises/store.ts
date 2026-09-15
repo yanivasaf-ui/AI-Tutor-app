@@ -89,7 +89,21 @@ const REUSE_CANDIDATE_LIMIT = 20;
  *  exercises built at that level, so a kid who just dropped a level isn't
  *  handed a banked exercise from the level they struggled at. Exercises
  *  banked before levels existed have no difficulty and count as level 2,
- *  the level every exercise was implicitly built at back then. */
+ *  the level every exercise was implicitly built at back then.
+ *
+ *  A single `find_reusable_exercise` RPC call now does all of this in ONE
+ *  round trip (2026-09-15, BUG A: production QA measured 2.3-4.25s per
+ *  generate_exercise call — indistinguishable from live generation, even
+ *  on a genuine bank hit). This used to be two SEQUENTIAL queries — fetch
+ *  the kid's attempted exercise_ids, then a second query excluding them —
+ *  and EXPLAIN ANALYZE showed either query plan executes in under 1ms on
+ *  its own; the real cost was paying the Vercel-function-to-Supabase
+ *  network round trip twice (this project's DB is ap-southeast-2, the
+ *  function region was fra1 — close to antipodal). The RPC folds the
+ *  exclusion into a NOT EXISTS subquery against exercise_attempts
+ *  (indexed on (kid_id, exercise_id)) so it's one round trip regardless
+ *  of hit or miss. See supabase/migrations (find_reusable_exercise_rpc)
+ *  for the SQL — same matching rules, just server-side now. */
 export async function findReusableExercise(
   supabase: Client,
   subject: "math" | "hebrew",
@@ -98,42 +112,21 @@ export async function findReusableExercise(
   topicId?: string,
   difficulty?: 1 | 2 | 3
 ): Promise<Exercise | null> {
-  let attemptedIds: string[] = [];
-  if (kidId) {
-    const { data: attempts } = await supabase
-      .from("exercise_attempts")
-      .select("exercise_id")
-      .eq("kid_id", kidId);
-    attemptedIds = (attempts ?? []).map((a) => a.exercise_id as string);
-  }
-
-  let query = supabase
-    .from("exercises")
-    .select("*")
-    .eq("subject", subject)
-    .eq("grade", grade)
-    .limit(REUSE_CANDIDATE_LIMIT);
-
   const topic = topicId ? getTopicById(topicId) : undefined;
   const topicScoped = topic && topic.subject === subject && topic.grade === grade;
-  if (topicScoped) {
-    // Rows from before topic_id existed have it NULL but do carry the
-    // matching `topic` string — the `or` keeps them servable instead of
-    // orphaning them the moment this column shipped.
-    query = query.or(`topic_id.eq.${topic!.id},and(topic_id.is.null,topic.eq.${topic!.topic})`);
-  }
 
-  if (difficulty === 2) {
-    query = query.or("difficulty.eq.2,difficulty.is.null");
-  } else if (difficulty) {
-    query = query.eq("difficulty", difficulty);
-  }
-
-  if (attemptedIds.length > 0) {
-    query = query.not("id", "in", `(${attemptedIds.join(",")})`);
-  }
-
-  const { data, error } = await query;
+  const { data, error } = await supabase.rpc("find_reusable_exercise", {
+    p_subject: subject,
+    p_grade: grade,
+    // eslint/TS wants strict null over undefined for these — the RPC
+    // treats a null p_topic_id/p_difficulty as "no filter", same meaning
+    // the old code's conditional .or()/.eq() calls had.
+    p_topic_id: topicScoped ? topic!.id : (null as unknown as string),
+    p_legacy_topic: topicScoped ? topic!.topic : (null as unknown as string),
+    p_difficulty: (difficulty ?? null) as unknown as number,
+    p_kid_id: (kidId ?? null) as unknown as string,
+    p_limit: REUSE_CANDIDATE_LIMIT,
+  });
   if (error || !data || data.length === 0) return null;
   const pick = data[Math.floor(Math.random() * data.length)];
   return rowToExercise(pick as DbExerciseRow);

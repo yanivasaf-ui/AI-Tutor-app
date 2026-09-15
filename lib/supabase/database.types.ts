@@ -250,7 +250,38 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      find_reusable_exercise: {
+        Args: {
+          p_difficulty: number
+          p_grade: string
+          p_kid_id: string
+          p_legacy_topic: string
+          p_limit?: number
+          p_subject: string
+          p_topic_id: string
+        }
+        Returns: {
+          choices: string[] | null
+          computation: Json | null
+          correct_answer: string
+          created_at: string
+          difficulty: number | null
+          grade: string
+          grouping: Json | null
+          id: string
+          number_line: Json | null
+          passage: string | null
+          question: string
+          subject: string
+          subtype: string | null
+          tiles: Json | null
+          times_correct: number
+          times_used: number
+          topic: string
+          topic_id: string | null
+          type: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
