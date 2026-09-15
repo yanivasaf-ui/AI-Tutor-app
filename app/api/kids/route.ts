@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createKid, getKid, listKids, setKidAvatar, setKidGrade } from "@/lib/memory/store";
+import { createKid, getKid, listKids, setKidAvatar, setKidGender, setKidGrade } from "@/lib/memory/store";
 import { getParentFlags, getRecentAttempts, getSubjectStats } from "@/lib/dashboard/store";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { updatePracticeState } from "@/lib/practice/store";
 import { getTopicById } from "@/lib/map/topics";
 import { isGrade } from "@/lib/kids/grade";
-import type { Subject } from "@/lib/memory/types";
+import type { KidGender, Subject } from "@/lib/memory/types";
+
+function isGender(v: unknown): v is KidGender {
+  return v === "boy" || v === "girl";
+}
 
 export const runtime = "nodejs";
 
@@ -68,14 +72,29 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "not authenticated" }, { status: 401 });
 
   const body = await req.json();
-  const { name, avatarId, grade } = body as { name?: string; avatarId?: string | null; grade?: string | null };
+  const { name, avatarId, grade, gender } = body as {
+    name?: string;
+    avatarId?: string | null;
+    grade?: string | null;
+    gender?: string | null;
+  };
   if (!name || !name.trim()) {
     return NextResponse.json({ error: "name is required" }, { status: 400 });
   }
   if (grade != null && !isGrade(grade)) {
     return NextResponse.json({ error: "grade must be א, ב or ג" }, { status: 400 });
   }
-  const kid = await createKid(supabase, user.id, name.trim(), avatarId ?? null, isGrade(grade) ? grade : null);
+  if (gender != null && !isGender(gender)) {
+    return NextResponse.json({ error: "gender must be boy or girl" }, { status: 400 });
+  }
+  const kid = await createKid(
+    supabase,
+    user.id,
+    name.trim(),
+    avatarId ?? null,
+    isGrade(grade) ? grade : null,
+    isGender(gender) ? gender : null
+  );
   return NextResponse.json({ kid });
 }
 
@@ -83,6 +102,7 @@ interface PatchBody {
   id?: string;
   avatarId?: string;
   grade?: string;
+  gender?: string;
   /** The parent dashboard's "הצע תרגול": a topic id, or null to withdraw
    *  the current suggestion. */
   suggestion?: { topicId?: string } | null;
@@ -97,6 +117,7 @@ export async function PATCH(req: NextRequest) {
   if (
     body.avatarId === undefined &&
     body.grade === undefined &&
+    body.gender === undefined &&
     body.suggestion === undefined &&
     body.journeyIntroSeen === undefined
   ) {
@@ -104,6 +125,9 @@ export async function PATCH(req: NextRequest) {
   }
   if (body.grade !== undefined && !isGrade(body.grade)) {
     return NextResponse.json({ error: "grade must be א, ב or ג" }, { status: 400 });
+  }
+  if (body.gender !== undefined && !isGender(body.gender)) {
+    return NextResponse.json({ error: "gender must be boy or girl" }, { status: 400 });
   }
   const introSubject = SUBJECTS.find((s) => s === body.journeyIntroSeen);
   if (body.journeyIntroSeen !== undefined && !introSubject) {
@@ -133,6 +157,9 @@ export async function PATCH(req: NextRequest) {
     }
     if (isGrade(body.grade) && !(await setKidGrade(supabase, id, body.grade))) {
       throw new Error("grade update failed");
+    }
+    if (isGender(body.gender) && !(await setKidGender(supabase, id, body.gender))) {
+      throw new Error("gender update failed");
     }
     if (body.suggestion !== undefined) {
       // One suggestion at a time: it lives on the suggested topic's

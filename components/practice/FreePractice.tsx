@@ -8,7 +8,6 @@ import MicButton from "@/components/character/MicButton";
 import KidHeader from "@/components/home/KidHeader";
 import TopicIcon from "@/components/practice/TopicIcon";
 import { TOPICS, getTopicById, type MapTopic } from "@/lib/map/topics";
-import { GRADES } from "@/lib/kids/grade";
 import { resolveFreePracticeIntent } from "@/lib/voice/freePracticeIntent";
 import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
@@ -16,7 +15,7 @@ import type { Line } from "@/lib/guide/lines";
 import type { CharacterId } from "@/lib/characters";
 import type { Grade } from "@/lib/exercises/types";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
-import type { Subject } from "@/lib/memory/types";
+import type { KidGender, Subject } from "@/lib/memory/types";
 
 const OWNER = "free";
 
@@ -31,6 +30,7 @@ const SUGGESTION_TAG = "אמא/אבא הציעו";
 
 interface Props {
   kidName: string;
+  kidGender?: KidGender | null;
   character: CharacterId;
   /** Orders the list (the kid's own grade first) and breaks voice ties. */
   kidGrade: Grade;
@@ -58,6 +58,7 @@ interface Props {
  */
 export default function FreePractice({
   kidName,
+  kidGender,
   character,
   kidGrade,
   suggestionTopicId,
@@ -73,34 +74,22 @@ export default function FreePractice({
   const suggestion = suggestionTopicId ? getTopicById(suggestionTopicId) : undefined;
   const suggestionHere = !!suggestion && suggestion.subject === subject;
 
-  // The kid's own grade first, then the rest in order. The suggested
-  // topic is pulled out to the top rather than listed twice. Computed
-  // before `line` below: the read-aloud needs the exact order the list
-  // renders in, buttons included.
-  const gradeOrder = [kidGrade, ...GRADES.filter((g) => g !== kidGrade)];
-  const groups = subject
-    ? gradeOrder
-        .map((g) => ({
-          grade: g,
-          topics: TOPICS.filter(
-            (t) => t.subject === subject && t.grade === g && !(suggestionHere && t.id === suggestion!.id)
-          ),
-        }))
-        .filter((g) => g.topics.length > 0)
+  // Voice-experience fix item 2(b): topics filtered to the kid's own grade
+  // everywhere — was every grade, kid's own first (see git history for
+  // that version). The suggested topic is pulled out to the top rather
+  // than listed twice. Computed before `line` below.
+  const topics: MapTopic[] = subject
+    ? TOPICS.filter((t) => t.subject === subject && t.grade === kidGrade && !(suggestionHere && t.id === suggestion!.id))
     : [];
-  const visibleTopics: MapTopic[] = subject
-    ? [...(suggestionHere ? [suggestion!] : []), ...groups.flatMap((g) => g.topics)]
-    : [];
+  const visibleTopics: MapTopic[] = subject ? [...(suggestionHere ? [suggestion!] : []), ...topics] : [];
 
-  const basePromptLine = subject ? lines.freePickTopic(kidName, suggestionHere) : lines.freePickSubject(kidName);
-  // Read every option aloud, in the order the buttons render — a
-  // pre-reader's only way to choose is by ear (2026-09-14, grade-1 QA).
-  // The BUBBLE stays the short prompt; the spoken form is longer —
-  // Line.spokenText (lib/guide/lines.ts) is exactly this split, and
-  // SpeechBubble's own spokenText prop keeps its 🔊 replay in sync with
-  // it below.
+  // Voice-experience fix item 2(a): the voice never enumerates the topic
+  // list anymore — was `spokenText: lines.readTopicList(...)`, reading
+  // all 10+ topics aloud. One short line only; the list is now purely
+  // visual + tap/voice-match, same as every other tap-driven screen.
   const line: Line =
-    override ?? (visibleTopics.length > 0 ? { ...basePromptLine, spokenText: lines.readTopicList(basePromptLine.text, visibleTopics) } : basePromptLine);
+    override ??
+    (subject ? lines.freePickTopic(kidName, suggestionHere, kidGender) : lines.freePickSubject(kidName, kidGender));
   const guide = useGuide({ owner: OWNER, character, pose: "explaining", line, cue: subject ?? "subjects" });
 
   function chooseSubject(next: Subject | null) {
@@ -146,7 +135,7 @@ export default function FreePractice({
         // to re-tap. Re-say the topic prompt rather than silently doing
         // nothing or claiming the topic wasn't found: the kid gets an
         // acknowledgement either way, and the state was already correct.
-        say(lines.freePickTopic(kidName, suggestionHere));
+        say(lines.freePickTopic(kidName, suggestionHere, kidGender));
         return;
       case "not-found":
         say(lines.topicNotFound(kidName));
@@ -241,15 +230,8 @@ export default function FreePractice({
             {mic}
             <div className="w-full max-w-md grid grid-cols-2 gap-3">
               {suggestionHere && <TopicCard topic={suggestion!} tag={SUGGESTION_TAG} onPick={pickTopic} full />}
-              {groups.map((g) => (
-                <div key={g.grade} className="col-span-2 flex flex-col gap-2">
-                  <h2 className="text-sm font-bold text-white/80 mt-2">כיתה {g.grade}׳</h2>
-                  <div className="grid grid-cols-2 gap-3">
-                    {g.topics.map((t) => (
-                      <TopicCard key={t.id} topic={t} onPick={pickTopic} />
-                    ))}
-                  </div>
-                </div>
+              {topics.map((t) => (
+                <TopicCard key={t.id} topic={t} onPick={pickTopic} />
               ))}
             </div>
           </>

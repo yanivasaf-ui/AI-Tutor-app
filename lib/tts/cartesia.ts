@@ -1,5 +1,6 @@
 import { CARTESIA_VOICES } from "@/lib/voices";
 import type { CharacterId } from "@/lib/characters";
+import { vocalize } from "@/lib/tts/vocalize";
 
 /**
  * Server-side Cartesia text-to-speech (the characters' own voices).
@@ -27,6 +28,14 @@ export async function synthesizeSpeech(text: string, character: CharacterId, sig
   const key = process.env.CARTESIA_API_KEY;
   if (!key) throw new TtsNotConfiguredError("CARTESIA_API_KEY is not set");
 
+  // Voice-experience fix item 5: unvocalized Hebrew is the confirmed root
+  // cause of the reported misreadings (ירק read as ירוק) — see vocalize.ts
+  // for why this is an LLM call rather than Dicta/nakdimon. Runs for every
+  // caller of synthesizeSpeech, template lines and exercise text alike;
+  // vocalize() itself no-ops on non-Hebrew text and is cached by exact
+  // text, so repeats after the first are free.
+  const transcript = await vocalize(text);
+
   return fetch(CARTESIA_URL, {
     method: "POST",
     headers: {
@@ -36,7 +45,7 @@ export async function synthesizeSpeech(text: string, character: CharacterId, sig
     },
     body: JSON.stringify({
       model_id: MODEL_ID,
-      transcript: text,
+      transcript,
       voice: { id: CARTESIA_VOICES[character] },
       language: "he",
       output_format: { container: "mp3", sample_rate: 44100, bit_rate: 128000 },

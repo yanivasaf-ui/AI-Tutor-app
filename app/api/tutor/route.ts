@@ -63,6 +63,18 @@ interface ChatBody {
   kidId?: string;
 }
 
+interface AnswerExerciseBodyGenderExtra {
+  /** Voice-experience fix item 4 (2026-09-15): sourced from the client,
+   *  not re-looked-up here — handleAnswerExercise already runs its
+   *  evaluateExerciseAnswer call and its getKid(kidId) call in parallel
+   *  (see the Promise.all below, a deliberate latency win), so kid.gender
+   *  isn't available yet at the point evaluateExerciseAnswer needs it.
+   *  Low-stakes cosmetic data (which grammatical form the tutor's own
+   *  reply uses), not re-verified against the DB — same trust level
+   *  kidName already gets elsewhere in this file. */
+  kidGender?: "boy" | "girl" | null;
+}
+
 interface GenerateExerciseBody {
   action: "generate_exercise";
   subject: "math" | "hebrew";
@@ -76,7 +88,7 @@ interface GenerateExerciseBody {
   topic?: string;
 }
 
-interface AnswerExerciseBody {
+interface AnswerExerciseBody extends AnswerExerciseBodyGenderExtra {
   action: "answer_exercise";
   exercise: Exercise;
   answer: string;
@@ -159,7 +171,7 @@ async function handleChat(
 
   const retrieved = search(queryEmbedding, { subject, grade, topK: 4 });
 
-  const systemPrompt = buildTutorSystemPrompt(grade, subject, retrieved, subjectProfile, kid?.name);
+  const systemPrompt = buildTutorSystemPrompt(grade, subject, retrieved, subjectProfile, kid?.name, kid?.gender);
   const anthropic = getAnthropicClient();
 
   const response = await anthropic.messages.create({
@@ -297,7 +309,7 @@ async function handleGenerateExercise(
 
 async function handleAnswerExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { exercise, answer, kidId, topicId, mode, attempt }: AnswerExerciseBody
+  { exercise, answer, kidId, kidGender, topicId, mode, attempt }: AnswerExerciseBody
 ) {
   if (!exercise || !answer) {
     return NextResponse.json({ error: "exercise and answer are required" }, { status: 400 });
@@ -311,7 +323,7 @@ async function handleAnswerExercise(
   // and early-return behavior as before, just not serialized for no
   // reason. Part of the "make it faster" pass (Asaf, 2026-08-31).
   const [evaluationOutcome, kid] = await Promise.all([
-    evaluateExerciseAnswer(exercise, answer, { secondAttempt: tryNumber === 2 }).then(
+    evaluateExerciseAnswer(exercise, answer, { secondAttempt: tryNumber === 2, childGender: kidGender }).then(
       (value) => ({ ok: true as const, value }),
       (err) => ({ ok: false as const, err })
     ),

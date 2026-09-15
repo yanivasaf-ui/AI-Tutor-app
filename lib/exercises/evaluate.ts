@@ -2,6 +2,21 @@ import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { tokenize } from "@/lib/voice/matchAnswer";
 import { Computation, computeAnswer, falseClaimsIn, formatAnswer, lineIsArithmeticallySafe, wrongMathTermsIn } from "./arithmetic";
 import { Exercise, ExerciseEvaluation } from "./types";
+import type { KidGender } from "@/lib/memory/types";
+
+/** Voice-experience fix item 4 (2026-09-15): the feedback prompt below was
+ *  written to dodge the child's gender entirely ("לא בלשון זכר ולא בלשון
+ *  נקבה — התלמיד/ה לא ידוע/ה") because it genuinely wasn't known. Now that
+ *  a kid's gender is collected in onboarding, address them directly when
+ *  it's known; fall back to the old neutral instruction otherwise (a kid
+ *  from before this field existed). */
+function genderInstruction(childGender: KidGender | null | undefined): string {
+  return childGender === "boy"
+    ? "התלמיד הוא ילד — פנה/י אליו בלשון זכר יחיד (אתה, ניסית, מצאת), לא בלשון רבים או נקבה."
+    : childGender === "girl"
+      ? "התלמידה היא ילדה — פני/פנה אליה בלשון נקבה יחיד (את, ניסית, מצאת), לא בלשון רבים או זכר."
+      : "פנה/י בלשון רבים או סתמית, לא בלשון זכר ולא בלשון נקבה — התלמיד/ה לא ידוע/ה.";
+}
 
 /**
  * Judges a kid's answer. Feedback follows the same locked pedagogy as free
@@ -114,9 +129,10 @@ export function safeFeedback(
 export async function evaluateExerciseAnswer(
   exercise: Exercise,
   kidAnswer: string,
-  opts?: { secondAttempt?: boolean }
+  opts?: { secondAttempt?: boolean; childGender?: KidGender | null }
 ): Promise<ExerciseEvaluation> {
   const secondAttempt = opts?.secondAttempt === true;
+  const childGender = opts?.childGender ?? null;
   const anthropic = getAnthropicClient();
 
   // The one number this app is allowed to call "the answer" for a
@@ -159,12 +175,12 @@ export async function evaluateExerciseAnswer(
   // that sentence and appends it after the model's words.
   const wrongBranch = secondAttempt
     ? isRubric
-      ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת. אין לשאלה הזאת תשובה נכונה יחידה, אז אל תמציא/י "תשובה נכונה" אחת. במקום זה, עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר, (2) הסבר מה מאפיין הסבר טוב לשאלה הזאת, (3) דוגמה קצרה לדרך חשיבה אפשרית. נסח/י בלשון רבים או סתמית, לא בלשון זכר ולא בלשון נקבה.`
+      ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת. אין לשאלה הזאת תשובה נכונה יחידה, אז אל תמציא/י "תשובה נכונה" אחת. במקום זה, עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר, (2) הסבר מה מאפיין הסבר טוב לשאלה הזאת, (3) דוגמה קצרה לדרך חשיבה אפשרית. ${genderInstruction(childGender)}`
       : codeGraded
-        ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים את הדרך. עד שני משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה. קריטי: אל תכתוב/י את התוצאה הסופית ואל תסיים/י במשפט שמכריז מה התשובה — המערכת מוסיפה את התשובה הנכונה בעצמה מיד אחרי המשפטים שלך. נסח/י בלשון רבים או סתמית ("מחברים", "בואו נספור"), לא בלשון זכר ולא בלשון נקבה.`
-        : `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים עד הסוף. עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה, (3) התשובה הנכונה, במפורש. בלי שאלה בסוף. נסח/י בלשון רבים או סתמית ("מחברים", "בואו נספור"), לא בלשון זכר ולא בלשון נקבה.
+        ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים את הדרך. עד שני משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה. קריטי: אל תכתוב/י את התוצאה הסופית ואל תסיים/י במשפט שמכריז מה התשובה — המערכת מוסיפה את התשובה הנכונה בעצמה מיד אחרי המשפטים שלך. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}`
+        : `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים עד הסוף. עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה, (3) התשובה הנכונה, במפורש. בלי שאלה בסוף. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
   דוגמה לאורך הנכון בדיוק: "זה בסדר, זו שאלה לא פשוטה! קודם מחברים את העשרות: 20 ועוד 30 זה 50, ואז את היחידות: 4 ועוד 3 זה 7. אז התשובה היא 57."`
-    : `- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי. נסח/י בלשון רבים או סתמית ("אפשר ל...", "בואו נ..."), לא בלשון זכר ולא בלשון נקבה — התלמיד/ה לא ידוע/ה.
+    : `- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי. אפשר לנסח את הרמז עצמו בלשון רבים ("אפשר ל...", "בואו נ...") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
   דוגמה לאורך הנכון בדיוק: "זה בסדר, זה קורה! אפשר לחבר קודם את העשרות."`;
 
   const prompt = `שאלה שנשאלה לתלמיד/ה: "${exercise.question}"

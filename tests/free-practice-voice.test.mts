@@ -88,7 +88,6 @@ t("every topic voice can resolve to, from any subject state, is a real topic in 
 
 console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
 {
-  const linesMod = await import("../lib/guide/lines");
   t("every topic has a short kid label; only already-simple ones (gematria) match the curriculum string verbatim", () => {
     for (const topic of TOPICS) {
       assert.ok(topic.displayNameKid.length > 0, `${topic.id} has no displayNameKid`);
@@ -98,25 +97,17 @@ console.log("\nkid-facing topic labels (2026-09-14, grade-1 QA)");
       }
     }
   });
-  t("readTopicList reads the prompt then every label, no doubled punctuation", () => {
-    const text = linesMod.readTopicList("מה רוצים לתרגל? אפשר ללחוץ.", [
-      { displayNameKid: "אותיות וצלילים" },
-      { displayNameKid: "להתחיל לקרוא" },
-    ]);
-    assert.equal(text, "מה רוצים לתרגל? אפשר ללחוץ. אותיות וצלילים. להתחיל לקרוא.");
-    assert.ok(!text.includes(".."), "doubled period");
-  });
-  t("readTopicList strips any trailing prompt punctuation before joining", () => {
-    for (const trailing of ["?", "!", "."]) {
-      const text = linesMod.readTopicList(`שאלה${trailing}`, [{ displayNameKid: "תשובה" }]);
-      assert.equal(text, "שאלה. תשובה.");
-    }
-  });
-  // FIX 2 (2026-09-14, product review): FreePractice renders every grade's
-  // topics for a subject in ONE list (components/practice/FreePractice.tsx's
-  // visibleTopics), so two DIFFERENT topics sharing a displayNameKid look
-  // and sound identical to a kid in that same list — the exact bug that
-  // shipped "מילים חדשות" for both hebrew-a-oral-vocabulary and
+  // Voice-experience fix item 2(a) (2026-09-15): the voice no longer
+  // enumerates the topic list at all (readTopicList and its two tests
+  // here are removed, not just skipped — that behavior is the thing
+  // being fixed, not a case to keep passing). freePickTopic/
+  // freePickSubject now speak one short line only; see lib/guide/lines.ts.
+  //
+  // FIX 2 (2026-09-14, product review) — still relevant even though the
+  // topic list is now grade-filtered (item 2(b)): two DIFFERENT topics
+  // sharing a displayNameKid would still look identical within their own
+  // subject+grade list, or sound identical if voice-matched — the exact
+  // bug that shipped "מילים חדשות" for both hebrew-a-oral-vocabulary and
   // hebrew-g-vocabulary, and "משחקים במילים" for both hebrew-b-metalinguistic
   // and hebrew-g-metalinguistic. A label repeating for the SAME skill
   // recurring across grades (e.g. "השעון" — telling time, harder each year)

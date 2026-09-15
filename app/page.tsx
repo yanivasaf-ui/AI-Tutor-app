@@ -14,7 +14,7 @@ import { useCelebration } from "@/lib/celebration/useCelebration";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { authErrorMessage } from "@/lib/auth/errors";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
-import type { SubjectProfile } from "@/lib/memory/types";
+import type { KidGender, SubjectProfile } from "@/lib/memory/types";
 import type { Grade } from "@/lib/exercises/types";
 import { GRADES } from "@/lib/kids/grade";
 import { activeSuggestion } from "@/lib/practice/state";
@@ -368,8 +368,9 @@ function Onboarding({
   onDone: (kid: Kid) => void;
   onLogout: () => void;
 }) {
-  const [step, setStep] = useState<"pick" | "name" | "grade">("pick");
+  const [step, setStep] = useState<"pick" | "name" | "gender" | "grade">("pick");
   const [name, setName] = useState(existingKid?.name ?? "");
+  const [gender, setGender] = useState<KidGender | null>(null);
   const [grade, setGrade] = useState<Grade | null>(null);
   const [picked, setPicked] = useState<CharacterId | null>(null);
   const [saving, setSaving] = useState(false);
@@ -386,8 +387,11 @@ function Onboarding({
         : lines.pickPrompt(knownName)
       : step === "name"
         ? lines.askName()
-        : lines.askGrade(trimmed);
-  const guidePose: CharacterPose = step === "pick" ? "celebration" : step === "name" ? "hello" : "explaining";
+        : step === "gender"
+          ? lines.askGender(trimmed)
+          : lines.askGrade(trimmed);
+  const guidePose: CharacterPose =
+    step === "pick" ? "celebration" : step === "name" || step === "gender" ? "hello" : "explaining";
   // Each step's question is said on arrival. The pick reaction is said
   // directly inside the tap handler instead (iOS gesture rule), so the cue
   // is the step alone.
@@ -422,7 +426,7 @@ function Onboarding({
         const res = await fetch("/api/kids", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: trimmed, avatarId: picked, grade: grade ?? "א" }),
+          body: JSON.stringify({ name: trimmed, avatarId: picked, grade: grade ?? "א", gender }),
         });
         if (!res.ok) throw new Error("failed");
         const data = await res.json();
@@ -444,7 +448,7 @@ function Onboarding({
         <div>
           {step !== "pick" && (
             <button
-              onClick={() => setStep(step === "grade" ? "name" : "pick")}
+              onClick={() => setStep(step === "grade" ? "gender" : step === "gender" ? "name" : "pick")}
               className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]"
             >
               חזרה
@@ -520,13 +524,50 @@ function Onboarding({
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && trimmed && setStep("grade")}
+            onKeyDown={(e) => e.key === "Enter" && trimmed && setStep("gender")}
             placeholder="לדוגמה: נועה"
             aria-label="השם"
             className="w-full min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] px-5 text-2xl text-center"
             autoFocus
           />
           {trimmed && (
+            <button onClick={() => setStep("gender")} className={primaryButton}>
+              הבא ←
+            </button>
+          )}
+        </div>
+      )}
+
+      {step === "gender" && picked && (
+        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-4">
+          <Character character={picked} pose={guide.pose} size={220} />
+          <SpeechBubble
+            key={lines.spoken(line)}
+            text={line.text}
+            lead={line.name}
+            tail="top"
+            tailAlign="center"
+            owner="onboarding" character={picked}
+            className="w-full"
+          />
+          <div className="flex gap-4 mt-1">
+            {([
+              { value: "boy", label: "בן" },
+              { value: "girl", label: "בת" },
+            ] as const).map((g) => (
+              <button
+                key={g.value}
+                onClick={() => setGender(g.value)}
+                aria-pressed={gender === g.value}
+                className={`min-h-16 px-10 rounded-[var(--radius-button)] text-xl font-medium shadow-sm ${
+                  gender === g.value ? "bg-[var(--color-teal)] text-white" : "bg-[var(--color-surface)] text-[var(--color-ink)]"
+                }`}
+              >
+                {g.label}
+              </button>
+            ))}
+          </div>
+          {gender && (
             <button onClick={() => setStep("grade")} className={primaryButton}>
               הבא ←
             </button>

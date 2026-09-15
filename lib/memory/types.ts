@@ -37,6 +37,8 @@ export interface SubjectProfile {
   practice?: PracticeState;
 }
 
+export type KidGender = "boy" | "girl";
+
 export interface KidProfile {
   id: string;
   name: string;
@@ -44,6 +46,12 @@ export interface KidProfile {
   /** Null for kids created before kids.grade existed (their grade lived in
    *  localStorage only; the kid screen backfills it). */
   grade: Grade | null;
+  /** Null for kids created before this field existed (2026-09-15, voice
+   *  experience fix item 4) — every tutor line addresses the child by this
+   *  gender when known; falls back to the pre-existing neutral phrasing
+   *  when null, same as an unbackfilled grade. Distinct from `avatarId`
+   *  (the character/mascot's own gender, unrelated to the child's). */
+  gender: KidGender | null;
   createdAt: string;
   subjects: Partial<Record<Subject, SubjectProfile>>;
 }
