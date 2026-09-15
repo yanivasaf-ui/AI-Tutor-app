@@ -6,6 +6,7 @@ import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import MicButton from "@/components/character/MicButton";
 import KidHeader from "@/components/home/KidHeader";
+import TopicIcon from "@/components/practice/TopicIcon";
 import { TOPICS, getTopicById, type MapTopic } from "@/lib/map/topics";
 import { GRADES } from "@/lib/kids/grade";
 import { resolveFreePracticeIntent } from "@/lib/voice/freePracticeIntent";
@@ -14,13 +15,14 @@ import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
 import type { CharacterId } from "@/lib/characters";
 import type { Grade } from "@/lib/exercises/types";
+import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
 import type { Subject } from "@/lib/memory/types";
 
 const OWNER = "free";
 
-const SUBJECT_OPTIONS: { value: Subject; label: string; icon: string }[] = [
-  { value: "math", label: "מתמטיקה", icon: "🔢" },
-  { value: "hebrew", label: "עברית", icon: "📖" },
+const SUBJECT_OPTIONS: { value: Subject; label: string }[] = [
+  { value: "math", label: "מתמטיקה" },
+  { value: "hebrew", label: "עברית" },
 ];
 
 /** Printed on the suggested topic's button — display only, never spoken
@@ -171,63 +173,83 @@ export default function FreePractice({
     />
   );
 
+  // Kid-scene reskin (2026-09-15): the subject-picker step is "Home" (item
+  // 1 of the brief — headline + two illustrated subject cards), the
+  // topic-list step is "Topic picker" (item 2 — saturated per-subject
+  // stage, coherent icon set, 2-column cards, enlarged tutor). Same
+  // component, same state and handlers throughout; only the visual layer
+  // branches on `subject`.
+  const theme = subject ? SUBJECT_THEME[subject] : null;
+
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-canvas)]">
-      <KidHeader
-        kidName={kidName}
-        character={character}
-        onOpenDashboard={onOpenDashboard}
-        onBack={subject ? () => chooseSubject(null) : onBack}
-      />
-      <div className="flex-1 flex flex-col items-center gap-4 px-4 pb-10">
-        <button type="button" onClick={() => guide.say(line)} aria-label="להקשיב שוב">
-          <Character character={character} pose={guide.pose} size={subject ? 130 : 200} />
+    <div
+      className="min-h-screen flex flex-col relative overflow-hidden"
+      style={{
+        background: theme
+          ? `linear-gradient(180deg, ${theme.bg} 0%, ${theme.accent} 40%, ${theme.accent} 100%)`
+          : `radial-gradient(120% 60% at 50% 0%, #FFFDF7 0%, var(--color-canvas) 55%, var(--color-canvas-deep) 100%)`,
+      }}
+    >
+      {!subject && (
+        <div
+          aria-hidden
+          className="absolute left-[-40px] right-[-40px] top-[130px] h-[420px] pointer-events-none"
+          style={{ background: "var(--color-teal-soft)", borderRadius: "48% 48% 38% 38% / 30% 30% 24% 24%" }}
+        />
+      )}
+      <div className="relative z-10">
+        <KidHeader
+          kidName={kidName}
+          character={character}
+          onOpenDashboard={onOpenDashboard}
+          onBack={subject ? () => chooseSubject(null) : onBack}
+          compact={!subject}
+          light={!!subject}
+        />
+      </div>
+
+      <div className="relative z-10 flex-1 flex flex-col items-center gap-3 px-4 pb-10">
+        <button type="button" onClick={() => guide.say(line)} aria-label="להקשיב שוב" className="mt-1">
+          <Character character={character} pose={guide.pose} size={subject ? 158 : 240} />
         </button>
+
         <SpeechBubble
           key={lines.spoken(line)}
           text={line.text}
           spokenText={line.spokenText}
-          lead={line.name}
-          size={subject ? "md" : "lg"}
-          tail="top"
-          tailAlign="center"
+          variant="hero"
           owner={OWNER}
           character={character}
-          className="w-full max-w-md"
+          className={`w-full max-w-md ${subject ? "text-white" : "text-[var(--color-ink)]"}`}
         />
 
         {!subject ? (
           <>
-            <div className="grid grid-cols-2 gap-3 w-full max-w-md mt-1">
-              {SUBJECT_OPTIONS.map((s) => (
-                <motion.button
-                  key={s.value}
-                  type="button"
-                  whileTap={{ scale: 0.96 }}
-                  onClick={() => chooseSubject(s.value)}
-                  className="min-h-32 rounded-[var(--radius-bubble)] bg-[var(--color-surface)] shadow-md border-2 border-[var(--color-teal)]/20 flex flex-col items-center justify-center gap-2 text-2xl font-bold text-[var(--color-ink)]"
-                >
-                  <span aria-hidden className="text-5xl">
-                    {s.icon}
-                  </span>
-                  {s.label}
-                </motion.button>
-              ))}
+            {/* the main card — tutor overlaps its top edge, per the reskin's
+                "one strong headline, one main card" rule */}
+            <div className="relative z-10 w-full max-w-md bg-[var(--color-surface)] rounded-[var(--radius-stage)] shadow-lg -mt-2 px-4 pt-2 pb-5">
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                {SUBJECT_OPTIONS.map((s) => (
+                  <SubjectCard key={s.value} subject={s.value} label={s.label} onPick={() => chooseSubject(s.value)} />
+                ))}
+              </div>
+              <div className="mt-3">{mic}</div>
             </div>
-            {mic}
           </>
         ) : (
           <>
             {mic}
-            <div className="w-full max-w-md flex flex-col gap-2">
-              {suggestionHere && <TopicButton topic={suggestion!} tag={SUGGESTION_TAG} onPick={pickTopic} />}
+            <div className="w-full max-w-md grid grid-cols-2 gap-3">
+              {suggestionHere && <TopicCard topic={suggestion!} tag={SUGGESTION_TAG} onPick={pickTopic} full />}
               {groups.map((g) => (
-                <section key={g.grade} className="flex flex-col gap-2">
-                  <h2 className="text-sm font-bold text-[var(--color-ink-soft)] mt-3">כיתה {g.grade}׳</h2>
-                  {g.topics.map((t) => (
-                    <TopicButton key={t.id} topic={t} onPick={pickTopic} />
-                  ))}
-                </section>
+                <div key={g.grade} className="col-span-2 flex flex-col gap-2">
+                  <h2 className="text-sm font-bold text-white/80 mt-2">כיתה {g.grade}׳</h2>
+                  <div className="grid grid-cols-2 gap-3">
+                    {g.topics.map((t) => (
+                      <TopicCard key={t.id} topic={t} onPick={pickTopic} />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </>
@@ -237,29 +259,96 @@ export default function FreePractice({
   );
 }
 
-function TopicButton({ topic, tag, onPick }: { topic: MapTopic; tag?: string; onPick: (t: MapTopic) => void }) {
+/** Kid-scene reskin: illustrated subject tile (item 4 of the brief) —
+ *  a soft-colored scene with decorative circles behind a bespoke icon,
+ *  not a plain system button. Only two subjects exist, so these two
+ *  icons are hand-drawn rather than pulled from TopicIcon's category set. */
+function SubjectCard({ subject, label, onPick }: { subject: Subject; label: string; onPick: () => void }) {
+  const theme = SUBJECT_THEME[subject];
+  return (
+    <motion.button
+      type="button"
+      whileTap={{ scale: 0.96 }}
+      onClick={onPick}
+      className="relative overflow-hidden rounded-[1.6rem] pt-5 pb-3.5 px-2 text-center"
+      style={{
+        background: `linear-gradient(160deg, ${theme.soft} 0%, ${theme.bg} 100%)`,
+        boxShadow: `0 8px 0 ${theme.bg}, 0 10px 18px color-mix(in srgb, ${theme.deep} 25%, transparent)`,
+      }}
+    >
+      <span aria-hidden className="absolute -top-4 -start-4 w-16 h-16 rounded-full opacity-60" style={{ background: theme.bg }} />
+      <span aria-hidden className="absolute -bottom-3 -end-2 w-10 h-10 rounded-full opacity-40" style={{ background: theme.accent }} />
+      <svg width="52" height="52" viewBox="0 0 58 58" fill="none" className="relative mx-auto mb-1.5" aria-hidden="true">
+        {subject === "math" ? (
+          <>
+            <rect x="10" y="8" width="38" height="4" rx="2" fill={theme.deep} />
+            <rect x="10" y="46" width="38" height="4" rx="2" fill={theme.deep} />
+            <line x1="18" y1="12" x2="18" y2="46" stroke={theme.bg} strokeWidth="2.4" />
+            <line x1="29" y1="12" x2="29" y2="46" stroke={theme.bg} strokeWidth="2.4" />
+            <line x1="40" y1="12" x2="40" y2="46" stroke={theme.bg} strokeWidth="2.4" />
+            <circle cx="18" cy="20" r="6" fill={theme.soft} stroke={theme.deep} strokeWidth="1.6" />
+            <circle cx="29" cy="30" r="6" fill={theme.deep} />
+            <circle cx="40" cy="24" r="6" fill={theme.soft} stroke={theme.deep} strokeWidth="1.6" />
+          </>
+        ) : (
+          <>
+            <path
+              d="M29 15c-5-4-14-5-19-3v30c5-2 14-1 19 3 5-4 14-5 19-3V12c-5-2-14-1-19 3z"
+              fill="#fff"
+              stroke={theme.deep}
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+            <path d="M29 15v30" stroke={theme.deep} strokeWidth="1.6" />
+          </>
+        )}
+      </svg>
+      <div className="display relative text-lg" style={{ color: theme.deep }}>
+        {label}
+      </div>
+    </motion.button>
+  );
+}
+
+/** Kid-scene reskin: 2-column illustrated topic card (item 2 of the
+ *  brief) — TopicIcon's coherent set instead of stock emoji, on a white
+ *  card that reads cleanly against the saturated subject stage behind
+ *  it. `full` spans both columns (the parent's suggested-topic card). */
+function TopicCard({
+  topic,
+  tag,
+  onPick,
+  full,
+}: {
+  topic: MapTopic;
+  tag?: string;
+  onPick: (t: MapTopic) => void;
+  full?: boolean;
+}) {
+  const iconColor = SUBJECT_THEME[topic.subject].deep;
   return (
     <motion.button
       type="button"
       whileTap={{ scale: 0.97 }}
       onClick={() => onPick(topic)}
       data-topic-id={topic.id}
-      className={`w-full min-h-16 rounded-[var(--radius-button)] px-5 py-3 text-start text-lg font-medium text-[var(--color-ink)] shadow-sm border-2 ${
-        tag ? "bg-[var(--color-teal-soft)] border-[var(--color-teal)]" : "bg-[var(--color-surface)] border-[var(--color-teal)]/20"
-      }`}
+      className={`min-h-24 rounded-[1.4rem] px-3.5 py-3.5 text-start shadow-md flex flex-col items-start gap-2 ${
+        full ? "col-span-2" : ""
+      } ${tag ? "bg-[var(--color-warm-soft)]" : "bg-[var(--color-surface)]"}`}
     >
       {tag && (
-        <span className="inline-block mb-1 rounded-full bg-[var(--color-warm)] text-white text-xs font-bold px-2.5 py-0.5">
+        <span className="inline-block rounded-full bg-[var(--color-warm)] text-white text-xs font-bold px-2.5 py-0.5">
           {tag}
         </span>
       )}
+      <TopicIcon topicId={topic.id} className="" style={{ color: iconColor }} />
       {/* Kid-facing label (lib/map/topics.ts's displayNameKid), never the
           Ministry-phrasing `topic` string — a grade-1 kid, often not yet
           reading fluently, can't parse "הכרת יסודות הקריאה והכתיבה:
           מודעות פונולוגית וידע שמות האותיות." `topic.topic` still drives
-          everything this button doesn't render: exercise generation,
+          everything this card doesn't render: exercise generation,
           reuse, and matching all key on it, untouched. */}
-      <span className="block leading-snug">{topic.displayNameKid}</span>
+      <span className="block leading-snug font-bold text-[15px] text-[var(--color-ink)]">{topic.displayNameKid}</span>
     </motion.button>
   );
 }

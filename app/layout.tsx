@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Heebo } from "next/font/google";
+import { Heebo, Rubik } from "next/font/google";
 import "./globals.css";
 import MotionRoot from "@/components/MotionRoot";
 
@@ -15,6 +15,19 @@ const heebo = Heebo({
   weight: ["400", "500", "700"],
 });
 
+/**
+ * Kid-scene reskin (2026-09-15): the heavy, rounded display face for
+ * every screen's ONE headline (see globals.css's .display / --font-rubik) —
+ * Hebrew-safe like Heebo above, at its heaviest weight for the "loud but
+ * friendly" tone the reskin brief asked for. Heebo stays the body/UI face;
+ * this is display-only, never full paragraphs.
+ */
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["hebrew", "latin"],
+  weight: ["700", "900"],
+});
+
 export const metadata: Metadata = {
   title: "המורה הפרטי שלי",
   description: "אב טיפוס פנימי — לא לשימוש חיצוני",
@@ -27,7 +40,7 @@ export const metadata: Metadata = {
  */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="he" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
+    <html lang="he" dir="rtl" className={`${heebo.variable} ${rubik.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <MotionRoot>{children}</MotionRoot>
       </body>

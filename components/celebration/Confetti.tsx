@@ -12,7 +12,7 @@ const BRAND_COLORS = ["#14b8a6", "#8b5cf6", "#ec4899"];
  * Fires from `originEl`'s bounding-rect center when given (a bubble, a map
  * node) — falls back to screen center for full-screen tier-2/3 bursts.
  */
-export function fireConfetti(originEl: HTMLElement | null | undefined, particleCount: number, big = false) {
+export function fireConfetti(originEl: HTMLElement | null | undefined, particleCount: number, big = false, ticksOverride?: number) {
   const origin = originEl
     ? (() => {
         const r = originEl.getBoundingClientRect();
@@ -27,7 +27,7 @@ export function fireConfetti(originEl: HTMLElement | null | undefined, particleC
     origin,
     colors: BRAND_COLORS,
     scalar: big ? 1.1 : 0.9,
-    ticks: big ? 220 : 150,
+    ticks: ticksOverride ?? (big ? 220 : 150),
   });
 
   if (big) {

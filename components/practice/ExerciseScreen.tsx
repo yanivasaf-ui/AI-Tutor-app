@@ -18,6 +18,8 @@ import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
 import { recordTiming } from "@/lib/voice/timing";
+import { getTopicById } from "@/lib/map/topics";
+import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
 
@@ -137,6 +139,16 @@ export default function ExerciseScreen({
   /** Set once this visit's topic has been celebrated (or was already done
    *  before we got here) — a topic completes once. */
   const topicDoneRef = useRef(topicWasDone !== false);
+  /** Kid-scene reskin (2026-09-15): how many exercises this topic visit
+   *  has gone through, and how many were right first try — purely local,
+   *  visual-only counters (not sent to the server, not read from it) for
+   *  the exercise screen's progress strip and the milestone's "concrete
+   *  earned-progress copy" (reskin brief items 4 and 5). Reset whenever
+   *  the topic changes, same as loadNextExercise's own effect below. */
+  const topicStatsRef = useRef({ attempted: 0, correct: 0 });
+  const [progressTick, setProgressTick] = useState(0); // bumps to re-render on ref changes
+  const theme = SUBJECT_THEME[subject];
+  const topicLabel = topicId ? getTopicById(topicId)?.displayNameKid : undefined;
 
   const { speaking } = useSpeech(OWNER);
   const bubbleRef = useRef<HTMLDivElement>(null);
@@ -250,6 +262,7 @@ export default function ExerciseScreen({
   }
 
   useEffect(() => {
+    topicStatsRef.current = { attempted: 0, correct: 0 };
     loadNextExercise();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject, grade, topicId]);
@@ -297,6 +310,14 @@ export default function ExerciseScreen({
       const result: ExerciseEvaluation = data.evaluation ?? { correct: false, feedback: lines.somethingBroke(kidName).text };
       setEvalFailed(!data.evaluation);
       setEvaluation(result);
+      // Kid-scene reskin: count DISTINCT exercises, not submissions — a
+      // retry (attempt 2) is still the same exercise, so only a fresh
+      // question (attempt 1) advances "attempted"; "correct" advances on
+      // whichever attempt actually lands it, at most once per exercise
+      // since a correct result always moves on to a new one.
+      if (attempt === 1) topicStatsRef.current.attempted++;
+      if (result.correct) topicStatsRef.current.correct++;
+      setProgressTick((n) => n + 1);
       const nextPractice = data.practice as PracticeSummary | undefined;
       if (nextPractice) {
         setPractice(nextPractice);
@@ -412,25 +433,54 @@ export default function ExerciseScreen({
   // is untouched; it now renders as a full-screen moment instead.
   const showSessionOverlay = !!evaluation?.correct && !sessionCloseShown && sessionTargetReached;
 
+  // Kid-scene reskin (2026-09-15): topic name + a segmented progress
+  // strip (reskin brief item 4) — capped visually at 5 segments per
+  // topic visit, filling as topicStatsRef's local, visual-only counter
+  // advances (a 6th+ exercise just keeps the strip full rather than
+  // rolling over — there's no fixed "session length" in the adaptive
+  // model to size it exactly against). key={progressTick} so the strip
+  // actually re-renders when the ref it reads updates.
+  const PROGRESS_SEGMENTS = 5;
+  const filledSegments = Math.min(topicStatsRef.current.attempted, PROGRESS_SEGMENTS);
   const topBar = (
-    <div className="flex justify-between items-center pt-2 pb-1">
-      <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]">
-        ← {backLabel}
-      </button>
-      <div className="flex items-center gap-3">
-        {practice?.level && <LevelStars level={practice.level} bump={levelBump} />}
-        <MuteToggle />
+    <div className="pt-2 pb-1">
+      <div className="flex justify-between items-center">
+        <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-white/80">
+          ← {backLabel}
+        </button>
+        <div className="flex items-center gap-3">
+          {practice?.level && <LevelStars level={practice.level} bump={levelBump} />}
+          <MuteToggle />
+        </div>
       </div>
+      {topicLabel && (
+        <div className="mt-1.5">
+          <p className="display text-center text-white text-base mb-1.5">{topicLabel}</p>
+          <div key={progressTick} className="flex gap-1.5">
+            {Array.from({ length: PROGRESS_SEGMENTS }, (_, i) => (
+              <div
+                key={i}
+                className={`flex-1 h-2 rounded-full ${i < filledSegments ? "bg-white" : "bg-white/35"}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 
   // Building an exercise — first load or the next one. The character
   // thinks; the old question is gone, so it can't be answered while its
   // replacement is on the way.
+  // Kid-scene reskin: the per-subject saturated stage (item 4 of the
+  // brief) behind every branch of this screen — loading and error states
+  // included, so the backdrop doesn't flash to plain cream between them.
+  const stageStyle = { background: `linear-gradient(180deg, ${theme.bg} 0%, ${theme.accent} 40%, ${theme.accent} 100%)` };
+
   if (loadingExercise || (!exercise && !loadedOnce)) {
     const l = lines.buildingExercise(character, kidName);
     return (
-      <div className="flex flex-col flex-1 px-4 pb-4">
+      <div className="flex flex-col flex-1 px-4 pb-4" style={stageStyle}>
         {topBar}
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
@@ -449,7 +499,7 @@ export default function ExerciseScreen({
     const primary = "min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium";
     const secondary = "min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-medium shadow-sm";
     return (
-      <div className="flex flex-col flex-1 px-4 pb-4">
+      <div className="flex flex-col flex-1 px-4 pb-4" style={stageStyle}>
         {topBar}
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
@@ -498,11 +548,11 @@ export default function ExerciseScreen({
   const finalMiss = !!evaluation && !evaluation.correct && attempt === 2 && !evalFailed;
 
   return (
-    <div className="flex flex-col flex-1 px-4 pb-4">
+    <div className="flex flex-col flex-1 px-4 pb-4" style={stageStyle}>
       {topBar}
 
       <div className="flex justify-center">
-        <Character character={character} pose={pose} size={exercise.passage ? 170 : 220} />
+        <Character character={character} pose={pose} size={exercise.passage ? 150 : 180} />
       </div>
 
       <AnimatePresence mode="wait">
@@ -512,7 +562,13 @@ export default function ExerciseScreen({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -24 }}
           transition={{ duration: 0.2 }}
-          className="flex flex-col gap-3 mt-2"
+          // Kid-scene reskin: prompt + answer + mic, one large play card
+          // (reskin brief item 4) — was loose stacked elements directly
+          // on the screen's own background; every conditional block below
+          // (choices, the number-line/tile-order/grouping widgets, the
+          // open-answer input, the mic, the retry/next buttons) is
+          // unchanged, only this wrapper's own styling changed.
+          className="flex flex-col gap-3 mt-2 bg-[var(--color-surface)] rounded-[var(--radius-stage)] shadow-lg p-4"
         >
           <div ref={bubbleRef}>
             <SpeechBubble
@@ -587,7 +643,7 @@ export default function ExerciseScreen({
           )}
 
           {!evaluation && micApplies && (
-            <div className="flex justify-center mt-2">
+            <div className="flex items-center justify-center gap-3 mt-2 pt-3 border-t border-dashed" style={{ borderColor: theme.soft }}>
               <MicButton
                 onResult={handleVoiceResult}
                 onNothingHeard={askToRepeat}
@@ -605,6 +661,11 @@ export default function ExerciseScreen({
                 busyPhase={submitting ? "thinking" : speaking ? "speaking" : null}
                 disabled={submitting}
               />
+              {/* Kid-scene reskin: labeled, attached to the play card
+                  (reskin brief item 4) — was an unlabeled floating icon. */}
+              <span className="text-sm font-bold text-[var(--color-ink-soft)] max-w-40">
+                אפשר גם ללחוץ כאן ולומר את התשובה
+              </span>
             </div>
           )}
 
@@ -687,7 +748,23 @@ export default function ExerciseScreen({
       {topicCelebration && !showSessionOverlay && (
         <CelebrationOverlay
           character={character}
-          line={lines.topicComplete(kidName)}
+          variant="milestone"
+          line={{
+            name: kidName,
+            // Concrete earned-progress copy (reskin brief item 5) — how
+            // many exercises this topic visit actually took and how many
+            // landed right, not just a generic "stop finished." Falls
+            // back to lines.topicComplete's generic text only if
+            // attempted is somehow 0 — shouldn't happen, since a
+            // celebration only fires right after a correct submitAnswer,
+            // which always increments it first.
+            text:
+              topicStatsRef.current.attempted > 0
+                ? `כל הכבוד! סיימת את כל ${topicStatsRef.current.attempted} התרגילים בנושא${
+                    topicLabel ? ` "${topicLabel}"` : ""
+                  }. ענית נכון על ${topicStatsRef.current.correct} מתוך ${topicStatsRef.current.attempted}.`
+                : lines.topicComplete(kidName).text,
+          }}
           actions={[
             { label: "לתחנה הבאה", primary: true, onClick: onBackToMap },
             { label: "עוד תרגול כאן", onClick: () => loadNextExercise() },

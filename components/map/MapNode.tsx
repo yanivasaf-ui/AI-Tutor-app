@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useAnimate, useReducedMotion } from "framer-motion";
+import { LockIcon } from "@/components/map/MapIcons";
 
 export type NodeState = "done" | "current" | "locked";
 
@@ -76,7 +77,7 @@ export default function MapNode({ topic, state, size, onTap, attention = 0 }: Pr
               : "bg-slate-200 text-slate-400"
         }`}
       >
-        {state === "done" ? "✓" : state === "locked" ? "🔒" : "●"}
+        {state === "done" ? "✓" : state === "locked" ? <LockIcon /> : "●"}
       </motion.span>
     </button>
   );

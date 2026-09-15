@@ -77,7 +77,11 @@ export function useCelebration(setPose?: (pose: CharacterPose) => void) {
     if (tier === 1) {
       setPose?.("correct");
       play("correct");
-      if (!reducedMotion) fireConfetti(originEl, 40, false);
+      // Kid-scene reskin: a correct answer is a quick burst (600-900ms),
+      // not a lingering spray — canvas-confetti's `ticks` is roughly one
+      // simulation frame each; 50 at ~60fps lands mid-range. Was 150
+      // (~2.5s), noticeably longer than the brief's own timing.
+      if (!reducedMotion) fireConfetti(originEl, 40, false, 50);
     } else {
       setPose?.("celebration");
       play("celebrate");

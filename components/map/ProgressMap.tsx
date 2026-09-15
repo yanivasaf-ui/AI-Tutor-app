@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import MapNode, { type NodeState } from "@/components/map/MapNode";
+import { MilestoneIcon } from "@/components/map/MapIcons";
 import { getTopics } from "@/lib/map/topics";
 import { buildJourney, type Milestone } from "@/lib/practice/journey";
 import { journeyDoneIds, type PracticeState } from "@/lib/practice/state";
@@ -54,7 +55,7 @@ const INTRO_EXTRA = 44; // the year-intro line is a sentence longer
 const PAD_TOP = 40;
 const PAD_BOTTOM = 72;
 const OFFSETS = [0, 68, -68];
-const GUIDE_H = 132; // the character, standing at its stop
+const GUIDE_H = 152; // the character, standing at its stop — enlarged for kid-scene reskin (composition rule: oversized character as focal point)
 const GUIDE_W = Math.round(GUIDE_H * 0.8);
 const GUIDE_GAP = 8;
 /** Bubble bottom sits this far above the guide's stop centre — clear of
@@ -368,20 +369,34 @@ export default function ProgressMap({ character, kidName, grade, practice, loade
                     className="absolute flex items-center justify-center"
                     style={{ left: p.x - MILESTONE / 2, top: p.y - MILESTONE / 2, width: MILESTONE, height: MILESTONE }}
                   >
+                    {/* Kid-scene reskin (2026-09-15): the same saturated
+                        gold identity as the milestone celebration screen
+                        (reskin brief item 6's "25%-style landmarks" —
+                        the prominence, not literal percentages: this
+                        app's real milestones are the school-year's own
+                        חנוכה/פסח stops, a locked design decision this
+                        reskin doesn't touch). */}
                     <span
                       aria-hidden
-                      className={`absolute inset-0 rotate-45 rounded-[16px] shadow-md border-4 ${
-                        reached ? "bg-amber-300 border-amber-500" : "bg-amber-50 border-amber-300 border-dashed"
-                      }`}
+                      className="absolute inset-0 rotate-45 rounded-[16px] shadow-md border-4"
+                      style={
+                        reached
+                          ? { background: "var(--color-gold)", borderColor: "var(--color-gold-deep)" }
+                          : { background: "var(--color-canvas-deep)", borderColor: "var(--color-gold)", borderStyle: "dashed" }
+                      }
                     />
-                    <span aria-hidden className={`relative text-3xl ${reached ? "" : "opacity-70"}`}>
-                      {m.emoji}
+                    <span
+                      aria-hidden
+                      className={`relative ${reached ? "" : "opacity-70"}`}
+                      style={{ color: reached ? "white" : "var(--color-gold-deep)" }}
+                    >
+                      <MilestoneIcon id={m.id} />
                     </span>
                   </button>
                   <span
                     aria-hidden
-                    className="absolute whitespace-nowrap text-sm font-bold text-amber-700"
-                    style={sideLabelStyle(p, MILESTONE * 1.42)}
+                    className="absolute whitespace-nowrap text-sm font-bold"
+                    style={{ ...sideLabelStyle(p, MILESTONE * 1.42), color: "var(--color-gold-deep)" }}
                   >
                     {m.label}
                   </span>
