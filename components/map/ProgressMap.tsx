@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import MapNode, { type NodeState } from "@/components/map/MapNode";
+import { MilestoneIcon } from "@/components/map/MapIcons";
 import { getTopics } from "@/lib/map/topics";
 import { buildJourney, type Milestone } from "@/lib/practice/journey";
 import { journeyDoneIds, type PracticeState } from "@/lib/practice/state";
@@ -384,8 +385,12 @@ export default function ProgressMap({ character, kidName, grade, practice, loade
                           : { background: "var(--color-canvas-deep)", borderColor: "var(--color-gold)", borderStyle: "dashed" }
                       }
                     />
-                    <span aria-hidden className={`relative text-3xl ${reached ? "" : "opacity-70"}`}>
-                      {m.emoji}
+                    <span
+                      aria-hidden
+                      className={`relative ${reached ? "" : "opacity-70"}`}
+                      style={{ color: reached ? "white" : "var(--color-gold-deep)" }}
+                    >
+                      <MilestoneIcon id={m.id} />
                     </span>
                   </button>
                   <span
