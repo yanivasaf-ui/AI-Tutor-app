@@ -52,6 +52,19 @@ import type { Exercise, ExerciseSubtype } from "./types";
  *   arithmetic progression) — verifying it would mean re-implementing
  *   visual pattern recognition, not checking a spec. Excluded rather than
  *   shipping a guard that can't actually catch a wrong answer.
+ *
+ * What this guard does NOT check, by design (2026-09-15, BUG B): whether
+ * an exercise's CONTENT actually relates to its own topic_id. A
+ * number_line_placement row correctly tagged math-a-geometry but asking
+ * "היכן נמצא המספר 42?" with no shape in sight passes every check above —
+ * its spec (the number line's range/step, the stated value) is entirely
+ * self-consistent. Structural/arithmetic consistency and topical
+ * relevance are different questions; this guard answers the first one
+ * only. The fix for "content doesn't match its topic" lives in
+ * generate.ts's prompt (require the scenario to draw from the resolved
+ * topic's own curriculum content), not here — there's no reliable way to
+ * verify "is this text ABOUT shapes" in code the way "is 3+4 really 7" is
+ * checkable.
  */
 
 export interface GuardResult {
