@@ -10,6 +10,7 @@ import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
+import { factsFromAnswer, saveKidFacts } from "@/lib/memory/kidMemory";
 import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
@@ -101,6 +102,11 @@ interface AnswerExerciseBody extends AnswerExerciseBodyGenderExtra {
   mode?: PracticeMode;
   /** 1 = first answer to this question, 2 = the retry after a hint. */
   attempt?: 1 | 2;
+  /** Groups the facts written for this answer into one session (feat: kid
+   *  session memory). The client's own session clock — there is no sessions
+   *  table, and inventing one to label a group of rows would be a bigger
+   *  claim than this needs. */
+  sessionId?: string;
 }
 
 interface SpeakBody {
@@ -309,7 +315,7 @@ async function handleGenerateExercise(
 
 async function handleAnswerExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { exercise, answer, kidId, kidGender, topicId, mode, attempt }: AnswerExerciseBody
+  { exercise, answer, kidId, kidGender, topicId, mode, attempt, sessionId }: AnswerExerciseBody
 ) {
   if (!exercise || !answer) {
     return NextResponse.json({ error: "exercise and answer are required" }, { status: 400 });
@@ -343,16 +349,22 @@ async function handleAnswerExercise(
   // and a topic that belongs to the exercise's subject. Completion needs
   // an explicit mode "journey" — free practice never moves the map.
   let practice: PracticeSummary | undefined;
+  /** Did THIS answer finish the topic, as opposed to it already being
+   *  finished? Only the difference is a milestone worth remembering, and
+   *  it's only knowable here, between the read and the write. */
+  let justFinishedTopic = false;
   const topicMeta = topicId ? getTopicById(topicId) : undefined;
   if (kid && topicMeta && topicMeta.subject === exercise.subject) {
     try {
       const current = await getPracticeState(supabase, kid.id, topicMeta.subject);
+      const wasFinished = !!current.topics?.[topicMeta.id]?.journeyDoneAt;
       const result = recordAnswer(current, topicMeta.id, {
         correct: evaluation.correct,
         attempt: tryNumber,
         mode: mode === "journey" ? "journey" : "free",
         at: new Date().toISOString(),
       });
+      justFinishedTopic = !wasFinished && !!result.topic.journeyDoneAt;
       await savePracticeState(supabase, kid.id, topicMeta.subject, result.state);
       practice = summarize(result.topic, result.change);
     } catch (err) {
@@ -371,6 +383,28 @@ async function handleAnswerExercise(
   if (kid) {
     after(async () => {
       try {
+        // feat: kid session memory — the episodic half, alongside the
+        // rolling subject profile below. Derived in code from what the
+        // evaluation already returned (no second model call), and written
+        // here rather than before the response because nothing the kid
+        // sees depends on it. Failure is swallowed inside saveKidFacts:
+        // a missing memory row must never cost a child their feedback.
+        if (topicMeta) {
+          await saveKidFacts(
+            supabase,
+            kid.id,
+            factsFromAnswer({
+              topicLabel: topicMeta.displayNameKid,
+              correct: evaluation.correct,
+              attempt: tryNumber,
+              errorNote: evaluation.errorNote,
+              leveledUp: practice?.change === "up",
+              topicCompleted: justFinishedTopic,
+            }),
+            sessionId ?? null
+          );
+        }
+
         // recordAttempt (the attempt log) and getSubjectProfile (needed
         // for the memory-layer update below) are independent of each
         // other — same parallelization reasoning as elsewhere in this file.

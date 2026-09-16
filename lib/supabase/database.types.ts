@@ -136,6 +136,44 @@ export type Database = {
         }
         Relationships: []
       }
+      kid_memory: {
+        Row: {
+          created_at: string
+          detail: string
+          fact_type: string
+          id: string
+          kid_id: string
+          source_session_id: string | null
+          topic: string
+        }
+        Insert: {
+          created_at?: string
+          detail: string
+          fact_type: string
+          id?: string
+          kid_id: string
+          source_session_id?: string | null
+          topic: string
+        }
+        Update: {
+          created_at?: string
+          detail?: string
+          fact_type?: string
+          id?: string
+          kid_id?: string
+          source_session_id?: string | null
+          topic?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kid_memory_kid_id_fkey"
+            columns: ["kid_id"]
+            isOneToOne: false
+            referencedRelation: "kids"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       kids: {
         Row: {
           avatar_id: string | null
