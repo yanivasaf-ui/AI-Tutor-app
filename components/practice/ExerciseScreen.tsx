@@ -327,8 +327,13 @@ export default function ExerciseScreen({
     // needed, speak() finds it already cached instead of paying
     // Cartesia's round trip live, right in the middle of the loop the
     // founder reported as slow.
-    prefetchSpeech(lines.thinking(character, kidName).text, character);
-    prefetchSpeech(lines.buildingExercise(character, kidName).text, character);
+    // Keyed on spoken(), not .text: speak() (via useGuide/speakAuto, below
+    // and at line ~598) always reads the "name, text" spoken form, which
+    // differs from .text alone for every line with a `name` set — both of
+    // these carry one. Prefetching under the wrong key left the cache
+    // permanently missed: paid for on every load, never actually hit.
+    prefetchSpeech(lines.spoken(lines.thinking(character, kidName)), character);
+    prefetchSpeech(lines.spoken(lines.buildingExercise(character, kidName)), character);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject, grade, topicId]);
 
