@@ -196,6 +196,44 @@ function cachePut(key: string, url: string) {
   }
 }
 
+const prefetching = new Set<string>();
+
+/**
+ * Voice-experience fix item 1 (2026-09-15): warms the same cache
+ * speakCloud() reads from, for a line whose exact text is known before
+ * the character actually needs to say it — a greeting, a praise line, a
+ * topic prompt (lib/guide/lines.ts's fully-static functions; the LLM
+ * feedback lines can't be prefetched, their text doesn't exist yet).
+ * When the moment comes, speak() finds the audio already in hand instead
+ * of paying Cartesia's network round trip live — this is the actual
+ * "TTS" number in the per-stage timing (lib/voice/timing.ts's
+ * "speak-start" leg) for every line prefetched far enough ahead.
+ *
+ * Fetch only, no playback — doesn't touch the shared <audio> element and
+ * needs no user gesture, so it's safe to call from an effect on mount
+ * rather than waiting for a tap. Silently gives up on any failure (no
+ * Cartesia configured, offline, 401 before sign-in settles): speak()
+ * still works normally, it just pays the round trip at that point
+ * instead of having paid it early.
+ */
+export function prefetchSpeech(text: string, character: CharacterId) {
+  if (!text || typeof window === "undefined") return;
+  const key = `${character}|${text}`;
+  if (audioCache.has(key) || prefetching.has(key)) return;
+  prefetching.add(key);
+  fetch("/api/tutor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "speak", text, character }),
+  })
+    .then((res) => (res.ok ? res.blob() : null))
+    .then((blob) => {
+      if (blob) cachePut(key, URL.createObjectURL(blob));
+    })
+    .catch(() => {})
+    .finally(() => prefetching.delete(key));
+}
+
 function stopPlayback() {
   pendingFetch?.abort();
   pendingFetch = null;
@@ -217,8 +255,17 @@ function stopPlayback() {
 
 /** Resolves true when the line is handled (playing, or superseded by a
  *  newer line); false when the caller should fall back to the browser
- *  voice. */
-async function speakCloud(text: string, character: CharacterId, owner: string | null, id: number): Promise<boolean> {
+ *  voice. `onEnd`, when given, fires once this exact utterance genuinely
+ *  finishes (not superseded) — used by voice-experience fix item 3's
+ *  answer-option readout to chain "speak the next thing" without a
+ *  fragile speaking-flag poll. */
+async function speakCloud(
+  text: string,
+  character: CharacterId,
+  owner: string | null,
+  id: number,
+  onEnd?: () => void
+): Promise<boolean> {
   const key = `${character}|${text}`;
   let url = audioCache.get(key);
 
@@ -250,12 +297,16 @@ async function speakCloud(text: string, character: CharacterId, owner: string | 
     if (id === utteranceId) emit({ speaking: true, owner });
   };
   a.onended = () => {
-    if (id === utteranceId) emit({ speaking: false, owner: null });
+    if (id === utteranceId) {
+      emit({ speaking: false, owner: null });
+      onEnd?.();
+    }
   };
   a.onerror = () => {
     if (id !== utteranceId) return;
     emit({ speaking: false, owner: null });
-    if (!started) speakBrowser(text, owner, id);
+    if (!started) speakBrowser(text, owner, id, onEnd);
+    else onEnd?.();
   };
   a.muted = false;
   a.src = url;
@@ -277,7 +328,7 @@ async function speakCloud(text: string, character: CharacterId, owner: string | 
 
 // ---- Browser voice ---------------------------------------------------------
 
-function speakBrowser(text: string, owner: string | null, id: number) {
+function speakBrowser(text: string, owner: string | null, id: number, onEnd?: () => void) {
   const voice = state.voice;
   if (!voice || !available() || id !== utteranceId) return;
   speechSynthesis.cancel();
@@ -288,7 +339,10 @@ function speakBrowser(text: string, owner: string | null, id: number) {
     if (id === utteranceId) emit({ speaking: true, owner });
   };
   const done = () => {
-    if (id === utteranceId) emit({ speaking: false, owner: null });
+    if (id === utteranceId) {
+      emit({ speaking: false, owner: null });
+      onEnd?.();
+    }
   };
   utterance.onend = done;
   utterance.onerror = done;
@@ -316,7 +370,7 @@ export function speak(
   text: string,
   owner: string | null = null,
   character?: CharacterId | null,
-  opts?: { surviveOwnerUnmount?: boolean }
+  opts?: { surviveOwnerUnmount?: boolean; onEnd?: () => void }
 ) {
   if (!text) return;
   const id = ++utteranceId;
@@ -326,18 +380,18 @@ export function speak(
   if (state.speaking) emit({ speaking: false, owner: null });
 
   if (character && state.cloud && typeof window !== "undefined") {
-    speakCloud(text, character, owner, id)
+    speakCloud(text, character, owner, id, opts?.onEnd)
       .then((handled) => {
-        if (!handled && id === utteranceId) speakBrowser(text, owner, id);
+        if (!handled && id === utteranceId) speakBrowser(text, owner, id, opts?.onEnd);
       })
       .catch(() => {
         // AbortError when superseded (id moved on — nothing to do);
         // otherwise a network or autoplay failure: fall back.
-        if (id === utteranceId) speakBrowser(text, owner, id);
+        if (id === utteranceId) speakBrowser(text, owner, id, opts?.onEnd);
       });
     return;
   }
-  speakBrowser(text, owner, id);
+  speakBrowser(text, owner, id, opts?.onEnd);
 }
 
 /**

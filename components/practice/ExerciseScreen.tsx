@@ -10,7 +10,7 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
-import { speak, stopSpeaking, useSpeech, hasSeenGesture } from "@/lib/speech/useSpeech";
+import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
@@ -22,6 +22,7 @@ import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
+import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
 
@@ -44,6 +45,11 @@ interface Props {
   kidId: string;
   /** How the character addresses the kid, in every line (Task 5 item 5). */
   kidName: string;
+  /** Voice-experience fix item 4 (2026-09-15): reaches the server so
+   *  LLM-generated exercise feedback (lib/exercises/evaluate.ts) can
+   *  address the kid in their own grammatical gender. Null/omitted falls
+   *  back to the pre-existing neutral phrasing. */
+  kidGender?: KidGender | null;
   character: CharacterId;
   /** Owned by the parent, not here, so switching subject/grade mid-session
    *  doesn't reset the clock (project-brief.md Section 2d-2: ~15 min/day,
@@ -53,6 +59,12 @@ interface Props {
   sessionCloseShown: boolean;
   onSessionClose: () => void;
   onBackToMap: () => void;
+  /** Voice-experience fix item 6 (2026-09-15): a real exit all the way to
+   *  ModeChoice, distinct from onBackToMap (which only returns to the map
+   *  or topic list this exercise was opened from). Offered from the
+   *  correct-answer burst and the topic-complete milestone, alongside
+   *  their existing "keep going" action. */
+  onGoHome: () => void;
   /** Where this exercise was started from. "journey" answers can complete
    *  the map stop; "free" answers never touch map progress — the server
    *  enforces it (lib/practice/state.ts recordAnswer). */
@@ -99,11 +111,13 @@ export default function ExerciseScreen({
   topicWasDone,
   kidId,
   kidName,
+  kidGender,
   character,
   sessionStartedAt,
   sessionCloseShown,
   onSessionClose,
   onBackToMap,
+  onGoHome,
   mode = "journey",
   backLabel = "חזרה למפה",
 }: Props) {
@@ -126,6 +140,11 @@ export default function ExerciseScreen({
   const [micDenied, setMicDenied] = useState(false);
   const [topicCelebration, setTopicCelebration] = useState(false);
   const [sessionGoodbye, setSessionGoodbye] = useState(false);
+  /** Voice-experience fix item 6: the top bar's back arrow used to leave
+   *  the exercise the instant it was tapped — one stray tap mid-question
+   *  and the kid lost their place with no chance to reconsider. Now it
+   *  opens this confirm step instead of calling onBackToMap directly. */
+  const [confirmingLeave, setConfirmingLeave] = useState(false);
   /** 1 on a fresh question, 2 on the retry after a hint. */
   const [attempt, setAttempt] = useState<1 | 2>(1);
   /** The last evaluation is the "something broke" stand-in, not a real
@@ -165,17 +184,28 @@ export default function ExerciseScreen({
    *  time-to-acknowledgement (which would flatter the number). */
   const speakingAckRef = useRef(false);
 
+  /** Voice-experience fix item 3: bumped on every new exercise so an
+   *  in-flight answer-readout chain (question -> choice 1 -> choice 2...)
+   *  can tell it's been superseded and stop recursing into a question
+   *  that's no longer on screen. */
+  const readoutGenRef = useRef(0);
+
   /** Automatic speech: gated on the device mute AND the iOS gesture rule.
-   *  Explicit 🔊 taps inside a bubble bypass this deliberately. */
-  const speakAuto = useCallback((text: string, opts?: { ack?: boolean }) => {
+   *  Explicit 🔊 taps inside a bubble bypass this deliberately. `onEnd`
+   *  (voice-experience fix item 3) chains the grades-א/ב answer readout
+   *  onto the moment this specific utterance finishes. */
+  const speakAuto = useCallback((text: string, opts?: { ack?: boolean; onEnd?: () => void }) => {
     if (!isAutoSpeakOn() || !hasSeenGesture()) return;
     speakCalledAtRef.current = performance.now();
     speakingAckRef.current = opts?.ack === true;
-    speak(text, OWNER, character);
+    speak(text, OWNER, character, { onEnd: opts?.onEnd });
   }, [character]);
 
   // Leaving mid-sentence (back to map) must not keep talking over the map.
-  useEffect(() => () => stopSpeaking(OWNER), []);
+  useEffect(() => () => {
+    stopSpeaking(OWNER);
+    readoutGenRef.current++;
+  }, []);
 
   // speak() resolves asynchronously inside the speech engine, so
   // "how long until the kid actually hears something" is only knowable by
@@ -214,6 +244,31 @@ export default function ExerciseScreen({
     return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions().text : null]
       .filter(Boolean)
       .join(" ");
+  }
+
+  /** Voice-experience fix item 3 (2026-09-15): grades א/ב, after the
+   *  question, hear every multiple-choice option read in order with a
+   *  short pause between — a pre-reader can't otherwise know what the
+   *  choices even say. Grade ג+ gets no automatic readout; each option
+   *  gets a tap-to-hear speaker icon instead (rendered below, near the
+   *  choice buttons). `gen` is this call's generation stamp
+   *  (readoutGenRef) — every step checks it's still current before
+   *  speaking or scheduling the next one, so a new exercise, a retry, or
+   *  this screen unmounting silently drops the rest of an in-flight
+   *  readout instead of talking over whatever replaced it. */
+  const READOUT_PAUSE_MS = 450;
+  function readChoicesInOrder(choices: string[], gen: number, i = 0) {
+    if (readoutGenRef.current !== gen || i >= choices.length) return;
+    setTimeout(() => {
+      if (readoutGenRef.current !== gen) return;
+      speak(choices[i], OWNER, character, { onEnd: () => readChoicesInOrder(choices, gen, i + 1) });
+    }, READOUT_PAUSE_MS);
+  }
+
+  function speakQuestionAndMaybeReadout(ex: Exercise) {
+    const gen = ++readoutGenRef.current;
+    const autoRead = (grade === "א" || grade === "ב") && ex.type === "multiple_choice" && !!ex.choices?.length;
+    speakAuto(questionSpeech(ex), autoRead ? { onEnd: () => readChoicesInOrder(ex.choices!, gen) } : undefined);
   }
 
   async function loadNextExercise() {
@@ -264,6 +319,21 @@ export default function ExerciseScreen({
   useEffect(() => {
     topicStatsRef.current = { attempted: 0, correct: 0 };
     loadNextExercise();
+    // Voice-experience fix item 1: "רגע, אני חושב/ת" and "רגע, אני מכין/ה
+    // לנו תרגיל" are said on every single answer and every single new
+    // exercise — the two most frequent lines on this whole screen, and
+    // both fully known the moment the screen opens (character + kidName,
+    // nothing else). Warmed here so by the time either is actually
+    // needed, speak() finds it already cached instead of paying
+    // Cartesia's round trip live, right in the middle of the loop the
+    // founder reported as slow.
+    // Keyed on spoken(), not .text: speak() (via useGuide/speakAuto, below
+    // and at line ~598) always reads the "name, text" spoken form, which
+    // differs from .text alone for every line with a `name` set — both of
+    // these carry one. Prefetching under the wrong key left the cache
+    // permanently missed: paid for on every load, never actually hit.
+    prefetchSpeech(lines.spoken(lines.thinking(character, kidName)), character);
+    prefetchSpeech(lines.spoken(lines.buildingExercise(character, kidName)), character);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject, grade, topicId]);
 
@@ -273,7 +343,7 @@ export default function ExerciseScreen({
   useEffect(() => {
     if (!exercise) return;
     setBasePose("explaining");
-    speakAuto(questionSpeech(exercise));
+    speakQuestionAndMaybeReadout(exercise);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise]);
 
@@ -303,7 +373,7 @@ export default function ExerciseScreen({
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId, topicId, mode, attempt }),
+        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId, kidGender, topicId, mode, attempt }),
       });
       const data = await res.json();
       recordTiming("evaluate", performance.now() - evaluateStartedAt);
@@ -445,7 +515,7 @@ export default function ExerciseScreen({
   const topBar = (
     <div className="pt-2 pb-1">
       <div className="flex justify-between items-center">
-        <button onClick={onBackToMap} className="min-h-11 px-1 text-sm text-white/80">
+        <button onClick={() => setConfirmingLeave(true)} className="min-h-11 px-1 text-sm text-white/80">
           ← {backLabel}
         </button>
         <div className="flex items-center gap-3">
@@ -601,9 +671,26 @@ export default function ExerciseScreen({
                   whileTap={{ scale: 0.96 }}
                   onClick={() => submitAnswer(choice)}
                   disabled={submitting}
-                  className="min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] text-2xl font-medium text-[var(--color-ink)] px-5 disabled:opacity-50"
+                  className="min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] text-2xl font-medium text-[var(--color-ink)] px-5 disabled:opacity-50 flex items-center justify-center gap-2 relative"
                   dir={/^[\d+\-*/=.,\s]+$/.test(choice) ? "ltr" : undefined}
                 >
+                  {/* Voice-experience fix item 3: grade ג+ gets no automatic
+                      answer readout (grades א/ב do, right after the
+                      question — see speakQuestionAndMaybeReadout above) —
+                      tap this to hear just this one option instead. */}
+                  {grade === "ג" && (
+                    <span
+                      role="button"
+                      aria-label={`הקראת התשובה ${choice}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        speak(choice, OWNER, character);
+                      }}
+                      className="absolute start-3 w-8 h-8 rounded-full bg-[var(--color-teal)]/10 flex items-center justify-center text-base shrink-0"
+                    >
+                      🔊
+                    </span>
+                  )}
                   {choice}
                 </motion.button>
               ))}
@@ -675,7 +762,7 @@ export default function ExerciseScreen({
                 if (!evalFailed) setAttempt(2);
                 setEvaluation(null);
                 setBasePose("explaining");
-                speakAuto(questionSpeech(exercise));
+                speakQuestionAndMaybeReadout(exercise);
               }}
               className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-warm)]/40 text-lg text-[var(--color-ink)]"
             >
@@ -703,12 +790,20 @@ export default function ExerciseScreen({
           )}
 
           {evaluation && evaluation.correct && (
-            <button
-              onClick={() => loadNextExercise()}
-              className="self-center min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium mt-1"
-            >
-              עוד תרגיל!
-            </button>
+            <div className="self-center flex flex-col items-center gap-2 mt-1">
+              <button
+                onClick={() => loadNextExercise()}
+                className="min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium"
+              >
+                עוד תרגיל!
+              </button>
+              {/* Voice-experience fix item 6: the burst used to offer only
+                  "עוד תרגיל!" — no way home without answering another
+                  question first. */}
+              <button onClick={onGoHome} className="min-h-11 px-4 text-sm text-[var(--color-ink-soft)] underline">
+                חזרה הביתה
+              </button>
+            </div>
           )}
         </motion.div>
       </AnimatePresence>
@@ -768,8 +863,35 @@ export default function ExerciseScreen({
           actions={[
             { label: "לתחנה הבאה", primary: true, onClick: onBackToMap },
             { label: "עוד תרגול כאן", onClick: () => loadNextExercise() },
+            { label: "חזרה הביתה", onClick: onGoHome },
           ]}
         />
+      )}
+
+      {/* Voice-experience fix item 6: the back arrow's confirm step —
+          discreet trigger (the existing top-bar link), a real pause
+          before anything is lost. */}
+      {confirmingLeave && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
+          <div className="w-full max-w-xs bg-[var(--color-surface)] rounded-[var(--radius-stage)] shadow-lg p-5 flex flex-col items-center gap-4 text-center">
+            <p className="text-lg font-bold text-[var(--color-ink)]">לצאת מהתרגיל?</p>
+            <p className="text-sm text-[var(--color-ink-soft)]">התרגיל הנוכחי לא יישמר.</p>
+            <div className="w-full flex flex-col gap-2">
+              <button
+                onClick={() => setConfirmingLeave(false)}
+                className="min-h-14 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-medium"
+              >
+                להישאר
+              </button>
+              <button
+                onClick={onBackToMap}
+                className="min-h-12 rounded-[var(--radius-button)] bg-transparent text-[var(--color-ink-soft)] text-base"
+              >
+                כן, לצאת
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

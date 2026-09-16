@@ -7,15 +7,18 @@ import FreePractice from "@/components/practice/FreePractice";
 import ExerciseScreen from "@/components/practice/ExerciseScreen";
 import { readLegacyStoredGrade, resolveGrade } from "@/lib/kids/grade";
 import { activeSuggestion, type PracticeMode, type PracticeState } from "@/lib/practice/state";
+import * as lines from "@/lib/guide/lines";
+import { prefetchSpeech } from "@/lib/speech/useSpeech";
 import type { CharacterId } from "@/lib/characters";
 import type { Grade } from "@/lib/exercises/types";
-import type { Subject } from "@/lib/memory/types";
+import type { KidGender, Subject } from "@/lib/memory/types";
 
 export interface KidSummary {
   id: string;
   name: string;
   avatarId: string | null;
   grade: Grade | null;
+  gender: KidGender | null;
 }
 
 type Practice = Partial<Record<Subject, PracticeState>>;
@@ -84,6 +87,15 @@ export default function KidHome({
     refresh();
   }, [refresh]);
 
+  // Voice-experience fix item 1: ModeChoice's question is the very first
+  // thing said every session, spoken almost immediately after it mounts —
+  // fired here, one render earlier (kid + character are already known;
+  // ModeChoice itself hasn't mounted yet), so the Cartesia round trip has
+  // a head start on the render+cue-effect gap instead of racing it cold.
+  useEffect(() => {
+    prefetchSpeech(lines.modeQuestion(kid.name, kid.gender).text, character);
+  }, [kid.name, kid.gender, character]);
+
   // kids.grade backfill: a kid created before the column existed has its
   // grade only in this device's localStorage. Copy it up once, so the
   // server — and every other device — agrees from then on.
@@ -125,12 +137,17 @@ export default function KidHome({
           backLabel={from.mode === "journey" ? "חזרה למפה" : "חזרה לנושאים"}
           kidId={kid.id}
           kidName={kid.name}
+          kidGender={kid.gender}
           character={character}
           sessionStartedAt={sessionStartedAt}
           sessionCloseShown={sessionCloseShown}
           onSessionClose={() => setSessionCloseShown(true)}
           onBackToMap={() => {
             setView(from.mode === "journey" ? { name: "journey" } : { name: "free", subject: from.subject });
+            refresh();
+          }}
+          onGoHome={() => {
+            setView({ name: "choose" });
             refresh();
           }}
         />
@@ -160,6 +177,7 @@ export default function KidHome({
     return (
       <FreePractice
         kidName={kid.name}
+        kidGender={kid.gender}
         character={character}
         kidGrade={grade}
         suggestionTopicId={activeSuggestion(practice)?.topicId}
@@ -174,6 +192,7 @@ export default function KidHome({
   return (
     <ModeChoice
       kidName={kid.name}
+      kidGender={kid.gender}
       character={character}
       onJourney={() => setView({ name: "journey" })}
       onFree={() => setView({ name: "free" })}

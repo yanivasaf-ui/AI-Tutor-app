@@ -8,6 +8,7 @@ import { JourneyIcon, PracticeIcon } from "@/components/home/ModeIcons";
 import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
 import type { CharacterId } from "@/lib/characters";
+import type { KidGender } from "@/lib/memory/types";
 
 const OWNER = "mode";
 
@@ -28,18 +29,20 @@ const OWNER = "mode";
  */
 export default function ModeChoice({
   kidName,
+  kidGender,
   character,
   onJourney,
   onFree,
   onOpenDashboard,
 }: {
   kidName: string;
+  kidGender?: KidGender | null;
   character: CharacterId;
   onJourney: () => void;
   onFree: () => void;
   onOpenDashboard: () => void;
 }) {
-  const line = lines.modeQuestion(kidName);
+  const line = lines.modeQuestion(kidName, kidGender);
   const guide = useGuide({ owner: OWNER, character, pose: "hello", line });
 
   return (

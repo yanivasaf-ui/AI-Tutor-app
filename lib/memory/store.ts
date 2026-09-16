@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
-import { KidProfile, Subject, SubjectProfile, emptySubjectProfile } from "./types";
+import { KidGender, KidProfile, Subject, SubjectProfile, emptySubjectProfile } from "./types";
 import { parsePracticeState } from "@/lib/practice/state";
 import type { Grade } from "@/lib/exercises/types";
 
@@ -46,6 +46,10 @@ function toGrade(v: unknown): Grade | null {
   return v === "א" || v === "ב" || v === "ג" ? v : null;
 }
 
+function toGender(v: unknown): KidGender | null {
+  return v === "boy" || v === "girl" ? v : null;
+}
+
 /** 2026-09-14: was a sequential for-loop awaiting getKid() one kid at a
  *  time — a real N+1 waterfall for any parent with more than one kid, and
  *  part of what the post-Google-sign-in wait was paying for (see
@@ -83,6 +87,7 @@ export async function getKid(supabase: Client, id: string): Promise<KidProfile |
     name: kid.name as string,
     avatarId: (kid.avatar_id as string) ?? null,
     grade: toGrade(kid.grade),
+    gender: toGender(kid.gender),
     createdAt: kid.created_at as string,
     subjects,
   };
@@ -93,11 +98,12 @@ export async function createKid(
   parentId: string,
   name: string,
   avatarId: string | null,
-  grade: Grade | null
+  grade: Grade | null,
+  gender: KidGender | null
 ): Promise<KidProfile> {
   const { data, error } = await supabase
     .from("kids")
-    .insert({ name, avatar_id: avatarId, parent_id: parentId, grade })
+    .insert({ name, avatar_id: avatarId, parent_id: parentId, grade, gender })
     .select()
     .single();
   if (error || !data) throw new Error(`Failed to create kid: ${error?.message}`);
@@ -107,6 +113,7 @@ export async function createKid(
     name: data.name as string,
     avatarId: (data.avatar_id as string) ?? null,
     grade: toGrade(data.grade),
+    gender: toGender(data.gender),
     createdAt: data.created_at as string,
     subjects: {},
   };
@@ -114,6 +121,11 @@ export async function createKid(
 
 export async function setKidGrade(supabase: Client, id: string, grade: Grade): Promise<boolean> {
   const { error } = await supabase.from("kids").update({ grade }).eq("id", id);
+  return !error;
+}
+
+export async function setKidGender(supabase: Client, id: string, gender: KidGender): Promise<boolean> {
+  const { error } = await supabase.from("kids").update({ gender }).eq("id", id);
   return !error;
 }
 

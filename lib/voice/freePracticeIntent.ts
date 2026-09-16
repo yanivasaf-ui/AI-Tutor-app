@@ -33,7 +33,10 @@ export function resolveFreePracticeIntent(
   currentSubject: Subject | null,
   kidGrade: Grade
 ): FreePracticeIntent {
-  const pool = currentSubject ? TOPICS.filter((t) => t.subject === currentSubject) : TOPICS;
+  // Voice-experience fix item 2(b): topics are scoped to the kid's own
+  // grade everywhere, matching what's read and listed on screen — a topic
+  // from another grade is no longer a valid voice match either.
+  const pool = TOPICS.filter((t) => t.grade === kidGrade && (!currentSubject || t.subject === currentSubject));
   const topic = matchTopic(transcript, pool, kidGrade);
   if (topic) return { kind: "topic", topic };
 

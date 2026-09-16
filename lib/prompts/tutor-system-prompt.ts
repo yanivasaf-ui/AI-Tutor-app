@@ -1,5 +1,5 @@
 import { RetrievedChunk } from "../rag/types";
-import { SubjectProfile } from "../memory/types";
+import { KidGender, SubjectProfile } from "../memory/types";
 
 /**
  * Encodes the pedagogy + safety decisions locked in
@@ -24,11 +24,24 @@ export function buildTutorSystemPrompt(
   subject: string,
   retrievedContext: RetrievedChunk[],
   memory?: SubjectProfile | null,
-  kidName?: string
+  kidName?: string,
+  kidGender?: KidGender | null
 ): string {
   const contextBlock = retrievedContext
     .map((c) => `- [${c.topic}] ${c.text}`)
     .join("\n");
+
+  // Voice-experience fix item 4 (2026-09-15): explicit, not left implicit
+  // in surrounding /י slash-forms (those are instructions TO the model
+  // about itself, never spoken — separate concern). A kid from before
+  // this field existed has no gender on file; the model falls back to
+  // its own neutral judgment same as before this fix.
+  const genderBlock =
+    kidGender === "boy"
+      ? `\nהתלמיד הוא ילד. פנה/י אליו תמיד בלשון זכר יחיד ("אתה", "ניסית", "מצאת") — לעולם לא בלשון רבים, נקבה, או צורות כתובות זהות לזכר/נקבה ("בחרת") בלי לוודא שהן נכונות לזכר כאן.\n`
+      : kidGender === "girl"
+        ? `\nהתלמידה היא ילדה. פני/פנה אליה תמיד בלשון נקבה יחיד ("את", "ניסית", "מצאת") — לעולם לא בלשון רבים, זכר, או צורות כתובות זהות לזכר/נקבה בלי לוודא שהן נכונות לנקבה כאן.\n`
+        : "";
 
   const memoryBlock = memory
     ? `## מה שאת/ה כבר יודע/ת על ${kidName || "התלמיד/ה"} בנושא הזה (מצטבר מסשנים קודמים)
@@ -43,7 +56,7 @@ export function buildTutorSystemPrompt(
     : "";
 
   return `את/ה מורה פרטי/ת סבלני/ת וחם/ה לילד/ה בכיתה ${childGrade}, בנושא ${subject}.
-
+${genderBlock}
 ${memoryBlock}
 
 ## איך ללמד (מבוסס על MathDial / Bridge / CIMA)

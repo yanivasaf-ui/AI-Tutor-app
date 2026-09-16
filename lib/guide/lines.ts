@@ -1,4 +1,5 @@
 import type { CharacterId } from "@/lib/characters";
+import type { KidGender } from "@/lib/memory/types";
 
 /**
  * Everything the character says, in one place (character-led redesign,
@@ -13,11 +14,21 @@ import type { CharacterId } from "@/lib/characters";
  * Hebrew grammar rules for every line here — these are spoken by TTS,
  * not just read:
  *
- * 1. Nothing gendered toward the kid. We don't know the kid's gender, and
- *    the character they picked says nothing about it. Lines use
- *    gender-neutral forms: impersonal/plural present ("לוחצים",
- *    "מתחילים"), first-person plural ("נמשיך", "עברנו"), infinitives
- *    ("אפשר ללחוץ").
+ * 1. (2026-09-15, voice-experience fix item 4) The kid's gender is now
+ *    collected in onboarding (KidGender, lib/memory/types.ts) and known
+ *    everywhere after that step. A handful of lines ask the kid directly
+ *    what THEY want ("מה רוצים ללמוד?") and used to hide behind the
+ *    impersonal/generic-plural form specifically to dodge an unknown
+ *    gender — those now take an optional `kidGender` and address the kid
+ *    directly ("מה אתה/את רוצה"), via the `directed()` helper below.
+ *    Falls back to the old neutral phrasing when gender is null (a kid
+ *    from before this field existed, or the two lines asked before
+ *    gender is known at all — pickPrompt/askName/askGrade, onboarding's
+ *    own first steps). Most other lines were never actually dodging
+ *    gender in the first place — genuine first-person-plural "let's"
+ *    framing ("נמשיך", "עברנו") and impersonal UI instructions
+ *    ("לוחצים על העיגול", "אפשר ללחוץ") are gender-invariant in Hebrew
+ *    on their own merits, not a workaround, so they're unchanged.
  * 2. No slash forms ("נסה/י"). They're fine on a printed page and broken
  *    out loud — TTS reads the slash, or a gender at random.
  * 3. No forms that are gendered in *speech* but identical in *writing*.
@@ -47,6 +58,12 @@ export function spoken(line: Line): string {
 
 const self = (c: CharacterId, boy: string, girl: string) => (c === "girl" ? girl : boy);
 
+/** Same shape as `self()`, but for the CHILD's own gender rather than the
+ *  character's — see rule 1 above. `neutral` is used when gender isn't
+ *  known yet. */
+const directed = (g: KidGender | null | undefined, boy: string, girl: string, neutral: string) =>
+  g === "boy" ? boy : g === "girl" ? girl : neutral;
+
 // ---- Onboarding --------------------------------------------------------
 
 export const pickPrompt = (name?: string): Line =>
@@ -59,42 +76,40 @@ export const picked = (c: CharacterId, name?: string): Line => ({
 
 export const askName = (): Line => ({ text: "היי! בואו נכיר — מה השם?" });
 
+/** Voice-experience fix item 4 (2026-09-15): new onboarding step, name
+ *  then gender then grade — collected once so every later line can
+ *  address the kid correctly. */
+export const askGender = (name: string): Line => ({ name, text: "אתה בן או את בת?" });
+
 export const askGrade = (name: string): Line => ({ name, text: "נעים מאוד! באיזו כיתה?" });
 
 // ---- Entry: mode choice --------------------------------------------------
 
-/** Asked after sign-in, before anything else. Neutral on purpose — the
- *  journey isn't presented as the "right" answer. */
-export const modeQuestion = (name: string): Line => ({
+/** Asked after sign-in, before anything else. The "continue the journey"
+ *  half is neutral on purpose (first-person-plural, invariant) — the
+ *  journey isn't presented as the "right" answer; only the "something
+ *  else" half asks the kid directly, so only that half is gendered. */
+export const modeQuestion = (name: string, kidGender?: KidGender | null): Line => ({
   name,
-  text: "נמשיך במסלול שלנו, או שיש משהו שרוצים לתרגל?",
+  text: `נמשיך במסלול שלנו, או שיש משהו ש${directed(kidGender, "אתה רוצה", "את רוצה", "רוצים")} לתרגל?`,
 });
 
 // ---- Free practice -----------------------------------------------------
 
-export const freePickSubject = (name: string): Line => ({
+export const freePickSubject = (name: string, kidGender?: KidGender | null): Line => ({
   name,
-  text: "מה מתרגלים — מתמטיקה או עברית? אפשר ללחוץ, או לומר.",
+  text: `מה ${directed(kidGender, "אתה מתרגל", "את מתרגלת", "מתרגלים")} — מתמטיקה או עברית? אפשר ללחוץ, או לומר.`,
 });
 
 /** The suggestion itself is tagged in the list; the spoken line only says
  *  it's there — "ההורים", not a slash form. */
-export const freePickTopic = (name: string, hasSuggestion: boolean): Line => ({
+export const freePickTopic = (name: string, hasSuggestion: boolean, kidGender?: KidGender | null): Line => ({
   name,
   text: hasSuggestion
-    ? "מה רוצים לתרגל? ההצעה של ההורים ראשונה ברשימה."
-    : "מה רוצים לתרגל? אפשר ללחוץ על נושא, או לומר אותו.",
+    ? `מה ${directed(kidGender, "אתה רוצה", "את רוצה", "רוצים")} לתרגל? ההצעה של ההורים ראשונה ברשימה.`
+    : `מה ${directed(kidGender, "אתה רוצה", "את רוצה", "רוצים")} לתרגל? אפשר ללחוץ על נושא, או לומר אותו.`,
 });
 
-/** Reads the free-practice topic list aloud, in the order it renders —
- *  the only way a pre-reader can choose (2026-09-14, grade-1 QA: the
- *  Ministry-phrasing labels were both unreadable and never spoken). Takes
- *  the already-built prompt text and the kid-facing labels
- *  (MapTopic.displayNameKid, lib/map/topics.ts) rather than a Line, since
- *  it composes into Line.spokenText at the call site (components/
- *  practice/FreePractice.tsx), not a line on its own. */
-export const readTopicList = (promptText: string, labels: { displayNameKid: string }[]): string =>
-  [promptText.replace(/[.!?]+$/, ""), ...labels.map((t) => t.displayNameKid)].join(". ") + ".";
 
 export const topicNotFound = (name: string): Line => ({
   name,
