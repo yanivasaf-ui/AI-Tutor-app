@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createKid, getKid, listKids, setKidAvatar, setKidGender, setKidGrade } from "@/lib/memory/store";
+import { pickOpenerFact, recentKidFacts } from "@/lib/memory/kidMemory";
 import { getParentFlags, getRecentAttempts, getSubjectStats } from "@/lib/dashboard/store";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { updatePracticeState } from "@/lib/practice/store";
@@ -39,7 +40,18 @@ export async function GET(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "not authenticated" }, { status: 401 });
 
   const kids = await listKids(supabase);
-  if (req.nextUrl.searchParams.get("view") === "kid") return NextResponse.json({ kids });
+  if (req.nextUrl.searchParams.get("view") === "kid") {
+    // feat: continuity greeting — one fact per kid, resolved server-side so
+    // the payload carries a single small object instead of a history, and
+    // the client never sees another kid's rows. Rides the fetch the kid
+    // screens already make on mount; parallel per kid, same reasoning as
+    // listKids' own N+1 fix.
+    const openers = await Promise.all(
+      kids.map(async (kid) => [kid.id, pickOpenerFact(await recentKidFacts(supabase, kid.id))] as const)
+    );
+    const openerByKid = Object.fromEntries(openers);
+    return NextResponse.json({ kids: kids.map((k) => ({ ...k, openerFact: openerByKid[k.id] ?? null })) });
+  }
 
   const today = new Date().toISOString().slice(0, 10);
   const dashboard = await Promise.all(

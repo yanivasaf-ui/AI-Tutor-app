@@ -9,6 +9,7 @@ import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
 import type { CharacterId } from "@/lib/characters";
 import type { KidGender } from "@/lib/memory/types";
+import type { OpenerFact } from "@/lib/memory/kidMemory";
 
 const OWNER = "mode";
 
@@ -30,6 +31,7 @@ const OWNER = "mode";
 export default function ModeChoice({
   kidName,
   kidGender,
+  openerFact,
   character,
   onJourney,
   onFree,
@@ -37,12 +39,17 @@ export default function ModeChoice({
 }: {
   kidName: string;
   kidGender?: KidGender | null;
+  /** feat: continuity greeting — one concrete thing from last time. Null on
+   *  a first session, and then this screen is exactly what it was. */
+  openerFact?: OpenerFact | null;
   character: CharacterId;
   onJourney: () => void;
   onFree: () => void;
   onOpenDashboard: () => void;
 }) {
-  const line = lines.modeQuestion(kidName, kidGender);
+  const line = openerFact
+    ? lines.continuityGreeting(kidName, openerFact, kidGender)
+    : lines.modeQuestion(kidName, kidGender);
   const guide = useGuide({ owner: OWNER, character, pose: "hello", line });
 
   return (

@@ -5,7 +5,15 @@
  * Run: npx tsx tests/kid-memory.test.mts
  */
 import assert from "node:assert/strict";
-import { factsFromAnswer, formatMemoryBlock, daysAgo, MEMORY_BLOCK_MAX_CHARS } from "../lib/memory/kidMemory";
+import {
+  factsFromAnswer,
+  formatMemoryBlock,
+  daysAgo,
+  pickOpenerFact,
+  MEMORY_BLOCK_MAX_CHARS,
+  OPENER_MAX_AGE_DAYS,
+} from "../lib/memory/kidMemory";
+import { continuityGreeting } from "../lib/guide/lines";
 
 let passed = 0;
 const failures: string[] = [];
@@ -118,6 +126,66 @@ t("a fact with no timestamp still renders, without inventing a date", () => {
   const block = formatMemoryBlock([{ factType: "win", topic: "חילוק", detail: "solved it" }]);
   assert.match(block, /חילוק/);
 });
+
+console.log("\nwhat opens the next session");
+{
+  const now = new Date();
+  const ago = (days: number) => new Date(now.getTime() - days * 86_400_000).toISOString();
+
+  t("a first session has nothing to open on", () => {
+    assert.equal(pickOpenerFact([], now), null);
+  });
+
+  t("the newest recent fact wins — yesterday's struggle beats last week's win", () => {
+    const f = pickOpenerFact(
+      [
+        { factType: "struggle", topic: "חילוק", detail: "x", createdAt: ago(1) },
+        { factType: "win", topic: "כפל", detail: "y", createdAt: ago(6) },
+      ],
+      now
+    );
+    assert.equal(f?.factType, "struggle");
+    assert.equal(f?.topic, "חילוק");
+    assert.equal(f?.daysAgo, 1);
+  });
+
+  t("everything stale opens nothing, rather than 'remember three months ago'", () => {
+    assert.equal(
+      pickOpenerFact([{ factType: "win", topic: "חילוק", detail: "x", createdAt: ago(OPENER_MAX_AGE_DAYS + 1) }], now),
+      null
+    );
+  });
+
+  t("the greeting names the topic, dates it, and still asks the session question", () => {
+    const line = continuityGreeting("נועה", { factType: "struggle", topic: "חילוק", daysAgo: 1 }, "girl");
+    assert.equal(line.name, "נועה");
+    assert.match(line.text, /אתמול/);
+    assert.match(line.text, /חילוק/);
+    assert.match(line.text, /נמשיך במסלול שלנו/, "must flow into the session, not replace it");
+    assert.match(line.text, /את רוצה/, "the question half still addresses the kid in her own gender");
+  });
+
+  t("a win and a milestone open differently from a struggle", () => {
+    const win = continuityGreeting("נועה", { factType: "win", topic: "חילוק", daysAgo: 0 }, "boy").text;
+    const stone = continuityGreeting("נועה", { factType: "milestone", topic: "חילוק", daysAgo: 2 }, "boy").text;
+    assert.match(win, /היום הצלחנו/);
+    assert.match(stone, /לא מזמן סיימנו/);
+    assert.notEqual(win, stone);
+  });
+
+  // Rule 3 in lines.ts: forms written identically for a boy and a girl but
+  // pronounced differently. The niqqud step in front of TTS cannot know the
+  // kid's gender, so the opener must not contain any of them.
+  t("the opener avoids write-ambiguous second-person forms", () => {
+    for (const type of ["win", "struggle", "milestone"] as const) {
+      const text = continuityGreeting("נועה", { factType: type, topic: "חילוק", daysAgo: 1 }, null).text;
+      const opener = text.split("נמשיך")[0];
+      for (const bad of ["פתרת", "הלך לך", "שלך", "בחרת", "מחכה"]) {
+        assert.ok(!opener.includes(bad), `opener for ${type} contains ambiguous "${bad}"`);
+      }
+    }
+  });
+}
 
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length > 0) {

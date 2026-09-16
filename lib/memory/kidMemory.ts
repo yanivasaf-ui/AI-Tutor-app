@@ -171,6 +171,36 @@ function whenLabel(days: number | null): string {
   return "a while back";
 }
 
+/** Past this, "remember when..." stops sounding like continuity and starts
+ *  sounding like a database. A fact older than this opens nothing. */
+export const OPENER_MAX_AGE_DAYS = 14;
+
+export interface OpenerFact {
+  factType: KidFactType;
+  topic: string;
+  /** 0 = today, 1 = yesterday. Already resolved here so the line layer
+   *  never has to do date arithmetic. */
+  daysAgo: number;
+}
+
+/**
+ * The single fact worth opening a session with (feat: continuity greeting):
+ * the newest one still recent enough to mean something. Newest-first is the
+ * whole selection rule — a struggle from yesterday beats a win from last
+ * week, because the point is to pick up where the kid actually left off.
+ *
+ * Returns null for a first session, or when everything on file has gone
+ * stale, and the caller falls back to the generic greeting unchanged.
+ */
+export function pickOpenerFact(facts: KidFact[], now: Date = new Date()): OpenerFact | null {
+  for (const f of facts) {
+    const age = daysAgo(f.createdAt, now);
+    if (age === null || age > OPENER_MAX_AGE_DAYS) continue;
+    return { factType: f.factType, topic: f.topic, daysAgo: age };
+  }
+  return null;
+}
+
 /**
  * The memory block as it appears in a system prompt: a clearly delimited,
  * newest-first list, trimmed to a character budget (a stable proxy for a
