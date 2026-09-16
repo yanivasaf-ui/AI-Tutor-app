@@ -94,6 +94,43 @@ export const modeQuestion = (name: string, kidGender?: KidGender | null): Line =
   text: `נמשיך במסלול שלנו, או שיש משהו ש${directed(kidGender, "אתה רוצה", "את רוצה", "רוצים")} לתרגל?`,
 });
 
+/** "היום" / "אתמול" / "לא מזמן" — the only three the opener ever needs. */
+function whenHe(daysAgo: number): string {
+  if (daysAgo <= 0) return "היום";
+  if (daysAgo === 1) return "אתמול";
+  return "לא מזמן";
+}
+
+/**
+ * feat: continuity greeting — the same mode question, opened by ONE
+ * concrete thing that actually happened last time (lib/memory/kidMemory.ts's
+ * pickOpenerFact). "נועה, אתמול חילוק היה קצת קשה, אז היום נתחיל משם.
+ * נמשיך במסלול שלנו, או..."
+ *
+ * Deliberately in first-person plural ("הצלחנו", "סיימנו", "נתחיל"), not
+ * second person: the natural phrasings here — "פתרת", "הלך לך" — are rule 3
+ * above, written identically for a boy and a girl but pronounced
+ * differently, and the niqqud step in front of TTS has no idea which kid
+ * it is vocalising for. "We" is both the house voice for shared activity
+ * (see journeyIntro) and the only form that cannot be mispronounced into
+ * the wrong gender. The kid's gender still reaches the question half, which
+ * has written-distinct forms and is safe.
+ */
+export const continuityGreeting = (
+  name: string,
+  fact: { factType: "win" | "struggle" | "preference" | "milestone"; topic: string; daysAgo: number },
+  kidGender?: KidGender | null
+): Line => {
+  const when = whenHe(fact.daysAgo);
+  const opener =
+    fact.factType === "struggle"
+      ? `${when} ${fact.topic} היה קצת קשה, אז נתחיל משם.`
+      : fact.factType === "milestone"
+        ? `${when} סיימנו את ${fact.topic} — איזה כיף!`
+        : `${when} הצלחנו יפה ב${fact.topic}!`;
+  return { name, text: `${opener} ${modeQuestion(name, kidGender).text}` };
+};
+
 // ---- Free practice -----------------------------------------------------
 
 export const freePickSubject = (name: string, kidGender?: KidGender | null): Line => ({

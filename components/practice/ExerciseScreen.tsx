@@ -373,7 +373,20 @@ export default function ExerciseScreen({
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "answer_exercise", exercise, answer: value, kidId, kidGender, topicId, mode, attempt }),
+        body: JSON.stringify({
+          action: "answer_exercise",
+          exercise,
+          answer: value,
+          kidId,
+          kidGender,
+          topicId,
+          mode,
+          attempt,
+          // feat: kid session memory — groups this answer's facts with the
+          // rest of today's. sessionStartedAt is already the app's notion
+          // of "one session" (owned by KidHome, survives topic switches).
+          sessionId: String(sessionStartedAt),
+        }),
       });
       const data = await res.json();
       recordTiming("evaluate", performance.now() - evaluateStartedAt);

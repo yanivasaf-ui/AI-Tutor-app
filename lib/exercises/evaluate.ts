@@ -126,13 +126,43 @@ export function safeFeedback(
   return SAFE_HINT;
 }
 
+/**
+ * feat: specific praise — the section that turns "כל הכבוד" into "כל
+ * הכבוד, בפעם שעברה חילוק היה קשה". Returns "" when the kid has no
+ * history, and then the prompt below is byte-for-byte what it was, so a
+ * first session behaves exactly as before this feature.
+ *
+ * The anti-hallucination clause is the load-bearing one: a model handed a
+ * memory block will happily invent a fourth session that never happened,
+ * and to a child an invented memory is indistinguishable from a real one.
+ */
+export function specificPraiseSection(memoryBlock: string): string {
+  if (!memoryBlock) return "";
+  return `
+${memoryBlock}
+
+## משוב ספציפי, לא כללי
+- כשיש למעלה עובדה שקשורה לתרגיל הזה — שבצ/י אותה, במשפט אחד קצר ובעברית טבעית. עובדה אחת, לא שתיים.
+- אסור להמציא היסטוריה. אם אין למעלה עובדה רלוונטית, תן/י משוב כללי קצר בדיוק כמו קודם — עדיף כללי מאשר מומצא.
+- לעולם אל תזכיר/י שיש לך "זיכרון", "רשימה" או "נתונים", ואל תקריא/י את העובדה כפי שהיא כתובה.
+- רק כששולבת עובדה כזאת מותר משפט קצר שני. זה החריג היחיד לכלל האורך שלמעלה; בלי עובדה, האורך נשאר כפי שנקבע שם.
+
+דוגמאות (הפורמט זהה, רק התוכן משתנה):
+כללי, פחות טוב:  {"correct": true, "feedback": "כל הכבוד!"}
+ספציפי, טוב:     {"correct": true, "feedback": "כל הכבוד! בפעם שעברה חילוק היה קשה, והיום זה הלך חלק."}
+כללי, פחות טוב:  {"correct": false, "feedback": "זה בסדר, אפשר לנסות שוב."}
+ספציפי, טוב:     {"correct": false, "feedback": "זה בסדר — זו בדיוק הנקודה שהסתבכה גם אתמול. נתחיל מהעשרות."}
+`;
+}
+
 export async function evaluateExerciseAnswer(
   exercise: Exercise,
   kidAnswer: string,
-  opts?: { secondAttempt?: boolean; childGender?: KidGender | null }
+  opts?: { secondAttempt?: boolean; childGender?: KidGender | null; memoryBlock?: string }
 ): Promise<ExerciseEvaluation> {
   const secondAttempt = opts?.secondAttempt === true;
   const childGender = opts?.childGender ?? null;
+  const memorySection = specificPraiseSection(opts?.memoryBlock ?? "");
   const anthropic = getAnthropicClient();
 
   // The one number this app is allowed to call "the answer" for a
@@ -195,7 +225,7 @@ ${judgingInstruction}
 - אם נכון: משפט אחד בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה"). בלי הסבר נוסף אחרי זה.
   דוגמה לאורך הנכון בדיוק: "כל הכבוד, מצאת את זה!"
 ${wrongBranch}
-
+${memorySection}
 החזר/י אך ורק אובייקט JSON תקין:
 {
   "correct": true | false,

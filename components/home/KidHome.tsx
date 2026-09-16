@@ -9,6 +9,7 @@ import { readLegacyStoredGrade, resolveGrade } from "@/lib/kids/grade";
 import { activeSuggestion, type PracticeMode, type PracticeState } from "@/lib/practice/state";
 import * as lines from "@/lib/guide/lines";
 import { prefetchSpeech } from "@/lib/speech/useSpeech";
+import type { OpenerFact } from "@/lib/memory/kidMemory";
 import type { CharacterId } from "@/lib/characters";
 import type { Grade } from "@/lib/exercises/types";
 import type { KidGender, Subject } from "@/lib/memory/types";
@@ -30,7 +31,14 @@ type View =
   | { name: "exercise"; mode: PracticeMode; subject: Subject; grade: Grade; topicId: string; wasDone?: boolean };
 
 interface KidsPayload {
-  kids: { id: string; grade: Grade | null; subjects: Partial<Record<Subject, { practice?: PracticeState }>> }[];
+  kids: {
+    id: string;
+    grade: Grade | null;
+    subjects: Partial<Record<Subject, { practice?: PracticeState }>>;
+    /** feat: continuity greeting — the one fact this session opens on,
+     *  already chosen server-side. Null on a first session. */
+    openerFact?: OpenerFact | null;
+  }[];
 }
 
 /**
@@ -59,6 +67,7 @@ export default function KidHome({
   const [view, setView] = useState<View>({ name: "choose" });
   const [practice, setPractice] = useState<Practice>({});
   const [serverGrade, setServerGrade] = useState<Grade | null>(kid.grade);
+  const [openerFact, setOpenerFact] = useState<OpenerFact | null>(null);
   const [loaded, setLoaded] = useState(false);
   // Owned here, not in ExerciseScreen, so moving between topics or modes
   // mid-session doesn't reset the clock (project-brief.md Section 2d-2:
@@ -75,6 +84,7 @@ export default function KidHome({
       const me = kids.find((k) => k.id === kid.id);
       if (!me) return;
       setServerGrade(me.grade);
+      setOpenerFact(me.openerFact ?? null);
       setPractice({ math: me.subjects.math?.practice ?? {}, hebrew: me.subjects.hebrew?.practice ?? {} });
     } catch {
       // Offline or a server hiccup: the screens keep what they had.
@@ -92,9 +102,15 @@ export default function KidHome({
   // fired here, one render earlier (kid + character are already known;
   // ModeChoice itself hasn't mounted yet), so the Cartesia round trip has
   // a head start on the render+cue-effect gap instead of racing it cold.
+  // Prefetches whichever line ModeChoice will actually say — the opener when
+  // memory produced one, the generic question otherwise. Warming the wrong
+  // one would pay Cartesia twice and still leave the kid waiting.
   useEffect(() => {
-    prefetchSpeech(lines.modeQuestion(kid.name, kid.gender).text, character);
-  }, [kid.name, kid.gender, character]);
+    const line = openerFact
+      ? lines.continuityGreeting(kid.name, openerFact, kid.gender)
+      : lines.modeQuestion(kid.name, kid.gender);
+    prefetchSpeech(lines.spoken(line), character);
+  }, [kid.name, kid.gender, character, openerFact]);
 
   // kids.grade backfill: a kid created before the column existed has its
   // grade only in this device's localStorage. Copy it up once, so the
@@ -193,6 +209,7 @@ export default function KidHome({
     <ModeChoice
       kidName={kid.name}
       kidGender={kid.gender}
+      openerFact={openerFact}
       character={character}
       onJourney={() => setView({ name: "journey" })}
       onFree={() => setView({ name: "free" })}
