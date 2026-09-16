@@ -10,7 +10,18 @@ import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
-import { factsFromAnswer, formatMemoryBlock, recentKidFacts, saveKidFacts } from "@/lib/memory/kidMemory";
+import {
+  factsFromAnswer,
+  factsFromChatTurn,
+  formatMemoryBlock,
+  markReferenced,
+  openLoops,
+  recentKidFacts,
+  saveKidFacts,
+  MAX_CHAT_EXCHANGES,
+  type ChatMode,
+} from "@/lib/memory/kidMemory";
+import { buildScopedChatPrompt } from "@/lib/prompts/scoped-chat-prompt";
 import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
@@ -53,7 +64,34 @@ export const runtime = "nodejs";
  * import at either module's top reintroduces the cost for every action.
  */
 
-type Action = "chat" | "generate_exercise" | "answer_exercise" | "speak";
+type Action = "chat" | "scoped_chat" | "generate_exercise" | "answer_exercise" | "speak";
+
+/**
+ * feat: scoped kid chat. A NEW path, not a revival of `chat` above — that
+ * one is an open-ended curriculum tutor with RAG and no turn limit, and it
+ * stays dead. This one can only run two scripted conversations.
+ *
+ * An action here rather than its own route file for the reason in this
+ * file's header: a route file costs 2 serverless functions against the
+ * Hobby cap. It never touches the embedding stack, so it adds nothing to
+ * any other action's cold start.
+ */
+interface ScopedChatBody {
+  action: "scoped_chat";
+  mode: ChatMode;
+  kidId: string;
+  message: string;
+  /** Whose voice and persona. Supplied by the client, which already holds
+   *  it, and validated against the two real values below — lib/characters.ts
+   *  is a "use client" module (it carries a hook), so its normalizer cannot
+   *  be called from here. Same trust level as kidGender on answer_exercise:
+   *  it picks a word in the tutor's own line, nothing more. */
+  character?: CharacterId;
+  /** The transcript so far, oldest first. The turn cap is counted from
+   *  this server-side; see handleScopedChat. */
+  history?: { role: "kid" | "character"; content: string }[];
+  sessionId?: string;
+}
 
 interface ChatBody {
   action: "chat";
@@ -117,7 +155,7 @@ interface SpeakBody {
   character: CharacterId;
 }
 
-type RequestBody = ChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
+type RequestBody = ChatBody | ScopedChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
 
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as RequestBody & { action?: Action };
@@ -127,6 +165,8 @@ export async function POST(req: NextRequest) {
   switch (body.action) {
     case "chat":
       return handleChat(supabase, body);
+    case "scoped_chat":
+      return handleScopedChat(supabase, body);
     case "generate_exercise":
       return handleGenerateExercise(supabase, body);
     case "answer_exercise":
@@ -233,6 +273,120 @@ async function handleChat(
     flaggedForParent: flagged,
     retrievedTopics: retrieved.map((r) => r.topic),
   });
+}
+
+/** The only two conversations that exist. Anything else is a 400, in code
+ *  — the prompt's own "this is not a free chat" line is a second layer,
+ *  never the enforcement. */
+const CHAT_MODES: ChatMode[] = ["onboarding", "checkin"];
+/** A kid's turn is a sentence, not an essay; also bounds what reaches the
+ *  model and the flag table. */
+const MAX_CHAT_MESSAGE_CHARS = 300;
+/** Said in code, not by the model, when the cap is reached — gender-free
+ *  (lib/guide/lines.ts rule 3) since niqqud/TTS can't know the kid. */
+const CHAT_CLOSING_LINE = "איזה כיף לדבר! יאללה, מתחילים ללמוד.";
+
+/**
+ * feat: scoped kid chat — onboarding and daily check-in, nothing else.
+ *
+ * Every limit is enforced here rather than asked for in the prompt: the
+ * mode whitelist, the turn cap counted off the transcript, the message
+ * length, and the ownership check that getKid() performs under RLS.
+ *
+ * Distress goes through the SAME detector and the SAME parent_flags write
+ * the tutor path uses (looksOffCurriculumOrEmotional + saveParentFlag) —
+ * there is no second detection path here, only a reply policy added to the
+ * prompt once that shared detector has already fired.
+ */
+async function handleScopedChat(
+  supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
+  { mode, kidId, message, character, history = [], sessionId }: ScopedChatBody
+) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
+
+  if (!CHAT_MODES.includes(mode)) {
+    return NextResponse.json({ error: "unsupported mode" }, { status: 400 });
+  }
+  const text = typeof message === "string" ? message.trim() : "";
+  if (!kidId || !text) {
+    return NextResponse.json({ error: "kidId and message are required" }, { status: 400 });
+  }
+  if (text.length > MAX_CHAT_MESSAGE_CHARS) {
+    return NextResponse.json({ error: "message too long" }, { status: 400 });
+  }
+
+  const kid = await getKid(supabase, kidId);
+  if (!kid) return NextResponse.json({ error: "not found" }, { status: 404 });
+
+  // The cap, counted from the transcript the client submitted. A client
+  // could under-report its own history, but the worst case is a slightly
+  // longer chat — not a wider one, since the mode and the prompt still
+  // hold. Past the cap nothing reaches the model at all.
+  const kidTurns = history.filter((h) => h.role === "kid").length;
+  if (kidTurns >= MAX_CHAT_EXCHANGES) {
+    return NextResponse.json({ reply: CHAT_CLOSING_LINE, done: true });
+  }
+  const isFinal = kidTurns + 1 >= MAX_CHAT_EXCHANGES;
+
+  const distress = looksOffCurriculumOrEmotional(text);
+  if (distress) {
+    // Same write the tutor path makes; no subject/grade, because a hard
+    // moment in a check-in doesn't belong to one.
+    await saveParentFlag(supabase, { kidId: kid.id, message: text });
+  }
+
+  const loops = mode === "checkin" ? await openLoops(supabase, kid.id) : [];
+
+  const anthropic = getAnthropicClient();
+  const response = await anthropic.messages.create({
+    model: TUTOR_MODEL,
+    max_tokens: 160,
+    system: buildScopedChatPrompt({
+      mode,
+      kidName: kid.name,
+      grade: kid.grade,
+      character: character === "boy" || character === "girl" ? character : "girl",
+      kidGender: kid.gender,
+      exchangeIndex: kidTurns,
+      isFinal,
+      loops,
+      distress,
+    }),
+    messages: [
+      ...history.map((h) => ({ role: h.role === "kid" ? ("user" as const) : ("assistant" as const), content: h.content })),
+      { role: "user" as const, content: text },
+    ],
+  });
+  const block = response.content.find((b) => b.type === "text");
+  const reply = block && block.type === "text" ? block.text.trim() : CHAT_CLOSING_LINE;
+
+  after(async () => {
+    try {
+      // A flagged turn is never remembered. "אני עצוב" filed under
+      // חברים would resurface later as cheerful specific praise, which is
+      // the worst thing this memory could do. The parent flag is the
+      // record of that moment; kid_memory is not.
+      if (!distress) {
+        await saveKidFacts(
+          supabase,
+          kid.id,
+          factsFromChatTurn(mode, kidTurns, text, loops[0]?.topic),
+          sessionId ?? null
+        );
+      }
+      // Marks everything the character was shown, not just what it chose:
+      // all of it was raised, and re-asking tomorrow is the failure mode
+      // this column exists to stop.
+      if (loops.length > 0) await markReferenced(supabase, kid.id, loops.map((l) => l.id));
+    } catch (err) {
+      console.error("[scoped-chat] post-reply bookkeeping failed:", err);
+    }
+  });
+
+  return NextResponse.json({ reply, done: isFinal });
 }
 
 async function handleGenerateExercise(

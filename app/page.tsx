@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
 import KidHome, { type KidSummary } from "@/components/home/KidHome";
+import ScopedChat from "@/components/chat/ScopedChat";
 import SuggestPractice from "@/components/parent/SuggestPractice";
 import MuteToggle from "@/components/character/MuteToggle";
 import { CHARACTERS, normalizeCharacterId, type CharacterId, type CharacterPose } from "@/lib/characters";
@@ -368,7 +369,10 @@ function Onboarding({
   onDone: (kid: Kid) => void;
   onLogout: () => void;
 }) {
-  const [step, setStep] = useState<"pick" | "name" | "gender" | "grade">("pick");
+  const [step, setStep] = useState<"pick" | "name" | "gender" | "grade" | "chat">("pick");
+  /** feat: scoped kid chat — set once the kid row exists, which is what the
+   *  chat step needs to write its facts against. */
+  const [createdKid, setCreatedKid] = useState<Kid | null>(null);
   const [name, setName] = useState(existingKid?.name ?? "");
   const [gender, setGender] = useState<KidGender | null>(null);
   const [grade, setGrade] = useState<Grade | null>(null);
@@ -430,7 +434,11 @@ function Onboarding({
         });
         if (!res.ok) throw new Error("failed");
         const data = await res.json();
-        onDone(data.kid);
+        // feat: scoped kid chat — the identity form is done and the kid row
+        // exists; the character now gets to know them. Leaving onboarding
+        // happens on the other side of that conversation.
+        setCreatedKid(data.kid);
+        setStep("chat");
       }
     } catch {
       setError("משהו השתבש בשמירה. אפשר לנסות שוב.");
@@ -446,7 +454,7 @@ function Onboarding({
     <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center p-6">
       <div className="w-full max-w-md flex items-center justify-between mb-2">
         <div>
-          {step !== "pick" && (
+          {step !== "pick" && step !== "chat" && (
             <button
               onClick={() => setStep(step === "grade" ? "gender" : step === "gender" ? "name" : "pick")}
               className="min-h-11 px-1 text-sm text-[var(--color-ink-soft)]"
@@ -572,6 +580,18 @@ function Onboarding({
               הבא ←
             </button>
           )}
+        </div>
+      )}
+
+      {step === "chat" && picked && createdKid && (
+        <div className="w-full max-w-md flex flex-col items-center gap-4 mt-4">
+          <ScopedChat
+            mode="onboarding"
+            kidId={createdKid.id}
+            kidName={createdKid.name}
+            character={picked}
+            onDone={() => onDone(createdKid)}
+          />
         </div>
       )}
 

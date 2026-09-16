@@ -7,16 +7,23 @@ type Client = SupabaseClient<Database>;
 
 /** Persists a real "flag to parent" event — the half of the locked
  *  off-curriculum/emotional decision (M-memory/decisions.md) that was
- *  only ever console.logged until now. Called from the chat handler in
- *  app/api/tutor/route.ts whenever looksOffCurriculumOrEmotional fires. */
+ *  only ever console.logged until now. Called from app/api/tutor/route.ts
+ *  whenever looksOffCurriculumOrEmotional fires, from either surface.
+ *
+ *  subject/grade are optional because the scoped chat (feat: scoped kid
+ *  chat) has neither — a kid saying something hard during a check-in is
+ *  not attached to a subject. Both columns have always been nullable and
+ *  ParentFlag already reads them as `| null`; only this write signature
+ *  was stricter than the data. Widened rather than passing a made-up
+ *  subject, so the dashboard never shows a flag filed under the wrong one. */
 export async function saveParentFlag(
   supabase: Client,
-  opts: { kidId: string; subject: Subject; grade: string; message: string }
+  opts: { kidId: string; subject?: Subject | null; grade?: string | null; message: string }
 ): Promise<void> {
   const { error } = await supabase.from("parent_flags").insert({
     kid_id: opts.kidId,
-    subject: opts.subject,
-    grade: opts.grade,
+    subject: opts.subject ?? null,
+    grade: opts.grade ?? null,
     message: opts.message,
   });
   if (error) console.error("[dashboard-store] failed to save parent flag:", error);

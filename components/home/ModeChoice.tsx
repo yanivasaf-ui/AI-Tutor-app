@@ -35,6 +35,7 @@ export default function ModeChoice({
   character,
   onJourney,
   onFree,
+  onCheckIn,
   onOpenDashboard,
 }: {
   kidName: string;
@@ -45,6 +46,10 @@ export default function ModeChoice({
   character: CharacterId;
   onJourney: () => void;
   onFree: () => void;
+  /** feat: scoped kid chat — the daily check-in, the second and last place
+   *  a chat surface exists. Secondary on purpose: it is an offer, never the
+   *  way into the session. */
+  onCheckIn: () => void;
   onOpenDashboard: () => void;
 }) {
   const line = openerFact
@@ -83,6 +88,12 @@ export default function ModeChoice({
           <ModeCard label="תרגול חופשי" onPick={onFree} tone="gold">
             <PracticeIcon />
           </ModeCard>
+          <button
+            onClick={onCheckIn}
+            className="min-h-11 text-sm text-[var(--color-ink-soft)] underline self-center"
+          >
+            רוצים לספר לי משהו?
+          </button>
         </div>
       </div>
     </div>
