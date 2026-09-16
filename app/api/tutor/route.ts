@@ -10,7 +10,7 @@ import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
-import { factsFromAnswer, saveKidFacts } from "@/lib/memory/kidMemory";
+import { factsFromAnswer, formatMemoryBlock, recentKidFacts, saveKidFacts } from "@/lib/memory/kidMemory";
 import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
@@ -328,12 +328,24 @@ async function handleAnswerExercise(
   // finished. Running them concurrently, with the same error handling
   // and early-return behavior as before, just not serialized for no
   // reason. Part of the "make it faster" pass (Asaf, 2026-08-31).
+  // feat: specific praise — the evaluator can only cite history it has been
+  // handed, so this one small indexed read (top 10 facts for this kid) is
+  // unavoidably in front of the model call. getKid is started BEFORE it and
+  // awaited after, so it still overlaps the several-second LLM call exactly
+  // as it did: the added cost is this query alone, not a re-serialisation.
+  const kidPromise = kidId ? getKid(supabase, kidId) : Promise.resolve(null);
+  const memoryBlock = kidId ? formatMemoryBlock(await recentKidFacts(supabase, kidId)) : "";
+
   const [evaluationOutcome, kid] = await Promise.all([
-    evaluateExerciseAnswer(exercise, answer, { secondAttempt: tryNumber === 2, childGender: kidGender }).then(
+    evaluateExerciseAnswer(exercise, answer, {
+      secondAttempt: tryNumber === 2,
+      childGender: kidGender,
+      memoryBlock,
+    }).then(
       (value) => ({ ok: true as const, value }),
       (err) => ({ ok: false as const, err })
     ),
-    kidId ? getKid(supabase, kidId) : Promise.resolve(null),
+    kidPromise,
   ]);
 
   if (!evaluationOutcome.ok) {

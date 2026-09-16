@@ -14,6 +14,7 @@ import {
   OPENER_MAX_AGE_DAYS,
 } from "../lib/memory/kidMemory";
 import { continuityGreeting } from "../lib/guide/lines";
+import { specificPraiseSection } from "../lib/exercises/evaluate";
 
 let passed = 0;
 const failures: string[] = [];
@@ -125,6 +126,21 @@ t("a fact with no timestamp still renders, without inventing a date", () => {
   assert.equal(daysAgo(undefined), null);
   const block = formatMemoryBlock([{ factType: "win", topic: "חילוק", detail: "solved it" }]);
   assert.match(block, /חילוק/);
+});
+
+console.log("\nwhat the praise prompt gains");
+t("no memory means no added prompt at all — a first session is unchanged", () => {
+  assert.equal(specificPraiseSection(""), "");
+});
+
+t("with memory, the section carries the facts, the anti-invention rule and both examples", () => {
+  const section = specificPraiseSection(
+    formatMemoryBlock([{ factType: "struggle", topic: "חילוק", detail: "confused it with multiplication" }])
+  );
+  assert.match(section, /חילוק/, "the fact itself must reach the prompt");
+  assert.match(section, /אסור להמציא היסטוריה/, "the anti-hallucination rule is load-bearing");
+  assert.match(section, /"correct": true/, "few-shot must show the structured output, not just prose");
+  assert.match(section, /כללי, פחות טוב/, "and must contrast generic against specific");
 });
 
 console.log("\nwhat opens the next session");
