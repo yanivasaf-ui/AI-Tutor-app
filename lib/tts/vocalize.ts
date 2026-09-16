@@ -51,13 +51,45 @@ function cachePut(key: string, value: string) {
 const HAS_HEBREW = /[א-ת]/;
 
 /**
+ * The marks vocalize() is allowed to add: niqqud (vowel points) and
+ * cantillation (te'amim) — Unicode general category Mn, "nonspacing
+ * mark". That category is exactly Hebrew's combining diacritics; it
+ * correctly excludes real characters that merely live in the same
+ * block, like maqaf (־, U+05BE) and sof pasuq (׃, U+05C3), which are
+ * punctuation, not marks, and must never be stripped.
+ */
+const NIQQUD_MARKS = /\p{Mn}/gu;
+
+function collapseSpace(s: string): string {
+  return s.replace(/\s+/g, " ").trim();
+}
+
+/**
+ * True only when `vocalized` is `text` with niqqud/te'amim added and
+ * nothing else changed. A correct vocalization is `text` with combining
+ * marks interspersed, so stripping every mark must reproduce `text`
+ * exactly (modulo incidental whitespace) — this is a proof the SYSTEM_
+ * PROMPT's "never change a word" rule actually held, not a heuristic
+ * guess at whether it looks close enough. Caught live: the vocalizer
+ * rewrote ניפגש (future) as נפגשנו (past) in 1 of 5 spike clips despite
+ * that rule, and this sits directly in front of exercise questions.
+ */
+function isFaithfulVocalization(text: string, vocalized: string): boolean {
+  return collapseSpace(vocalized.replace(NIQQUD_MARKS, "")) === collapseSpace(text);
+}
+
+/**
  * Adds niqqud to `text`. Never throws — a vocalization failure (network,
- * rate limit, empty response) falls back to speaking the original
- * unvocalized text rather than blocking speech entirely; a kid hearing a
- * possibly-mispronounced line is a better failure mode than the tutor
- * going silent. Cached by exact text for the life of this server
- * instance — repeats (a replayed line, a reused bank question) are free
- * after the first.
+ * rate limit, empty response, or a rewrite that changed a word instead
+ * of just adding niqqud) falls back to speaking the original unvocalized
+ * text rather than blocking speech entirely, or worse, speaking a
+ * changed word with confident pronunciation. A kid hearing a possibly-
+ * ambiguous but CORRECT line is a better failure mode than one that's
+ * clearly spoken but wrong. Cached by exact text for the life of this
+ * server instance — repeats (a replayed line, a reused bank question)
+ * are free after the first. A rejected rewrite is not cached: it isn't
+ * safe to remember as "the" vocalization for this text, and the retry
+ * cost on the rare mismatch is worth not locking in a bad result.
  */
 export async function vocalize(text: string): Promise<string> {
   if (!text || !HAS_HEBREW.test(text)) return text;
@@ -77,6 +109,12 @@ export async function vocalize(text: string): Promise<string> {
     const vocalized = block && block.type === "text" ? block.text.trim() : "";
     console.log(`[tts-vocalize] ms=${Date.now() - t0} chars=${text.length} ok=${!!vocalized}`);
     if (!vocalized) return text;
+    if (!isFaithfulVocalization(text, vocalized)) {
+      console.error(
+        `[tts-vocalize] rejected — word(s) changed, speaking unvocalized. original="${text}" vocalized="${vocalized}"`
+      );
+      return text;
+    }
     cachePut(text, vocalized);
     return vocalized;
   } catch (err) {
@@ -92,3 +130,8 @@ export async function vocalize(text: string): Promise<string> {
 export function __clearVocalizeCacheForTests() {
   cache.clear();
 }
+
+/** Test-only: the mismatch proof itself, exercised directly — no network,
+ *  no LLM, so it can run against the exact ניפגש/נפגשנו case caught live
+ *  without depending on the model reproducing (or not reproducing) it. */
+export const __isFaithfulVocalizationForTests = isFaithfulVocalization;
