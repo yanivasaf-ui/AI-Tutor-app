@@ -94,6 +94,36 @@ export const modeQuestion = (name: string, kidGender?: KidGender | null): Line =
   text: `נמשיך במסלול שלנו, או שיש משהו ש${directed(kidGender, "אתה רוצה", "את רוצה", "רוצים")} לתרגל?`,
 });
 
+// ---- Scoped chat -------------------------------------------------------
+
+/**
+ * feat: scoped kid chat — the onboarding script's questions. They live here
+ * with every other line the character says, and are the SINGLE source for
+ * both the opener the kid sees first and the script the server hands the
+ * model. Two copies would drift, and the kid would be asked the first
+ * question twice.
+ *
+ * Gender-free by rule 3 above: these reach TTS through the same niqqud
+ * step, which has no idea whose chat this is.
+ */
+export const chatSlotQuestion = (key: "friend" | "hobby" | "school"): string => {
+  switch (key) {
+    case "friend":
+      return "עם מי הכי כיף לשחק בכיתה?";
+    case "hobby":
+      return "ומה הכי אוהבים לעשות אחרי הלימודים?";
+    case "school":
+      return "ומה השיעור הכי כיף בבית הספר?";
+  }
+};
+
+/** The character's first line — said before the kid has typed anything, so
+ *  it is templated rather than generated: no model call to open a chat. */
+export const chatOpening = (mode: "onboarding" | "checkin", name: string): Line =>
+  mode === "onboarding"
+    ? { name, text: `כיף להכיר! ${chatSlotQuestion("friend")}` }
+    : { name, text: "היי! ספרו לי, איך היה היום?" };
+
 /** "היום" / "אתמול" / "לא מזמן" — the only three the opener ever needs. */
 function whenHe(daysAgo: number): string {
   if (daysAgo <= 0) return "היום";

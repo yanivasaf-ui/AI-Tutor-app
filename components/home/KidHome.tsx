@@ -5,6 +5,7 @@ import ModeChoice from "@/components/home/ModeChoice";
 import HomeScreen from "@/components/home/HomeScreen";
 import FreePractice from "@/components/practice/FreePractice";
 import ExerciseScreen from "@/components/practice/ExerciseScreen";
+import ScopedChat from "@/components/chat/ScopedChat";
 import { readLegacyStoredGrade, resolveGrade } from "@/lib/kids/grade";
 import { activeSuggestion, type PracticeMode, type PracticeState } from "@/lib/practice/state";
 import * as lines from "@/lib/guide/lines";
@@ -27,6 +28,7 @@ type Practice = Partial<Record<Subject, PracticeState>>;
 type View =
   | { name: "choose" }
   | { name: "journey" }
+  | { name: "checkin" }
   | { name: "free"; subject?: Subject }
   | { name: "exercise"; mode: PracticeMode; subject: Subject; grade: Grade; topicId: string; wasDone?: boolean };
 
@@ -205,6 +207,27 @@ export default function KidHome({
     );
   }
 
+  if (view.name === "checkin") {
+    // feat: scoped kid chat — the check-in. Leaving it refreshes, so a fact
+    // the kid just told the character can open tomorrow's greeting.
+    return (
+      <div className="min-h-screen flex flex-col items-center bg-[var(--color-canvas)] px-4 pt-6 pb-10">
+        <ScopedChat
+          mode="checkin"
+          kidId={kid.id}
+          kidName={kid.name}
+          character={character}
+          sessionId={String(sessionStartedAt)}
+          doneLabel="חזרה"
+          onDone={() => {
+            setView({ name: "choose" });
+            refresh();
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <ModeChoice
       kidName={kid.name}
@@ -213,6 +236,7 @@ export default function KidHome({
       character={character}
       onJourney={() => setView({ name: "journey" })}
       onFree={() => setView({ name: "free" })}
+      onCheckIn={() => setView({ name: "checkin" })}
       onOpenDashboard={onOpenDashboard}
     />
   );

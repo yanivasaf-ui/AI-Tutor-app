@@ -143,6 +143,7 @@ export type Database = {
           fact_type: string
           id: string
           kid_id: string
+          last_referenced_at: string | null
           source_session_id: string | null
           topic: string
         }
@@ -152,6 +153,7 @@ export type Database = {
           fact_type: string
           id?: string
           kid_id: string
+          last_referenced_at?: string | null
           source_session_id?: string | null
           topic: string
         }
@@ -161,6 +163,7 @@ export type Database = {
           fact_type?: string
           id?: string
           kid_id?: string
+          last_referenced_at?: string | null
           source_session_id?: string | null
           topic?: string
         }
