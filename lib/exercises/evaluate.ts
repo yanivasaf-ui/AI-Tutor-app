@@ -3,6 +3,7 @@ import { tokenize } from "@/lib/voice/matchAnswer";
 import { Computation, computeAnswer, falseClaimsIn, formatAnswer, lineIsArithmeticallySafe, wrongMathTermsIn } from "./arithmetic";
 import { Exercise, ExerciseEvaluation } from "./types";
 import type { KidGender } from "@/lib/memory/types";
+import { OPENERS, openerKindFor, type OpenerKind } from "./openers";
 
 /** Voice-experience fix item 4 (2026-09-15): the feedback prompt below was
  *  written to dodge the child's gender entirely ("לא בלשון זכר ולא בלשון
@@ -46,9 +47,23 @@ function genderInstruction(childGender: KidGender | null | undefined): string {
 
 /** Neutral, code-built lines — no model involved, nothing to get wrong.
  *  Gender-neutral per the rules in lib/guide/lines.ts. */
-const SAFE_CORRECT = "כל הכבוד! זה בדיוק נכון.";
-const SAFE_HINT = "זה בסדר, זה קורה! אפשר לנסות שוב, לאט ובשלבים.";
-const safeExplanation = (answer: number) => `זה בסדר, זו שאלה לא פשוטה! התשובה הנכונה היא ${formatAnswer(answer)}.`;
+/**
+ * The deterministic lines: the opener the character says the INSTANT the
+ * verdict is locked, and the part that follows it. The openers themselves
+ * live in ./openers (a module with no imports) because the client needs
+ * them too — see that file.
+ */
+export { OPENERS, openerKindFor, type OpenerKind };
+
+const REST_CORRECT = "זה בדיוק נכון.";
+const REST_HINT = "אפשר לנסות שוב, לאט ובשלבים.";
+const restExplanation = (answer: number) => `התשובה הנכונה היא ${formatAnswer(answer)}.`;
+
+// The whole lines, unchanged in wording — still what a caller that is not
+// using the opener/prose split gets back.
+const SAFE_CORRECT = `${OPENERS.correct} ${REST_CORRECT}`;
+const SAFE_HINT = `${OPENERS.hint} ${REST_HINT}`;
+const safeExplanation = (answer: number) => `${OPENERS.explain} ${restExplanation(answer)}`;
 
 /**
  * Did the kid land on the verified number? Runs over matchAnswer's
@@ -127,6 +142,31 @@ export function safeFeedback(
 }
 
 /**
+ * Same gate, same remedy, for the case where the opener has ALREADY been
+ * spoken: the deterministic fallback returns only the part that follows
+ * it, so a child doesn't hear "כל הכבוד! כל הכבוד! זה בדיוק נכון."
+ *
+ * The gate itself is untouched — this only changes which deterministic
+ * text replaces a line the gate rejected.
+ */
+export function safeFeedbackAfterOpener(
+  modelText: string,
+  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null }
+): string {
+  const { verifiedAnswer, correct, secondAttempt, computation } = opts;
+  const text = modelText.trim();
+  if (text && lineIsArithmeticallySafe(text, verifiedAnswer, computation)) return text;
+  if (text) {
+    console.warn(
+      `[exercise-evaluate] replaced an unsafe feedback line (verifiedAnswer=${verifiedAnswer}): ${JSON.stringify(text)} claims=${JSON.stringify(falseClaimsIn(text))} badTerms=${JSON.stringify(wrongMathTermsIn(text, computation))}`
+    );
+  }
+  if (correct) return REST_CORRECT;
+  if (secondAttempt && verifiedAnswer !== null) return restExplanation(verifiedAnswer);
+  return REST_HINT;
+}
+
+/**
  * feat: specific praise — the section that turns "כל הכבוד" into "כל
  * הכבוד, בפעם שעברה חילוק היה קשה". Returns "" when the kid has no
  * history, and then the prompt below is byte-for-byte what it was, so a
@@ -155,16 +195,20 @@ ${memoryBlock}
 `;
 }
 
-export async function evaluateExerciseAnswer(
-  exercise: Exercise,
-  kidAnswer: string,
-  opts?: { secondAttempt?: boolean; childGender?: KidGender | null; memoryBlock?: string }
-): Promise<ExerciseEvaluation> {
-  const secondAttempt = opts?.secondAttempt === true;
-  const childGender = opts?.childGender ?? null;
-  const memorySection = specificPraiseSection(opts?.memoryBlock ?? "");
-  const anthropic = getAnthropicClient();
+/**
+ * Everything both calls need, derived in code from the exercise and the
+ * answer. Computed once and handed to each call, so the verdict call and
+ * the prose call can never disagree about what kind of exercise this is.
+ */
+interface ExerciseSetup {
+  verifiedAnswer: number | null;
+  codeGraded: boolean;
+  correctByCode: boolean;
+  isRubric: boolean;
+  judgingInstruction: string;
+}
 
+function analyzeExercise(exercise: Exercise, kidAnswer: string): ExerciseSetup {
   // The one number this app is allowed to call "the answer" for a
   // computation exercise — derived from the operands, in code.
   const verifiedAnswer = exercise.computation ? computeAnswer(exercise.computation) : null;
@@ -201,17 +245,150 @@ export async function evaluateExerciseAnswer(
           ? `התלמיד/ה חילק/ה חפצים לקבוצות. התשובה שהתלמיד/ה נתן/ה מכילה את מספר הפריטים בכל אחת מהקבוצות שיצר/ה, מופרדים בפסיקים. התשובה הנכונה, "${exercise.correctAnswer}", היא מספר הפריטים שאמור להיות בכל קבוצה. קבל/י כתשובה נכונה רק אם כל המספרים בתשובת התלמיד/ה שווים בדיוק למספר הזה — אם קבוצה כלשהי גדולה או קטנה ממנו, זו תשובה שגויה.`
           : `שפוט/י אם התשובה נכונה — קבל/י ניסוחים שונים או תשובות חלקיות-אך-נכונות מבחינה מהותית, לא רק התאמה מילולית מדויקת.`;
 
+  return { verifiedAnswer, codeGraded, correctByCode, isRubric, judgingInstruction };
+}
+
+/**
+ * A verdict the code has finished deciding. Nothing downstream may change
+ * `correct` — the prose call is handed this and told to agree with it.
+ */
+export interface LockedVerdict {
+  correct: boolean;
+  verifiedAnswer: number | null;
+  codeGraded: boolean;
+  secondAttempt: boolean;
+  /** True when the verdict was forced to false by the bare-number
+   *  override. The model's prose is not trusted at all in this case — see
+   *  generateFeedbackProse, which skips the model call entirely. */
+  overridden: boolean;
+  /** The opener the character says the instant this verdict is locked. */
+  openerKind: OpenerKind;
+}
+
+/**
+ * feat: verdict-first evaluation — step 1 of 2.
+ *
+ * Decides right/wrong and NOTHING else. No prose, so no prose to wait for:
+ * on a computation exercise this is pure arithmetic in code and costs no
+ * model call at all, and everywhere else it is one tiny JSON call with a
+ * 16-token ceiling.
+ *
+ * Verdict semantics are byte-identical to the single-call version that
+ * preceded this: code owns correctness wherever there is a verified
+ * number, the model only decides it for the non-arithmetic subtypes, and
+ * the bare-number override still forces false and never the opposite.
+ */
+export async function evaluateVerdict(
+  exercise: Exercise,
+  kidAnswer: string,
+  opts?: { secondAttempt?: boolean }
+): Promise<LockedVerdict> {
+  const secondAttempt = opts?.secondAttempt === true;
+  const { verifiedAnswer, codeGraded, correctByCode, isRubric, judgingInstruction } = analyzeExercise(
+    exercise,
+    kidAnswer
+  );
+
+  let modelSaysCorrect: boolean;
+  if (codeGraded) {
+    // Code already knows. Asking a model to restate arithmetic it was
+    // explicitly told not to re-judge would be latency for nothing.
+    modelSaysCorrect = correctByCode;
+  } else {
+    const anthropic = getAnthropicClient();
+    const prompt = `שאלה שנשאלה לתלמיד/ה: "${exercise.question}"
+${exercise.passage ? `קטע קריאה: "${exercise.passage}"` : ""}
+${exercise.choices ? `אפשרויות: ${exercise.choices.join(" | ")}` : ""}
+התשובה הנכונה: "${exercise.correctAnswer}"
+התשובה שהתלמיד/ה נתן/ה: "${kidAnswer}"
+
+${judgingInstruction}
+
+החזר/י אך ורק: {"correct": true} או {"correct": false}`;
+
+    const response = await anthropic.messages.create({
+      model: TUTOR_MODEL,
+      // A verdict is one boolean. The ceiling is the latency control.
+      max_tokens: 16,
+      system: "את/ה מחזיר/ה אך ורק JSON תקין, ללא טקסט נוסף, ללא markdown code fences.",
+      messages: [{ role: "user", content: prompt }],
+    });
+    const block = response.content.find((b) => b.type === "text");
+    if (!block || block.type !== "text") {
+      throw new Error("Exercise verdict returned no text content.");
+    }
+    const raw = block.text.trim().replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+    modelSaysCorrect = JSON.parse(raw).correct === true;
+  }
+
+  // FIX 4: overrides the model's own verdict — never its opposite. A bare
+  // wrong number against the rubric forces `correct = false` regardless of
+  // what the model said; it never flips a false to true.
+  const overridden = !codeGraded && isRubric && isWrongBareNumberAgainstRubric(kidAnswer, exercise.correctAnswer);
+  const correct = overridden ? false : modelSaysCorrect;
+
+  return {
+    correct,
+    verifiedAnswer,
+    codeGraded,
+    secondAttempt,
+    overridden,
+    openerKind: openerKindFor({ correct, secondAttempt, verifiedAnswer }),
+  };
+}
+
+/**
+ * feat: verdict-first evaluation — step 2 of 2.
+ *
+ * Writes what the character says AFTER the opener, for a verdict that is
+ * already locked. The model is told the verdict as a decided fact and
+ * required to agree with it, so it cannot praise an answer the code
+ * marked wrong.
+ *
+ * Its output is gated WHOLE by lineIsArithmeticallySafe, exactly as
+ * before — sentence-by-sentence gating was measured to miss both a false
+ * claim split across a sentence boundary and a wrong stated answer, so
+ * this text is never spoken in pieces.
+ */
+export async function generateFeedbackProse(
+  exercise: Exercise,
+  kidAnswer: string,
+  verdict: LockedVerdict,
+  opts?: { childGender?: KidGender | null; memoryBlock?: string }
+): Promise<{ feedback: string; errorNote?: string }> {
+  const { correct, verifiedAnswer, codeGraded, secondAttempt, overridden } = verdict;
+  const opener = OPENERS[verdict.openerKind];
+
+  // The override discards the model's words entirely — its prose was very
+  // possibly written to affirm the number it thought was right. Same
+  // decision as before the split; now it also saves the whole call.
+  if (overridden) {
+    return {
+      feedback: safeFeedbackAfterOpener("", {
+        verifiedAnswer,
+        correct,
+        secondAttempt,
+        computation: exercise.computation,
+      }),
+    };
+  }
+
+  const childGender = opts?.childGender ?? null;
+  const memorySection = specificPraiseSection(opts?.memoryBlock ?? "");
+  const { isRubric } = analyzeExercise(exercise, kidAnswer);
+  const anthropic = getAnthropicClient();
+
   // On a computation exercise the model never writes the result: code owns
   // that sentence and appends it after the model's words.
   const wrongBranch = secondAttempt
     ? isRubric
-      ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת. אין לשאלה הזאת תשובה נכונה יחידה, אז אל תמציא/י "תשובה נכונה" אחת. במקום זה, עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר, (2) הסבר מה מאפיין הסבר טוב לשאלה הזאת, (3) דוגמה קצרה לדרך חשיבה אפשרית. ${genderInstruction(childGender)}`
+      ? `זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת. אין לשאלה הזאת תשובה נכונה יחידה, אז אל תמציא/י "תשובה נכונה" אחת. עד שני משפטים קצרים: (1) הסבר מה מאפיין הסבר טוב לשאלה הזאת, (2) דוגמה קצרה לדרך חשיבה אפשרית. ${genderInstruction(childGender)}`
       : codeGraded
-        ? `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים את הדרך. עד שני משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה. קריטי: אל תכתוב/י את התוצאה הסופית ואל תסיים/י במשפט שמכריז מה התשובה — המערכת מוסיפה את התשובה הנכונה בעצמה מיד אחרי המשפטים שלך. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}`
-        : `- אם לא נכון: זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים עד הסוף. עד שלושה משפטים קצרים: (1) תיקוף רגשי קצר ("זה בסדר, זו שאלה לא פשוטה"), (2) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה, (3) התשובה הנכונה, במפורש. בלי שאלה בסוף. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
-  דוגמה לאורך הנכון בדיוק: "זה בסדר, זו שאלה לא פשוטה! קודם מחברים את העשרות: 20 ועוד 30 זה 50, ואז את היחידות: 4 ועוד 3 זה 7. אז התשובה היא 57."`
-    : `- אם לא נכון: עד שני חלקים קצרים בלבד, כל חלק עד כ-8 מילים — (1) תיקוף רגשי קצר ("זה בסדר, זה קורה") ואז (2) רמז אחד קצר שמכוון לכיוון הנכון, בלי לגלות את התשובה. בלי משפט שלישי. אפשר לנסח את הרמז עצמו בלשון רבים ("אפשר ל...", "בואו נ...") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
-  דוגמה לאורך הנכון בדיוק: "זה בסדר, זה קורה! אפשר לחבר קודם את העשרות."`;
+        ? `זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים את הדרך. משפט אחד עד שניים: הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה. קריטי: אל תכתוב/י את התוצאה הסופית ואל תסיים/י במשפט שמכריז מה התשובה — המערכת מוסיפה את התשובה הנכונה בעצמה מיד אחרי המשפטים שלך. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}`
+        : `זה כבר הניסיון השני של התלמיד/ה בשאלה הזאת — רמז כבר ניתן ולא עזר, אז עכשיו מסבירים עד הסוף. עד שני משפטים קצרים: (1) הדרך לפתרון, צעד אחר צעד, במילים של ילד/ה, (2) התשובה הנכונה, במפורש. בלי שאלה בסוף. אפשר לנסח את דרך הפתרון עצמה בלשון רבים ("מחברים", "בואו נספור") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
+  דוגמה לאורך הנכון בדיוק: "קודם מחברים את העשרות: 20 ועוד 30 זה 50, ואז את היחידות: 4 ועוד 3 זה 7. אז התשובה היא 57."`
+    : `רמז אחד קצר בלבד, עד כ-8 מילים, שמכוון לכיוון הנכון בלי לגלות את התשובה. בלי משפט שני. אפשר לנסח את הרמז בלשון רבים ("אפשר ל...", "בואו נ...") — אבל כל פנייה ישירה לתלמיד/ה עצמו/ה: ${genderInstruction(childGender)}
+  דוגמה לאורך הנכון בדיוק: "אפשר לחבר קודם את העשרות."`;
 
   const prompt = `שאלה שנשאלה לתלמיד/ה: "${exercise.question}"
 ${exercise.passage ? `קטע קריאה: "${exercise.passage}"` : ""}
@@ -219,17 +396,20 @@ ${exercise.choices ? `אפשרויות: ${exercise.choices.join(" | ")}` : ""}
 ${codeGraded ? "" : `התשובה הנכונה: "${exercise.correctAnswer}"`}
 התשובה שהתלמיד/ה נתן/ה: "${kidAnswer}"
 
-${judgingInstruction}
+## הקביעה כבר נעשתה
+המערכת כבר קבעה סופית: התשובה ${correct ? "נכונה" : "לא נכונה"}. זו עובדה סגורה — אל תשפוט/י מחדש, אל תסתייג/י, ואל תרמוז/י אחרת.
+${correct ? "כל מילה שתכתוב/י חייבת להיות חיובית ומאשרת." : "כל מילה שתכתוב/י חייבת להתייחס לתשובה כלא נכונה. אסור בתכלית האיסור לשבח/לאשר את התשובה עצמה."}
 
-כתוב/י משוב לתלמיד/ה, בעברית, בטון חם ומעודד — קצר מאוד, ילד/ה בכיתה יסודית קורא/ת את זה, לא מבוגר/ת. אורך הוא כלל נוקשה כאן, לא המלצה:
-- אם נכון: משפט אחד בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה"). בלי הסבר נוסף אחרי זה.
-  דוגמה לאורך הנכון בדיוק: "כל הכבוד, מצאת את זה!"
-${wrongBranch}
+## מה כבר נאמר
+הדמות כבר אמרה לתלמיד/ה בקול: "${opener}"
+אתה/את כותב/ת את ההמשך בלבד. אל תחזור/י על הפתיח הזה, אל תפתח/י בברכה או בתיקוף רגשי נוסף — זה כבר נאמר. המשך/המשיכי ישירות לתוכן.
+
+כתוב/י את ההמשך בעברית, בטון חם ומעודד — קצר מאוד, ילד/ה בכיתה יסודית קורא/ת את זה. אורך הוא כלל נוקשה כאן, לא המלצה:
+${correct ? `- משפט אחד קצר בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה").\n  דוגמה לאורך הנכון בדיוק: "מצאת את זה!"` : `- ${wrongBranch}`}
 ${memorySection}
 החזר/י אך ורק אובייקט JSON תקין:
 {
-  "correct": true | false,
-  "feedback": "המשוב לתלמיד/ה כמתואר לעיל",
+  "feedback": "ההמשך לתלמיד/ה כמתואר לעיל, בלי הפתיח שכבר נאמר",
   "errorNote": "רק אם לא נכון - תיאור קצר של סוג הטעות (למשל 'בלבול בין חיבור לחיסור' או 'טעות בכיוון הגזירה'), לצורך מעקב פנימי - לא מוצג לתלמיד/ה"
 }`;
 
@@ -239,51 +419,64 @@ ${memorySection}
     // examples seen: 3-4 sentences for one correct answer). The prompt
     // above now hard-caps feedback length itself; this cap is a second,
     // structural backstop — a shorter ceiling also bounds worst-case
-    // generation time, part of the "make it faster" pass.
-    // The second-attempt explanation (method + answer, up to three
-    // sentences) needs more room than a one-line hint.
-    max_tokens: secondAttempt ? 320 : 220,
+    // generation time, part of the "make it faster" pass. Lower than
+    // before the split, because the opener is no longer part of it.
+    max_tokens: secondAttempt ? 280 : 180,
     system: "את/ה מחזיר/ה אך ורק JSON תקין, ללא טקסט נוסף, ללא markdown code fences.",
     messages: [{ role: "user", content: prompt }],
   });
 
   const block = response.content.find((b) => b.type === "text");
   if (!block || block.type !== "text") {
-    throw new Error("Exercise evaluation returned no text content.");
+    throw new Error("Exercise feedback returned no text content.");
   }
-
   const raw = block.text.trim().replace(/^```json\s*/i, "").replace(/```$/, "").trim();
   const parsed = JSON.parse(raw);
 
-  // Code decides correctness whenever there's a verified number; the model
-  // only ever gets to decide it for the non-arithmetic subtypes.
-  const modelSaysCorrect = codeGraded ? correctByCode : parsed.correct === true;
-  // FIX 4: overrides the model's own verdict — never its opposite. A bare
-  // wrong number against the rubric forces `correct = false` regardless of
-  // what parsed.correct said; it never flips a false to true.
-  const wrongBareNumber = !codeGraded && isRubric && isWrongBareNumberAgainstRubric(kidAnswer, exercise.correctAnswer);
-  const correct = wrongBareNumber ? false : modelSaysCorrect;
-  // The model's own prose can't be trusted once its verdict is overridden
-  // — it was very possibly written to affirm the number it thought was
-  // right, which is exactly the confusing "20 is correct, but explain"
-  // sentence this fix exists for. Discarding it here (not passing it to
-  // safeFeedback at all) falls through to that function's own existing
-  // deterministic fallback, the same safety net the arithmetic guard uses.
-  const modelText = wrongBareNumber ? "" : typeof parsed.feedback === "string" ? parsed.feedback : "";
-  let feedback = safeFeedback(modelText, { verifiedAnswer, correct, secondAttempt, computation: exercise.computation });
+  const modelText = typeof parsed.feedback === "string" ? parsed.feedback : "";
+  let feedback = safeFeedbackAfterOpener(modelText, {
+    verifiedAnswer,
+    correct,
+    secondAttempt,
+    computation: exercise.computation,
+  });
 
   // The verified answer is stated by code, not by the model — and only
   // when the child has already had their hint and missed again.
   // Matched as a whole number, not a substring: an answer of 7 must not be
   // considered "already stated" because the line happens to mention 70.
-  const statesAnswerAlready = new RegExp(`(?<!\\d)${formatAnswer(verifiedAnswer ?? 0)}(?!\\d)`).test(feedback);
-  if (codeGraded && !correct && secondAttempt && !statesAnswerAlready) {
+  // Checked against the ACCUMULATED line (opener + prose), which is what
+  // the child actually hears, not the prose alone.
+  const spokenSoFar = `${opener} ${feedback}`;
+  const statesAnswerAlready = new RegExp(`(?<!\\d)${formatAnswer(verifiedAnswer ?? 0)}(?!\\d)`).test(spokenSoFar);
+  // codeGraded is by definition `verifiedAnswer !== null`; spelled out
+  // here so the narrowing survives the destructure above.
+  if (verifiedAnswer !== null && codeGraded && !correct && secondAttempt && !statesAnswerAlready) {
     feedback = `${feedback} התשובה הנכונה היא ${formatAnswer(verifiedAnswer)}.`;
   }
 
+  return { feedback, errorNote: typeof parsed.errorNote === "string" ? parsed.errorNote : undefined };
+}
+
+/**
+ * The whole evaluation as one await — verdict, then prose, joined into the
+ * single line the character used to say.
+ *
+ * Kept for callers that have no use for the split (and as the definition
+ * of record for what opener + prose is supposed to add up to). The tutor
+ * route no longer uses it: it needs the verdict on its own, early, so the
+ * opener can be spoken while the prose is still being written.
+ */
+export async function evaluateExerciseAnswer(
+  exercise: Exercise,
+  kidAnswer: string,
+  opts?: { secondAttempt?: boolean; childGender?: KidGender | null; memoryBlock?: string }
+): Promise<ExerciseEvaluation> {
+  const verdict = await evaluateVerdict(exercise, kidAnswer, { secondAttempt: opts?.secondAttempt });
+  const prose = await generateFeedbackProse(exercise, kidAnswer, verdict, opts);
   return {
-    correct,
-    feedback,
-    errorNote: typeof parsed.errorNote === "string" ? parsed.errorNote : undefined,
+    correct: verdict.correct,
+    feedback: `${OPENERS[verdict.openerKind]} ${prose.feedback}`.trim(),
+    errorNote: prose.errorNote,
   };
 }

@@ -36,7 +36,7 @@ export async function synthesizeSpeech(
   text: string,
   character: CharacterId,
   signal?: AbortSignal,
-  opts?: { prefetch?: boolean }
+  opts?: { prefetch?: boolean; live?: boolean }
 ): Promise<Response> {
   const key = process.env.CARTESIA_API_KEY;
   if (!key) throw new TtsNotConfiguredError("CARTESIA_API_KEY is not set");
@@ -53,7 +53,15 @@ export async function synthesizeSpeech(
   // lines warmed ahead of time) takes the full time and gets the properly
   // vocalized clip, which is also what lands in the cache for everyone
   // after it.
-  const transcript = await vocalize(text, opts?.prefetch ? { deadlineMs: PREFETCH_VOCALIZE_DEADLINE_MS } : undefined);
+  // The niqqud ruling: exercises and scripted lines get it, live prose
+  // does not. A model's feedback sentence is written fresh every turn, so
+  // it can never be a cache hit and would pay the full niqqud wait on a
+  // child who is already waiting — and unlike a bank question, nobody has
+  // reviewed its wording. Skipping it here is the ruling expressed in
+  // code rather than left to the deadline to approximate.
+  const transcript = opts?.live
+    ? text
+    : await vocalize(text, opts?.prefetch ? { deadlineMs: PREFETCH_VOCALIZE_DEADLINE_MS } : undefined);
 
   return fetch(CARTESIA_URL, {
     method: "POST",

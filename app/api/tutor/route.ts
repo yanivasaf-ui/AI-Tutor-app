@@ -6,7 +6,13 @@ import {
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
 import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
-import { evaluateExerciseAnswer } from "@/lib/exercises/evaluate";
+import {
+  evaluateVerdict,
+  generateFeedbackProse,
+  safeFeedbackAfterOpener,
+  OPENERS,
+  type LockedVerdict,
+} from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
@@ -157,6 +163,10 @@ interface SpeakBody {
    *  (lib/speech/useSpeech.ts's prefetchSpeech). Only effect: the niqqud
    *  step is allowed to take its time, since no child is waiting on it. */
   prefetch?: boolean;
+  /** True for a line a model just wrote (the feedback prose). Per the
+   *  niqqud ruling, live prose is not vocalized at all — see
+   *  lib/tts/cartesia.ts. */
+  live?: boolean;
 }
 
 type RequestBody = ChatBody | ScopedChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
@@ -471,6 +481,25 @@ async function handleGenerateExercise(
   }
 }
 
+/**
+ * feat: verdict-first evaluation. Answers stream back as NDJSON, two
+ * lines:
+ *
+ *   {"type":"verdict","correct":bool,"opener":"..."}
+ *   {"type":"prose","feedback":"...","errorNote":"...","practice":{...}}
+ *
+ * The first line leaves as soon as the verdict is locked — on a
+ * computation exercise that is pure code, no model call at all — so the
+ * character can say its deterministic opener while the prose is still
+ * being written. Before this, nothing was audible until the single
+ * combined call returned (measured p50 1934ms).
+ *
+ * The prose on the second line has already passed lineIsArithmeticallySafe
+ * as one whole text. It is never streamed in pieces: a false claim split
+ * across a sentence boundary is invisible to that gate sentence by
+ * sentence, as is a wrong stated answer, so partial prose must never
+ * reach a child.
+ */
 async function handleAnswerExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
   { exercise, answer, kidId, kidGender, topicId, mode, attempt, sessionId }: AnswerExerciseBody
@@ -480,142 +509,172 @@ async function handleAnswerExercise(
   }
   const tryNumber: 1 | 2 = attempt === 2 ? 2 : 1;
 
-  // evaluateExerciseAnswer (the LLM call) and getKid (a DB lookup) don't
-  // depend on each other — was previously two sequential awaits, meaning
-  // the kid lookup didn't even start until the several-second LLM call
-  // finished. Running them concurrently, with the same error handling
-  // and early-return behavior as before, just not serialized for no
-  // reason. Part of the "make it faster" pass (Asaf, 2026-08-31).
-  // feat: specific praise — the evaluator can only cite history it has been
-  // handed, so this one small indexed read (top 10 facts for this kid) is
-  // unavoidably in front of the model call. getKid is started BEFORE it and
-  // awaited after, so it still overlaps the several-second LLM call exactly
-  // as it did: the added cost is this query alone, not a re-serialisation.
+  // Both start now and neither blocks the verdict. The memory read used to
+  // sit in front of the model call because the evaluator needed it to cite
+  // history; only the PROSE call needs it, and that one no longer gates
+  // the first thing the child hears.
   const kidPromise = kidId ? getKid(supabase, kidId) : Promise.resolve(null);
-  const memoryBlock = kidId ? formatMemoryBlock(await recentKidFacts(supabase, kidId)) : "";
+  const memoryPromise = kidId
+    ? recentKidFacts(supabase, kidId)
+        .then(formatMemoryBlock)
+        .catch(() => "")
+    : Promise.resolve("");
 
-  const [evaluationOutcome, kid] = await Promise.all([
-    evaluateExerciseAnswer(exercise, answer, {
-      secondAttempt: tryNumber === 2,
-      childGender: kidGender,
-      memoryBlock,
-    }).then(
-      (value) => ({ ok: true as const, value }),
-      (err) => ({ ok: false as const, err })
-    ),
-    kidPromise,
-  ]);
-
-  if (!evaluationOutcome.ok) {
-    console.error("[exercise-evaluate] error:", evaluationOutcome.err);
+  let verdict: LockedVerdict;
+  try {
+    verdict = await evaluateVerdict(exercise, answer, { secondAttempt: tryNumber === 2 });
+  } catch (err) {
+    console.error("[exercise-evaluate] verdict failed:", err);
     return NextResponse.json({ error: "failed to evaluate answer" }, { status: 500 });
   }
-  const evaluation = evaluationOutcome.value;
+  const opener = OPENERS[verdict.openerKind];
 
-  // Adaptive level + journey completion (lib/practice/state.ts). Written
-  // BEFORE the response, unlike the bookkeeping below: the next exercise
-  // is built at the level this sets, and the screen shows the change.
-  // Only for a kid this parent owns (getKid runs under the parent's RLS)
-  // and a topic that belongs to the exercise's subject. Completion needs
-  // an explicit mode "journey" — free practice never moves the map.
-  let practice: PracticeSummary | undefined;
-  /** Did THIS answer finish the topic, as opposed to it already being
-   *  finished? Only the difference is a milestone worth remembering, and
-   *  it's only knowable here, between the read and the write. */
-  let justFinishedTopic = false;
-  const topicMeta = topicId ? getTopicById(topicId) : undefined;
-  if (kid && topicMeta && topicMeta.subject === exercise.subject) {
-    try {
-      const current = await getPracticeState(supabase, kid.id, topicMeta.subject);
-      const wasFinished = !!current.topics?.[topicMeta.id]?.journeyDoneAt;
-      const result = recordAnswer(current, topicMeta.id, {
-        correct: evaluation.correct,
-        attempt: tryNumber,
-        mode: mode === "journey" ? "journey" : "free",
-        at: new Date().toISOString(),
-      });
-      justFinishedTopic = !wasFinished && !!result.topic.journeyDoneAt;
-      await savePracticeState(supabase, kid.id, topicMeta.subject, result.state);
-      practice = summarize(result.topic, result.change);
-    } catch (err) {
-      // The kid still gets their feedback; the level just doesn't move.
-      console.error("[exercise-answer] practice state update failed:", err instanceof Error ? err.message : err);
-    }
-  }
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (obj: unknown) => controller.enqueue(encoder.encode(JSON.stringify(obj) + "\n"));
 
-  // The kid gets `evaluation` (right/wrong + feedback) the moment it's
-  // judged — recordAttempt and the memory-layer update (a second LLM
-  // call) are bookkeeping the kid was, until now, waiting on for no
-  // reason (2026-09-12 iPhone QA: "everything is slow"). after()
-  // (next/server) defers exactly this block to run once the response is
-  // on its way; same calls, same order, same error handling as before.
-  // (See handleChat's after() comment on the waitUntil/after naming.)
-  if (kid) {
-    after(async () => {
-      try {
-        // feat: kid session memory — the episodic half, alongside the
-        // rolling subject profile below. Derived in code from what the
-        // evaluation already returned (no second model call), and written
-        // here rather than before the response because nothing the kid
-        // sees depends on it. Failure is swallowed inside saveKidFacts:
-        // a missing memory row must never cost a child their feedback.
-        if (topicMeta) {
-          await saveKidFacts(
-            supabase,
-            kid.id,
-            factsFromAnswer({
-              topicLabel: topicMeta.displayNameKid,
-              correct: evaluation.correct,
-              attempt: tryNumber,
-              errorNote: evaluation.errorNote,
-              leveledUp: practice?.change === "up",
-              topicCompleted: justFinishedTopic,
+      // Line 1 — the verdict and the opener, the moment they exist.
+      send({ type: "verdict", correct: verdict.correct, opener });
+
+      // The practice write and the prose call are independent of each
+      // other; both happen while the opener is being spoken.
+      const practicePromise = (async (): Promise<{
+        practice?: PracticeSummary;
+        justFinishedTopic: boolean;
+        kid: Awaited<typeof kidPromise>;
+      }> => {
+        const kid = await kidPromise;
+        const topicMeta = topicId ? getTopicById(topicId) : undefined;
+        if (!kid || !topicMeta || topicMeta.subject !== exercise.subject) {
+          return { justFinishedTopic: false, kid };
+        }
+        try {
+          const current = await getPracticeState(supabase, kid.id, topicMeta.subject);
+          const wasFinished = !!current.topics?.[topicMeta.id]?.journeyDoneAt;
+          const result = recordAnswer(current, topicMeta.id, {
+            correct: verdict.correct,
+            attempt: tryNumber,
+            mode: mode === "journey" ? "journey" : "free",
+            at: new Date().toISOString(),
+          });
+          const justFinishedTopic = !wasFinished && !!result.topic.journeyDoneAt;
+          await savePracticeState(supabase, kid.id, topicMeta.subject, result.state);
+          return { practice: summarize(result.topic, result.change), justFinishedTopic, kid };
+        } catch (err) {
+          // The kid still gets their feedback; the level just doesn't move.
+          console.error("[exercise-answer] practice state update failed:", err instanceof Error ? err.message : err);
+          return { justFinishedTopic: false, kid };
+        }
+      })();
+
+      const prosePromise = (async () => {
+        try {
+          return await generateFeedbackProse(exercise, answer, verdict, {
+            childGender: kidGender,
+            memoryBlock: await memoryPromise,
+          });
+        } catch (err) {
+          // The verdict is already locked and already spoken. A failed
+          // prose call must not cost the child their feedback, so fall
+          // through to the same deterministic remainder the gate uses.
+          console.error("[exercise-evaluate] prose failed, using deterministic line:", err);
+          return {
+            feedback: safeFeedbackAfterOpener("", {
+              verifiedAnswer: verdict.verifiedAnswer,
+              correct: verdict.correct,
+              secondAttempt: verdict.secondAttempt,
+              computation: exercise.computation,
             }),
-            sessionId ?? null
-          );
+            errorNote: undefined as string | undefined,
+          };
         }
+      })();
 
-        // recordAttempt (the attempt log) and getSubjectProfile (needed
-        // for the memory-layer update below) are independent of each
-        // other — same parallelization reasoning as elsewhere in this file.
-        const [, current] = await Promise.all([
-          recordAttempt(supabase, {
-            kidId: kid.id,
-            exerciseId: exercise.id,
-            subject: exercise.subject,
-            correct: evaluation.correct,
-            errorNote: evaluation.errorNote,
-            kidAnswer: answer,
-            correctAnswer: exercise.correctAnswer,
-            spokenLine: evaluation.feedback,
-          }).catch((err) => {
-            console.error("[exercise-answer] attempt logging failed:", err);
-          }),
-          getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
-        ]);
-        const profileBase = current ?? emptySubjectProfile();
-        const patch = await updateSubjectProfileFromExchange(profileBase, {
-          grade: exercise.grade,
-          subject: exercise.subject,
-          kidName: kid.name,
-          userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
-          tutorReply: evaluation.feedback,
-          exercise: {
-            topic: exercise.topic,
-            correct: evaluation.correct,
-            errorNote: evaluation.errorNote,
-          },
+      const [{ practice, justFinishedTopic, kid }, prose] = await Promise.all([practicePromise, prosePromise]);
+
+      // Line 2 — the gated prose, plus the level the answer moved.
+      send({ type: "prose", feedback: prose.feedback, errorNote: prose.errorNote, practice });
+      controller.close();
+
+      // What the character actually said, end to end. Everything
+      // downstream (the attempt log's spokenLine, the memory layer's
+      // tutorReply) records the whole utterance, not half of it.
+      const spokenLine = `${opener} ${prose.feedback}`.trim();
+
+      // The kid has had their feedback — recordAttempt and the
+      // memory-layer update (a second LLM call) are bookkeeping they were,
+      // until now, waiting on for no reason (2026-09-12 iPhone QA:
+      // "everything is slow"). after() (next/server) defers exactly this
+      // block to run once the response is on its way.
+      if (kid) {
+        after(async () => {
+          try {
+            // feat: kid session memory — the episodic half, alongside the
+            // rolling subject profile below. Derived in code from what the
+            // evaluation already returned (no second model call).
+            const topicMeta = topicId ? getTopicById(topicId) : undefined;
+            if (topicMeta) {
+              await saveKidFacts(
+                supabase,
+                kid.id,
+                factsFromAnswer({
+                  topicLabel: topicMeta.displayNameKid,
+                  correct: verdict.correct,
+                  attempt: tryNumber,
+                  errorNote: prose.errorNote,
+                  leveledUp: practice?.change === "up",
+                  topicCompleted: justFinishedTopic,
+                }),
+                sessionId ?? null
+              );
+            }
+
+            const [, current] = await Promise.all([
+              recordAttempt(supabase, {
+                kidId: kid.id,
+                exerciseId: exercise.id,
+                subject: exercise.subject,
+                correct: verdict.correct,
+                errorNote: prose.errorNote,
+                kidAnswer: answer,
+                correctAnswer: exercise.correctAnswer,
+                spokenLine,
+              }).catch((err) => {
+                console.error("[exercise-answer] attempt logging failed:", err);
+              }),
+              getSubjectProfile(supabase, kid.id, exercise.subject as Subject),
+            ]);
+            const profileBase = current ?? emptySubjectProfile();
+            const patch = await updateSubjectProfileFromExchange(profileBase, {
+              grade: exercise.grade,
+              subject: exercise.subject,
+              kidName: kid.name,
+              userMessage: `[תרגיל: ${exercise.question}] תשובת התלמיד/ה: ${answer}`,
+              tutorReply: spokenLine,
+              exercise: {
+                topic: exercise.topic,
+                correct: verdict.correct,
+                errorNote: prose.errorNote,
+              },
+            });
+            if (patch) {
+              await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
+            }
+          } catch (err) {
+            console.error("[exercise-answer] memory update failed:", err);
+          }
         });
-        if (patch) {
-          await updateSubjectProfile(supabase, kid.id, exercise.subject as Subject, patch);
-        }
-      } catch (err) {
-        console.error("[exercise-answer] memory update failed:", err);
       }
-    });
-  }
+    },
+  });
 
-  return NextResponse.json({ evaluation, practice });
+  return new Response(stream, {
+    headers: {
+      "Content-Type": "application/x-ndjson; charset=utf-8",
+      "Cache-Control": "private, no-store",
+    },
+  });
 }
 
 /**
@@ -634,7 +693,7 @@ async function handleAnswerExercise(
  */
 async function handleSpeak(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { text, character, prefetch }: SpeakBody,
+  { text, character, prefetch, live }: SpeakBody,
   signal: AbortSignal
 ) {
   const {
@@ -652,7 +711,10 @@ async function handleSpeak(
 
   let upstream: Response;
   try {
-    upstream = await synthesizeSpeech(text, character, signal, { prefetch: prefetch === true });
+    upstream = await synthesizeSpeech(text, character, signal, {
+      prefetch: prefetch === true,
+      live: live === true,
+    });
   } catch (err) {
     if (err instanceof TtsNotConfiguredError) {
       return NextResponse.json({ error: "tts_not_configured" }, { status: 503 });

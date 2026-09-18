@@ -17,7 +17,9 @@ export type VoiceLeg =
   | "listen" // mic down -> transcript in hand (STT)
   | "transcribe" // mic up -> transcript in hand (cloud STT: upload + vendor). The number the ~2s-after-release target is about.
   | "match" // transcript -> matched answer (local, expected ~0ms)
-  | "evaluate" // POST /api/tutor answer_exercise round trip (LLM)
+  | "evaluate" // POST /api/tutor answer_exercise -> verdict line in hand
+  | "verdict" // end-of-speech -> verdict locked (feat: verdict-first evaluation)
+  | "prose-ready" // answer submitted -> gated feedback prose in hand
   | "speak-start" // speak() called -> audio actually began (TTS)
   | "cue" // end-of-speech -> the local "I heard you" blip sounded (no network; see lib/speech/cue.ts)
   | "reply" // end-of-speech -> first audible word of the actual reply. THE number this pipeline is judged on.

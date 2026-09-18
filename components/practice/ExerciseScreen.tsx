@@ -15,6 +15,7 @@ import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
 import * as lines from "@/lib/guide/lines";
+import { OPENERS } from "@/lib/exercises/openers";
 import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
 import { clearEndOfSpeech, msSinceEndOfSpeech, recordTiming } from "@/lib/voice/timing";
@@ -177,6 +178,13 @@ export default function ExerciseScreen({
   // starts speaking the reply, so "turn" measures the full voice-in ->
   // voice-out span the kid actually experiences.
   const turnStartedAtRef = useRef<number | null>(null);
+  /** feat: verdict-first evaluation — the opener -> prose chain. `gen`
+   *  invalidates a chain whose turn has moved on (a new answer, a
+   *  barge-in, leaving the screen), so a late prose line can never talk
+   *  over the next question. */
+  const proseGenRef = useRef(0);
+  const openerDoneRef = useRef(false);
+  const pendingProseRef = useRef<string | null>(null);
   const speakCalledAtRef = useRef<number | null>(null);
 
   /** True while the utterance currently starting is the thinking cue, so
@@ -194,17 +202,21 @@ export default function ExerciseScreen({
    *  Explicit 🔊 taps inside a bubble bypass this deliberately. `onEnd`
    *  (voice-experience fix item 3) chains the grades-א/ב answer readout
    *  onto the moment this specific utterance finishes. */
-  const speakAuto = useCallback((text: string, opts?: { ack?: boolean; onEnd?: () => void }) => {
-    if (!isAutoSpeakOn() || !hasSeenGesture()) return;
-    speakCalledAtRef.current = performance.now();
-    speakingAckRef.current = opts?.ack === true;
-    speak(text, OWNER, character, { onEnd: opts?.onEnd });
-  }, [character]);
+  const speakAuto = useCallback(
+    (text: string, opts?: { ack?: boolean; onEnd?: () => void; live?: boolean }) => {
+      if (!isAutoSpeakOn() || !hasSeenGesture()) return;
+      speakCalledAtRef.current = performance.now();
+      speakingAckRef.current = opts?.ack === true;
+      speak(text, OWNER, character, { onEnd: opts?.onEnd, live: opts?.live });
+    },
+    [character]
+  );
 
   // Leaving mid-sentence (back to map) must not keep talking over the map.
   useEffect(() => () => {
     stopSpeaking(OWNER);
     readoutGenRef.current++;
+    proseGenRef.current++;
   }, []);
 
   // speak() resolves asynchronously inside the speech engine, so
@@ -342,6 +354,14 @@ export default function ExerciseScreen({
     // permanently missed: paid for on every load, never actually hit.
     prefetchSpeech(lines.spoken(lines.thinking(character, kidName)), character);
     prefetchSpeech(lines.spoken(lines.buildingExercise(character, kidName)), character);
+    // feat: verdict-first evaluation — the three deterministic openers.
+    // Exactly one of them is said on every single answer, and they never
+    // vary, so warming all three here is what makes the opener audible at
+    // verdict-lock instead of a Cartesia round trip later. Prefetched
+    // lines are fully vocalized server-side (lib/tts/cartesia.ts).
+    for (const opener of Object.values(OPENERS)) {
+      prefetchSpeech(lines.spoken(lines.feedback(kidName, opener)), character);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject, grade, topicId]);
 
@@ -364,12 +384,27 @@ export default function ExerciseScreen({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOnce, loadingExercise, exercise, loadFailed]);
 
+  /**
+   * feat: verdict-first evaluation. The answer comes back as two NDJSON
+   * lines instead of one JSON body:
+   *
+   *   1. the verdict + the deterministic opener — sent the moment the
+   *      verdict is locked, which on a computation exercise is code only,
+   *      no model call. The character starts talking here.
+   *   2. the model's prose, already gated whole by lineIsArithmeticallySafe,
+   *      plus the level this answer moved.
+   *
+   * Nothing is spoken before line 1, and the opener is chosen from the
+   * locked verdict, so the character cannot praise an answer the code
+   * marked wrong. The prose follows the opener gaplessly — queued on the
+   * opener's own onEnd rather than a timer.
+   */
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
     setNoMatch(false);
     setBasePose("thinking");
-    // Voice turns get an immediate audible acknowledgement so the ~2.5s
+    // Voice turns get an immediate audible acknowledgement so the
     // evaluation isn't dead silence. A kid who tapped is watching the
     // screen and sees the thinking pose; a kid who spoke may not be
     // looking, and silence reads as "it didn't hear me" -> they repeat
@@ -377,6 +412,23 @@ export default function ExerciseScreen({
     // it would be chatter on top of a visual signal they already have.
     if (opts?.viaVoice) speakAuto(lines.spoken(lines.thinking(character, kidName)), { ack: true });
     const evaluateStartedAt = performance.now();
+    // Guards the opener -> prose chain against a turn that has moved on
+    // (a new answer, a barge-in, leaving the screen).
+    const gen = ++proseGenRef.current;
+    openerDoneRef.current = false;
+    pendingProseRef.current = null;
+    let opener = "";
+    let celebrated = false;
+    let sawVerdict = false;
+
+    const speakProse = (text: string) => {
+      if (gen !== proseGenRef.current || !text) return;
+      // Raw text, no name prefix: the opener already addressed the kid.
+      // `live` marks it as model-written prose, which per the niqqud
+      // ruling is spoken unvocalized.
+      speakAuto(text, { live: true });
+    };
+
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
@@ -396,46 +448,103 @@ export default function ExerciseScreen({
           sessionId: String(sessionStartedAt),
         }),
       });
-      const data = await res.json();
-      recordTiming("evaluate", performance.now() - evaluateStartedAt);
-      const result: ExerciseEvaluation = data.evaluation ?? { correct: false, feedback: lines.somethingBroke(kidName).text };
-      setEvalFailed(!data.evaluation);
-      setEvaluation(result);
-      // Kid-scene reskin: count DISTINCT exercises, not submissions — a
-      // retry (attempt 2) is still the same exercise, so only a fresh
-      // question (attempt 1) advances "attempted"; "correct" advances on
-      // whichever attempt actually lands it, at most once per exercise
-      // since a correct result always moves on to a new one.
-      if (attempt === 1) topicStatsRef.current.attempted++;
-      if (result.correct) topicStatsRef.current.correct++;
-      setProgressTick((n) => n + 1);
-      const nextPractice = data.practice as PracticeSummary | undefined;
-      if (nextPractice) {
-        setPractice(nextPractice);
-        if (nextPractice.change) setLevelBump((n) => n + 1);
-      }
-      if (result.correct) {
-        // Tier-2 moments take the whole screen and say their own line;
-        // everything else is the tier-1 burst from the bubble. The session
-        // condition is the same one the old inline banner used (see
-        // showSessionOverlay below) — only its presentation changed.
-        const sessionMoment = !sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS;
-        const topicMoment = !!topicId && !topicDoneRef.current;
-        if (topicMoment) topicDoneRef.current = true;
-        if (sessionMoment || topicMoment) {
-          setBasePose("correct");
-          if (!sessionMoment) setTopicCelebration(true);
-          return;
+      if (!res.ok || !res.body) throw new Error(String(res.status));
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffered = "";
+      for (;;) {
+        const { done, value: chunk } = await reader.read();
+        if (done) break;
+        buffered += decoder.decode(chunk, { stream: true });
+        let nl: number;
+        while ((nl = buffered.indexOf("\n")) >= 0) {
+          const line = buffered.slice(0, nl).trim();
+          buffered = buffered.slice(nl + 1);
+          if (!line) continue;
+          const msg = JSON.parse(line) as {
+            type: "verdict" | "prose";
+            correct?: boolean;
+            opener?: string;
+            feedback?: string;
+            practice?: PracticeSummary;
+          };
+
+          if (msg.type === "verdict") {
+            sawVerdict = true;
+            recordTiming("evaluate", performance.now() - evaluateStartedAt);
+            const sinceEnd = msSinceEndOfSpeech();
+            if (sinceEnd !== null) recordTiming("verdict", sinceEnd);
+            opener = msg.opener ?? "";
+            const correct = msg.correct === true;
+            setEvalFailed(false);
+            setEvaluation({ correct, feedback: opener });
+            // Kid-scene reskin: count DISTINCT exercises, not submissions —
+            // a retry (attempt 2) is still the same exercise, so only a
+            // fresh question (attempt 1) advances "attempted"; "correct"
+            // advances on whichever attempt actually lands it.
+            if (attempt === 1) topicStatsRef.current.attempted++;
+            if (correct) topicStatsRef.current.correct++;
+            setProgressTick((n) => n + 1);
+
+            if (correct) {
+              // Tier-2 moments take the whole screen and say their own
+              // line; everything else is the tier-1 burst from the bubble.
+              const sessionMoment = !sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS;
+              const topicMoment = !!topicId && !topicDoneRef.current;
+              if (topicMoment) topicDoneRef.current = true;
+              if (sessionMoment || topicMoment) {
+                setBasePose("correct");
+                if (!sessionMoment) setTopicCelebration(true);
+                celebrated = true;
+              } else {
+                celebrate(1, bubbleRef.current);
+              }
+            } else {
+              setBasePose("encouraging");
+            }
+
+            // The opener is a scripted line and prefetched, so this is
+            // usually a cache hit and audible immediately.
+            if (!celebrated && opener) {
+              speakAuto(lines.spoken(lines.feedback(kidName, opener)), {
+                onEnd: () => {
+                  if (gen !== proseGenRef.current) return;
+                  openerDoneRef.current = true;
+                  const pending = pendingProseRef.current;
+                  pendingProseRef.current = null;
+                  if (pending) speakProse(pending);
+                },
+              });
+            }
+          } else if (msg.type === "prose") {
+            recordTiming("prose-ready", performance.now() - evaluateStartedAt);
+            if (msg.practice) {
+              setPractice(msg.practice);
+              if (msg.practice.change) setLevelBump((n) => n + 1);
+            }
+            const prose = msg.feedback ?? "";
+            if (prose) {
+              setEvaluation((prev) => ({
+                correct: prev?.correct ?? false,
+                feedback: `${opener} ${prose}`.trim(),
+              }));
+            }
+            if (!celebrated && prose) {
+              // If the opener has already finished, say it now; otherwise
+              // its onEnd above picks this up the instant it does.
+              if (openerDoneRef.current) speakProse(prose);
+              else pendingProseRef.current = prose;
+            }
+          }
         }
-        celebrate(1, bubbleRef.current);
-      } else {
-        setBasePose("encouraging");
       }
-      speakAuto(lines.spoken(lines.feedback(kidName, result.feedback)));
+      if (!sawVerdict) throw new Error("no verdict in stream");
     } catch {
       setEvalFailed(true);
       setEvaluation({ correct: false, feedback: lines.somethingBroke(kidName).text });
       setBasePose("encouraging");
+      speakAuto(lines.spoken(lines.somethingBroke(kidName)));
     } finally {
       setSubmitting(false);
     }

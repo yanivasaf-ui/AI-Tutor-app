@@ -380,7 +380,8 @@ async function speakCloud(
   character: CharacterId,
   owner: string | null,
   id: number,
-  onEnd?: () => void
+  onEnd?: () => void,
+  live?: boolean
 ): Promise<boolean> {
   const key = `${character}|${text}`;
   let url = audioCache.get(key);
@@ -394,7 +395,7 @@ async function speakCloud(
     const res = await fetch("/api/tutor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "speak", text, character }),
+      body: JSON.stringify({ action: "speak", text, character, live: live === true }),
       signal: ctrl.signal,
     });
     if (pendingFetch === ctrl) pendingFetch = null;
@@ -503,7 +504,7 @@ export function speak(
   text: string,
   owner: string | null = null,
   character?: CharacterId | null,
-  opts?: { surviveOwnerUnmount?: boolean; onEnd?: () => void }
+  opts?: { surviveOwnerUnmount?: boolean; onEnd?: () => void; live?: boolean }
 ) {
   if (!text) return;
   const id = ++utteranceId;
@@ -513,7 +514,7 @@ export function speak(
   if (state.speaking) emit({ speaking: false, owner: null });
 
   if (character && state.cloud && typeof window !== "undefined") {
-    speakCloud(text, character, owner, id, opts?.onEnd)
+    speakCloud(text, character, owner, id, opts?.onEnd, opts?.live)
       .then((handled) => {
         if (!handled && id === utteranceId) speakBrowser(text, owner, id, opts?.onEnd);
       })
