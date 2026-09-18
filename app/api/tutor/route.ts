@@ -153,6 +153,10 @@ interface SpeakBody {
   text: string;
   /** Whose voice (lib/voices.ts). */
   character: CharacterId;
+  /** True when this is a warm-up, not a line anyone is waiting to hear
+   *  (lib/speech/useSpeech.ts's prefetchSpeech). Only effect: the niqqud
+   *  step is allowed to take its time, since no child is waiting on it. */
+  prefetch?: boolean;
 }
 
 type RequestBody = ChatBody | ScopedChatBody | GenerateExerciseBody | AnswerExerciseBody | SpeakBody;
@@ -630,7 +634,7 @@ async function handleAnswerExercise(
  */
 async function handleSpeak(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { text, character }: SpeakBody,
+  { text, character, prefetch }: SpeakBody,
   signal: AbortSignal
 ) {
   const {
@@ -648,7 +652,7 @@ async function handleSpeak(
 
   let upstream: Response;
   try {
-    upstream = await synthesizeSpeech(text, character, signal);
+    upstream = await synthesizeSpeech(text, character, signal, { prefetch: prefetch === true });
   } catch (err) {
     if (err instanceof TtsNotConfiguredError) {
       return NextResponse.json({ error: "tts_not_configured" }, { status: 503 });

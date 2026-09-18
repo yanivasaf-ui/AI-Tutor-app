@@ -17,7 +17,7 @@ import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/char
 import * as lines from "@/lib/guide/lines";
 import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
-import { recordTiming } from "@/lib/voice/timing";
+import { clearEndOfSpeech, msSinceEndOfSpeech, recordTiming } from "@/lib/voice/timing";
 import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
@@ -225,6 +225,14 @@ export default function ExerciseScreen({
       } else {
         recordTiming("turn", performance.now() - turnStartedAtRef.current);
         turnStartedAtRef.current = null;
+        // The headline number: end-of-speech -> first audible word of the
+        // real reply. Measured from the mic RELEASE rather than the press,
+        // so it doesn't include however long the child chose to talk.
+        const sinceEnd = msSinceEndOfSpeech();
+        if (sinceEnd !== null) {
+          recordTiming("reply", sinceEnd);
+          clearEndOfSpeech();
+        }
       }
     }
   }, [speaking]);

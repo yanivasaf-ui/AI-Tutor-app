@@ -224,7 +224,10 @@ export function prefetchSpeech(text: string, character: CharacterId) {
   fetch("/api/tutor", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "speak", text, character }),
+    // prefetch: nobody is waiting on this one, so the server lets the
+    // niqqud step take the time it needs and caches the properly
+    // vocalized clip — see lib/tts/cartesia.ts.
+    body: JSON.stringify({ action: "speak", text, character, prefetch: true }),
   })
     .then((res) => (res.ok ? res.blob() : null))
     .then((blob) => {
@@ -259,6 +262,119 @@ function stopPlayback() {
  *  finishes (not superseded) — used by voice-experience fix item 3's
  *  answer-option readout to chain "speak the next thing" without a
  *  fragile speaking-flag poll. */
+/** The one container Cartesia returns here (lib/tts/cartesia.ts asks for
+ *  mp3), and the only type this progressive path ever feeds to MSE. */
+const MP3_MIME = "audio/mpeg";
+
+type MediaSourceCtor = {
+  new (): MediaSource;
+  isTypeSupported?(type: string): boolean;
+};
+
+/** MediaSource, or Safari 17+'s ManagedMediaSource. iPhone Safari had
+ *  neither until iOS 17, which is exactly why every caller here must keep
+ *  working when this returns null — the blob path below stays the
+ *  fallback, unchanged, and is what that platform still uses. */
+function getMediaSourceCtor(): MediaSourceCtor | null {
+  if (typeof window === "undefined") return null;
+  const w = window as unknown as { MediaSource?: MediaSourceCtor; ManagedMediaSource?: MediaSourceCtor };
+  const ctor = w.ManagedMediaSource ?? w.MediaSource;
+  if (!ctor || typeof ctor.isTypeSupported !== "function") return null;
+  return ctor.isTypeSupported(MP3_MIME) ? ctor : null;
+}
+
+/**
+ * Attaches a streaming response to the shared <audio> element so playback
+ * can begin on the FIRST chunk instead of after the last one.
+ *
+ * Before this, speakCloud awaited res.blob() — the whole clip had to
+ * arrive before a single sample could play, on top of Cartesia's own
+ * ~495ms time-to-first-byte. The child waited through the download too.
+ *
+ * Returns the src to play, or null when this browser can't do it (the
+ * caller then falls back to the buffered path). The full clip is still
+ * assembled in the background and written to audioCache on completion, so
+ * a replay — the 🔊 tap, a repeated line — uses the same proven blob URL
+ * it always did, including FIX 6's currentTime reset.
+ */
+function streamToAudioSrc(res: Response, key: string): string | null {
+  const Ctor = getMediaSourceCtor();
+  if (!Ctor || !res.body) return null;
+
+  let mediaSource: MediaSource;
+  try {
+    mediaSource = new Ctor();
+  } catch {
+    return null;
+  }
+  const srcUrl = URL.createObjectURL(mediaSource);
+
+  mediaSource.addEventListener("sourceopen", () => {
+    let buffer: SourceBuffer;
+    try {
+      buffer = mediaSource.addSourceBuffer(MP3_MIME);
+    } catch {
+      // Nothing to recover to here — the element's onerror path (already
+      // wired by the caller) falls back to the browser voice.
+      return;
+    }
+    const reader = res.body!.getReader();
+    const chunks: Uint8Array[] = [];
+    const queue: Uint8Array[] = [];
+    let ended = false;
+
+    const pump = () => {
+      if (buffer.updating) return;
+      const next = queue.shift();
+      if (next) {
+        try {
+          buffer.appendBuffer(next as BufferSource);
+        } catch {
+          /* quota or closed source — stop feeding, let what's buffered play */
+        }
+        return;
+      }
+      if (ended && mediaSource.readyState === "open") {
+        try {
+          mediaSource.endOfStream();
+        } catch {
+          /* already ended */
+        }
+      }
+    };
+
+    buffer.addEventListener("updateend", pump);
+
+    const read = () => {
+      reader
+        .read()
+        .then(({ done, value }) => {
+          if (done) {
+            ended = true;
+            // Cache the complete clip for replays, on the ordinary path.
+            const blob = new Blob(chunks as BlobPart[], { type: MP3_MIME });
+            cachePut(key, URL.createObjectURL(blob));
+            pump();
+            return;
+          }
+          if (value) {
+            chunks.push(value);
+            queue.push(value);
+            pump();
+          }
+          read();
+        })
+        .catch(() => {
+          ended = true;
+          pump();
+        });
+    };
+    read();
+  });
+
+  return srcUrl;
+}
+
 async function speakCloud(
   text: string,
   character: CharacterId,
@@ -268,6 +384,9 @@ async function speakCloud(
 ): Promise<boolean> {
   const key = `${character}|${text}`;
   let url = audioCache.get(key);
+  /** True when `url` is a live MediaSource being fed, not a finished blob
+   *  — it has no seekable position to reset yet (see FIX 6 below). */
+  let progressive = false;
 
   if (!url) {
     const ctrl = new AbortController();
@@ -285,8 +404,18 @@ async function speakCloud(
       return false;
     }
     if (!res.ok) return false;
-    url = URL.createObjectURL(await res.blob());
-    cachePut(key, url);
+    const streamed = streamToAudioSrc(res, key);
+    if (streamed) {
+      url = streamed;
+      progressive = true;
+      // Deliberately NOT cachePut here — streamToAudioSrc writes the
+      // finished blob to the cache once the last chunk lands. Caching a
+      // live MediaSource URL would hand the next replay a source that has
+      // already ended.
+    } else {
+      url = URL.createObjectURL(await res.blob());
+      cachePut(key, url);
+    }
     if (id !== utteranceId) return true;
   }
 
@@ -321,7 +450,11 @@ async function speakCloud(
   // Explicitly resetting the position before every play() call — cached
   // replay or a first play, tap or voice, since both go through this one
   // function — costs nothing on a fresh src and fixes the stale one.
-  a.currentTime = 0;
+  // A live MediaSource has nothing buffered yet — it starts at 0 by
+  // definition, and assigning currentTime before the first append throws
+  // in some browsers. Only the blob path (the one FIX 6 is about) needs
+  // the reset.
+  if (!progressive) a.currentTime = 0;
   await a.play();
   return true;
 }

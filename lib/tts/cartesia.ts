@@ -24,7 +24,20 @@ export const MAX_TTS_CHARS = 1200;
 
 export class TtsNotConfiguredError extends Error {}
 
-export async function synthesizeSpeech(text: string, character: CharacterId, signal?: AbortSignal): Promise<Response> {
+/**
+ * How long a PREFETCH will wait for niqqud. Generous on purpose: nobody is
+ * listening yet, so there is no latency to protect and the only thing that
+ * matters is getting the pronunciation right. A live line gets
+ * vocalize()'s own short default instead — see VOCALIZE_DEADLINE_MS.
+ */
+const PREFETCH_VOCALIZE_DEADLINE_MS = 5_000;
+
+export async function synthesizeSpeech(
+  text: string,
+  character: CharacterId,
+  signal?: AbortSignal,
+  opts?: { prefetch?: boolean }
+): Promise<Response> {
   const key = process.env.CARTESIA_API_KEY;
   if (!key) throw new TtsNotConfiguredError("CARTESIA_API_KEY is not set");
 
@@ -34,7 +47,13 @@ export async function synthesizeSpeech(text: string, character: CharacterId, sig
   // caller of synthesizeSpeech, template lines and exercise text alike;
   // vocalize() itself no-ops on non-Hebrew text and is cached by exact
   // text, so repeats after the first are free.
-  const transcript = await vocalize(text);
+  //
+  // The wait for it is bounded only when a child is actually waiting. A
+  // prefetch (lib/speech/useSpeech.ts's prefetchSpeech — the scripted
+  // lines warmed ahead of time) takes the full time and gets the properly
+  // vocalized clip, which is also what lands in the cache for everyone
+  // after it.
+  const transcript = await vocalize(text, opts?.prefetch ? { deadlineMs: PREFETCH_VOCALIZE_DEADLINE_MS } : undefined);
 
   return fetch(CARTESIA_URL, {
     method: "POST",

@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getSttProvider, type SttProvider, type SttSession } from "@/lib/stt/provider";
 import { stopSpeaking } from "@/lib/speech/useSpeech";
-import { recordTiming } from "@/lib/voice/timing";
+import { playHeardCue } from "@/lib/speech/cue";
+import { markEndOfSpeech, recordTiming } from "@/lib/voice/timing";
 
 /**
  * Voice input half of the loop (ROADMAP.md Phase 1A's `useVoiceInput`).
@@ -114,6 +115,15 @@ export function useVoiceInput(opts: {
       },
       onCaptureEnd: () => {
         releasedAtRef.current = performance.now();
+        // Push-to-talk: release IS end-of-speech. Everything downstream is
+        // measured from here.
+        markEndOfSpeech();
+        // The "I heard you" cue, before anything network-bound. The spoken
+        // acknowledgement still follows (ExerciseScreen's prefetched
+        // thinking line, unchanged) — but that one costs a round trip, and
+        // this is the moment the child is actually waiting through.
+        playHeardCue();
+        recordTiming("cue", performance.now() - releasedAtRef.current);
         setState((s) => (s === "listening" ? "processing" : s));
       },
     });

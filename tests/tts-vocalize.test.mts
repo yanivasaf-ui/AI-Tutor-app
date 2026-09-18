@@ -58,6 +58,43 @@ t("incidental whitespace differences don't trip the guard", () => {
   assert.ok(isFaithful("שלום  עולם", "שָׁלוֹם עוֹלָם"));
 });
 
+// 2026-09-18: the first cut of this guard compared byte for byte and threw
+// away 3 of 5 legitimate vocalizations of REAL evaluator output, because
+// adding niqqud correctly respells ktiv male as ktiv haser — the mater
+// lectionis yod/vav is dropped once the vowel is a point. These are the
+// exact original/vocalized pairs logged in that measurement run.
+console.log("\nktiv male → ktiv haser is the pointed spelling, not a rewrite");
+
+t("חישבת → חִשַׁבְתָּ (yod dropped) is accepted", () => {
+  assert.ok(isFaithful("כל הכבוד, חישבת נכון!", "כָּל הַכָּבוֹד, חִשַׁבְתָּ נָכוֹן!"));
+});
+
+t("לספור → לִסְפֹּר (vav dropped) is accepted", () => {
+  assert.ok(
+    isFaithful(
+      "זה בסדר, זה קורה! נסי לספור שוב לאט, אולי על האצבעות.",
+      "זֶה בְּסֵדֶר, זֶה קוֹרֶה! נְסִי לִסְפֹּר שׁוּב לְאַט, אוּלַי עַל הָאֶצְבָּעוֹת."
+    )
+  );
+});
+
+t("a line needing no respelling at all still passes", () => {
+  assert.ok(isFaithful("כל הכבוד, פתרת נכון!", "כָּל הַכָּבוֹד, פָּתַרְתְּ נָכוֹן!"));
+});
+
+// The looser "ignore every yod and vav on both sides" rule would collapse
+// these two to the same word and wave the swap through. Deletion-only,
+// walked left to right, is what keeps it rejected — and a pronoun's gender
+// is not a detail in a line spoken to a child.
+t("הוא → היא is still rejected — matres may be dropped, never swapped", () => {
+  assert.ok(!isFaithful("הוא כתב את זה", "הִיא כָּתַב אֶת זֶה"));
+});
+
+t("a mater may be dropped, never added", () => {
+  // Original already defective; "vocalized" puts the vav back in.
+  assert.ok(!isFaithful("לספר", "לִסְפּוֹר"));
+});
+
 t("unvocalized text (a no-op passthrough) is trivially faithful", () => {
   assert.ok(isFaithful("שלום עולם", "שלום עולם"));
 });

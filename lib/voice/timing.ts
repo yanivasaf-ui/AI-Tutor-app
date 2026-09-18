@@ -19,8 +19,10 @@ export type VoiceLeg =
   | "match" // transcript -> matched answer (local, expected ~0ms)
   | "evaluate" // POST /api/tutor answer_exercise round trip (LLM)
   | "speak-start" // speak() called -> audio actually began (TTS)
-  | "ack" // mic up -> character audibly acknowledges ("רגע, אני חושב...")
-  | "turn"; // mic up -> character starts speaking the actual reply
+  | "cue" // end-of-speech -> the local "I heard you" blip sounded (no network; see lib/speech/cue.ts)
+  | "reply" // end-of-speech -> first audible word of the actual reply. THE number this pipeline is judged on.
+  | "ack" // mic press -> character audibly acknowledges ("רגע, אני חושב...")
+  | "turn"; // mic press -> character starts speaking the actual reply
 
 export interface VoiceTiming {
   leg: VoiceLeg;
@@ -34,6 +36,30 @@ const timings: VoiceTiming[] = [];
 export function recordTiming(leg: VoiceLeg, ms: number) {
   timings.push({ leg, ms: Math.round(ms), at: Date.now() });
   if (timings.length > MAX) timings.shift();
+}
+
+/**
+ * When the child stopped talking — the instant the mic is released, since
+ * this app is push-to-talk and release IS end-of-speech (there is no VAD;
+ * see lib/stt/provider.ts). Kept here rather than threaded through props
+ * because the two ends of the measurement live in different components:
+ * useVoiceInput owns the release, ExerciseScreen owns the moment audio
+ * first sounds.
+ */
+let endOfSpeechAt: number | null = null;
+
+export function markEndOfSpeech() {
+  endOfSpeechAt = performance.now();
+}
+
+/** Milliseconds since the child stopped talking, or null if no utterance
+ *  is in flight (a tap answer, or a leg already recorded). */
+export function msSinceEndOfSpeech(): number | null {
+  return endOfSpeechAt === null ? null : performance.now() - endOfSpeechAt;
+}
+
+export function clearEndOfSpeech() {
+  endOfSpeechAt = null;
 }
 
 export function getTimings(): VoiceTiming[] {

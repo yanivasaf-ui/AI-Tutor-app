@@ -232,6 +232,47 @@ const UPLOAD_TIMEOUT_MS = 9_000;
 const AUTH_RACE_RETRY_DELAY_MS = 400;
 
 /**
+ * How often MediaRecorder hands over what it has captured so far.
+ *
+ * Without a timeslice, MediaRecorder holds the entire recording and
+ * finalises it in one go at stop() — the child waits through that flush
+ * before a single byte can go anywhere. With one, chunks are already in
+ * hand when the finger lifts, and (where the platform allows it, see
+ * supportsRequestStreaming) they have already been going up the wire
+ * during the press.
+ */
+const CHUNK_MS = 250;
+
+/**
+ * Can this browser send a fetch body that is still being produced?
+ *
+ * Chrome/Edge can, but only over HTTP/2 — so this is false on a plain
+ * http://localhost dev server and true on Vercel. Safari cannot at all.
+ * Every path below therefore has to work without it; when it is false the
+ * upload is exactly what it was before this change, assembled at release
+ * and posted in one piece.
+ */
+function supportsRequestStreaming(): boolean {
+  if (typeof Request === "undefined" || typeof ReadableStream === "undefined") return false;
+  let duplexAccessed = false;
+  try {
+    const hasContentType = new Request("https://example.com", {
+      method: "POST",
+      body: new ReadableStream(),
+      // @ts-expect-error — `duplex` is required for streaming bodies and
+      // is not in this TS lib yet; reading it is the feature test itself.
+      get duplex() {
+        duplexAccessed = true;
+        return "half";
+      },
+    }).headers.has("Content-Type");
+    return duplexAccessed && !hasContentType;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Container preference, first supported wins. webm/opus is small and is
  * what Chrome (and recent Safari) record; iOS Safari before webm support
  * records mp4/AAC only — so mp4 is the fallback, never the first ask.
@@ -392,6 +433,9 @@ export const cloudSpeechProvider: SttProvider = {
 
     const release = () => {
       clearTimeout(maxTimer);
+      // A press that ended before the streaming upload was due to open
+      // must never open one afterwards.
+      clearTimeout(streamOpenTimer);
       // Park, don't stop — see getSharedMicStream()'s header note. Stopping
       // these tracks is exactly what caused iOS to re-prompt for
       // permission on every subsequent recording.
@@ -419,10 +463,49 @@ export const cloudSpeechProvider: SttProvider = {
       });
     }
 
+    // ---- Upload that overlaps the press -------------------------------
+    //
+    // The recording used to go up only after release: the child stopped
+    // talking, and only then did tens of kilobytes start crossing the
+    // network. Where the platform allows a streaming request body, the
+    // upload is opened mid-press instead and fed as chunks arrive, so by
+    // release most of the audio is already at the server and only the
+    // tail is left.
+    //
+    // It deliberately does NOT open at the very start of the press: a
+    // press shorter than CLOUD_MIN_MS is a tap, not an answer, and must
+    // never reach the server (it would come back 400 and cost the kid a
+    // fallback press). Opening only once the press is already longer than
+    // that keeps the existing tap guard exactly as it was.
+    let streamCtrl: ReadableStreamDefaultController<Uint8Array> | null = null;
+    let streamedResponse: Promise<Response> | null = null;
+    let streamOpenTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function openStreamingUpload() {
+      if (streamedResponse || cancelled || stopRequested || !recorder) return;
+      const type = recorder.mimeType || mimeType || "application/octet-stream";
+      const body = new ReadableStream<Uint8Array>({
+        start(controller) {
+          streamCtrl = controller;
+          // Everything captured before this moment goes first, in order.
+          for (const c of chunks) void c.arrayBuffer().then((b) => controller.enqueue(new Uint8Array(b)));
+        },
+      });
+      streamedResponse = fetch("/api/stt", {
+        method: "POST",
+        headers: { "Content-Type": type },
+        body,
+        signal: upload.signal,
+        duplex: "half",
+      } as RequestInit & { duplex: "half" });
+    }
+
     async function transcribe(blob: Blob) {
       const timeout = setTimeout(() => upload.abort(), UPLOAD_TIMEOUT_MS);
       try {
-        let res = await postAudio(blob);
+        // A streamed upload is already most of the way there; only fall
+        // back to posting the assembled blob when there wasn't one.
+        let res = streamedResponse ? await streamedResponse : await postAudio(blob);
         if (res.status === 401 && !cancelled) {
           // A 401 on the FIRST call right after a fresh sign-in can be a
           // transient race — the server re-reads the Supabase session
@@ -481,7 +564,16 @@ export const cloudSpeechProvider: SttProvider = {
         s.getAudioTracks().forEach((t) => (t.enabled = true));
         recorder = new MediaRecorder(s, { mimeType, audioBitsPerSecond: 32_000 });
         recorder.ondataavailable = (e) => {
-          if (e.data && e.data.size > 0) chunks.push(e.data);
+          if (!e.data || e.data.size === 0) return;
+          chunks.push(e.data);
+          // Already uploading: send this slice straight on, rather than
+          // letting it sit until release.
+          if (streamCtrl) {
+            void e.data
+              .arrayBuffer()
+              .then((b) => streamCtrl?.enqueue(new Uint8Array(b)))
+              .catch(() => {});
+          }
         };
         recorder.onstop = () => {
           const heldMs = performance.now() - capturedAt;
@@ -489,13 +581,33 @@ export const cloudSpeechProvider: SttProvider = {
           if (cancelled) return;
           const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType });
           if (heldMs < CLOUD_MIN_MS || blob.size < 1024) {
-            finish(); // a tap, not an answer — nothing heard, nothing uploaded
+            // A tap, not an answer. Nothing was uploaded: the streaming
+            // upload only ever opens after CLOUD_MIN_MS has already passed.
+            finish();
             return;
+          }
+          // Let the last slice land before closing the body, or the tail
+          // of the child's sentence never reaches the server.
+          if (streamCtrl) {
+            const ctrl = streamCtrl;
+            streamCtrl = null;
+            setTimeout(() => {
+              try {
+                ctrl.close();
+              } catch {
+                /* already closed by an abort */
+              }
+            }, 0);
           }
           void transcribe(blob);
         };
-        recorder.start();
+        // Timeslice: hand over what's captured every CHUNK_MS instead of
+        // holding it all for one flush at stop().
+        recorder.start(CHUNK_MS);
         capturedAt = performance.now();
+        if (supportsRequestStreaming()) {
+          streamOpenTimer = setTimeout(openStreamingUpload, CLOUD_MIN_MS);
+        }
         maxTimer = setTimeout(() => session.stop(), CLOUD_MAX_MS);
       })
       .catch((err) => {
@@ -516,6 +628,9 @@ export const cloudSpeechProvider: SttProvider = {
       },
       cancel() {
         cancelled = true;
+        // abort() tears down the in-flight streaming body too; closing the
+        // controller as well would throw on an already-errored stream.
+        streamCtrl = null;
         upload.abort();
         if (recorder && recorder.state !== "inactive") recorder.stop();
         release();
