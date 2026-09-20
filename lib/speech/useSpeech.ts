@@ -2,6 +2,13 @@
 
 import { useSyncExternalStore } from "react";
 import type { CharacterId } from "@/lib/characters";
+import {
+  STALL_TIMEOUT_MS,
+  logAudioPath,
+  pickAudioPath,
+  readAudioEnv,
+  startStallWatchdog,
+} from "@/lib/speech/audioPath";
 
 /**
  * Module-level "has the kid touched the screen yet this session" flag —
@@ -240,6 +247,8 @@ export function prefetchSpeech(text: string, character: CharacterId) {
 function stopPlayback() {
   pendingFetch?.abort();
   pendingFetch = null;
+  activeWatchdog?.cancel();
+  activeWatchdog = null;
   if (audioEl && !audioEl.paused) audioEl.pause();
   // Only when the engine actually has something in flight. speak() calls
   // this unconditionally on every utterance, and useVoiceInput's barge-in
@@ -284,6 +293,21 @@ function getMediaSourceCtor(): MediaSourceCtor | null {
 }
 
 /**
+ * What an MSE-backed line hands back: the src to play, a way to tear the
+ * MediaSource down, and a way to get the COMPLETE clip as a blob URL if the
+ * streaming attempt has to be abandoned (see speakCloud's handOff).
+ */
+interface MseStream {
+  src: string;
+  /** Detach the MediaSource. The network read is NOT stopped — the fallback
+   *  needs those bytes. */
+  teardown(): void;
+  /** The finished clip as a cached blob URL, or null if it can't be had.
+   *  Works whether or not the MediaSource ever opened. */
+  whole(): Promise<string | null>;
+}
+
+/**
  * Attaches a streaming response to the shared <audio> element so playback
  * can begin on the FIRST chunk instead of after the last one.
  *
@@ -291,13 +315,18 @@ function getMediaSourceCtor(): MediaSourceCtor | null {
  * arrive before a single sample could play, on top of Cartesia's own
  * ~495ms time-to-first-byte. The child waited through the download too.
  *
- * Returns the src to play, or null when this browser can't do it (the
- * caller then falls back to the buffered path). The full clip is still
- * assembled in the background and written to audioCache on completion, so
- * a replay — the 🔊 tap, a repeated line — uses the same proven blob URL
- * it always did, including FIX 6's currentTime reset.
+ * Returns null when this browser can't do it (the caller then falls back
+ * to the buffered path). The full clip is still assembled in the
+ * background and written to audioCache on completion, so a replay — the 🔊
+ * tap, a repeated line — uses the same proven blob URL it always did,
+ * including FIX 6's currentTime reset.
+ *
+ * Whoever reads the response body owns it: either the MediaSource's
+ * `sourceopen` handler (the normal case) or `whole()` (when the
+ * MediaSource never opened, which is a real failure mode on Safari). The
+ * `bodyClaimed` flag stops the two ever both trying.
  */
-function streamToAudioSrc(res: Response, key: string): string | null {
+function streamToAudioSrc(res: Response, key: string): MseStream | null {
   const Ctor = getMediaSourceCtor();
   if (!Ctor || !res.body) return null;
 
@@ -309,14 +338,26 @@ function streamToAudioSrc(res: Response, key: string): string | null {
   }
   const srcUrl = URL.createObjectURL(mediaSource);
 
+  let torn = false;
+  let bodyClaimed = false;
+  let settle: (ok: boolean) => void = () => {};
+  /** Resolves true once the complete clip has been read AND cached. */
+  const finished = new Promise<boolean>((resolve) => {
+    settle = resolve;
+  });
+
   mediaSource.addEventListener("sourceopen", () => {
+    // Torn down before it opened, or `whole()` already took the body.
+    if (torn || bodyClaimed) return;
+    bodyClaimed = true;
+
     let buffer: SourceBuffer;
     try {
       buffer = mediaSource.addSourceBuffer(MP3_MIME);
     } catch {
-      // Nothing to recover to here — the element's onerror path (already
-      // wired by the caller) falls back to the browser voice.
-      return;
+      // Can't feed it — but the body is still ours to read, so the clip is
+      // recoverable as a blob. The watchdog notices the silence.
+      buffer = null as unknown as SourceBuffer;
     }
     const reader = res.body!.getReader();
     const chunks: Uint8Array[] = [];
@@ -324,7 +365,7 @@ function streamToAudioSrc(res: Response, key: string): string | null {
     let ended = false;
 
     const pump = () => {
-      if (buffer.updating) return;
+      if (torn || !buffer || buffer.updating) return;
       const next = queue.shift();
       if (next) {
         try {
@@ -343,8 +384,10 @@ function streamToAudioSrc(res: Response, key: string): string | null {
       }
     };
 
-    buffer.addEventListener("updateend", pump);
+    buffer?.addEventListener("updateend", pump);
 
+    // Keeps reading to the end even after teardown: the fallback path
+    // wants the complete clip, and it is already on its way.
     const read = () => {
       reader
         .read()
@@ -355,6 +398,7 @@ function streamToAudioSrc(res: Response, key: string): string | null {
             const blob = new Blob(chunks as BlobPart[], { type: MP3_MIME });
             cachePut(key, URL.createObjectURL(blob));
             pump();
+            settle(true);
             return;
           }
           if (value) {
@@ -367,12 +411,90 @@ function streamToAudioSrc(res: Response, key: string): string | null {
         .catch(() => {
           ended = true;
           pump();
+          settle(false);
         });
     };
     read();
   });
 
-  return srcUrl;
+  return {
+    src: srcUrl,
+    teardown() {
+      if (torn) return;
+      torn = true;
+      try {
+        if (mediaSource.readyState === "open") mediaSource.endOfStream();
+      } catch {
+        /* mid-update or already closed */
+      }
+      try {
+        URL.revokeObjectURL(srcUrl);
+      } catch {
+        /* nothing to revoke */
+      }
+    },
+    async whole() {
+      const cached = audioCache.get(key);
+      if (cached) return cached;
+      if (!bodyClaimed) {
+        // The MediaSource never opened, so nothing has read the body.
+        bodyClaimed = true;
+        try {
+          const url = URL.createObjectURL(await res.blob());
+          cachePut(key, url);
+          return url;
+        } catch {
+          return null;
+        }
+      }
+      // The sourceopen reader has it; wait for it to finish.
+      return (await finished) ? (audioCache.get(key) ?? null) : null;
+    },
+  };
+}
+
+/** The stall watchdog for the line currently playing, if it is MSE-backed.
+ *  Cancelled by stopPlayback() so a superseded line's timer can never fire
+ *  into the next one. */
+let activeWatchdog: { cancel(): void } | null = null;
+
+/** Set the first time an MSE line stalls. From then on this session goes
+ *  straight to the blob path — otherwise a platform where MSE is broken
+ *  but the UA gate doesn't catch it would pay the full watchdog wait on
+ *  every single line. */
+let mseDisabledForSession = false;
+
+let stallMs = STALL_TIMEOUT_MS;
+/** How long the fallback will wait for the rest of the clip to arrive
+ *  before giving up on the blob path and using the browser voice. */
+let wholeClipWaitMs = 6000;
+
+/** Test-only handles on the module's timing and breaker state. */
+export const __speechTestHooks = {
+  setStallMs(ms: number) {
+    stallMs = ms;
+  },
+  setWholeClipWaitMs(ms: number) {
+    wholeClipWaitMs = ms;
+  },
+  reset() {
+    mseDisabledForSession = false;
+    stallMs = STALL_TIMEOUT_MS;
+    wholeClipWaitMs = 6000;
+  },
+  isMseDisabled: () => mseDisabledForSession,
+};
+
+const errName = (err: unknown) => (err as { name?: string })?.name ?? "error";
+
+/** Resolves to `null` if `p` hasn't settled in `ms`. Clears its own timer. */
+function withTimeout<T>(p: Promise<T>, ms: number): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), ms);
+    (timer as { unref?: () => void }).unref?.();
+  });
+  return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
 }
 
 async function speakCloud(
@@ -385,11 +507,15 @@ async function speakCloud(
 ): Promise<boolean> {
   const key = `${character}|${text}`;
   let url = audioCache.get(key);
-  /** True when `url` is a live MediaSource being fed, not a finished blob
-   *  — it has no seekable position to reset yet (see FIX 6 below). */
-  let progressive = false;
+  /** Set only when this line is MSE-backed: a live MediaSource being fed,
+   *  not a finished blob — it has no seekable position to reset yet (see
+   *  FIX 6 below), and it is the only kind of line the stall watchdog and
+   *  the MSE -> blob fallback apply to. */
+  let stream: MseStream | null = null;
 
-  if (!url) {
+  if (url) {
+    logAudioPath("blob", "cache-hit");
+  } else {
     const ctrl = new AbortController();
     pendingFetch = ctrl;
     const res = await fetch("/api/tutor", {
@@ -402,18 +528,28 @@ async function speakCloud(
     if (id !== utteranceId) return true;
     if (res.status === 401 || res.status === 503) {
       emit({ cloud: false });
+      logAudioPath("speechSynthesis", `http-${res.status} (cloud voice off for the session)`);
       return false;
     }
-    if (!res.ok) return false;
-    const streamed = streamToAudioSrc(res, key);
-    if (streamed) {
-      url = streamed;
-      progressive = true;
+    if (!res.ok) {
+      logAudioPath("speechSynthesis", `http-${res.status}`);
+      return false;
+    }
+
+    // The platform gate. On iOS/iPadOS this returns "blob" without touching
+    // any MediaSource API, so that path is exactly what it was before
+    // streaming existed. See lib/speech/audioPath.ts for why.
+    const choice = pickAudioPath(readAudioEnv(), () => getMediaSourceCtor() !== null, mseDisabledForSession);
+    if (choice.path === "mse") stream = streamToAudioSrc(res, key);
+    if (stream) {
+      url = stream.src;
+      logAudioPath("mse", choice.reason);
       // Deliberately NOT cachePut here — streamToAudioSrc writes the
       // finished blob to the cache once the last chunk lands. Caching a
       // live MediaSource URL would hand the next replay a source that has
       // already ended.
     } else {
+      logAudioPath("blob", choice.path === "mse" ? "mse-construct-failed" : choice.reason);
       url = URL.createObjectURL(await res.blob());
       cachePut(key, url);
     }
@@ -422,22 +558,85 @@ async function speakCloud(
 
   const a = getAudio();
   let started = false;
-  a.onplaying = () => {
-    started = true;
-    if (id === utteranceId) emit({ speaking: true, owner });
-  };
-  a.onended = () => {
-    if (id === utteranceId) {
+  /** The MSE attempt was abandoned and a fallback owns this line now.
+   *  Everything from the abandoned attempt must go quiet — above all its
+   *  pending play() promise, which rejects with AbortError the moment the
+   *  fallback swaps the src, and would otherwise trip speak()'s own
+   *  fallback to the browser voice ON TOP of the blob one (double speech). */
+  let handedOff = false;
+  /** The fallback has put its own src on the element. Until then, events
+   *  from the torn-down source are noise, not news. */
+  let fallbackSrcSet = false;
+
+  const wire = (stage: "primary" | "fallback") => {
+    a.onplaying = () => {
+      started = true;
+      activeWatchdog?.cancel();
+      if (id === utteranceId) emit({ speaking: true, owner });
+    };
+    a.onended = () => {
+      activeWatchdog?.cancel();
+      if (id === utteranceId) {
+        emit({ speaking: false, owner: null });
+        onEnd?.();
+      }
+    };
+    a.onerror = () => {
+      if (id !== utteranceId) return;
+      if (stage === "fallback" && !fallbackSrcSet) return;
       emit({ speaking: false, owner: null });
-      onEnd?.();
+      if (started) {
+        onEnd?.();
+        return;
+      }
+      // An MSE element that errors before playing goes to the blob path
+      // first — MSE -> blob -> speechSynthesis, in that order.
+      if (stage === "primary" && stream) {
+        void handOff("element-error");
+        return;
+      }
+      logAudioPath("speechSynthesis", stage === "fallback" ? "blob-element-error" : "element-error");
+      speakBrowser(text, owner, id, onEnd);
+    };
+  };
+
+  /**
+   * Abandon the MSE attempt: tear the MediaSource down, play the same clip
+   * from a blob instead, and only if THAT fails use the browser voice.
+   */
+  const handOff = async (reason: string) => {
+    if (handedOff || id !== utteranceId || !stream) return;
+    handedOff = true;
+    activeWatchdog?.cancel();
+    mseDisabledForSession = true;
+    a.onplaying = a.onended = a.onerror = null;
+    a.pause();
+    stream.teardown();
+    logAudioPath("blob", `fallback:${reason}`);
+
+    const blobUrl = await withTimeout(stream.whole(), wholeClipWaitMs).catch(() => null);
+    if (id !== utteranceId) return;
+    if (!blobUrl) {
+      logAudioPath("speechSynthesis", "blob-unavailable");
+      speakBrowser(text, owner, id, onEnd);
+      return;
+    }
+
+    wire("fallback");
+    a.muted = false;
+    a.src = blobUrl;
+    fallbackSrcSet = true;
+    a.currentTime = 0;
+    try {
+      await a.play();
+    } catch (err) {
+      if (id !== utteranceId) return;
+      logAudioPath("speechSynthesis", `blob-play-rejected:${errName(err)}`);
+      speakBrowser(text, owner, id, onEnd);
     }
   };
-  a.onerror = () => {
-    if (id !== utteranceId) return;
-    emit({ speaking: false, owner: null });
-    if (!started) speakBrowser(text, owner, id, onEnd);
-    else onEnd?.();
-  };
+
+  wire("primary");
   a.muted = false;
   a.src = url;
   // FIX 6 (2026-09-14): replaying a cached line — a 🔊 tap on the same
@@ -455,8 +654,38 @@ async function speakCloud(
   // definition, and assigning currentTime before the first append throws
   // in some browsers. Only the blob path (the one FIX 6 is about) needs
   // the reset.
-  if (!progressive) a.currentTime = 0;
-  await a.play();
+  if (!stream) a.currentTime = 0;
+
+  if (!stream) {
+    try {
+      await a.play();
+    } catch (err) {
+      if (id !== utteranceId) return true;
+      logAudioPath("speechSynthesis", `play-rejected:${errName(err)}`);
+      return false;
+    }
+    return true;
+  }
+
+  // MSE-backed: armed BEFORE play(), because a stalled element can leave
+  // play()'s own promise pending forever — waiting on it would be waiting
+  // on the very thing that has failed.
+  activeWatchdog?.cancel();
+  activeWatchdog = startStallWatchdog({
+    timeoutMs: stallMs,
+    isPlaying: () => started || a.currentTime > 0,
+    onStall: () => {
+      if (id === utteranceId) void handOff("stall");
+    },
+  });
+  try {
+    await a.play();
+  } catch (err) {
+    // The fallback already owns the line (this is its src swap aborting
+    // our play), or a newer line does. Either way, nothing more to do.
+    if (handedOff || id !== utteranceId) return true;
+    await handOff(`play-rejected:${errName(err)}`);
+  }
   return true;
 }
 
@@ -464,7 +693,13 @@ async function speakCloud(
 
 function speakBrowser(text: string, owner: string | null, id: number, onEnd?: () => void) {
   const voice = state.voice;
-  if (!voice || !available() || id !== utteranceId) return;
+  if (id !== utteranceId) return;
+  if (!voice || !available()) {
+    // The fallback chain ended in a voice that doesn't exist here. That is
+    // silence, and it must not look like a healthy fallback in the trace.
+    logAudioPath("speechSynthesis", available() ? "SILENT: no Hebrew voice installed" : "SILENT: speechSynthesis unavailable");
+    return;
+  }
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.voice = voice;
@@ -516,15 +751,23 @@ export function speak(
   if (character && state.cloud && typeof window !== "undefined") {
     speakCloud(text, character, owner, id, opts?.onEnd, opts?.live)
       .then((handled) => {
+        // speakCloud has already traced why it declined.
         if (!handled && id === utteranceId) speakBrowser(text, owner, id, opts?.onEnd);
       })
-      .catch(() => {
+      .catch((err) => {
         // AbortError when superseded (id moved on — nothing to do);
         // otherwise a network or autoplay failure: fall back.
-        if (id === utteranceId) speakBrowser(text, owner, id, opts?.onEnd);
+        if (id === utteranceId) {
+          logAudioPath("speechSynthesis", `exception:${(err as { name?: string })?.name ?? "error"}`);
+          speakBrowser(text, owner, id, opts?.onEnd);
+        }
       });
     return;
   }
+  logAudioPath(
+    "speechSynthesis",
+    !character ? "no-character" : !state.cloud ? "cloud-voice-off" : "no-window"
+  );
   speakBrowser(text, owner, id, opts?.onEnd);
 }
 

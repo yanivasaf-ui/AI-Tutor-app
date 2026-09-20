@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Heebo, Rubik } from "next/font/google";
 import "./globals.css";
 import MotionRoot from "@/components/MotionRoot";
+import AudioDebugLine from "@/components/debug/AudioDebugLine";
 
 /**
  * Hebrew-native face — Geist was falling back to Arial for Hebrew text
@@ -43,6 +44,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="he" dir="rtl" className={`${heebo.variable} ${rubik.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <MotionRoot>{children}</MotionRoot>
+        {/* TEMPORARY audio trace, only visible with ?audiodebug=1 */}
+        <AudioDebugLine />
       </body>
     </html>
   );
