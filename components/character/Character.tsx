@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAnimate, useReducedMotion } from "framer-motion";
 import { CHARACTERS, POSES, poseSrc, type CharacterId, type CharacterPose } from "@/lib/characters";
 import { shouldReactToMic, subscribeMicLevel } from "@/lib/voice/micLevel";
+import { REACTIONS, shouldReactToManipulation, subscribeManipulation } from "@/lib/character/manipulation";
 
 interface Props {
   character: CharacterId;
@@ -20,6 +21,8 @@ interface Props {
    *  how loud they are while they hold the mic. Off unless asked for: only
    *  the exercise screen's character listens. */
   micReactive?: boolean;
+  /** Nod at the kid's taps on tiles and number lines (lib/character/manipulation.ts). */
+  reactive?: boolean;
   /** feat: local UX wins item 2. A gentle lean-in, for "I'm here, take
    *  your time" after a stretch of silence. Presentation only. */
   leanIn?: boolean;
@@ -75,7 +78,7 @@ const POP: Partial<Record<CharacterPose, { scale: number[]; y?: number[]; durati
  * prefers-reduced-motion: ambient motion and springs are off (globals.css
  * + useReducedMotion); the crossfade stays, as a fade isn't motion.
  */
-export default function Character({ character, pose, size = 200, className, micReactive, leanIn }: Props) {
+export default function Character({ character, pose, size = 200, className, micReactive, reactive, leanIn }: Props) {
   const label = CHARACTERS[character].label;
   const reduced = useReducedMotion();
   const [scope, animate] = useAnimate<HTMLDivElement>();
@@ -95,6 +98,27 @@ export default function Character({ character, pose, size = 200, className, micR
       el?.style.removeProperty("--mic-level");
     };
   }, [reactToMic]);
+
+  // Same idea for the hands: a widget says "a tile was placed", and one
+  // short Web Animations nod runs on its own transform-free layer. No React
+  // state, so no re-render; a new nod replaces one still running.
+  const nodRef = useRef<HTMLDivElement>(null);
+  const reactToHands = shouldReactToManipulation({ enabled: !!reactive, reducedMotion: reduced });
+  useEffect(() => {
+    if (!reactToHands) return;
+    let running: Animation | undefined;
+    const unsubscribe = subscribeManipulation((kind) => {
+      const spec = REACTIONS[kind];
+      const el = nodRef.current;
+      if (!spec || !el || typeof el.animate !== "function") return;
+      running?.cancel();
+      running = el.animate(spec.keyframes, { duration: spec.durationMs, easing: "ease-out" });
+    });
+    return () => {
+      unsubscribe();
+      running?.cancel();
+    };
+  }, [reactToHands]);
 
   // Adjust-state-on-prop-change pattern (not an effect): the new pose is
   // on screen in the same render the prop changes.
@@ -157,6 +181,7 @@ export default function Character({ character, pose, size = 200, className, micR
           transform: `translateY(calc(var(--mic-level, 0) * ${MIC_LIFT_GAIN_PCT}%)) scale(calc(1 + var(--mic-level, 0) * ${MIC_SCALE_GAIN}))`,
         }}
       >
+      <div ref={nodRef} className="absolute inset-0" style={{ transformOrigin: "50% 100%" }}>
       <div ref={scope} className="absolute inset-0" style={{ transformOrigin: "50% 100%" }}>
         {layers.map((p) => {
           const isTop = p === shown;
@@ -173,6 +198,7 @@ export default function Character({ character, pose, size = 200, className, micR
             />
           );
         })}
+      </div>
       </div>
       </div>
       </div>

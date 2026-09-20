@@ -1,11 +1,14 @@
 "use client";
 
 import type { NumberLineData } from "@/lib/exercises/types";
+import type { ManipulationKind } from "@/lib/character/manipulation";
 
 interface Props {
   data: NumberLineData;
   disabled: boolean;
   onSubmit: (value: string) => void;
+  /** Local, cosmetic "I saw that" hook (see lib/character/manipulation.ts). */
+  onManipulate?: (kind: ManipulationKind) => void;
 }
 
 /**
@@ -15,7 +18,7 @@ interface Props {
  * is kept small by the generation prompt (not enforced here), the same
  * trust-the-prompt pattern already used for multiple_choice's "4 options."
  */
-export default function NumberLineWidget({ data, disabled, onSubmit }: Props) {
+export default function NumberLineWidget({ data, disabled, onSubmit, onManipulate }: Props) {
   const ticks: number[] = [];
   for (let v = data.min; v <= data.max; v += data.step) ticks.push(v);
 
@@ -24,7 +27,12 @@ export default function NumberLineWidget({ data, disabled, onSubmit }: Props) {
       {ticks.map((v) => (
         <button
           key={v}
-          onClick={() => onSubmit(String(v))}
+          onClick={() => {
+            // The answer goes first: the acknowledgment is decoration and
+            // must never be able to delay or block it.
+            onSubmit(String(v));
+            onManipulate?.("tap");
+          }}
           disabled={disabled}
           className="h-14 min-w-14 px-2 rounded-full border-2 border-[var(--color-teal)]/40 bg-[var(--color-surface)] font-medium text-xl text-[var(--color-ink)] hover:border-[var(--color-teal)] hover:bg-[var(--color-teal-soft)] disabled:opacity-50"
         >

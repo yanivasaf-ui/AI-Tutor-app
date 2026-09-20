@@ -9,6 +9,7 @@ import MuteToggle from "@/components/character/MuteToggle";
 import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
+import { emitManipulation } from "@/lib/character/manipulation";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -918,12 +919,14 @@ export default function ExerciseScreen({
 
       <div className="flex justify-center">
         {/* Item 1: micReactive — leans in step with the kid's voice while they
-            hold the mic. Item 2: leanIn — after a stretch of silence. */}
+            hold the mic. Item 2: leanIn — after a stretch of silence. Item 3:
+            reactive — a nod at each tile placed / number-line tap. */}
         <Character
           character={character}
           pose={pose}
           size={exercise.passage ? 150 : 180}
           micReactive
+          reactive
           leanIn={leaning}
         />
       </div>
@@ -1001,11 +1004,11 @@ export default function ExerciseScreen({
           )}
 
           {!evaluation && exercise.type === "number_line" && exercise.numberLine && (
-            <NumberLineWidget data={exercise.numberLine} disabled={submitting} onSubmit={submitAnswer} />
+            <NumberLineWidget data={exercise.numberLine} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} />
           )}
 
           {!evaluation && exercise.type === "tile_order" && exercise.tiles && (
-            <TileOrderWidget data={exercise.tiles} disabled={submitting} onSubmit={submitAnswer} />
+            <TileOrderWidget data={exercise.tiles} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} />
           )}
 
           {!evaluation && exercise.type === "grouping" && exercise.grouping && (

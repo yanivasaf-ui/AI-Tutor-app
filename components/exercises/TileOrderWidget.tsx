@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { TileOrderData } from "@/lib/exercises/types";
+import { manipulationEvent, type ManipulationKind } from "@/lib/character/manipulation";
 
 interface Props {
   data: TileOrderData;
   disabled: boolean;
   onSubmit: (value: string) => void;
+  /** Local, cosmetic "I saw that" hook (see lib/character/manipulation.ts). */
+  onManipulate?: (kind: ManipulationKind) => void;
 }
 
 /**
@@ -21,11 +24,25 @@ interface Props {
  * Tracks placement by index into data.items, not by value, so repeated
  * letters/words (e.g. two identical letters in a word) stay distinguishable.
  */
-export default function TileOrderWidget({ data, disabled, onSubmit }: Props) {
+export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate }: Props) {
   const [placed, setPlaced] = useState<(number | null)[]>(Array(data.slotCount).fill(null));
 
   const usedIndices = new Set(placed.filter((i): i is number => i !== null));
   const allFilled = placed.every((p) => p !== null);
+
+  // The acknowledgment is derived from the committed state, in an effect,
+  // rather than from the tap handlers: those read a possibly-stale closure
+  // (see the fast-double-tap note below), while this sees each real change
+  // once. The ref starts at 0, so mounting an empty widget reacts to nothing.
+  const filledCount = placed.filter((p) => p !== null).length;
+  const prevFilled = useRef(0);
+  const onManipulateRef = useRef(onManipulate);
+  onManipulateRef.current = onManipulate;
+  useEffect(() => {
+    const kind = manipulationEvent(prevFilled.current, filledCount, placed.length);
+    prevFilled.current = filledCount;
+    if (kind) onManipulateRef.current?.(kind);
+  }, [filledCount, placed.length]);
 
   function placeInNextSlot(itemIndex: number) {
     if (disabled) return;
