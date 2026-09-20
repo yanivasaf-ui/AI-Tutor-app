@@ -80,6 +80,7 @@
  */
 
 import { startMicLevel, stopMicLevel } from "@/lib/voice/micLevel";
+import { createSttTrace, parseServerTimingVendor, type SttOutcome } from "./sttTiming";
 
 export type SttProviderId = "browser" | "cloud" | "auto";
 
@@ -167,6 +168,7 @@ export const browserSpeechProvider: SttProvider = {
     }
 
     const recognition = new Ctor();
+    const trace = createSttTrace("browser");
     recognition.lang = "he-IL";
     recognition.interimResults = false;
     recognition.continuous = false;
@@ -175,12 +177,17 @@ export const browserSpeechProvider: SttProvider = {
     const endOnce = () => {
       if (ended) return;
       ended = true;
+      trace.finish("no-speech"); // a no-op when a result already closed the trace
       onEnd();
     };
 
     recognition.onresult = (event: unknown) => {
       const e = event as { results: { 0: { transcript: string } }[] };
       const transcript = e.results?.[0]?.[0]?.transcript ?? "";
+      if (transcript) {
+        trace.mark("transcript");
+        trace.finish("ok");
+      }
       if (transcript) onResult(transcript);
     };
     recognition.onerror = (event: unknown) => {
@@ -188,6 +195,7 @@ export const browserSpeechProvider: SttProvider = {
       // ("not-allowed", "no-speech", "network", ...) — a UI needs it to
       // tell a blocked microphone apart from silence.
       const e = event as { error?: string };
+      trace.finish("error");
       onError?.(e?.error ?? "recognition error");
       endOnce();
     };
@@ -197,6 +205,7 @@ export const browserSpeechProvider: SttProvider = {
 
     return {
       stop() {
+        trace.mark("stop");
         onCaptureEnd?.();
         recognition.stop();
       },
@@ -432,6 +441,9 @@ export const cloudSpeechProvider: SttProvider = {
     let finished = false;
     const chunks: Blob[] = [];
     const upload = new AbortController();
+    // Instrumentation only (lib/stt/sttTiming.ts): marks and a log line.
+    const trace = createSttTrace("cloud");
+    let outcome: SttOutcome = "cloud-failed";
 
     const release = () => {
       // feat: local UX wins item 1 — the character's listening cue reads
@@ -503,11 +515,15 @@ export const cloudSpeechProvider: SttProvider = {
         signal: upload.signal,
         duplex: "half",
       } as RequestInit & { duplex: "half" });
+      trace.info({ streamOpenedAfterMs: performance.now() - capturedAt });
     }
 
     async function transcribe(blob: Blob) {
       const timeout = setTimeout(() => upload.abort(), UPLOAD_TIMEOUT_MS);
       try {
+        // A streamed body was marked closed where it is closed; an assembled
+        // one is "closed" the instant its POST is issued, just below.
+        if (!streamedResponse) trace.mark("upload-closed");
         // A streamed upload is already most of the way there; only fall
         // back to posting the assembled blob when there wasn't one.
         let res = streamedResponse ? await streamedResponse : await postAudio(blob);
@@ -525,25 +541,33 @@ export const cloudSpeechProvider: SttProvider = {
           // through to cloud-unavailable below, unchanged.
           await new Promise((resolve) => setTimeout(resolve, AUTH_RACE_RETRY_DELAY_MS));
           if (cancelled) return;
+          trace.info({ retried401: true });
           res = await postAudio(blob);
         }
         if (cancelled) return;
+        trace.mark("response");
+        trace.info({ status: res.status, vendorMs: parseServerTimingVendor(res.headers.get("server-timing")) });
         if (res.status === 401 || res.status === 503) {
+          outcome = "cloud-unavailable";
           onError?.("cloud-unavailable");
           return;
         }
         if (!res.ok) {
+          outcome = "cloud-failed";
           onError?.("cloud-failed");
           return;
         }
         const data = (await res.json().catch(() => null)) as { text?: unknown } | null;
         const text = typeof data?.text === "string" ? data.text.trim() : "";
+        trace.mark("transcript");
+        outcome = text ? "ok" : "no-speech";
         if (text) onResult(text);
         else onError?.("no-speech");
       } catch {
         if (!cancelled) onError?.("cloud-failed");
       } finally {
         clearTimeout(timeout);
+        trace.finish(cancelled ? "cancelled" : outcome);
         finish();
       }
     }
@@ -582,15 +606,19 @@ export const cloudSpeechProvider: SttProvider = {
         };
         recorder.onstop = () => {
           const heldMs = performance.now() - capturedAt;
+          trace.mark("recorder-stopped");
+          trace.info({ heldMs });
           release();
           if (cancelled) return;
           const blob = new Blob(chunks, { type: recorder?.mimeType || mimeType });
           if (heldMs < CLOUD_MIN_MS || blob.size < 1024) {
             // A tap, not an answer. Nothing was uploaded: the streaming
             // upload only ever opens after CLOUD_MIN_MS has already passed.
+            trace.finish("tap");
             finish();
             return;
           }
+          trace.info({ mode: streamCtrl ? "streamed" : "assembled", bytes: blob.size });
           // Let the last slice land before closing the body, or the tail
           // of the child's sentence never reaches the server.
           if (streamCtrl) {
@@ -602,6 +630,7 @@ export const cloudSpeechProvider: SttProvider = {
               } catch {
                 /* already closed by an abort */
               }
+              trace.mark("upload-closed");
             }, 0);
           }
           void transcribe(blob);
@@ -630,6 +659,7 @@ export const cloudSpeechProvider: SttProvider = {
       stop() {
         if (stopRequested) return;
         stopRequested = true;
+        trace.mark("stop");
         endCapture();
         // If the stream isn't live yet, the getUserMedia .then above sees
         // stopRequested and ends the session there.
@@ -637,6 +667,7 @@ export const cloudSpeechProvider: SttProvider = {
       },
       cancel() {
         cancelled = true;
+        trace.finish("cancelled");
         // abort() tears down the in-flight streaming body too; closing the
         // controller as well would throw on an already-errored stream.
         streamCtrl = null;
