@@ -10,6 +10,7 @@ import {
   type Computation,
 } from "./arithmetic";
 import { SubjectProfile } from "@/lib/memory/types";
+import { topicFit } from "./topic-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
@@ -72,6 +73,25 @@ export class NoCurriculumContentError extends Error {
     this.name = "NoCurriculumContentError";
   }
 }
+
+/**
+ * BUG B: a finished draft that is well-formed but is not ABOUT the topic it
+ * was requested for (a bare "כמה זה 5 + 3?" for gematria). Its own type so
+ * the retry loop can tell "the model slipped on the format" from "the model
+ * wrote a valid exercise about the wrong thing" and say so in the next ask.
+ */
+export class TopicFitError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "TopicFitError";
+  }
+}
+
+/** Added to the next request after a TopicFitError, in the same prompt slot
+ *  the seed script uses for its variety line. Internal model instruction,
+ *  never shown to a child. */
+const TOPIC_FIT_RETRY_HINT =
+  "התרגיל הקודם נדחה: הוא היה תקין כתרגיל אבל לא עסק בתוכן הנושא (הוא היה תרגיל חשבון כללי). הפעם התרחיש, השאלה או האפשרויות חייבים להשתמש במושגים של הנושא עצמו.";
 
 const MATH_SUBTYPES: ExerciseSubtype[] = [
   "fill_in_blank",
@@ -160,11 +180,15 @@ const MAX_GENERATION_ATTEMPTS = 3;
  */
 export async function generateExercise(opts: Parameters<typeof generateExerciseOnce>[0]): Promise<Exercise> {
   let lastError: unknown;
+  let request = opts;
   for (let attempt = 1; attempt <= MAX_GENERATION_ATTEMPTS; attempt++) {
     try {
-      return await generateExerciseOnce(opts);
+      return await generateExerciseOnce(request);
     } catch (err) {
       if (err instanceof NoCurriculumContentError) throw err;
+      if (err instanceof TopicFitError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
       lastError = err;
       console.warn(
         `[exercise-generate] draft ${attempt}/${MAX_GENERATION_ATTEMPTS} rejected: ${err instanceof Error ? err.message : err}`
@@ -421,7 +445,7 @@ ${subtypeGuidance(subtype, grade)}
     grouping = { items, groupCount };
   }
 
-  return {
+  const exercise: Exercise = {
     id: `ex_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     subject,
     grade,
@@ -445,4 +469,15 @@ ${subtypeGuidance(subtype, grade)}
     computation,
     difficulty: level,
   };
+
+  // The last gate, after every existing one: is this exercise ABOUT the topic
+  // it is about to be filed under? Stamping `topicId` on a draft says where it
+  // was asked for, not what it is (BUG B, docs/investigations/BUG-B-topic-
+  // boundary.md). A miss is thrown so generateExercise() asks again; after its
+  // last attempt the error propagates and nothing leaky is ever saved.
+  const fit = topicFit(exercise, resolvedTopic?.id);
+  if (!fit.ok) {
+    throw new TopicFitError(`${subtype ?? type} draft is off-topic for ${resolvedTopic?.id}: ${fit.reason}. Question: "${exercise.question}"`);
+  }
+  return exercise;
 }

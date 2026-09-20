@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 import { getTopicById } from "@/lib/map/topics";
 import { parseComputation } from "./arithmetic";
+import { topicFit } from "./topic-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -159,7 +160,18 @@ export async function findReusableExercise(
   // the random pick draws from anyway. If every candidate is excluded there
   // is nothing reusable, and the caller falls back to generating one.
   const excluded = excludeIds && excludeIds.length > 0 ? new Set(excludeIds) : null;
-  const pool = excluded ? (data as DbExerciseRow[]).filter((r) => !excluded.has(r.id)) : (data as DbExerciseRow[]);
+  // BUG B (docs/investigations/BUG-B-topic-boundary.md): a row's topic_id says
+  // what it was requested for, not what it is, and the bank holds rows that
+  // are correctly tagged and entirely off-topic. Dropped here so no kid is
+  // served one, whatever is in the table; the caller then generates a fresh
+  // (fit-checked) exercise, which is also how the bank heals. Checked against
+  // the topic the kid is IN when scoped (legacy untagged rows have no tag of
+  // their own), else against the row's own tag.
+  const pool = (data as DbExerciseRow[]).filter((r) => {
+    if (excluded?.has(r.id)) return false;
+    const fitTopic = topicScoped ? topic!.id : (r.topic_id ?? undefined);
+    return topicFit(rowToExercise(r), fitTopic).ok;
+  });
   if (pool.length === 0) return null;
   const pick = pool[Math.floor(Math.random() * pool.length)];
   return rowToExercise(pick);
