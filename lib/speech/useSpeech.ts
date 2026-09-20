@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import type { CharacterId } from "@/lib/characters";
+import { createLimiter } from "@/lib/speech/limiter";
 import {
   STALL_TIMEOUT_MS,
   logAudioPath,
@@ -206,6 +207,34 @@ function cachePut(key: string, url: string) {
 const prefetching = new Set<string>();
 
 /**
+ * At most this many warm-up prefetches in flight at once.
+ *
+ * Cartesia answers concurrent requests beyond the plan's limit with
+ * `429 concurrency_limited`, which our `speak` route reports as a 502. An
+ * exercise screen fires five prefetches on mount (the two scripted lines
+ * plus the three verdict openers). Measured against the real API: with 2
+ * prefetches 0/16 failed, with 5 at once 6/40 (15%). Two in flight, plus
+ * at most one live line, is the shape that measured clean.
+ *
+ * The cost is that the fifth line is warm a couple of seconds later than
+ * it would have been. A line still cold when it is needed is simply
+ * fetched live, exactly as it was before it was ever prefetched.
+ */
+const PREFETCH_MAX_IN_FLIGHT = 2;
+
+/**
+ * Longest a single prefetch may hold its slot. Without this a hung request
+ * would occupy one permanently, and two of them would silently end
+ * prefetching for the rest of the session — nothing waits on a warm-up, so
+ * nothing would ever notice. A healthy prefetch takes 1-3s (niqqud has a
+ * 5s deadline of its own, then Cartesia); 15s is far past that.
+ */
+const PREFETCH_TIMEOUT_MS = 15_000;
+let prefetchTimeoutMs = PREFETCH_TIMEOUT_MS;
+
+const prefetchLimiter = createLimiter(PREFETCH_MAX_IN_FLIGHT);
+
+/**
  * Voice-experience fix item 1 (2026-09-15): warms the same cache
  * speakCloud() reads from, for a line whose exact text is known before
  * the character actually needs to say it — a greeting, a praise line, a
@@ -222,25 +251,43 @@ const prefetching = new Set<string>();
  * Cartesia configured, offline, 401 before sign-in settles): speak()
  * still works normally, it just pays the round trip at that point
  * instead of having paid it early.
+ *
+ * Runs through prefetchLimiter: at most PREFETCH_MAX_IN_FLIGHT at once,
+ * first come first served. Live speaks (speakCloud) never go through it.
  */
 export function prefetchSpeech(text: string, character: CharacterId) {
   if (!text || typeof window === "undefined") return;
   const key = `${character}|${text}`;
   if (audioCache.has(key) || prefetching.has(key)) return;
+  // Marked at enqueue, not at start, so a line asked for twice while it
+  // waits its turn is still only fetched once.
   prefetching.add(key);
-  fetch("/api/tutor", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    // prefetch: nobody is waiting on this one, so the server lets the
-    // niqqud step take the time it needs and caches the properly
-    // vocalized clip — see lib/tts/cartesia.ts.
-    body: JSON.stringify({ action: "speak", text, character, prefetch: true }),
-  })
-    .then((res) => (res.ok ? res.blob() : null))
-    .then((blob) => {
-      if (blob) cachePut(key, URL.createObjectURL(blob));
+  void prefetchLimiter
+    .run(async () => {
+      // A live speak may have cached this line while it was waiting.
+      if (audioCache.has(key)) return;
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), prefetchTimeoutMs);
+      try {
+        const res = await fetch("/api/tutor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // prefetch: nobody is waiting on this one, so the server lets the
+          // niqqud step take the time it needs and caches the properly
+          // vocalized clip — see lib/tts/cartesia.ts.
+          body: JSON.stringify({ action: "speak", text, character, prefetch: true }),
+          signal: ctrl.signal,
+        });
+        // The slot is held until the BODY is read, not just the headers:
+        // that is when Cartesia stops counting this request.
+        const blob = res.ok ? await res.blob() : null;
+        if (blob) cachePut(key, URL.createObjectURL(blob));
+      } catch {
+        // Silent by design — see above.
+      } finally {
+        clearTimeout(timer);
+      }
     })
-    .catch(() => {})
     .finally(() => prefetching.delete(key));
 }
 
@@ -477,10 +524,14 @@ export const __speechTestHooks = {
   setWholeClipWaitMs(ms: number) {
     wholeClipWaitMs = ms;
   },
+  setPrefetchTimeoutMs(ms: number) {
+    prefetchTimeoutMs = ms;
+  },
   reset() {
     mseDisabledForSession = false;
     stallMs = STALL_TIMEOUT_MS;
     wholeClipWaitMs = 6000;
+    prefetchTimeoutMs = PREFETCH_TIMEOUT_MS;
   },
   isMseDisabled: () => mseDisabledForSession,
 };
