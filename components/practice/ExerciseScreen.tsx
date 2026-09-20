@@ -23,9 +23,19 @@ import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
 import type { Exercise, ExerciseEvaluation } from "@/lib/exercises/types";
 import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
+import { createSilenceNudge, type SilenceNudge } from "@/lib/voice/silenceNudge";
+import { silenceNudgeActions } from "@/lib/guide/nudges";
+import { createNextPrefetcher, type NextPrefetcher } from "@/lib/exercises/nextPrefetch";
 import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
+
+/** feat: local UX wins item 5. How long after an exercise appears before the
+ *  NEXT one is fetched in the background. Not immediately: the screen's own
+ *  warm-up prefetches (see the mount effect below) run first through the
+ *  serialized prefetcher, and a background fetch on top of them would be
+ *  exactly the burst that got capped. */
+const NEXT_PREFETCH_DELAY_MS = 2500;
 
 /** This screen's character, in the speech owner model — only it lip-syncs
  *  to lines said here. */
@@ -219,6 +229,45 @@ export default function ExerciseScreen({
     proseGenRef.current++;
   }, []);
 
+  // ---- feat: local UX wins ------------------------------------------------
+
+  /** Item 2: "silence gets a response". `leaning` is presentation only — the
+   *  character leans in. What (if anything) it SAYS is gated in
+   *  lib/guide/nudges.ts and ships disabled pending Udi. */
+  const [leaning, setLeaning] = useState(false);
+  const nudgeRef = useRef<SilenceNudge | null>(null);
+  const speakAutoRef = useRef(speakAuto);
+  useEffect(() => {
+    speakAutoRef.current = speakAuto;
+  }, [speakAuto]);
+  useEffect(() => {
+    const nudge = createSilenceNudge({
+      onNudge: () => {
+        const actions = silenceNudgeActions();
+        if (actions.lean) setLeaning(true);
+        if (actions.speak) speakAutoRef.current(actions.speak);
+      },
+      onRelax: () => setLeaning(false),
+    });
+    nudgeRef.current = nudge;
+    return () => {
+      nudge.close();
+      nudgeRef.current = null;
+    };
+  }, []);
+
+  /** Item 5: overlap turns. `practiceRef` mirrors `practice` for the timers
+   *  and callbacks below, which must see the latest without re-subscribing;
+   *  `answerInFlightRef` is true from the moment an answer is submitted
+   *  until its practice update has landed (submitAnswer's finally). */
+  const practiceRef = useRef<PracticeSummary | null>(null);
+  useEffect(() => {
+    practiceRef.current = practice;
+  }, [practice]);
+  const answerInFlightRef = useRef(false);
+  const prefetcherRef = useRef<NextPrefetcher | null>(null);
+  const warmNextSpeechRef = useRef<(ex: Exercise) => void>(() => {});
+
   // speak() resolves asynchronously inside the speech engine, so
   // "how long until the kid actually hears something" is only knowable by
   // watching the speaking flag flip.
@@ -292,6 +341,19 @@ export default function ExerciseScreen({
   }
 
   async function loadNextExercise() {
+    // feat: local UX wins item 5 — overlap turns. If the next exercise was
+    // fetched in the background AND it is still the right one, show it now.
+    // Every doubt falls through to the ordinary path below, which is
+    // unchanged: a stale level, a repeat, an answer whose practice update
+    // has not landed, a failed or slow fetch. Never changes when the
+    // verdict is shown and never locks an answer.
+    const prefetcher = prefetcherRef.current;
+    const settled = !answerInFlightRef.current;
+    const status = prefetcher?.status() ?? "idle";
+    // Joining a request that is still in flight looks like an ordinary load.
+    if (settled && status === "inflight") setLoadingExercise(true);
+    const prefetched = prefetcher && status !== "idle" ? await prefetcher.take(practiceRef.current, settled) : null;
+
     setLoadingExercise(true);
     setEvaluation(null);
     setAnswer("");
@@ -301,6 +363,16 @@ export default function ExerciseScreen({
     setLoadFailed(false);
     setAttempt(1);
     setEvalFailed(false);
+    if (prefetched) {
+      setExercise(prefetched);
+      // The prefetch's own practice snapshot predates the answer just given;
+      // the screen's is newer. Keep it, only clearing the one-shot "level
+      // changed" flag exactly as an ordinary load does.
+      setPractice((p) => p && { ...p, change: null });
+      setLoadingExercise(false);
+      setLoadedOnce(true);
+      return;
+    }
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
@@ -335,6 +407,65 @@ export default function ExerciseScreen({
       setLoadedOnce(true);
     }
   }
+
+  // feat: local UX wins item 5. One prefetcher per topic visit (the screen
+  // remounts per topic), so its "already shown" list is exactly this visit.
+  useEffect(() => {
+    const prefetcher = createNextPrefetcher({
+      fetchNext: async (excludeIds, signal) => {
+        try {
+          const res = await fetch("/api/tutor", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId, excludeIds }),
+            signal,
+          });
+          const data = (await res.json().catch(() => null)) as {
+            exercise?: Exercise | null;
+            error?: string;
+            practice?: PracticeSummary;
+          } | null;
+          if (res.ok && data?.exercise) return { kind: "ok", exercise: data.exercise, practice: data.practice };
+          if (res.status === 404 && data?.error === "no_content") return { kind: "none" };
+          return { kind: "failed" };
+        } catch {
+          return { kind: "failed" };
+        }
+      },
+      // Warm the next question's speech through the SERIALIZED prefetcher
+      // (max 2 in flight) — never a burst.
+      onReady: (ex) => warmNextSpeechRef.current(ex),
+    });
+    prefetcherRef.current = prefetcher;
+    return () => {
+      prefetcher.cancel();
+      prefetcherRef.current = null;
+    };
+  }, [subject, grade, topicId, kidId]);
+
+  useEffect(() => {
+    warmNextSpeechRef.current = (ex) => {
+      if (!isAutoSpeakOn()) return; // a muted device never speaks it, so don't pay for it
+      prefetchSpeech(questionSpeech(ex), character);
+      // Grades א/ב hear every option read aloud one by one (see
+      // speakQuestionAndMaybeReadout); warm those too, same queue.
+      if ((grade === "א" || grade === "ב") && ex.type === "multiple_choice" && ex.choices?.length) {
+        for (const choice of ex.choices) prefetchSpeech(choice, character);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [character, grade, kidName]);
+
+  useEffect(() => {
+    if (!exercise) return;
+    // Shown, in any way it got here: never eligible to come back as "next".
+    prefetcherRef.current?.markServed(exercise.id);
+    const timer = setTimeout(
+      () => prefetcherRef.current?.start(exercise.id, practiceRef.current),
+      NEXT_PREFETCH_DELAY_MS
+    );
+    return () => clearTimeout(timer);
+  }, [exercise]);
 
   useEffect(() => {
     topicStatsRef.current = { attempted: 0, correct: 0 };
@@ -402,6 +533,7 @@ export default function ExerciseScreen({
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
+    answerInFlightRef.current = true;
     setNoMatch(false);
     setBasePose("thinking");
     // Voice turns get an immediate audible acknowledgement so the
@@ -546,6 +678,7 @@ export default function ExerciseScreen({
       setBasePose("encouraging");
       speakAuto(lines.spoken(lines.somethingBroke(kidName)));
     } finally {
+      answerInFlightRef.current = false;
       setSubmitting(false);
     }
   }
@@ -632,6 +765,26 @@ export default function ExerciseScreen({
   // Exactly the old banner's condition — the 15-minute soft-session logic
   // is untouched; it now renders as a full-screen moment instead.
   const showSessionOverlay = !!evaluation?.correct && !sessionCloseShown && sessionTargetReached;
+
+  // Item 2: the answer window is open when the kid is expected to answer and
+  // nothing else is going on. The character talking is NOT silence, so the
+  // count starts when it stops; judging, celebrating and leaving all close it.
+  const answerWindowOpen =
+    !!exercise &&
+    !evaluation &&
+    !submitting &&
+    !listening &&
+    !speaking &&
+    !topicCelebration &&
+    !showSessionOverlay &&
+    !confirmingLeave &&
+    !loadingExercise;
+  useEffect(() => {
+    const nudge = nudgeRef.current;
+    if (!nudge) return;
+    if (answerWindowOpen) nudge.open();
+    else nudge.close();
+  }, [answerWindowOpen, exercise?.id, attempt]);
 
   // Kid-scene reskin (2026-09-15): topic name + a segmented progress
   // strip (reskin brief item 4) — capped visually at 5 segments per
@@ -748,11 +901,31 @@ export default function ExerciseScreen({
   const finalMiss = !!evaluation && !evaluation.correct && attempt === 2 && !evalFailed;
 
   return (
-    <div className="flex flex-col flex-1 px-4 pb-4" style={stageStyle}>
+    <div
+      className="flex flex-col flex-1 px-4 pb-4"
+      style={stageStyle}
+      // Item 2: anything the kid does counts as "not silent". Capture phase,
+      // so it sees taps on buttons, drags inside widgets and keystrokes
+      // without any of them having to know about it.
+      onPointerDownCapture={() => nudgeRef.current?.activity()}
+      onPointerMoveCapture={(e) => {
+        if (e.buttons > 0 || e.pointerType === "touch") nudgeRef.current?.activity();
+      }}
+      onKeyDownCapture={() => nudgeRef.current?.activity()}
+      onInputCapture={() => nudgeRef.current?.activity()}
+    >
       {topBar}
 
       <div className="flex justify-center">
-        <Character character={character} pose={pose} size={exercise.passage ? 150 : 180} />
+        {/* Item 1: micReactive — leans in step with the kid's voice while they
+            hold the mic. Item 2: leanIn — after a stretch of silence. */}
+        <Character
+          character={character}
+          pose={pose}
+          size={exercise.passage ? 150 : 180}
+          micReactive
+          leanIn={leaning}
+        />
       </div>
 
       <AnimatePresence mode="wait">

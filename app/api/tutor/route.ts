@@ -14,7 +14,7 @@ import {
   type LockedVerdict,
 } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
-import { findReusableExercise, saveExercise, recordAttempt } from "@/lib/exercises/store";
+import { findReusableExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import {
   factsFromAnswer,
@@ -131,6 +131,11 @@ interface GenerateExerciseBody {
    *  lib/exercises/store.ts for how an unrecognized/mismatched id is
    *  handled (falls back, doesn't error). */
   topic?: string;
+  /** Ids of exercises the client has already shown this visit — untrusted,
+   *  sanitized by sanitizeExcludeIds. Lets an overlap-turns prefetch avoid
+   *  returning the exercise still on screen (not yet attempted, so the
+   *  server's own "already attempted" exclusion cannot see it). */
+  excludeIds?: unknown;
 }
 
 interface AnswerExerciseBody extends AnswerExerciseBodyGenderExtra {
@@ -405,7 +410,7 @@ async function handleScopedChat(
 
 async function handleGenerateExercise(
   supabase: Awaited<ReturnType<typeof getSupabaseServerClient>>,
-  { subject, grade, kidId, topic }: GenerateExerciseBody
+  { subject, grade, kidId, topic, excludeIds }: GenerateExerciseBody
 ) {
   if (!subject || !grade) {
     return NextResponse.json({ error: "subject and grade are required" }, { status: 400 });
@@ -432,7 +437,15 @@ async function handleGenerateExercise(
 
   try {
     const tFind = Date.now();
-    const reused = await findReusableExercise(supabase, subject, grade, kid?.id ?? null, topic, level);
+    const reused = await findReusableExercise(
+      supabase,
+      subject,
+      grade,
+      kid?.id ?? null,
+      topic,
+      level,
+      sanitizeExcludeIds(excludeIds)
+    );
     const findMs = Date.now() - tFind;
     if (reused) {
       const totalMs = Date.now() - t0;

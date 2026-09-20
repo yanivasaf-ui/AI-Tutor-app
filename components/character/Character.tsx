@@ -5,9 +5,10 @@
    through the optimizer under a different URL and defeat the preload,
    which is what makes pose swaps instant. */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAnimate, useReducedMotion } from "framer-motion";
 import { CHARACTERS, POSES, poseSrc, type CharacterId, type CharacterPose } from "@/lib/characters";
+import { shouldReactToMic, subscribeMicLevel } from "@/lib/voice/micLevel";
 
 interface Props {
   character: CharacterId;
@@ -15,7 +16,20 @@ interface Props {
   /** Rendered height in px. Width follows the art's 4:5 frame. */
   size?: number;
   className?: string;
+  /** feat: local UX wins item 1. Lean subtly toward the kid in step with
+   *  how loud they are while they hold the mic. Off unless asked for: only
+   *  the exercise screen's character listens. */
+  micReactive?: boolean;
+  /** feat: local UX wins item 2. A gentle lean-in, for "I'm here, take
+   *  your time" after a stretch of silence. Presentation only. */
+  leanIn?: boolean;
 }
+
+/** Peak posture change at full volume. Deliberately small — a listening
+ *  cue, not a light show: about 3% bigger and 1.6% lifted at the loudest. */
+const MIC_SCALE_GAIN = 0.028;
+const MIC_LIFT_GAIN_PCT = -1.6;
+const LEAN_IN_TRANSFORM = "translateY(-2.2%) scale(1.045)";
 
 /** Warm the browser cache with every pose the first time a character
  *  appears, so no pose change ever waits on the network. ~37KB each. */
@@ -61,10 +75,26 @@ const POP: Partial<Record<CharacterPose, { scale: number[]; y?: number[]; durati
  * prefers-reduced-motion: ambient motion and springs are off (globals.css
  * + useReducedMotion); the crossfade stays, as a fade isn't motion.
  */
-export default function Character({ character, pose, size = 200, className }: Props) {
+export default function Character({ character, pose, size = 200, className, micReactive, leanIn }: Props) {
   const label = CHARACTERS[character].label;
   const reduced = useReducedMotion();
   const [scope, animate] = useAnimate<HTMLDivElement>();
+
+  // The mic reaction writes a CSS variable straight onto a DOM node from
+  // the level monitor's own rAF loop — never through React state, which
+  // would re-render this component (and its two stacked images) 60 times a
+  // second. With no capture live the monitor isn't sampling at all.
+  const micRef = useRef<HTMLDivElement>(null);
+  const reactToMic = shouldReactToMic({ enabled: !!micReactive, reducedMotion: reduced });
+  useEffect(() => {
+    if (!reactToMic) return;
+    const el = micRef.current;
+    const unsubscribe = subscribeMicLevel((level) => el?.style.setProperty("--mic-level", level.toFixed(3)));
+    return () => {
+      unsubscribe();
+      el?.style.removeProperty("--mic-level");
+    };
+  }, [reactToMic]);
 
   // Adjust-state-on-prop-change pattern (not an effect): the new pose is
   // on screen in the same render the prop changes.
@@ -106,6 +136,27 @@ export default function Character({ character, pose, size = 200, className }: Pr
       className={`relative shrink-0 animate-alive ${className ?? ""}`}
       style={{ width: Math.round(size * 0.8), height: size, transformOrigin: "50% 100%" }}
     >
+      {/* Two wrapper layers, because the outer element runs a CSS bob and
+          the inner one runs framer-motion springs — both write `transform`,
+          so an inline transform on either would fight them. These two are
+          transform-free otherwise: lean-in eases via a CSS transition, the
+          mic reaction is driven per frame by the --mic-level variable. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          transformOrigin: "50% 100%",
+          transform: leanIn && !reduced ? LEAN_IN_TRANSFORM : "none",
+          transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
+      >
+      <div
+        ref={micRef}
+        className="absolute inset-0"
+        style={{
+          transformOrigin: "50% 100%",
+          transform: `translateY(calc(var(--mic-level, 0) * ${MIC_LIFT_GAIN_PCT}%)) scale(calc(1 + var(--mic-level, 0) * ${MIC_SCALE_GAIN}))`,
+        }}
+      >
       <div ref={scope} className="absolute inset-0" style={{ transformOrigin: "50% 100%" }}>
         {layers.map((p) => {
           const isTop = p === shown;
@@ -122,6 +173,8 @@ export default function Character({ character, pose, size = 200, className }: Pr
             />
           );
         })}
+      </div>
+      </div>
       </div>
     </div>
   );

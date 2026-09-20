@@ -104,13 +104,39 @@ const REUSE_CANDIDATE_LIMIT = 20;
  *  (indexed on (kid_id, exercise_id)) so it's one round trip regardless
  *  of hit or miss. See supabase/migrations (find_reusable_exercise_rpc)
  *  for the SQL — same matching rules, just server-side now. */
+/**
+ * A client-supplied list of exercise ids to skip, made safe to use.
+ *
+ * feat: local UX wins item 5. The "already attempted" exclusion above only
+ * knows about ANSWERED exercises, and the one on the kid's screen is not
+ * answered yet — so a fetch made while they are still working on it (the
+ * overlap-turns prefetch) could hand back that very question. The client
+ * therefore says which ids it has already shown.
+ *
+ * It is untrusted input: anything that isn't a short string is dropped, and
+ * the list is capped, because it only ever needs to cover one visit.
+ * Returns undefined for "nothing to exclude" so callers keep the exact old
+ * behaviour.
+ */
+export const MAX_EXCLUDE_IDS = 50;
+export function sanitizeExcludeIds(raw: unknown): string[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const ids = new Set<string>();
+  for (const v of raw) {
+    if (typeof v === "string" && v.length > 0 && v.length <= 64) ids.add(v);
+    if (ids.size >= MAX_EXCLUDE_IDS) break;
+  }
+  return ids.size > 0 ? [...ids] : undefined;
+}
+
 export async function findReusableExercise(
   supabase: Client,
   subject: "math" | "hebrew",
   grade: Grade,
   kidId: string | null,
   topicId?: string,
-  difficulty?: 1 | 2 | 3
+  difficulty?: 1 | 2 | 3,
+  excludeIds?: string[]
 ): Promise<Exercise | null> {
   const topic = topicId ? getTopicById(topicId) : undefined;
   const topicScoped = topic && topic.subject === subject && topic.grade === grade;
@@ -128,8 +154,15 @@ export async function findReusableExercise(
     p_limit: REUSE_CANDIDATE_LIMIT,
   });
   if (error || !data || data.length === 0) return null;
-  const pick = data[Math.floor(Math.random() * data.length)];
-  return rowToExercise(pick as DbExerciseRow);
+  // Applied to the candidate page rather than in the RPC: the SQL function
+  // is shared, and the page (up to REUSE_CANDIDATE_LIMIT rows) is the pool
+  // the random pick draws from anyway. If every candidate is excluded there
+  // is nothing reusable, and the caller falls back to generating one.
+  const excluded = excludeIds && excludeIds.length > 0 ? new Set(excludeIds) : null;
+  const pool = excluded ? (data as DbExerciseRow[]).filter((r) => !excluded.has(r.id)) : (data as DbExerciseRow[]);
+  if (pool.length === 0) return null;
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  return rowToExercise(pick);
 }
 
 /** Saves a freshly-generated exercise to the bank, returning it with the

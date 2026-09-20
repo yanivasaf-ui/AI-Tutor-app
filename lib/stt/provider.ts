@@ -79,6 +79,8 @@
  * it's a real fact a parent could reasonably ask about.
  */
 
+import { startMicLevel, stopMicLevel } from "@/lib/voice/micLevel";
+
 export type SttProviderId = "browser" | "cloud" | "auto";
 
 export interface SttSession {
@@ -432,6 +434,9 @@ export const cloudSpeechProvider: SttProvider = {
     const upload = new AbortController();
 
     const release = () => {
+      // feat: local UX wins item 1 — the character's listening cue reads
+      // this stream's level; it eases to 0 the moment capture ends.
+      stopMicLevel();
       clearTimeout(maxTimer);
       // A press that ended before the streaming upload was due to open
       // must never open one afterwards.
@@ -605,6 +610,10 @@ export const cloudSpeechProvider: SttProvider = {
         // holding it all for one flush at stop().
         recorder.start(CHUNK_MS);
         capturedAt = performance.now();
+        // AFTER the recorder is running, and read-only on the stream: the
+        // level cue can never delay or alter what gets recorded. It has its
+        // own try/catch, so a failure here costs the cue and nothing else.
+        startMicLevel(s);
         if (supportsRequestStreaming()) {
           streamOpenTimer = setTimeout(openStreamingUpload, CLOUD_MIN_MS);
         }
