@@ -1,4 +1,5 @@
 import type { CharacterId } from "@/lib/characters";
+import { MIC_BLOCKED, NOT_HEARD, SESSION_COMPLETE, TOPIC_COMPLETE } from "@/lib/feedback/constitution";
 import type { KidGender } from "@/lib/memory/types";
 
 /**
@@ -248,10 +249,9 @@ export const thinking = (c: CharacterId, name: string): Line => ({
   text: self(c, "רגע, אני חושב...", "רגע, אני חושבת..."),
 });
 
-export const notHeard = (name: string): Line => ({
-  name,
-  text: "לא שמעתי טוב. אפשר לומר שוב, או ללחוץ על תשובה.",
-});
+/** Feedback on the child's attempt, so the wording is the constitution's
+ *  (lib/feedback/constitution.ts), not this file's. */
+export const notHeard = (name: string): Line => ({ name, text: NOT_HEARD });
 
 /** SpeechRecognition's "not-allowed"/"service-not-allowed" — the OS or
  *  browser refused microphone access, as opposed to genuinely hearing
@@ -259,10 +259,7 @@ export const notHeard = (name: string): Line => ({
  *  invites trying again louder, which does nothing when the mic is
  *  blocked — every retry would fail the same way until a permission
  *  setting changes. Tap answers stay the way forward either way. */
-export const micBlocked = (name: string): Line => ({
-  name,
-  text: "אין גישה למיקרופון. אפשר ללחוץ על תשובה בעצם.",
-});
+export const micBlocked = (name: string): Line => ({ name, text: MIC_BLOCKED });
 
 /** Grouping's tap-to-place interaction (star -> bucket) has no affordance
  *  a kid can infer just from looking at it — said in the same breath as
@@ -289,14 +286,8 @@ export const feedback = (name: string, text: string): Line =>
 
 // ---- Tier-2 celebrations -----------------------------------------------
 
-export const topicComplete = (name: string): Line => ({
-  name,
-  text: "סיימנו תחנה! התחנה הבאה במפה נפתחה.",
-});
+export const topicComplete = (name: string): Line => ({ name, text: TOPIC_COMPLETE });
 
-export const sessionComplete = (name: string): Line => ({
-  name,
-  text: "איזו עבודה מצוינת היום — רבע שעה שלמה! אפשר לעצור כאן, או להמשיך עוד קצת.",
-});
+export const sessionComplete = (name: string): Line => ({ name, text: SESSION_COMPLETE });
 
 export const goodbye = (name: string): Line => ({ name, text: "להתראות! נתראה מחר." });

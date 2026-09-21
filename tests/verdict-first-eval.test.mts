@@ -28,6 +28,7 @@ import {
   type LockedVerdict,
 } from "../lib/exercises/evaluate";
 import { OPENERS, openerKindFor } from "../lib/exercises/openers";
+import { neutralInvitation, violatesConstitution } from "../lib/feedback/constitution";
 import type { Exercise } from "../lib/exercises/types";
 
 let passed = 0;
@@ -138,7 +139,13 @@ await at("an overridden verdict produces corrective prose with NO model call at 
   const spoken = `${OPENERS[verdict.openerKind]} ${prose.feedback}`;
   assert.ok(!spoken.includes("כל הכבוד"), `praise reached a wrong verdict: ${spoken}`);
   assert.ok(!spoken.includes("נכון!"), `affirmation reached a wrong verdict: ${spoken}`);
-  assert.match(spoken, /זה בסדר/, "a wrong answer should still be validated warmly");
+  // Asserted against the constitution's own strings rather than a literal
+  // phrase: the wording of the warm wrong-answer line is owned by
+  // lib/feedback/constitution.ts and is allowed to change there. What must
+  // hold is that a wrong answer still gets a warm invitation to look
+  // again, and never a judgement of the child.
+  assert.ok(spoken.includes(neutralInvitation("girl")), `a wrong answer should still invite looking together: ${spoken}`);
+  assert.equal(violatesConstitution(spoken), null, "the wrong-answer line must obey the feedback constitution");
 });
 
 t("the deterministic remainder never repeats the opener it follows", () => {

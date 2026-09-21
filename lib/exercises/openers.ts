@@ -1,5 +1,5 @@
 /**
- * The deterministic openers, in a module with NO imports.
+ * The deterministic openers — now owned by lib/feedback/constitution.ts.
  *
  * feat: verdict-first evaluation. These are needed on both sides — the
  * server picks one from the locked verdict, and the client prefetches all
@@ -15,18 +15,18 @@
  * arithmetic and no answer. That exemption does not extend to anything a
  * model generates — the prose that follows is still gated whole.
  *
- * Each opener is the leading clause of the deterministic line it opens
- * (see evaluate.ts's REST_* constants), so opener + rest reads as the one
- * sentence it always was. Fixed strings on purpose: a fixed line can be
- * prefetched, which is what makes the opener audible at ~0ms of TTS.
+ * Each opener is the leading clause of the deterministic line it opens,
+ * so opener + rest reads as the one sentence it always was. Fixed strings
+ * on purpose: a fixed line can be prefetched, which is what makes the
+ * opener audible at ~0ms of TTS.
+ *
+ * This file stays as the import site the client already uses; the strings
+ * themselves live in the constitution, which is where every rule about
+ * what the character may say to a child is enforced. The constitution has
+ * no runtime imports either, so the browser bundle is unchanged.
  */
-export const OPENERS = {
-  correct: "כל הכבוד!",
-  hint: "זה בסדר, זה קורה!",
-  explain: "זה בסדר, זו שאלה לא פשוטה!",
-} as const;
-
-export type OpenerKind = keyof typeof OPENERS;
+export { OPENERS, type OpenerKind } from "@/lib/feedback/constitution";
+import type { OpenerKind } from "@/lib/feedback/constitution";
 
 /** Which opener a locked verdict calls for. A pure function of the
  *  verdict, so the opener can never contradict what the code decided. */

@@ -10,6 +10,7 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
+import { topicSummary } from "@/lib/feedback/constitution";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -1166,9 +1167,11 @@ export default function ExerciseScreen({
             // which always increments it first.
             text:
               topicStatsRef.current.attempted > 0
-                ? `כל הכבוד! סיימת את כל ${topicStatsRef.current.attempted} התרגילים בנושא${
-                    topicLabel ? ` "${topicLabel}"` : ""
-                  }. ענית נכון על ${topicStatsRef.current.correct} מתוך ${topicStatsRef.current.attempted}.`
+                ? topicSummary({
+                    attempted: topicStatsRef.current.attempted,
+                    correct: topicStatsRef.current.correct,
+                    topicLabel: topicLabel ? `"${topicLabel}"` : undefined,
+                  })
                 : lines.topicComplete(kidName).text,
           }}
           actions={[
