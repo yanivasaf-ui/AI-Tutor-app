@@ -10,7 +10,7 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
-import { topicSummary } from "@/lib/feedback/constitution";
+import { topicSummary, CONFIRM_YES, CONFIRM_NO } from "@/lib/feedback/constitution";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -19,7 +19,8 @@ import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/char
 import * as lines from "@/lib/guide/lines";
 import { OPENERS } from "@/lib/exercises/openers";
 import type { Line } from "@/lib/guide/lines";
-import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
+import { matchChoice, matchNumberLine, matchYesNo } from "@/lib/voice/matchAnswer";
+import * as repair from "@/lib/voice/repairLadder";
 import { clearEndOfSpeech, msSinceEndOfSpeech, recordTiming } from "@/lib/voice/timing";
 import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
@@ -146,6 +147,10 @@ export default function ExerciseScreen({
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
+  /** The two-repair ladder for voice answers (lib/voice/repairLadder.ts).
+   *  Entirely pre-verdict: it never records an attempt and never touches
+   *  the 1|2 answer counter or mastery state. */
+  const [repairState, setRepairState] = useState<repair.RepairState>(repair.IDLE);
   /** The OS/browser refused microphone access on the last attempt — a
    *  more specific dead end than noMatch's generic "didn't hear you"
    *  (2026-09-12 iPhone QA: "voice input fails"). Cleared the moment
@@ -242,6 +247,11 @@ export default function ExerciseScreen({
   useEffect(() => {
     speakAutoRef.current = speakAuto;
   }, [speakAuto]);
+  /** Latest-value refs for the repair ladder's confirmation handler: it is
+   *  a stable callback wired into buttons, and reading either of these
+   *  from the render closure would answer a previous exercise. */
+  const exerciseRef = useRef<Exercise | null>(null);
+  const submitAnswerRef = useRef<(value: string, opts?: { viaVoice?: boolean }) => void>(() => {});
   useEffect(() => {
     const nudge = createSilenceNudge({
       onNudge: () => {
@@ -360,6 +370,9 @@ export default function ExerciseScreen({
     setEvaluation(null);
     setAnswer("");
     setNoMatch(false);
+    // A new question starts the repair ladder over: two tries are two
+    // tries at THIS question, not a running total for the session.
+    setRepairState(repair.reset());
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
@@ -690,16 +703,71 @@ export default function ExerciseScreen({
     }
   }
 
+  // Kept current every render (see the refs' declaration above).
+  exerciseRef.current = exercise;
+  submitAnswerRef.current = submitAnswer;
+
   /** Character asks the kid to repeat — spoken, not just printed, since a
    *  kid who needs voice input is often a kid who can't read the hint.
    *  ROADMAP.md Phase 1A: "if STT confidence is low, the character asks
    *  'מה? לא שמעתי, אפשר שוב?' instead of guessing." */
-  const askToRepeat = useCallback(() => {
-    turnStartedAtRef.current = null; // this turn didn't complete
-    setNoMatch(true);
-    setBasePose("encouraging");
-    speakAuto(lines.spoken(lines.notHeard(kidName)));
-  }, [speakAuto, kidName]);
+  const askToRepeat = useCallback(
+    (input?: { candidates: readonly string[]; reason: repair.RepairReason; exerciseId: string }) => {
+      turnStartedAtRef.current = null; // this turn didn't complete
+      setNoMatch(true);
+      setBasePose("encouraging");
+      if (!input) {
+        // No matcher context (a provider-level "heard nothing"): the plain
+        // re-ask, unchanged from before the ladder existed.
+        speakAuto(lines.spoken(lines.notHeard(kidName)));
+        return;
+      }
+      setRepairState((prev) => {
+        const next = repair.onUnclear(prev, { candidates: input.candidates, reason: input.reason, gender: kidGender });
+        repair.logRepair({
+          exerciseId: input.exerciseId,
+          reason: input.reason,
+          unclearCount: next.unclearCount,
+          outcome:
+            next.stage.kind === "confirming" ? "confirm" : next.stage.kind === "retrying" ? "retry" : "tap-offer",
+          candidate: next.stage.kind === "confirming" ? next.stage.candidate : undefined,
+        });
+        // Every stage carries something to say — the ladder never goes quiet.
+        speakAutoRef.current(next.stage.kind === "idle" ? lines.spoken(lines.notHeard(kidName)) : next.stage.say);
+        return next;
+      });
+    },
+    [speakAuto, kidName, kidGender]
+  );
+
+  /** כן / לא to "התכוונת ל-12?", from either the voice or the buttons —
+   *  the two paths are the same path. A "כן" submits the candidate as the
+   *  child's OWN answer: they confirmed it, so this is not the tutor
+   *  answering for them. */
+  const answerConfirmation = useCallback(
+    (answer: "yes" | "no") => {
+      setRepairState((prev) => {
+        const out = repair.onConfirmation(prev, answer);
+        if (out.action === "ignore") return prev;
+        const candidate = prev.stage.kind === "confirming" ? prev.stage.candidate : undefined;
+        repair.logRepair({
+          exerciseId: exerciseRef.current?.id ?? "(none)",
+          reason: "ambiguous",
+          unclearCount: prev.unclearCount,
+          outcome: out.action === "submit" ? "confirmed-submit" : "rejected",
+          candidate,
+        });
+        if (out.action === "submit") {
+          setNoMatch(false);
+          submitAnswerRef.current(out.value, { viaVoice: true });
+        } else {
+          speakAutoRef.current(out.state.stage.kind === "idle" ? "" : out.state.stage.say);
+        }
+        return out.state;
+      });
+    },
+    []
+  );
 
   /** Distinguishes "the OS refused microphone access" from genuinely
    *  hearing nothing (2026-09-12 iPhone QA: "voice input fails" — the
@@ -731,16 +799,35 @@ export default function ExerciseScreen({
   function handleVoiceResult(transcript: string) {
     if (!exercise) return;
 
+    // While a confirmation is on screen, the next thing said is read as
+    // כן/לא, not as an answer — the child was asked a yes/no question.
+    // Anything else counts as another unclear attempt, which is what moves
+    // the ladder to its last rung rather than asking a third time.
+    if (repair.isConfirming(repairState)) {
+      const yn = matchYesNo(transcript);
+      if (yn) {
+        answerConfirmation(yn);
+        return;
+      }
+      askToRepeat({ candidates: [], reason: "no-match", exerciseId: exercise.id });
+      return;
+    }
+
     if (exercise.type === "multiple_choice" && exercise.choices) {
       const matchStartedAt = performance.now();
       const match = matchChoice(transcript, exercise.choices);
       recordTiming("match", performance.now() - matchStartedAt);
       if (match.kind === "choice") {
         setNoMatch(false);
+        setRepairState(repair.reset());
         submitAnswer(match.value, { viaVoice: true });
         return;
       }
-      askToRepeat();
+      if (match.kind === "none") {
+        askToRepeat({ candidates: match.candidates, reason: match.reason, exerciseId: exercise.id });
+      } else {
+        askToRepeat();
+      }
       return;
     }
 
@@ -748,10 +835,15 @@ export default function ExerciseScreen({
       const match = matchNumberLine(transcript, exercise.numberLine);
       if (match.kind === "value") {
         setNoMatch(false);
+        setRepairState(repair.reset());
         submitAnswer(match.value, { viaVoice: true });
         return;
       }
-      askToRepeat();
+      if (match.kind === "none") {
+        askToRepeat({ candidates: match.candidates, reason: match.reason, exerciseId: exercise.id });
+      } else {
+        askToRepeat();
+      }
       return;
     }
 
@@ -894,6 +986,10 @@ export default function ExerciseScreen({
   else if (evaluation)
     main = { line: lines.feedback(kidName, evaluation.feedback), tone: evaluation.correct ? "success" : "warm" };
   else if (micDenied && !listening) main = { line: lines.micBlocked(kidName), tone: "warm" };
+  else if (repairState.stage.kind !== "idle" && !listening)
+    // The ladder always has something to say, and it is more useful than
+    // the generic "didn't hear you" it replaces.
+    main = { line: lines.feedback(kidName, repairState.stage.say), tone: "warm" };
   else if (noMatch && !listening) main = { line: lines.notHeard(kidName), tone: "warm" };
   else main = { line: lines.question(kidName, exercise.question), detail: exercise.passage, tone: "default" };
   const showQuestionReminder = submitting || ((noMatch || micDenied) && !listening && !evaluation) || (!!evaluation && !evaluation.correct);
@@ -1065,6 +1161,29 @@ export default function ExerciseScreen({
               <span className="text-sm font-bold text-[var(--color-ink-soft)] max-w-40">
                 אפשר גם ללחוץ כאן ולומר את התשובה
               </span>
+            </div>
+          )}
+
+          {/* The repair ladder's confirmation. Two large buttons carrying
+              the same כן/לא the voice path accepts, so a child who cannot
+              be heard at all is never stuck on a question about whether
+              they were heard. */}
+          {repair.isConfirming(repairState) && !evaluation && (
+            <div className="flex gap-4 justify-center pt-1">
+              <button
+                onClick={() => answerConfirmation("yes")}
+                disabled={submitting}
+                className="min-h-16 min-w-32 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-bold disabled:opacity-40"
+              >
+                {CONFIRM_YES}
+              </button>
+              <button
+                onClick={() => answerConfirmation("no")}
+                disabled={submitting}
+                className="min-h-16 min-w-32 px-8 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/50 bg-[var(--color-surface)] text-[var(--color-ink)] text-xl font-bold disabled:opacity-40"
+              >
+                {CONFIRM_NO}
+              </button>
             </div>
           )}
 

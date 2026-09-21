@@ -213,6 +213,36 @@ export const NOT_HEARD = "לא שמעתי טוב. אפשר לומר שוב, או
  *  again" is useless advice when nothing can be heard at all. */
 export const MIC_BLOCKED = "אין גישה למיקרופון. אפשר ללחוץ על תשובה בעצם.";
 
+/**
+ * The two-repair ladder (lib/voice/repairLadder.ts). Speech that was not
+ * understood gets at most two tries, and the second always ends with a way
+ * through that does not need to be heard at all.
+ *
+ * None of these blame the child for not being understood, because they did
+ * nothing wrong: a recogniser missed. "לא שמעתי" puts the failure on the
+ * character, which is where it belongs.
+ */
+
+/** Offer back the one thing the matcher thought it heard. Never a number
+ *  assembled from the transcript — only a real answer to this exercise. */
+export function confirmHeard(candidate: string): string {
+  return `התכוונת ל-${candidate}?`;
+}
+
+/** Nothing plausible was heard at all: ask once more, plainly. */
+export function askAgain(gender?: KidGender | null): string {
+  return directed(gender, "לא שמעתי, תגיד שוב?", "לא שמעתי, תגידי שוב?", "לא שמעתי, תגידו שוב?");
+}
+
+/** The end of the ladder. There is never a third identical try: the way
+ *  through stops depending on being heard. */
+export const TAP_OFFER = "אפשר גם ללחוץ על התשובה כאן.";
+
+/** The yes/no buttons that carry the confirmation for a child who cannot
+ *  be heard at all. */
+export const CONFIRM_YES = "כן";
+export const CONFIRM_NO = "לא";
+
 // --------------------------------------------------------- celebrations
 
 export const TOPIC_COMPLETE = "סיימנו תחנה! התחנה הבאה במפה נפתחה.";
