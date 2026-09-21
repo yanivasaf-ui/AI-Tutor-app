@@ -225,7 +225,8 @@ Two findings:
 - Hebrew topics remain unchecked (quantified above).
 - The check remains vocabulary-based: it cannot tell an exercise that mentions
   triangles but tests addition from one that tests triangles.
-- **A prompt tension worth a follow-up, deliberately not changed here:** the
+- ~~**A prompt tension worth a follow-up, deliberately not changed here:**~~
+  **RESOLVED 2026-09-21** (branch `experience-phase-1`): the
   `fill_in_blank` subtype guidance orders a bare computation and explicitly
   "not a word problem", while a resolved topic simultaneously demands topic
   content. Every bare-computation leak in the bank is a `fill_in_blank`. The
@@ -234,4 +235,19 @@ Two findings:
   not ask for it. Changing generation wording is a bigger change than a
   pre-ship review should make.
 - Existing off-topic rows stay in the table; serving is what protects kids.
+
+### Follow-up landed: the fill_in_blank prompt (2026-09-21)
+
+The guidance now asks for the shape the good rows already had — one short
+sentence grounding the exercise in the topic, then the computation in
+digits and an operator sign — instead of ordering a bare computation and
+forbidding topical framing. The computation must still appear literally,
+so `questionStatesComputation()` and code-owned grading are unchanged, and
+free practice with no content topic may still be the bare drill.
+
+Checked against the live generator, 6 generations, 3 topics: all six came
+back with a preamble, all six stated their computation, all six passed the
+topic-fit check — including `math-g-gematria`, the topic whose leak class
+was "כמה זה 5 + 3?" and which now produces
+"בגימטרייה, האות ג' שווה 3 והאות ה' שווה 5. כמה זה 3 + 5?".
 
