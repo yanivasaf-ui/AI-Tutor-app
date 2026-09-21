@@ -5,7 +5,7 @@ import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
-import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
+import { generateExercise, NoCurriculumContentError, TopicFitError } from "@/lib/exercises/generate";
 import {
   evaluateVerdict,
   generateFeedbackProse,
@@ -465,7 +465,35 @@ async function handleGenerateExercise(
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
     const profileMs = Date.now() - tProfile;
     const tGenerate = Date.now();
-    const generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
+    let generated;
+    try {
+      generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
+    } catch (genErr) {
+      // BUG B safety net. The fit check (lib/exercises/topic-fit.ts) can empty
+      // the bank's candidate page for a topic AND reject every generated
+      // draft. Without this, that combination is a 500 and the child is left
+      // with "משהו השתבש" and no exercise — trading the off-topic exercise the
+      // check exists to prevent for no exercise at all, which is worse. So the
+      // last resort is the unfiltered bank: exactly what production served
+      // before the check existed. Nothing is saved, and the ordinary path is
+      // untouched — only a TopicFitError that survived every retry gets here.
+      if (!(genErr instanceof TopicFitError)) throw genErr;
+      const fallback = await findReusableExercise(
+        supabase, subject, grade, kid?.id ?? null, topic, level,
+        sanitizeExcludeIds(excludeIds), { ignoreTopicFit: true }
+      );
+      if (!fallback) throw genErr;
+      console.warn(
+        `[exercise-generate] source=bank-hit-unfiltered topic=${topic ?? "(none)"} difficulty=${level} — no fitting exercise could be generated; served an unchecked bank row rather than failing. ${genErr.message}`
+      );
+      return NextResponse.json({
+        exercise: fallback,
+        reused: true,
+        practice,
+        source: "bank-hit-unfiltered",
+        timings: { getKidMs, dbLookupMs: findMs, totalMs: Date.now() - t0 },
+      });
+    }
     const generateMs = Date.now() - tGenerate;
     const tSave = Date.now();
     const saved = await saveExercise(supabase, generated);

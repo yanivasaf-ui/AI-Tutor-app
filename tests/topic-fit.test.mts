@@ -16,6 +16,7 @@
  * Run: npx tsx tests/topic-fit.test.mts
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 process.env.ANTHROPIC_API_KEY ||= "test-key-never-used";
 import { topicFit, ARITHMETIC_TOPICS, TOPIC_ANCHORS } from "../lib/exercises/topic-fit";
 import { findReusableExercise } from "../lib/exercises/store";
@@ -145,6 +146,16 @@ const GOOD: [string, Exercise][] = [
   ["math-b-data: a poll's results", ex("math-b-data", { type: "multiple_choice", subtype: "pick_operation", question: "המורה שאלה את הילדים באיזה עונה נולדו. התוצאות: אביב - 5 ילדים, קיץ - 8 ילדים, סתיו - 3 ילדים, חורף - 6 ילדים. באיזו פעולה נשתמש כדי לדעת כמה יותר ילדים נולדו בקיץ מאשר באביב?", choices: ["8 + 5", "8 - 5", "8 + 3", "6 - 3"] })],
 ];
 
+// ---------- REAL rows the first cut of this check wrongly REJECTED ----------
+// Found by auditing the live bank (2026-09-21) and re-checked by hand: every
+// one is genuinely about its topic, so the check must not drop it.
+const WRONGLY_REJECTED: [string, Exercise][] = [
+  ["math-g-multiplication-division: skip counting by 1,000 (a run of multiples)", ex("math-g-multiplication-division", { type: "tile_order", subtype: "pattern_completion", question: "בחנות צעצועים יש מדפים עם דובונים. על המדף הראשון יש 1,000 דובונים, על השני 2,000 דובונים, על השלישי 3,000 דובונים ועל הרביעי 4,000 דובונים. כמה דובונים יש על המדף החמישי?", tiles: { items: ["5000", "4500", "5500", "6000"], slotCount: 1, joinWith: " " } })],
+  ["math-g-multiplication-division: skip counting by 10", ex("math-g-multiplication-division", { type: "tile_order", subtype: "pattern_completion", question: "רונית סופרת באתר החפירות. היא מצאה 10 כדים, אחר כך 20 כדים, אחר כך 30 כדים. כמה כדים היא תמצא בספירה הבאה?", tiles: { items: ["40", "35", "50", "45"], slotCount: 1, joinWith: " " } })],
+  ["math-g-multiplication-division: skip counting by 300", ex("math-g-multiplication-division", { type: "tile_order", subtype: "pattern_completion", question: "חנות צעצועים קיבלה משלוחי צעצועים בכל שבוע. בשבוע הראשון הגיעו 300 צעצועים, בשבוע השני 600 צעצועים, בשבוע השלישי 900 צעצועים ובשבוע הרביעי 1,200 צעצועים. כמה צעצועים יגיעו בשבוע החמישי אם הרצף ממשיך?", tiles: { items: ["1500", "1400", "1600", "1800"], slotCount: 1, joinWith: " " } })],
+  ["math-b-geometry: a tower of cubes (a cube IS a shape)", ex("math-b-geometry", { grade: "ב", type: "tile_order", subtype: "pattern_completion", question: "יעל בונה מגדל מקוביות. היא סופרת את הקוביות: 2, 4, 6, 8... כמה קוביות תהיינה במקום הבא?", tiles: { items: ["9", "10", "11", "12"], slotCount: 1, joinWith: " " } })],
+];
+
 console.log("the predicate: real leaks are rejected");
 for (const [name, e] of LEAKS) {
   t(name, () => {
@@ -163,6 +174,26 @@ for (const [name, e] of GOOD) {
     assert.equal(fit.checked, true);
   });
 }
+
+console.log("\nthe predicate: rows an earlier cut wrongly rejected (false positives found in the live bank)");
+for (const [name, e] of WRONGLY_REJECTED) {
+  t(name, () => {
+    const fit = topicFit(e, e.topicId);
+    assert.equal(fit.ok, true, `still rejected: ${fit.reason}`);
+  });
+}
+t("...and the leniency that admits them is SCOPED: a bare sum stays a leak in multiplication-division", () => {
+  assert.equal(topicFit(bare("math-g-multiplication-division", "כמה זה 5 + 3?", [5, 3], ["+"]), "math-g-multiplication-division").ok, false);
+});
+t("...and a skip-counting pattern in a topic that is NOT multiplication is still judged on vocabulary", () => {
+  const seq = ex("math-a-data", { grade: "א", type: "tile_order", subtype: "pattern_completion", question: "5, 10, 15, 20... מה המספר הבא?", tiles: { items: ["25", "30"], slotCount: 1, joinWith: " " } });
+  assert.equal(topicFit(seq, "math-a-data").ok, false, "the pattern_completion allowance must not leak to other topics");
+});
+t("solids count as geometry vocabulary (cube, box, sphere, cylinder)", () => {
+  for (const w of ["קובייה", "תיבה", "כדור", "גליל"]) {
+    assert.equal(topicFit(ex("math-g-geometry", { question: `כמה פאות יש ל${w}?` }), "math-g-geometry").ok, true, w);
+  }
+});
 
 console.log("\nthe predicate: scope");
 t("arithmetic topics ARE computation: a bare sum is on-topic there", () => {
@@ -295,6 +326,19 @@ await at("an unscoped request checks each row against its OWN tag", async () => 
   }
 });
 
+console.log("\nserving: the last-resort escape hatch");
+await at("ignoreTopicFit serves a row the check would drop — the route's fallback so a kid is never left with nothing", async () => {
+  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2, undefined, { ignoreTopicFit: true });
+  assert.equal(got?.id, leak.id);
+});
+await at("the escape hatch still honours excludeIds — it relaxes the topic check, nothing else", async () => {
+  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2, [leak.id], { ignoreTopicFit: true });
+  assert.equal(got, null);
+});
+await at("it is OFF by default: the same call without the flag drops the row", async () => {
+  assert.equal(await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2), null);
+});
+
 // ---------- admission ----------
 console.log("\nadmission: generateExercise refuses an off-topic draft and asks again");
 type Call = { messages: { content: string }[] };
@@ -341,6 +385,24 @@ await at("an arithmetic topic still accepts the same bare sum on the first try (
   assert.equal(calls.length, 1);
 });
 console.warn = quiet;
+
+console.log("\nthe route: a TopicFitError must not become a 500 while the bank still has something");
+{
+  const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
+  t("generate is wrapped, and only a TopicFitError is caught (every other failure still surfaces)", () => {
+    assert.match(route, /generated = await generateExercise\(/);
+    assert.match(route, /if \(!\(genErr instanceof TopicFitError\)\) throw genErr;/);
+  });
+  t("the fallback re-queries the bank with the fit check off, and rethrows when the bank is empty too", () => {
+    assert.match(route, /ignoreTopicFit: true/);
+    assert.match(route, /if \(!fallback\) throw genErr;/);
+  });
+  t("the fallback exercise is served, not saved (nothing off-topic is ever written to the bank)", () => {
+    const block = route.slice(route.indexOf("} catch (genErr) {"), route.indexOf("const generateMs"));
+    assert.ok(!/saveExercise/.test(block), "the unchecked fallback row must never be written back");
+    assert.match(block, /source: "bank-hit-unfiltered"/);
+  });
+}
 
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length > 0) {

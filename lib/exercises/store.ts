@@ -137,7 +137,14 @@ export async function findReusableExercise(
   kidId: string | null,
   topicId?: string,
   difficulty?: 1 | 2 | 3,
-  excludeIds?: string[]
+  excludeIds?: string[],
+  /** Last-resort escape hatch (see the route's TopicFitError handler): serve
+   *  from the unfiltered candidate page. Only for the case where the fit
+   *  filter emptied the pool AND generation could not produce a fitting
+   *  exercise either — a kid with no exercise at all is a worse outcome than
+   *  the off-topic one this check exists to prevent. Never used on the
+   *  ordinary path, and nothing is written to the bank from it. */
+  opts?: { ignoreTopicFit?: boolean }
 ): Promise<Exercise | null> {
   const topic = topicId ? getTopicById(topicId) : undefined;
   const topicScoped = topic && topic.subject === subject && topic.grade === grade;
@@ -169,6 +176,7 @@ export async function findReusableExercise(
   // their own), else against the row's own tag.
   const pool = (data as DbExerciseRow[]).filter((r) => {
     if (excluded?.has(r.id)) return false;
+    if (opts?.ignoreTopicFit) return true;
     const fitTopic = topicScoped ? topic!.id : (r.topic_id ?? undefined);
     return topicFit(rowToExercise(r), fitTopic).ok;
   });

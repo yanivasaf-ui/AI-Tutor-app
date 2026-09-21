@@ -146,3 +146,92 @@ rows and the tokens that carried the passes were read by hand.
   compatibility rule, which is a product/pedagogy call and is not made here.
 - **Anchor lists are hand-written from the Ministry's wording and tuned on the
   bank; they are the part most worth a curriculum owner's eye.**
+
+---
+
+# Pre-ship review (2026-09-21)
+
+The fix was held back from the deploy that shipped Tasks 3/5/6 and reviewed
+before shipping. Three questions were asked of it; all three found something.
+
+## 1. Does the check wrongly reject good exercises? — Yes, 5 rows. Fixed.
+
+Re-checked every row the audit flags. Five are genuinely about their topic:
+
+- **Four skip-counting sequences** in `math-g-multiplication-division`
+  ("10, 20, 30, …", "300, 600, 900, 1,200"). A run of multiples IS how the
+  grade-ג curriculum reaches multiplication; they were rejected only for
+  carrying no multiplication *word*. Fixed by accepting the
+  `pattern_completion` subtype in that one topic. The topic holds exactly 4
+  `pattern_completion` rows, so this admits those 4 and nothing else, and a
+  bare sum there is still rejected.
+- **One tower-of-cubes row** in `math-b-geometry`. `קובייה` is a solid — the
+  anchor list simply had no 3D shapes. Fixed by adding
+  קובייה/תיבה/כדור/גליל/חרוט/פירמידה/מנסרה to the geometry vocabulary.
+
+Flagged rows: **42 → 37**. All six known genuine leaks stay rejected.
+
+## 2. Do the unchecked Hebrew topics leak? — Yes, worse than math. Not fixed.
+
+The check covers 22 of 35 topics; the 13 Hebrew ones are pass-through. They
+were measured here for the first time, without needing anchors, by looking for
+identical question text filed under more than one topic — at most one filing
+can be right:
+
+- **Hebrew: 23 questions appear under 2+ topics, covering 95 rows** (~24% of
+  the 391 Hebrew rows). Math, for comparison: 11 questions / 30 rows.
+- Worst case: `איזו מילה נגזרת מהשורש ק-ר-א?` is filed under **five** topics
+  — early-writing, reading-fluency, literary-texts, reading-comprehension and
+  vocabulary.
+- The shape of the leak matches math exactly: all 13 Hebrew topics carry all 7
+  Hebrew subtypes, so root-derivation and niqqud drills are spread across
+  every topic regardless of what the topic is about
+  (`hebrew-g-reading-comprehension` holds three copies of the same root drill;
+  `hebrew-g-writing-process` holds grade-א niqqud).
+
+This is a **lower bound** — it only catches exact duplicates. Hebrew is left
+unprotected on purpose (see the limitation above: no reliable code-checkable
+vocabulary), but the size of the gap is now a measured number rather than an
+open question, and it is larger than the math leak this fix addresses.
+
+## 3. Can the serving filter block legitimate content? — Not any more.
+
+Two findings:
+
+- **No (topic, level) bucket is emptied by the filter.** Serving draws per
+  topic AND per adaptive level, so that is the pair that matters. Across all
+  47 content buckets the smallest surviving pool is 3 (`math-b-time` L2, 3 of
+  5); the heaviest drop is `math-a-data` L1 (5 of 10).
+- **But the downstream failure mode was a 500.** The RPC also excludes rows
+  the kid already attempted, so a pool CAN empty in a real session. The caller
+  then generates, and admission can reject every draft — `TopicFitError` fell
+  through to the route's generic `catch` and became HTTP 500, i.e. the child
+  sees "משהו השתבש" and gets no exercise at all. That trades the off-topic
+  exercise this check exists to prevent for something worse.
+
+  Measured how likely that is, against the real generator: **12 live
+  generations on the two worst buckets (`math-a-data` L1, `math-g-gematria`
+  L1) — 12/12 served, 0 off-topic drafts rejected, 0 failures.** The
+  post-2026-09-15 prompt and this check agree in practice, so the path is
+  rare, not routine. Rare is not impossible, so it is now closed
+  structurally: on a `TopicFitError` that survives every retry, the route
+  re-queries the bank with the fit check off and serves that row — exactly
+  what production served before this check existed — and saves nothing. If
+  the bank is empty too, the error still surfaces. Every other generation
+  failure is untouched.
+
+## Still not addressed (unchanged by this review)
+
+- Hebrew topics remain unchecked (quantified above).
+- The check remains vocabulary-based: it cannot tell an exercise that mentions
+  triangles but tests addition from one that tests triangles.
+- **A prompt tension worth a follow-up, deliberately not changed here:** the
+  `fill_in_blank` subtype guidance orders a bare computation and explicitly
+  "not a word problem", while a resolved topic simultaneously demands topic
+  content. Every bare-computation leak in the bank is a `fill_in_blank`. The
+  good rows show the resolution — a one-clause topical preamble, then the
+  computation ("בדיאגרמת העמודות… כמה זה 5 + 4 + 3?") — but the guidance does
+  not ask for it. Changing generation wording is a bigger change than a
+  pre-ship review should make.
+- Existing off-topic rows stay in the table; serving is what protects kids.
+

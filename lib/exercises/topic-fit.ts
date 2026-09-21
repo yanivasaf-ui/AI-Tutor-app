@@ -65,6 +65,10 @@ const GEOMETRY = [
   "צורה", "צורות", "משולש", "ריבוע", "מרובע", "מלבן", "עיגול", "מעגל", "מעוין", "מחומש", "משושה", "מצולע",
   "צלע", "צלעות", "פינה", "פינות", "קדקוד", "זווית", "זוויות", "שווה-צלעות", "שווה-שוקיים", "ישר-זווית",
   "חדה", "קהה", "ישרה", "מקבילית", "טרפז", "אלכסון",
+  // Solids. A cube is a shape: without these, a real bank row ("יעל בונה
+  // מגדל מקוביות...") was rejected from a geometry topic for naming one.
+  // Shared with VOLUME on purpose — the word is on-topic in both.
+  "קובייה", "קוביות", "תיבה", "תיבות", "כדור", "גליל", "חרוט", "פירמידה", "מנסרה",
 ];
 const LOCATION = ["מפה", "מפות", "כיוון", "כיוונים", "ימינה", "שמאלה", "מיקום", "מתחת", "מעל", "ליד"];
 const LENGTH = [
@@ -225,6 +229,15 @@ export function topicFit(ex: Exercise, topicId: string | undefined): FitResult {
   // Multiplication/division is also on-topic when the exercise actually
   // computes with it, even if the wording is bare ("כמה זה 60 ÷ 10?").
   if (topicId === "math-g-multiplication-division" && (usesMulDiv(ex) || /[×÷*]/.test(text))) {
+    return { ok: true, checked: true };
+  }
+  // ...and so is skip counting, which is how the curriculum reaches
+  // multiplication in grade ג: "10, 20, 30, ..." is a run of multiples, and
+  // four real bank rows of exactly that shape were being rejected for
+  // carrying no multiplication WORD. A pattern_completion here is a number
+  // sequence by construction, so accept the subtype rather than trying to
+  // re-derive the common difference from the tiles.
+  if (topicId === "math-g-multiplication-division" && ex.subtype === "pattern_completion") {
     return { ok: true, checked: true };
   }
 
