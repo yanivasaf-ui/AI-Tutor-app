@@ -10,7 +10,7 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
-import { topicSummary, CONFIRM_YES, CONFIRM_NO } from "@/lib/feedback/constitution";
+import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT } from "@/lib/feedback/constitution";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -21,6 +21,7 @@ import { OPENERS } from "@/lib/exercises/openers";
 import type { Line } from "@/lib/guide/lines";
 import { matchChoice, matchNumberLine, matchYesNo } from "@/lib/voice/matchAnswer";
 import * as repair from "@/lib/voice/repairLadder";
+import { buildRung, nextRung, type Rung } from "@/lib/exercises/hintLadder";
 import { clearEndOfSpeech, msSinceEndOfSpeech, recordTiming } from "@/lib/voice/timing";
 import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
@@ -151,6 +152,12 @@ export default function ExerciseScreen({
    *  Entirely pre-verdict: it never records an attempt and never touches
    *  the 1|2 answer counter or mastery state. */
   const [repairState, setRepairState] = useState<repair.RepairState>(repair.IDLE);
+  /** The deterministic hint ladder (lib/exercises/hintLadder.ts). Opened
+   *  ONLY by an explicit request for a hint; it never reads or writes the
+   *  attempt counter and never reaches the verdict. */
+  const [hint, setHint] = useState<Rung | null>(null);
+  const [winAnswer, setWinAnswer] = useState("");
+  const [winDone, setWinDone] = useState<"right" | "wrong" | null>(null);
   /** The OS/browser refused microphone access on the last attempt — a
    *  more specific dead end than noMatch's generic "didn't hear you"
    *  (2026-09-12 iPhone QA: "voice input fails"). Cleared the moment
@@ -373,6 +380,9 @@ export default function ExerciseScreen({
     // A new question starts the repair ladder over: two tries are two
     // tries at THIS question, not a running total for the session.
     setRepairState(repair.reset());
+    setHint(null);
+    setWinAnswer("");
+    setWinDone(null);
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
@@ -707,6 +717,51 @@ export default function ExerciseScreen({
   exerciseRef.current = exercise;
   submitAnswerRef.current = submitAnswer;
 
+  /**
+   * The child asked for a hint — by tapping רמז or saying it. Advances the
+   * ladder one rung and says it. Deliberately the ONLY way in: nothing
+   * about answering, right or wrong, opens this, so the attempt counter
+   * and the verdict behave exactly as they did before it existed.
+   */
+  const requestHint = useCallback(() => {
+    const ex = exerciseRef.current;
+    if (!ex) return;
+    setHint((prev) => {
+      const kind = nextRung(ex, prev?.kind ?? null);
+      if (kind === null) return prev; // the ladder is spent; it never wraps
+      const rung = buildRung(ex, kind, kidGender) ?? buildRung(ex, nextRung(ex, kind) ?? "solve", kidGender);
+      if (rung) speakAutoRef.current(rung.say);
+      setBasePose("explaining");
+      return rung ?? prev;
+    });
+  }, [kidGender]);
+
+  /** Local, code-only comparison for the small win. Numbers compared as
+   *  numbers so "05" and "5" agree; nothing here is the grading path. */
+  function answerMatchesLocally(given: string, expected: string): boolean {
+    const g = given.trim();
+    if (!g) return false;
+    const gn = Number(g);
+    const en = Number(expected);
+    return Number.isFinite(gn) && Number.isFinite(en) ? gn === en : g === expected.trim();
+  }
+
+  /**
+   * The small win, checked HERE and nowhere else. It is a question the
+   * child answers, but it is not the exercise: it never goes to the
+   * server, never records an attempt, and never reaches mastery state or
+   * the verdict. Getting it wrong costs nothing — the point is to end on
+   * something that worked.
+   */
+  const checkSmallWin = useCallback(() => {
+    const practice = hint?.practice;
+    if (!practice) return;
+    const right = answerMatchesLocally(winAnswer, practice.answer);
+    setWinDone(right ? "right" : "wrong");
+    setBasePose(right ? "celebration" : "encouraging");
+    speakAutoRef.current(right ? `${OPENERS.correct} ${REST_CORRECT}` : `התשובה היא ${practice.answer}.`);
+  }, [hint, winAnswer]);
+
   /** Character asks the kid to repeat — spoken, not just printed, since a
    *  kid who needs voice input is often a kid who can't read the hint.
    *  ROADMAP.md Phase 1A: "if STT confidence is low, the character asks
@@ -803,6 +858,13 @@ export default function ExerciseScreen({
     // כן/לא, not as an answer — the child was asked a yes/no question.
     // Anything else counts as another unclear attempt, which is what moves
     // the ladder to its last rung rather than asking a third time.
+    // "רמז" is a request for help, not an answer — checked before any
+    // matching so it can never be graded as one.
+    if (/^\s*רמז\s*[?!.]?\s*$/.test(transcript)) {
+      requestHint();
+      return;
+    }
+
     if (repair.isConfirming(repairState)) {
       const yn = matchYesNo(transcript);
       if (yn) {
@@ -1161,6 +1223,45 @@ export default function ExerciseScreen({
               <span className="text-sm font-bold text-[var(--color-ink-soft)] max-w-40">
                 אפשר גם ללחוץ כאן ולומר את התשובה
               </span>
+            </div>
+          )}
+
+          {/* The hint ladder. One tap = one rung, and the button retires
+              when the ladder is spent rather than repeating its last rung. */}
+          {!evaluation && !repair.isConfirming(repairState) && (
+            <div className="flex flex-col gap-3 pt-1">
+              {hint && (
+                <div className="rounded-[var(--radius-card)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-teal-soft)]/30 px-4 py-3 text-lg text-[var(--color-ink)]">
+                  {hint.say}
+                </div>
+              )}
+              {hint?.practice && winDone === null && (
+                <div className="flex gap-2 justify-center">
+                  <input
+                    value={winAnswer}
+                    onChange={(e) => setWinAnswer(e.target.value)}
+                    inputMode="numeric"
+                    dir="ltr"
+                    aria-label={hint.practice.question}
+                    className="h-14 w-32 text-center text-xl rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/40 bg-[var(--color-surface)]"
+                  />
+                  <button
+                    onClick={checkSmallWin}
+                    className="min-h-14 px-6 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-bold"
+                  >
+                    בדיקה
+                  </button>
+                </div>
+              )}
+              {nextRung(exercise, hint?.kind ?? null) !== null && (
+                <button
+                  onClick={requestHint}
+                  disabled={submitting}
+                  className="self-center min-h-12 px-6 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/50 bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-bold disabled:opacity-40"
+                >
+                  רמז
+                </button>
+              )}
             </div>
           )}
 
