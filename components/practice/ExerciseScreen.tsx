@@ -471,21 +471,26 @@ export default function ExerciseScreen({
   useEffect(() => {
     topicStatsRef.current = { attempted: 0, correct: 0 };
     loadNextExercise();
-    // Voice-experience fix item 1: "רגע, אני חושב/ת" and "רגע, אני מכין/ה
-    // לנו תרגיל" are said on every single answer and every single new
-    // exercise — the two most frequent lines on this whole screen, and
-    // both fully known the moment the screen opens (character + kidName,
-    // nothing else). Warmed here so by the time either is actually
-    // needed, speak() finds it already cached instead of paying
-    // Cartesia's round trip live, right in the middle of the loop the
-    // founder reported as slow.
+    // Voice-experience fix item 1: "רגע, אני חושב/ת" is said on every
+    // single answer given by voice — the most frequent spoken line on
+    // this whole screen, and fully known the moment the screen opens
+    // (character + kidName, nothing else). Warmed here so by the time it
+    // is actually needed, speak() finds it already cached instead of
+    // paying Cartesia's round trip live, right in the middle of the loop
+    // the founder reported as slow.
     // Keyed on spoken(), not .text: speak() (via useGuide/speakAuto, below
     // and at line ~598) always reads the "name, text" spoken form, which
     // differs from .text alone for every line with a `name` set — both of
     // these carry one. Prefetching under the wrong key left the cache
     // permanently missed: paid for on every load, never actually hit.
     prefetchSpeech(lines.spoken(lines.thinking(character, kidName)), character);
-    prefetchSpeech(lines.spoken(lines.buildingExercise(character, kidName)), character);
+    // buildingExercise is NOT warmed, deliberately. It is only ever
+    // rendered as text in the loading bubble below (~line 835) — no
+    // speak() path anywhere reads it — so warming it bought a Cartesia
+    // request on every mount of this screen and cached an audio clip that
+    // nothing could ever play. Removing the prefetch changes nothing a
+    // child sees or hears; the line still appears on screen exactly as
+    // before. If it is ever given a voice, warm it again here.
     // feat: verdict-first evaluation — the three deterministic openers.
     // Exactly one of them is said on every single answer, and they never
     // vary, so warming all three here is what makes the opener audible at
