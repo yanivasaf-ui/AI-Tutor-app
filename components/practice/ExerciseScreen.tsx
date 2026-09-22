@@ -10,7 +10,8 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
-import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT } from "@/lib/feedback/constitution";
+import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT, EXIT_TITLE, EXIT_STAY, EXIT_LEAVE } from "@/lib/feedback/constitution";
+import * as arc from "@/lib/session/arc";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -164,6 +165,18 @@ export default function ExerciseScreen({
    *  listening starts again, same as noMatch. */
   const [micDenied, setMicDenied] = useState(false);
   const [topicCelebration, setTopicCelebration] = useState(false);
+  /** The session arc (lib/session/arc.ts): the goal line, the one
+   *  "איך ידעת?", and the closing beat. Observations are collected per
+   *  problem so the close can describe CHANGE rather than a score. */
+  const arcRef = useRef<arc.ArcState>(arc.ARC_START);
+  /** Hint rungs opened on the CURRENT problem; folded into the
+   *  observations when the problem is answered, then reset. */
+  const hintRungsUsedRef = useRef(0);
+  /** Set when the arc decides to ask "איך ידעת?" — spoken after the
+   *  character's own feedback line, and shown under it. Cleared on the
+   *  next question; the arc itself remembers it was already asked. */
+  const [howDidYouKnow, setHowDidYouKnow] = useState<string | null>(null);
+  const observationsRef = useRef<arc.SessionObservations>({ ...arc.NO_OBSERVATIONS, firstAttemptByProblem: [], hintsByProblem: [] });
   const [sessionGoodbye, setSessionGoodbye] = useState(false);
   /** Voice-experience fix item 6: the top bar's back arrow used to leave
    *  the exercise the instant it was tapped — one stray tap mid-question
@@ -356,6 +369,11 @@ export default function ExerciseScreen({
   function speakQuestionAndMaybeReadout(ex: Exercise) {
     const gen = ++readoutGenRef.current;
     const autoRead = (grade === "א" || grade === "ב") && ex.type === "multiple_choice" && !!ex.choices?.length;
+    // (a) Session arc: one goal line, before the first question of the
+    // session — said once, and never on a later question.
+    const opened = arc.openSession(arcRef.current, topicId);
+    arcRef.current = opened.state;
+    if (opened.say) speakAuto(opened.say);
     speakAuto(questionSpeech(ex), autoRead ? { onEnd: () => readChoicesInOrder(ex.choices!, gen) } : undefined);
   }
 
@@ -380,6 +398,7 @@ export default function ExerciseScreen({
     // A new question starts the repair ladder over: two tries are two
     // tries at THIS question, not a running total for the session.
     setRepairState(repair.reset());
+    setHowDidYouKnow(null);
     setHint(null);
     setWinAnswer("");
     setWinDone(null);
@@ -582,6 +601,9 @@ export default function ExerciseScreen({
     let opener = "";
     let celebrated = false;
     let sawVerdict = false;
+    /** The locked verdict, kept for the prose branch below — the arc's
+     *  "איך ידעת?" needs to know it was a correct first attempt. */
+    let verdictCorrect = false;
 
     const speakProse = (text: string) => {
       if (gen !== proseGenRef.current || !text) return;
@@ -639,14 +661,28 @@ export default function ExerciseScreen({
             if (sinceEnd !== null) recordTiming("verdict", sinceEnd);
             opener = msg.opener ?? "";
             const correct = msg.correct === true;
+            verdictCorrect = correct;
             setEvalFailed(false);
             setEvaluation({ correct, feedback: opener });
             // Kid-scene reskin: count DISTINCT exercises, not submissions —
             // a retry (attempt 2) is still the same exercise, so only a
             // fresh question (attempt 1) advances "attempted"; "correct"
             // advances on whichever attempt actually lands it.
-            if (attempt === 1) topicStatsRef.current.attempted++;
+            if (attempt === 1) {
+              topicStatsRef.current.attempted++;
+              // One entry per PROBLEM, in the order asked — what the
+              // closing beat reads to describe change over the session.
+              observationsRef.current.firstAttemptByProblem.push(correct);
+              observationsRef.current.hintsByProblem.push(hintRungsUsedRef.current);
+              hintRungsUsedRef.current = 0;
+            } else if (correct) {
+              // A retry that landed: the problem was not first-attempt, but
+              // it was recovered, which is what recoveredAfterAMiss reads.
+              observationsRef.current.correct = topicStatsRef.current.correct + 1;
+            }
             if (correct) topicStatsRef.current.correct++;
+            observationsRef.current.attempted = topicStatsRef.current.attempted;
+            observationsRef.current.correct = topicStatsRef.current.correct;
             setProgressTick((n) => n + 1);
 
             if (correct) {
@@ -698,6 +734,18 @@ export default function ExerciseScreen({
               if (openerDoneRef.current) speakProse(prose);
               else pendingProseRef.current = prose;
             }
+
+            // (a) Session arc: "איך ידעת?" — at most once a session, and
+            // only where it is honest. Checked against the PROSE, not the
+            // opener: the opener is a fixed verdict line ("כל הכבוד!") and
+            // never names a strategy, so asking off it would ask a child
+            // to explain a method nobody observed.
+            if (arc.shouldAskHowDidYouKnow(arcRef.current, { correct: verdictCorrect, attempt, spokenLine: prose })) {
+              const asked = arc.askHowDidYouKnow(arcRef.current);
+              arcRef.current = asked.state;
+              setHowDidYouKnow(asked.say);
+              speakAuto(asked.say);
+            }
           }
         }
       }
@@ -730,7 +778,10 @@ export default function ExerciseScreen({
       const kind = nextRung(ex, prev?.kind ?? null);
       if (kind === null) return prev; // the ladder is spent; it never wraps
       const rung = buildRung(ex, kind, kidGender) ?? buildRung(ex, nextRung(ex, kind) ?? "solve", kidGender);
-      if (rung) speakAutoRef.current(rung.say);
+      if (rung) {
+        hintRungsUsedRef.current += 1;
+        speakAutoRef.current(rung.say);
+      }
       setBasePose("explaining");
       return rung ?? prev;
     });
@@ -1226,6 +1277,12 @@ export default function ExerciseScreen({
             </div>
           )}
 
+          {/* (a) Session arc: "איך ידעת?", at most once a session. A
+              question, not a gate — nothing waits on an answer. */}
+          {howDidYouKnow && (
+            <p className="text-center text-lg font-bold text-[var(--color-teal-ink)]">{howDidYouKnow}</p>
+          )}
+
           {/* The hint ladder. One tap = one rung, and the button retires
               when the ladder is spent rather than repeating its last rung. */}
           {!evaluation && !repair.isConfirming(repairState) && (
@@ -1344,7 +1401,16 @@ export default function ExerciseScreen({
         <CelebrationOverlay
           character={character}
           pose={sessionGoodbye ? "goodbye" : "celebration"}
-          line={sessionGoodbye ? lines.goodbye(kidName) : lines.sessionComplete(kidName)}
+          line={
+            sessionGoodbye
+              ? lines.goodbye(kidName)
+              : // (b) Session arc: what the character SAW, and where the
+                // path goes next — not a score. See lib/session/arc.ts.
+                lines.feedback(
+                  kidName,
+                  arc.closeSession(arcRef.current, observationsRef.current, { subject, grade, topicId }).say
+                )
+          }
           actions={
             sessionGoodbye
               ? [
@@ -1408,20 +1474,22 @@ export default function ExerciseScreen({
       {confirmingLeave && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
           <div className="w-full max-w-xs bg-[var(--color-surface)] rounded-[var(--radius-stage)] shadow-lg p-5 flex flex-col items-center gap-4 text-center">
-            <p className="text-lg font-bold text-[var(--color-ink)]">לצאת מהתרגיל?</p>
-            <p className="text-sm text-[var(--color-ink-soft)]">התרגיל הנוכחי לא יישמר.</p>
+            {/* (c) Session arc: leaving is free, at any point. The old copy
+                warned the current exercise would be lost, which is a
+                reason not to leave — and the child is allowed to leave. */}
+            <p className="text-lg font-bold text-[var(--color-ink)]">{EXIT_TITLE}</p>
             <div className="w-full flex flex-col gap-2">
               <button
                 onClick={() => setConfirmingLeave(false)}
                 className="min-h-14 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-medium"
               >
-                להישאר
+                {EXIT_STAY}
               </button>
               <button
                 onClick={onBackToMap}
                 className="min-h-12 rounded-[var(--radius-button)] bg-transparent text-[var(--color-ink-soft)] text-base"
               >
-                כן, לצאת
+                {EXIT_LEAVE}
               </button>
             </div>
           </div>

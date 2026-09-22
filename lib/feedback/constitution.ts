@@ -243,6 +243,90 @@ export const TAP_OFFER = "אפשר גם ללחוץ על התשובה כאן.";
 export const CONFIRM_YES = "כן";
 export const CONFIRM_NO = "לא";
 
+// ------------------------------------------------------------ session arc
+
+/**
+ * A session is one idea. It opens by saying what the idea is, closes by
+ * naming what the character saw the child do, and can be left at any point
+ * without a word of guilt.
+ *
+ * The closing beat describes CHANGE, not score. "ענית נכון על 3 מתוך 4" is
+ * a mark out of four; "בהתחלה לקח לנו יותר זמן, ובסוף מצאת את זה לבד" is
+ * something the child can recognise in themselves. The second is also the
+ * only one of the two that is still true on a day that went badly.
+ */
+
+/** Said once, at the start: what today is about. */
+export function sessionGoal(idea: string): string {
+  return `היום אנחנו לומדים ${idea}.`;
+}
+
+/**
+ * The closing beat. `improvement` is chosen by lib/session/arc.ts from what
+ * actually happened; `nextStation` is named so the child leaves knowing
+ * where the path goes next.
+ */
+export function sessionClose(improvement: string, nextStation: string | null): string {
+  const next = nextStation ? ` התחנה הבאה במפה: ${nextStation}.` : "";
+  return `${improvement}${next}`;
+}
+
+/**
+ * What the character noticed. Ordered from most to least specific; the arc
+ * picks the first one that is true, so a child who improved hears about
+ * the improvement and a child who did not still hears something true.
+ */
+export const IMPROVEMENT = {
+  /** Later answers landed first time where earlier ones did not. */
+  fasterByTheEnd: "בהתחלה זה לקח יותר זמן, ובסוף מצאת את זה לבד.",
+  /** Asked for help early, stopped needing it. */
+  neededFewerHints: "בהתחלה ביקשת רמז, ואחר כך כבר לא היה צריך.",
+  /** Came back after a wrong answer and got it. */
+  recoveredAfterAMiss: "משהו לא הסתדר באמצע, ואחר כך דווקא כן — זה החלק הקשה ועברת אותו.",
+  /** Nothing measurable changed, and that is said plainly rather than dressed up. */
+  steady: "עברנו על זה ביחד עד הסוף.",
+} as const;
+
+/** Leaving, at any point. No guilt, nothing to reconsider. */
+export const EXIT_TITLE = "לחזור למפה?";
+export const EXIT_STAY = "להמשיך כאן";
+export const EXIT_LEAVE = "לחזור למפה";
+
+/**
+ * "How did you know?" — asked at most once in a session, and only right
+ * after the character has just named a strategy the child used.
+ *
+ * The point is the child SAYING the method out loud, which is what makes
+ * it theirs. Asked twice it becomes a quiz; asked after a lucky guess it
+ * asks a child to invent a reason they did not have.
+ */
+export const HOW_DID_YOU_KNOW = "איך ידעת?";
+
+/**
+ * Did the character just name something the child DID?
+ *
+ * The same vocabulary MODEL_RULES asks the model to praise with — a verb
+ * for the child's own action, or the "ראיתי ש..." construction. A
+ * heuristic, and deliberately a narrow one: a false negative costs one
+ * unasked question, a false positive asks a child to explain a method
+ * nobody observed.
+ */
+export function namesAStrategy(text: string): boolean {
+  const STRATEGY_MARKERS = [
+    "ראיתי ש",
+    "הדרך ש",
+    "ספרת",
+    "חיברת",
+    "חישבת",
+    "פירקת",
+    "התחלת מ",
+    "בדקת",
+    "השתמשת",
+    "מצאת את הדרך",
+  ];
+  return STRATEGY_MARKERS.some((m) => text.includes(m));
+}
+
 // --------------------------------------------------------- celebrations
 
 export const TOPIC_COMPLETE = "סיימנו תחנה! התחנה הבאה במפה נפתחה.";
