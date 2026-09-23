@@ -12,6 +12,7 @@ import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
 import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT, EXIT_TITLE, EXIT_STAY, EXIT_LEAVE } from "@/lib/feedback/constitution";
 import * as arc from "@/lib/session/arc";
+import { createSessionLog } from "@/lib/fieldtest/sessionLog";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -172,6 +173,17 @@ export default function ExerciseScreen({
   /** Hint rungs opened on the CURRENT problem; folded into the
    *  observations when the problem is answered, then reset. */
   const hintRungsUsedRef = useRef(0);
+  /** Field-test instrumentation (lib/fieldtest/sessionLog.ts). In memory
+   *  only: no network, no storage, no identifiers, and no answer text — so
+   *  an export cannot reconstruct what a child said. */
+  const logRef = useRef(createSessionLog());
+  /** Which problem we are on, 1-based, for the log's per-problem numbers. */
+  const problemNoRef = useRef(0);
+  /** Set when an answer is submitted; read when audio actually begins, so
+   *  time-to-audible is measured against the same `speaking` flip the
+   *  existing "speak-start" leg uses. */
+  const answerSubmittedAtRef = useRef<number | null>(null);
+  const lastAnswerRef = useRef<{ via: "tap" | "voice"; attempt: 1 | 2 } | null>(null);
   /** Set when the arc decides to ask "איך ידעת?" — spoken after the
    *  character's own feedback line, and shown under it. Cleared on the
    *  next question; the arc itself remembers it was already asked. */
@@ -309,6 +321,17 @@ export default function ExerciseScreen({
       recordTiming("speak-start", performance.now() - calledAt);
       speakCalledAtRef.current = null;
     }
+    // Field-test instrumentation: submit -> the first moment a child
+    // actually HEARS something back. Measured here rather than at speak()
+    // because that is when audio really began.
+    const submittedAt = answerSubmittedAtRef.current;
+    if (submittedAt !== null) {
+      answerSubmittedAtRef.current = null;
+      logRef.current.add({
+        t: 0, kind: "audible", problem: problemNoRef.current,
+        ms: Math.round(performance.now() - submittedAt),
+      });
+    }
     if (turnStartedAtRef.current !== null) {
       if (speakingAckRef.current) {
         // Time-to-acknowledgement: what the kid hears first. The turn
@@ -370,6 +393,14 @@ export default function ExerciseScreen({
     const autoRead = (grade === "א" || grade === "ב") && ex.type === "multiple_choice" && !!ex.choices?.length;
     // (a) Session arc: one goal line, before the first question of the
     // session — said once, and never on a later question.
+    if (problemNoRef.current === 0) {
+      logRef.current.add({ t: 0, kind: "session-start", subject, grade, topicId: topicId ?? null });
+    }
+    problemNoRef.current += 1;
+    logRef.current.add({
+      t: 0, kind: "problem-start", problem: problemNoRef.current,
+      exerciseId: ex.id, subtype: ex.subtype ?? ex.type,
+    });
     const opened = arc.openSession(arcRef.current, topicId);
     arcRef.current = opened.state;
     if (opened.say) speakAuto(opened.say);
@@ -582,6 +613,10 @@ export default function ExerciseScreen({
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
     answerInFlightRef.current = true;
+    // Field-test instrumentation: the clock for time-to-audible, and which
+    // channel the child used. The answer TEXT is deliberately not logged.
+    answerSubmittedAtRef.current = performance.now();
+    lastAnswerRef.current = { via: opts?.viaVoice ? "voice" : "tap", attempt };
     setNoMatch(false);
     setBasePose("thinking");
     // Voice turns get an immediate audible acknowledgement so the
@@ -661,6 +696,15 @@ export default function ExerciseScreen({
             opener = msg.opener ?? "";
             const correct = msg.correct === true;
             verdictCorrect = correct;
+            {
+              const a = lastAnswerRef.current;
+              if (a) {
+                logRef.current.add({
+                  t: 0, kind: "answer", problem: problemNoRef.current,
+                  via: a.via, attempt: a.attempt, correct,
+                });
+              }
+            }
             setEvalFailed(false);
             setEvaluation({ correct, feedback: opener });
             // Kid-scene reskin: count DISTINCT exercises, not submissions —
@@ -689,7 +733,12 @@ export default function ExerciseScreen({
               // line; everything else is the tier-1 burst from the bubble.
               const sessionMoment = !sessionCloseShown && Date.now() - sessionStartedAt >= SESSION_TARGET_MS;
               const topicMoment = !!topicId && !topicDoneRef.current;
-              if (topicMoment) topicDoneRef.current = true;
+              if (topicMoment) {
+                topicDoneRef.current = true;
+                logRef.current.add({
+                  t: 0, kind: "session-end", reason: "completed", lastProblem: problemNoRef.current,
+                });
+              }
               if (sessionMoment || topicMoment) {
                 setBasePose("correct");
                 if (!sessionMoment) setTopicCelebration(true);
@@ -759,6 +808,22 @@ export default function ExerciseScreen({
     }
   }
 
+  /**
+   * The export a researcher takes off the device after a session
+   * (docs/investigations/field-test-plan.md). A console handle rather than
+   * a screen: it must not be reachable by a six-year-old mid-session, and
+   * it must not need a network the field site may not have.
+   */
+  useEffect(() => {
+    const w = window as unknown as Record<string, unknown>;
+    w.__fieldTestSession = () => logRef.current.toJSON();
+    w.__fieldTestSummary = () => logRef.current.summary();
+    return () => {
+      delete w.__fieldTestSession;
+      delete w.__fieldTestSummary;
+    };
+  }, []);
+
   // Kept current every render (see the refs' declaration above).
   exerciseRef.current = exercise;
   submitAnswerRef.current = submitAnswer;
@@ -778,6 +843,10 @@ export default function ExerciseScreen({
       const rung = buildRung(ex, kind, kidGender) ?? buildRung(ex, nextRung(ex, kind) ?? "solve", kidGender);
       if (rung) {
         hintRungsUsedRef.current += 1;
+        logRef.current.add({
+          t: 0, kind: "hint-rung", problem: problemNoRef.current,
+          rung: rung.kind, rungNumber: hintRungsUsedRef.current,
+        });
         speakAutoRef.current(rung.say);
       }
       setBasePose("explaining");
@@ -828,6 +897,12 @@ export default function ExerciseScreen({
       }
       setRepairState((prev) => {
         const next = repair.onUnclear(prev, { candidates: input.candidates, reason: input.reason, gender: kidGender });
+        logRef.current.add({
+          t: 0, kind: "stt-repair", problem: problemNoRef.current,
+          reason: input.reason,
+          outcome: next.stage.kind,
+          unclear: next.unclearCount,
+        });
         repair.logRepair({
           exerciseId: input.exerciseId,
           reason: input.reason,
@@ -1504,7 +1579,13 @@ export default function ExerciseScreen({
                 {EXIT_STAY}
               </button>
               <button
-                onClick={onBackToMap}
+                onClick={() => {
+                  // Field test measure 4: where a session actually ends.
+                  logRef.current.add({
+                    t: 0, kind: "session-end", reason: "left", lastProblem: problemNoRef.current,
+                  });
+                  onBackToMap();
+                }}
                 className="min-h-12 rounded-[var(--radius-button)] bg-transparent text-[var(--color-ink-soft)] text-base"
               >
                 {EXIT_LEAVE}
