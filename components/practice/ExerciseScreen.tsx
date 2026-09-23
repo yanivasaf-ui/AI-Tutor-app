@@ -1291,12 +1291,30 @@ export default function ExerciseScreen({
               when the ladder is spent rather than repeating its last rung. */}
           {!evaluation && !repair.isConfirming(repairState) && (
             <div className="flex flex-col gap-3 pt-1">
+              {/* Cognitive-load pass: the rung is SPOKEN, not printed.
+                  Printing it verbatim under a question the child is already
+                  holding in their head is the same instruction twice, in two
+                  channels, and it is the channel a pre-reader cannot use. The
+                  screen keeps the math object (the small win's own question,
+                  below); the voice keeps the instruction. A replay button
+                  stands in for the text, matching the per-option 🔊 grade ג
+                  already has. */}
               {hint && (
-                <div className="rounded-[var(--radius-card)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-teal-soft)]/30 px-4 py-3 text-lg text-[var(--color-ink)]">
-                  {hint.say}
-                </div>
+                <button
+                  onClick={() => speak(hint.say, OWNER, character)}
+                  aria-label="לשמוע את הרמז שוב"
+                  className="self-center min-h-12 px-5 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/40 bg-[var(--color-teal-soft)]/30 text-[var(--color-ink)] text-base font-bold"
+                >
+                  🔊 לשמוע שוב
+                </button>
               )}
               {hint?.practice && winDone === null && (
+                <div className="flex flex-col items-center gap-2">
+                  {/* The one thing on this screen that IS a math object:
+                      the question the child is about to answer. */}
+                  <p dir="ltr" className="text-2xl font-bold text-[var(--color-ink)]">
+                    {hint.practice.question}
+                  </p>
                 <div className="flex gap-2 justify-center">
                   <input
                     value={winAnswer}
@@ -1312,6 +1330,7 @@ export default function ExerciseScreen({
                   >
                     בדיקה
                   </button>
+                  </div>
                 </div>
               )}
               {nextRung(exercise, hint?.kind ?? null) !== null && (
