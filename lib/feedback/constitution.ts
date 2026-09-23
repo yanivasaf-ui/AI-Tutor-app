@@ -339,8 +339,15 @@ export const SESSION_COMPLETE =
  * states the score plainly without a judgement attached to it.
  */
 export function topicSummary(opts: { attempted: number; correct: number; topicLabel?: string }): string {
+  // Reward audit, 2026-09-23: this used to end "ענית נכון על 3 מתוך 4".
+  // That is a mark out of four — a score, and the one a child remembers
+  // from a station they found hard. What is kept is the true part: the
+  // work was finished. `correct` stays in the signature because the
+  // caller has it and a future non-score use may want it; it is
+  // deliberately not spoken.
+  void opts.correct;
   const where = opts.topicLabel ? ` בנושא ${opts.topicLabel}` : "";
-  return `כל הכבוד! סיימת את כל ${opts.attempted} התרגילים${where}. ענית נכון על ${opts.correct} מתוך ${opts.attempted}.`;
+  return `סיימנו את התחנה${where} — עברנו על ${opts.attempted} תרגילים ביחד.`;
 }
 
 // ------------------------------------------------------- the model's brief

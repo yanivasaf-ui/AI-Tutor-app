@@ -192,7 +192,6 @@ export default function ExerciseScreen({
    *  and while the first-visit diagnostic is still placing them. */
   const [practice, setPractice] = useState<PracticeSummary | null>(null);
   /** Bumped when the level changes, to replay the stars' pop. */
-  const [levelBump, setLevelBump] = useState(0);
   /** Set once this visit's topic has been celebrated (or was already done
    *  before we got here) — a topic completes once. */
   const topicDoneRef = useRef(topicWasDone !== false);
@@ -719,7 +718,6 @@ export default function ExerciseScreen({
             recordTiming("prose-ready", performance.now() - evaluateStartedAt);
             if (msg.practice) {
               setPractice(msg.practice);
-              if (msg.practice.change) setLevelBump((n) => n + 1);
             }
             const prose = msg.feedback ?? "";
             if (prose) {
@@ -1014,7 +1012,13 @@ export default function ExerciseScreen({
           ← {backLabel}
         </button>
         <div className="flex items-center gap-3">
-          {practice?.level && <LevelStars level={practice.level} bump={levelBump} />}
+          {/* Reward audit, 2026-09-23: the ★★☆ level display was removed.
+              It rendered the ADAPTIVE DIFFICULTY as a score out of three
+              and sat on screen for the whole session, so it read as "how
+              good you are" rather than "which level you are working at" —
+              and its stars were the same symbol the grouping exercises ask
+              children to divide into piles. The level still drives which
+              exercise is built; it is simply not scored at the child. */}
           <MuteToggle />
         </div>
       </div>
@@ -1368,15 +1372,10 @@ export default function ExerciseScreen({
             </button>
           )}
 
-          {evaluation && practice?.change === "up" && (
-            <motion.p
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="self-center rounded-full bg-[var(--color-teal-soft)] text-[var(--color-teal-ink)] font-bold px-4 py-1"
-            >
-              עלינו רמה! ⭐
-            </motion.p>
-          )}
+          {/* Reward audit, 2026-09-23: "עלינו רמה! ⭐" was removed. A
+              starred badge announcing a level-up is an achievement token,
+              not station completion or unlocked content — the two things
+              this app keeps. The level change itself is unaffected. */}
 
           {evaluation && evaluation.correct && (
             <div className="self-center flex flex-col items-center gap-2 mt-1">
@@ -1499,23 +1498,4 @@ export default function ExerciseScreen({
   );
 }
 
-/** The kid's level on this topic, as stars — no numbers, no words a
- *  pre-reader has to parse. Pops when the level changes. */
-function LevelStars({ level, bump }: { level: 1 | 2 | 3; bump: number }) {
-  return (
-    <motion.span
-      key={bump}
-      initial={bump > 0 ? { scale: 1.5 } : false}
-      animate={{ scale: 1 }}
-      transition={{ type: "spring", stiffness: 320, damping: 12 }}
-      role="img"
-      aria-label={`רמה ${level} מתוך 3`}
-      data-level={level}
-      className="text-xl tracking-wide text-[var(--color-teal)]"
-      dir="ltr"
-    >
-      {"★".repeat(level)}
-      <span className="text-slate-300">{"☆".repeat(3 - level)}</span>
-    </motion.span>
-  );
-}
+/* Reward audit, 2026-09-23: LevelStars (★★☆) deleted — see the top bar. */
