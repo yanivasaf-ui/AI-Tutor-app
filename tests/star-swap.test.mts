@@ -236,6 +236,56 @@ t("no mechanic or reward code is touched by this change", () => {
   assert.equal(git(["diff", "--name-only", "HEAD", "--", "components/exercises/GroupingWidget.tsx"]).trim(), "");
 });
 
+console.log("\nthe durable undo path (docs/investigations/star-to-apple/)");
+
+const ART = "docs/investigations/star-to-apple";
+const art = (f: string) => readFileSync(new URL(`../${ART}/${f}`, import.meta.url), "utf8");
+
+t("the committed dump is the 19 pre-swap rows, every item a star", () => {
+  const dump: BankRow[] = JSON.parse(art("rows-before.json"));
+  assert.equal(dump.length, 19);
+  for (const r of dump) assert.ok(r.grouping.items.every((i) => i === "⭐"), `${r.id} is not a pre-swap row`);
+});
+
+t("regenerating from the committed dump reproduces the committed apply.sql and rollback.sql EXACTLY", () => {
+  // If the script's logic drifts, or a committed file is edited by hand,
+  // the undo path stops being the inverse of what was applied. This is what
+  // keeps it trustworthy long after the rows themselves have changed and a
+  // fresh dump is no longer possible.
+  const dir = mkdtempSync(join(tmpdir(), "starswap-art-"));
+  const apply = join(dir, "apply.sql");
+  const undo = join(dir, "undo.sql");
+  execFileSync(
+    "npx",
+    ["tsx", "scripts/swap-star-to-apple.ts", "--dump", `${ART}/rows-before.json`, "--emit-sql", apply, "--rollback-sql", undo],
+    { encoding: "utf8", cwd: new URL("..", import.meta.url).pathname }
+  );
+  assert.equal(readFileSync(apply, "utf8"), art("apply.sql"), "apply.sql drifted from what the script emits");
+  assert.equal(readFileSync(undo, "utf8"), art("rollback.sql"), "rollback.sql drifted from what the script emits");
+});
+
+t("the committed rollback restores every pre-swap row's original text and stars", () => {
+  const dump: BankRow[] = JSON.parse(art("rows-before.json"));
+  const undo = art("rollback.sql").trim().split("\n");
+  assert.equal(undo.length, 19);
+  for (const r of dump) {
+    const line = undo.find((l) => l.includes(`where id = '${r.id}'`));
+    assert.ok(line, `no rollback statement for ${r.id}`);
+    assert.ok(line!.includes(`set question = $q$${r.question}$q$`), `${r.id}: the original question is not restored`);
+    assert.ok(line!.includes(JSON.stringify(r.grouping)), `${r.id}: the original items are not restored`);
+  }
+});
+
+t("apply.sql and rollback.sql are guarded in opposite directions, so each only fires on the right state", () => {
+  const dump: BankRow[] = JSON.parse(art("rows-before.json"));
+  const apply = art("apply.sql");
+  const undo = art("rollback.sql");
+  for (const r of dump) {
+    assert.ok(apply.includes(`and question = $q$${r.question}$q$;`), `${r.id}: apply is not guarded on the star text`);
+    assert.ok(!undo.includes(`and question = $q$${r.question}$q$;`), `${r.id}: rollback must be guarded on the APPLE text, not the star text`);
+  }
+});
+
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length > 0) {
   console.error("failed: " + failures.join(" | "));
