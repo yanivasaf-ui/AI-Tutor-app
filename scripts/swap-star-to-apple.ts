@@ -3,6 +3,13 @@
  * A DATABASE: it reads a JSON dump, prints what would change, and writes
  * SQL files for a person to review and run.
  *
+ * STATUS: APPLIED to production on 2026-09-24 (19 rows). See
+ * docs/investigations/star-to-apple/APPLIED.md. The commit that introduced
+ * this script says "not yet applied"; that was true then. The query below
+ * can no longer regenerate the dump, because no star rows remain — the
+ * committed docs/investigations/star-to-apple/rows-before.json is the
+ * preserved input, and rollback.sql beside it is the undo.
+ *
  * Run: npx tsx scripts/swap-star-to-apple.ts --dump <rows.json> \
  *        [--emit-sql <apply.sql>] [--rollback-sql <undo.sql>]
  *
