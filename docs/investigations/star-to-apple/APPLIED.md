@@ -45,8 +45,20 @@ A test (`tests/star-swap.test.mts`) regenerates both SQL files from
 `rows-before.json` on every run and fails if either committed file differs,
 so this undo path cannot drift silently.
 
-## Not done, and not part of this
-The bank rows were the only thing changed. The prompt example in
-`lib/exercises/generate.ts` that still offers the model "🍎 או ⭐" for
-future grouping exercises was left alone, so newly generated rows can
-still come back with a star.
+## The generation leak — closed the same day
+The 19 bank rows were only half of it. `lib/exercises/generate.ts` still
+offered the model "🍎 או ⭐" as the object to divide, so every newly
+generated grouping row could bring a star back. Closed in two layers:
+
+1. **The prompt** offers 🍎 only, and does not mention ⭐ at all — naming a
+   thing in a prompt primes it.
+2. **The generator** rejects a grouping draft whose items include ⭐, through
+   the existing retry loop, so a star can never be returned or saved.
+
+`tests/grouping-emoji.test.mts` holds both against a fake model.
+
+## Deliberately left alone
+`shape_match` exercises still use ⭐ as one shape in a repeating pattern
+(`⭐ 🔵 ⭐ 🔵 ___`). Nothing is divided and it is not a reward token; a test
+pins that the guard does not reach it. If ⭐ should also leave the shape
+vocabulary, that is a separate decision.

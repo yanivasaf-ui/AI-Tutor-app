@@ -48,7 +48,7 @@ const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
   // N regardless of how easy the arithmetic is, so the cap is a UX limit
   // on tap count, not a difficulty limit.
   visual_grouping:
-    'תן/י N חפצים זהים (אותו אמוג\'י חוזר, כגון 🍎 או ⭐, לא מילים) שמתחלקים בדיוק ל-groupCount קבוצות שוות ללא שארית — בחר/י N ו-groupCount כך ש-N מתחלק ב-groupCount בדיוק, N הכולל לא יעלה על {MAX_GROUPING_ITEMS}, ומתאים לרמת הכיתה (למשל 12 חפצים, 3 קבוצות). type חייב להיות "grouping". החזר/י שדה נוסף grouping: {"items": [N פעמים אותו אמוג\'י], "groupCount": מספר הקבוצות}. נסח/י את question כבקשה לחלק את החפצים ל-groupCount קבוצות שוות. correctAnswer הוא מספר הפריטים הנכון שאמור להיות בכל קבוצה (N חלקי groupCount), כמחרוזת.',
+    'תן/י N חפצים זהים (אותו אמוג\'י חוזר, כגון 🍎, לא מילים) שמתחלקים בדיוק ל-groupCount קבוצות שוות ללא שארית — בחר/י N ו-groupCount כך ש-N מתחלק ב-groupCount בדיוק, N הכולל לא יעלה על {MAX_GROUPING_ITEMS}, ומתאים לרמת הכיתה (למשל 12 חפצים, 3 קבוצות). type חייב להיות "grouping". החזר/י שדה נוסף grouping: {"items": [N פעמים אותו אמוג\'י], "groupCount": מספר הקבוצות}. נסח/י את question כבקשה לחלק את החפצים ל-groupCount קבוצות שוות. correctAnswer הוא מספר הפריטים הנכון שאמור להיות בכל קבוצה (N חלקי groupCount), כמחרוזת.',
   equation_balance:
     'משוואת חיבור או חיסור פשוטה עם מקום ריק אחד (למשל "3 + ___ = 7"), מתאימה לרמת הכיתה. type חייב להיות "tile_order". החזר/י שדה נוסף tiles: {"items": [4 מספרים מעורבבים קרובים לתשובה, רק אחד מהם הופך את המשוואה לנכונה]}. נסח/י את question כמשוואה עם המקום הריק מסומן בבירור (למשל "___"). correctAnswer הוא המספר הנכון שמאזן את המשוואה, וחייב להיות אחד מהערכים ב-items.',
   shape_match:
@@ -430,6 +430,16 @@ ${subtypeGuidance(subtype, grade)}
     const groupCount = parsed.grouping?.groupCount;
     if (!items || items.length === 0 || typeof groupCount !== "number" || groupCount < 2) {
       throw new Error("Exercise generation returned type=grouping with no valid grouping payload.");
+    }
+    // No stars as the object being divided. ⭐ used to be this app's reward
+    // currency AND the thing children sorted into piles here, which taught
+    // "stars are what you earn" and then asked them to divide earnings (the
+    // reward audit, docs/investigations/reward-audit.md; the 19 bank rows
+    // were rewritten in docs/investigations/star-to-apple/). The prompt no
+    // longer offers one, but a prompt is a request and this is the check:
+    // a star draft is rejected and the generation loop asks again.
+    if (items.includes("⭐")) {
+      throw new Error("grouping items use ⭐, which is reserved as a reward symbol and is not a division object.");
     }
     // Must divide evenly — an uneven split has no single correct "items
     // per group" answer, which is exactly what correctAnswer is supposed
