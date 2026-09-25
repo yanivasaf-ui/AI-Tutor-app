@@ -1,0 +1,4678 @@
+[
+ {
+  "id": "psahot-a2-p26-84",
+  "grade": "א",
+  "text": "חִבּוּר אוֹ חִסּוּר .1 הַשְׁלִימוּ אֶת הַסִּמָן הֶחָסֵר׃ + אוֹ - אֶפְשָׁר לְהֵעָזֵר בַּחֲפָצִים.",
+  "topic": "addition_subtraction",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 26
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p56-220",
+  "grade": "א",
+  "text": "8 + 6 = 4 + 7 = .ג.א 8 + 5 = .ד 9 + 4 = .ב וחיסור 7 + 8 = .ה חיבור .5 הַשְׁלִימוּ בְּדִלּוּגִים שָׁוִים׃",
+  "topic": "addition_subtraction",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 56
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p68-294",
+  "grade": "א",
+  "text": "ב. עד וחיסור 10 - 7 = חיבור 11 - 3 =",
+  "topic": "addition_subtraction",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 68
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p100-258",
+  "grade": "א",
+  "text": "3. אֵיזֶה מִסְפָּר חָסֵר בָּעִגּּול? סְכּום שְׁנֵי מִסְפָּרִים רָשּׁום עַל",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 100
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p49-97",
+  "grade": "א",
+  "text": ".2מָה חָסֵר לְפִי הַחֻקִּיּּות? הַקִּיפּו מִצַּד יָמִין.",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 49
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p36-127",
+  "grade": "א",
+  "text": "חִבּוּר עַל רְצוּעַת מִסְפָּרִים .1 מְנִיַּת הֶמְשֵׁךְ נַסּוּ לִפְתֹּר בְּעֶזְרַת רְצוּעַת הַמִּסְפָּרִים. לְאָן נַגִּיעַ ?",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 36
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p102-269",
+  "grade": "א",
+  "text": "= 10 4 + .א חיבור 5 + = 10.ב 6 + = 10.ג 102",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 102
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p94-237",
+  "grade": "א",
+  "text": "וחיסור חיבור ּתַרְגִּיל׃ = +",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 94
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p87-407",
+  "grade": "א",
+  "text": "מספרים 20 + 80 = עד ,100 30 + 50 = עשרות שלמות 10 + 70 = .3מִשְׂחַק רֶצֶף׃חִבּוּר וְחִסּוּר עֲשָׂרוֹת.",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 87
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_shvat_01-t4",
+  "grade": "א",
+  "text": "לפני הפעילות חשוב לוודא שהתלמידים מכירים את מאזני הכפות. כדאי להביא מאזניים לכיתה ואפשר גם לבנות מאזניים בעזרת קולב: כמו-כן חשוב לברר כי התלמידים מבינים שכאשר המאזניים מאוזנים משקל החפצים שעל הכפות שווה, וכאשר המאזניים אינם מאוזנים, החפץ (או החפצים) שעל הכף התחתונה כבדים מהחפץ (או החפצים) שעל הכף העליונה. לַכּוֹבַע שֶׁלִי שָׁלֹש תְּכוּנוֹת צַיְּרוּ אֶת הַכּוֹבַע הֶחָסֵר",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_shvat_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p110-499",
+  "grade": "א",
+  "text": "2 תַּרְגִּילֵי חִבּוּר וּ־2 תַּרְגִּילֵי חִסּוּר לְכָל שְׁלִישִיַּת מִסְפָּרִים׃",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 110
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p52-201",
+  "grade": "א",
+  "text": "4. כִּתְבוּ 4 תַּרְגִּילִים׃ 2 תַּרְגִּילֵי חִבּוּר וּ־2 תַּרְגִּילֵי חִסּוּר׃",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 52
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_adar_01-t2",
+  "grade": "א",
+  "text": "תלמידים נוטים לייחס לסימן השוויון את המשמעות של \"פתור\" ולכן כדאי להציג בפניהם שוויונות שבהם הסימן = ממוקם במקומות שונים. האפשרות להשלים את משוואת החיבור בדרכים שונות, מזמנת התייחסות לחילופיות פעולת החיבור. האפשרות להשלים את משוואת החיסור בדרכים שונות מחזקת את תפיסת תבנית השלם וחלקיו. אפשר לתת משימה \"הפוכה\" ולבקש מהתלמידים להשלים את סימנים =, + , - : אפשר להחליף את המספרים למספרים מתוך העשרת הראשונה, למשל: 4, 5, ו-9. יש לשים לב שהתלמידים קוראים את השוויון משמאל לימין (ואינם מתכוונים ל: \"משולש\" פחות \"טיפה\"). להרחבה: קישור למאמר מתורגם בנושא זה: הבנה של ילדים את מושג השוויון כבסיס לאלגברה באתר מרכז המורים. Falkner, K. P., Levi, L., & Carpenter, T. P. (1999). Children's understanding of equality: A foundation for algebra. Teaching children mathematics, 6(4), 232. מְשַׂחֲקִים בְּדוֹמִינוֹ לְפִי מָה מְסֻדָּרוֹת אַבְנֵי הַדּוֹמִינוֹ? הַשְׁלִימוּ אֶת הַנְּקֻּדּוֹת שֶׁעַל אַבְנֵי הַדּוֹמִינוֹ עַל-פִּי הַחֻקִּיוּת שֶׁמְּצָאתֶם.",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_adar_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_nisan_01-t4",
+  "grade": "א",
+  "text": "כדי להגיע למספר החסר, אפשר להציע לתלמידים \"ללכת אחורה\" ולכתוב את המספרים שבמסגרות האחרות (החל מהמסגרת הקרובה ביותר למספר 15). עם תלמידים מתקדמים כדאי לערוך דיון סביב השאלה \"איך אפשר למצוא את המספר שבמסגרת הירוקה בלי לחשב את המספרים שבמסגרות האחרות?\" אפשר להציע לתלמידים להכין שרשרת משלהם (בה ניתן להשתמש בפעולת חיבור, חיסור, או בחיבור וחיסור יחד). כמו-כן, יש אפשרות להשלים מספרים (או חלק מהם), ולבקש מהתלמידים להשלים פעולות. לתלמידים מתקדמים אפשר לתת את המשימה כך: אֶחָד מִי יוֹדֵעַ? הַצִּיעוּ אֶפְשָׁרוּיוֹת שׁוֹנוֹת לִצֹּר מֶהַמִּסְפָּרִים וּמִסִּימָנֵי הַפְּעוּלוֹת שֶׁלִּפְנֵיכֶם תַּרְגִּילִים שֶׁהַתּוֹצָאָה שֶׁלָהֶם הִיא 1. 44331122 4 4 3 3 1 1 2 2 333322 3 3 3 3 2 2 ----++------++++++++ - - - - + + - - - - - - + + + + + + + +",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_nisan_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_tevet_01-t4",
+  "grade": "א",
+  "text": "כדאי לנצל את המשימה לעיסוק בישר מספרים ככלי לפתרון תרגילי חיבור. המשימה עובדה מ- http://www.cimt.org.uk/projects/mepres/primary/Book2_1.pdf מַתְאִימִים צוּרוֹת דָּנִי גָּזַר צוּרוֹת שׁוֹנוֹת מִנְּיָּר כָּחֹל. הַתְאִימוּ כָּל צוּרָה לַמָּקוֹם מִמֶּנוּ נִגְזְרָה. אַחַת הַצּוּרוֹת לֹא נִגְזְרָה מֵאוֹתוֹ דַּף. הַאִם מְצָאתֶם אוֹתָה?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_tevet_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p95-411",
+  "grade": "א",
+  "text": "חילוק אֲנִי זוֹכֶרֶת שֶׁ ׃ 6 + 6 = 12 מוֹר אֲנִי סוֹפֶרֶת עִם אֶצְבָּעוֹת עוֹד 6׃",
+  "topic": "division",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 95
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a3-p101-450",
+  "grade": "א",
+  "text": "חילוק נִשְׁאֲרּו 6 חֲפָצִים. שַׂמְתִּי עוֹד 1 בְּכָל קְבּוצָה.",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 101
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p102-456",
+  "grade": "א",
+  "text": "12 עֵטִים. קֻפְסָאוֹת. 3 עֵטִים בַּקֻּפְסָה חילוק 9 עֵטִים. קֻפְסָאוֹת.",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 102
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a3-p96-418",
+  "grade": "א",
+  "text": "יֵשׁ קְבּוצוֹת. חילוק",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 96
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a3-p108-495",
+  "grade": "א",
+  "text": "ב. כַּמָּה תְּקַבֵּל כָּל אַחַת? גַּל מָאיָה שברים כָּל אַחַת תְּקַבֵּל שׁוֹקוֹלָדִים.",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 108
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p130-353",
+  "grade": "א",
+  "text": "סְבִיבוֹן סִימֶטְרִי הַשְׁלִימּו בְּעֶזְרַת הַצּּורוֹת אֶת הַחֵצִי הַ ּׁשֵנִי שֶׁל הַסְּבִיבוֹן׃",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 130
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p107-484",
+  "grade": "א",
+  "text": "חֵצִי וְרֶבַע מְחַלְּקִים שָׁוֶה בְּשָׁוֶה - חֵצִי שְׁאֵלָה בִּקְבּוצָה קְטַנָּה עִם הַמּוֹרָה׃",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 107
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a3-p110-502",
+  "grade": "א",
+  "text": "ב. שברים לְכָל אֶחָד יִהְיּו דַּפִּים.",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 110
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_kislev_01-t5",
+  "grade": "א",
+  "text": "מומלץ לבנות סביבון גדול כזה על רצפת הכיתה ולבצע בו את הפעילות. אפשר, כמובן לתת סביבון מודפס לעבודה בקבוצות. יש לשים לב שהקטעים שיסורטטו יתחילו ויסתיימו תמיד באחד הקדקודים או הקטעים שכבר קיימים. כך: או כך: אבל לא כך: כדאי לצבוע את המצולעים שהתקבלו. בזמן החלוקה מתקבלים גם מצולעים שמורכבים משניים או יותר מצולעים אחרים. אין צורך להעיר את תשומת ליבם של התלמידים לכך, אבל אם יהיו תלמידים שיבחינו בהם, כדאי, כמובן להתייחס לכך. אפשר לתת בתחילה סביבון כזה: . במקרה זה סרטוט הקו של ליאור מזמן לתלמידים עיסוק במצולעים מוכרים פחות. כמו כן, השאלה בסעיף השלישי תהיה: \"אחרי שליאורה סרטטה קטע נוסף, התקבלו שלושה משולשים וריבוע. האם תוכלו לסרטט את הקטע שסרטטה ליאורה?\" שִׁוּוּי מִשְׁקָל מִסְפָּרִי הַמִּסְפָּר הָרָשׁוּם בְּרֹאשׁ כָּל תְּמוּנָה הוּא סְכוּם הַמִּשְׁקָלִים הַחֲסֵרִים. הַשְׁלִימוּ אֶת הַמִּסְפָּרִים הַחֲסֵרִים:",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_kislev_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p110-500",
+  "grade": "א",
+  "text": "4. הַשְׁלִימוּ בְּדִלּוּגִים שָׁוִים׃",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 110
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p52-200",
+  "grade": "א",
+  "text": "ו. .3 הַשְׁלִימוּ בְּדִלּוּגִים שָׁוִים׃",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 52
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p83-396",
+  "grade": "א",
+  "text": "חֲבִילוֹת שֶׁל מַסְטִיקִים .2 הַשְׁלִימוּ׃",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 83
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_eyar_01-t1",
+  "grade": "א",
+  "text": "מָגֵן-דָּוִד מִמְּשֻׁלָּשִׁים גִּזְרוּ אֶת הַמְּשֻׁלָּשִׁים וּצְרוּ מֵהֶם מָגֵן-דָּוִד. הַאִם צָרִיךְ אֶת כָּל הַמְּשֻׁלָּשִׁים?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_eyar_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p120-545",
+  "grade": "א",
+  "text": "אֲנִי אֶתְחַפֵּשׂ לְ . מָה בַּתַּחְפֹּשֶׂת?מְחִיר וחגים מתמטיקה סַךְהַכֹּל מְחִיר הַתַּחְפֹּשֶׂת ּתַרְגִּיל -",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 120
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p115-519",
+  "grade": "א",
+  "text": "כַּמָּה כֶּסֶף נִשְׁאַר לָהּ?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 115
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p69-152",
+  "grade": "א",
+  "text": "ּתַרְגִּיל׃ = + ּתַרְגִּיל׃ = + = + ּתַרְגִּיל׃",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 69
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p17-56",
+  "grade": "א",
+  "text": "ד. ש״ח ש״חש״חש״ח + ש״ח 17",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 17
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p14-60",
+  "grade": "א",
+  "text": "ד. ּבְסַךְהַכֹּל יֵשׁ סֻכָּרִיּוֹת. = x 14",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 14
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_eyar_01-t6",
+  "grade": "א",
+  "text": "אפשר להמשיך ולשאול לגבי אופנים אחרים של סידור המלבנים. למשל: או: מעובד מ- https://www.cambridgemaths.org/blogs/picture-speaks-thousand-words/",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_eyar_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p33-110",
+  "grade": "א",
+  "text": "ה. מִסְְפְּרֵי הַבָּתִּים בַּצַּד הַ ּׁשֵנִי שֶׁל הָרְחוֹב שֶׁלִּי׃",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 33
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p128-576",
+  "grade": "א",
+  "text": "2. אֶפְשְׁר לְסַמֵן קוֹמוֹת בַּבִּנְיָן בְּאוֹתִיּוֹת׃",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 128
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_kislev_01-t1",
+  "grade": "א",
+  "text": "מְחַלְקִּים סֻפְגָנִיּוֹת עַל הַשֻּׁלְּחָן שְׁלוֹשָׁה מַגָּשִׁים: מַגָּשׁ חוּם, מַגָּשׁ אָדֹם וּמַגָּשׁ וָרֹד. עַל שְׁלֹשֶת הַמַּגָּשִׁים יֵשׁ בְּסַךְ-הַכֹּל 10 סֻפְגָנִיּוֹת. מִסְפַּר הַסֻּפְגָנִיּוֹת שֶׁעַל הַמַּגָּש הָאָדֹם שָׁוֶה לְמִסְפַּר הַסֻּפְגָנִיּוֹת שֶׁעַל הַמַּגָּש הַוָרֹד. מָה יָכוֹל לִהְיוֹת מִסְפַּר הַסֻּפְגָנִיּוֹת שֶׁעַל כָּל אֶחָד מֵהַמַּגָּשִׁים?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_kislev_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p85-207",
+  "grade": "א",
+  "text": "הוֹסַפְתִּי 3. ּכַמָּה יֵשׁ כָּעֵת?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 85
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p120-545",
+  "grade": "א",
+  "text": "הָיּו קִבְּלָה כַּמָּה יֵשׁ עַכְשָׁו?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 120
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p9-12",
+  "grade": "א",
+  "text": "4. הַשְׁלִימוּ לְ ־10 (צַיְּרוּ עִגּוּלִים וְכִתְבוּ מִסְפָּר)׃",
+  "topic": "geometry",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 9
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p30-56",
+  "grade": "א",
+  "text": "בְּכַמָּה מְצֻלָּעִים מִכָּל סּוג הִשְׁתַּמַשְׁתֶּם?",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 30
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p34-63",
+  "grade": "א",
+  "text": ".3 בְּנּו צּורָה. כִּתְבּו בַּטַּבְלָה׃בְּכַמָּה מְצֻלָּעִים מִכָּל סּוג הִשְׁתַּמַשְׁתֶּם?",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 34
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p121-550",
+  "grade": "א",
+  "text": "ּפָרְטוּ בַּטַּבְלָה בְּכַמָּה מְצֻלָּעִים הִשְׁתַּמַּשְׁתֶּם?",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 121
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_adar_01-t3",
+  "grade": "א",
+  "text": "כדאי לדון עם התלמידים כיצד הם רואים את החוקיות. ישנם ילדים שרואים זאת כמו שמתואר לעיל, וישנם ילדים שרואים רק את החוקיות שיש בחלק העליון (או התחתון), ורואים שיש קשר קבוע בין מספר הנקודות בחלק העליון לבין מספר הנקודות שבחלק התחתון שבכל אבן. כדאי לבצע את הפעילות בהתנסות באבני דומינו מוחשיות. אפשר להציע לתלמידים להמציא חוקיות ולבקש מחברם להשלים לפי החוקיות שמצאו. פעילויות דומות: מאמר מתאים ובו רעיונות לפעילויות נוספות : http://ymath.haifa.ac.il/images/stories/mispar_chazak_2000/issue7/domino_chrena_nesher.pdf השאלה עובדה מתוך: http://nrich.maths.org/241 שְׁמוֹנֶה בְּכָל אֶחָד מֵהַצִּיּוּרִים יֵשׁ שְׁמוֹנָה עִגּוּלִים. מִתְחוּ קַו בֵּין כָּל צִיּוּר לְבֵין הַתַּרְגִּיל הַמְּתָאֵר אֶת מִסְפַּר הָעִגּוּלִים.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_adar_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p76-359",
+  "grade": "א",
+  "text": "לִפְנֵי שָׁנִים רַבּוֹת מְאוֹד מָדְדוּ בְּעֶזְרַת אֵיבְרֵי הַגּוּף.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 76
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p22-97",
+  "grade": "א",
+  "text": "מְרֻבָּע מֵהַמִּלָּה אַרְבַּע מצולעים",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 22
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_adar_01-t1",
+  "grade": "א",
+  "text": "מָה מִסְתַּתֵּר מֵאֲחוֹרֵי הַצּוּרָה הַשְׁלִימוּ בְּעֶזְרַת הַסְּפָרוֹת 13, 4 ו-9: הַאִם יֵשׁ אֶפְשָׁרוּת נוֹסֶפֶת?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_adar_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_shvat_01-t3",
+  "grade": "א",
+  "text": "יש אפשרות לקבל אחר הגזירה מחומש, מרובע או משולש. אם בכיתה לא התקבלו שלושת המצולעים, כדאי לבקש מהתלמידים לנסות לגזור כך שיתקבל כל אחד מהמצולעים. המשימה עובדה על-פי: מאונטוויטן, מ. (2004). פירוק והרכבה של מצולעים. מספר חזק 2000, 34-37 עַל קַל וְעַל כָּבֵד מָה כָּבֵד יוֹתֵר מִסְפָּרַיִם אוֹ חֲבִילַת צְבָעִים? מָה כָּבֵד יוֹתֵר כַּדּוּר אוֹ קֻבִּיָּה?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_shvat_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_tevet_01-t6",
+  "grade": "א",
+  "text": "המשימה משלבת זיהוי צורות גאומטריות ושימוש במושגים : מעל, מתחת, ליד, ימין, שמאל . אפשר לשחק במשחק \"מי אני\": ילד חושב על אחד הציורים, והתלמידים האחרים צריכים לשאול שאלות כן/ לא בעזרתן יגלו מהו הציור עליו חשב הילד. או ילד אומר \" הצורה שלי ליד... מעל... וכו'\" והתלמידים האחרים צריכים לזהות את הצורה שבחר. אפשר להתחיל את המשימה בשאלה מה שמות הצורות שבציור? כמה יש מכל צורה?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_tevet_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a1-p95-238",
+  "grade": "א",
+  "text": "מָה אֶפְשָׁר לִקְנוֹת עַד 10 שְׁקָלִים?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 95
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p123-559",
+  "grade": "א",
+  "text": "מתמטיקה וחגים מָה נִקְנֶה בְּ ־16 שְׁקָלִים?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 123
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p77-373",
+  "grade": "א",
+  "text": "מדידות רֹחַב הַדֶּלֶת גֹּבַהּהַכִּסֵּא אורך אֹרֶךְהַקַּלְמָר אֹרֶךְהַלּוּחַ רֹחַב הַ ּׁשֻלְחָן אֹרֶךְהַיַּלְקוּט ּכִתְבוּ אֵילוּ חֲפָצִים הֵם בְּאֹרֶךְ 1 סֶנְטִימֶטֶר בְּעֶרֶךְ?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 77
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p91-230",
+  "grade": "א",
+  "text": "ּתַרְגִּיל׃ = - נִשְׁאֲרּו לִי שְׁקָלִים.",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 91
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p114-522",
+  "grade": "א",
+  "text": "וחגים קָנִיתִי קָנִיתִי מתמטיקה = - 16 = - 17 נִשְׁאֲרוּ לִי שְׁקָלִים.נִשְׁאֲרוּ לִי שְׁקָלִים.",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 114
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p85-206",
+  "grade": "א",
+  "text": "ּבָאַרְנָק הָיּו 5 שְׁקָלִים.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 85
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p70-306",
+  "grade": "א",
+  "text": "אֹרֶךְהָעִפָּרוֹן שֶׁלִּי הוּא גַּפְרוּרִים.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 70
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p115-521",
+  "grade": "א",
+  "text": "הּוא קָנָה מַחְבֶּרֶת בַּ ־10 שְׁקָלִים וְסֵפֶר בְּ ־20 שְׁקָלִים.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 115
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_kislev_01-t3",
+  "grade": "א",
+  "text": "מטרת השאלה לפרק את המספר 8 לשני חלקים על-פי אילוצים. כדאי להמליץ לתלמידים לצבוע את מספר הנרות האפשרי בחנוכיות שבדף המצורף. אפשר להפוך את השאלה למתאימה יותר לתלמידים מתקשים על-ידי שאלת שאלות כמו: הדלקתי הערב שלושה נרות, כמה ימים נותרו? כדאי לנצל את המשימה לשימוש במושגים מתמטיים לדג': הדלקתי היום מספר זוגי של נרות...מספר הנרות שהדלקתי עוקב למספר...וכד'. אפשר לבקש מהתלמידים לחבר חידות על מספר הנרות. כָּאן בֵּיתִי לִפְנֵיכֶם תִּשְׁעָה בָּתִים: מַיְּנוּ אֶת הַבָּתִים וְהַסְבִּירוּ עַל-פִּי מָה מִיַּנְתֶּם. הַאִם אֶפְשָׁר לְמַיֵּן אֶת הַבָּתִים אֲחֶרֶת?",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_kislev_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_kislev_01-t6",
+  "grade": "א",
+  "text": "כדאי לנצל את המשימה כדי לחזק גם שיום צורות גאומטריות. יש להסביר לתלמידים שבכל צד של המבנה, סכום המספרים צריך להיות שווה זה לזה. בעת הדיון, יש לכתוב ליד כל ציור את המשוואה המתאימה. אתגר: המשימות עובדו מהאתר: https://solveme.edc.org/Mobiles.html?toosmall=no באתר יש תרגילים דומים רבים.",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_kislev_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p93-440",
+  "grade": "א",
+  "text": "קְנִיּוֹת לַחֹרֶף ּבַחֲנוּת יֵשׁ כּוֹבַע 20 שְׁקָלִים סְוֶדֶר 80 שְׁקָלִים ּגַרְבַּיִם 10 שְׁקָלִים כּוֹבַע וּכְפָפוֹת 40 שְׁקָלִים צָעִיף 20 שְׁקָלִים מִטְרִיָּה 30 שְׁקָלִים מְעִיל 100 שְׁקָלִים מספרים .2 קְנוּ 2 דְּבָרִים. כַּמָּה תְּשַׁלְּמוּ? עד",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 93
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p16-68",
+  "grade": "א",
+  "text": "כפל כַּמָּה רִבּּועִים הוֹסַפְתֶּם בְּכָל פַּעַם?",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 16
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p10-41",
+  "grade": "א",
+  "text": "ב. ּתַרְגִּיל חִבּּור׃ = + + ּתַרְגִּיל כֶּפֶל׃ x מִסְפָּר הָעּוגִיּוֹת מִסְפָּר הַצַּלָּחוֹת כפל בְּצַלַּחַת",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 10
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p13-52",
+  "grade": "א",
+  "text": "ב. ּבְסַךְהַכֹּל יֵשׁ קֻבִּיּוֹת. = x כפל",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 13
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p15-63",
+  "grade": "א",
+  "text": "ב. = x בְּכָל קְבּוצָה מִסְפָּר הַקְּבּוצוֹת כפל",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 15
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p22-96",
+  "grade": "א",
+  "text": "הַמְצֻלָּעִים נִקְרָאִים עַל פִּי מִסְפָּר הַצְּלָעוֹת שֶׁלָּהֶם׃",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 22
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p5-14",
+  "grade": "א",
+  "text": "כפל סְכּום הַמִּסְפָּרִים בְּכָל שּׁורָה וּבְכָל טּור הּוא 10.",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 5
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p26-86",
+  "grade": "א",
+  "text": ".2 בַּחֲרוּ מִסְפָּר וְהַשְׁלִימוּ׃",
+  "topic": "numbers_place_value",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 26
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_tishrei_01-t6",
+  "grade": "א",
+  "text": "תשובות של התלמידים היא דרך טובה להכיר אותם - האם הם מתייחסים גם להיבטים הכמותיים? האם הם יודעים לספור? למנות? האם הם מבינים שהמספר האחרון מציין את כמות הפריטים (קרדינאליות)? האם הם מוצאים את הדומה ואת השונה ומנסחים תשובתם בבהירות? אפשר לבקש מהתלמידים לחבר ולצייר שאלות דומות נוספות.",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_tishrei_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-a1-p45-90",
+  "grade": "א",
+  "text": ".3 כַּמָּה פְּרּוסוֹת עּוגָה בַּצַּלַּחַת?הכרת המספרים עד",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 45
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p99-256",
+  "grade": "א",
+  "text": "ב. 12 גַּרְבַּיִם. הַאִם 12 מִסְפָּר זּוגִי? כֵּן / לֹא",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 99
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p106-483",
+  "grade": "א",
+  "text": "עד מספרים = 6 + 8 .ד = 6 + 9 .א = 5 + 7 .ה = 4 + 7 .ב = 5 + 10 .ו = 2 + 10 .ז = 7 + 5 .ג 106",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 106
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p61-241",
+  "grade": "א",
+  "text": "8 + 3 = 5 + 3 = .ג.א 4 + 7 = 3 + 6 = .ד.ב הַסְּכוּם 10 .3 כִּתְבוּ מִסְפָּרִים מַתְאִימִים בַּמִּשְׁבְּצוֹת, כָּךְשֶׁסְּכוּם הַמִּסְפָּרִים בַּ ּׁשוּרָה (3 מִסְפָּרִים) יִהְיֶה 10, וּסְכוּם הַמִּסְפָּרִים בַּטּוּר (4 מִסְפָּרִים) יִהְיֶה 10.",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 61
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a3-p120-546",
+  "grade": "א",
+  "text": "ּתַרְגִּיל׃ 21 + 3 = = + = + 100 עד מספרים = + = + 120",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%903.pdf",
+   "volume": "א3",
+   "page": 120
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_shvat_01-t6",
+  "grade": "א",
+  "text": "חשוב להבהיר לתלמידים כי כל פרי מייצג מספר. המשימה מסודרת כך שבכל שורה נעזרים בפרט שמגלים בשורה שלפניה. אם רוצים להעלות את רמת הקושי של המשימה אפשר לתת אותה כך: במקרה זה יש להעלות בדיון את השאלה מאיזה נתון כדאי להתחיל, ואיך להמשיך.",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_shvat_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a1-p65-137",
+  "grade": "א",
+  "text": "הַמִסְפָּר 8 לקרוא לילדים׃",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%901.pdf",
+   "volume": "א1",
+   "page": 65
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-a2-p82-395",
+  "grade": "א",
+  "text": "שלמות עשרות עד מספרים",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%902.pdf",
+   "volume": "א2",
+   "page": 82
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_eyar_01-t5",
+  "grade": "א",
+  "text": "אפשר לשאול מה יהיה מספר החרוזים הכולל אם נעמה השתמשה ב-8 חרוזים אדומים. אפשרות לדיון בכיתה: איזה מהמספרים הבאים יכול להיות מספר החרוזים הירוקים במחרוזת: 7, 15, 23, 12?, או האם ייתכן שבמחרוזת יהיו 14 חרוזים כחולים? זוּגִי אוֹ לֹא זוּגִי? גַּלִּי סִרְטְטָה שְׁנֵי מְצֻלָֹּעִים הַמֻּרְכָּבִים מִמַּלְבְּנִים זֵהִים. מִי מֵֵהַמְּצֻלָּעִים מֻרְכָּב מִמִּסְפָּר זוּגִי שֶׁל מַלְבְּנִים? הַסְבִּירוּ.",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_eyar_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_kislev_01-t2",
+  "grade": "א",
+  "text": "יתכן שהחלוקה לשלושה חלקים תהיה קשה עבור חלק מהתלמידים. אפשר לבקש מהם לחלק את הסופגניות לשני מגשים בלי אילוצים, או עם אילוצים. לדוגמה: מספר הסופגניות בצלחת הורודה גדול ב-2 ממספר הסופגניות בצלחת האדומה. לתלמידים מתקדמים אפשר לתת את השאלה מורכבת יותר: על המגש החום סופגנייה אחת יותר מאשר על המגש האדום. על המגש האדום 3 סופגניות פחות מאשר על המגש הורוד. כמה סופגניות יש על כל מגש? הַנֵּרוֹת הַלָּלוּ מִסְפַּר הַנֵּרוֹת שֶׁהִדְלַקְתִּי הָעֶרֶב קָטָן מִמִּסְפַּר יְמֵי הַחֲנֻכָּה שֶנּוֹתְרוּ. מָה יָכוֹל לִהְיוֹת מִסְפַּר הַנֵּרוֹת שֶׁהִדְלַקְתִי?",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_kislev_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_nisan_01-t5",
+  "grade": "א",
+  "text": "לבקש להשתמש בכל המספרים. לאפשר שימוש רק בחלק מהמספרים. לאפשר כתיבת תרגילים ממספרים דו-ספרתיים או אפילו תלת-ספרתיים שנבנו מהספרות הנתונות. בכל מקרה, כדאי לגזור את כרטיסי המספרים והפעולות, ולבקש מהתלמידים לבנות תרגילים שונים, ולתעד את עבודתם בכתב. תלמידים מתקדמים אפשר לשאול האם הם יכולים להציע פעולה נוספת כך שאפשר יהיה להגיע לתוצאה 1. אפשר להיעזר ביישומון: https://www.nctm.org/Classroom-Resources/Illuminations/Interactives/Pan-Balance----Numbers/ ???? מָה יְכוֹלָה הַדִּיאַגְרָמָה \"לְסַפֵּר\" לָנוּ? תְּנוּ כּוֹתָרוֹת לַצִּירִים. הַאִם תּוּכְלוּ לָתֵת כּוֹתֶרֶת לַמְּשִׂימָה?",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_nisan_01.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g1-msemot1_tevet_01-t3",
+  "grade": "א",
+  "text": "לאחר התשובות ה\"רגילות\" כגון: מס' זוגיים, מספרים דו-ספרתיים, וכד', מומלץ לכוון את תלמידים למצוא מגוון של תכונות משותפות. העיסוק בתכונות המשותפות מזמן שימוש במושגים מתמטיים שונים: זוגי/אי-זוגי, מספר חד/דו -ספרתי, סכום ספרות, ועוד. כדאי לבקש מהתלמידים לחבר שאלות כאלה בעצמם. אפשר לשאול שאלות דומות גם על קבוצות כמו: המשימה עובדה מ- Bragg, L. A., Herbert, S., Loong, E. Y. K., Vale, C., & Widjaja, W. (2016). Primary teachers notice the impact of language on children’s mathematical reasoning. Mathematics Education Research Journal, 28(4), 523-544. קְפִיץ קְפֹץ כָּל אֶחָד מִּבַּעֲלֵי הַחַיִּים מַתְחִיל בַּמִּסְפָּר 0 וְקוֹפֵץ שְׁתֵּי קְפִיצוֹת שָׁווֹת. הַשְׁלִימוּ אֶת הַטַּבְלָה: 6 4 1 הַמִּסְפָּר אֵלָיו יַגִּיעַ אַחֲרֵי קְפִיצָה אַחַת 20 16 6 הַמִּסְפָּר אֵלָיו יַגִּיעַ אַחֲרֵי שְׁתֵּי קְפִיצוֹת",
+  "topic": "patterns_sequences",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot1_tevet_01.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p21-91",
+  "grade": "ב",
+  "text": "וחיסור בתחום 60 + 18 = 40 + 29 =",
+  "topic": "addition_subtraction",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 21
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_tevet_02-t4",
+  "grade": "ב",
+  "text": "ניתן להיעזר באמצעים מוחשיים. מומלץ לרכז את פתרונות התלמידים ולרשום אותם באופן שיטתי. באמצעות פיצוי וכתיבה שיטתית של האפשרויות ניתן למצוא את כל הפתרונות האפשריים. מספר הגולות שתרם רון מספר הגולות שתרם עדי 14 16 13 17 12 18 .... .... אפשר להוסיף אילוצים. לדוגמא: כל חבר תרם יותר מ- 5 גולות, כמה אפשרויות שונות לפתרון קיימות? ניתן להוסיף שאלות: האם ייתכן שכל חבר תרם מספר זוגי של גולות? אם כן ציינו את המספר. אם לא הסבירו מדוע. האם ייתכן שכל חבר תרם מספר אי זוגי של גולות? אם כן ציינו את המספר. אם לא הסבירו מדוע. האם ייתכן שחבר אחד תרם מספר אי זוגי של גולות וחבר שני תרם מספר זוגי של גולות ? אם כן ציינו את מספר הגולות שתרם כל אחד, אם לא הסבירו מדוע. שׁוֹקְלִים גּוּפִים מַה שְׁמוֹת הַגּוּפִים בַּצִּיוּר? בְּמָה הֵם דּוֹמִים זֶה לָזֶה? בְּמָה הֵם שׁוֹנִים זֶה מִזֶּה? אוּרִי הִנִּיחַ עַל הַמֹּאזְנַיִם אֶת הַגּוּפִים. הִתְבּוֹנְנוּ בַּסִּרְטוּטִים וֲעַנוּ: אֵיזֶה מֵהַגּוּפִים הוּא הַכָּבֵד מִבֵּין הַשְּׁלוֹשָׁה וְאֵיזֶה גּוּף הוּא הַקַּל מִבֵּין הַשְּׁלוֹשָׁה? הַסְבִּירוּ.",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_tevet_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b1-p137-658",
+  "grade": "ב",
+  "text": "לְאֵיזֶה מִסְפָּר נַגִּיעַ ? תַּרְגִּיל׃ = 41 — וחיסור בלוח",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 137
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p45-203",
+  "grade": "ב",
+  "text": "כַּמָּה כֶּסֶף חָסֵר לוֹ?",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 45
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_tevet_02-t2",
+  "grade": "ב",
+  "text": "קיימות מספר אפשרויות לקבל עודף של 14 ש\"ח ב- 5 מטבעות: מטבע אחד של 10 ש\"ח וארבעה מטבעות של 1 שקל מטבע אחד של 10 ש\"ח , מטבע אחד של 2 ש\"ח, מטבע אחד של 1 ש\"ח ושני מטבעות של חצי ש\"ח שני מטבעות של 5 ש\"ח, שני מטבעות של 1 ש\"ח ומטבע אחד של 2 ש\"ח. ניתן לשנות את האילוץ. לדוגמה: לשנות את מספר המטבעות בהם קיבלה עודף לשלושה מטבעות ולשאול באילו מטבעות קיבלה עודף, האם יש יותר מאפשרות אחת לקבלת עודף בשלושה מטבעות ולבקש הסבר. סְכוּמִים שָׁוִים לִפְנֵיכֶם תַּרְגִּיל חִבּוּר פָּתוּר: 19 + 34 = 53 בְּלִי לִפְתוֹר, הַקִּיפוּ אֶת הַתַּרְגִּילִים שֶׁסְּכוּמָם שָׁוֶה לַסְּכוּם שֶׁל הַתַּרְגִּיל הַנָּתוּן. 34 + 19 91 + 43 14 + 39 20 + 33 29 + 24 הַסְבִּירוּ כֵּיצַד יְדַעְתֶּם שֶׁהַסְּכוּם שָׁוֶה.",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_tevet_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p124-567",
+  "grade": "ב",
+  "text": "הִלָּה׃ = + 633604562036 + + + החיבור 50 2030 = + נִצָּן׃",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 124
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p120-672",
+  "grade": "ב",
+  "text": "וביחידות 56 + 5 = 37 + 7 = .ו .א בעשרות 88 + 7 = 58 + 8 = .ז .ב וחיסור 77 + 6 = 69 + 9 = .ח .ג חיבור 38 + 7 = 56 + 6 = .ט .ד 45 + 6 = 49 + 8 = .י .ה שָׁאֲלּו אֶת הַהוֹרִים וְרִשְׁמּו בְּאֵיזֶה חֹדֶשׁ נוֹלַדְתֶּם.",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 120
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_eyar_02-t2",
+  "grade": "ב",
+  "text": "קיימות מספר אפשרויות למספר הבננות שאכל כל קוף. למשל: קוף קוף קוף סך הכל 3 9 13 25 3 11 11 25 5 7 13 25 5 9 11 25 5 11 9 25 5 13 7 25 כהרחבה אפשר לבקש מהתלמידים להוסיף או לשנות אילוצים כדי שיתקבל פתרון אחד בלבד. לדוגמה: אחד הקופים אכל 4 בננות פחות מאשר קוף שני ו- 6 בננות יותר מאשר קוף שלישי. לשאלה זו יש רק פתרון אחד: 9, 3 ו-13 בננות. הַשְׁלִימוּ אֶת הַמִּסְפָּרִים לְכָל הַשְּׁלָשׁוֹת תְּכוּנָה מְשֻׁתֶּפֶת (חֻקִּיוּת). זָהוּ אֶת הַתְּכוּנָה הַמְּשֻׁתֶּפֶת (הַחֻקִּיוּת) וְהַשְׁלִימוּ אֶת הַמִּסְפָּר הֶחָסֵר בְּכָל שְׁלָשָׁה: הַשְׁלִימוּ אֶת הַמִּסְפָּרִים הַחֲסֵרִים עַל- פִּי הַחֻקִּיוֹת שֶׁזִּהִיתֶם בִּסְעִיף א. רִשְׁמוּ פִּתְרוֹן נוֹסָף:",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_eyar_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p118-656",
+  "grade": "ב",
+  "text": "ב. וחיסור ג. חיבור 121",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 118
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p24-164",
+  "grade": "ב",
+  "text": "א. נְחַבֵּר אֶת הַיְּחִידוֹת בַּלְּבֵנִים חיבור",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 24
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_kislev_02-t3",
+  "grade": "ב",
+  "text": "מומלץ לבקש מהתלמידים לקרוא בקול את התרגיל לפני ההצבה ולאחריה. בסעיף א' ההצבה בכל משוואה מתבצעת בנפרד וללא תלות בשנייה ולכן יש אינסוף פתרונות. דוגמאות אפשריות להצבה בתרגיל החיבור: 21+10=31 18+13=31 7+24=31 דוגמאות אפשריות להצבה בתרגיל החיסור: 17-4=13 20-7=13 19-6=13 אנו מצפים שהתלמידים יאמרו שבסעיף א' ישנם פתרונות רבים/ יש יותר מפתרון אחד/ יש אוסף/קבוצה של פתרונות. ייתכן ויהיו תלמידים שיציעו בסעיף א' פתרונות שאינם מספרים שלמים, דבר שעשוי לתת את התחושה שיש פתרונות רבים. אנו לא מצפים בשלב זה של הלמידה שתלמידים יאמרו שיש אינסוף פתרונות. שימו לב להימנע מהשאלה כמה פתרונות יש בסעיף א' כדי לא לקבע את התלמידים להתייחסות לקבוצת המספרים הטבעיים בלבד. מומלץ לרכז את הפתרונות שהציגו התלמידים בסעיף א', ייתכן ויוכלו להיעזר בהם כדי למצוא את הפתרון לסעיף ב. 22+9=31 22-9=13 בסעיף ב יש פתרון אחד למערכת של שתי המשוואות בשני הנעלמים. אנו מצפים שהתלמידים יפעלו בניסוי וטעייה, או בהתבסס על פתרונות שהוצגו בסעיף א'. הכוונה אפשרית נוספת לסעיף ב' היא מציאת נקודת עוגן לחישוב .לדוגמה: בעזרת עשרות שלמות 20+10=30 20-10=10 ומנקודה זו שימוש בפיצוי בחיבור והוספה או הורדה בחיסור. ניתן לשאול שאלה דומה פשוטה יותר: + ∆ = 15 - ∆ = 3 מְכוֹנַת הַמִּסְפָּרִים לניצָן יֵשׁ \"מְכוֹנַת מִסְפָּרִים\". הַמְּכוֹנָה פּועֶלֶת לְפִי כְּלָל מְסֻיָּם, כָּך שֶׁבְּכָל פַּעַם שֶׁמַּכְנִיסִים לְתוֹכָהּ מִסְפָּר, הִיא מַפְעִילָה אֶת הַכְּלָל וּמִסְפָּר כָּלְשֶׁהוּ יוֹצֵא. לְדֻגְמָה: אִם מַכְנִיסִים לְתוֹכָהּ אֶת הַמִּסְפָּר 21, יוֹצֵא הַמִּסְפָּר 10. אִם מַכְנִיסִים לְתוֹכָהּ אֶת הַמִּסְפָּר 23, יוֹצֵא הַמִּסְפָּר 12. אִם מַכְנִיסִים לְתוֹכָהּ אֶת הַמִּסְפָּר 36, יוֹצֵא הַמִּסְפָּר 25. אֵיזֶה מִסְפָּר יֵצֵא אִם נַכְנִיס אֶת הַמִּסְפָּר 29 ? הַסְבִּירוּ מַדּוּעַ. אֵיזֶה מִסְפָּר יֵצֵא אִם נַכְנִיס אֶת הַמִּסְפָּר 40 ? הַמִּסְפָּר 30 יָצָא מֵהַמְּכוֹנָה. אֵיזֶה מִסְפָּר הִכְנִיסוּ? הַמִּסְפָּר 49 יָצָא מֵהַמְּכוֹנָה. אֵיזֶה מִסְפָּר הִכְנִיסוּ? מַהוּ הַכְּלָל שֶׁל הַמְּכוֹנָה?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_kislev_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_sivan_02-t4",
+  "grade": "ב",
+  "text": "ניתן להיעזר בציור או באמצעי המחשה בדידים. ניתן להציג אפשרויות שונות למספר הפרחים שיישארו ולדון מתי יהיה אפשרי לסדר 9 פרחים בכל כד. מומלץ לברר עם התלמידים האם חשוב לדעת כמה פרחים היו בסך הכל כדי לענות על השאלה. השאלה מעובדת על פי: Logan, T. (2015). The influence of test mode and visuospatial ability on mathematics assessment performance. Mathematics Education Research Journal, 27, 423-441. הַקַּיִץ כְּבָר כָּאן כָּל תְּמוּנָה בַּטַּבְלָה מְיַצֶּגֶת מִסְפָּר. הַמִּסְפָּרִים מִיָּמִין לַשּׁוּרוֹת הֵם סְכוּמֵי הַמִּסְפָּרִים בְּכָל שׁוּרָה, וְהַמִּסְפָּרִים בְּתַחְתִּית הַטּוּרִים הֵם סְכוּמֵי הַמִּסְפָּרִים בְּכָל טוּר. 40 32 32 28 ? ? 36 33 מָה הַמִּסְפָּר הֶחָסֵר בִּמְקוֹם סִימַן הַשְּׁאֵלָה?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_sivan_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b1-p15-53",
+  "grade": "ב",
+  "text": "ט. כַּמָּה יֵשׁ לְהוֹסִיף לִ ־12 כְּדֵי לְהַגִּיעַ לְ ־20?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 15
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p84-512",
+  "grade": "ב",
+  "text": "2 = 12x ּכַמָּה פְּעָמִים 6 נִכְנָס בִּ ־12? 12 ׃ 6 = .ד 6 = 12x וחילוק330 30 ׃ 3 = ּכַמָּה פְּעָמִים נִכְנָס בִּ ־?",
+  "topic": "division",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 84
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame",
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p101-559",
+  "grade": "ב",
+  "text": "סֻכָּרִיּוֹת צִנְצֶנֶת סֻכָּרִיּוֹת בְּכָל צִנְצֶנֶת חוֹקְרִים אֶת חילוק",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 101
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p93-513",
+  "grade": "ב",
+  "text": "חילוק עֶפְרוֹנוֹת בְּכָל קְבּוצָה קְבּוצוֹת",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 93
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p99-551",
+  "grade": "ב",
+  "text": "סֻכָּרִיּוֹת צִנְצֶנֶת סֻכָּרִיּוֹת חילוק בְּכָל צִנְצֶנֶת",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 99
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p91-495",
+  "grade": "ב",
+  "text": "כַּמָּה זּוגוֹת יֵשׁ? כֵּן / לֹא חילוק",
+  "topic": "division",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 91
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b3-p131-823",
+  "grade": "ב",
+  "text": "וחילוק כַּמָּה גְּלִילִים יֵשׁ בְּ ־5 קֻפְסָאוֹת?",
+  "topic": "division",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 131
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b3-p126-786",
+  "grade": "ב",
+  "text": "שעוןא. נְסִיעָה בְּאוֹטוֹּבּוס לְגַן הַחַיּוֹת נִמְשֶׁכֶת שָׁעָה וָחֵצִי. אִמָּא וְדוֹר יָצְאּו מִבֵּיתָם בְּשָׁעָה 3. מָתַי יַּגִיעּו לְגַן הַחַיּוֹת?",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 126
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p126-787",
+  "grade": "ב",
+  "text": "ב. יָעֵל יוֹצֵאת מִבֵּיתָהּכָּל בֹּקֶר בְּשָׁעָה 7 וָחֵצִי וּמַגִּיעָה לְבֵית הַסֵּפֶר ּבְשָׁעָה שְׁמוֹנֶה. כַּמָּה זְמַן נִמְשֶׁכֶת הַהֲלִיכָה?",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 126
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p98-588",
+  "grade": "ב",
+  "text": "ּכַמָּה כּוֹסוֹת שׁוֹקוֹ אֶפְשָׁר לְמַלֵּא מִבַּקְבּּוק וָחֵצִי?",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 98
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p33-137",
+  "grade": "ב",
+  "text": "לּוחַ הַ ּׁשָנָה הָעִבְרִי וְחַגֵּי תִּשְׁרֵי ּגִימַטְרִיָּה - אוֹתִיּוֹת כְּמִּסְפָּרִים תשס״ד שבת שישי חמישי רביעי שלישי שני ראשון ראש השנה ראש חזוהדגהשנה סוכות יום כיפור ידיגיביאט שמחת הושענא חול חול חול חול חול תורהרבההמועדהמועדהמועדהמועדהמועד כבכאכיטיחיזטז חכזכוכהכדכג ל",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 33
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p125-781",
+  "grade": "ב",
+  "text": "הַ ּׁשָעָה 4 וָחֵצִי ּבַחֲצִי שָׁעָה הִסְתּוֹבֵב הַמָּחוֹג הַגָּדוֹל חֲצִי סִיבּוב מִ ־12 עַד 6.",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 125
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p128-794",
+  "grade": "ב",
+  "text": "ּבְרֶבַע שָׁעָה יֵשׁ 15 דַּקּוֹת",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 128
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_eyar_02-t6",
+  "grade": "ב",
+  "text": "בדיון, אפשר לשאול על המלבן השלישי – מה השטח הקטן ביותר האפשרי? האם ניתן לשער מה השטח הגדול ביותר האפשרי? המשימה מעובדת מ- https://nrich.maths.org/4963",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_eyar_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_kislev_02-t6",
+  "grade": "ב",
+  "text": "למרות שנושא הזוויות טרם נלמד, התלמידים למדו לזהות מלבנים כמרובעים בעלי 4 זוויות ישרות (פינות ישרות). במידה ומתעורר קושי לזהות את המלבנים השונים \"המסתתרים\" בצורה, מומלץ לצבוע כל קבוצת מלבנים באותו צבע, כדי שהתלמידים יזהו את 9 המלבנים: 4 ריבועים (שהם מלבנים) 2 מלבנים שכל מלבן מורכב משני ריבועים סמוכים בשורה. מלבן אחד המורכב מארבעת הריבועים. סְבִיבוֹן מָתֶמָטִי שִׁמְעוֹן וִיהוּדָה שִׂחֲקוּ בִּסְבִיבוֹן עַל פִּי הַכְּלָלִים הַבָּאִים: כָּל מִשְׁתַּתֵּף מְסוֹבֵב בְּתוֹרוֹ אֶת הַסְּבִיבוֹן וּמְקַבֵּל נִקּוּד בְּהֶתְאֵם לָאוֹת עָלֶיהָ נָפַל הַסְּבִיבוֹן: כַּאֲשֶׁר הַסְּבִיבוֹן נוֹפֵל עַל הָאוֹת נ –מְקַבְּלִים 0 נְקֻדּוֹת. כַּאֲשֶׁר הַסְּבִיבוֹן נוֹפֵל עַל הָאוֹת ג – מְקַבְּלִים 2 נְקֻדּוֹת. כַּאֲשֶׁר הַסְּבִיבוֹן נוֹפֵל עַל הָאוֹת ה – מְקַבְּלִים 4 נְקֻדּוֹת. כַּאֲשֶׁר הַסְּבִיבוֹן נוֹפֵל עַל הָאוֹת פ – מְקַבְּלִים 6 נְקֻדּוֹת. לְאַחַר חֲמִשָּׁה סְבָבִים הִפְסִיקוּ הַחֲבֵרִים אֶת הַמִּשְׂחָק כְּדֵי לֶאֱכוֹל לְבִיבוֹת. יְהוּדָה נִצֵּחַ בַּמִּשְׂחָק וְשִׁמְעוֹן צָבַר 22 נְקֻדּוֹת. עַל אֵילוּ אוֹתִיּוֹת נָפַל הַסְּבִיבוֹן כַּאֲשֶׁר שִׁמְעוֹן סוֹבֵב אוֹתוֹ ? הַאִם יֵשׁ אֶפְשָׁרוּת נוסֶפֶת לְפִתְרוֹן ? אִם כֵּן כִּתְבוּ אוֹתָהּ. כַּמָּה נְקֻדּוֹת צָבַר יְהוּדָה, וְעַל אֵילוּ אוֹתִיּוֹת נָפַל הַסְּבִיבוֹן כַּאֲשֶׁר יְהוּדָה סוֹבֵב אוֹתוֹ ? הַאִם יֵשׁ אֶפְשָׁרוּת נוסֶפֶת לְפִתְרוֹן ? אִם כֵּן כִּתְבוּ אוֹתָהּ. הַאִם יִתָּכֵן שֶׁיְּהוּדָה צָבַר מִסְפָּר אִי-זוּגִי שֶׁל נְקֻדּוֹת? אִם כֵּן, כִּתְבוּ אֶת מִסְפַּר הַנְּקֻדּוֹת שֶׁצָּבַר וְאֶת הָאוֹתִיּוֹת עֲלֵיהֶן נָפַל הַסְּבִיבוֹן, אִם לֹא הַסְבִּירוּ מַדּוּעַ. אִם יְהוּדָה לֹא יָכוֹל לִצְבֹּר מִסְפָּר אִי-זוּגִי שֶׁל נְקֻדּוֹת, שָׁנוּ אֶת כְּלָלֵי הַמִּשְׂחָק כָּך שֶׁיּוּכַל לִצְבֹּר מִסְפָּר אִי-זוּגִי שֶׁל נְקֻדּוֹת. צַיְּנוּ כַּמָּה נְקֻדּוֹת צָבַר וְעַל אֵילוּ אוֹתִיּוֹת נָפַל הַסְּבִיבוֹן.",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_kislev_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_kislev_02-t7",
+  "grade": "ב",
+  "text": "ישנן מספר תשובות אפשריות. למשל: הסביבון נפל פעמיים על האות ג ושלוש פעמים על האות פ: 2+2+6+6+6=22 או ארבע פעמים על האות ה פעם אחת עם האות פ: 6+4+4+4+4 או פעמיים על האות פ, פעמיים על האות ה ופעם אחת על ג: 6+6+4+4+2 מומלץ לשאול את התלמידים מה מספר הנקודות הגדול ביותר ומהו מספר הנקודות הקטן ביותר שיהודה יכול לצבור, על פי כללי המשחק ? מספר הנקודות הגדול ביותר שניתן לצבור בסבב הוא 6 נקודות. נערכו חמישה סבבים ולכן יהודה יכול לצבור לכל היותר 30 נקודות, אך הוא יכול לצבור כל מספר נקודות הגדול מ-22, למשל: הסביבון נפל 4 פעמים על האות פ ופעם על האות נ: 6+6+6+6+0=24 על פי כללי המשחק הנתון, כל המחוברים הם מספרים זוגיים ולכן סכום הנקודות שצבר יהודה הוא מספר זוגי. כדי שיהודה יצבור מספר אי זוגי של נקודות, יש לשנות את כללי המשחק, למשל: לשנות את אחד המחוברים למספר אי-זוגי. מומלץ לבקש מהתלמידים להביא סביבונים לכיתה ולשחק על פי כללי המשחק המפורטים בשאלה, או לעודד את התלמידים להמציא כללים משהם. בכיתות מתקדמות מומלץ לבקש מהתלמידים להמציא כללים בהתאם לאילוצים כגון: המציאו כללים למשחק ובו חמישה סבבים כך שניתן יהיה לצבור 40 נקודות.",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_kislev_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_kislev_02-t1",
+  "grade": "ב",
+  "text": "מְצֻלָּעִים וְגַפְרוּרִים בְּעֶזְרַת 18 גַּפְרוּרִים יוֹצְרִים 6 מְשֻׁלָּשִׁים: יֵשׁ 6 מְשֻׁלָּשִׁים. נִשְׁאֲרוּ 0 גַּפְרוּרִים מְיֻתָּרִים. מְסַדְּרִים מֵחָדָשׁ אֶת 18 הַגַּפְרוּרִים. הַשְׁלִימוּ: יֵשׁ ___ רִבּוּעִים. נִשְׁאֲרוּ ___ גַּפְרוּרִים מְיֻתָּרִים. שׁוּב מְסַדְּרִים מֵחָדָשׁ אֶת הַגַּפְרוּרִים. הַשְׁלִימוּ: יֵשׁ 3 ________. נִשְׁאֲרוּ 0 גַּפְרוּרִים מְיֻתָּרִים.",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_kislev_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p86-357",
+  "grade": "ב",
+  "text": "4 — רַגְלַיִם לְכָל כֶּלֶב 3 — כְּלָבִים ּתַרְגִּיל חִבּּור׃ = + + 124x3 ּתַרְגִּיל כֶּפֶל׃ =",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 86
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p41-184",
+  "grade": "ב",
+  "text": "6. רִשְׁמּו סִימָן מַתְאִים , =",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 41
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adara_02-t4",
+  "grade": "ב",
+  "text": "ניתן להרחיב את הדיון ולבקש דרכים אחרות לחלק את חפיסת השוקולד שווה בשווה. למשל: הַמַּשְׁקָאוֹת שֶׁאָנוּ אוֹהֲבִים חֲמִשָּׁה חֲבֵרִים הִתְבַּקְּשׁוּ לְצַיֵּן אֵילוּ סוּגֵי מַשְׁקָאוֹת הֵם אוֹהֲבִים וְאֵילוּ הֵם לֹא אוֹהֲבִים. הִתְבּוֹנְנוּ בְּטַבְלַת הַנְּתוּנִים וַעֲנוּ עַל הַשְּׁאֵלוֹת הַבָּאוֹת: •כַּמָּה סוּגֵי מַשְׁקָאוֹת דָּנִיאֵל אוֹהֵב? •אֵילוּ סוּגֵי מַשְׁקָאוֹת אַלּוֹן לֹא אוֹהֵב? •כַּמָּה יְלָדִים אוֹהֲבִים מַיִם? •מִי מְהַיְּלָדִים אוֹהֵב אֶת כָּל חֲמֵשֶׁת סוּגֵי הַמַּשְׁקָאוֹת? •מַה סוּג הַמַּשְׁקֶה הָאָהוּב בְּיוֹתֵר עַל הַיְּלָדִים ? חַבְּרוּ שְׁתֵּי שְׁאֵלוֹת נוֹסָפוֹת שֶׁאֶפְשָׁר לִשְׁאוֹל עַל טַבְלַת הַנְּתוּנִים וַעֲנוּ עֲלֵיהֶן.",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adara_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p136-740",
+  "grade": "ב",
+  "text": "א. כַּמָּה עֵצִים נָטְעּו הַבָּנוֹת וְכַמָּה עֵצִים נָטְעּו הַבָּנִים?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 136
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p118-724",
+  "grade": "ב",
+  "text": "כַּמָּה יְלָדִים צָפּו בַּמִשְׂחָק?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 118
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p102-454",
+  "grade": "ב",
+  "text": "מִתַּרְגִּיל לְצִיּּור 3x4 לְתַרְגִּיל הַכֶּפֶל׃ = מַתְאִים הַצִּיּּור׃",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 102
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p96-410",
+  "grade": "ב",
+  "text": "ד. = ּתַרְגִּיל חִבּּור 3 - — 2",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 96
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p132-826",
+  "grade": "ב",
+  "text": "ּכְפּולוֹת 6 9 = x6 6 = x4 .ה .א 6 = x7 6 = x1 .ו .ב 6 = x8 6 = x6 .ז .ג 5 = x6 10 = x6 .ח .ד 132",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 132
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adara_02-t6",
+  "grade": "ב",
+  "text": "בכל אחת מדרכי הפתרון, מומלץ לבקש מהתלמידים להקיף את כל אחת מהקבוצות השוות להן הם מתייחסים בפתרון, להציג תרגיל מתאים ולהסביר את דרך הפתרון. מומלץ לדון עם התלמידים מדוע הדרכים השונות מובילות לאותו פתרון.",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adara_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p116-644",
+  "grade": "ב",
+  "text": "2. צִבְעּו אֶת הַחֲלָקִים שֶׁבָּהֶם מוֹפִיעִים הַמִּסְפָּרִים הָרְשּׁומִים לְמַטָּה׃",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 116
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p110-663",
+  "grade": "ב",
+  "text": "א. הִסְתַּכְּלּו בַּ ּׁשּורָה הָרִאשׁוֹנָה שֶׁל הַמַּכְפֵּלוֹת.",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 110
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adar_purim_02-t1",
+  "grade": "ב",
+  "text": "מְסִבָּה בַּחֲלַל הַחִיצוֹן אֵי שָׁם בַּחֲלַל הַחִיצוֹן עָרְכוּ הַחַיְזָרִים מְסִבָּה. לַמְּסִבָּה הִגִּיעוּ חַיְזְרֵי דּוּ-עַיִן, חַיְזְרֵי תְּלַת-עַיִן וְחַיְזְרֵי אַרְבַּע-עַיִן: כְּדֵי לְשַׂמֵּחַ אֶת הַמִּשְׁתַּתְּפִים, חַיְזָרִים מִשְּׁלֹשֶׁת הַסּוּגִים רָקְדוּ רִקּוּד. לְכָל הָרוֹקְדִים בְּיַחַד הָיוּ בְּסַךְ-הַכֹּל 24 עֵינַיִם. כַּמָּה חַיְזָרִים מִכָּל סוּג הִשְׁתַּתְּפוּ בָּרִקּוּד? מִצְאוּ אֶפְשָׁרוּת נוֹסֶפֶת לְמִסְפַּר הַחַיְזָרִים שֶׁהִשְׁתַּתְּפוּ בָּרִקּוּד. מַה מִסְפַּר הַחַיְיזָרִים הַגָּדוֹל בְּיוֹתֵר מִסּוּג אַרְבַּע-עֵינַיִם שֶׁיָּכְלוּ לְהִשְׁתַּתֵּף בָּרִקּוּד? בַּר טוֹעֵן שֶׁבָּרִקּוּד הִשְׁתַּתְּפוּ חֲמִשָּׁה חַיְזָרִים מִסּוּג תְּלַת-עַיִן, הַאִם הוּא צוֹדֵק? הַסְבִּירוּ. הַאִם בָּרִקּוּד יְכוֹלִים לְהִשְׁתַּתֵּף מִסְפָּר אִי-זוּגִי שֶׁל חַיְזָרִים מִסּוּג תְּלַת-עַיִן? הַסְבִּירוּ.",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adar_purim_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p29-121",
+  "grade": "ב",
+  "text": "ּכַמָּה בָּנוֹת יֵשׁ יוֹתֵר מִבָּנִים?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 29
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p121-760",
+  "grade": "ב",
+  "text": "3. הַאִם יָכוֹל לִהְיוֹת שֶׁלִּשְׁנֵיהֶם יַחַד יֵשׁ 12 עֶפְרוֹנוֹת?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 121
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_sivan_02-t5",
+  "grade": "ב",
+  "text": "בשיח בכיתה חשוב לשמוע מה היו המהלכים המחושבים של התלמידים ולראות שניתן להגיע לתשובה בדרכים שונות. מומלץ לשאול באיזו שורה היה הכי קל לזהות מה המספר שמייצגת התמונה. כדאי לשאול מה ההבדל בין השלמת המספר בטור הימני (ניתן להשלים את המספר עוד לפני שיודעים מה מייצגת כל תמונה, שימוש בחוק החילוף) לטור השני מימין (כדי להשלים יש צורך לזהות את הערך שמייצגת כל תמונה). צוּרָה וְצֶבַע כָּל אַחַת מִן הַצּוּרוֹת יֵשׁ לִצְבֹּעַ בְּצֶבַע שׁוֹנֶה: וָרֹד, כָּחֹל, אָדֹם, לָבָן, יָרֹק וְאָפֹר. הַצּוּרָה בְּאָדֹם לֹא לְיַד הַצּוּרָה בְּאָפֹר. הַצּוּרָה בְּכָחֹל נִמְצֵאת בֵּין הַצּוּרָה בְּלָבָן לַצּוּרָה בְּאָפוֹר. הָרִבּוּעִים אֵינָם בְּצֶבַע יָרֹק. הַצּוּרָה בְּכָחֹל מִתַּחַת לַצּוּרָה בְּוָרֹד.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_sivan_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p133-728",
+  "grade": "ב",
+  "text": "4. מַיְּנּו אֶת הַמְּצֻלָּעִים לִקְבּוצוֹת בְטַבְלָה, תְּנּו כּוֹתָרוֹת בַטַּבְלָה לְפִי מָה שֶׁמִּיַּנְתֶם. רִשְׁמּו בַּטַּבְלָה אֶת הָאוֹתִיּוֹת הַמַּתְאִימוֹת לְכָל מְצֻלָּע׃",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 133
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p135-736",
+  "grade": "ב",
+  "text": "4. הָכִינּו צִיּּור שֶׁיֵּשׁ בּוֹ מַלְבֵּנִים וּמְצֻלָּעִים אֲחֵרִים. (אֶפְשָׁר לְקַ ּׁשֵט אֶת הַצִּיּּור בְּפַרְצּופִים וּבַחֲפָצִים נוֹסָפִים). אֶפְשָׁר לְהָכִין עוֹד צִיּּור כָּזֶה בַּמַּחְבֶּרֶת.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 135
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adara_02-t2",
+  "grade": "ב",
+  "text": "ניתן לתת לתלמידים כרטיסיות כדי שיוכלו להיעזר בהם ולבחון אפשרויות של תרגילים שונים. בסעיף א' ניתן להגיע בדיוק לסכום 100. בסעיף ב' ניתן להגיע לסכום 97 = 32+65 ולסכום 101 = 62 + 39, אך לא ניתן להגיע לסכום 100. זו הזדמנות לדון עם התלמידים מי מהסכומים קרוב יותר ל-100 (ישנם תלמידים שאינם לוקחים בחשבון מספרים הגדולים מהסכום המבוקש). בדיון, מומלץ למקם את הסכומים על ישר המספרים. הֶקֵּף מְצֻלָּעִים נְתוּנִים שְׁנֵי מְצֻלָּעִים: רִבּוּעַ וּמְשֻׁשֶּׁה. אֵיזֶה מֵהַמִּשְׁפָּטִים הַבָּאִים נָכוֹן? הַסְבִּירוּ מַדּוּעַ. הֶקֵּף הָרִבּוּעַ גָּדוֹל מֵהֶקֵּף הַמְּשֻׁשֶּׁה. הֶקֵּף הַמְּשֻׁשֶּׁה גָּדוֹל מֵהֶקֵּף הָרִבּוּעַ . לָרִבּוּעַ וְלַמְּשֻׁשֶּׁה אוֹתוֹ הֶקֵּף. נָתוּן הַמְּצֻלָּע: מַה שֵׁם הַמְּצֻלָּע? הַאִם הֶקֵּף הַמְּצֻלָּע גָּדוֹל מֵ-24 ס\"מ אוֹ קָטָן מֵ-24 ס\"מ? הַסְבִּירוּ.",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adara_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_kislev_02-t2",
+  "grade": "ב",
+  "text": "חשוב לתת לתלמידים גפרורים/קיסמים כדי שיבצעו את המשימה בפועל. בסעיף השני, יש להסביר לתלמידים שמדובר בריבועים נפרדים: כך לא כך שימו לב שלשאלה זו יש יותר מתשובה אחת נכונה (למשל: יש 2 ריבועים, נשארו 10 גפרורים; יש 3 ריבועים, נשארו 6 גפרורים). אפשר לשאול מה מספר הריבועים המרבי שאפשר לסדר מכמות הגפרורים הנתונה. להרחבה: אפשר להציג היגד כמו: יש 4 משולשים ונשארו 2 גפרורים מיותרים ולשאול: כמה גפרורים היו לי? או לשאול: ליואב ולחגית מספר גפרורים זהה. יואב בנה משולשים, וחגית בנתה ריבועים. לשניהם נשארו 2 גפרורים. מה יכול להיות מספר הגפרורים שהיה להם? כדאי לבקש מהתלמידים ליצור משימות כאלו לחבריהם. המשימה עובדה מ- Metcalfe, G. (2018). I see reasoning. Wordpress. אֵיזֶה מִסְפָּר כִּתְבוּ בִּמְקוֹם כָּל צוּרָה מִסְפָּר כָּך שֶׁיִּתְקַבֵּל תַּרְגִּיל נָכוֹן: בִּשְׁנֵי הַתַּרְגִּילִים שֶׁלִּפְנֵיכֶם כָּל צוּרָה מְיַצֶּגֶת אוֹתוֹ מִסְפָּר: מִצְאוּ מַהוּ הַמִּסְפָּר שֶׁכָּל צוּרָה מְיַצֶּגֶת. הִתְבּוֹנְנוּ בִּשְׁנֵי הַתַּרְגִּילִים שֶׁבְּכָל סְעִיף: בְּמָה הֵם דּוֹמִים וּבְמָה הֵם שׁוֹנִים?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_kislev_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_shvat_02-t3",
+  "grade": "ב",
+  "text": "העיסוק בגופים בכיתה ב' צריך להיעשות באופן שתהיה גישה לגופים פיזיים מתאימים. לכן יש לתת לתלמידים לענות על השאלות בעזרת הגופים מתוך ערכות הגופים הנלוות לספרי הלימוד. אפשר להיעזר גם ביישומון http://illuminations.nctm.org/Activity.aspx?id=3521 היישומון מאפשר לסובב את הגוף, כך ניתן יהיה לזהות את צורת הפאות. קְלִיעָה לַמַּטָּרָה נֹעָה שִׂיחֲקָה בִּקְלִיעָה לַמַּטָּרָה. הַצִּיּוּר מַרְאֶה אֶת הַקְּלִיעוֹת שֶׁלָהּ. כַּמָּה נְקֻדּוֹת צָבְרָה? גַּם שַׁי שִׂחֵק בִּקְלִיעָה לַמַּטָּרָה. הוּא קָלַע שְׁלֹשָׁה חִצִּים וְקִבֵּל 160 נְקֻדּוֹת. סַמְּנוּ אֶת הַמְּקוֹמוֹת שֶׁבָּהֶם קָלַע. אָמִיר שִׂחֵק בְּקְלִּיעָה לַמַּטָּרָה. הוּא קָלַע יוֹתֵר מִשְּׁלֹשָׁה חִצִּים וצָבַר גַּם הוּא 160 נְקֻדּוֹת. כַּמָּה חִצִּים וּבְאֵילוּ מְקוֹמוֹת בְּלוּחַ הַמַּטָּרָה הוּא קָלַע? סַמְּנוּ אֶת הַקְּלִיעוֹת שֶׁלּוֹ. הַאִם יֵשׁ יוֹתֵר מֵאֶפְשָׁרוּת אַחַת ? אִם כֵּן, כִּתְבוּ אֶפְשָׁרוּת נוֹסֶפֶת. גַּם תָּמָר שִׂחֲקָה בִּקְלִיעָה לַמַּטָּרָה. הִיא טָעֲנָה שֶׁהִיא קָלְעָה אַרְבָּעָה חִצִּים וְקִבְּלָה 300 נְקֻדּוֹת. אִם תָּמָר צוֹדֶקֶת כִּתְבוּ בְּאֵילוּ מְקוֹמוֹת הִיא קָלְעָה. אִם תָּמָר אֵינָהּ צוֹדֶקֶת, הַסְבִּירוּ מַדּוּעַ וְשָׁנּוּ אֶת אַחַד הַמִּסְפָּרִים עַל לוּחַ הַמַּטָּרָה כָּך שֶׁתּוּכָל לִצְבּוֹר 300 נְקֻדּוֹת בְּ- 4 קְלִיעוֹת.",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_shvat_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b1-p101-449",
+  "grade": "ב",
+  "text": "כַּמָּה שְׁקָלִים הּוא צָרִיְך לְקַבֵּל כְּדֵי לִקְנוֹת מִשְׂחָק שֶׁמְּחִירוֹ 40 שְׁקָלִים?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 101
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p45-199",
+  "grade": "ב",
+  "text": "הַאִם יַסְפִּיק לוֹ שְׁטָר שֶׁל 20 שְׁקָלִים?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 45
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p129-800",
+  "grade": "ב",
+  "text": "א. בְּאֵיזוֹ שָׁעָה הִתְחִיל הַסֶּרֶט אִם הּוא נִמְשַׁךְ 2 שָׁעוֹת וְהִסְתַּיֵּם בְּשָׁעָה 5?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 129
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p103-458",
+  "grade": "ב",
+  "text": "ה. = ּבַחֲנּות הַצַּעֲצּועִים כּוֹבַע חֲפִיסַת קְלָפִים בֵּיצַת הַפְתָּעָה 8 שְׁקָלִים 7 שְׁקָלִים 3 שְׁקָלִים תִּיק נֵר בַּלּוֹן 10 שְׁקָלִים 4 שְׁקָלִים 5 שְׁקָלִים",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 103
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p33-147",
+  "grade": "ב",
+  "text": "50 - 20 = 30 נִפְרֹט 10 שְׁקָלִים לְמַטְבֵּעַ 1 שֶׁל 5 וְעוֹד 5 מַטְבְּעוֹת שֶׁל 1 שֶׁקֶל.",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 33
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p46-296",
+  "grade": "ב",
+  "text": "=10 + + =12 + משקל שְׁקָלִים שְׁקָלִים מדידות",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 46
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_shvat_02-t5",
+  "grade": "ב",
+  "text": "יש להדגיש בפני תלמידים כי פירות זהים מייצגים מספרים שווים. מומלץ לדון עם התלמידים מאיזה תרגיל כדאי להתחיל ומדוע. ניתן להעלות או להוריד את רמת הקושי של המשימה על ידי שינוי המספרים. מִידוֹת וּמְדִידוֹת סַמְּנוּ בְּכָל צִיּוּר מִי אָרֹךְ יוֹתֵר, הַצֶּבַע אוֹ הָעִפָּרוֹן. צַיְּנוּ בְּכַמָּה סֶנְטִימֶטֶר.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_shvat_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p19-66",
+  "grade": "ב",
+  "text": "מִכְנָסַיִם בְּ ־35 שְׁקָלִים.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 19
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p128-795",
+  "grade": "ב",
+  "text": "2. צַיְּרּו בְּכָל שָׁעוֹן שְׁנֵי מְחוֹגִים הַמַּרְאִים אֶת הַ ּׁשָעָה׃",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 128
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_tevet_02-t5",
+  "grade": "ב",
+  "text": "בסעיפים א'-ג' מומלץ להיעזר בגופים מתוך ערכות הגופים הנלוות לספרי הלימוד או בערכת גופים הנמצאת בבית הספר. סעיף ד' עוסק בהשוואה ישירה בין משקלם של גופים באמצעות מאזני כפות. משני הציורים ניתן להסיק שהחרוט כבד הן מהכדור והן מהגליל ובהשוואה בין הכדור לבין הגליל הכדור כבד יותר ולכן ברור שהחרוט הוא הכבד ביותר והגליל הוא הקל ביותר. בציור הראשון משווים בין משקלו של הכדור למשקלם של שני הגלילים. המאזניים מאוזנים ולכן משקלו של הכדור שווה למשקלם של שני הגלילים. בציור השני המאזניים מאוזנים ולכן משקלו של החרוט שווה למשקלם של הגליל והכדור. משתי ההשוואות הללו ניתן להסיק כי משקלו של החרוט שווה למשקלם של שלושה גלילים. לפתרון סעיף ד' אפשר להיעזר בשלב ביניים ולבקש מהתלמידים להציע דרך נוספת לאזן את כפות המאזניים שבציור: מומלץ להיעזר ביישומונים הבאים: http://www.bgfl.org/bgfl/custom/resources_ftp/client_ftp/ks2/maths/weigh/index.htm http://ymath.haifa.ac.il/images/stories/part4/archive/applets/java23.pdf המשימה עובדה מהאתר: http://mason.gmu.edu/~jsuh4/impact/PFAEntire.pdf מִפְגָּשׁ הַמִּסְפָּרִים אִם נַמְשִׁיךְ לְמַלֵּא אֶת הַשּׁוּרָה שֶׁל הַמִּסְפָּרִים הַכְּחֻלִּים וְאֶת הַטּוּר שֶׁל הַמִּסְפָּרִים הַיְּרֻקִּים, אֵיזֶה מִסְפָּר יִהְיֶה בַּמִּשְׁבֶּצֶת בָּהּ יִפָּגְשׁוּ הַמִּסְפָּרִים? הַאִם אֶפְשָׁר לָדַעַת אֶת הַתְּשׁוּבָה בְּלִי לִכְתֹּב אֶת הַמִּסְפָּרִים הַחֲסֵרִים?",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_tevet_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b2-p12-44",
+  "grade": "ב",
+  "text": "כַּמָּה שְׁקָלִים יֵשׁ לְנִיב בַּקֻּפָּה כָּעֵת?",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 12
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p109-657",
+  "grade": "ב",
+  "text": "לְדָנָה יֵשׁ קֻפַּת חִסָּכוֹן. כָּל יוֹם הִיא רוֹשֶׁמֶת ּכַמָּה כֶּסֶף נִכְנָס לַקֻּפָּה. בְּמֶשֶׁךְ 5 יָמִים דָּנָה רָשְׁמָה 0 שְׁקָלִים בְּכָל יוֹם. כַּמָּה כֶּסֶף הִיא שָׂמָה בַּקֻּפָּה בְּמֶשֶׁךְ 5 הַיָּמִים?",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 109
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_eyar_02-t5",
+  "grade": "ב",
+  "text": "מומלץ לשכפל את האיור, להקרין על הלוח ולבקש מהתלמידים להציג בכל איור את פתרונם באמצעות סימון תבניות חוזרות, לצד כתיבת תרגיל כפל/חיבור מתאים. פתרונות אפשריים: מָה מִסְתַּתֵּר? לִפְנֵיכֶם שְׁלוֹשָׁה מַלְבְּנִים, שֶׁחֵלֶק מֵהֶם מֻסְתָּר. הַאִם אֶפְשַׁר לְחַשֵׁב אֶת הַשֶּׁטַח שֶׁל כָּל אֶחָד מֶהֵם? אִם אֶפְשַׁר – חַשְׁבוּ אֶת הַשֶּׁטַח. אִם אִי-אֶפְשַׁר – הַסְבִּירוּ.",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_eyar_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b1-p100-436",
+  "grade": "ב",
+  "text": "כפל10 ּכֶפֶל / חִבּּור / חִסּּור?",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 100
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p105-595",
+  "grade": "ב",
+  "text": "ּבְכָל קֻפְסָה הָיּו 5 צְבָעִים. כפל ּכַמָּה צְבָעִים הָיּו?",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 105
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adar_purim_02-t2",
+  "grade": "ב",
+  "text": "ניתן לפתור את השאלה על ידי ניסוי וטעייה או באופן שיטתי. למשל: מספר חייזרי ארבע-עין מספר חייזרי תלת-עין מספר חייזרי דו-עין סכום כל העיניים 1 2 7 1x4 + 2x3 + 7x2 = 24 1 4 4 1x4 + 4x3 + 4x2 = 24 1 6 1 1x4 + 6x3 + 1x2 = 24 2 2 5 2x4 + 2x3 + 7x2 = 24 2 4 2 2x4 + 4x3 + 2x2 = 24 3 2 3 3x4 + 2x3 + 3x2 = 24 4 2 1 4x4 + 2x3 + 1x2 = 24 מאחר ומספר הכולל של עיני הרוקדים הוא זוגי, מספר החייזרים מסוג תלת עין לא יכול להיות אי-זוגי. (מכפלה של שני גורמים אי זוגיים היא אי-זוגית, והפרש בין מספר זוגי למספר אי-זוגי, הוא מספר אי-זוגי. לשני סוגי החייזרים האחרים מספר זוגי של עיניים וכל צירוף מספרי של חייזרים אלו יצור מספר זוגי של עיניים). השאלה עובדה מתוך: Smarter Balanced Assessment Consortium http://www.smarterbalanced.org/. מַסֵּכוֹת צִבְעוֹנִיּוֹת צִבְעוּ אֶת הַמַּסֵּכוֹת כָּךְ שֶׁחֵצִי מִמִּסְפַּר הַמַּסֵּכוֹת תִּהְיֶינָה כְּחֻלּוֹת וְחֵצִי תִּהְיֶינָה אֲדֻמּוֹת.",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adar_purim_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p134-840",
+  "grade": "ב",
+  "text": "וחילוק 8 = x5 17 - 8 = .ז .א כפל 5 = x3 16 - 9 = .ח .ב 9 = x6 15 - 8 = .ט .ג 7 = x6 19 - 12 = .י .ד 6 = x5 13 - 12 = .יא .ה 6 = x3 14 - 7 = .יב .ו",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 134
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b3-p43-269",
+  "grade": "ב",
+  "text": "= x כפל לְ ־4 סּוסִים יֵשׁ רַגְלַיִם.",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 43
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adar_purim_02-t4",
+  "grade": "ב",
+  "text": "מומלץ להתייחס לאסטרטגיות שונות למציאת מספר הליצנים: התייחסות לקבוצות שוות (שורות, טורים או מערכים שונים, הזזה והשלמה למלבן ועוד) . פתרונות אפשריים: מומלץ לשכפל את האיור, להקרין על הלוח ולבקש מהתלמידים להציג בכל איור את פתרונם באמצעות סימון תבניות חוזרות, לצד כתיבת תרגיל כפל/חיבור מתאים. המשימה עובדה על פי המאמר : Tavares, D., & Cabrita, I. (2014). Visual patterns and the development of creativity and functional reasoning. Journal of the European Teacher Education Network, 9, 74-90.",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adar_purim_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p89-381",
+  "grade": "ב",
+  "text": "ג. נַסּּו לְחַבֵּר סִפּּור כֶּפֶל. הַשְׁלִימּו אֶת הֶחָסֵר ּכְמוֹ בַּסִפּּּורים הַקּוֹדְמִים׃כפל הַסִּפּּור׃",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 89
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p114-700",
+  "grade": "ב",
+  "text": "ג. וחיבור בכפל יֵשׁ חֶדֶר אֶחָד. בַּחֶדֶר יֵשׁ יְצּור 1.",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 114
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_nisan_02-t3",
+  "grade": "ב",
+  "text": "אם קיים קושי לראות את המבנה בו מסודרות הביצים, אפשר להציג תמונה של תבנית ביצים ממבט על: מאחר והתלמידים לא למדו כפל בעשרות שלמות, ניתן לחשב את מספר הביצים הכולל שאסף רועי ביום ראשון על ידי חיבור חוזר של מחוברים שווים. גם את מספר התבניות בהן סידר את הביצים שאסף ביום שני ניתן לחשב במספר דרכים: בחיבור חוזר 30+30+30+30….. =150 . יש לבקש מהתלמידים להסביר מה מייצג כל מחובר, או באמצעות חיסור חוזר: 150-30-30-30….. =0 . סעיף ד' עוסק במשמעות החילוק להכלה עם שארית. נושא זה לא נלמד בכיתה ב', אך גם במקרה זה אפשר להיעזר בתרגילי חיבור או חיסור. השאלה עובדה על פי המאמר: Enns, E. (2015). Problem: Eggsactly how many?. Teaching Children Mathematics, 21(9), 521-523. בֶּאֱגוֹזִים נְשַֹחֵקָה דָּן מְשַֹחֵק בֶּאֱגוֹזִים וְחָד חִידוֹת לְאָחִיו: מִסְפַּר הָאֱגוֹזִים שֶׁבִּרְשׁוּתִי גָּדוֹל מֵ- 20 וְקָטָן מִ- 30 . אִם אֲסַדֵּר אֶת הָאֱגוֹזִים בִּקְבוּצוֹת שֶׁל 3 לֹא יִשָּׁאֲרוּ בְּיָדִי אֱגוֹזִים. אִם אֲסַדֵּר אֶת הָאֱגוֹזִים בִּקְבוּצוֹת שֶׁל 5 יִשָּׁאֲרוּ לִי 2 אֱגוֹזִים. כַּמָּה אֱגוֹזִים יֵשׁ לִי ?",
+  "topic": "multiplication",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_nisan_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b3-p113-693",
+  "grade": "ב",
+  "text": "בכפל וחיבור כַּמָּה קְבּוצוֹת שֶׁל 5 יֵשׁ?",
+  "topic": "multiplication",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 113
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p10-24",
+  "grade": "ב",
+  "text": "בְּאֵילּו מִסְפָּרִים פָּגַע?",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 10
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p43-184",
+  "grade": "ב",
+  "text": "בְּכַמָּה ״קוֹפְצִים״ מִמִּסְפָּר לְמִסְפָּר?",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 43
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b3-p120-749",
+  "grade": "ב",
+  "text": "מָה אֶפְשָׁר לוֹמַר עַל מִסְפָּר הָעֶפְרוֹנוֹת שֶׁיֵּשׁ לְדָנִי?",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 120
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p100-435",
+  "grade": "ב",
+  "text": "מִסְפָּרמִסְפָּר צִיּּור גַּלְגַּלִּים אוֹפַנַּיִםּתַרְגִּיל כֶּפֶל הַגַּלְגַּלִּים 1 2 = 2x12",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 100
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p72-301",
+  "grade": "ב",
+  "text": "= - = + .א 55 ( + ) 76 = = + .ב 78 = = + .ג שווים 109 = = + .ד מספרים 12 156 = - = + .ה 66 ( + ) 89 = = + .ו 1110 = = + .ז 1112 = = + .ח 72",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 72
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p30-128",
+  "grade": "ב",
+  "text": "32 - 10 = 22 נִפְרֹט עֲשֶׂרֶת אַחַת לְ ־10 יְחִידוֹת בּוֹדְדוֹת וְכָךְנּוכַל לְחַסֵּר 7.",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 30
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_adara_02-t1",
+  "grade": "ב",
+  "text": "מְחַבְּרִים לַמַּטָּרָה לִפְנֵיכֶם חֲמִשָּׁה קְלָפִים וְעַל כָּל קְלָף סִפְרָה: בַּחֲרוּ אַרְבָּעָה קְלָפִים וּבְנוּ מֵהֶם שְׁנֵי מִסְפָּרִים דּוּ –סִפְרָתִיִּים כָּךְ שֶׁהַסְּכוּם יִהְיֶה הַקָּרוֹב בְּיוֹתֵר לְ -100 . לִפְנֵיכֶם חֲמִשָּׁה קְלָפִים אֲחֵרִים וְעַל כָּל קְלָף סִפְרָה: בַּחֲרוּ אַרְבָּעָה קְלָפִים וּבְנוּ מֵהֶם שְׁנֵי מִסְפָּרִים דּוֹּ- סִפְרָתִיִּים כָּך שֶׁהַסְּכוּם יִהְיֶה הַקָּרוֹב בְּיוֹתֵר לְ -100 .",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_adara_02.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p63-265",
+  "grade": "ב",
+  "text": "ּכְדֵי לְהַגִּיעַ לְ ־10 וְעוֹד 2 יְחִידוֹת כְּדֵי לְהַגִּיעַ לִ ־12.",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 63
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b2-p85-446",
+  "grade": "ב",
+  "text": "הַקִּיפּו מִסְפָּרִים סְמּוכִים תַּרְגִּילֵי כֶּפֶל וְתוֹצָאָה (ּדֵוֹרְמִים וּמַכְפֵּלָה)׃",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+   "volume": "ב2",
+   "page": 85
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_eyar_02-t1",
+  "grade": "ב",
+  "text": "מַעֲשֵׂה בִּשְׁלוֹשָׁה קוֹפִים שְׁלוֹשָׁה קוֹפִים אָכְלוּ בְּיַחַד 25 בָּנָנוֹת, כָּל אֶחָד מֵהֶם אָכַל מִסְפָּר אִי-זוּגִי שֶׁל בָּנָנוֹת. מִסְפָּר הַבָּנָנוֹת שֶׁאָכַל כָּל קוֹף גָּדוֹל מִ- 2 וְקָטָן מֵ- 14. כַּמָּה בָּנָנוֹת אָכַל כָּל אֶחָד מֵהַקּוֹפִים ? הַאִם יֵשׁ פִּתְרוֹן נוֹסָף? אִם כֵּן, כִּתְבוּ אִם לֹא, הַסְבִּירוּ מַדּוּעַ.",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_eyar_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_tishrei_02-t6",
+  "grade": "ב",
+  "text": "אפשר לשאול: מה המספר הגדול ביותר שאפשר להשלים במשבצת הימנית? מה המספר הגדול ביותר שיכול להיות המספר האחרון? לתלמידים מתקדמים: מה המספר הגדול ביותר שאפשר לכתוב במקום הרביעי משמאל? (76) מה המספר הקטן ביותר שאפשר לכתוב במקום הראשון מימין? (34) פתרונות אפשריים: מקור: http://www.openmiddle.com/",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_tishrei_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b3-p145-914",
+  "grade": "ב",
+  "text": "הַאִם סְבִיב כָּל הַ ּׁשֻלְחָנוֹת יֵשׁ מִסְפָּר שָׁוֶה שֶׁל מְקוֹמוֹת?",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+   "volume": "ב3",
+   "page": 145
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_sivan_02-t2",
+  "grade": "ב",
+  "text": "כדאי לדון בכיתה: מה החוקיות? מה הקשר בין מספר הדבקיות האדומות למספר הדבקיות הכחולות? מְרַצְּפִים אֶת פִּינַת הַמִּשְׂחָקִים בְּבֵית הַסֵּפֶר \"שִׂמְחָה וְצָהֳלָה\" רוֹצִים לְרַצֵּף אֶת אֵזוֹר הַמִּשְֹחָקִים בֶּחָצֵר כַּךְ שֶׁחֲצִי מֵהָאֲרִיחִים יִהְיוּ בְּצֶבַע יָרֹק. הַצִּיעוּ אֶפְשָׁרוּת לְהֶמְשֵׁךְ הָרִצּוּף בְּאוֹפֶן שֶׁיִּתְקַבֵּל דֶּגֶם סִימֶטְרִי.",
+  "topic": "patterns_sequences",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_sivan_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-b1-p127-586",
+  "grade": "ב",
+  "text": "זוגיים הַאִם 28 הּוא מִסְפָּר זּוגִי?",
+  "topic": "patterns_sequences",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 127
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p110-501",
+  "grade": "ב",
+  "text": "א. הַמִּסְפָּר הַקּוֹדֵם׃ הַמִּסְפָּר הָעוֹקֵב׃",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 110
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p129-604",
+  "grade": "ב",
+  "text": "ו. 54 זּוגִי / אִי־זּוגִיזוגיים גֹּדֶל הַקְּבּוצוֹת הּוא׃",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 129
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-b1-p14-46",
+  "grade": "ב",
+  "text": "א. הַמִּסְפָּר הַקּוֹדֵם׃ ב. הַמִּסְפָּר הָעוֹקֵב׃",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+   "volume": "ב1",
+   "page": 14
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g2-msemot2_nisan_02-t2",
+  "grade": "ב",
+  "text": "חשוב להבהיר לתלמידים שבכל סעיף השאלה עוסקת באריזה מסוג אחד. במהלך הדיון, כדאי לשאול, האם יש מספר של מצות שאפשר לארוז בכל שלוש הקופסאות (וכל הכמות נארזת באותו סוג של קופסה) והאם יש מספר של מצות שאפשר לארוז רק בשני סוגים של קופסאות. כמובן שלא קיים מספר כזה כי מספר זוגי המתחלק ב- 5 מתחלק גם ב- 10. אפשר לשנות את נושא השאלה לקרטיבים, או לכל פריט אחר. בֵּיצִים בֵּיצִים..... לְרֹעִי לוּל תַּרְנְגֹלוֹת מַטִּילוֹת. בְּכָל יוֹם אוֹסֵף רֹעִי אֶת הַבֵּיצִים וּמְסַדֵּר אוֹתָן בְּתַבְנִיּוֹת מֵאוֹתוֹ סוּג. לִפְנֵיכֶם תַּבְנִיּוֹת הַבֵּיצִים הַמְּלֵאוֹת שֶׁרֺעִי אָסַף וְסִדֵּר בְּיוֹם רִאשׁוֹן: כַּמָּה בֵּיצִים סִדֵּר בַּתַּבְנִית הָעֶלְיוֹנָה? כַּמָּה בֵּיצִים אָסַף בְּסַךְ-הַכֹּל בְּיוֹם רִאשׁוֹן ? בְּיוֹם שֵׁנִי אָסַף 150 בֵּיצִים. בְּכַמָּה תַּבְנִיּוֹת מְלֵאוֹת מִסּוּג זֶה סִדֵּר אֶת הַבֵּיצִים ? בַּאֲחַד הַיָּמִים אָסַף 100 בֵּיצִים. הַאִם סִדֵּר אֶת הַבֵּיצִים בְּתַבְנִיּוֹת מְלֵאוֹת ? הַסְבִּירוּ.",
+  "topic": "patterns_sequences",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot2_nisan_02.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p112-710",
+  "grade": "ג",
+  "text": "6. כִּתְבּו אַרְבָּעָה תַּרְגִּילִים: שְׁנַיִם שֶׁל כֶּפֶל וּׁשְנַיִם שֶׁל חִלּּוק. הַשְׁלִימּו אֶת הֶחָסֵר: פילוג ,12 ,606 ,15 ,904 ,12 ,48 (בעזרת = x = x=124 x גדולים = x = x =412 x :: = = =4: 48 במספרים :: = = : =",
+  "topic": "addition_subtraction",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 112
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t12",
+  "grade": "ג",
+  "text": "ניתן להוסיף ולשאול : אם ידוע שינאי התחיל להכין את שיעורי הבית בחשבון בשעה 4 ועשר דקות (לאחר שסיים להכין את שיעורי-הבית בעברית ובמולדת), באיזו שעה התחיל את הכנת שיעורי הבית? וכד'",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p66-404",
+  "grade": "ג",
+  "text": "וחיסור כַּמָּה לְיַד 2 לִבְנֵי־10?",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 66
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p113-711",
+  "grade": "ג",
+  "text": "1. א. כַּמָּה חָסֵר? ב. מִצְאּו אֶפְשָׁרֻיֹּות שֹׁונֹות: 2 = 10 :( )18 + = :( )34 + 5 = 9 :( )43 + = :( )34 + 4 = 7 :( )26 + = :( )34 +",
+  "topic": "addition_subtraction",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 113
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p15-89",
+  "grade": "ג",
+  "text": "מבנה 10 + 10 + 10 + 3 = 33 הוֹסַפְתִּי בְּדִלּּוגִים שֶׁל 10 עַד 97, וְרָאִיתִי שֶׁצָּרִיְך לְהוֹסִיף עשורי עוֹד 3 לְ ־100 בתחום ה־200 ּדָן פָּתַר׃",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 15
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p67-413",
+  "grade": "ג",
+  "text": "חיבור 3,286 + 1,546 = .ג וחיסור 1,438 + 2,744 =.ד",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 67
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p10-55",
+  "grade": "ג",
+  "text": "במספרים .ו .ה .ד 432 , 5453,6 789,4 וחיסור 638 ,3 + 278,1 +216,+ 3",
+  "topic": "addition_subtraction",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 10
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t2",
+  "grade": "ג",
+  "text": "אפשר להוסיף על ההנחיות ולאפשר צירוף של ספרות למספרים. אפשר לערוך תחרות בין התלמידים – הזוכה הוא מי שמוצא את המספר הרב ביותר של תרגילים.",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p29-159",
+  "grade": "ג",
+  "text": "1. א. הַשְׁלִימּו אֶת הֶחָסֵר בְּלּוחַ הַ ־200.",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 29
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p12-65",
+  "grade": "ג",
+  "text": "א. נַתְחִיל מִצַּד יָמִין, מֵהַיְּחִידֹות.ג. 5 מֵאֹות פָּחֹות 7 8 יְחִידֹות פָּחֹות 9 (חָסֵר יְחִידֹות). מֵאֹות (חָסֵר מֵאֹות).",
+  "topic": "addition_subtraction",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 12
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t2",
+  "grade": "ג",
+  "text": "יש לדון עם התלמידים בדרכים השונות למצוא את הסכום המבוקש. אפשר לפשט את השאלה ולשאול על סכום ארבעה מספרים, או להעלות את דרגת המורכבות: אפשר \"להפוך\" את המשימה, למשל – כסו ארבעה מספרים שסכומם 100, כסו ארבעה מספרים עוקבים שסכומם 90, האם אפשר לכסות שלושה מספרים אי-זוגיים שסכומם 100? וכד'. מעובד מ- https://mathbeforebed.com/ עושים סדר בפעולות לפניכם 5 מספרים: 2361024 השתמשו במספרים אלה ובפעולות החשבון כדי לקבל את התוצאה 4. מותר להשתמש בכל מספר פעם אחת בלבד בכל תרגיל. אפשר להוסיף סוגריים. שימו לב, יש יותר מאפשרות אחת לפתרון. 4 =4 =א. השתמשו ב-2 מספרים: 4 = 4 = 4 =4 =ב. השתמשו ב-3 מספרים: 4 = 4 = 4 =4 =ג. השתמשו ב-4 מספרים: 4 = 4 = ד. השתמשו ב-5 מספרים: 4 =4 = 4 = 4 =",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t3",
+  "grade": "ג",
+  "text": "אפשר להוסיף על ההנחיות ולאפשר צירוף של ספרות למספרים. אפשר לערוך תחרות בין התלמידים – הזוכה הוא מי שמוצא את המספר הרב ביותר של תרגילים. נצא לשטח סדרו את הרשימה הבאה מהשטח הקטן ביותר לשטח הגדול ביותר. שטח מדינת ישראל שטח מגרש כדורגל שטח ים כנרת שטח יבשת אסיה שטח דף מחברת שטח הכיתה הוסיפו פריט משלכם לרשימה וכתבו בין אלו פריטים ברשימה הוא נמצא. מצאו במרשתת (אינטרנט) את שטח היישוב שבו אתם גרים והשוו לשטח הכנרת. למי שטח גדול יותר?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_shvat_03-t7",
+  "grade": "ג",
+  "text": "הפתרון מחייב מציאת אסטרטגיה לעבודה שיטתית ולהבנת קשרי הגומלין בין הכמויות השקולות. ניתן לבקש תחילה מהתלמידים להציע תפריט שבועי אפשרי של אלון, ולסכם כמה תמרים ותאנים אכל בסך הכל באותו שבוע. רצוי להיעזר באמצעי המחשה קונקרטיים במהלך הפתרון. יום הולדת ליובל חבריה של יובל החליטו להפתיע אותה ולהכין לה שלט לכבוד יום ההולדת. להכנת השלט הם השתמשו בדפי מדבקות ענק של אותיות. המדבקות הן בצורת מלבן שמידותיו הן: אורך צלע אחת 21 ס\"מ אורך הצלע הסמוכה 30 ס\"מ מה ההיקף של כל מדבקה? לאחר שסיימו להכין את השלט החליטו החברים להוסיף סרט קישוט מסביב לשלט. הם רצו לחשב מה אורך הסרט שהם זקוקים לו. תומר אמר שהיות ויש 10 מדבקות צריך לחשב היקף מדבקה אחת ולהכפיל את ההיקף ב-10. האם תומר צודק?",
+  "topic": "addition_subtraction",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_shvat_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g1-p80-502",
+  "grade": "ג",
+  "text": "ב- וחילוק ו. 120 יְלָדִים. 10 בִּקְבּוצָה. כַּמָּה קְבּוצוֹת?",
+  "topic": "division",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 80
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p111-706",
+  "grade": "ג",
+  "text": "חילוק בְּמָה הֵן דֹּומֹות וּבְמָה שֹׁונֹות?",
+  "topic": "division",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 111
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p113-716",
+  "grade": "ג",
+  "text": "4. פִּתְרּו:חילוק ּדֻגְמָה: אֵיזֶה מִסְפָּר נִרְשֹׁם שֶׁאִם נְחַלֵּק אֹותֹו בְּ 3- נְקַבֵּל אֶת הַתֹּוצָאָה 9?",
+  "topic": "division",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 113
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g1-p74-471",
+  "grade": "ג",
+  "text": "מָצָאנּו שֶׁ ׃ 12 עֲשָׂרוֹת 0 = 1201 12 X ב- וחילוק",
+  "topic": "division",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 74
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p107-681",
+  "grade": "ג",
+  "text": "הִפְרַדְתִּי אֶת 78 לְ 70- וּל8-: 6 = : 6 + 8 : 6 = 70 :78 אֱיָל פָּתַר: רָאִיתִי שֶׁ 70- וְגַם 8 אֵינָם מִתְחַלְּקִים בְּדִיּּוק בְּ 6- וְנִשְׁאָרֹות ׁשְאֵרִיֹּות: 66 מִתְחַלֵּק בְּ 6- (ּכִי 6 = 6611) x לָכֵן כְּשֶׁמְּחַלְּקִים אֶת 70 בְּ 6- נִשְׁאֶרֶת שְׁאֵרִית 4:( ( 6 = 11 ):70 ׁשְאֵרִית 4 חילוק ּכְדֵי לֶאֱרֹז 70 כֹּוסֹות, צָרִיְך 11 קֻפְסָאֹות וְנִשְׁאָרֹות 4 כֹּוסֹות.",
+  "topic": "division",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 107
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p115-732",
+  "grade": "ג",
+  "text": "רֹונִית צִיְּרָה: חילוק במספרים 78=6+24+24+24",
+  "topic": "division",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 115
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p56-338",
+  "grade": "ג",
+  "text": "וחילוק כַּאֲשֶׁר מְשַׁנִּים אֶת הַסֵּדֶר, מִשְׁתַּמְּשִׁים בְּסֹוגְרַיִם.",
+  "topic": "division",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 56
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "division-sharing-frame"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t1",
+  "grade": "ג",
+  "text": "יש דרכים רבות לחלק מלבן..... לפניכם מלבן. חלקו את המלבן ל- 4 חלקים שווים בשטחם ושווים בצורתם (חלקים חופפים). היעזרו בדף הנספח ומצאו 3 תשובות נוספות. חלקו את המלבן ל-4 חלקים שווים בשטחם ושונים בצורתם. האם יש אפשרויות נוספות?",
+  "topic": "division",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t6",
+  "grade": "ג",
+  "text": "חשוב להדגיש בפני התלמידים שלשאלה יש יותר מתשובה אחת נכונה, כל אחת מהצורות יכולה להיות יוצאת דופן. בקשו מהתלמידים לנמק את תשובתם. מומלץ להתמקד במאפיין של צורה ג' שהיא הצורה היחידה שאינה מחולקת לחלקים שווים ולבקש מהתלמידים לחלק את צורה ג' באופן שווה בדרכים שונות לשנים, שלושה או ארבעה חלקים. ניתן לבקש מהתלמידים להתבונן בצורות א, ב ו-ד ולשאול: אם נצבע חלק אחד מתוך החלקים השווים, מהו החלק?",
+  "topic": "division",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t7",
+  "grade": "ג",
+  "text": "חשוב להדגיש בפני התלמידים שלשאלה יש יותר מתשובה אחת נכונה, כל אחת מהצורות יכולה להיות יוצאת דופן. בקשו מהתלמידים לנמק את תשובתם. מומלץ להתמקד במאפיין של צורה ג' שהיא הצורה היחידה שאינה מחולקת לחלקים שווים ולבקש מהתלמידים לחלק את צורה ג' באופן שווה בדרכים שונות לשנים, שלושה או ארבעה חלקים. ניתן לבקש מהתלמידים להתבונן בצורות א, ב ו-ד ולשאול: אם נצבע חלק אחד מתוך החלקים השווים, מהו החלק? שולחן ליל הסדר משפחת כהן ישבו סביב שולחן עגול לחגוג את ליל הסדר ידוע ש: סבא ישב ליד סבתא. התינוק ישב בין אמא לאבא. דודה רותי ישבה ליד אמא. ודוד שלום לא ישב ליד סבא. מהו סדר הישיבה של משפחת כהן סביב השולחן? האם יש אפשרויות ישיבה נוספות?",
+  "topic": "division",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t9",
+  "grade": "ג",
+  "text": "השאלה מזמנת פיתוח ראיה מרחבית. מומלץ להציע לתלמידים לגזור את האיורים ולבדוק את השערתם. סעיף ב' לקוח ממבחני NAEP 2013 מי במשבצת? בריבוע שלפניכם, סכום שני המספרים בכל שורה כתוב בריבוע שמימינם (בריבועים האפורים) וסכום המספרים בכל טור כתוב בריבועים התחתונים (התכולים). סכום ארבעת המספרים רשום בריבוע הימני התחתון (הכחול): השלימו בדרך דומה את הריבועים הבאים:",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p119-762",
+  "grade": "ג",
+  "text": "הַאִם כֻּלָּם קִבְּלּו אֹותָהּצּורָה? הַאִם כֻּלָּם קִבְּלּו רֶבַע שֶׁל הַדַּף הַ ּׁשָלֵם?",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 119
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p125-812",
+  "grade": "ג",
+  "text": "הַאִם צָבּועַ חֵצִי?",
+  "topic": "fractions",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 125
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p126-815",
+  "grade": "ג",
+  "text": "ּדִוּּוחַ מֵהַ ּׁשְאֵלָה מִתְּחִלַּת הַיְּחִידָה. כַּמָּה יְלָדִים יְדַוְּחּו לְיַלְדֵי הַכִּתָּה עַל דֶּרֶךְ הַפִּתְרֹון שֶׁלָּהֶם. בְּכִתָּה ג' פָּתְרּו בִּדְרָכִים שֹׁונֹות: קֶרֶן פָּתְרָה: \"1 חִלַּקְתִּי כָּל עּוגָה לְ 4- חֲלָקִים שָׁוִים. כָּל חֵלֶק הּוא . כָּל יֶלֶד קִבֵּל רֶבַע שֶׁל :211 עּוגָה אַחַת וְרֶבַע שֶׁל הָעּוגָה הַ ּׁשְנִיָּה יַחַד הֵם קִבְּלּו = + 44 4",
+  "topic": "fractions",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 126
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t1",
+  "grade": "ג",
+  "text": "המדינה בת 71 בעזרת המספרים 1,2,3,4,5,6,7,8,9,10 וארבע פעולות חשבון יש להגיע לתוצאה 71. יש להשתמש בכל המספרים. אין לחזור על מספר פעמיים. שימו לב לסדר פעולות החשבון.",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p121-791",
+  "grade": "ג",
+  "text": "רֶבַע כֹּותְבִים כָּךְ:",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 121
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p132-871",
+  "grade": "ג",
+  "text": "שברים בְּנֵי הַמִּשְׁפָּחָה אָכְלּו שְׁלִיׁש מֵהָעּוגִיֹּות.",
+  "topic": "fractions",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 132
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_eyar_03-t7",
+  "grade": "ג",
+  "text": "מומלץ לשאול את התלמידים כיצד הצליחו לפענח את הסימן הראשון. אפשר לשאול האם ניתן לפתור את השאלה עם פחות רמזים? איזה מהם ניתן למחוק? האם יש מספרים שאינם מיוצגים? השאלה לקוחה מאתר nrich : http://nrich.maths.org/5714 קפלו וגזרו א' מקפלים נייר לאורך הקו המקווקו וגוזרים כמה צורות, כמתואר בציור. מקפלים גוזרים לאחר שגוזרים פותחים את הקיפול. איך ייראה הדף הגזור? איור א' איור ב' איור ג' איור ד' קפלו וגזרו ב' נתון מצולע: מקפלים ארבעה דפים, כל אחד באופן שונה ומסמנים את הקווקווים כפי שמופיע באיורים א-ד. אם נגזור לאורך הקווקווים, מאיזה מן האיורים יתקבל המצולע הנתון? איור א' איור ב' איור ג' איור ד' איור דר א איור דר א איור דר א איור דר א",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_eyar_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t2",
+  "grade": "ג",
+  "text": "מומלץ להציג את השאלה בשלבים: שלב א' עוסק בחלוקה לצורות חופפות. שלב ב' עוסק בחלוקה לצורות שוות שטח שאינן חופפות. מצופה שהתלמידים ינקטו באסטרטגיה של ספירת משבצות שלמות להשוואת שטחי הצורות. ניתן להרחיב את הדיון על צורות שוות שטח שאינן חופפות ושלא ניתן להשוות את השטחים על ידי ספירת משבצות שלמות: לדוגמא: האם המשולשים והמלבנים באיור שווים בשטחם? במקרה זה ההשוואה תעשה על ידי ראיית כל חלק כרבע מאותו השלם. (חשוב להדגיש שבמקרה זה השלמים חופפים)",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_tevet_03-t5",
+  "grade": "ג",
+  "text": "ניתן לאסוף את התשובות השונות הניתנות בכיתה בתוך טבלה מסדרת. כדאי לדון במציאת אסטרטגיות שונות לפתרון (למשל, ייצוג הצורות על ישר המספרים כדי להבין את סדרי הגודל). השאלה עובדה מתוך המאמר: בחרי, ס. (2004). מחפשים נעלמים ותובנות מתמטיות. מספר חזק 2000, גיליון 8, עמ' 8-13. במאמר מתוארות פעילויות דומות בשברים פשוטים. מה בריבוע? אילו צורות יש בציור? איזה מספר נמצא בתוך הריבוע והעיגול אבל לא בתוך המשולש? איזה מספר נמצא גם בתוך הריבוע, גם בתוך העיגול וגם בתוך המשולש? 4. השלימו מספרים כך ש: סכום המספרים בתוך הריבוע יהיה 20. סכום המספרים בתוך המשולש יהיה 10. סכום המספרים בתוך העיגול לא ישתנה. (יש לעמוד בכל שלושת התנאים) כתבו את המספר 6 כך שיהיה בתוך המשולש אבל לא בתוך העיגול ולא בתוך הריבוע.",
+  "topic": "fractions",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_tevet_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p12-66",
+  "grade": "ג",
+  "text": "נִפְרֹט עֲשֶׂרֶת לְ 10- יְחִידֹות. נִפְרֹט אֶלֶף לְ 10- מֵאֹות (יֵׁש 10 וּ8-) (יִּׁשָאֲרּו 2 עֲשָׂרֹות): (יִּׁשָאֲרּו 6 אֲלָפִים). יֵׁש 9 18 - 9 = 15 מֵאֹות (10 וְ5-) 9 5 7 - 4 8 15 - 7 =",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 12
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p18-98",
+  "grade": "ג",
+  "text": "ּתֹובָנָה מָתֵמָטִית וְהַכְלָלֹות: :279 + 356 =",
+  "topic": "general",
+  "type": "completion",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 18
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p80-499",
+  "grade": "ג",
+  "text": "וב- ג. 60 יְלָדִים. 10 בִּקְבּוצָה. כַּמָּה קְבּוצוֹת? 60 ׃ 10 = 001 90 ׃ 10 =",
+  "topic": "general",
+  "type": "completion_question",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 80
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p80-503",
+  "grade": "ג",
+  "text": "ז. 140 יְלָדִים. 10 בִּקְבּוצָה. כַּמָּה קְבּוצוֹת? 140 ׃ 10 =",
+  "topic": "general",
+  "type": "completion_question",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 80
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_shvat_03-t1",
+  "grade": "ג",
+  "text": "מאזני הפירות המאזניים שבציור מאוזנים: איך אפשר לאזן את המאזנים?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_shvat_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p72-462",
+  "grade": "ג",
+  "text": "כַּמָּה מֵאוֹת בְּכָל הַמִּסְפָּר?",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 72
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p140-956",
+  "grade": "ג",
+  "text": "5. כַּמָּה קֻבִּיֹּות מֵכִיל כָּל מִגְדָּל? אִם יֵׁש קֻבִּיֹּות קְטַנֹּות בַּכִּתָּה, נַסּּו לִבְנֹות אֶת הַמִּגְדָּלִים. אֶפְשָׁר לְהִשְׁתַּמֵּשׁגַּם בַּקֻּבִּיֹּות הַקְּטַנֹּות שֶׁל הַיְּחִידֹות מִפְּלַסְטִיק.",
+  "topic": "general",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 140
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p100-654",
+  "grade": "ג",
+  "text": "הֶקֵּף הַמַּלְבֵּן ס״מ = + + 5 + 3",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 100
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p86-559",
+  "grade": "ג",
+  "text": "63 + 10 - 13 = 63 - 13 + 10 = 50 + 10 = 60 מֻתָּר לְשַׁנּוֹת אֶת סֵדֶר הַחִ ּׁשּוב וְקֹדֶם לְחַסֵּר 13 וְאָז לְחַבֵּר 10.",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 86
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p117-742",
+  "grade": "ג",
+  "text": "6. חַ ּׁשְבּו בִּמְהִירּות: 25 =:100 .א 2 =:100 4 =25 .ד x .ב",
+  "topic": "general",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 117
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_purim_03-t1",
+  "grade": "ג",
+  "text": "מסכות למסיבה לכבוד מסיבת הפורים דני הלך לקנות מסכות לילדי הכיתה. בכיתה 29 תלמידים. המסכות נמכרות באריזות בגדלים שונים: אריזה של 12 מסכות עולה 15 ₪ אריזה של 10 מסכות עולה 13 ₪ אריזה של 8 מסכות עולה 10 ₪ אריזה של 3 מסכות עולה 5 ₪ דני רוצה לקנות מסכות לכל ילדי הכיתה, הציעו אילו אריזות כדאי לו לקנות בכדי לשלם את המחיר הנמוך ביותר.",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_purim_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p43-251",
+  "grade": "ג",
+  "text": "1. עִבְדּו בְּלִבְנֵי־10, הַצִּיגּו אֶת הַמִּסְפָּר בַּלְּבֵנִים וְרִשְׁמּו אֶת הַמִּסְפָּר שֶׁתְּקַבְּלּו אַחֲרֵי הַהוֹסָפָה. הַקִּיפּו אֶת הַסִּפְרָה אוֹ הַסְּפָרוֹת שֶׁהִשְׁתַּנּּו.",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 43
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p138-940",
+  "grade": "ג",
+  "text": "3. קְחּו שְׁתֵּי קֻפְסָאֹות שֹׁונֹות. שַׁעֲרּו בְּאֵיזֹו קֻפְסָה יִּכָנְסּו יֹותֵר פְּקָקִים.",
+  "topic": "general",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 138
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_kislev-t12",
+  "grade": "ג",
+  "text": "מומלץ לתת לתלמידים לפתור בזוגות או בעבודה עצמית ולאחר מכן לקיים דיון על אסטרטגיות הפיתרון. ניתן להיעזר ביישומון: http://illuminations.nctm.org/Activity.aspx?id=3531",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_kislev.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p14-71",
+  "grade": "ג",
+  "text": "3. א. רוֹעִי קָנָה צִיּּוד בִּסְכּום שֶׁל 54 ש״ח בַּחֲנּות ״צַעֲצּועוֹן״. מָה הָיָה יָכוֹל רוֹעִי לִקְנוֹת? רִשְׁמּו בַּמַּחְבֶּרֶת.",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 14
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p68-418",
+  "grade": "ג",
+  "text": "ג. כַּמָּה לִבְנֵי־1 יֵשׁ בְּכָל הַמִּסְפָּר 356?",
+  "topic": "general",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 68
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t1",
+  "grade": "ג",
+  "text": "מי מסתתר? מה סכום המספרים המסתתרים מתחת למלבן?",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p103-652",
+  "grade": "ג",
+  "text": "5. הַאִם הַתֹּוצָאָה שֶׁקִּבַּלְתֶּם דֹּומָה לְזֹאת שֶׁל רֹונִית? הִיא הִסְבִּירָה כָּךְ: הִקַּפְתִּי מִסְפָּר שָׁוֶה שֶׁל נְקֻדֹּות בְּכָל צֶלַע. בְּכָל מְשֻׁלָּשׁיֵׁש 3 קְבּוצֹות שָׁוֹות.",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 103
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p68-417",
+  "grade": "ג",
+  "text": "ד. בְּאֵילּו שָׁעֹות שְׁלֵמֹות יֵׁש זָוִית קֵהָה?",
+  "topic": "geometry",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 68
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p64-393",
+  "grade": "ג",
+  "text": "ממשולשים .2חֲזָרָה צורות ּפִתְרּו =9:36 =8 x4 חקר .ו .א",
+  "topic": "geometry",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 64
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t5",
+  "grade": "ג",
+  "text": "מומלץ לחלק לכל תלמיד את הנספח המצורף. בסעיף א' התלמידים יצבעו שלושה משולשים שונים (משולשים שאינם חופפים). בסעיף ב' התלמידים מתבקשים לזהות את כל המשולשים החופפים למשולשים שמצאו בסעיף א'. להכנת זוית ישרה על ידי התלמידים, העזרו בסרטוטים ועבדו לפי ההנחיות: (ההנחיות לקיפול הדף נלקחו מ: http://www.matheducation.co.il/sites/default/files/downloads/mdryk_lmvrh_mvdym.pdf) ניתן להשתמש בעותק נוסף של הדף הנספח ולבקש מן התלמידים לזהות מצולעים שונים: מרובעים, מחומשים ועוד .",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p104-659",
+  "grade": "ג",
+  "text": "ּבִמְשֻׁלָּשׁשֶׁיֵּשׁבֹּו 10 נְקֻדֹּות בְּצֶלַע: יֵׁש קְבּוצֹות שָׁוֹות. בְּכָל קְבּוצָה נְקֻדֹּות.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 104
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p73-455",
+  "grade": "ג",
+  "text": "מְעֻיָּן בָּהִיר הִסְתֹּובֵב בְּזָוִית סִיבּוב שֶׁל מַעֲלֹות.",
+  "topic": "geometry",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 73
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t4",
+  "grade": "ג",
+  "text": "השאלה מזמנת פתרונות שונים, כדאי לדון עם התלמידים על הפתרונות השונים ומציאת האסטרטגיות השונות לפתרון. השאלה לקוחה מתוך \"בעיות מעניינות\", מספר חזק 2000, גיליון 8, עמ' 22. http://ymath.haifa.ac.il/images/stories/mispar_chazak_2000/issue8/jean_albert.pdf משלוש יוצא אחד בציור שלפניכם משושה שהעבירו בו חלק מהאלכסונים. א. זַהוּ שלושה משולשים ישרי-זווית שונים. (העזרו בזוית ישרה מוכנה, למדידת הזוית) ב. כמה משולשים ישרי-זווית שונים מצאתם?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_kislev-t3",
+  "grade": "ג",
+  "text": "דוגמה שבעזרתה אפשר להסביר לתלמידים את המשימה: סמנו ריבוע שאורך צלעו 3 משבצות ויש בו 2 תפוחים: פתרון: פתרונות שגויים: להרחבה: סמנו ריבוע שאורך צלעו 3 משבצות שבו מספר התפוחים שווה למספר התפוזים: סמנו ריבוע שאורך צלעו 2 משבצות שבו מספר התפוזים גדול ממספר התפוחים: מומלץ לתת לתלמידים לפתור בזוגות או בעבודה עצמית ולאחר מכן לקיים דיון על אסטרטגיות הפיתרון. המשימה היא אחת המשימות שחוברו על-ידי המורה היפני Naoki Inaba. אפשר למצוא שאלות דומות באתר שלו: http://inabapuzzle.com/study/index.html (ביפנית). המשימה מעובד מהתרגום לאנגלית: https://www.tes.com/teaching-resource/inaba-puzzles-500-problem-solving-puzzles-11573891 בונים מספרים אביאל בונה מספרים תלת ספרתיים מהספרות הבאות: 9,6,2 בכל מספר שהוא בונה הוא משתמש בכל אחת משלוש הספרות הנתונות, בכל ספרה פעם אחת בלבד. כמה מספרים אביאל יכול לבנות? רשמו את כולם. סמנו (בקירוב) את המספרים על הישר. מהם שני המספרים שההפרש ביניהם הוא הגדול ביותר? חשבו את ההפרש. מהם שני המספרים שההפרש ביניהם הוא הקטן ביותר? חשבו את ההפרש.",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_kislev.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_tevet_03-t3",
+  "grade": "ג",
+  "text": "רצוי לבקש מהתלמידים למצוא פתרונות שונים רבים ככל האפשר. פתרונות אפשריים לשאלה הראשונה: 89 – 56 ; 59 – 26 ; 7 x 6 – 9 פתרונות אפשריים לשאלה השנייה: 48:4 ; 6 x 8 : 4 ; 9 x 8 : 6 מקור: https://mathforlove.com/ מחפשים את הנעלמים 1. תנו דוגמה אפשרית לערכה של כל צורה בתרגיל, בהתאם לתנאים הקיימים. תנאי התרגיל הם: 2. האם יש פתרון נוסף לתרגיל? אם כן, כתבו את הפתרון שמצאתם. 3. מה המספר הטבעי הגדול ביותר ש- יכול לייצג? ומה הקטן ביותר?",
+  "topic": "geometry",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_tevet_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_sivan_tamuz_03-t1",
+  "grade": "ג",
+  "text": "כל זמן שהנר דולק... גב' יעקבי קנתה חבילת נרות. על הקופסה היה כתוב שכל נר בוער במשך 30 שעות. היא הדליקה את אחד הנרות, וכעבור מספר שעות כיבתה אותו. גב' יעקבי שבה והדליקה את הנר בשעה 7 בערב. היעזרו בציור, וחשבו באיזו שעה, בקירוב, יכבה הנר?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_sivan_tamuz_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p114-795",
+  "grade": "ג",
+  "text": "מָה אֹרֶךְהַחֲגוֹרָה?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 114
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p133-877",
+  "grade": "ג",
+  "text": "כַּמָּה דַּקֹּות יֵׁש בַּחֲצִי שָׁעָה?",
+  "topic": "measurement",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 133
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p103-684",
+  "grade": "ג",
+  "text": "1 מֶטֶר (ּבְקִצּּור 1 מ׳) = 100 ס״מ כְּשֶׁמּוֹדְדִים אֹרֶךְשֶׁהּוא יוֹתֵר מֵ ־100 ס״מ אֶפְשָׁר לִכְתֹּב כָּךְ׃",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 103
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p112-769",
+  "grade": "ג",
+  "text": "אַבָּא׃בְּקִילוֹמֶטֶר אֶחָד יֵשׁ 0001, מֶטְרִים׃ 0001, מ׳ = 0001, 1 ק״מ X 0008, מ׳ = 0001, 8 ק״מ.",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 112
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p5-9",
+  "grade": "ג",
+  "text": "וגימטרייה 10 + 10 + 50 = 70 יַיִן - 60 + 6 + 4 = 70 סוֹד - מִכָּךְמְבִינִים שֶׁכַּאֲשֶׁר שׁוֹתִים יַיִן וּמִשְׁתַּכְּרִים, אוֹמְרִים דְּבָרִים שֶׁאּולַי לֹא 5 מִתְכַּוְּנִים לְהַגִּיד וּמְגַלִּים סוֹד.",
+  "topic": "measurement",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 5
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_shvat_03-t10",
+  "grade": "ג",
+  "text": "סיפור המסגרת של השאלה מחייב את התלמידים לחפש מחוברים שערכם בגמטריה יוצרים מילה בעלת משמעות. שם אפשרי הוא לילך, מילה אפשרית היא \"המילה\", \"כידון\" וכד'.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_shvat_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p131-921",
+  "grade": "ג",
+  "text": "מדידות משקל ּכַאֲשֶׁר כַּף אַחַת שֶׁל הַמֹּאזְנַיִם נוֹטָה כְּלַפֵּי מַטָּה, פֵּרּושׁ הַדָּבָר שֶׁהַחֵפֶץ שֶׁעָלֶיהָ הּוא הַכָּבֵד יוֹתֵר.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 131
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p98-639",
+  "grade": "ג",
+  "text": "הֶחְלִיטּו עַל מִדָּה חֲדָשָׁה שֶׁנִּקְרֵאת 1 מֶטֶר. חִ ּׁשְבּו אֶת אֹרֶך הַמֶּטֶר לְפִי הֶקֵּף ּכַדּּור הָאָרֶץ.",
+  "topic": "measurement",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 98
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_kislev-t5",
+  "grade": "ג",
+  "text": "בשאלות ג' ו-ד' ניתן לקיים דיון כיצד ניתן למצוא מהם שני המספרים באמצעות מיקומם על ישר המספרים. בארנק של רותי לרותי יש בארנק שטר אחד של 50 שקלים ושטר אחד של 20 שקלים. בנוסף יש לה מטבע אחד של 10 שקלים ושני מטבעות של שקל אחד. 1. אלו מהמוצרים הבאים יכולה רותי לרכוש מבלי לפרוט את השטרות או את המטבעות? 61 ₪33₪31 ₪21₪22₪19₪80₪61 ₪33₪31 ₪21₪22₪19₪80₪ 61 ₪ 33₪ 31 ₪ 21₪ 22₪ 19₪ 80₪ 61 ₪ 33₪ 31 ₪ 21₪ 22₪ 19₪ 80₪ 2. בחרו מתוך המוצרים שני מוצרים שניתן לרכוש יחד, מבלי לפרוט את השטרות או את המטבעות. 3. בחרו מתוך המוצרים שני מוצרים שלא ניתן לרכוש יחד, מבלי לפרוט את השטרות או את המטבעות.",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_kislev.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_shvat_03-t4",
+  "grade": "ג",
+  "text": "להעמקה, ניתן להרחיב בשאלה 1:ביום הראשון, יואב שתל שתיל נוסף שגובהו מטר, ובכל יום התארך השתיל ב-12 ס\"מ. שערו איזה שתיל יהיה גבוה יותר ביום השישי? בידקו את השערתכם. שאלה 2 היא \"שאלה הפוכה\" שבה אסטרטגיית הפתרון היעילה היא באמצעות חישוב מנקודת הסיום אל נקודת ההתחלה.",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_shvat_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_shvat_03-t5",
+  "grade": "ג",
+  "text": "להעמקה, ניתן להרחיב בשאלה 1:ביום הראשון, יואב שתל שתיל נוסף שגובהו מטר, ובכל יום התארך השתיל ב-12 ס\"מ. שערו איזה שתיל יהיה גבוה יותר ביום השישי? בידקו את השערתכם. שאלה 2 היא \"שאלה הפוכה\" שבה אסטרטגיית הפתרון היעילה היא באמצעות חישוב מנקודת הסיום אל נקודת ההתחלה. לאכול פרי זה בריא אלון אוהב לאכול תאנים ותמרים. בכל יום הוא אוכל 8 תמרים או 2 תאנים או תאנה ו-4 תמרים. במהלך שבוע אחד בחודש שבט אכל אלון32 פירות בסך הכל. ידוע שלפחות באחד הימים אכל גם תאנים וגם תמרים. בכמה ימים במהלך השבוע אכל אלון רק תמרים? האם יש אפשרות נוספת?",
+  "topic": "measurement",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_shvat_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t4",
+  "grade": "ג",
+  "text": "אפשר להוסיף ולשאול: אם נוסיף שורה נוספת בתחתית המבנה, איזה מספר יתווסף בטור של 32? במה שונה המספר שיתווסף בטור של כפולות 8 מהמספר שיתווסף בטור של כפולות 4? (אחד הגורמים הוא דו ספרתי ולכן מתקבלת מכפלה מחוץ לתחום לוח הכפל 10x10).",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p45-270",
+  "grade": "ג",
+  "text": "ב. הַגְדִּילּו אֶת הַגֹּורֵם הַ ּׁשֵנִי פִּי 2, רִשְׁמּו תַּרְגִּיל: מָה קָרָה לַמַּכְפֵּלָה?",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 45
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p47-283",
+  "grade": "ג",
+  "text": "א. לְנֹעַם יֵׁש 12 עֶפְרֹונֹות וּלְדֹור יֵׁש 6 עֶפְרֹונֹות. פִּי כַּמָּה ּגָדֹול מִסְפַּר הָעֶפְרֹונֹות שֶׁל נֹעַם מִזֶּה שֶׁל דֹּור?",
+  "topic": "multiplication",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 47
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p127-905",
+  "grade": "ג",
+  "text": "X X X =55 =57 =510 X X X =58 =59 =511 X X X =52 =56 =512 X X X כפל .11 הַשְׁלִימּו. אֶפְשָׁר לְהֵעָזֵר בַּמִּסְפָּרִים שֶׁבְּטַבְלַת הַמְּחֻמָּשִׁים לְמַעְלָה׃",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 127
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p44-265",
+  "grade": "ג",
+  "text": "7. הַשְׁלִימּו. אֶפְשָׁר לְהֵעָזֵר בְּלּוחַ הַכֶּפֶל: כפל 18 = x16= x",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 44
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p54-325",
+  "grade": "ג",
+  "text": "3 = :6 לְתֹם יֵׁש בּּולִים. כִּי לְגִילָה יֵׁש 12 בּּולִים. לְתֹם יֵׁש פִּי 3 פָּחֹות. לְתֹם יֵׁש בּּולִים.",
+  "topic": "multiplication",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 54
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p115-803",
+  "grade": "ג",
+  "text": "א. הַשְׁלִימּו אֶת הַמִּסְפָּרִים בַּטַּבְלָה׃ (אֶפְשַׁר לְהֵעָזֵר בַּצִּיּור) מִסְפַּר כְּלֵי הָרֶכֶב גַּלְגַּלִּים לָאוֹפַנּוֹעִים גַּלְגַּלִּים לַמְּכוֹנִיּוֹת כפל",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 115
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p45-266",
+  "grade": "ג",
+  "text": "ּתֹובָנָה מָתֶמָטִית: הַהַשְׁפָּעָה שֶׁל הַגְדָּלַת גֹּורְמִים פִּי מִסְפָּר עַל הַמַּכְפֵּלָה",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 45
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p51-312",
+  "grade": "ג",
+  "text": "וְזֶה נָכֹון. כפל וחילוק חֵן צִיֵּר וְכָתַב יֵׁש 9 קְבּוצֹות שֶׁל 3 יְלָדִים: ּבֵן אֶחָד וּ-2 בָּנֹות.",
+  "topic": "multiplication",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 51
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_nisan_03-t3",
+  "grade": "ג",
+  "text": "מומלץ להציג את השאלה בשלבים: שלב א' עוסק בחלוקה לצורות חופפות. שלב ב' עוסק בחלוקה לצורות שוות שטח שאינן חופפות. מצופה שהתלמידים ינקטו באסטרטגיה של ספירת משבצות שלמות להשוואת שטחי הצורות. ניתן להרחיב את הדיון על צורות שוות שטח שאינן חופפות ושלא ניתן להשוות את השטחים על ידי ספירת משבצות שלמות: לדוגמא: האם המשולשים והמלבנים באיור שווים בשטחם? במקרה זה ההשוואה תעשה על ידי ראיית כל חלק כרבע מאותו השלם. (חשוב להדגיש שבמקרה זה השלמים חופפים) מי מעלי מי מתחתי ומי מצדדי? לפניכם חלק מתוך לוח הכפל. 1. השלימו את המספרים החסרים, כפי שהם מופיעים בלוח הכפל. 2. האם יש אפשרות נוספת להשלים את המספרים החסרים?",
+  "topic": "multiplication",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_nisan_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_sivan_tamuz_03-t4",
+  "grade": "ג",
+  "text": "מומלץ להתייחס לחישובים השונים שנעשו לבניית הדגם החוזר על עצמו (לדוגמא: אדום, זהב, סגול, אדום), ולמספר הפעמים שהדגם שוכפל על העוגה. ניתן לשאול מה יכול להיות מספר הנרות המינימלי בכל דגם? האם יתכן דגם ובו 8 נרות? וכד' . בדף הבא מצורף דף עזר עם סרטוט סכמטי של העוגה. גדול, קטן, שווה הסכום של שלושה מספרים שונים הוא 16. סכום שניים מבין המספרים שווה למספר השלישי. תנו דוגמה לשלושת המספרים. האם יש אפשרות נוספת?",
+  "topic": "multiplication",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_sivan_tamuz_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_tishrei_03-t4",
+  "grade": "ג",
+  "text": "אפשר להרחיב ולשאול על קשרים נוספים בין המספרים. לדוגמא: מי שוקל יותר המשולש או המלבן? האם יתכן שהמשולש שוקל כפליים מן העיגול? מהקטן לגדול כיתבו ספרות בריבועים כך שיתקבלו חמישה מספרים תלת-ספרתיים המסודרים מהקטן לגדול (משמאל לימין) :",
+  "topic": "multiplication",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_tishrei_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_kislev-t6",
+  "grade": "ג",
+  "text": "לתלמידים מתקדמים: אפשר לשאול כמה צירופים של שני מוצרים אפשר ליצור? מקור: בן-ארי, מ. (2007). האולימפיאדה למתמטיקה: אולימפיאדה מתמטית לבתי הספר היסודיים תשס\"ז בתל-אביב-יפו. מספר חזק 2000, גיליון 14, עמ' 48-49.",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_kislev.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p43-257",
+  "grade": "ג",
+  "text": "הַאִם רְשַׁמְתֶּם גַּם אֶת הָאֶפְשָׁרּות שֶׁל 0 עֲשָׂרוֹת?",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 43
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p81-511",
+  "grade": "ג",
+  "text": "אֵיזֶה מִסְפָּר מִתְקַבֵּל אַחֲרֵי הַצְּבִיעָה?",
+  "topic": "numbers_place_value",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 81
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p24-139",
+  "grade": "ג",
+  "text": "כָּפַלְתִּי אֶת הָעֲשָׂרוֹת 20 = 80 4 X 3 + 3 + 3 + 3 = 12",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 24
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p75-473",
+  "grade": "ג",
+  "text": "ּכֶפֶל בַּעֲשָׂרוֹת 5 עֲשָׂרוֹת 8 עֲשָׂרוֹת 3 עֲשָׂרוֹת 50 =10 580=10 830=103 X X X",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 75
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p13-78",
+  "grade": "ג",
+  "text": "4. פִּתְרּו: במספרים .ג .ב .א 364 ,7 617,5 962,4 895 ,+ 2 795,3 + 778,+ 1גדולים",
+  "topic": "numbers_place_value",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 13
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t3",
+  "grade": "ג",
+  "text": "השאלה מזמנת פתרונות שונים, כדאי לדון עם התלמידים על הפתרונות השונים ומציאת האסטרטגיות השונות לפתרון. השאלה לקוחה מתוך \"בעיות מעניינות\", מספר חזק 2000, גיליון 8, עמ' 22. http://ymath.haifa.ac.il/images/stories/mispar_chazak_2000/issue8/jean_albert.pdf",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p47-283",
+  "grade": "ג",
+  "text": "הוֹסִיפּו יְחִידוֹת אוֹ עֲשָׂרוֹת לְפִי הַהוֹרָאָה. רִשְׁמּו אֶת הַמִּסְפָּר הֶחָדָשׁ שֶׁיִּתְקַבֵּל.",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 47
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p89-575",
+  "grade": "ג",
+  "text": "א. סִפְרַת הָעֲשָׂרוֹת גְּדוֹלָה מִסִּפְרַת הַמֵּאוֹת בִּ ־2 וְסִפְרַת הַיְּחִידוֹת הִיא 5.",
+  "topic": "numbers_place_value",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 89
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_03-t7",
+  "grade": "ג",
+  "text": "כדי לחשב את האפשריות השונות לתשלום, בהרכבים שונים של אריזות, כדאי לארגן את הנתונים בטבלה. מומלץ לדון עם התלמידים על אפשרויות הקניה השונות. לדוגמה: במקרה שלפנינו אפשר לקנות מספר מדויק של פרסים במחיר הנמוך ביותר, אך אפשר גם לקנות באותו סכום 30 פרסים. אפשר להעלות שאלה צרכנית: האם אריזה יותר גדולה היא בהכרח יותר זולה? (לדוגמה: כמה יעלו 24 פרסים ב-2 אריזות או ב-3 אריזות?) לשאלה מגוון פתרונות. יש לדון עם התלמידים בנימוקים לתשובות, ולתת לגיטימציה לתשובות השונות, בתנאי שהנימוקים סדורים ולוגיים.",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_sivan_tamuz_03-t2",
+  "grade": "ג",
+  "text": "מומלץ לבקש מן התלמידים להסביר את אסטרטגיות הפתרון בהן השתמשו. תלמידים המתקשים בפתרון השאלה ניתן לשאול כמה שעות, בקירוב, דלק הנר לפני שגב' יעקבי כיבתה אותו. באלבום הבולים אלבומי הבולים של התאומים חגי ואיתמר מסודרים לפי סוגים. בכל דף, בולים בנושא מסוים. לפניכם טבלה ובה פירוט של מספר הבולים בכל עמוד באלבום. סוג הבול מספר הבולים בולים מהארץ 20 בולים בולים מאירופה 30 בולים בולים מאמריקה 30 בולים בולים נדירים 15 בולים בולים מאסיה ומאפריקה 25 בולים חשוב לדעת: יש לא יותר מעשרה עמודים המיועדים לכל סוג. לכל אחד מהתאומים יש 1,000 בולים באלבום. לכל אחד מהתאומים יש אוסף שונה של בולים. תוכלו למלא את אלבום הבולים שלהם ולציין כמה בולים מכל סוג ברשותם?",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_sivan_tamuz_03.docx"
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p120-842",
+  "grade": "ג",
+  "text": "ד. הַאִם יֵשׁ מִסְפָּרִים שֶׁנִּצְבְּעּו רַק בְּצֶבַע אֶחָד? מִי הֵם?",
+  "topic": "numbers_place_value",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 120
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g3-p22-125",
+  "grade": "ג",
+  "text": "ב. אִם תֵּדְעּו כַּמָּה נְקֻדֹּות יֵׁש בְּכָל צֶלַע, הַאִם תּּוכְלּו לִמְצֹא כַּמָּה vv נְקֻדֹּות יֵׁש בְּכָל הַ -? לְדֻגְמָה, כַּמָּה נְקֻדֹּות יֵׁש בְּכָל הַ - אִם בְּצֶלַע חוקיות אַחַת יֵׁש v 10 נְקֻדֹּות. נַסּּו לַעֲנֹות בְּלִי לְצַיֵּר אֶת הַ - הַזֶּה.",
+  "topic": "patterns_sequences",
+  "type": "direct_question",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 22
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p23-130",
+  "grade": "ג",
+  "text": "מְקֹוםמִסְפַּר מִסְפַּר הַנְּקֻדֹּות vהַנְּקֻדֹּות עַל v הַ - בַּ - כֻּלֹּו הַצֶּלַע 123 = 1 -2 + 2 235 = 1 -3 + 3 3 4 מציאת 5 6 חוקיות 7 vוהכללות",
+  "topic": "patterns_sequences",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 23
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g3-p24-136",
+  "grade": "ג",
+  "text": "ה. הַשְׁלִימּו אֶת הַטַּבְלָה בַּדֶּרֶךְשֶׁל רֹונֵן: מְקֹום מִסְפַּר הַנְּקֻדֹּות מִסְפַּר הַנְּקֻדֹּות v מִסְפַּר הַנְּקֻדֹּות בַּ - כֻּלֹּו v הַ -עַל צֶלַע אַחַתׁשֶנִּשְׁאֲרּו עַל הַצֶּלַע הַ ּׁשְנִיָּה (הַמִּסְפָּר ּבַצֶּלַע פָּחֹות 1) והכללות 1212 + 1 = 3 2323 + 2 = 5 חוקיות 3 4",
+  "topic": "patterns_sequences",
+  "type": "drill",
+  "fidelity": "low",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+   "volume": "ג3",
+   "page": 24
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p29-162",
+  "grade": "ג",
+  "text": "2. הַשְׁלִימּו אֶת הַמִּסְפָּר הַקּוֹדֵם וְאֶת הַמִּסְפָּר הָעוֹקֵב׃",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 29
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p29-163",
+  "grade": "ג",
+  "text": "עוֹקֵב קֹדֶם עוֹקֵב קֹדֶם",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 29
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "psahot-g1-p53-315",
+  "grade": "ג",
+  "text": "7. רִשְׁמּו אֶת הַמִּסְפָּר הָעוֹקֵב וְאֶת הַמִּסְפָּר הַקּוֹדֵם׃",
+  "topic": "patterns_sequences",
+  "type": "instruction_or_task",
+  "fidelity": "unrated",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 53
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ },
+ {
+  "id": "monthly-g3-msemot3_adar_purim_03-t4",
+  "grade": "ג",
+  "text": "מומלץ לתת לתלמידים דף ועליו הצורות לגזירה ודף עם הטבלה עליו יסדרו את המדבקות. ניתן לשאול מה ההבדל בין סידור מדבקות המסכה לבין סידור שאר המדבקות, וכיצד יש למקם אותן על דף המדבקות? (מספר המדבקות הוא אי-זוגי) ניתן להעזר ביישומון: http://nlvm.usu.edu/en/nav/frames_asid_297_g_2_t_3.html?open=activities&from=cat מצורף דף נספח לגזירה והדבקה. כמו כן ניתן לסדר את המדבקות על גבי המסך ולהקרין אפשרויות סידור שונות.",
+  "topic": "patterns_sequences",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://pop.education.gov.il/tchumey_daat/matmatika/yesodi/oraat-math/dapim-hodshiim/",
+   "document": "msemot3_adar_purim_03.docx"
+  },
+  "expected": {
+   "ok": false,
+   "rules": [
+    "one-task"
+   ]
+  }
+ },
+ {
+  "id": "psahot-g1-p54-319",
+  "grade": "ג",
+  "text": "הַאִם לַ ״ּמִסְפָּר הָעוֹקֵב״ יֵשׁ תָּמִיד אוֹתוֹ מִסְפַּר סְפָרוֹת כְּמוֹ לַ ״ּמִסְפָּר״?",
+  "topic": "patterns_sequences",
+  "type": "word_problem",
+  "fidelity": "high",
+  "source": {
+   "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+   "volume": "ג1",
+   "page": 54
+  },
+  "expected": {
+   "ok": true,
+   "rules": []
+  }
+ }
+]

@@ -202,6 +202,12 @@ t("177 numbers ≥1,000 digit-reversed around the comma ('0001,' for 1,000; '000
   assert.equal(reversed.length, 177);
   assert.equal(reversed.filter((i) => i.type === "word_problem" || i.type === "direct_question").length, 56);
 });
+t("teacher notes typed as questions: 205 word_problem/direct_question texts address the teacher (התלמידים / בכיתה / 'מומלץ…'), 141 of the 756 word_problems", () => {
+  const note = /(?<![א-ת])(?:ה|ל|מה|ש)?תלמידים(?![א-ת])|(?<![א-ת])בכיתה(?![א-ת])|^(?:מומלץ|ניתן|כדאי|חשוב|רצוי|להעמקה|מטרת)/;
+  const hits = all.filter((i) => (i.type === "word_problem" || i.type === "direct_question") && note.test(i.text.replace(/[\u0591-\u05c7]/g, "")));
+  assert.equal(hits.length, 205);
+  assert.equal(hits.filter((i) => i.type === "word_problem").length, 141);
+});
 t("6 degree signs extracted as a leading zero ('0360', '0180', '090')", () => {
   assert.equal(all.filter((i) => /(?<!\d)0(360|180|90)(?!\d)/.test(i.text)).length, 6);
 });

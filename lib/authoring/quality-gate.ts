@@ -188,14 +188,18 @@ function usesDivision(ex: Exercise, text: string): boolean {
 
 function checkSeries(ex: Exercise, q: string, out: QualityViolation[]): void {
   const progressions = numberSeries(q).filter((s) => s.step !== null);
-  if (progressions.length === 0) return;
-  // Time/steps frame a series whichever way it is introduced.
-  if (TIME_STEP_FRAME.test(q)) return;
   for (const s of progressions) {
     const before = q.slice(0, s.start).replace(/[:\s]+$/, "");
     if (COUNT_FRAME.test(before)) {
-      out.push({ rule: "no-series-as-count", detail: `the series ${s.terms.join(", ")} is introduced as a count of things that exist now` });
-    } else if (!PATTERN_FRAME.test(q)) {
+      // Told as a count ("יש לה: 3, 6, 9, 12"). Only a time/step frame in
+      // the SAME sentence, before the series ("ביום הראשון, השני והשלישי
+      // היו לה: 3, 6, 9"), makes it a series; a later "כמה יהיו בפעם
+      // הבאה?" does not undo having shown it as one amount.
+      const sentence = before.split(/[.?!]/).pop() ?? "";
+      if (!TIME_STEP_FRAME.test(sentence)) {
+        out.push({ rule: "no-series-as-count", detail: `the series ${s.terms.join(", ")} is introduced as a count of things that exist now` });
+      }
+    } else if (!TIME_STEP_FRAME.test(q) && !PATTERN_FRAME.test(q)) {
       out.push({ rule: "sequence-anchored", detail: `the series ${s.terms.join(", ")} has no time/step frame and is not presented as a pattern` });
     }
   }

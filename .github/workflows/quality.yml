@@ -1,0 +1,42 @@
+name: Question quality
+
+# Fails a push or PR that lets a rubric violation through (lib/authoring/):
+# the regression bank (tests/regression-bank.test.mts) holds the 2026-09-25
+# acceptance failures, the served content, and 273 Ministry corpus fixtures.
+# The whole unit suite runs too. It needs no secrets: model calls are faked
+# in tests, and the one live test (exercise-topic-integrity) skips without
+# QA credentials.
+#
+# tsc runs as its own step, never chained behind another command whose
+# success could mask it (standing rule for this repo).
+on:
+  push:
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Corpus index and regression bank are current
+        run: |
+          npx tsx scripts/build-corpus-index.ts --check
+          npx tsx scripts/build-regression-bank.ts --check
+      - name: Question-quality regression bank
+        run: npx tsx tests/regression-bank.test.mts
+      # Several tests generate through the RAG store, which reads the
+      # (gitignored) curriculum index — built here exactly as `npm run build`
+      # builds it on Vercel.
+      - name: Build the curriculum index
+        run: npm run build-index
+      - name: Full test suite
+        run: npm test
