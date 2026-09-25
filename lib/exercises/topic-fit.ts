@@ -157,9 +157,11 @@ function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/** Gershayim/geresh variants folded to plain ASCII quotes so ס״מ == ס"מ. */
+/** Gershayim/geresh variants folded to plain ASCII quotes so ס״מ == ס"מ,
+ *  and niqqud dropped so "תֵּיבָה" is the anchor "תיבה" — a pointed question
+ *  is the same words (2026-09-25: 24 good drafts rejected for their niqqud). */
 function normalizeQuotes(s: string): string {
-  return s.replace(/[״“”]/g, '"').replace(/[׳‘’]/g, "'");
+  return s.replace(/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/g, "").replace(/[״“”]/g, '"').replace(/[׳‘’]/g, "'");
 }
 
 /** Everything a kid reads or taps in an exercise. */

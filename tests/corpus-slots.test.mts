@@ -154,14 +154,16 @@ for (const tpl of VETTED_TEMPLATES) {
 }
 
 console.log("\nthe rubric prompt block");
+/** Exemplars reach prompts without niqqud (see rubricPromptBlock). */
+const bare = (x: string) => x.replace(/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/g, "");
 t("always carries the universal rules", () => {
   const b = rubricPromptBlock("math-a-data", "א");
   for (const r of UNIVERSAL_RULES) assert.ok(b.includes(r.he), r.id);
 });
-t("a filled topic adds its phrasing mix and its Ministry questions, verbatim", () => {
+t("a filled topic adds its phrasing mix and its Ministry questions (verbatim letters, niqqud dropped)", () => {
   const b = rubricPromptBlock("math-g-multiplication-division", "ג");
   assert.match(b, /דפוסי הניסוח השכיחים/);
-  for (const e of TOPIC_SLOTS["math-g-multiplication-division"].exemplars.exemplars!) assert.ok(b.includes(e.text));
+  for (const e of TOPIC_SLOTS["math-g-multiplication-division"].exemplars.exemplars!) assert.ok(b.includes(bare(e.text)));
 });
 t("an unfilled topic adds no example at all — the model gets the rules, not an invention", () => {
   const b = rubricPromptBlock("math-g-time", "ג");
@@ -171,9 +173,15 @@ t("an unfilled topic adds no example at all — the model gets the rules, not an
 t("division exemplars join in where the exercise can involve division", () => {
   const plain = rubricPromptBlock("math-b-length", "ב");
   const withDiv = rubricPromptBlock("math-b-length", "ב", { division: true });
-  const div = CROSS_CUTTING_SLOTS.division["ב"].exemplars.exemplars![0];
-  assert.ok(!plain.includes(div.text));
-  assert.ok(withDiv.includes(div.text));
+  const div = bare(CROSS_CUTTING_SLOTS.division["ב"].exemplars.exemplars![0].text);
+  assert.ok(!plain.includes(div));
+  assert.ok(withDiv.includes(div));
+});
+t("exemplars reach the prompt WITHOUT niqqud (a pointed example makes pointed questions)", () => {
+  const b = rubricPromptBlock("math-b-arithmetic", "ב", { division: true });
+  assert.ok(!/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/.test(b));
+  // ...while the slot data itself keeps the corpus text as it is
+  assert.ok(TOPIC_SLOTS["math-b-arithmetic"].exemplars.exemplars!.some((e) => /[\u05b0-\u05bc]/.test(e.text)));
 });
 t("rules: false leaves the rules out (the review prompt states them itself)", () => {
   assert.ok(!rubricPromptBlock("math-b-arithmetic", "ב", { rules: false }).includes(UNIVERSAL_RULES[0].he));
@@ -193,7 +201,25 @@ await at("the generation prompt carries the block for the requested topic", asyn
   console.warn = quiet;
   const prompt = calls[0].messages[0].content;
   assert.ok(prompt.includes(UNIVERSAL_RULES.find((r) => r.id === "division-sharing-frame")!.he));
-  assert.ok(prompt.includes(TOPIC_SLOTS["math-b-arithmetic"].exemplars.exemplars![0].text));
+  assert.ok(prompt.includes(bare(TOPIC_SLOTS["math-b-arithmetic"].exemplars.exemplars![0].text)));
+});
+
+await at("division exemplars go only to the division-shaped subtype, not to every topic that allows division", async () => {
+  const calls: Call[] = [];
+  const messages = getAnthropicClient().messages as unknown as { create: (req: Call) => Promise<unknown> };
+  messages.create = async (req: Call) => {
+    calls.push(req);
+    return { content: [{ type: "text", text: JSON.stringify({ type: "open", question: "x", correctAnswer: "1" }) }] };
+  };
+  const quiet = console.warn;
+  console.warn = () => {};
+  const divText = CROSS_CUTTING_SLOTS.division["ב"].exemplars.exemplars![0].text.replace(/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/g, "");
+  await generateExercise({ subject: "math", grade: "ב", profile: null, topicId: "math-b-length", level: 2, forceSubtype: "fill_in_blank" }).catch(() => {});
+  const plain = calls.length;
+  await generateExercise({ subject: "math", grade: "ב", profile: null, topicId: "math-b-length", level: 2, forceSubtype: "visual_grouping" }).catch(() => {});
+  console.warn = quiet;
+  assert.ok(calls.slice(0, plain).every((c) => !c.messages[0].content.includes(divText)), "a length fill_in_blank was shown division exemplars");
+  assert.ok(calls[plain].messages[0].content.includes(divText), "a grouping draft was not shown division exemplars");
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);

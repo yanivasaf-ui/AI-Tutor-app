@@ -326,7 +326,10 @@ async function generateExerciseOnce(opts: {
   const subtype = opts.forceSubtype ?? pickSubtype(subject, grade, ops);
   // The authoring rubric for this topic, with what the Ministry corpus filled
   // in (lib/authoring/rubric.ts): the rules, the phrasing mix, real questions.
-  const corpusCue = { division: ops.includes("div"), sequences: subtype === "pattern_completion" };
+  // Division/sequence exemplars only for the subtypes that ARE division or
+  // a sequence — shown to every topic that allows division, they pulled
+  // stories toward sharing where the topic is length or time.
+  const corpusCue = { division: subtype === "visual_grouping", sequences: subtype === "pattern_completion" };
   const rubricBlock = subject === "math" ? rubricPromptBlock(resolvedTopic?.id, grade, corpusCue) : "";
 
   const prompt = `את/ה בונה תרגיל אחד לתלמיד/ה בכיתה ${grade}, בנושא ${subject === "math" ? "חשבון" : "עברית"}.

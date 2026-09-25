@@ -34,7 +34,7 @@ export function operationsUsed(ex: Exercise): Set<Operation> {
     if (o === "/") used.add("div");
   }
   if (ex.subtype === "visual_grouping") used.add("div");
-  const text = [ex.question, ex.passage ?? ""].join(" ").replace(/[֑-ׇ]/g, "");
+  const text = [ex.question, ex.passage ?? ""].join(" ").replace(/[֑-ׇֽֿׁׂׅׄ]/g, "");
   if (/÷/.test(text) || DIVISION_WORDS.test(text)) used.add("div");
   if (/×/.test(text) || /\d\s*\*\s*\d/.test(text) || MULTIPLICATION_WORDS.test(text)) used.add("mul");
   // A pick_operation that OFFERS an operation presents it to the child as

@@ -386,6 +386,16 @@ await at("an arithmetic topic still accepts the same bare sum on the first try (
 });
 console.warn = quiet;
 
+console.log("\nniqqud is the same words (2026-09-25: 24 good drafts rejected for their niqqud)");
+t("a pointed volume question fits math-b-volume ('תֵּיבָה' is the anchor 'תיבה')", () => {
+  const e = { id: "n1", subject: "math", grade: "ב", type: "open", topic: "t", question: "דָּנִי בָּנָה תֵּיבָה מִ-12 קֻבִּיּוֹת. כַּמָּה קֻבִּיּוֹת בְּכָל שִׁכְבָה?", correctAnswer: "4" } as Exercise;
+  assert.equal(topicFit(e, "math-b-volume").ok, true);
+});
+t("stripping niqqud keeps the maqaf: a hyphenated word is not fused into its neighbour", () => {
+  const e = { id: "n2", subject: "math", grade: "ג", type: "open", topic: "t", question: "משולש שׁווה־צלעות: כמה צלעות שוות יש לו?", correctAnswer: "3" } as Exercise;
+  assert.equal(topicFit(e, "math-g-geometry").ok, true);
+});
+
 console.log("\nthe route: a TopicFitError must not become a 500 while the bank still has something");
 {
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");

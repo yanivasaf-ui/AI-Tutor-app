@@ -239,6 +239,13 @@ export function slotsFor(topicId: string): TopicSlots | undefined {
  *
  * Used by the generation prompt (so drafts start closer to the standard)
  * and the model review (so the reviewer judges against the same thing).
+ *
+ * Exemplars are shown WITHOUT niqqud. The corpus text keeps it (it is what
+ * grade א–ב voice scripts will want), but a model shown pointed examples
+ * writes pointed questions: on 2026-09-25, 15 of 72 live questions came
+ * back with niqqud, and the vocabulary check in topic-fit.ts could no
+ * longer read them. Niqqud in generated questions would be a product
+ * decision; it is not made here.
  */
 export function rubricPromptBlock(
   topicId: string | undefined,
@@ -260,7 +267,7 @@ export function rubricPromptBlock(
   const unique = [...new Map(examples.map((e) => [e.source.id, e])).values()].slice(0, 4);
   if (unique.length > 0) {
     lines.push("כך נשמעות שאלות אמיתיות מספרי משרד החינוך לכיתה הזו (לדוגמה בלבד — לא להעתיק):");
-    for (const e of unique) lines.push(`> ${e.text}`);
+    for (const e of unique) lines.push(`> ${e.text.replace(/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/g, "")}`);
   }
   return lines.join("\n");
 }

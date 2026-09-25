@@ -64,7 +64,7 @@ export class QualityGateError extends Error {
 const HE = "א-ת";
 /** One-letter prefixes a Hebrew word can carry (ה ו ב ל מ ש כ). */
 const PFX = "הובלמשכ";
-const NIQQUD = /[֑-ׇ]/g;
+const NIQQUD = /[֑-ׇֽֿׁׂׅׄ]/g;
 
 /** A regex that matches any of `words` as a whole Hebrew word, with up to
  *  two one-letter prefixes and an optional plural/feminine tail. `\b` does
