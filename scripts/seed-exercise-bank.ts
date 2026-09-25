@@ -45,8 +45,8 @@
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { TOPICS, type MapTopic } from "../lib/map/topics";
-import { generateExercise } from "../lib/exercises/generate";
+import { TOPICS, allowedOperations, type MapTopic } from "../lib/map/topics";
+import { generateExercise, subtypeFitsOperations } from "../lib/exercises/generate";
 import { verifyExercise, specFingerprint, isBankableSubtype } from "../lib/exercises/bank-guard";
 import type { Exercise, ExerciseSubtype } from "../lib/exercises/types";
 import type { Database } from "../lib/supabase/database.types";
@@ -204,7 +204,12 @@ function nameIn(ex: Exercise): string | null {
 }
 
 async function fillSlot(topic: MapTopic, difficulty: 1 | 2 | 3, slot: SlotState): Promise<Exercise[]> {
-  const pool = topic.subject === "math" ? MATH_BANKABLE : HEBREW_BANKABLE;
+  // Only subtypes the topic's operations allow (no grouping = division
+  // where division isn't taught) — same rule live generation follows.
+  const pool =
+    topic.subject === "math"
+      ? MATH_BANKABLE.filter((s) => subtypeFitsOperations(s, allowedOperations(topic.id, topic.grade)))
+      : HEBREW_BANKABLE;
   const need = Math.max(0, TARGET_PER_SLOT - slot.count);
   if (need === 0) return [];
   const accepted: Exercise[] = [];

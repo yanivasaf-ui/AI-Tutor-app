@@ -4,6 +4,7 @@ import { getTopicById } from "@/lib/map/topics";
 import { parseComputation } from "./arithmetic";
 import { topicFit } from "./topic-fit";
 import { checkQuestionQuality } from "@/lib/authoring/quality-gate";
+import { operationScope } from "./operation-scope";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -186,8 +187,11 @@ export async function findReusableExercise(
     if (excluded?.has(r.id)) return false;
     const ex = rowToExercise(r);
     if (!checkQuestionQuality(ex).ok) return false;
-    if (opts?.ignoreTopicFit) return true;
     const fitTopic = topicScoped ? topic!.id : (r.topic_id ?? undefined);
+    // Operations the topic doesn't teach (the grade-א division rows) are
+    // never served either, escape hatch or not — see operation-scope.ts.
+    if (!operationScope(ex, fitTopic, grade).ok) return false;
+    if (opts?.ignoreTopicFit) return true;
     return topicFit(ex, fitTopic).ok;
   });
   if (pool.length === 0) return null;

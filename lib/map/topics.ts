@@ -35,6 +35,16 @@ import type { Subject } from "@/lib/memory/types";
  * ...) — nothing here addresses the kid directly the way a second-person
  * verb would.
  */
+/** The four arithmetic operations, as the product names them. */
+export type Operation = "add" | "sub" | "mul" | "div";
+
+export const OPERATION_NAMES_HE: Readonly<Record<Operation, string>> = {
+  add: "חיבור",
+  sub: "חיסור",
+  mul: "כפל",
+  div: "חילוק",
+};
+
 export interface MapTopic {
   id: string;
   subject: Subject;
@@ -44,33 +54,51 @@ export interface MapTopic {
    *  for matching, generation, or retrieval; `topic` still owns all of
    *  that. */
   displayNameKid: string;
+  /**
+   * Math only: the operations an exercise filed under this topic may use.
+   * THE source of truth for "does division exist here" — the picker, the
+   * generator's subtype pool and prompt, and the admission/serving scope
+   * check (lib/exercises/operation-scope.ts) all read this, so they can no
+   * longer disagree (2026-09-25: the picker found no division for a grade-א
+   * kid while the bank held division rows in every grade-א topic).
+   *
+   * Derived from the Ministry topic names above, not invented: grade א's
+   * only operations topic is "(חיבור וחיסור)", so every grade-א topic is
+   * add/sub; grade ב's arithmetic topic includes "תחילת כפל וחילוק", so
+   * grade ב is all four; grade ג has a כפל וחילוק topic, so all four —
+   * except math-g-arithmetic, whose own name is "חיבור, חיסור, אומדן".
+   */
+  operations?: readonly Operation[];
 }
 
+const ADD_SUB: readonly Operation[] = ["add", "sub"];
+const ALL_FOUR: readonly Operation[] = ["add", "sub", "mul", "div"];
+
 export const TOPICS: MapTopic[] = [
-  { id: "math-a-numbers-0-100", subject: "math", grade: "א", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-100", displayNameKid: "מספרים עד 100" },
-  { id: "math-a-addition-subtraction", subject: "math", grade: "א", topic: "פעולות חשבון בתחום ה-100 (חיבור וחיסור)", displayNameKid: "לחבר ולחסר" },
-  { id: "math-a-geometry", subject: "math", grade: "א", topic: "צורות גאומטריות", displayNameKid: "צורות" },
-  { id: "math-a-length", subject: "math", grade: "א", topic: "מדידות אורך", displayNameKid: "למדוד אורך" },
-  { id: "math-a-time", subject: "math", grade: "א", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-a-data", subject: "math", grade: "א", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
+  { id: "math-a-numbers-0-100", subject: "math", grade: "א", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-100", displayNameKid: "מספרים עד 100", operations: ADD_SUB },
+  { id: "math-a-addition-subtraction", subject: "math", grade: "א", topic: "פעולות חשבון בתחום ה-100 (חיבור וחיסור)", displayNameKid: "לחבר ולחסר", operations: ADD_SUB },
+  { id: "math-a-geometry", subject: "math", grade: "א", topic: "צורות גאומטריות", displayNameKid: "צורות", operations: ADD_SUB },
+  { id: "math-a-length", subject: "math", grade: "א", topic: "מדידות אורך", displayNameKid: "למדוד אורך", operations: ADD_SUB },
+  { id: "math-a-time", subject: "math", grade: "א", topic: "מדידת זמן", displayNameKid: "השעון", operations: ADD_SUB },
+  { id: "math-a-data", subject: "math", grade: "א", topic: "חקר נתונים", displayNameKid: "לספור ולסדר", operations: ADD_SUB },
 
-  { id: "math-b-numbers-0-1000", subject: "math", grade: "ב", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-1,000", displayNameKid: "מספרים עד 1,000" },
-  { id: "math-b-arithmetic", subject: "math", grade: "ב", topic: "פעולות חשבון בתחום ה-100: חיבור, חיסור, ותחילת כפל וחילוק", displayNameKid: "לחבר, לחסר, לכפול ולחלק" },
-  { id: "math-b-geometry", subject: "math", grade: "ב", topic: "צורות גאומטריות", displayNameKid: "צורות" },
-  { id: "math-b-length", subject: "math", grade: "ב", topic: "מדידות אורך", displayNameKid: "למדוד אורך" },
-  { id: "math-b-volume", subject: "math", grade: "ב", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים" },
-  { id: "math-b-time", subject: "math", grade: "ב", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-b-data", subject: "math", grade: "ב", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
+  { id: "math-b-numbers-0-1000", subject: "math", grade: "ב", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-1,000", displayNameKid: "מספרים עד 1,000", operations: ALL_FOUR },
+  { id: "math-b-arithmetic", subject: "math", grade: "ב", topic: "פעולות חשבון בתחום ה-100: חיבור, חיסור, ותחילת כפל וחילוק", displayNameKid: "לחבר, לחסר, לכפול ולחלק", operations: ALL_FOUR },
+  { id: "math-b-geometry", subject: "math", grade: "ב", topic: "צורות גאומטריות", displayNameKid: "צורות", operations: ALL_FOUR },
+  { id: "math-b-length", subject: "math", grade: "ב", topic: "מדידות אורך", displayNameKid: "למדוד אורך", operations: ALL_FOUR },
+  { id: "math-b-volume", subject: "math", grade: "ב", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים", operations: ALL_FOUR },
+  { id: "math-b-time", subject: "math", grade: "ב", topic: "מדידת זמן", displayNameKid: "השעון", operations: ALL_FOUR },
+  { id: "math-b-data", subject: "math", grade: "ב", topic: "חקר נתונים", displayNameKid: "לספור ולסדר", operations: ALL_FOUR },
 
-  { id: "math-g-numbers-0-10000", subject: "math", grade: "ג", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-10,000 (הרבבה)", displayNameKid: "מספרים גדולים" },
-  { id: "math-g-gematria", subject: "math", grade: "ג", topic: "גימטרייה", displayNameKid: "גימטרייה" },
-  { id: "math-g-arithmetic", subject: "math", grade: "ג", topic: "פעולות חשבון בתחום הרבבה: חיבור, חיסור, אומדן", displayNameKid: "לחבר ולחסר מספרים גדולים" },
-  { id: "math-g-multiplication-division", subject: "math", grade: "ג", topic: "כפל וחילוק בתחום הרבבה", displayNameKid: "כפל וחילוק" },
-  { id: "math-g-geometry", subject: "math", grade: "ג", topic: "צורות גאומטריות: זוויות ומשולשים", displayNameKid: "זוויות ומשולשים" },
-  { id: "math-g-area", subject: "math", grade: "ג", topic: "מדידת שטח", displayNameKid: "למדוד שטח" },
-  { id: "math-g-volume", subject: "math", grade: "ג", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים" },
-  { id: "math-g-time", subject: "math", grade: "ג", topic: "מדידת זמן", displayNameKid: "השעון" },
-  { id: "math-g-data", subject: "math", grade: "ג", topic: "חקר נתונים", displayNameKid: "לספור ולסדר" },
+  { id: "math-g-numbers-0-10000", subject: "math", grade: "ג", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-10,000 (הרבבה)", displayNameKid: "מספרים גדולים", operations: ALL_FOUR },
+  { id: "math-g-gematria", subject: "math", grade: "ג", topic: "גימטרייה", displayNameKid: "גימטרייה", operations: ALL_FOUR },
+  { id: "math-g-arithmetic", subject: "math", grade: "ג", topic: "פעולות חשבון בתחום הרבבה: חיבור, חיסור, אומדן", displayNameKid: "לחבר ולחסר מספרים גדולים", operations: ADD_SUB },
+  { id: "math-g-multiplication-division", subject: "math", grade: "ג", topic: "כפל וחילוק בתחום הרבבה", displayNameKid: "כפל וחילוק", operations: ALL_FOUR },
+  { id: "math-g-geometry", subject: "math", grade: "ג", topic: "צורות גאומטריות: זוויות ומשולשים", displayNameKid: "זוויות ומשולשים", operations: ALL_FOUR },
+  { id: "math-g-area", subject: "math", grade: "ג", topic: "מדידת שטח", displayNameKid: "למדוד שטח", operations: ALL_FOUR },
+  { id: "math-g-volume", subject: "math", grade: "ג", topic: "גופים ומדידות נפח", displayNameKid: "גופים: קוביות וכדורים", operations: ALL_FOUR },
+  { id: "math-g-time", subject: "math", grade: "ג", topic: "מדידת זמן", displayNameKid: "השעון", operations: ALL_FOUR },
+  { id: "math-g-data", subject: "math", grade: "ג", topic: "חקר נתונים", displayNameKid: "לספור ולסדר", operations: ALL_FOUR },
 
   { id: "hebrew-a-alphabet-phonology", subject: "hebrew", grade: "א", topic: "הכרת יסודות הקריאה והכתיבה: מודעות פונולוגית וידע שמות האותיות", displayNameKid: "אותיות וצלילים" },
   { id: "hebrew-a-early-reading", subject: "hebrew", grade: "א", topic: "קידום הבנת הנקרא בתחילת הדרך", displayNameKid: "להתחיל לקרוא" },
@@ -103,4 +131,20 @@ export function getTopics(subject: Subject, grade: Grade): MapTopic[] {
  */
 export function getTopicById(id: string): MapTopic | undefined {
   return TOPICS.find((t) => t.id === id);
+}
+
+/** Every operation any math topic in this grade allows — what a request
+ *  with no topic may use. */
+export function gradeOperations(grade: Grade): Operation[] {
+  const ops = new Set<Operation>();
+  for (const t of TOPICS) if (t.subject === "math" && t.grade === grade) for (const o of t.operations ?? []) ops.add(o);
+  return (Object.keys(OPERATION_NAMES_HE) as Operation[]).filter((o) => ops.has(o));
+}
+
+/** The operations an exercise for this topic (or, with no usable topic,
+ *  this grade) may use. The one lookup every consumer goes through. */
+export function allowedOperations(topicId: string | undefined, grade: Grade): Operation[] {
+  const t = topicId ? getTopicById(topicId) : undefined;
+  if (t && t.subject === "math" && t.grade === grade && t.operations) return [...t.operations];
+  return gradeOperations(grade);
 }

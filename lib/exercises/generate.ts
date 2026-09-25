@@ -1,6 +1,6 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { search } from "@/lib/rag/store";
-import { getTopicById } from "@/lib/map/topics";
+import { allowedOperations, getTopicById, type Operation } from "@/lib/map/topics";
 import {
   balancesEquation,
   computeAnswer,
@@ -13,6 +13,7 @@ import { SubjectProfile } from "@/lib/memory/types";
 import { topicFit } from "./topic-fit";
 import { checkQuestionQuality, qualityRetryHint, QualityGateError } from "@/lib/authoring/quality-gate";
 import { reviewMode, reviewQuestion } from "@/lib/authoring/quality-review";
+import { operationNames, operationScope, operationScopeRetryHint, OperationScopeError } from "./operation-scope";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
@@ -122,12 +123,26 @@ const HEBREW_SUBTYPES: ExerciseSubtype[] = [
  *  every tile instead. */
 const SINGLE_SLOT_TILE_SUBTYPES: ExerciseSubtype[] = ["pattern_completion", "equation_balance", "shape_match"];
 
+/**
+ * Whether a math subtype can be built from these operations at all.
+ * visual_grouping IS division (equal sharing into groups), so it only
+ * exists where division does — the topic's `operations` in
+ * lib/map/topics.ts, the same declaration the picker reads. Exported for
+ * the bank seed script, which forces subtypes and must skip these too.
+ */
+export function subtypeFitsOperations(subtype: ExerciseSubtype, ops: readonly Operation[]): boolean {
+  if (subtype === "visual_grouping") return ops.includes("div");
+  return true;
+}
+
 /** root_pattern_mc is flagged in the locked inventory as likely ב'-ג' only,
- *  not grade א' — excluded there rather than generated and hoped to be fine. */
-function pickSubtype(subject: "math" | "hebrew", grade: Grade): ExerciseSubtype {
+ *  not grade א' — excluded there rather than generated and hoped to be fine.
+ *  Math subtypes are limited to what the topic's operations allow (was: any
+ *  subtype for any topic, which is how division reached grade א). */
+function pickSubtype(subject: "math" | "hebrew", grade: Grade, ops: readonly Operation[]): ExerciseSubtype {
   const pool =
     subject === "math"
-      ? MATH_SUBTYPES
+      ? MATH_SUBTYPES.filter((s) => subtypeFitsOperations(s, ops))
       : HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
   return pool[Math.floor(Math.random() * pool.length)];
 }
@@ -139,9 +154,16 @@ function pickSubtype(subject: "math" | "hebrew", grade: Grade): ExerciseSubtype 
  *  groups of 5) than א/ב's curriculum calls for. Prompt guidance only —
  *  not code-enforced, same trust-the-prompt pattern already used for "4
  *  choices" on multiple_choice (see NumberLineData's doc comment). */
-function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade): string {
+function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade, ops: readonly Operation[]): string {
   const maxGroupingItems = grade === "ג" ? 20 : 12;
-  return SUBTYPE_GUIDANCE[subtype].replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems));
+  return SUBTYPE_GUIDANCE[subtype]
+    .replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems))
+    // The operation list in fill_in_blank/pick_operation is the topic's own,
+    // not all four "as fits the grade" (the model's guess).
+    .replaceAll("חיבור/חיסור/כפל/חילוק", operationNames(ops).replaceAll(", ", "/"))
+    // pick_operation offers one choice per operation: two where only
+    // חיבור/חיסור exist, not four padded out with ones the grade lacks.
+    .replace("4 אפשרויות מתוך פעולות חשבון", `${ops.length} אפשרויות מתוך פעולות חשבון`);
 }
 
 /** The kid's adaptive level on this topic (lib/practice/state.ts), as a
@@ -190,6 +212,9 @@ export async function generateExercise(opts: Parameters<typeof generateExerciseO
       if (err instanceof NoCurriculumContentError) throw err;
       if (err instanceof TopicFitError) {
         request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
+      if (err instanceof OperationScopeError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, operationScopeRetryHint(err)].filter(Boolean).join("\n") };
       }
       if (err instanceof QualityGateError) {
         request = { ...opts, varietyHint: [opts.varietyHint, qualityRetryHint(err.violations)].filter(Boolean).join("\n") };
@@ -294,7 +319,10 @@ async function generateExerciseOnce(opts: {
 
   const contextBlock = retrieved.map((c) => `- [${c.topic}] ${c.text}`).join("\n");
   const avoidTopics = profile?.topicsCovered.slice(-4).join(", ") || "";
-  const subtype = opts.forceSubtype ?? pickSubtype(subject, grade);
+  // What this topic (or, topic-less, this grade) teaches — the one
+  // declaration in lib/map/topics.ts the picker reads too.
+  const ops = allowedOperations(resolvedTopic?.id, grade);
+  const subtype = opts.forceSubtype ?? pickSubtype(subject, grade, ops);
 
   const prompt = `את/ה בונה תרגיל אחד לתלמיד/ה בכיתה ${grade}, בנושא ${subject === "math" ? "חשבון" : "עברית"}.
 
@@ -312,7 +340,8 @@ ${
     ? `קריטי: התרגיל חייב לעסוק בפועל בתוכן הנושא "${resolvedTopic.topic}" — לא רק להיות תרגיל מספרי כללי שמזדמן להיות מתויג תחת הנושא הזה. לדוגמה: בנושא צורות גאומטריות התרחיש חייב לעסוק בצורות עצמן (סוגי צורות, מספר צלעות/זוויות, השוואה ביניהן) ולא בספירה כללית; בנושא כפל וחילוק התרגיל חייב לכלול בפועל פעולת כפל או חילוק (למשל קפיצות של מספר קבוע, חלוקה לקבוצות, כפולות), לא רק מיקום מספר כלשהו על ציר. אם התבנית שנבחרה (למטה) נוטה מטבעה להיות כללית (כמו מיקום על ציר או השלמת רצף), התאימו את התוכן הספציפי — הערך על הציר, ההפרש ברצף, התרחיש של בעיית המילה — כך שינבע ממש מהנושא "${resolvedTopic.topic}", לא ממספר שרירותי.`
     : ""
 }
-${subtypeGuidance(subtype, grade)}
+${subject === "math" ? `פעולות החשבון שנלמדות כאן: ${operationNames(ops)}. אסור להשתמש בפעולה אחרת — גם לא בתוך הסיפור.` : ""}
+${subtypeGuidance(subtype, grade, ops)}
 
 החזר/י אך ורק אובייקט JSON תקין, ללא טקסט נוסף, בפורמט הזה:
 {
@@ -320,7 +349,7 @@ ${subtypeGuidance(subtype, grade)}
   "topic": "שם הנושא מהרשימה לעיל",
   "passage": "רק אם התבנית דורשת קטע קריאה (comprehension) - הקטע עצמו, אחרת השמט שדה זה",
   "question": "נוסח השאלה, בעברית, מתאים לילד/ה",
-  "choices": ["רק אם type הוא multiple_choice - 4 אפשרויות"],
+  "choices": ["רק אם type הוא multiple_choice - 4 אפשרויות, אלא אם התבנית למעלה קובעת מספר אחר"],
   "numberLine": "רק אם type הוא number_line - {min, max, step}, אחרת השמט שדה זה",
   "tiles": "רק אם type הוא tile_order - {items: [...]}, אחרת השמט שדה זה",
   "grouping": "רק אם type הוא grouping - {items: [...], groupCount: מספר}, אחרת השמט שדה זה",
@@ -484,6 +513,11 @@ ${subtypeGuidance(subtype, grade)}
   if (!fit.ok) {
     throw new TopicFitError(`${subtype ?? type} draft is off-topic for ${resolvedTopic?.id}: ${fit.reason}. Question: "${exercise.question}"`);
   }
+
+  // Topic integrity: only the operations this topic teaches (lib/exercises/
+  // operation-scope.ts). A draft using another is re-requested.
+  const scope = operationScope(exercise, resolvedTopic?.id, grade);
+  if (!scope.ok) throw new OperationScopeError(scope, exercise.question);
 
   // The authoring rubric (lib/authoring/rubric.ts), after every gate above:
   // is this a good QUESTION — a series framed as one, division framed as

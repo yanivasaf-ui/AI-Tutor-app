@@ -16,6 +16,7 @@ import {
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, findOrSaveExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
 import { QualityGateError } from "@/lib/authoring/quality-gate";
+import { OperationScopeError } from "@/lib/exercises/operation-scope";
 import { vettedTemplate } from "@/lib/authoring/vetted-templates";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import {
@@ -471,11 +472,12 @@ async function handleGenerateExercise(
     try {
       generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
     } catch (genErr) {
-      // The authoring rubric rejected every draft (lib/authoring/quality-
-      // gate.ts). The fallback is a vetted template for this topic — never a
+      // The authoring rubric (lib/authoring/quality-gate.ts) or the topic's
+      // operation scope (lib/exercises/operation-scope.ts) rejected every
+      // draft. The fallback is a vetted template for this topic — never a
       // draft that failed, and never the unchecked bank. No template for the
       // topic: the error propagates as before.
-      if (genErr instanceof QualityGateError) {
+      if (genErr instanceof QualityGateError || genErr instanceof OperationScopeError) {
         const template = vettedTemplate(topic);
         if (!template) throw genErr;
         const served = await findOrSaveExercise(supabase, template);
