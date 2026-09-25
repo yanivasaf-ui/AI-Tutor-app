@@ -69,6 +69,13 @@ const grouping = (question: string, count: number, groups: number, emoji = "🍎
     correctAnswer: String(count / groups),
   });
 const rules = (e: Exercise) => checkQuestionQuality(e).violations.map((v) => v.rule);
+/** A number-pattern exercise as the generator builds it: tile_order with
+ *  one slot and a handful of candidate numbers. */
+const patternTiles = (items: string[]) => ({
+  type: "tile_order" as const,
+  subtype: "pattern_completion" as const,
+  tiles: { items, slotCount: 1, joinWith: " " as const },
+});
 
 // ---------------------------------------------------------------- parser
 console.log("series parser");
@@ -91,7 +98,7 @@ t("a trailing blank does not break the run", () => {
 // ---------------------------------------------------------------- acceptance (a)
 console.log("\nacceptance (a): a growing series presented as a static count");
 t("ACCEPTANCE 'הנה כמה צדפים יש לה: 3, 6, 9, 12' is rejected as a series told as a count", () => {
-  assert.deepEqual(rules(ex({ question: "הנה כמה צדפים יש לה: 3, 6, 9, 12", subtype: "pattern_completion", correctAnswer: "15" })), ["no-series-as-count"]);
+  assert.deepEqual(rules(ex({ question: "הנה כמה צדפים יש לה: 3, 6, 9, 12", ...patternTiles(["15", "14", "18", "12"]), correctAnswer: "15" })), ["no-series-as-count"]);
 });
 t("...and asking 'מה המספר הבא?' after it does not redeem it — it is still a count", () => {
   assert.deepEqual(rules(ex({ question: "הנה כמה צדפים יש לה: 3, 6, 9, 12. מה המספר הבא?" })), ["no-series-as-count"]);
@@ -100,13 +107,13 @@ t("CONSTRUCTED the same numbers anchored in time pass", () => {
   assert.deepEqual(rules(ex({ question: "נועה אוספת צדפים. ביום הראשון היו לה 3, ובכל יום היא מוסיפה 3: 3, 6, 9, 12. כמה צדפים יהיו לה ביום החמישי?", correctAnswer: "15" })), []);
 });
 t("REAL 'השלימו את הרצף: 3, 6, 9, 12, ___' passes (explicitly a pattern)", () => {
-  assert.deepEqual(rules(ex({ question: "השלימו את הרצף: 3, 6, 9, 12, ___", subtype: "pattern_completion", correctAnswer: "15" })), []);
+  assert.deepEqual(rules(ex({ question: "השלימו את הרצף: 3, 6, 9, 12, ___", ...patternTiles(["15", "14", "18", "12"]), correctAnswer: "15" })), []);
 });
 t("CONSTRUCTED a bare series with no frame at all is rejected as unanchored", () => {
   assert.deepEqual(rules(ex({ question: "5, 10, 15, 20. כמה יהיו?" })), ["sequence-anchored"]);
 });
 t("a pattern_completion whose answer does not continue the series is rejected", () => {
-  assert.deepEqual(rules(ex({ question: "השלימו את הרצף: 3, 6, 9, 12, ___", subtype: "pattern_completion", correctAnswer: "14" })), ["unambiguous-answer"]);
+  assert.deepEqual(rules(ex({ question: "השלימו את הרצף: 3, 6, 9, 12, ___", ...patternTiles(["15", "14", "18", "12"]), correctAnswer: "14" })), ["unambiguous-answer"]);
 });
 
 // ---------------------------------------------------------------- acceptance (b)

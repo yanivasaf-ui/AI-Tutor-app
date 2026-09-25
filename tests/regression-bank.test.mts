@@ -13,6 +13,10 @@
  *     (c) the picker saying division does not exist while the generator
  *         serves it — the picker utterances, and a production grade-א
  *         division row, verbatim.
+ *  1b. THE RULES ADDED AFTER THE LIVE RUN — verbatim exercises from the
+ *     80-question run: "0, 2, 3, ?" (answer 5) must fail series-
+ *     determinate; the shape requests that came back as word problems must
+ *     fail no-pattern-drift; real shape and number patterns must pass.
  *  2. SERVED CONTENT — anything the product serves or shows the model as
  *     "this is what a good question looks like" (vetted templates, corpus
  *     exemplars) violates the rubric.
@@ -101,6 +105,259 @@ t("grades ב/ג: 'חלוקה' and 'חילוק' → a topic that teaches division
       assert.equal(r.kind, "topic", `${g} ${said}`);
     }
   }
+});
+
+// ---------------------------------------------------------------- 1b. rules added after the live run
+console.log("\nseries determinism and pattern drift (verbatim from the 80-question live run, 2026-09-25)");
+/** One live-run exercise, as generated: tiles present only when the model
+ *  returned them (the drifted shape requests came back with none). */
+interface LivePattern {
+  ref: string;
+  grade: Grade;
+  topicId: string;
+  subtype: "shape_match" | "pattern_completion";
+  question: string;
+  correctAnswer: string;
+  tiles?: string[];
+  expect: "series-determinate" | "no-pattern-drift" | "pass";
+}
+const LIVE_RUN_PATTERNS: LivePattern[] = [
+ {
+  "ref": "math-b-geometry #4",
+  "grade": "ב",
+  "topicId": "math-b-geometry",
+  "subtype": "pattern_completion",
+  "question": "נועם מסדר משולשים לפי מספר הצלעות השוות שלהם. הוא מתחיל ממשולש שונה-צלעות (אפס צלעות שוות), אחר כך שווה-שוקיים (2 צלעות שוות), ואז שווה-צלעות (3 צלעות שוות). איזה מספר צריך להופיע אחרון ברצף: 0, 2, 3, ?",
+  "correctAnswer": "5",
+  "tiles": [
+   "4",
+   "5",
+   "6",
+   "3"
+  ],
+  "expect": "series-determinate"
+ },
+ {
+  "ref": "math-b-arithmetic #3",
+  "grade": "ב",
+  "topicId": "math-b-arithmetic",
+  "subtype": "shape_match",
+  "question": "למורה דני יש 24 עפרונות צבעוניים. הוא רוצה לחלק אותם שוה בשוה ל-4 ילדים. כמה עפרונות יקבל כל ילד?",
+  "correctAnswer": "6",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-arithmetic #5",
+  "grade": "ב",
+  "topicId": "math-b-arithmetic",
+  "subtype": "shape_match",
+  "question": "לאמא יש 24 עוגיות. היא רוצה לחלק אותן שוה בשוה ל-4 ילדים. כמה עוגיות יקבל כל ילד?",
+  "correctAnswer": "6",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-time #1",
+  "grade": "ב",
+  "topicId": "math-b-time",
+  "subtype": "shape_match",
+  "question": "שיעור הספורט התחיל בשעה 10:00 בבוקר.\nהשיעור נמשך שעתיים.\nבאיזו שעה נגמר שיעור הספורט?",
+  "correctAnswer": "12:00",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-volume #3",
+  "grade": "ב",
+  "topicId": "math-b-volume",
+  "subtype": "shape_match",
+  "question": "רון בנה תיבה מקוביות קטנות. בכל שכבה יש לו 6 קוביות. הוא בנה 3 שכבות אחת על השנייה. כמה קוביות השתמש רון בסך הכל?",
+  "correctAnswer": "18",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-volume #5",
+  "grade": "ב",
+  "topicId": "math-b-volume",
+  "subtype": "shape_match",
+  "question": "דני בנה תיבה מקוביות קטנות.\nבכל שכבה יש 6 קוביות.\nהוא בנה 3 שכבות.\nכמה קוביות דני השתמש בסך הכל?",
+  "correctAnswer": "18",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-g-arithmetic #1",
+  "grade": "ג",
+  "topicId": "math-g-arithmetic",
+  "subtype": "shape_match",
+  "question": "בספרייה היו 2,345 ספרים. הגיעו עוד 1,428 ספרים חדשים. כמה ספרים יש עכשיו בספרייה?",
+  "correctAnswer": "3773",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-g-arithmetic #5",
+  "grade": "ג",
+  "topicId": "math-g-arithmetic",
+  "subtype": "shape_match",
+  "question": "בספרייה היו 2,456 ספרים. קנו עוד 1,378 ספרים חדשים. כמה ספרים יש עכשיו בספרייה?",
+  "correctAnswer": "3834",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-g-time #4",
+  "grade": "ג",
+  "topicId": "math-g-time",
+  "subtype": "shape_match",
+  "question": "נועה התחילה לצייר בשעה 3:15 וסיימה בשעה 4:00. כמה זמן היא ציירה?",
+  "correctAnswer": "45 דקות",
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-numbers-0-1000 #4",
+  "grade": "ב",
+  "topicId": "math-b-numbers-0-1000",
+  "subtype": "shape_match",
+  "question": "הנה רצף של ספירה בדילוגים:\n\n🔟 2️⃣0️⃣ 🔟 2️⃣0️⃣ ___\n\nאיזו צורה ממשיכה את הדפוס?",
+  "correctAnswer": "🔟",
+  "tiles": [
+   "🔟",
+   "2️⃣0️⃣",
+   "5️⃣0️⃣",
+   "🔢"
+  ],
+  "expect": "no-pattern-drift"
+ },
+ {
+  "ref": "math-b-numbers-0-1000 #2",
+  "grade": "ב",
+  "topicId": "math-b-numbers-0-1000",
+  "subtype": "pattern_completion",
+  "question": "דני קופץ על המדרגות. הוא קופץ על מדרגות: 100, 200, 300, 400. על איזו מדרגה הוא יקפץ הבא?",
+  "correctAnswer": "500",
+  "tiles": [
+   "500",
+   "450",
+   "600",
+   "510"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-geometry #2",
+  "grade": "ג",
+  "topicId": "math-g-geometry",
+  "subtype": "shape_match",
+  "question": "הסתכלו על רצף הצורות:\n🔺 🟦 🟦 🔺 🟦 🟦 🔺 ___\n\nאיזו צורה צריכה להופיע במקום הריק?",
+  "correctAnswer": "🟦",
+  "tiles": [
+   "🔺",
+   "🟦",
+   "⭐",
+   "🔵"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-geometry #5",
+  "grade": "ג",
+  "topicId": "math-g-geometry",
+  "subtype": "shape_match",
+  "question": "תסתכלו על הרצף:\n🔺 🟦 🟦 🔺 🔺 🟦 🟦 🔺 🔺 ___\n\nאיזו צורה צריך לשים במקום הריק?",
+  "correctAnswer": "🟦",
+  "tiles": [
+   "🟦",
+   "🔺",
+   "⭐",
+   "🔵"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-volume #4",
+  "grade": "ג",
+  "topicId": "math-g-volume",
+  "subtype": "shape_match",
+  "question": "רונית בונה תיבות מנייר. היא בנתה תיבה גדולה, אחר כך תיבה קטנה, ושוב תיבה גדולה, ושוב תיבה קטנה.\nאיזו תיבה היא תבנה הבאה?\n\n📦 📭 📦 📭 ___",
+  "correctAnswer": "📦",
+  "tiles": [
+   "📦",
+   "📭",
+   "🎁",
+   "📮"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-volume #1",
+  "grade": "ג",
+  "topicId": "math-g-volume",
+  "subtype": "pattern_completion",
+  "question": "רונית בונה תיבות מקוביות. התיבה הראשונה מכילה 6 קוביות, השנייה 12 קוביות, השלישית 18 קוביות. כמה קוביות יש בתיבה הרביעית?",
+  "correctAnswer": "24",
+  "tiles": [
+   "24",
+   "20",
+   "22",
+   "26"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-numbers-0-10000 #1",
+  "grade": "ג",
+  "topicId": "math-g-numbers-0-10000",
+  "subtype": "pattern_completion",
+  "question": "דני אוסף מדבקות. ביום ראשון היו לו 1,000 מדבקות. בכל יום הוא מוסיף עוד 500 מדבקות. ביום שני היו לו 1,500 מדבקות. ביום שלישי היו לו 2,000 מדבקות. ביום רביעי היו לו 2,500 מדבקות. כמה מדבקות היו לדני ביום חמישי?",
+  "correctAnswer": "3000",
+  "tiles": [
+   "3000",
+   "2800",
+   "3500",
+   "3200"
+  ],
+  "expect": "pass"
+ },
+ {
+  "ref": "math-g-numbers-0-10000 #4",
+  "grade": "ג",
+  "topicId": "math-g-numbers-0-10000",
+  "subtype": "pattern_completion",
+  "question": "נועה אוספת מדבקות. ביום הראשון יש לה 1,000 מדבקות. ביום השני יש לה 1,500 מדבקות. ביום השלישי יש לה 2,000 מדבקות. ביום הרביעי יש לה 2,500 מדבקות. כמה מדבקות יהיו לה ביום החמישי?",
+  "correctAnswer": "3000",
+  "tiles": [
+   "2800",
+   "3000",
+   "3200",
+   "2900"
+  ],
+  "expect": "pass"
+ }
+];
+function liveExercise(f: LivePattern): Exercise {
+  return {
+    id: f.ref, subject: "math", grade: f.grade, topic: "t", topicId: f.topicId, subtype: f.subtype,
+    type: f.tiles ? "tile_order" : "open",
+    tiles: f.tiles ? { items: f.tiles, slotCount: 1, joinWith: " " } : undefined,
+    question: f.question, correctAnswer: f.correctAnswer,
+  } as Exercise;
+}
+for (const f of LIVE_RUN_PATTERNS) {
+  const label = f.expect === "pass" ? "passes" : `is rejected — ${f.expect}`;
+  t(`REAL ${f.ref} (${f.subtype}) ${label}: "${f.question.replace(/\s+/g, " ").slice(0, 50)}…"`, () => {
+    const got = rules(liveExercise(f));
+    if (f.expect === "pass") assert.deepEqual(got, []);
+    else assert.ok(got.includes(f.expect), JSON.stringify(got));
+  });
+}
+t("a written series with one rule passes; with none, when its next term is asked, it is rejected", () => {
+  const q = (question: string, subtype?: Exercise["subtype"]) => rules(ex({ question, subtype, type: "open" }));
+  assert.ok(!q("השלימו: 4, 8, 12, 16, ___").includes("series-determinate"));
+  assert.ok(q("השלימו: 0, 2, 3, ___").includes("series-determinate"));
+  assert.ok(q("מה המספר הבא? 1, 2, 4, 7, ?").includes("series-determinate"));
+  // Only constant-difference series are generated (SUBTYPE_GUIDANCE), so a
+  // doubling series is not a determinate one here either.
+  assert.ok(q("השלימו: 2, 4, 8, ___").includes("series-determinate"));
+});
+t("a LIST of numbers is not a series: the Ministry's 'איזה מהמספרים הבאים…: 7, 15, 23, 12?' is not flagged", () => {
+  assert.ok(!rules(ex({ question: "איזה מהמספרים הבאים יכול להיות מספר החרוזים הירוקים במחרוזת: 7, 15, 23, 12?" })).includes("series-determinate"));
+  assert.ok(!rules(ex({ question: "אביאל בונה מספרים מהספרות הבאות: 9,6,2. כמה מספרים הוא יכול לבנות?" })).includes("series-determinate"));
 });
 
 // ---------------------------------------------------------------- 2. served content

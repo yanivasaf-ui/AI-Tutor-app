@@ -276,6 +276,70 @@ function checkChoices(ex: Exercise, out: QualityViolation[]): void {
   }
 }
 
+/** Does the text right after a written series leave an empty TERM slot —
+ *  "3, 6, 9, ?" / "3, 6, 9, ___" / "3, 6, 9..."? A "?" glued to the last
+ *  number ("איזה מהמספרים הבאים…: 7, 15, 23, 12?") ends a question about a
+ *  list, not a series; the regression bank has exactly that Ministry item. */
+const ASKS_NEXT = /^(?:\s*,\s*(?:\?|_{2,})|\s*(?:\.{2,}|…))/;
+
+/**
+ * A written series the child is asked to continue must have ONE rule: a
+ * constant difference (the only kind pattern_completion builds). "0, 2, 3, ?"
+ * — answer 5, from the live run — has none, so no answer follows from it.
+ *
+ * Limit, deliberately: only series WRITTEN as a series ("a, b, c"). A
+ * sequence told in prose ("ביום ראשון 1,000… ביום שני 1,500…") is not
+ * parsed — its terms and its step read alike — and is left to review.
+ */
+function checkSeriesDeterminate(ex: Exercise, q: string, out: QualityViolation[]): void {
+  for (const s of numberSeries(q)) {
+    if (s.step !== null) continue;
+    // Not "any continue-word in the text": "הבאים/הבאות" ("the following")
+    // introduces lists of candidates in the Ministry books.
+    const asksNext = ex.subtype === "pattern_completion" || ASKS_NEXT.test(q.slice(s.end));
+    if (asksNext) {
+      out.push({ rule: "series-determinate", detail: `the series ${s.terms.join(", ")} has no single rule, so its next term is not determined` });
+    }
+  }
+}
+
+/** Shapes as the generator draws them: emoji and geometric symbols. */
+const SHAPE_SYMBOL = /\p{Extended_Pictographic}|[\u25a0-\u25ff]/gu;
+
+/**
+ * A pattern request must stay a pattern. In the live run, 8 of 9
+ * shape_match drafts came back as plain word problems ("בספרייה היו 2,345
+ * ספרים… כמה ספרים יש עכשיו?") with no tiles at all — well-formed, on
+ * topic, and not the exercise that was asked for.
+ *  - shape_match: shape tiles to choose from (no letters or digits), and
+ *    the pattern itself — at least 3 shapes — in the question.
+ *  - pattern_completion: number tiles, and at least 3 terms in the
+ *    question (in a written series or in prose).
+ */
+function checkPatternDrift(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const tiles = ex.tiles?.items ?? [];
+  if (ex.subtype === "shape_match") {
+    const shapeTiles = tiles.length > 0 && tiles.every((t) => !/[\p{L}\p{N}]/u.test(t));
+    const shown = (q.match(SHAPE_SYMBOL) ?? []).length;
+    if (!shapeTiles || shown < 3) {
+      out.push({
+        rule: "no-pattern-drift",
+        detail: !shapeTiles ? "a shape pattern with no shape tiles to choose from" : `a shape pattern that shows ${shown} shapes`,
+      });
+    }
+  }
+  if (ex.subtype === "pattern_completion") {
+    const numberTiles = tiles.length > 0 && tiles.every((t) => /^\d[\d,]*$/.test(t.trim()));
+    const terms = new Set(numberTokens(q).map((t) => t.value)).size;
+    if (!numberTiles || terms < 3) {
+      out.push({
+        rule: "no-pattern-drift",
+        detail: !numberTiles ? "a number pattern with no number tiles to choose from" : `a number pattern that shows ${terms} numbers — not a pattern to continue`,
+      });
+    }
+  }
+}
+
 function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
   if (ex.subtype !== "pattern_completion") return;
   const s = numberSeries(q).filter((x) => x.step !== null).pop();
@@ -300,6 +364,8 @@ export function checkQuestionQuality(ex: Exercise): QualityResult {
   checkOneTask(q, violations);
   checkChoices(ex, violations);
   checkPatternAnswer(ex, q, violations);
+  checkSeriesDeterminate(ex, q, violations);
+  checkPatternDrift(ex, q, violations);
   return { ok: violations.length === 0, checked: true, violations };
 }
 

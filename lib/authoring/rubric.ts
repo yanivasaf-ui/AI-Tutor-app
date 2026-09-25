@@ -48,7 +48,9 @@ export type RuleId =
   | "division-sharing-frame"
   | "no-series-as-count"
   | "internal-consistency"
-  | "unambiguous-answer";
+  | "unambiguous-answer"
+  | "series-determinate"
+  | "no-pattern-drift";
 
 export interface AuthoringRule {
   id: RuleId;
@@ -100,6 +102,19 @@ export const UNIVERSAL_RULES: readonly AuthoringRule[] = [
     id: "unambiguous-answer",
     he: "התשובה הצפויה חד-משמעית — ברור מה נשאל, ויש תשובה נכונה אחת.",
     enforcement: ["deterministic", "review"],
+  },
+  // Added after the 80-question live run (2026-09-25): "0, 2, 3, ?" with the
+  // answer 5 passed every gate, and 8 of 9 shape-pattern requests came back
+  // as plain word problems.
+  {
+    id: "series-determinate",
+    he: "סדרה שמבקשים להמשיך חייבת לנבוע מחוק אחד ברור — אותו הפרש בין כל שני מספרים סמוכים — כך שהמספר הבא נקבע ממנה בוודאות.",
+    enforcement: ["deterministic", "review"],
+  },
+  {
+    id: "no-pattern-drift",
+    he: "שאלת דפוס (רצף צורות או רצף מספרים) מציגה את הדפוס עצמו ומבקשת להמשיך אותו — היא לא הופכת לבעיה מילולית רגילה.",
+    enforcement: ["deterministic"],
   },
 ];
 
