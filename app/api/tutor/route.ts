@@ -14,7 +14,9 @@ import {
   type LockedVerdict,
 } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
-import { findReusableExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
+import { findReusableExercise, findOrSaveExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
+import { QualityGateError } from "@/lib/authoring/quality-gate";
+import { vettedTemplate } from "@/lib/authoring/vetted-templates";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import {
   factsFromAnswer,
@@ -469,6 +471,25 @@ async function handleGenerateExercise(
     try {
       generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
     } catch (genErr) {
+      // The authoring rubric rejected every draft (lib/authoring/quality-
+      // gate.ts). The fallback is a vetted template for this topic — never a
+      // draft that failed, and never the unchecked bank. No template for the
+      // topic: the error propagates as before.
+      if (genErr instanceof QualityGateError) {
+        const template = vettedTemplate(topic);
+        if (!template) throw genErr;
+        const served = await findOrSaveExercise(supabase, template);
+        console.warn(
+          `[exercise-generate] source=vetted-template topic=${topic ?? "(none)"} difficulty=${level} — every draft failed the authoring rubric. ${genErr.message}`
+        );
+        return NextResponse.json({
+          exercise: served,
+          reused: true,
+          practice,
+          source: "vetted-template",
+          timings: { getKidMs, dbLookupMs: findMs, totalMs: Date.now() - t0 },
+        });
+      }
       // BUG B safety net. The fit check (lib/exercises/topic-fit.ts) can empty
       // the bank's candidate page for a topic AND reject every generated
       // draft. Without this, that combination is a 500 and the child is left

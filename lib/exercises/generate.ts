@@ -11,6 +11,8 @@ import {
 } from "./arithmetic";
 import { SubjectProfile } from "@/lib/memory/types";
 import { topicFit } from "./topic-fit";
+import { checkQuestionQuality, qualityRetryHint, QualityGateError } from "@/lib/authoring/quality-gate";
+import { reviewMode, reviewQuestion } from "@/lib/authoring/quality-review";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
@@ -188,6 +190,9 @@ export async function generateExercise(opts: Parameters<typeof generateExerciseO
       if (err instanceof NoCurriculumContentError) throw err;
       if (err instanceof TopicFitError) {
         request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
+      if (err instanceof QualityGateError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, qualityRetryHint(err.violations)].filter(Boolean).join("\n") };
       }
       lastError = err;
       console.warn(
@@ -478,6 +483,17 @@ ${subtypeGuidance(subtype, grade)}
   const fit = topicFit(exercise, resolvedTopic?.id);
   if (!fit.ok) {
     throw new TopicFitError(`${subtype ?? type} draft is off-topic for ${resolvedTopic?.id}: ${fit.reason}. Question: "${exercise.question}"`);
+  }
+
+  // The authoring rubric (lib/authoring/rubric.ts), after every gate above:
+  // is this a good QUESTION — a series framed as one, division framed as
+  // sharing, one task, one unambiguous answer. Deterministic, no model
+  // call. The judgment half (quality-review.ts) runs only when switched on.
+  const quality = checkQuestionQuality(exercise);
+  if (!quality.ok) throw new QualityGateError(quality.violations, exercise.question);
+  if (subject === "math" && reviewMode() === "inline") {
+    const review = await reviewQuestion(exercise);
+    if (!review.ok) throw new QualityGateError(review.violations, exercise.question);
   }
   return exercise;
 }
