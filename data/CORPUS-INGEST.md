@@ -62,6 +62,7 @@ Each count is pinned in `tests/corpus.test.mts`.
 | Niqqud mark detached after a space (glyph-run artifact) | 2159 | e.g. `מַ ּׂשָאִית`, `שֶׁ ּׁשֶטַח` |
 | Detached maqaf (`' ־'`) | 443 | e.g. `לִ ־470` |
 | Degree sign extracted as a leading zero | 6 | `0360`, `0180`, `090` |
+| Numbers ≥1,000 with digits reversed around the comma | 177 | `0001,` for 1,000 and `000,9` for 9,000. **56 are word_problem/direct_question**, the types the README calls high fidelity. Treat any 4+-digit number in the corpus as suspect |
 | Running-header words fused into text | not counted | e.g. `.וחיסור`, `וביחידות`, `מדידות משקל` in digest stems |
 | Topic misclassification (keyword-based) | not counted | e.g. time items under `fractions` via "חצי"; angle items under `fractions` |
 | Scrambled drill used as a digest stem | grade ב division | the only ב/division stem is a scrambled drill |

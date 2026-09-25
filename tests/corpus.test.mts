@@ -197,6 +197,11 @@ t("glyph-run artifacts: 2159 texts with a niqqud mark after a space, 443 with a 
   assert.equal(all.filter((i) => /\s[ְ-ׇ]/.test(i.text)).length, 2159);
   assert.equal(all.filter((i) => i.text.includes(" ־")).length, 443);
 });
+t("177 numbers ≥1,000 digit-reversed around the comma ('0001,' for 1,000; '000,9' for 9,000) — 56 of them in word_problem/direct_question, the types the README calls high fidelity", () => {
+  const reversed = all.filter((i) => /(?<!\d)0\d{2,},|(?<!\d)0{2,3},\d/.test(i.text));
+  assert.equal(reversed.length, 177);
+  assert.equal(reversed.filter((i) => i.type === "word_problem" || i.type === "direct_question").length, 56);
+});
 t("6 degree signs extracted as a leading zero ('0360', '0180', '090')", () => {
   assert.equal(all.filter((i) => /(?<!\d)0(360|180|90)(?!\d)/.test(i.text)).length, 6);
 });
@@ -238,9 +243,10 @@ t("no file under app/, components/ or lib/ imports or reads data/corpus", () => 
       const rel = `${dir}/${f}`;
       if (statSync(join(ROOT, rel)).isDirectory()) walk(rel);
       else if (/\.(ts|tsx|mts|js|mjs)$/.test(f)) {
-        const src = readFileSync(join(ROOT, rel), "utf8");
-        if (/(from\s+|import\(|require\(|readFileSync\()[^;\n]*data\/corpus/.test(src)) offenders.push(rel);
-        if (/english-international/.test(src.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ""))) offenders.push(`${rel} (english-international)`);
+        // Code only: comments are allowed to say where things come from.
+        const code = readFileSync(join(ROOT, rel), "utf8").replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "");
+        if (/data\/corpus/.test(code)) offenders.push(rel);
+        if (/english-international/.test(code)) offenders.push(`${rel} (english-international)`);
       }
     }
   };

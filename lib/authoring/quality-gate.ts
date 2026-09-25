@@ -156,15 +156,20 @@ const COUNT_FRAME = new RegExp(
   "u"
 );
 
-/** Equal-sharing words: the partitive frame ("שווה בשווה ל-3 ילדים"). */
-const EQUAL_SHARE = hebrewWords(["שווה", "שוות", "שווים", "בשווה"], "");
+/** Equal-sharing words: the partitive frame ("שווה בשווה ל-3 ילדים"),
+ *  including the Ministry books' defective spelling ("שוה בשוה"). */
+const EQUAL_SHARE = hebrewWords(["שווה", "שוות", "שווים", "בשווה", "שוה", "שוים", "בשוה"], "");
 /** "each"-framing: "כמה יקבל כל ילד", "בכל סל". */
 const PER_EACH = hebrewWords(["כל"], "");
-/** The quotitive frame: groups of a known size ("בקבוצות של 3"). */
-const QUOTITIVE = new RegExp(`[${HE}]+\\s+של\\s*-?\\s*\\d+`, "u");
-/** Named groups: a count followed by a noun ("ל-3 סלים", "ל-4 קבוצות"). */
+/** The quotitive frame: groups of a known size — "בקבוצות של 3", or the
+ *  Ministry books' terse "10 בקבוצה. כמה קבוצות?". */
+const QUOTITIVE = new RegExp(`[${HE}]+\\s+של\\s*-?\\s*\\d+|\\d+\\s+ב[${HE}]{2,}`, "u");
+/** Named groups: a count attached to a noun ("ל-3 סלים", "4 קבוצות",
+ *  "שלושה ילדים") — what a bare "כמה זה 60 ÷ 10?" never has. Which of the
+ *  story's counts is the group count is not parsed; the grouping check
+ *  below does that where the payload says it. */
 const NAMED_GROUPS = new RegExp(
-  `(?:^|[^${HE}])ל\\s*-?\\s*(?:\\d+|שתי|שני|שלוש|שלושה|ארבע|ארבעה|חמש|חמישה|שש|שישה|שבע|שבעה|שמונה|תשע|תשעה|עשר|עשרה)\\s+[${HE}]{2,}`,
+  `(?:^|[^${HE}])(?:[לב]\\s*-?\\s*)?(?:\\d+|שתי|שני|שלוש|שלושה|ארבע|ארבעה|חמש|חמישה|שש|שישה|שבע|שבעה|שמונה|תשע|תשעה|עשר|עשרה)\\s+[${HE}]{2,}`,
   "u"
 );
 /** "how many will each receive": יקבל/תקבל/יקבלו/תקבלנה. */

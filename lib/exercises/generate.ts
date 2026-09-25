@@ -13,6 +13,7 @@ import { SubjectProfile } from "@/lib/memory/types";
 import { topicFit } from "./topic-fit";
 import { checkQuestionQuality, qualityRetryHint, QualityGateError } from "@/lib/authoring/quality-gate";
 import { reviewMode, reviewQuestion } from "@/lib/authoring/quality-review";
+import { rubricPromptBlock } from "@/lib/authoring/rubric";
 import { operationNames, operationScope, operationScopeRetryHint, OperationScopeError } from "./operation-scope";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
@@ -323,6 +324,10 @@ async function generateExerciseOnce(opts: {
   // declaration in lib/map/topics.ts the picker reads too.
   const ops = allowedOperations(resolvedTopic?.id, grade);
   const subtype = opts.forceSubtype ?? pickSubtype(subject, grade, ops);
+  // The authoring rubric for this topic, with what the Ministry corpus filled
+  // in (lib/authoring/rubric.ts): the rules, the phrasing mix, real questions.
+  const corpusCue = { division: ops.includes("div"), sequences: subtype === "pattern_completion" };
+  const rubricBlock = subject === "math" ? rubricPromptBlock(resolvedTopic?.id, grade, corpusCue) : "";
 
   const prompt = `את/ה בונה תרגיל אחד לתלמיד/ה בכיתה ${grade}, בנושא ${subject === "math" ? "חשבון" : "עברית"}.
 
@@ -332,6 +337,7 @@ ${contextBlock}
 ${profile ? `רמה משוערת נוכחית של התלמיד/ה: ${profile.estimatedLevel || "ברירת מחדל לפי כיתה"}` : ""}
 ${avoidTopics ? `נושאים שתורגלו לאחרונה (עדיף לגוון, לא חובה להימנע לגמרי): ${avoidTopics}` : ""}
 ${LEVEL_GUIDANCE[level]}
+${rubricBlock}
 ${opts.varietyHint ?? ""}
 
 בחר/י את אחד הנושאים לעיל ובנה/י תרגיל אחד קצר, ברור, ומתאים לגיל, לפי התבנית הבאה בדיוק:
@@ -526,7 +532,7 @@ ${subtypeGuidance(subtype, grade, ops)}
   const quality = checkQuestionQuality(exercise);
   if (!quality.ok) throw new QualityGateError(quality.violations, exercise.question);
   if (subject === "math" && reviewMode() === "inline") {
-    const review = await reviewQuestion(exercise);
+    const review = await reviewQuestion(exercise, rubricPromptBlock(resolvedTopic?.id, grade, { ...corpusCue, rules: false }));
     if (!review.ok) throw new QualityGateError(review.violations, exercise.question);
   }
   return exercise;

@@ -27,9 +27,16 @@
  *    not how this file's author imagines it. A slot the corpus cannot fill
  *    stays marked as such rather than being guessed.
  *
- * No runtime imports beyond types: this module is read by the generator,
- * the quality gate, and tests, and must not pull the Anthropic SDK in.
+ * The filled slots come from lib/authoring/corpus-slots.json, built from
+ * data/corpus/ by scripts/build-corpus-index.ts (the runtime never reads
+ * the 19MB corpus itself). Filled on 2026-09-25: phrasing 18/22 topics,
+ * exemplars 3/22 topics + division ב/ג — see that script for why so few.
+ *
+ * No runtime imports beyond that JSON: this module is read by the
+ * generator, the quality gate, and tests, and must not pull the Anthropic
+ * SDK in.
  */
+import corpusSlots from "./corpus-slots.json";
 
 // ---------------------------------------------------------------- rules
 
@@ -118,7 +125,7 @@ export type SlotStatus = "placeholder" | "filled" | "insufficient-evidence";
 export interface ObservedPattern {
   label: string;
   count: number;
-  /** count / items in the slice, 0..1, rounded to 2 places. */
+  /** count / items in the slice, 0..1, rounded to 3 places. */
   share: number;
 }
 
@@ -202,17 +209,58 @@ const PLACEHOLDER: TopicSlots = {
   exemplars: { status: "placeholder" },
 };
 
-/** Per-topic slots. PLACEHOLDER until filled from the corpus. */
+const built = corpusSlots as unknown as {
+  topics: Record<string, TopicSlots>;
+  crossCutting: Record<CrossCuttingSlot, Record<"א" | "ב" | "ג", TopicSlots>>;
+};
+
+/** Per-topic slots, filled from the corpus (PLACEHOLDER if the build has
+ *  no entry — which the tests do not allow). */
 export const TOPIC_SLOTS: Readonly<Record<SlotTopicId, TopicSlots>> = Object.fromEntries(
-  SLOT_TOPIC_IDS.map((id) => [id, PLACEHOLDER])
+  SLOT_TOPIC_IDS.map((id) => [id, built.topics[id] ?? PLACEHOLDER])
 ) as Record<SlotTopicId, TopicSlots>;
 
-/** Cross-cutting slots, per product grade. PLACEHOLDER until filled. */
-export const CROSS_CUTTING_SLOTS: Readonly<Record<CrossCuttingSlot, Record<"א" | "ב" | "ג", TopicSlots>>> = {
-  sequences: { א: PLACEHOLDER, ב: PLACEHOLDER, ג: PLACEHOLDER },
-  division: { א: PLACEHOLDER, ב: PLACEHOLDER, ג: PLACEHOLDER },
-};
+/** Cross-cutting slots, per product grade, filled from the corpus. */
+export const CROSS_CUTTING_SLOTS: Readonly<Record<CrossCuttingSlot, Record<"א" | "ב" | "ג", TopicSlots>>> = built.crossCutting;
 
 export function slotsFor(topicId: string): TopicSlots | undefined {
   return (TOPIC_SLOTS as Record<string, TopicSlots>)[topicId];
+}
+
+// ---------------------------------------------------------------- prompt
+
+/**
+ * The rubric as a model reads it, for one topic: the universal rules, then
+ * whatever the corpus filled — how often each phrasing pattern occurs in
+ * the Ministry books for this grade × topic, and verbatim Ministry
+ * questions. Division / sequence exemplars are added when the exercise can
+ * involve them. A slot the corpus could not fill contributes nothing: the
+ * model gets the rules, not an invented example.
+ *
+ * Used by the generation prompt (so drafts start closer to the standard)
+ * and the model review (so the reviewer judges against the same thing).
+ */
+export function rubricPromptBlock(
+  topicId: string | undefined,
+  grade: "א" | "ב" | "ג",
+  opts: { division?: boolean; sequences?: boolean; rules?: boolean } = {}
+): string {
+  const lines: string[] = opts.rules === false ? [] : ["כללי כתיבת שאלה (חובה):", ...UNIVERSAL_RULES.map((r) => `- ${r.he}`)];
+  const slots = topicId ? slotsFor(topicId) : undefined;
+  if (slots?.phrasing.status === "filled" && slots.phrasing.patterns?.length) {
+    const top = slots.phrasing.patterns.slice(0, 3).map((p) => `${p.label} (${Math.round(p.share * 100)}%)`);
+    lines.push(`דפוסי הניסוח השכיחים בנושא הזה בספרי משרד החינוך לכיתה ${grade}: ${top.join("; ")}.`);
+  }
+  const examples: Exemplar[] = [];
+  if (slots?.exemplars.status === "filled") examples.push(...(slots.exemplars.exemplars ?? []));
+  for (const [kind, on] of [["division", opts.division], ["sequences", opts.sequences]] as const) {
+    const cc = CROSS_CUTTING_SLOTS[kind][grade];
+    if (on && cc.exemplars.status === "filled") examples.push(...(cc.exemplars.exemplars ?? []));
+  }
+  const unique = [...new Map(examples.map((e) => [e.source.id, e])).values()].slice(0, 4);
+  if (unique.length > 0) {
+    lines.push("כך נשמעות שאלות אמיתיות מספרי משרד החינוך לכיתה הזו (לדוגמה בלבד — לא להעתיק):");
+    for (const e of unique) lines.push(`> ${e.text}`);
+  }
+  return lines.join("\n");
 }

@@ -1,0 +1,1358 @@
+{
+ "corpusManifestSha256": "6cc9f773dfeac6adef9995ac66e030076f93ccfcf2f6ab4e5ab57ac6709155b7",
+ "topics": {
+  "math-a-numbers-0-100": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 133,
+      "share": 0.76
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 33,
+      "share": 0.189
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 8,
+      "share": 0.046
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 4,
+      "share": 0.023
+     }
+    ],
+    "types": {
+     "instruction_or_task": 120,
+     "direct_question": 27,
+     "drill": 22,
+     "word_problem": 5,
+     "completion": 1
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-1.md",
+      "sections": [
+       "מספרים ומבנה עשרוני (numbers_place_value) — 175 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-a-addition-subtraction": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 111,
+      "share": 0.642
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 42,
+      "share": 0.243
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 22,
+      "share": 0.127
+     },
+     {
+      "label": "completion to round ten/hundred",
+      "count": 7,
+      "share": 0.04
+     }
+    ],
+    "types": {
+     "instruction_or_task": 67,
+     "drill": 59,
+     "direct_question": 28,
+     "word_problem": 13,
+     "completion": 6
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-1.md",
+      "sections": [
+       "חיבור וחיסור (addition_subtraction) — 173 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-a-geometry": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 43,
+      "share": 0.551
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 25,
+      "share": 0.321
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 14,
+      "share": 0.179
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 3,
+      "share": 0.038
+     }
+    ],
+    "types": {
+     "instruction_or_task": 54,
+     "direct_question": 16,
+     "word_problem": 7,
+     "completion": 1
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-1.md",
+      "sections": [
+       "גאומטריה (geometry) — 78 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-a-length": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 110,
+      "share": 0.775
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 29,
+      "share": 0.204
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 1,
+      "share": 0.007
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 1,
+      "share": 0.007
+     }
+    ],
+    "types": {
+     "instruction_or_task": 112,
+     "direct_question": 23,
+     "word_problem": 5,
+     "drill": 2
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-1.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 142 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-a-time": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 110,
+      "share": 0.775
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 29,
+      "share": 0.204
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 1,
+      "share": 0.007
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 1,
+      "share": 0.007
+     }
+    ],
+    "types": {
+     "instruction_or_task": 112,
+     "direct_question": 23,
+     "word_problem": 5,
+     "drill": 2
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-1.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 142 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-a-data": {
+   "phrasing": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   }
+  },
+  "math-b-numbers-0-1000": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 256,
+      "share": 0.85
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 42,
+      "share": 0.14
+     },
+     {
+      "label": "completion to round ten/hundred",
+      "count": 2,
+      "share": 0.007
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 2,
+      "share": 0.007
+     }
+    ],
+    "types": {
+     "instruction_or_task": 234,
+     "direct_question": 33,
+     "drill": 27,
+     "word_problem": 7
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "מספרים ומבנה עשרוני (numbers_place_value) — 289 items",
+       "חוקיות וסדרות (patterns_sequences) — 12 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-b-arithmetic": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 113,
+      "share": 0.715
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 41,
+      "share": 0.259
+     },
+     {
+      "label": "completion to round ten/hundred",
+      "count": 10,
+      "share": 0.063
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 6,
+      "share": 0.038
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 1,
+      "share": 0.006
+     }
+    ],
+    "types": {
+     "instruction_or_task": 77,
+     "drill": 39,
+     "direct_question": 26,
+     "word_problem": 15,
+     "completion": 1
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "חיבור וחיסור (addition_subtraction) — 99 items",
+       "כפל (multiplication) — 47 items",
+       "חילוק (division) — 12 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "filled",
+    "exemplars": [
+     {
+      "text": "לְנִיבָה יֵשׁ 8 קְלָפִים. כַּמָּה קְלָפִים צְרִיכָה נִיבָה לִקְנוֹת כְּדֵי שֶׁיִּהְיּו לָהּ 14 קְלָפִים?",
+      "niqqud": true,
+      "type": "word_problem",
+      "source": {
+       "id": "psahot-b1-p40-167",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+       "volume": "ב1",
+       "page": 40
+      }
+     },
+     {
+      "text": "א. לַטִּיּּול הִגִּיעּו 45 יְלָדִים. כַּמָּה יְלָדִים צְרִיכִים עוֹד לְהַגִּיעַ כְּדֵי שֶׁיִּהְיּו 70 יְלָדִים?",
+      "niqqud": true,
+      "type": "direct_question",
+      "source": {
+       "id": "psahot-b2-p17-59",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+       "volume": "ב2",
+       "page": 17
+      }
+     },
+     {
+      "text": "ב. 9 בַּקְבּּוקֵי שׁוֹקוֹ מְסֻדָּרִים בִּקְבּוצוֹת שֶׁל 3. כַּמָּה קְבּוצוֹת יֵשׁ?",
+      "niqqud": true,
+      "type": "word_problem",
+      "source": {
+       "id": "psahot-b2-p94-515",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+       "volume": "ב2",
+       "page": 94
+      }
+     },
+     {
+      "text": "ד. לַמּוֹרָה צִיּפִי יֵשׁ בַּכִּתָּה 4 קְבּוצוֹת. הִיא חִלְּקָה בֵּין הַקְּבּוצוֹת שָׁוֶה בְּשָׁוֶה 16 סֻכָּרִיּוֹת. כַּמָּה סֻכָּרִיּוֹת קִבְּלָה כָּל קְבּוצָה?",
+      "niqqud": true,
+      "type": "word_problem",
+      "source": {
+       "id": "psahot-b3-p85-520",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+       "volume": "ב3",
+       "page": 85
+      }
+     }
+    ]
+   }
+  },
+  "math-b-geometry": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 15,
+      "share": 0.577
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 11,
+      "share": 0.423
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 3,
+      "share": 0.115
+     },
+     {
+      "label": "open task (multiple answers)",
+      "count": 2,
+      "share": 0.077
+     }
+    ],
+    "types": {
+     "instruction_or_task": 15,
+     "word_problem": 11
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "גאומטריה (geometry) — 26 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-b-length": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 163,
+      "share": 0.815
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 36,
+      "share": 0.18
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 1,
+      "share": 0.005
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 1,
+      "share": 0.005
+     }
+    ],
+    "types": {
+     "instruction_or_task": 162,
+     "direct_question": 27,
+     "word_problem": 8,
+     "drill": 3
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 200 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-b-volume": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 178,
+      "share": 0.788
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 47,
+      "share": 0.208
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 4,
+      "share": 0.018
+     },
+     {
+      "label": "open task (multiple answers)",
+      "count": 2,
+      "share": 0.009
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 1,
+      "share": 0.004
+     }
+    ],
+    "types": {
+     "instruction_or_task": 177,
+     "direct_question": 27,
+     "word_problem": 19,
+     "drill": 3
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 200 items",
+       "גאומטריה (geometry) — 26 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-b-time": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 163,
+      "share": 0.815
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 36,
+      "share": 0.18
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 1,
+      "share": 0.005
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 1,
+      "share": 0.005
+     }
+    ],
+    "types": {
+     "instruction_or_task": 162,
+     "direct_question": 27,
+     "word_problem": 8,
+     "drill": 3
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-2.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 200 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-b-data": {
+   "phrasing": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   }
+  },
+  "math-g-numbers-0-10000": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 188,
+      "share": 0.752
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 60,
+      "share": 0.24
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 5,
+      "share": 0.02
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 2,
+      "share": 0.008
+     }
+    ],
+    "types": {
+     "instruction_or_task": 170,
+     "direct_question": 43,
+     "drill": 23,
+     "word_problem": 14
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "מספרים ומבנה עשרוני (numbers_place_value) — 240 items",
+       "חוקיות וסדרות (patterns_sequences) — 10 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-g-gematria": {
+   "phrasing": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   }
+  },
+  "math-g-arithmetic": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 33,
+      "share": 0.493
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 31,
+      "share": 0.463
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 9,
+      "share": 0.134
+     },
+     {
+      "label": "metacognition prompt (איך מצאתם/הסבירו/בדקו)",
+      "count": 6,
+      "share": 0.09
+     }
+    ],
+    "types": {
+     "instruction_or_task": 20,
+     "direct_question": 16,
+     "drill": 15,
+     "word_problem": 15,
+     "completion": 1
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "חיבור וחיסור (addition_subtraction) — 67 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "filled",
+    "exemplars": [
+     {
+      "text": "לְדַלְיָה יֵשׁ 67 שְׁקָלִים. כַּמָּה שְׁקָלִים הִיא צְרִיכָה לְקַבֵּל כְּדֵי שֶׁיִּהְיּו לָהּ 100 שְׁקָלִים?",
+      "niqqud": true,
+      "type": "word_problem",
+      "source": {
+       "id": "psahot-g1-p15-85",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+       "volume": "ג1",
+       "page": 15
+      }
+     }
+    ]
+   }
+  },
+  "math-g-multiplication-division": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 69,
+      "share": 0.657
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 36,
+      "share": 0.343
+     },
+     {
+      "label": "open task (multiple answers)",
+      "count": 5,
+      "share": 0.048
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 3,
+      "share": 0.029
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 2,
+      "share": 0.019
+     }
+    ],
+    "types": {
+     "instruction_or_task": 43,
+     "drill": 27,
+     "direct_question": 26,
+     "word_problem": 9
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "כפל (multiplication) — 84 items",
+       "חילוק (division) — 21 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "filled",
+    "exemplars": [
+     {
+      "text": "א. הָיּו 500 מְהַדְּקִים. 100 בְּקֻפְסָה. כַּמָּה קֻפְסָאוֹת?",
+      "niqqud": true,
+      "type": "direct_question",
+      "source": {
+       "id": "psahot-g1-p81-513",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+       "volume": "ג1",
+       "page": 81
+      }
+     },
+     {
+      "text": "1. פִּתְרּו בַּמַּחְבֶּרֶת: בַּמִּסְעָדָה הֵכִינּו 420 פְּרּוסֹות עַגְבָנִיָּה. הַטַּבָּחִים סִדְּרּו עַל כָּל צַלַּחַת 3 פְּרּוסֹות עַגְבָנִיָּה. לְכַמָּה צַלָּחֹות הִסְפִּיקּו הַפְּרּוסֹות?",
+      "niqqud": true,
+      "type": "direct_question",
+      "source": {
+       "id": "psahot-g3-p111-701",
+       "series": "פשוט חשבון",
+       "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+       "volume": "ג3",
+       "page": 111
+      }
+     }
+    ]
+   }
+  },
+  "math-g-geometry": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 43,
+      "share": 0.581
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 29,
+      "share": 0.392
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 11,
+      "share": 0.149
+     },
+     {
+      "label": "open task (multiple answers)",
+      "count": 1,
+      "share": 0.014
+     }
+    ],
+    "types": {
+     "instruction_or_task": 47,
+     "direct_question": 17,
+     "word_problem": 9,
+     "drill": 1
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "גאומטריה (geometry) — 74 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-g-area": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 84,
+      "share": 0.712
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 30,
+      "share": 0.254
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 4,
+      "share": 0.034
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 3,
+      "share": 0.025
+     }
+    ],
+    "types": {
+     "instruction_or_task": 81,
+     "direct_question": 24,
+     "drill": 9,
+     "word_problem": 4
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 118 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-g-volume": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 127,
+      "share": 0.661
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 59,
+      "share": 0.307
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 15,
+      "share": 0.078
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 3,
+      "share": 0.016
+     },
+     {
+      "label": "open task (multiple answers)",
+      "count": 1,
+      "share": 0.005
+     }
+    ],
+    "types": {
+     "instruction_or_task": 128,
+     "direct_question": 41,
+     "word_problem": 13,
+     "drill": 10
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 118 items",
+       "גאומטריה (geometry) — 74 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-g-time": {
+   "phrasing": {
+    "status": "filled",
+    "patterns": [
+     {
+      "label": "bare computation / instruction",
+      "count": 84,
+      "share": 0.712
+     },
+     {
+      "label": "named-child story + כמה question",
+      "count": 30,
+      "share": 0.254
+     },
+     {
+      "label": "imperative plural instruction (כתבו/השלימו/הקיפו/סמנו/פתרו)",
+      "count": 4,
+      "share": 0.034
+     },
+     {
+      "label": "compare (מי יותר/פחות)",
+      "count": 3,
+      "share": 0.025
+     }
+    ],
+    "types": {
+     "instruction_or_task": 81,
+     "direct_question": 24,
+     "drill": 9,
+     "word_problem": 4
+    },
+    "source": [
+     {
+      "digest": "digests/phrasing-grade-3.md",
+      "sections": [
+       "מידות ומדידה (measurement) — 118 items"
+      ]
+     }
+    ]
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+   }
+  },
+  "math-g-data": {
+   "phrasing": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   },
+   "exemplars": {
+    "status": "insufficient-evidence",
+    "note": "no corpus item topic is joined to this product topic"
+   }
+  }
+ },
+ "crossCutting": {
+  "sequences": {
+   "א": {
+    "phrasing": {
+     "status": "insufficient-evidence",
+     "note": "only 0 corpus items in patterns_sequences at grade א (need 10)",
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-1.md",
+       "sections": []
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "insufficient-evidence",
+     "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+    }
+   },
+   "ב": {
+    "phrasing": {
+     "status": "filled",
+     "patterns": [
+      {
+       "label": "bare computation / instruction",
+       "count": 9,
+       "share": 0.75
+      },
+      {
+       "label": "named-child story + כמה question",
+       "count": 3,
+       "share": 0.25
+      }
+     ],
+     "types": {
+      "instruction_or_task": 9,
+      "direct_question": 2,
+      "word_problem": 1
+     },
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-2.md",
+       "sections": [
+        "חוקיות וסדרות (patterns_sequences) — 12 items"
+       ]
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "insufficient-evidence",
+     "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+    }
+   },
+   "ג": {
+    "phrasing": {
+     "status": "filled",
+     "patterns": [
+      {
+       "label": "bare computation / instruction",
+       "count": 7,
+       "share": 0.7
+      },
+      {
+       "label": "named-child story + כמה question",
+       "count": 3,
+       "share": 0.3
+      }
+     ],
+     "types": {
+      "instruction_or_task": 5,
+      "drill": 2,
+      "word_problem": 2,
+      "direct_question": 1
+     },
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-3.md",
+       "sections": [
+        "חוקיות וסדרות (patterns_sequences) — 10 items"
+       ]
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "insufficient-evidence",
+     "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+    }
+   }
+  },
+  "division": {
+   "א": {
+    "phrasing": {
+     "status": "insufficient-evidence",
+     "note": "only 6 corpus items in division at grade א (need 10)",
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-1.md",
+       "sections": [
+        "חילוק (division) — 6 items"
+       ]
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "insufficient-evidence",
+     "note": "reviewed 2026-09-25: no self-contained, artifact-free question in this slice (fragments that depend on a figure, fused running headers, or context from a previous item)"
+    }
+   },
+   "ב": {
+    "phrasing": {
+     "status": "filled",
+     "patterns": [
+      {
+       "label": "bare computation / instruction",
+       "count": 9,
+       "share": 0.75
+      },
+      {
+       "label": "named-child story + כמה question",
+       "count": 3,
+       "share": 0.25
+      }
+     ],
+     "types": {
+      "instruction_or_task": 9,
+      "word_problem": 2,
+      "direct_question": 1
+     },
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-2.md",
+       "sections": [
+        "חילוק (division) — 12 items"
+       ]
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "filled",
+     "exemplars": [
+      {
+       "text": "ב. 9 בַּקְבּּוקֵי שׁוֹקוֹ מְסֻדָּרִים בִּקְבּוצוֹת שֶׁל 3. כַּמָּה קְבּוצוֹת יֵשׁ?",
+       "niqqud": true,
+       "type": "word_problem",
+       "source": {
+        "id": "psahot-b2-p94-515",
+        "series": "פשוט חשבון",
+        "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+        "volume": "ב2",
+        "page": 94
+       }
+      },
+      {
+       "text": "ד. לַמּוֹרָה צִיּפִי יֵשׁ בַּכִּתָּה 4 קְבּוצוֹת. הִיא חִלְּקָה בֵּין הַקְּבּוצוֹת שָׁוֶה בְּשָׁוֶה 16 סֻכָּרִיּוֹת. כַּמָּה סֻכָּרִיּוֹת קִבְּלָה כָּל קְבּוצָה?",
+       "niqqud": true,
+       "type": "word_problem",
+       "source": {
+        "id": "psahot-b3-p85-520",
+        "series": "פשוט חשבון",
+        "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+        "volume": "ב3",
+        "page": 85
+       }
+      }
+     ]
+    }
+   },
+   "ג": {
+    "phrasing": {
+     "status": "filled",
+     "patterns": [
+      {
+       "label": "bare computation / instruction",
+       "count": 13,
+       "share": 0.619
+      },
+      {
+       "label": "named-child story + כמה question",
+       "count": 8,
+       "share": 0.381
+      },
+      {
+       "label": "compare (מי יותר/פחות)",
+       "count": 2,
+       "share": 0.095
+      },
+      {
+       "label": "open task (multiple answers)",
+       "count": 2,
+       "share": 0.095
+      }
+     ],
+     "types": {
+      "drill": 13,
+      "direct_question": 4,
+      "word_problem": 3,
+      "instruction_or_task": 1
+     },
+     "source": [
+      {
+       "digest": "digests/phrasing-grade-3.md",
+       "sections": [
+        "חילוק (division) — 21 items"
+       ]
+      }
+     ]
+    },
+    "exemplars": {
+     "status": "filled",
+     "exemplars": [
+      {
+       "text": "א. הָיּו 500 מְהַדְּקִים. 100 בְּקֻפְסָה. כַּמָּה קֻפְסָאוֹת?",
+       "niqqud": true,
+       "type": "direct_question",
+       "source": {
+        "id": "psahot-g1-p81-513",
+        "series": "פשוט חשבון",
+        "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+        "volume": "ג1",
+        "page": 81
+       }
+      },
+      {
+       "text": "1. פִּתְרּו בַּמַּחְבֶּרֶת: בַּמִּסְעָדָה הֵכִינּו 420 פְּרּוסֹות עַגְבָנִיָּה. הַטַּבָּחִים סִדְּרּו עַל כָּל צַלַּחַת 3 פְּרּוסֹות עַגְבָנִיָּה. לְכַמָּה צַלָּחֹות הִסְפִּיקּו הַפְּרּוסֹות?",
+       "niqqud": true,
+       "type": "direct_question",
+       "source": {
+        "id": "psahot-g3-p111-701",
+        "series": "פשוט חשבון",
+        "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%923.pdf",
+        "volume": "ג3",
+        "page": 111
+       }
+      }
+     ]
+    }
+   }
+  }
+ },
+ "templates": [
+  {
+   "topicId": "math-b-arithmetic",
+   "question": "9 בַּקְבּּוקֵי שׁוֹקוֹ מְסֻדָּרִים בִּקְבּוצוֹת שֶׁל 3. כַּמָּה קְבּוצוֹת יֵשׁ?",
+   "computation": {
+    "operands": [
+     9,
+     3
+    ],
+    "operators": [
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "provenance": {
+    "id": "psahot-b2-p94-515",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+    "volume": "ב2",
+    "page": 94
+   }
+  },
+  {
+   "topicId": "math-b-arithmetic",
+   "question": "לַמּוֹרָה צִיּפִי יֵשׁ בַּכִּתָּה 4 קְבּוצוֹת. הִיא חִלְּקָה בֵּין הַקְּבּוצוֹת שָׁוֶה בְּשָׁוֶה 16 סֻכָּרִיּוֹת. כַּמָּה סֻכָּרִיּוֹת קִבְּלָה כָּל קְבּוצָה?",
+   "computation": {
+    "operands": [
+     16,
+     4
+    ],
+    "operators": [
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "provenance": {
+    "id": "psahot-b3-p85-520",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%913.pdf",
+    "volume": "ב3",
+    "page": 85
+   }
+  },
+  {
+   "topicId": "math-b-arithmetic",
+   "question": "לְנִיבָה יֵשׁ 8 קְלָפִים. כַּמָּה קְלָפִים צְרִיכָה נִיבָה לִקְנוֹת כְּדֵי שֶׁיִּהְיּו לָהּ 14 קְלָפִים?",
+   "computation": {
+    "operands": [
+     14,
+     8
+    ],
+    "operators": [
+     "-"
+    ]
+   },
+   "difficulty": 1,
+   "provenance": {
+    "id": "psahot-b1-p40-167",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%911.pdf",
+    "volume": "ב1",
+    "page": 40
+   }
+  },
+  {
+   "topicId": "math-b-arithmetic",
+   "question": "לִפְנֵי ט״ּו בִּשְׁבָט הָיּו בַּגַּן 47 עֵצִים. כַּמָּה עֵצִים נָטְעּו בְּט״ּו בִּשְׁבָט אִם כָּעֵת יֵשׁ בַּגַּן 60 עֵצִים?",
+   "computation": {
+    "operands": [
+     60,
+     47
+    ],
+    "operators": [
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "provenance": {
+    "id": "psahot-b2-p136-744",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%912.pdf",
+    "volume": "ב2",
+    "page": 136
+   }
+  },
+  {
+   "topicId": "math-g-arithmetic",
+   "question": "לְדַלְיָה יֵשׁ 67 שְׁקָלִים. כַּמָּה שְׁקָלִים הִיא צְרִיכָה לְקַבֵּל כְּדֵי שֶׁיִּהְיּו לָהּ 100 שְׁקָלִים?",
+   "computation": {
+    "operands": [
+     100,
+     67
+    ],
+    "operators": [
+     "-"
+    ]
+   },
+   "difficulty": 2,
+   "provenance": {
+    "id": "psahot-g1-p15-85",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+    "volume": "ג1",
+    "page": 15
+   }
+  },
+  {
+   "topicId": "math-g-multiplication-division",
+   "question": "80 יְלָדִים. 10 בִּקְבּוצָה. כַּמָּה קְבּוצוֹת?",
+   "computation": {
+    "operands": [
+     80,
+     10
+    ],
+    "operators": [
+     "/"
+    ]
+   },
+   "difficulty": 1,
+   "provenance": {
+    "id": "psahot-g1-p80-498",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+    "volume": "ג1",
+    "page": 80
+   }
+  },
+  {
+   "topicId": "math-g-multiplication-division",
+   "question": "100 יְלָדִים. 10 בִּקְבּוצָה. כַּמָּה קְבּוצוֹת?",
+   "computation": {
+    "operands": [
+     100,
+     10
+    ],
+    "operators": [
+     "/"
+    ]
+   },
+   "difficulty": 2,
+   "provenance": {
+    "id": "psahot-g1-p80-501",
+    "series": "פשוט חשבון",
+    "url": "https://meyda.education.gov.il/files/free%20books/%D7%A4%D7%A9%D7%95%D7%98%20%D7%97%D7%A9%D7%91%D7%95%D7%9F%20%D7%921.pdf",
+    "volume": "ג1",
+    "page": 80
+   }
+  }
+ ]
+}
