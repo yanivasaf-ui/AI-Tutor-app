@@ -1,6 +1,6 @@
 {
  "source": "the 80-generation live run of 2026-09-25 on 84f1075: 79 questions served, every one passing the code gate",
- "labelling": "knownBad: the 13 judged defective by hand, each with the rule it breaks. clean: 50 drawn at random (seed 20260925) from the rest, after excluding the items in excludedFromClean.",
+ "labelling": "knownBad: the 13 judged defective by hand, each with the rule it breaks. clean: 50 drawn at random (seed 20260925) from the rest, after excluding the items in excludedFromClean. Four items were moved from clean to knownBad after the first calibration (each marked movedFromClean): defects the reviewer found that were mislabelled. knownBad is now 17, clean 46.",
  "poolSize": 56,
  "knownBad": [
   {
@@ -181,6 +181,58 @@
    ],
    "expectRule": "unambiguous-answer",
    "reason": "the 'correct' choice is 'אף תשובה לא נכונה, התשובה היא 6' — the answer is smuggled into a choice"
+  },
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "explain_thinking",
+   "question": "המורה שאלה את הילדים בכיתה איזו פירות הם הכי אוהבים. היא בנתה דיאגרמת עמודות: תפוח - 5 ילדים, בננה - 8 ילדים, תפוז - 3 ילדים, ענבים - 6 ילדים.\n\nהסבירי איך את יכולה לגלות איזו פרי הכי פחות ילדים אוהבים, בלי לספור שוב.",
+   "answer": "הסבר טוב מזכיר השוואה בין גבהי העמודות או בין המספרים, ומזהה שהעמודה הכי נמוכה (או המספר הכי קטן - 3) מראה על הפרי שהכי פחות אוהבים (תפוז)",
+   "expectRule": "spoken-hebrew",
+   "reason": "'איזו פירות' — feminine איזו with a masculine noun",
+   "movedFromClean": "reviewer-confirmed 2026-09-25"
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "דני ספר כמה ילדים אוהבים כל פרי. הוא בנה דיאגרמת עמודות. העמודה של תפוחים הגיעה ל-12 ילדים, והעמודה של תפוזים הגיעה ל-7 ילדים. כמה ילדים יותר אוהבים תפוחים מאשר תפוזים?\n\n12 - ___ = 5",
+   "answer": "7",
+   "tiles": [
+    "7",
+    "5",
+    "6",
+    "8"
+   ],
+   "expectRule": "internal-consistency",
+   "reason": "the blank's answer (7) is a number the story already states; the question asks for 5",
+   "movedFromClean": "reviewer-confirmed 2026-09-25"
+  },
+  {
+   "topic": "math-g-time",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "נועה התחילה לשחק בגינה בשעה 3:15. היא שיחקה במשך 45 דקות. איזו פעולה תעזור לנו למצוא באיזו שעה נועה סיימה לשחק?",
+   "answer": "3:15 + 45",
+   "choices": [
+    "3:15 + 45",
+    "3:15 - 45",
+    "3:15 × 45",
+    "45 ÷ 3:15"
+   ],
+   "expectRule": "unambiguous-answer",
+   "reason": "the correct choice '3:15 + 45' adds minutes to a clock time as if it were a number",
+   "movedFromClean": "reviewer-confirmed 2026-09-25"
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "number_line_placement",
+   "question": "דני בנה מגדל מקוביות. בשורה התחתונה יש לו 4 קוביות. בכל שורה מעל יש לו פחות 2 קוביות מהשורה שמתחת. היכן על הציר נמצא מספר הקוביות בשורה השלישית?",
+   "answer": "0",
+   "expectRule": "internal-consistency",
+   "reason": "a tower row with 0 cubes, then a count of nothing placed on an axis",
+   "movedFromClean": "reviewer-confirmed 2026-09-25"
   }
  ],
  "clean": [
@@ -210,13 +262,6 @@
     "18 × 3",
     "18 ÷ 3"
    ]
-  },
-  {
-   "topic": "math-b-data",
-   "grade": "ב",
-   "subtype": "explain_thinking",
-   "question": "המורה שאלה את הילדים בכיתה איזו פירות הם הכי אוהבים. היא בנתה דיאגרמת עמודות: תפוח - 5 ילדים, בננה - 8 ילדים, תפוז - 3 ילדים, ענבים - 6 ילדים.\n\nהסבירי איך את יכולה לגלות איזו פרי הכי פחות ילדים אוהבים, בלי לספור שוב.",
-   "answer": "הסבר טוב מזכיר השוואה בין גבהי העמודות או בין המספרים, ומזהה שהעמודה הכי נמוכה (או המספר הכי קטן - 3) מראה על הפרי שהכי פחות אוהבים (תפוז)"
   },
   {
    "topic": "math-b-data",
@@ -451,19 +496,6 @@
   {
    "topic": "math-g-data",
    "grade": "ג",
-   "subtype": "equation_balance",
-   "question": "דני ספר כמה ילדים אוהבים כל פרי. הוא בנה דיאגרמת עמודות. העמודה של תפוחים הגיעה ל-12 ילדים, והעמודה של תפוזים הגיעה ל-7 ילדים. כמה ילדים יותר אוהבים תפוחים מאשר תפוזים?\n\n12 - ___ = 5",
-   "answer": "7",
-   "tiles": [
-    "7",
-    "5",
-    "6",
-    "8"
-   ]
-  },
-  {
-   "topic": "math-g-data",
-   "grade": "ג",
    "subtype": "explain_thinking",
    "question": "המורה שלנו בנתה דיאגרמת עמודות שמראה כמה ילדים אוהבים כל פרי. העמודה של תפוחים מגיעה לגובה 8, העמודה של תפוזים מגיעה לגובה 12, והעמודה של בננות מגיעה לגובה 6. איך אפשר לגלות כמה ילדים בכיתה השתתפו בסקר? הסבירו את דרך החשיבה שלכם.",
    "answer": "הסבר שמזכיר חיבור של כל העמודות (8+12+6) או שמציין שצריך לספור את כל הילדים ביחד מכל הפירות"
@@ -641,19 +673,6 @@
    "answer": "90"
   },
   {
-   "topic": "math-g-time",
-   "grade": "ג",
-   "subtype": "pick_operation",
-   "question": "נועה התחילה לשחק בגינה בשעה 3:15. היא שיחקה במשך 45 דקות. איזו פעולה תעזור לנו למצוא באיזו שעה נועה סיימה לשחק?",
-   "answer": "3:15 + 45",
-   "choices": [
-    "3:15 + 45",
-    "3:15 - 45",
-    "3:15 × 45",
-    "45 ÷ 3:15"
-   ]
-  },
-  {
    "topic": "math-g-volume",
    "grade": "ג",
    "subtype": "pattern_completion",
@@ -691,13 +710,6 @@
     "🎁",
     "📮"
    ]
-  },
-  {
-   "topic": "math-g-volume",
-   "grade": "ג",
-   "subtype": "number_line_placement",
-   "question": "דני בנה מגדל מקוביות. בשורה התחתונה יש לו 4 קוביות. בכל שורה מעל יש לו פחות 2 קוביות מהשורה שמתחת. היכן על הציר נמצא מספר הקוביות בשורה השלישית?",
-   "answer": "0"
   }
  ],
  "excludedFromClean": [

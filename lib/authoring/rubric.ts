@@ -65,8 +65,9 @@ export interface AuthoringRule {
 export const UNIVERSAL_RULES: readonly AuthoringRule[] = [
   {
     id: "spoken-hebrew",
-    he: "עברית מדוברת ופשוטה שמתאימה לגיל הילד/ה — משפטים קצרים ומילים שילד/ה בכיתה הזו אומר/ת בעצמו/ה.",
-    enforcement: ["review"],
+    he: "עברית מדוברת ופשוטה שמתאימה לגיל הילד/ה — משפטים קצרים ומילים שילד/ה בכיתה הזו אומר/ת בעצמו/ה, ובלי שגיאות התאמה (איזה/איזו, זכר/נקבה).",
+    // Code catches gender disagreement on a small lexicon; the rest is judgment.
+    enforcement: ["deterministic", "review"],
   },
   {
     id: "one-task",

@@ -340,6 +340,50 @@ function checkPatternDrift(ex: Exercise, q: string, out: QualityViolation[]): vo
   }
 }
 
+/**
+ * A clock time used as an operand ("3:15 + 45", "10:30 − 9:00") is not an
+ * expression a child can evaluate as written: it needs a conversion the
+ * question never gives. Live run 2026-09-25: a pick_operation whose correct
+ * choice was "3:15 + 45".
+ */
+const TIME_OPERAND = /\d{1,2}:\d{2}\s*[+\-−×÷*/]|[+\-−×÷*/]\s*\d{1,2}:\d{2}/;
+
+function checkTimeOperands(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const shown = [q, ex.correctAnswer, ...(ex.choices ?? [])];
+  const hit = shown.find((s) => TIME_OPERAND.test(s));
+  if (hit) out.push({ rule: "unambiguous-answer", detail: `a clock time is used as a number in an operation: "${hit.slice(0, 40)}"` });
+}
+
+/**
+ * equation_balance: the blank must not be a number the story has already
+ * given. Live run: "…תפוחים 12 ילדים, תפוזים 7… כמה ילדים יותר אוהבים
+ * תפוחים? 12 - ___ = 5" with the blank's answer 7 — the child copies a
+ * number from the story, and the equation is not the quantity asked.
+ */
+function checkEquationCopy(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "equation_balance") return;
+  const blank = q.indexOf("___");
+  if (blank < 0) return;
+  const story = q.slice(0, Math.max(q.lastIndexOf("\n", blank), q.lastIndexOf(".", blank), q.lastIndexOf("?", blank)) + 1);
+  const answer = Number(ex.correctAnswer.replace(/,/g, ""));
+  if (Number.isFinite(answer) && numberTokens(story).some((t) => t.value === answer)) {
+    out.push({ rule: "internal-consistency", detail: `the blank's answer (${ex.correctAnswer}) is a number the story already states` });
+  }
+}
+
+/** Nouns whose grammatical gender decides "איזה" (m.) / "איזו" (f.). A small
+ *  lexicon of the words the generator's stories use, not a grammar. */
+const MASCULINE = ["פרי", "פירות", "צבע", "חפץ", "מספר", "ילד", "משולש", "מלבן", "ריבוע", "עיגול", "שעון", "יום", "חודש", "קו", "גוף", "מגדל", "ספר", "כדור", "משחק", "סרגל"];
+const FEMININE = ["צורה", "חיה", "עוגה", "שעה", "דקה", "פעולה", "קבוצה", "כיתה", "קובייה", "תיבה", "שכבה", "שורה", "עמודה", "דרך", "מילה", "אות", "ספרה", "שאלה", "תשובה", "ילדה", "בעיה", "עגלה"];
+const IZO_MASC = new RegExp(`(?:^|[^${HE}])איזו\\s+(?:${MASCULINE.join("|")})(?![${HE}])`, "u");
+const IZE_FEM = new RegExp(`(?:^|[^${HE}])איזה\\s+(?:${FEMININE.join("|")})(?![${HE}])`, "u");
+
+/** "איזו פרי" / "איזה צורה": the wrong one of איזה/איזו for a known noun. */
+function checkGenderAgreement(q: string, out: QualityViolation[]): void {
+  const hit = q.match(IZO_MASC) ?? q.match(IZE_FEM);
+  if (hit) out.push({ rule: "spoken-hebrew", detail: `gender disagreement: "${hit[0].replace(/^[^א-ת]/, "")}"` });
+}
+
 function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
   if (ex.subtype !== "pattern_completion") return;
   const s = numberSeries(q).filter((x) => x.step !== null).pop();
@@ -365,6 +409,9 @@ export function checkQuestionQuality(ex: Exercise): QualityResult {
   checkChoices(ex, violations);
   checkPatternAnswer(ex, q, violations);
   checkSeriesDeterminate(ex, q, violations);
+  checkTimeOperands(ex, q, violations);
+  checkEquationCopy(ex, q, violations);
+  checkGenderAgreement(q, violations);
   checkPatternDrift(ex, q, violations);
   return { ok: violations.length === 0, checked: true, violations };
 }
