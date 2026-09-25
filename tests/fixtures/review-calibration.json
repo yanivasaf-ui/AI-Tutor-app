@@ -1,0 +1,765 @@
+{
+ "source": "the 80-generation live run of 2026-09-25 on 84f1075: 79 questions served, every one passing the code gate",
+ "labelling": "knownBad: the 13 judged defective by hand, each with the rule it breaks. clean: 50 drawn at random (seed 20260925) from the rest, after excluding the items in excludedFromClean.",
+ "poolSize": 56,
+ "knownBad": [
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "בכיתה ספרו כמה ילדים אוהבים כל פרי. מצאו 12 ילדים שאוהבים תפוחים 🍎. המורה רוצה לצייר דיאגרמת עמודות עם 3 עמודות שוות לתפוחים. כמה ילדים יהיו בכל עמודה?",
+   "answer": "4",
+   "expectRule": "internal-consistency",
+   "reason": "12 apple-lovers drawn as '3 equal columns for apples' — a bar chart has one column per category",
+   "grouping": {
+    "objects": 12,
+    "emoji": "🍎",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "בכיתה עשינו סקר על הצבע האהוב. 12 ילדים בחרו בצבע כחול 💙. המורה רוצה לצייר דיאגרמת עמודות. היא צריכה לחלק את 12 הילדים ל-3 שורות שוות בעמודה. כמה ילדים יהיו בכל שורה?",
+   "answer": "4",
+   "expectRule": "internal-consistency",
+   "reason": "12 children split into '3 equal rows in a column' — not how a bar chart is read or built",
+   "grouping": {
+    "objects": 12,
+    "emoji": "💙",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-b-geometry",
+   "grade": "ב",
+   "subtype": "number_line_placement",
+   "question": "דני סופר את מספר הצלעות במשולשים שהוא מצייר. הוא צייר 4 משולשים. איפה על הציר נמצא מספר הצלעות הכולל שלו?",
+   "answer": "12",
+   "expectRule": "unambiguous-answer",
+   "reason": "asks where on 'the axis' the total is, with no axis defined; the task is really 4 × 3"
+  },
+  {
+   "topic": "math-b-geometry",
+   "grade": "ב",
+   "subtype": "pattern_completion",
+   "question": "נועם מסדר משולשים לפי מספר הצלעות השוות שלהם. הוא מתחיל ממשולש שונה-צלעות (אפס צלעות שוות), אחר כך שווה-שוקיים (2 צלעות שוות), ואז שווה-צלעות (3 צלעות שוות). איזה מספר צריך להופיע אחרון ברצף: 0, 2, 3, ?",
+   "answer": "5",
+   "expectRule": "unambiguous-answer",
+   "reason": "the series 0, 2, 3 has no rule, so '5' is not determined by it",
+   "tiles": [
+    "4",
+    "5",
+    "6",
+    "3"
+   ]
+  },
+  {
+   "topic": "math-b-length",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "דני מדד 12 קווים ישרים. הוא רוצה לחלק אותם ל-3 קבוצות שוות לפי האורך שלהם. כמה קווים יהיו בכל קבוצה?",
+   "answer": "4",
+   "expectRule": "internal-consistency",
+   "reason": "splits 12 lines into 3 EQUAL groups 'by their length' — grouping by length and equal groups contradict",
+   "grouping": {
+    "objects": 12,
+    "emoji": "📏",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-b-length",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "דני מדד 12 קווים ישרים. הוא רוצה לחלק אותם ל-3 קבוצות שוות כדי לצייר אותם במחברות שונות. כמה קווים יהיו בכל קבוצה?",
+   "answer": "4",
+   "expectRule": "concrete-scenario",
+   "reason": "divides lines that were already measured in order to draw them — the scenario makes no sense",
+   "grouping": {
+    "objects": 12,
+    "emoji": "📏",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-b-time",
+   "grade": "ב",
+   "subtype": "fill_in_blank",
+   "question": "דני התחיל לשחק בשעה 3:00. הוא שחק 2 שעות.\nכמה זה 3 + 2?",
+   "answer": "5",
+   "expectRule": "internal-consistency",
+   "reason": "starts at 3:00 and plays 2 hours, then asks 'כמה זה 3 + 2' → 5: a clock time answered as a count"
+  },
+  {
+   "topic": "math-b-volume",
+   "grade": "ב",
+   "subtype": "equation_balance",
+   "question": "דני בנה תיבה מקוביות. בכל שכבה יש לו 6 קוביות. הוא בנה 4 שכבות.\n\n6 × ___ = 24\n\nכמה קוביות בסך הכל בתיבה?",
+   "answer": "4",
+   "expectRule": "unambiguous-answer",
+   "reason": "asks for the total number of cubes, but the blank and the answer (4) are the number of layers",
+   "tiles": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ]
+  },
+  {
+   "topic": "math-g-area",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "נועה רוצה לדעת מה השטח של השטיח בחדר שלה. היא מדדה ומצאה שהשטיח ארוך 4 סנטימטרים ורחב 3 סנטימטרים. איזו פעולה תעזור לה לחשב את השטח של השטיח?",
+   "answer": "4 × 3",
+   "choices": [
+    "4 + 3",
+    "4 - 3",
+    "4 × 3",
+    "4 ÷ 3"
+   ],
+   "expectRule": "concrete-scenario",
+   "reason": "a room rug 4 cm by 3 cm — impossible dimensions for the object"
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "המורה ספרה כמה ילדים אוהבים כל פרי ובנתה דיאגרמת עמודות. בדיאגרמה, כל ריבוע מייצג 2 ילדים. עמודת התפוחים מכילה 5 ריבועים ועמודת התפוזים מכילה 3 ריבועים. איזו פעולה תעזור לנו לדעת כמה ילדים יותר אוהבים תפוחים מאשר תפוזים?",
+   "answer": "10 - 6",
+   "choices": [
+    "5 + 3",
+    "5 - 3",
+    "5 × 2",
+    "10 - 6"
+   ],
+   "expectRule": "unambiguous-answer",
+   "reason": "asks for an operation on 5 and 3 squares but the answer choice is '10 - 6', a different operation on converted numbers"
+  },
+  {
+   "topic": "math-g-geometry",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "במשולש יש 3 זוויות. 1 זווית ישרה ו-2 זוויות חדות. כמה זוויות חדות יש במשולש?\n\n1 + ___ = 2",
+   "answer": "1",
+   "expectRule": "internal-consistency",
+   "reason": "states there are 2 acute angles, then asks how many acute angles with 1 + ___ = 2 → 1",
+   "tiles": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "topic": "math-g-geometry",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "רונית מציירת משולש עם 3 זוויות חדות. אחר כך היא מוחקת אותו ומציירת משולש עם זווית ישרה אחת ו-2 זוויות חדות. כמה משולשים בסך הכול ציירה רונית?",
+   "answer": "1 + 1",
+   "choices": [
+    "3 + 2",
+    "3 - 2",
+    "1 + 1",
+    "3 + 3"
+   ],
+   "expectRule": "unambiguous-answer",
+   "reason": "draws a triangle, erases it, draws another; asks how many were drawn with choices 3+2 / 3-2 / 1+1 / 3+3"
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "דני בנה תיבה מ-6 מלבנים. הוא רוצה לפרוס אותה ולהדביק על נייר. כמה מלבנים יהיו על הנייר?",
+   "answer": "אף תשובה לא נכונה, התשובה היא 6",
+   "choices": [
+    "6 + 6",
+    "6 - 2",
+    "6 × 2",
+    "אף תשובה לא נכונה, התשובה היא 6"
+   ],
+   "expectRule": "unambiguous-answer",
+   "reason": "the 'correct' choice is 'אף תשובה לא נכונה, התשובה היא 6' — the answer is smuggled into a choice"
+  }
+ ],
+ "clean": [
+  {
+   "topic": "math-b-arithmetic",
+   "grade": "ב",
+   "subtype": "number_line_placement",
+   "question": "רועי קופץ קפיצות של 5. הוא כבר קפץ 6 קפיצות. איפה הוא עומד עכשיו על הציר?",
+   "answer": "30"
+  },
+  {
+   "topic": "math-b-arithmetic",
+   "grade": "ב",
+   "subtype": "explain_thinking",
+   "question": "רועי קנה 3 שקיות של מדבקות. בכל שקית יש 7 מדבקות. הוא רוצה לדעת כמה מדבקות יש לו בסך הכל. תסביר איך רועי יכול לחשב את זה.",
+   "answer": "הסבר שמזכיר חיבור חוזר (7+7+7) או כפל (3×7), או שמתאר תהליך של ספירה או קיבוץ של 3 קבוצות של 7"
+  },
+  {
+   "topic": "math-b-arithmetic",
+   "grade": "ב",
+   "subtype": "pick_operation",
+   "question": "לאמא יש 18 עוגיות. היא רוצה לחלק אותן שוה בשוה ל-3 ילדים. איזו פעולה תעזור לה לדעת כמה עוגיות יקבל כל ילד?",
+   "answer": "18 ÷ 3",
+   "choices": [
+    "18 + 3",
+    "18 - 3",
+    "18 × 3",
+    "18 ÷ 3"
+   ]
+  },
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "explain_thinking",
+   "question": "המורה שאלה את הילדים בכיתה איזו פירות הם הכי אוהבים. היא בנתה דיאגרמת עמודות: תפוח - 5 ילדים, בננה - 8 ילדים, תפוז - 3 ילדים, ענבים - 6 ילדים.\n\nהסבירי איך את יכולה לגלות איזו פרי הכי פחות ילדים אוהבים, בלי לספור שוב.",
+   "answer": "הסבר טוב מזכיר השוואה בין גבהי העמודות או בין המספרים, ומזהה שהעמודה הכי נמוכה (או המספר הכי קטן - 3) מראה על הפרי שהכי פחות אוהבים (תפוז)"
+  },
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "fill_in_blank",
+   "question": "בדיאגרמת העמודות ספרנו כמה ילדים אוהבים כל חיה. 8 ילדים אוהבים כלבים, 5 ילדים אוהבים חתולים ו-7 ילדים אוהבים ארנבים. כמה זה 8 + 5 + 7?",
+   "answer": "20"
+  },
+  {
+   "topic": "math-b-data",
+   "grade": "ב",
+   "subtype": "explain_thinking",
+   "question": "בגן של נועה יש דיאגרמת עמודות שמראה כמה פרחים יש מכל צבע.\nעמודת הפרחים האדומים מגיעה עד 8.\nעמודת הפרחים הצהובים מגיעה עד 5.\nעמודת הפרחים הכחולים מגיעה עד 12.\nאיך את/ה יכול/ה לגלות איזה צבע פרחים יש הכי הרבה בגן?\nהסבר/י את דרך החשיבה שלך.",
+   "answer": "הסבר שמזכיר השוואה בין גבהי העמודות או בין המספרים, וזיהוי שהעמודה הגבוהה ביותר (12) מראה את הכמות הכי גדולה"
+  },
+  {
+   "topic": "math-b-geometry",
+   "grade": "ב",
+   "subtype": "equation_balance",
+   "question": "למשולש שווה-צלעות יש 3 צלעות שוות. לדני יש 15 קשיות. כל משולש שווה-צלעות צריך 3 קשיות. כמה משולשים היא יכולה לבנות?\n\n3 × ___ = 15",
+   "answer": "5",
+   "tiles": [
+    "4",
+    "5",
+    "6",
+    "3"
+   ]
+  },
+  {
+   "topic": "math-b-length",
+   "grade": "ב",
+   "subtype": "fill_in_blank",
+   "question": "דני מדד קו שבור שיש בו 3 קטעים. הקטע הראשון באורך 8 סנטימטרים, הקטע השני באורך 5 סנטימטרים, והקטע השלישי באורך 7 סנטימטרים.\nכמה זה 8 + 5 + 7?",
+   "answer": "20"
+  },
+  {
+   "topic": "math-b-length",
+   "grade": "ב",
+   "subtype": "number_line_placement",
+   "question": "דני מדד קו ישר באמצעות סרגל. הקו התחיל ב-0 סנטימטר והסתיים ב-15 סנטימטר. איפה נמצא המספר 10 על הציר?",
+   "answer": "10"
+  },
+  {
+   "topic": "math-b-length",
+   "grade": "ב",
+   "subtype": "pick_operation",
+   "question": "נועה מדדה קו שבור. הקטע הראשון באורך 15 סנטימטר, והקטע השני באורך 12 סנטימטר. איזו פעולת חשבון תעזור לה למצוא את האורך של כל הקו השבור?",
+   "answer": "15 + 12",
+   "choices": [
+    "15 + 12",
+    "15 - 12",
+    "15 × 12",
+    "15 ÷ 12"
+   ]
+  },
+  {
+   "topic": "math-b-numbers-0-1000",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "חלקו את הכוכבים ל-2 קבוצות שוות. כמה כוכבים יהיו בכל קבוצה?",
+   "answer": "5",
+   "grouping": {
+    "objects": 10,
+    "emoji": "⭐",
+    "groups": 2
+   }
+  },
+  {
+   "topic": "math-b-numbers-0-1000",
+   "grade": "ב",
+   "subtype": "pattern_completion",
+   "question": "דני קופץ על המדרגות. הוא קופץ על מדרגות: 100, 200, 300, 400. על איזו מדרגה הוא יקפץ הבא?",
+   "answer": "500",
+   "tiles": [
+    "500",
+    "450",
+    "600",
+    "510"
+   ]
+  },
+  {
+   "topic": "math-b-numbers-0-1000",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "חלקו את העפרונות ל-4 קבוצות שוות. כמה עפרונות יש בכל קבוצה?",
+   "answer": "3",
+   "grouping": {
+    "objects": 12,
+    "emoji": "✏️",
+    "groups": 4
+   }
+  },
+  {
+   "topic": "math-b-numbers-0-1000",
+   "grade": "ב",
+   "subtype": "pick_operation",
+   "question": "רועי סופר בדילוגים של 5. הוא אומר: 5, 10, 15, 20, 25... איזו פעולת חשבון עוזרת לרועי לדעת מה המספר הבא?",
+   "answer": "חיבור של 5",
+   "choices": [
+    "חיבור של 5",
+    "חיסור של 5",
+    "כפל ב-5",
+    "חילוק ב-5"
+   ]
+  },
+  {
+   "topic": "math-b-time",
+   "grade": "ב",
+   "subtype": "visual_grouping",
+   "question": "מורה חילקה את התלמידים ל-3 קבוצות שוות ללמוד על השעון. יש 12 תלמידים בכתה. כמה תלמידים יש בכל קבוצה?",
+   "answer": "4",
+   "grouping": {
+    "objects": 12,
+    "emoji": "👦",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-b-time",
+   "grade": "ב",
+   "subtype": "pick_operation",
+   "question": "דני התחיל לשחק בחצר בשעה 3:00. הוא שיחק 2 שעות. איזו פעולת חשבון תעזור לדני לדעת באיזו שעה הוא סיים לשחק?",
+   "answer": "3 + 2",
+   "choices": [
+    "3 + 2",
+    "3 - 2",
+    "3 × 2",
+    "3 ÷ 2"
+   ]
+  },
+  {
+   "topic": "math-b-time",
+   "grade": "ב",
+   "subtype": "explain_thinking",
+   "question": "דני מתחיל לשחק בגינה בשעה 3:00. הוא חוזר הביתה בשעה 5:00. כמה זמן דני שיחק בגינה? הסבירו איך חישבתם.",
+   "answer": "הסבר שמזכיר מעבר משעה אחת לשנייה או ספירה של שעות (למשל: מ-3 ל-4 שעה אחת, ומ-4 ל-5 עוד שעה אחת, סך הכול שעתיים; או: 5 פחות 3 שווה 2 שעות)"
+  },
+  {
+   "topic": "math-b-volume",
+   "grade": "ב",
+   "subtype": "pick_operation",
+   "question": "נועה בנתה תיבה מקוביות קטנות. בכל שכבה יש לה 6 קוביות. יש לה 4 שכבות. איזו פעולת חשבון תעזור לה למצוא כמה קוביות יש בכל התיבה?",
+   "answer": "6 × 4",
+   "choices": [
+    "6 + 4",
+    "6 - 4",
+    "6 × 4",
+    "6 ÷ 4"
+   ]
+  },
+  {
+   "topic": "math-b-volume",
+   "grade": "ב",
+   "subtype": "number_line_placement",
+   "question": "דני בנה מגדל מקוביות. בשכבה אחת יש לו 4 קוביות. הוא בנה 5 שכבות. כמה קוביות יש לו בסך הכל? מקמו את התשובה על הציר.",
+   "answer": "20"
+  },
+  {
+   "topic": "math-g-area",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "נועה מדדה את שטח המחברת שלה בריבועי סנטימטר. היא ספרה 24 ריבועים. אחר כך היא מדדה את שטח הספר שלה וספרה 30 ריבועים. כמה ריבועי סנטימטר יותר תופס הספר מהמחברת? 24 + ___ = 30",
+   "answer": "6",
+   "tiles": [
+    "6",
+    "5",
+    "7",
+    "8"
+   ]
+  },
+  {
+   "topic": "math-g-area",
+   "grade": "ג",
+   "subtype": "visual_grouping",
+   "question": "לאורי יש 12 ריבועי שטח (סמ\"ר). הוא רוצה לחלק אותם ל-3 שורות שוות כדי לבנות מלבן. כמה ריבועי שטח יהיו בכל שורה?",
+   "answer": "4",
+   "grouping": {
+    "objects": 12,
+    "emoji": "◻️",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-g-area",
+   "grade": "ג",
+   "subtype": "fill_in_blank",
+   "question": "דני מדד את שטח השולחן שלו בריבועים קטנים. הוא מצא שהשולחן מכיל 8 שורות של ריבועים. בכל שורה יש 5 ריבועים.\n\nכמה זה 8 × 5?",
+   "answer": "40"
+  },
+  {
+   "topic": "math-g-arithmetic",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "בספרייה יש 2,340 ספרים. הגיעו עוד 1,520 ספרים חדשים. איזו פעולה תעזור לנו לדעת כמה ספרים יש בספרייה עכשיו?",
+   "answer": "2,340 + 1,520",
+   "choices": [
+    "2,340 + 1,520",
+    "2,340 - 1,520"
+   ]
+  },
+  {
+   "topic": "math-g-arithmetic",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "בספרייה יש 3,456 ספרים. הגיעו עוד 1,278 ספרים חדשים. איזו פעולת חשבון תעזור לנו לדעת כמה ספרים יש עכשיו בספרייה?",
+   "answer": "3,456 + 1,278",
+   "choices": [
+    "3,456 + 1,278",
+    "3,456 - 1,278"
+   ]
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "בכיתה ספרו כמה ילדים אוהבים כל פרי. התוצאות: תפוח - 8 ילדים, בננה - 12 ילדים, תפוז - 5 ילדים, אבטיח - 9 ילדים. כמה ילדים אוהבים בננה ותפוז ביחד? 12 + 5 = ___",
+   "answer": "17",
+   "tiles": [
+    "17",
+    "16",
+    "18",
+    "15"
+   ]
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "המורה ציירה דיאגרמת עמודות שמראה כמה ספרים קראו ילדי הכיתה החודש. העמודה של דני מגיעה עד המספר 6, העמודה של מיכל מגיעה עד 9, והעמודה של רועי מגיעה עד 3. איך אפשר לגלות כמה ספרים קראו שלושת הילדים ביחד? הסבירו את דרך החשיבה שלכם.",
+   "answer": "הסבר שמזכיר קריאת הערכים מהדיאגרמה (6, 9, 3) וחיבורם יחד, או שמתאר את תהליך החשיבה כיצד אוספים את המידע מהעמודות השונות כדי למצוא סכום כולל"
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "דני ספר כמה ילדים אוהבים כל פרי. הוא בנה דיאגרמת עמודות. העמודה של תפוחים הגיעה ל-12 ילדים, והעמודה של תפוזים הגיעה ל-7 ילדים. כמה ילדים יותר אוהבים תפוחים מאשר תפוזים?\n\n12 - ___ = 5",
+   "answer": "7",
+   "tiles": [
+    "7",
+    "5",
+    "6",
+    "8"
+   ]
+  },
+  {
+   "topic": "math-g-data",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "המורה שלנו בנתה דיאגרמת עמודות שמראה כמה ילדים אוהבים כל פרי. העמודה של תפוחים מגיעה לגובה 8, העמודה של תפוזים מגיעה לגובה 12, והעמודה של בננות מגיעה לגובה 6. איך אפשר לגלות כמה ילדים בכיתה השתתפו בסקר? הסבירו את דרך החשיבה שלכם.",
+   "answer": "הסבר שמזכיר חיבור של כל העמודות (8+12+6) או שמציין שצריך לספור את כל הילדים ביחד מכל הפירות"
+  },
+  {
+   "topic": "math-g-gematria",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "לאמא קוראים \"דנה\" בעברית. דני רוצה לדעת כמה שווה השם של אמא בגימטרייה. האות ד' שווה 4, האות נ' שווה 50, והאות ה' שווה 5. איזו פעולה יעזור לו לגלות את הערך של כל השם?",
+   "answer": "4 + 50 + 5",
+   "choices": [
+    "4 + 50 + 5",
+    "50 - 4 - 5",
+    "4 × 50 × 5",
+    "50 ÷ 5"
+   ]
+  },
+  {
+   "topic": "math-g-gematria",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "נועה כתבה את שמה בגימטרייה: נ = 50, ו = 6, ע = 70, ה = 5. איך את/ה יכול/ה לחשב כמה שווה השם שלה בגימטרייה? הסבר/י את דרך החישוב שלך.",
+   "answer": "הסבר שמתאר איך מחברים את ערכי האותיות: 50+6+70+5, או הסבר שמציע לחבר קודם את העשרות ואז את היחידות, או כל אסטרטגיית חיבור סבירה שמגיעה ל-131"
+  },
+  {
+   "topic": "math-g-gematria",
+   "grade": "ג",
+   "subtype": "number_line_placement",
+   "question": "נועה כתבה את האות ט' בגימטרייה. איפה יופיע הערך של האות ט' על ציר המספרים?",
+   "answer": "9"
+  },
+  {
+   "topic": "math-g-gematria",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "לאיה יש מילה שכתובה באותיות: ג' ו' ד'. היא רוצה לדעת מה הערך הכולל של המילה בגימטרייה. איזו פעולה חשבון תעזור לה?",
+   "answer": "חיבור",
+   "choices": [
+    "חיבור",
+    "חיסור",
+    "כפל",
+    "חילוק"
+   ]
+  },
+  {
+   "topic": "math-g-geometry",
+   "grade": "ג",
+   "subtype": "shape_match",
+   "question": "הסתכלו על רצף הצורות:\n🔺 🟦 🟦 🔺 🟦 🟦 🔺 ___\n\nאיזו צורה צריכה להופיע במקום הריק?",
+   "answer": "🟦",
+   "tiles": [
+    "🔺",
+    "🟦",
+    "⭐",
+    "🔵"
+   ]
+  },
+  {
+   "topic": "math-g-geometry",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "נועה ציירה משולש שיש לו זווית אחת ישרה ושתי זוויות חדות. איך את/ה יכול/ה לדעת אם המשולש שלה הוא שווה שוקיים או לא? הסבר/י את דרך החשיבה שלך.",
+   "answer": "הסבר טוב צריך להזכיר בדיקה של אורך הצלעות - משולש שווה שוקיים צריך שתי צלעות שוות, או התייחסות לזוויות החדות - במשולש ישר זווית שווה שוקיים שתי הזוויות החדות צריכות להיראות שוות"
+  },
+  {
+   "topic": "math-g-geometry",
+   "grade": "ג",
+   "subtype": "shape_match",
+   "question": "תסתכלו על הרצף:\n🔺 🟦 🟦 🔺 🔺 🟦 🟦 🔺 🔺 ___\n\nאיזו צורה צריך לשים במקום הריק?",
+   "answer": "🟦",
+   "tiles": [
+    "🟦",
+    "🔺",
+    "⭐",
+    "🔵"
+   ]
+  },
+  {
+   "topic": "math-g-multiplication-division",
+   "grade": "ג",
+   "subtype": "fill_in_blank",
+   "question": "המורה חילקה 80 עפרונות צבעוניים באופן שווה ל-10 ילדים. כמה זה 80 ÷ 10?",
+   "answer": "8"
+  },
+  {
+   "topic": "math-g-multiplication-division",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "רועי קנה 24 מדבקות. הוא רוצה לחלק אותן שווה בשווה ל-6 חברים. הסבירו איך רועי יכול לחשב כמה מדבקות כל חבר יקבל.",
+   "answer": "הסבר שמזכיר חלוקה של 24 ל-6 חלקים שווים, או שימוש בלוח הכפל (4×6=24), או ספירה/חלוקה הדרגתית"
+  },
+  {
+   "topic": "math-g-multiplication-division",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "בגן הירק גדלו 240 עגבניות. הגנן רוצה לארוז אותן בסלים. בכל סל נכנסות 10 עגבניות. איזו פעולת חשבון תעזור לגנן לדעת כמה סלים הוא צריך?",
+   "answer": "240 ÷ 10",
+   "choices": [
+    "240 + 10",
+    "240 - 10",
+    "240 × 10",
+    "240 ÷ 10"
+   ]
+  },
+  {
+   "topic": "math-g-multiplication-division",
+   "grade": "ג",
+   "subtype": "explain_thinking",
+   "question": "נועה קנתה 6 חבילות מדבקות. בכל חבילה יש 10 מדבקות. היא רוצה לחלק את כל המדבקות שווה בשווה ל-3 חברות שלה. הסבירו איך נועה יכולה לחשב כמה מדבקות כל חברה תקבל.",
+   "answer": "הסבר שמזכיר תחילה כפל (6 כפול 10 שווה 60 מדבקות בסך הכל) ולאחר מכן חילוק (60 חלקי 3 שווה 20 מדבקות לכל חברה), או הסבר שמראה חלוקת החבילות תחילה (6 חבילות חלקי 3 חברות שווה 2 חבילות לכל אחת) ואז כפל (2 כפול 10 שווה 20)"
+  },
+  {
+   "topic": "math-g-numbers-0-10000",
+   "grade": "ג",
+   "subtype": "pattern_completion",
+   "question": "דני אוסף מדבקות. ביום ראשון היו לו 1,000 מדבקות. בכל יום הוא מוסיף עוד 500 מדבקות. ביום שני היו לו 1,500 מדבקות. ביום שלישי היו לו 2,000 מדבקות. ביום רביעי היו לו 2,500 מדבקות. כמה מדבקות היו לדני ביום חמישי?",
+   "answer": "3000",
+   "tiles": [
+    "3000",
+    "2800",
+    "3500",
+    "3200"
+   ]
+  },
+  {
+   "topic": "math-g-numbers-0-10000",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "בספרייה יש 3,240 ספרים. הגיעו עוד 1,568 ספרים חדשים. איזו פעולה תעזור לנו למצוא כמה ספרים יש בספרייה עכשיו?",
+   "answer": "3,240 + 1,568",
+   "choices": [
+    "3,240 + 1,568",
+    "3,240 - 1,568",
+    "3,240 × 1,568",
+    "3,240 ÷ 1,568"
+   ]
+  },
+  {
+   "topic": "math-g-numbers-0-10000",
+   "grade": "ג",
+   "subtype": "visual_grouping",
+   "question": "בבנק יש 18 שטרות של 100 שקל. חלקו אותם ל-3 קופות שוות. כמה שטרות יהיו בכל קופה?",
+   "answer": "6",
+   "grouping": {
+    "objects": 18,
+    "emoji": "💵",
+    "groups": 3
+   }
+  },
+  {
+   "topic": "math-g-numbers-0-10000",
+   "grade": "ג",
+   "subtype": "pattern_completion",
+   "question": "נועה אוספת מדבקות. ביום הראשון יש לה 1,000 מדבקות. ביום השני יש לה 1,500 מדבקות. ביום השלישי יש לה 2,000 מדבקות. ביום הרביעי יש לה 2,500 מדבקות. כמה מדבקות יהיו לה ביום החמישי?",
+   "answer": "3000",
+   "tiles": [
+    "2800",
+    "3000",
+    "3200",
+    "2900"
+   ]
+  },
+  {
+   "topic": "math-g-time",
+   "grade": "ג",
+   "subtype": "number_line_placement",
+   "question": "השיעור התחיל בשעה 8:00 בבוקר והסתיים בשעה 11:00. כמה דקות ארך השיעור? סמנו את התשובה הנכונה על ציר הזמן.",
+   "answer": "180"
+  },
+  {
+   "topic": "math-g-time",
+   "grade": "ג",
+   "subtype": "number_line_placement",
+   "question": "השיעור התחיל בשעה 9:00 והסתיים בשעה 10:30. כמה דקות ארך השיעור? סמן/י את התשובה על הציר.",
+   "answer": "90"
+  },
+  {
+   "topic": "math-g-time",
+   "grade": "ג",
+   "subtype": "pick_operation",
+   "question": "נועה התחילה לשחק בגינה בשעה 3:15. היא שיחקה במשך 45 דקות. איזו פעולה תעזור לנו למצוא באיזו שעה נועה סיימה לשחק?",
+   "answer": "3:15 + 45",
+   "choices": [
+    "3:15 + 45",
+    "3:15 - 45",
+    "3:15 × 45",
+    "45 ÷ 3:15"
+   ]
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "pattern_completion",
+   "question": "רונית בונה תיבות מקוביות. התיבה הראשונה מכילה 6 קוביות, השנייה 12 קוביות, השלישית 18 קוביות. כמה קוביות יש בתיבה הרביעית?",
+   "answer": "24",
+   "tiles": [
+    "24",
+    "20",
+    "22",
+    "26"
+   ]
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "equation_balance",
+   "question": "דני בנה תיבה מ-24 קוביות קטנות. הוא הוסיף עוד קוביות ועכשיו יש 35 קוביות. כמה קוביות דני הוסיף? 24 + ___ = 35",
+   "answer": "11",
+   "tiles": [
+    "11",
+    "9",
+    "13",
+    "10"
+   ]
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "shape_match",
+   "question": "רונית בונה תיבות מנייר. היא בנתה תיבה גדולה, אחר כך תיבה קטנה, ושוב תיבה גדולה, ושוב תיבה קטנה.\nאיזו תיבה היא תבנה הבאה?\n\n📦 📭 📦 📭 ___",
+   "answer": "📦",
+   "tiles": [
+    "📦",
+    "📭",
+    "🎁",
+    "📮"
+   ]
+  },
+  {
+   "topic": "math-g-volume",
+   "grade": "ג",
+   "subtype": "number_line_placement",
+   "question": "דני בנה מגדל מקוביות. בשורה התחתונה יש לו 4 קוביות. בכל שורה מעל יש לו פחות 2 קוביות מהשורה שמתחת. היכן על הציר נמצא מספר הקוביות בשורה השלישית?",
+   "answer": "0"
+  }
+ ],
+ "excludedFromClean": [
+  {
+   "topic": "math-b-arithmetic",
+   "n": 3,
+   "question": "למורה דני יש 24 עפרונות צבעוניים. הוא רוצה לחלק אותם שוה בשוה ל-4 ילדים. כמה עפרונות יקבל כל ילד?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-b-arithmetic",
+   "n": 5,
+   "question": "לאמא יש 24 עוגיות. היא רוצה לחלק אותן שוה בשוה ל-4 ילדים. כמה עוגיות יקבל כל ילד?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-b-time",
+   "n": 1,
+   "question": "שיעור הספורט התחיל בשעה 10:00 בבוקר.\nהשיעור נמשך שעתיים.\nבאיזו שעה נגמר שיעור הספורט?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-b-volume",
+   "n": 3,
+   "question": "רון בנה תיבה מקוביות קטנות. בכל שכבה יש לו 6 קוביות. הוא בנה 3 שכבות אחת על השנייה. כמה קוביות השתמש רון בסך הכל?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-b-volume",
+   "n": 5,
+   "question": "דני בנה תיבה מקוביות קטנות.\nבכל שכבה יש 6 קוביות.\nהוא בנה 3 שכבות.\nכמה קוביות דני השתמש בסך הכל?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-g-arithmetic",
+   "n": 1,
+   "question": "בספרייה היו 2,345 ספרים. הגיעו עוד 1,428 ספרים חדשים. כמה ספרים יש עכשיו בספרייה?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-g-arithmetic",
+   "n": 5,
+   "question": "בספרייה היו 2,456 ספרים. קנו עוד 1,378 ספרים חדשים. כמה ספרים יש עכשיו בספרייה?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-g-time",
+   "n": 4,
+   "question": "נועה התחילה לצייר בשעה 3:15 וסיימה בשעה 4:00. כמה זמן היא ציירה?",
+   "reason": "shape_match request returned a plain word problem — handled in code by the pattern-drift rule"
+  },
+  {
+   "topic": "math-b-numbers-0-1000",
+   "n": 4,
+   "question": "הנה רצף של ספירה בדילוגים:\n\n🔟 2️⃣0️⃣ 🔟 2️⃣0️⃣ ___\n\nאיזו צורה ממשיכה את הדפוס?",
+   "reason": "digit emoji (🔟 2️⃣0️⃣) presented as shapes — shape/number confusion"
+  },
+  {
+   "topic": "math-g-numbers-0-10000",
+   "n": 5,
+   "question": "2,500 + ___ = 4,000",
+   "reason": "bare equation with no scenario — a concrete-scenario judgment, neither clearly bad nor clearly clean"
+  }
+ ]
+}
