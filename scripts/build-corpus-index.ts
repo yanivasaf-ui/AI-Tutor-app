@@ -29,6 +29,7 @@ import { join } from "node:path";
 import { TOPIC_JOIN, type CorpusTopic } from "../lib/authoring/topic-join";
 import type { CorpusProvenance, Exemplar, ExemplarSlot, ObservedPattern, PhrasingSlot, TopicSlots } from "../lib/authoring/rubric";
 import type { Computation } from "../lib/exercises/arithmetic";
+import { hasReversedThousands, isTeacherNote } from "../lib/authoring/corpus-fidelity";
 
 const ROOT = new URL("../", import.meta.url).pathname;
 const CORPUS = join(ROOT, "data/corpus");
@@ -105,17 +106,20 @@ function parseDigest(gradeNum: number): DigestSection[] {
 
 // ---------------------------------------------------------------- fidelity
 
-/** Free of every extraction artifact data/CORPUS-INGEST.md lists, and one
- *  question long. Never alters the text — it only decides whether to use it. */
-function isCleanQuestion(text: string): boolean {
+/** Free of every extraction artifact data/CORPUS-INGEST.md lists, one
+ *  question long, and a question for the child (not a note to the teacher).
+ *  Never alters the text — it only decides whether to use it.
+ *  `skip` turns individual filters off, for the coverage report only. */
+function isCleanQuestion(text: string, skip: { reversed?: boolean; teacherNote?: boolean } = {}): boolean {
   return (
     text.normalize("NFC") === text &&
     !text.includes("http") &&
     !/[A-Za-z]{3,}/.test(text) &&
-    !/\s[ְ-ׇ]/.test(text) &&
+    !/\s[\u05b0-\u05c7]/.test(text) &&
     !text.includes(" ־") &&
     !/(?<!\d)0(360|180|90)(?!\d)/.test(text) &&
-    !/(?<!\d)0\d{2,},|(?<!\d)0{2,3},\d/.test(text) &&
+    (skip.reversed || !hasReversedThousands(text)) &&
+    (skip.teacherNote || !isTeacherNote(text)) &&
     (text.match(/\?/g) ?? []).length === 1 &&
     text.length >= 20 &&
     text.length <= 200
@@ -287,7 +291,28 @@ const out = {
 };
 const json = JSON.stringify(out, null, 1) + "\n";
 
-if (process.argv.includes("--check")) {
+if (process.argv.includes("--report")) {
+  // Example-slot coverage: per slot, how many high-fidelity questions in its
+  // joined slice (plus `general`, where picks may come from) are eligible —
+  // with neither filter, with the reversed-digits filter only, with both —
+  // and how many exemplars the slot actually holds.
+  const slotsForReport: [string, number, CorpusTopic[]][] = [
+    ...TOPIC_JOIN.map((j) => [j.productTopicId, { א: 1, ב: 2, ג: 3 }[j.grade], j.corpusTopics] as [string, number, CorpusTopic[]]),
+    ...[1, 2, 3].flatMap((g) => [
+      [`sequences/${GRADE_LETTER[g]}`, g, ["patterns_sequences"]] as [string, number, CorpusTopic[]],
+      [`division/${GRADE_LETTER[g]}`, g, ["division"]] as [string, number, CorpusTopic[]],
+    ]),
+  ];
+  console.log("slot | high-fidelity | eligible, no reversed/teacher filter | + reversed filter | + teacher-note filter | exemplars");
+  for (const [key, g, ts] of slotsForReport) {
+    const hf = items.filter((i) => i.grade_num === g && (ts.includes(i.topic) || i.topic === "general") && HIGH_FIDELITY.has(i.type));
+    const n = (skip: { reversed?: boolean; teacherNote?: boolean }) => hf.filter((i) => isCleanQuestion(i.text, skip)).length;
+    const slot = key.includes("/") ? crossCutting[key.split("/")[0]][key.split("/")[1]] : topics[key];
+    console.log(
+      `${key} | ${hf.length} | ${n({ reversed: true, teacherNote: true })} | ${n({ teacherNote: true })} | ${n({})} | ${slot.exemplars.exemplars?.length ?? 0}`
+    );
+  }
+} else if (process.argv.includes("--check")) {
   const current = readFileSync(OUT, "utf8");
   if (current !== json) {
     console.error("lib/authoring/corpus-slots.json is stale — run npx tsx scripts/build-corpus-index.ts");

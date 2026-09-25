@@ -25,6 +25,7 @@ import slots from "../lib/authoring/corpus-slots.json";
 import { TOPIC_SLOTS, CROSS_CUTTING_SLOTS, rubricPromptBlock, UNIVERSAL_RULES, type Exemplar } from "../lib/authoring/rubric";
 import { VETTED_TEMPLATES } from "../lib/authoring/vetted-templates";
 import { checkQuestionQuality } from "../lib/authoring/quality-gate";
+import { hasReversedThousands, isTeacherNote } from "../lib/authoring/corpus-fidelity";
 import { operationScope } from "../lib/exercises/operation-scope";
 import { topicFit } from "../lib/exercises/topic-fit";
 import { computeAnswer } from "../lib/exercises/arithmetic";
@@ -125,6 +126,22 @@ t("nothing child-facing comes from english-international (every source is a Mini
     assert.match(tpl.exercise.question, /[א-ת]/);
     assert.ok(!/[A-Za-z]{3,}/.test(tpl.exercise.question));
   }
+});
+t("no exemplar or template carries a digit-reversed number or is a teacher note", () => {
+  for (const [id, e] of exemplars) {
+    assert.ok(!hasReversedThousands(e.text), `${id}: ${e.source.id} has a digit-reversed number`);
+    assert.ok(!isTeacherNote(e.text), `${id}: ${e.source.id} is a teacher note`);
+  }
+  for (const tpl of VETTED_TEMPLATES) {
+    assert.ok(!hasReversedThousands(tpl.exercise.question), tpl.provenance.id);
+    assert.ok(!isTeacherNote(tpl.exercise.question), tpl.provenance.id);
+  }
+});
+t("the filters bite: known reversed and teacher-note corpus text is caught", () => {
+  assert.ok(hasReversedThousands("כַּמָּה אַרְגָּזִים צָרִיךְ כְּדֵי לְסַפֵּק אֶת הַהַזְמָנָה שֶׁל 0001, אַרְגָּזִים?"));
+  assert.ok(isTeacherNote("מומלץ לבקש מהתלמידים לקרוא בקול את התרגיל לפני ההצבה"));
+  assert.ok(isTeacherNote("אפשר לשאול: מה המספר הגדול ביותר? אפשרות לדיון בכיתה"));
+  assert.ok(!isTeacherNote("לניבה יש 8 קלפים. כמה קלפים צריכה ניבה לקנות כדי שיהיו לה 14 קלפים?"));
 });
 t("every template is its corpus item's text, verbatim but for a leading list marker", () => {
   for (const tpl of VETTED_TEMPLATES) {

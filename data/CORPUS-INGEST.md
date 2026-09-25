@@ -39,7 +39,12 @@ The product↔corpus join is in `lib/authoring/topic-join.ts`, deliberately outs
    served verbatim and never used as an exemplar or template. It may inform phrasing only. The
    corpus-derived index (`scripts/build-corpus-index.ts`) drops drills, and a test checks this.
 2. **`word_problem` / `direct_question` are high fidelity** and are the only types used as
-   exemplars or vetted templates.
+   exemplars or vetted templates. Even within those types, no text with a digit-reversed
+   number ≥1,000 or that reads as a teacher note may be an exemplar or template. Both filters
+   live in `lib/authoring/corpus-fidelity.ts`, are applied by the builder, and are checked
+   against every exemplar and template by `tests/corpus-slots.test.mts`.
+   `npx tsx scripts/build-corpus-index.ts --report` prints per-slot eligibility before and
+   after each filter.
 3. **Niqqud text** (8,992 items) is suitable for grade א–ב voice scripts. It is carried through
    verbatim wherever an item is used.
 4. **`english-international/` is inspiration/reference only.** No runtime code may read it. A test
