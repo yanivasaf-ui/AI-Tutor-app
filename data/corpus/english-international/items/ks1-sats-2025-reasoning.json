@@ -1,0 +1,522 @@
+[
+ {
+  "id": "ks1-sats-2025-reasoning-03826",
+  "text": "apples A shopkeeper had 15 apples in a box. He sells 6 of the apples. How many apples does he have left?",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03827",
+  "text": "Look at the rods and cubes. Each rod stands for a ten. Each cube stands for a one. What number does the picture show? Write your answer in the box.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03828",
+  "text": "2 3 4 Look at the number line. What number is half-way between 10 and 20?.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03829",
+  "text": "Look at the four shapes. Tick the two shapes that have exactly one-quarter shaded.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03830",
+  "text": "Amy’s number has 8 tens and 7 ones. Write her number.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "place-value",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03831",
+  "text": "Sam has 3 sheets of cat stickers. Each sheet has 4 stickers. 4 4 4 cat stickers cat stickers cat stickers How many stickers does Sam have altogether? stickers",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03832",
+  "text": "My number is thirteen. Circle the card that shows Kemi’s number. 30 13 3 31",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03833",
+  "text": "Sita draws a line of symmetry on each of these shapes. One of her lines of symmetry is wrong. Draw a cross on the shape where the line of symmetry is wrong.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03834",
+  "text": "Tick the two shapes that have the same number of faces. Cylinder Cuboid Cube Square-based pyramid 2M4 Minutes Hours",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03835",
+  "text": "Draw two lines to match the times. One is done for you. 7 days 1 week 10 days 30 minutes 1 hour 60 minutes 20 hours 1 day 24 hours",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "multiplication-division",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03836",
+  "text": "This picture shows 5 + 5 = 10 10 5 5 Here are two more pictures. Write the missing numbers in the boxes. 12 9 8 5",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03837",
+  "text": "There are 8 trays of strawberries. Each tray has 10 strawberries. How many strawberries are there altogether?",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03838",
+  "text": "Ajay gets stickers for good work. = 1 point = 3 points Complete the table to show how many points Ajay has altogether. Number of Stickers points Ajay",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03839",
+  "text": "Write a digit in each box to complete the number sentence. + 7 + = 15 1C4 Sharing Sweets",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "place-value",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03840",
+  "text": "Kemi has 20 seeds. She gives some to Ben. Kemi has 8 seeds left. How many seeds does Kemi give to Ben? seeds 2C1, 1C1 KS1Ma18_301_circle adding to 20",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03841",
+  "text": "These pairs of numbers add to 20 Write numbers in the boxes to complete the number pairs. The first one is done for you. 11 9 15 4",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03842",
+  "text": "This bottle holds half a litre of water. water wate r How many of these bottles make one litre? bottles",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03843",
+  "text": "Amy sorts shapes into a table. Put a cross on the shape that is in the wrong place. 4 vertices or fewer 5 vertices or more",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03844",
+  "text": "Ben has eleven £2 coins. How much money does Ben have? £",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "money",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03845",
+  "text": "Tick all the amounts that can be made using only 5p coins. 20p 13p 51p 15p 30p",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "money",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03846",
+  "text": "Here are some symbols. + – = Use two of the symbols to complete this number sentence. 12 5 7 Now use two of the symbols to complete this number sentence in a different way. 12 5 7",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03847",
+  "text": "What fraction of each shape is shaded? One is done for you. = 1 2 = =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03848",
+  "text": "Amy has 75p. Ben gives Amy three 5p coins. How much money does Amy have now? p",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "money",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03849",
+  "text": "This train has 93 people on board. At the station 21 people get off. Then 9 people get on. How many people are on the train now? Show your working people 2C3 Inverse Operations",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03850",
+  "text": "Here is a number sentence: 12 + 7 = 19 Circle the two calculations below that can be used to check if the number sentence is correct. 19 | 12 19 + 12 19 + 7 19 | 7",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03851",
+  "text": "Only one statement is correct. Tick it. 3cm > 3m 3kg > 3g 3ml > 3l 3p > £3",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03852",
+  "text": "Kemi buys a banana for 23p. 23p She pays with a 50p coin. Tick the purse that shows how much change Kemi gets.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "money",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03853",
+  "text": "A puzzle has 40 pieces. Ben places 6 pieces into the puzzle. Amy places 19 pieces into the puzzle. How many pieces are left to finish the puzzle? Show your working pieces",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03854",
+  "text": "The clocks below show the time each class went to lunch. Class A Class B 12 12 11 1 11 1 10 2 10 2 9 3 9 3 8 4 8 4 7 6 5 7 6 5 Class C Class D 12 12 11 1 11 1 10 2 10 2 9 3 9 3 8 4 8 4 7 6 5 7 6 5 Put the classes in the order they go to lunch, starting from first to last. One is done for you. C first last NFER Item Development – CONFIDENTIAL",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03855",
+  "text": "Sandwich Number of sandwiches tuna cheese egg stands for 2 sandwiches Tick the list that shows the correct number of sandwiches in the chart. 2 tuna 2 tuna 4 cheese 2 cheese 3 egg 3 egg 4 tuna 4 tuna 7 cheese 8 cheese 6 egg 6 egg NFER Item Development – CONFIDENTIAL",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "data",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03856",
+  "text": "Circle two numbers that add together to make 70 27 35 37 43 45 2P2 Ferris Wheel",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2025-reasoning-03857",
+  "text": "Ajay is on the big wheel. It is turning in a clockwise direction. Ajay When Ajay reaches the top, how much has the big wheel turned? Tick your answer. Tick one. quarter turn half turn three-quarter turn full turn End of test Key stage 1 mathematics Paper 2: reasoning Product code: STA/25/8908/e ISBN: 978-1-83507-260-8 For more copies This document can be downloaded from www.primaryassessmentgateway.education.gov.uk during May 2025, or afterwards from www.gov.uk/government/collections/national-curriculum- assessments-past-test-materials. © Crown copyright The materials in this booklet are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0, which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/ doc/open-government-licence. If you have any queries regarding these test materials, please contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2025-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ }
+]

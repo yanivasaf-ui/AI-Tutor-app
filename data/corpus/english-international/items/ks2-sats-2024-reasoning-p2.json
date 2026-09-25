@@ -1,0 +1,446 @@
+[
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03881",
+  "text": "Here is a triangle on a grid. mirror line Draw the reflection of the triangle in the mirror line. Use a ruler.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "measurement",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03882",
+  "text": "This table shows the cost of fruit at a school cafeteria. Fruit Cost for one banana 12p plum 23p apple 32p pear 38p Amir buys two pieces of fruit. He pays with a £2 coin. He gets £1.50 change. Tick the two pieces of fruit that Amir buys. Tick two. banana plum apple pear",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "money",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03883",
+  "text": "Layla plays basketball. This graph shows how many points she scored in her first 3 games. 12 10 8 Number of 6 points 4 2 0 Game 1 Game 2 Game 3 Game 4 After 4 games, Layla had scored a total of 25 points. Complete the graph. Use a ruler.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03884",
+  "text": "The numbers in this sequence increase by the same amount each time. Write the missing numbers. –11 1 7 19",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "patterns-sequences",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03885",
+  "text": "Write the three missing digits to make this multiplication correct. 5 × 3 7 2",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "multiplication-division",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03886",
+  "text": "Olivia is thinking of a number. My number • is greater than 236 • is less than 245 • has a 3 in the tens’ place • is an even number What number is Olivia thinking of?",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03887",
+  "text": "A box holds 40 packets of envelopes. Each packet holds 25 envelopes. How many envelopes does the box hold?",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03888",
+  "text": "Write a whole number in each box to make the statements correct. One has been done for you. 18 rounded to the nearest ten is 20 rounded to the nearest thousand is 4,000 rounded to the nearest ten thousand is 820,000",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "place-value",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03889",
+  "text": "4 ÷ 10 40 ÷ 10 4 ÷ 100 40 ÷ 100 Two of these calculations have the same answer. Write this answer as a decimal.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03890",
+  "text": "Circle the two prime numbers that have a difference of 2 15 17 19 21 23 25",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "multiplication-division",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03891",
+  "text": "This table shows the number of children and adults at a childcare centre. Complete the table to make it correct. The first row has been done for you. Age in Number of Number of Number of years children adults children per adult 1 and under 12 4 3 2 or 3 20 4 4 or 5 3 8",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "data",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03892",
+  "text": "Shapes W, X, Y and Z cover different fractions of this 10 by 10 square. W X Y Z Match each shape to the correct fraction. 1 Shape W 100 1 Shape X 4 2 Shape Y 5 1 Shape Z 10",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03893",
+  "text": "Match the name of each 3-D shape to its number of vertices. cube 9 square-based pyramid 8 triangular-based prism 6 octagonal-based pyramid 5",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "geometry",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03894",
+  "text": "A class votes for a captain. Three-quarters of the class vote for Sam. The remaining 7 pupils vote for Alex. How many pupils are in the class?",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03895",
+  "text": "Write the missing number to make this multiplication correct. 3.207 × 100 = × 10",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "multiplication-division",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03896",
+  "text": "Here is a number. 9,658,214 Tick the statements that are true. The digit 5 represents 50,000 The value of the digit 9 is nine hundred thousands. The digit 6 represents 6 millions. The value of the digit 2 is twenty tens.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "place-value",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03897",
+  "text": "Chen buys these four items. 670 grams 400 grams 500 grams 750 grams £1.50 £0.70 £1.45 Chen pays for the four items with a £10 note. The price of the butter is not shown. She receives £3.85 change. What is the price of the butter? Show your method £",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "money",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03898",
+  "text": "Draw an arrow ( ) on the scale below to show 1350 grams. 1 1.5 2 kilograms",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03899",
+  "text": "A hall has 1,250 seats. At 7 pm, 880 seats are filled. At 8 pm, there are 40 empty seats. How many seats were filled between 7 pm and 8 pm? Show your method seats",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03900",
+  "text": "Each day, a school has • break from 10:15 am to 10:30 am • lunchtime from 12:40 pm to 1:30 pm. What is the total time the school has for breaks and lunchtime in a 5-day week? Show your method hours minutes",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03901",
+  "text": "C E A B G H D F Tick all the correct statements. AB is parallel to CD GH is parallel to AB CD is perpendicular to GH EF is perpendicular to CD",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03902",
+  "text": "This table shows the distance that five friends travel to school each day. Name Distance (km) Amina 1.8 William 2.4 Layla 3.2 Chen 1.6 Dev 4.5 What is the mean distance they travel to school each day? Show your method km",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "data",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03903",
+  "text": "Mrs Mills has 940 seeds to plant into trays. She plants 12 seeds in each tray. The last tray is not full. What fraction of the last tray is filled? Show your method",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03904",
+  "text": "Here are four numbers. 40 60 64 100 Use each number once to complete these statements. is a square number. is a cube number. is a common multiple of 4 and 5 is a common factor of 80 and 120",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "geometry",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03905",
+  "text": "Write the missing numbers so that 3 × b – a = 2 a b 2 13",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03906",
+  "text": "Here are 3 translations on a coordinate grid. Tick the translations that are four units to the left. from (0, 2) to (4, 2) from (6, 8) to (2, 8) from (–3, 5) to (–7, 5)",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "geometry",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2024-reasoning-p2-03907",
+  "text": "Olivia has two jars of beads. The number of beads in Jar A is double the number of beads in Jar B. Beads Beads Jar A Jar B Olivia says, 25% of the number of beads in Jar A is the same as 50% of the number of beads in Jar B. Explain why Olivia is correct. [ ] Please do not write on this page. 2024 key stage 2 mathematics Paper 2: reasoning Print version product code: STA/24/8818/p ISBN: 978-1-83507-012-3 Electronic PDF version product code: STA/24/8818/e ISBN: 978-1-83507-033-8 For more copies Additional copies of this book are not available during the test window. They can be downloaded afterwards from https://www.gov.uk/government/collections/national-curriculum-assessments-practice-materials. © Crown copyright 2024 Re-use of Crown copyright in test materials With the exception of third-party copyright content, the 2024 key stage 2 test materials are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0 which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/doc/open-government-licence. When you use this information under the Open Government Licence v3.0, you should include the following attribution: ‘Contains material developed by the Standards and Testing Agency for 2024 national curriculum assessments and licensed under Open Government Licence v3.0’ and where possible provide a link to the licence. Exception – third-party copyright content in test materials Schools and other educational establishments, as defined in the Copyright Designs and Patents Act 1988 (CDPA), may re-use the test materials in their entirety for teaching purposes: https://www.gov.uk/guidance/exceptions-to-copyright. However, if not expressly permitted under the CDPA, you must obtain permission from the relevant copyright owners, listed in the ‘2024 key stage 2 tests copyright report’, for re-use of any third-party copyright content which we have identified in the test materials. Alternatively, you should remove the unlicensed third-party copyright content and/or replace it with appropriately licensed material. . If you have any queries regarding these test materials, contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2024-reasoning-p2",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ }
+]

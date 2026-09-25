@@ -1,0 +1,875 @@
+[
+ {
+  "id": "singapore-placement-1B-00057",
+  "text": "Fill in the blanks.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 7
+ },
+ {
+  "id": "singapore-placement-1B-00058",
+  "text": "Fill in the blanks. (_______ = 3 tens 4 ones)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00059",
+  "text": "Fill in the blanks. (84 = _______ tens _______ ones)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00060",
+  "text": "Fill in the blanks. (2 more than twenty-eight is _______ tens _______ ones)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00061",
+  "text": "Fill in the blanks. (10 less than 64 is _______)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00062",
+  "text": "Fill in the blanks. (2 less than thirty is _______)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00063",
+  "text": "Fill in the blanks. (20 more than 42 is _______)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00064",
+  "text": "Count forwards by tens. 24, 34, _____ , ______, ______, ______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00065",
+  "text": "Count backwards by tens. 80, 70, _____ , ______, ______, ______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00066",
+  "text": "Write >, <, or = in each",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 7
+ },
+ {
+  "id": "singapore-placement-1B-00067",
+  "text": "Write >, <, or = in each (83 8 tens 3 ones)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00068",
+  "text": "Write >, <, or = in each (6 tens 5 tens)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "place-value",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00069",
+  "text": "Write >, <, or = in each (72 eighty-three)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00070",
+  "text": "Which number is the smallest, 62, 26, or 52? _______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00071",
+  "text": "Arrange the numbers 23, 13, 31, and 27 in order, beginning with the largest. _______, _______, _______, _______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1B-00072",
+  "text": "Fill in the blanks.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00073",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 12
+ },
+ {
+  "id": "singapore-placement-1B-00074",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Kim has 22 books. She gave 4 to her younger sister. How many books does she have now? Kim has ___________ books now.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00075",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Peter had some marbles. He gave away 7 marbles. He now has 25 marbles left. How many marbles did Peter have at first? Peter had ___________ marbles at first.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00076",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Mary has 26 cookies. She put 8 of them on a plate. She put the rest in a box. How many cookies are in the box? There are _________ cookies in the box.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00077",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Sam has 5 computer games. His brother and sister each have 7 games. How many games to the 3 children have? They have _________ games. 3)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00078",
+  "text": "Fill in the blanks.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 16,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00079",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-1B-00080",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Kim bought some pansies. She planted 45 of them and has another 15 to plant. How many pansies did she buy? Kim bought ___________ pansies.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00081",
+  "text": "Write an equation to solve these problems. Then fill in the blank. Show your work. (Pete collected 52 seashells. 20 of them were broken. How many unbroken seashells does he have? Pete has ___________ unbroken seashells.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00082",
+  "text": "Circle Yes or No",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1B-00083",
+  "text": "Circle Yes or No (Does the line divide the letter in halves? Yes No)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "fractions",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00084",
+  "text": "Circle Yes or No (Does the shaded part show a fourth of the shape? Yes No)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00085",
+  "text": "Circle Yes or No (Does the picture show fourths? Yes No)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00086",
+  "text": "Circle the answer:",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1B-00087",
+  "text": "Circle the answer: (Do you go to school before or after 5:30 in the morning? Before After)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00088",
+  "text": "Circle the answer: (Does it take longer to wash your hands or bake a cake? Wash hands Bake a cake 5)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00089",
+  "text": "Match each clock with a different time. Half past 5 3 o’clock 6:00 2:30",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "fractions",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1B-00090",
+  "text": "There are _______ groups of balloons.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00091",
+  "text": "There are _______ balloons in each group.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00092",
+  "text": "Fill in the blanks. _______ + _______ + _______ = _______ 3 x 5 = _______ 6",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00093",
+  "text": "How many legs do 5 lizards have? Write the multiplication equation.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1B-00094",
+  "text": "There are 18 watermelon slices. Sue wants to put 3 slices on each plate. How many plates does she need? She needs _______ plates.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1B-00095",
+  "text": "There are 8 cookies. Divide the cookies equally among four children. Each child gets _______ cookies.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1B-00096",
+  "text": "Anna is holding a full handful of cherries. About how many cherries could she be holding? Circle the best answer 2 12 80",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1B-00097",
+  "text": "A ten-dollar bill can be changed for _______ five-dollar bills.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-1B-00098",
+  "text": "Count by fives to count the nickels. 5 ___ ___ ___ ___ ___ ___",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00099",
+  "text": "How much money is there in this set of coins? _______¢ 7",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00100",
+  "text": "A camera costs $45 and a bicycle costs $78. How much less is the camera than the bicycle? The camera cost $_____ less than the bicycle.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-1B-00101",
+  "text": "Laura had $25. She has $6 left now after buying a doll. How much did the doll cost? The doll cost $_____.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-1B-00102",
+  "text": "Mary has $45. She wants to buy 2 dresses. One costs $20 and the other costs $38.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1B-00103",
+  "text": "Mary has $45. She wants to buy 2 dresses. One costs $20 and the other costs $38. (How much do they both cost? They cost $_________.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00104",
+  "text": "Mary has $45. She wants to buy 2 dresses. One costs $20 and the other costs $38. (How much more money does she need? She needs $_______ more. Answer Key)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "money",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1B-00105",
+  "text": "3 o’clock",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "time",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00106",
+  "text": "44, 54, 64, 74 2:30 6:00",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00107",
+  "text": "60, 50, 40, 30 Half past 5",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "fractions",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00108",
+  "text": "4 x 5 = 20",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1B-00109",
+  "text": "31, 27, 23, 13",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

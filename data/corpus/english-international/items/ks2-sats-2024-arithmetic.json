@@ -1,0 +1,392 @@
+[
+ {
+  "id": "ks2-sats-2024-arithmetic-03858",
+  "text": "689 + 38 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03859",
+  "text": "72 } 3 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03860",
+  "text": "23 { 6 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03861",
+  "text": "4,532 − 19 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03862",
+  "text": "3 { 391 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03863",
+  "text": "6,600 ÷ 6 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03864",
+  "text": "99 × 10 × 1 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03865",
+  "text": "7.68 + 13.493 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03866",
+  "text": "9 { 752 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03867",
+  "text": "640 } 8 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03868",
+  "text": "561 ÷ 3 = 4",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03869",
+  "text": "×1= 6 8",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03870",
+  "text": "= 630 ÷ 7",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03871",
+  "text": "6,020,070 = 6,000,000 + + 70",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03872",
+  "text": "2,671 × 1,000 = 5",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03873",
+  "text": "+1= 12 3 2",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03874",
+  "text": "+4= 3 5",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03875",
+  "text": "6 3 1 2 × 1 4 Show your method version 3.0 (2019) template 3",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03876",
+  "text": "2+3 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03877",
+  "text": "15.5 ÷ 100 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03878",
+  "text": "90 − 56 } 8 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03879",
+  "text": "63 − 5.8 =",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks2-sats-2024-arithmetic-03880",
+  "text": "4 1 8 × 4 7 Show your method version 3.0 (2019) template 6 11 26 − = 7 21 7 27 }2= 10 28 23 − 5 = 8 8 29 0.7 × 26 = 30 3 4 9 8 6 Show your method version 3.0 (2019) template 31 99% of 600 = 1 32 ÷3= 2 33 43% of 900 = 34 21 − 2 = 6 3 version 3.0 (2019) template 35 1 1 { 39 = 4 36 7 3 4 2 3 4 Show your method [ ] Please do not write on this page. [ ] Please do not write on this page. 2024 key stage 2 mathematics Paper 1: arithmetic Print version product code: STA/24/8817/p ISBN: 978-1-83507-011-6 Electronic PDF version product code: STA/24/8817/e ISBN: 978-1-83507-032-1 For more copies Additional copies of this book are not available during the test window. They can be downloaded afterwards from https://www.gov.uk/government/collections/national-curriculum-assessments-practice-materials. © Crown copyright 2024 Re-use of Crown copyright in test materials With the exception of third-party copyright content, the 2024 key stage 2 test materials are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0 which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/doc/open-government-licence. When you use this information under the Open Government Licence v3.0, you should include the following attribution: ‘Contains material developed by the Standards and Testing Agency for 2024 national curriculum assessments and licensed under Open Government Licence v3.0’ and where possible provide a link to the licence. Exception – third-party copyright content in test materials Schools and other educational establishments, as defined in the Copyright Designs and Patents Act 1988 (CDPA), may re-use the test materials in their entirety for teaching purposes: https://www.gov.uk/guidance/exceptions-to-copyright. However, if not expressly permitted under the CDPA, you must obtain permission from the relevant copyright owners, listed in the ‘2024 key stage 2 tests copyright report’, for re-use of any third-party copyright content which we have identified in the test materials. Alternatively, you should remove the unlicensed third-party copyright content and/or replace it with appropriately licensed material. If you have any queries regarding these test materials, contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2024-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "show-working",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ }
+]

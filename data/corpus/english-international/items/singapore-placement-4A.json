@@ -1,0 +1,775 @@
+[
+ {
+  "id": "singapore-placement-4A-00342",
+  "text": "Consider the number 951,076",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 7
+ },
+ {
+  "id": "singapore-placement-4A-00343",
+  "text": "Consider the number 951,076 (Write the number in words. ______________________________________________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00344",
+  "text": "Consider the number 951,076 (What digit is in the ten thousands place? ______)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "place-value",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00345",
+  "text": "Consider the number 951,076 (What number is 10,000 more than this number? _____________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00346",
+  "text": "Consider the number 951,076 (What number is 100 less than this number? ____________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00347",
+  "text": "Consider the number 951,076 (Round the number to the nearest hundred thousand. ___________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "place-value",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00348",
+  "text": "Find all the factors of 60. ____________________________________",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00349",
+  "text": "Which of these factors are prime numbers? __________________",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00350",
+  "text": "Find the common factors of 15 and 18. ______________ 1",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00351",
+  "text": "Find the positive common multiples of 6 and 9 smaller than the product of 6 and 9. ___________________",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00352",
+  "text": "The figures below form a pattern. Figure 2 Figure 3 Figure 4 Figure 5 Figure 1",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5
+ },
+ {
+  "id": "singapore-placement-4A-00353",
+  "text": "The figures below form a pattern. Figure 2 Figure 3 Figure 4 Figure 5 Figure 1 (Continue the pattern to draw Figures 4 and 5.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00354",
+  "text": "The figures below form a pattern. Figure 2 Figure 3 Figure 4 Figure 5 Figure 1 (Complete the table by observing the pattern and extending it. Figure 1 2 3 4 5 6 7 Number 1 3 6 of circles)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00355",
+  "text": "The figures below form a pattern. Figure 2 Figure 3 Figure 4 Figure 5 Figure 1 (Describe the pattern in the numbers. How did you find the number of circles for figures 6 and 7 without drawing the figures? 2)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00356",
+  "text": "Solve using mental math:",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00357",
+  "text": "Find the number represented by n that makes each equation true.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8
+ },
+ {
+  "id": "singapore-placement-4A-00358",
+  "text": "Jonas has $100. He wants to buy a game that costs $69.20, a book that costs $19.95. Does he have enough money to also buy a watch that costs $22.80? Use estimation. 3",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "money",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00359",
+  "text": "Estimate the answer, and then multiply.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4A-00360",
+  "text": "Estimate the answer, and then multiply. (8,058 x 4 Estimate: _______ Estimate: ________ Answer: _______ Answer: ________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00361",
+  "text": "Estimate the answer, and then divide. Give your answer as quotient and remainder, if there is a remainder.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4A-00362",
+  "text": "Estimate the answer, and then divide. Give your answer as quotient and remainder, if there is a remainder. (2,080 ÷ 6 Estimate: _______ Estimate: ________ Answer: _______ Answer: ________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00363",
+  "text": "Estimate the answer, and then multiply.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4A-00364",
+  "text": "Estimate the answer, and then multiply. (2,409 x 79 Estimate: _______ Estimate: ________ Answer: _______ Answer: ________ 4)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00365",
+  "text": "During the last half of a year, Mr. Wilson's salary was $1,985 each month. He saved $4,025 during that time and spent the rest. How much did he spend?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00366",
+  "text": "A bottle contains blue beads and red beads. The number of red beads is 4 times the number of blue beads. If there are 3,568 red beads, how many more red beads than blue beads are there?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00367",
+  "text": "Some string 2,305 in. long was cut into two unequal pieces. One piece was 55 inches longer than the other. What is the length of the shorter piece in inches? 5",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00368",
+  "text": "Write >, <, or = in each 2 6 2 3 2",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00369",
+  "text": "Express each of the following as a mixed number. 17 11",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00370",
+  "text": "Express each of the following as an improper fraction. 3 2",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00371",
+  "text": "Give each answer as a mixed number or a fraction in simplest form. 3 2 5 5",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 16
+ },
+ {
+  "id": "singapore-placement-4A-00372",
+  "text": "Tom read of a book on Monday and of it on Tuesday. What fraction 5 5 of the book does he have left to read?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-4A-00373",
+  "text": "In a group of 30 children, 12 are boys. Express the number of girls as a fraction of the children in the group. 2",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4A-00374",
+  "text": "of the children in a club are girls. 24 of them are boys. How many more boys than girls are there? 2 1",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00375",
+  "text": "Mary had some cookies. She gave of them to Matthew and ate of 9 3 them. She had 8 cookies left. How many did she have at first?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-4A-00376",
+  "text": "Find the missing numbers.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 10
+ },
+ {
+  "id": "singapore-placement-4A-00377",
+  "text": "Find the missing numbers. (50 h = ______ days _____h 3 2)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00378",
+  "text": "What fraction of 1 day is 4 hours? 8",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00379",
+  "text": "Express 16 in. as a fraction of 3 ft in simplest form.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00380",
+  "text": "Ms. Grover bought 5 lb 4 oz of beans. She put them into 3 bags. What was the weight of beans in each bag? Give your answer in pounds and ounces.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00381",
+  "text": "Janice works 7 h and 30 minutes every day for 5 days. She was paid $12 an hour. How much money did she earn? Answer Key",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "money",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4A-00382",
+  "text": "nine hundred fifty-one thousand, 14. 1,125 in. seventy-six",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00383",
+  "text": "1, 3 1 2",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00384",
+  "text": "18, 36 1 3",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00385",
+  "text": "Each term is the sum of the",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4A-00386",
+  "text": "8 more boys",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00387",
+  "text": "20,844 190,311 9",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00388",
+  "text": "$7,885 26. 1 lb 12 oz",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4A-00389",
+  "text": "2,676 more red beads 27. $450",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

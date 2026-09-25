@@ -1,0 +1,505 @@
+[
+ {
+  "id": "ks1-sats-2024-reasoning-03771",
+  "text": "August Sun Mon Tues Wed Thurs Fri Sat 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03772",
+  "text": "Amy 8 metres Sam 3 metres metres",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03773",
+  "text": "Kemi draws around a face of a cylinder. Tick the shape she has drawn.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03774",
+  "text": "This table shows the different colours of horses on a farm. Horse colour Number of horses black 2 brown 0 grey 4 white 7 Use the table to complete the graph below. One is done for you. 9 8 7 6 Number 5 of 4 horses 3 2 1 black brown grey white Horse colour",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "data",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03775",
+  "text": "There are 16 ducks on the pond. 5 ducks fly away. How many ducks stay on the pond? ducks",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03776",
+  "text": "Write the missing numbers in this pattern. 71 73 74",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "patterns-sequences",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03777",
+  "text": "Here is a shape pattern. Shade the last two boxes to complete the pattern.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03778",
+  "text": "Sam has 90 marbles. He gives 50 marbles to Ben. How many marbles does Sam have left? marbles",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03779",
+  "text": "In each box, tick the coin that has the greatest value. One is done for you. ✓",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "money",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03780",
+  "text": "x Write a number in each empty circle so that all three numbers total 14 14",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03781",
+  "text": "Tick two purses with the same amount of money.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03782",
+  "text": "x Ajay has some marbles. He puts 10 marbles into each bag. He has 8 left over. How many marbles does Ajay have altogether? marbles",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "multiplication-division",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03783",
+  "text": "Complete the number sentence below. 5 { = 5",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03784",
+  "text": "Ajay had 18 strawberries. He picked some more. Ajay now has 24 strawberries. How many more strawberries did he pick? strawberries",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03785",
+  "text": "One calculation does not equal 17 Cross it out. 9+8 8+9 20 – 3 3 – 20",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03786",
+  "text": "A ride has 8 cars. There are 5 seats in each car. Complete the number sentence to show the total number of seats on the ride. × = seats",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03787",
+  "text": "The diagram below shows number bonds that make 20 Write the missing numbers to complete the diagram. One is done for you. 20 6 14 9 12",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03788",
+  "text": "This number pattern increases by 10 each time. 7 17 27 37 Circle all the numbers below that will be in the pattern. 57 66 75 97",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03789",
+  "text": "Stickers are sold in packs of 5 Kemi has 30 stickers altogether. How many packs does Kemi have? packs",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03790",
+  "text": "Amy has 45p. A badge costs 10p. What is the total number of badges that Amy can buy with 45p? badges",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03791",
+  "text": "How much juice is in this measuring jug? 200 ml 100 ml ml",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03792",
+  "text": "Tick all the calculations that total 100 50 + 50 80 + 30 75 + 15 35 + 65",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03793",
+  "text": "Three of the shapes below have a line of symmetry. Tick the three shapes.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03794",
+  "text": "Tick all the squares that have half shaded.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03795",
+  "text": "Only one number sentence is correct. Circle it. 1 1 = 4 2 2 1 = 4 3 3 1 = 4 2 2 1 = 4 2",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "geometry",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03796",
+  "text": "Complete the number sentence. One is done for you. 1 of 8 = 2 4 3 of 8 = 4",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03797",
+  "text": "Sita only puts 5p coins in a bag. There is a total of £1 in the bag. How many 5p coins are in the bag? coins",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "addition-subtraction",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03798",
+  "text": "There are 30 animals on a farm. 1 of the animals are cows. 2 9 are sheep. The rest are horses. How many of the animals are horses? Show your working horses",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03799",
+  "text": "Here is a balance. 15kg The mass of the is 15 kg. What is the mass of one ? kg",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "measurement",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2024-reasoning-03800",
+  "text": "Sita buys a drink that costs 65p. She pays with four 20p coins. 65p How much change does Sita get? Show your working p End of test [ ] Please do not write on this page. 2024 key stage 1 mathematics Paper 2: reasoning Print version product code: STA/24/8808/p ISBN: 978-1-83507-004-8 Electronic PDF version product code: STA/24/8808/e ISBN: 978-1-83507-023-9 For more copies Additional printed copies of this booklet are not available. It can be downloaded from https://www.primaryassessmentgateway.education.gov.uk during May 2024, or afterwards from https://www.gov.uk/government/collections/national-curriculum-assessments-practice-materials. © Crown copyright 2024 Re-use of Crown copyright in test materials With the exception of third-party copyright content, the 2024 key stage 1 test materials are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0 which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/doc/open-government-licence. When you use this information under the Open Government Licence v3.0, you should include the following attribution: ‘Contains material developed by the Standards and Testing Agency for 2024 national curriculum assessments and licensed under Open Government Licence v3.0’ and where possible provide a link to the licence. Exception – third-party copyright content in test materials Schools and other educational establishments, as defined in the Copyright Designs and Patents Act 1988 (CDPA), may re-use the test materials in their entirety for teaching purposes: https://www.gov.uk/guidance/exceptions-to-copyright. However, if not expressly permitted under the CDPA, you must obtain permission from the relevant copyright owners, listed in the ‘2024 key stage 1 tests copyright report’, for re-use of any third-party copyright content which we have identified in the test materials. Alternatively, you should remove the unlicensed third-party copyright content and/or replace it with appropriately licensed material. If you have any queries regarding these test materials, contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "fractions",
+  "source": "ks1-sats-2024-reasoning",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "show-working",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ }
+]

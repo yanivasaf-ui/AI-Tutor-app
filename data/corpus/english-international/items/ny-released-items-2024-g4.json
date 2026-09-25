@@ -1,0 +1,322 @@
+[
+ {
+  "id": "ny-released-items-2024-g4-03699",
+  "text": "G rade Spring 2024 RELEASED QUESTIONS SESSION 1 MATH GRADE 4 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 14720 Energy Way, Apple Valley, MN 55124. Copyright © 2024 by the New York State Education Department.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03700",
+  "text": "A B 12 C 24 D 27 What value makes the equation shown below true? 2 A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03701",
+  "text": "Which equation represents how to find the measure, in degrees, of angle JKM ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g4-03702",
+  "text": "Which statement about the diagram shown below is most likely true? Line AB is perpendicular to line CD. A B Line AB is parallel to line CD. C Line EF is perpendicular to line CD. D Line EF is parallel to line CD.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "compare",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03703",
+  "text": "Which fraction can be added to to equal whole? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03704",
+  "text": "Which number, when rounded to the nearest thousand, is 17,000 ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "place-value",
+  "source": "ny-released-items-2024-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "16,129",
+   "B": "16,921",
+   "C": "17,538",
+   "D": "17,853 GO ON Session 1 Page 7"
+  }
+ },
+ {
+  "id": "ny-released-items-2024-g4-03705",
+  "text": "Allison is training for a race. She runs mile each day. Which fraction is equivalent to the number of miles Allison runs in days? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g4-03706",
+  "text": "What is the value of ? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03707",
+  "text": "1 A B 10 C 100 D 1,000 Which equation is not true?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03708",
+  "text": "of the oor? 20 A B 30 C 40 D 60",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03709",
+  "text": "How many lines of symmetry does the gure have?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03710",
+  "text": "An incomplete area model is shown below. The area model can be used to",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03711",
+  "text": "represent the product of and . Which equation shows how to find the value of the area model after it is complete? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "complete-fill",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g4-03712",
+  "text": "Which expression is equivalent to ? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03713",
+  "text": "What is the measure, in degrees, of the angle shown below? Answer degrees",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03714",
+  "text": "List all the factors of 21. Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03715",
+  "text": "Two numbers are shown below. 4,699 and 4,780 Write the two numbers in expanded form, and then compare them using the >, <, or = symbol. Be sure to include what you know about place value in your answer. Explain how you know your answer is correct.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "place-value",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03716",
+  "text": "The line plot below shows the amount of time Jamie spent working on his book report each day for four days. What is the total amount of time, in hours, that Jamie spent working on his book report for those four days? Show your work. Answer hours",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03717",
+  "text": "Two expressions are shown below. Expression A: Expression B: Which expression, A or B, has a value greater than ? Be sure to include the value of each expression in your answer. Explain how you know your answer is correct.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g4-03718",
+  "text": "Chairs have been set up for an event. There are 11 rows of chairs with 12 chairs in each row. When the event is over, the chairs are put away on chair racks. If each chair rack holds exactly 9 chairs, what is the fewest number of chair racks needed to hold all of the chairs? Explain how you know your answer is correct.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2024-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

@@ -1,0 +1,960 @@
+[
+ {
+  "id": "singapore-placement-2B-00163",
+  "text": "Fill in the blanks with the missing numbers.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2B-00164",
+  "text": "Use mental math to solve:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 12,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00165",
+  "text": "Fill in the blanks:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00166",
+  "text": "32 cookies were divided among some children. Each child got 4 cookies. How many children were there? There were _______ children.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00167",
+  "text": "Mrs. Li paid $30 for 5 bags of apples. What was the cost of 1 bag of apples? 1 bag of apples cost $_______.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00168",
+  "text": "23 sticks are tied into bundles of 5. How many sticks are left over? _______ sticks are left over. 2",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00169",
+  "text": "Paul read 10 pages in a book a day. After reading the book each day for a week, he still had 45 pages to read.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "time",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00170",
+  "text": "Paul read 10 pages in a book a day. After reading the book each day for a week, he still had 45 pages to read. (How many pages did he read in the week? He read _______ pages in the week.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "time",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00171",
+  "text": "Paul read 10 pages in a book a day. After reading the book each day for a week, he still had 45 pages to read. (How many pages were in the book? There were _______ pages in the book.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "time",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00172",
+  "text": "26 people are going on a field trip in vans. Each van can hold 10 people besides the driver. How many vans are needed? _______ vans are needed.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00173",
+  "text": "Fill in the blanks:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00174",
+  "text": "Add or subtract.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00175",
+  "text": "Write the amount of money in dollars and cents.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2B-00176",
+  "text": "Write the amount of money in dollars and cents. (6 dimes, 2 nickels, 3 quarters)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00177",
+  "text": "Write the amount of money in dollars and cents. (1 five-dollar bill, 6 quarters, 5 pennies.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00178",
+  "text": "Maria wants to buy a book that costs $3.40. She has 2 one-dollar bills, 2 quarters, 4 dimes, and 3 nickels.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2B-00179",
+  "text": "Maria wants to buy a book that costs $3.40. She has 2 one-dollar bills, 2 quarters, 4 dimes, and 3 nickels. (How much money does she have? She has $_______.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00180",
+  "text": "Maria wants to buy a book that costs $3.40. She has 2 one-dollar bills, 2 quarters, 4 dimes, and 3 nickels. (How much more money does she need to buy the book? She needs $_______.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00181",
+  "text": "Use mental math to solve.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00182",
+  "text": "A toy robot costs $6.90. A doll costs $4.85. How much less does the doll cost than the robot? The doll costs $_______ less than the robot.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00183",
+  "text": "Mark spent $2.35 on lunch. His brother spent 65¢ more. How much did his brother spend? His brother spent $_______.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00184",
+  "text": "Paul wanted to buy two candy bars. One cost $0.55 and the other cost $0.35. He gave the cashier 4 quarters. How much change did he receive? He received $_______ in change.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00185",
+  "text": "What fraction of the shape is shaded? 5",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00186",
+  "text": "Write the missing fractions.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00187",
+  "text": "and make 1 whole. 7",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00188",
+  "text": "Arrange the fractions in order, beginning with the smallest. 1 1 1 1 6 8 2 3 _______, _______, _______, _______ 1 1",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "fractions",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2B-00189",
+  "text": "Mary ate of a pizza and Amy ate of the same pizza. Who 3 5 ate more pizza? 1",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00190",
+  "text": "After Amy ate some more pizza, of the pizza was left. How much pizza was eaten? 6",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00191",
+  "text": "Fill in the blanks.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-2B-00192",
+  "text": "Fill in the blanks. (It is ______:_____. It is _____ minutes to ______)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00193",
+  "text": "Fill in the blanks. (It is ______:_____. It is _____ minutes past ______)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00194",
+  "text": "Fill in the blanks. (It is ______:_____. It is _____ minutes to ______)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00195",
+  "text": "Write the time. Use a.m. or p.m.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00196",
+  "text": "Write the time. Use a.m. or p.m. (Sam is waking up. It is ____________.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00197",
+  "text": "Write the time. Use a.m. or p.m. (Now he is coming home from school. It is ____________.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00198",
+  "text": "Fill in the blanks with the time.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00199",
+  "text": "Fill in the blanks with the time. (Noon is at _______ p.m.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00200",
+  "text": "Fill in the blanks with the time. (It is an hour after midnight. It is _______ a.m. 7)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "time",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00201",
+  "text": "This picture graph shows the amounts of money four girls have. Jo Each stands for 4 dollars Meg Amy Beth",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-2B-00202",
+  "text": "This picture graph shows the amounts of money four girls have. Jo Each stands for 4 dollars Meg Amy Beth (Jo has ___________ dollars more than Amy.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00203",
+  "text": "This picture graph shows the amounts of money four girls have. Jo Each stands for 4 dollars Meg Amy Beth (Beth has ___________ dollars less than Meg.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00204",
+  "text": "This picture graph shows the amounts of money four girls have. Jo Each stands for 4 dollars Meg Amy Beth (Meg used all her money to buy some dolls. Each doll cost $6. She bought _______ dolls.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00205",
+  "text": "This picture graph shows the amounts of money four girls have. Jo Each stands for 4 dollars Meg Amy Beth (Paula has $24. If her information were added to the table, _______ stars would be used to show how much money she has.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00206",
+  "text": "Some students used a ruler and string to measure the length of a room at their school to the closest foot and recorded their results in a line plot. • • • • • • • • • • • • • • • • • 10 11 12 13 14 15 16 17 18 19 20",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00207",
+  "text": "Some students used a ruler and string to measure the length of a room at their school to the closest foot and recorded their results in a line plot. • • • • • • • • • • • • • • • • • 10 11 12 13 14 15 16 17 18 19 20 (What is the most common length measured?)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00208",
+  "text": "Some students used a ruler and string to measure the length of a room at their school to the closest foot and recorded their results in a line plot. • • • • • • • • • • • • • • • • • 10 11 12 13 14 15 16 17 18 19 20 (What is the difference between the longest and the shortest length recorded? 8)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00209",
+  "text": "This block has ______ flat surfaces.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00210",
+  "text": "Circle the correct answer. The flat surfaces on a cube are shaped like Squares Triangles Circles Rectangles",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-2B-00211",
+  "text": "Draw lines to show how this shape is formed using a rectangle, a triangle, and a semicircle.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2B-00212",
+  "text": "Color the last shape to continue the pattern.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00213",
+  "text": "Study the pattern. Draw the figure that comes next. 9",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-2B-00214",
+  "text": "What type of polygon is this figure? Circle the answer. quadrilateral pentagon hexagon octagon",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00215",
+  "text": "The polygon has _________ angles.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2B-00216",
+  "text": "Draw a quadrilateral. Answer Key",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00217",
+  "text": "3.00 30.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00218",
+  "text": "0.10 5 31.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00219",
+  "text": "Pentagon 1 2",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00220",
+  "text": "; 3 3 3 33. Check drawing. It should be a",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2B-00221",
+  "text": "polygon with 4 sides. 11",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "geometry",
+  "source": "singapore-placement-2B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

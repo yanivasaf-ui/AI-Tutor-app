@@ -1,0 +1,92 @@
+[
+ {
+  "id": "nrich-mystery-matrix-03571",
+  "text": "Where might you start?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-mystery-matrix-03572",
+  "text": "How can you decide which number is used twice?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-mystery-matrix-03573",
+  "text": "Which multiplication table does that number come into?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "multiplication-division",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-mystery-matrix-03574",
+  "text": "Is that the only table it is in?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "data",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-mystery-matrix-03575",
+  "text": "How can you keep a check on which numbers you have used?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-mystery-matrix-03576",
+  "text": "What are you curious about?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-mystery-matrix",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

@@ -1,0 +1,331 @@
+[
+ {
+  "id": "ny-released-items-2025-g4-03725",
+  "text": "G rade Spring 2025 RELEASED QUESTIONS SESSION 1 MATH GRADE 4 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 14720 Energy Way, Apple Valley, MN 55124. Copyright © 2025 by the New York State Education Department.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03726",
+  "text": "What is the value of the expression? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03727",
+  "text": "Which expression has the same value as the fraction?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2025-g4-03728",
+  "text": "The price of a house rounded to the nearest ten thousand dollars is $220,000.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03729",
+  "text": "Which number could be the price of the house?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "money",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03730",
+  "text": "the baseball cards to friends. Each friend receives the same number of cards. Which set of equations can be used to determine the number of cards, , each friend receives?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03731",
+  "text": "Which expression is equivalent to?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2025-g4-03732",
+  "text": "In which number does the digit 7 represent a value that is ten times greater than",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03733",
+  "text": "the value represented by the digit 7 in the number 27,325 ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "place-value",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03734",
+  "text": "What is the width, in inches, of Rob’s rectangle?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03735",
+  "text": "number of friends. Which equation can be used to determine the number of friends, , that are sharing the cookies? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03736",
+  "text": "Which number is a multiple of 8 and has a factor of 3 ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03737",
+  "text": "twelve equal parts. How many of the twelve equal parts in the model should be shaded to represent a fraction equivalent to of the whole? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "how-many",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03738",
+  "text": "Which two quadrilaterals appear to be rectangles? Figure B and Figure D A Figure A and Figure C B C Figure B and Figure C D Figure A and Figure D What is the value of the expression ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03739",
+  "text": "Which of these shapes has the same area as the rectangle but a different perimeter?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03740",
+  "text": "schools is listed below. • School G has 126 third-grade students. • School H has 2 times as many third-grade students as School G. • School G has 174 fourth-grade students. • School H has 3 times as many fourth-grade students as School G. How many more third-grade and fourth-grade students are at School H than at School G ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03741",
+  "text": "The gure shown below has two rays that share a common point. What type of gure is shown? Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03742",
+  "text": "How can the fraction be used to compare the fractions and ? Be sure to include a number sentence using the symbols , , or to compare the fractions and in your answer. Explain how you determined your answer.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03743",
+  "text": "How many lines of symmetry does a square have? Be sure to include what you know about symmetry in your answer. Explain how you know your answer is correct.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "how-many",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03744",
+  "text": "The rst three numbers in a pattern are shown below. 1, 4, 7, . . . Will the tenth number in the pattern be an even number or an odd number? Explain how you determined your answer.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g4-03745",
+  "text": "The diagram below shows angle ABD divided into two angles, ABC and CBD. The measure of angle ABD is and the measure of angle CBD is . Write and solve an equation that can be used to determine the measure, in degrees, of angle ABC. Show your work. Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2025-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

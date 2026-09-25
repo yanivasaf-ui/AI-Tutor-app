@@ -1,0 +1,62 @@
+[
+ {
+  "id": "nrich-three-neighbours-03618",
+  "text": "What do you notice about the total?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "addition-subtraction",
+  "source": "nrich-three-neighbours",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-three-neighbours-03619",
+  "text": "Can you see anything in your examples that would work in exactly the same way if you used three different consecutive numbers?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-three-neighbours",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-three-neighbours-03620",
+  "text": "Can you say what will happen every time you add any three consecutive numbers?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "addition-subtraction",
+  "source": "nrich-three-neighbours",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-three-neighbours-03621",
+  "text": "Can you convince your friend that this is true?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-three-neighbours",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

@@ -1,0 +1,92 @@
+[
+ {
+  "id": "nrich-different-sizes-03544",
+  "text": "What kind of pattern can you make with the shapes?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "patterns-sequences",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-different-sizes-03545",
+  "text": "Tell me about your pattern.",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "patterns-sequences",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-different-sizes-03546",
+  "text": "Can you show me two shapes where one is double the other?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-different-sizes-03547",
+  "text": "How is it doubled?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-different-sizes-03548",
+  "text": "What about half of the other?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "fractions",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-different-sizes-03549",
+  "text": "How is it halved?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-different-sizes",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

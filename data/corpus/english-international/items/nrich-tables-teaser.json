@@ -1,0 +1,77 @@
+[
+ {
+  "id": "nrich-tables-teaser-03611",
+  "text": "Where might you start?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-tables-teaser",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-tables-teaser-03612",
+  "text": "Are there any row or column headings you know straightaway?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-tables-teaser",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-tables-teaser-03613",
+  "text": "How might that row/column heading help us now?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-tables-teaser",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-tables-teaser-03614",
+  "text": "What do you know about numbers in the 10 times table?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "multiplication-division",
+  "source": "nrich-tables-teaser",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-tables-teaser-03615",
+  "text": "What do you know about numbers in the 5 times table?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "multiplication-division",
+  "source": "nrich-tables-teaser",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

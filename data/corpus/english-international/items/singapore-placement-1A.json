@@ -1,0 +1,938 @@
+[
+ {
+  "id": "singapore-placement-1A-00000",
+  "text": "Write the number of blocks there are in the box.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1A-00001",
+  "text": "Which set has more? Circle A or B.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "which-one",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00002",
+  "text": "Fill in the missing numbers.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00003",
+  "text": "Write these as numbers.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1A-00004",
+  "text": "Write these as numbers. (fourteen _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00005",
+  "text": "Write these as numbers. (twenty _____ 1)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00006",
+  "text": "5, 3, and 2 make a number bond. 4, 0, and 4 also make a number 3 0 bond. 5 4 2 4 Write the missing number for the number bonds.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "patterns-sequences",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1A-00007",
+  "text": "Write 4 different addition or subtraction equations using the numbers 4, 3, and 7.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1A-00008",
+  "text": "Fill in the blanks.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00009",
+  "text": "Circle the equations that are true 4+5=8 5+2=2+5 8+1=8–1 5+2=4+3 3+2=9–4 7–3=6+1",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00010",
+  "text": "Write the answer. Show your work.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 9
+ },
+ {
+  "id": "singapore-placement-1A-00011",
+  "text": "Write the answer. Show your work. (Mary used 4 eggs to bake a cake and 2 eggs to bake cookies. How many eggs did she use? She used _____ eggs.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00012",
+  "text": "Write the answer. Show your work. (There are 6 balls. 3 of them are red. The rest are blue. How many are blue? There are _____ blue balls.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00013",
+  "text": "Write the answer. Show your work. (Pat lost 3 balloons to the wind. She had 6 balloons left. How many balloons did she have at first? She had _____ balloons. 3)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00014",
+  "text": "Look at these letters. They are in a line. ABCDEFGHIJK",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1A-00015",
+  "text": "Look at these letters. They are in a line. ABCDEFGHIJK (Which letter is third? _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "fractions",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00016",
+  "text": "Look at these letters. They are in a line. ABCDEFGHIJK (Which letter is second from the right? _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00017",
+  "text": "Some boys are in a line. Tom is 4th in line and Sam is 8th in line. How many boys are between Sam and Tom? There are ______ boys between Sam and Tom.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1A-00018",
+  "text": "Fill in the blanks.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-1A-00019",
+  "text": "Fill in the blanks. (What number comes after twelve? _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00020",
+  "text": "Fill in the blanks. (What number comes before 19? _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00021",
+  "text": "Fill in the blanks. (Which is greatest; 13, 9, or 19? ______)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00022",
+  "text": "Fill in the blanks. (Which is smallest; 14 or 17? _____)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00023",
+  "text": "Write + or – in each",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00024",
+  "text": "Fill in the blanks",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 12,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00025",
+  "text": "Write an equation to solve these problems. Then fill in the blank.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-1A-00026",
+  "text": "Write an equation to solve these problems. Then fill in the blank. (Mary has 7 stickers. Pam has 8 more than Mary. How many stickers does Pam have? Pam has _____ stickers.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00027",
+  "text": "Write an equation to solve these problems. Then fill in the blank. (Sally needs 15 balloons for a party. She has 11 balloons now. How many more balloons does she need? She needs _____ more balloons. 5)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00028",
+  "text": "Circle the one in the box that comes next.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00029",
+  "text": "How many circles are there? ______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00030",
+  "text": "How many triangles are there? _____",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00031",
+  "text": "How many rectangles are there? _____",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00032",
+  "text": "How many shapes have 4 corners? _____",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00033",
+  "text": "Circle two shapes that when put together could form a square.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00034",
+  "text": "Circle the shapes that we can roll.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00035",
+  "text": "Cross out the shapes that we can stack.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00036",
+  "text": "Color the shapes that have only 2 flat surfaces. 6",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00037",
+  "text": "Which is longest, A, B, or C?_____",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00038",
+  "text": "The paper clip is a unit. The pencil is about ______ units long.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-1A-00039",
+  "text": "Write a subtraction equation to solve these problems. Then fill in the blank for the answer.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-1A-00040",
+  "text": "Write a subtraction equation to solve these problems. Then fill in the blank for the answer. (Mary has 7 dolls. Pam has 12 dolls. How many more dolls does Pam have than Mary? _____ – _____ = _____ Pam has _____ more dolls that Mary.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00041",
+  "text": "Write a subtraction equation to solve these problems. Then fill in the blank for the answer. (Sally needs 9 red balloons and 6 yellow balloons. How many fewer yellow balloons does she have than red balloons? _____ – _____ = _____ She has _____ fewer yellow balloons. 7)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00042",
+  "text": "This picture graph shows the number of pizza slices five boys ate last week. Abe Ben Carlos Daniel Everett",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "time",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-1A-00043",
+  "text": "This picture graph shows the number of pizza slices five boys ate last week. Abe Ben Carlos Daniel Everett (Daniel ate _______ fewer slices than Ben.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00044",
+  "text": "This picture graph shows the number of pizza slices five boys ate last week. Abe Ben Carlos Daniel Everett (___________ ate the most pizza.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "time",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00045",
+  "text": "This picture graph shows the number of pizza slices five boys ate last week. Abe Ben Carlos Daniel Everett (Carlos ate ___________ more slices than Abe.)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "time",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00046",
+  "text": "This picture graph shows the number of pizza slices five boys ate last week. Abe Ben Carlos Daniel Everett (Everett and _________ ate the same number of slices. 8)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "time",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00047",
+  "text": "Complete the tally chart for each kind of sea creature. ////",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "data",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00048",
+  "text": "Then, complete the bar graph.",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "data",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00049",
+  "text": "How many seahorses are there? _______",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00050",
+  "text": "There is the least number of which sea animal? (circle)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00051",
+  "text": "How many more seahorses are there than fish? There are ______ more seahorses than fish. Answer Key",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00052",
+  "text": "3 + 4 = 7 7–3=4 16. 4+3=7 7–4=3",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00053",
+  "text": "circle ball, cone, can, cylinder",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "geometry",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-1A-00054",
+  "text": "5 + 2 = 2 + 5",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-1A-00055",
+  "text": "5 + 2 = 2 + 5 (cross out radio, box, block, can, 5+2=4+3 cylinder 3+2=9–4)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-1A-00056",
+  "text": "5 + 2 = 2 + 5 (color the can and the cylinder)",
+  "grade": 1,
+  "grade_band": "grade-1",
+  "topic": "general",
+  "source": "singapore-placement-1A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ }
+]
