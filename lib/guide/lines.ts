@@ -1,6 +1,7 @@
 import type { CharacterId } from "@/lib/characters";
 import { MIC_BLOCKED, NOT_HEARD, SESSION_COMPLETE, TOPIC_COMPLETE } from "@/lib/feedback/constitution";
 import type { KidGender } from "@/lib/memory/types";
+import { groupingObjectName } from "@/lib/exercises/grouping-objects";
 
 /**
  * Everything the character says, in one place (character-led redesign,
@@ -261,12 +262,17 @@ export const notHeard = (name: string): Line => ({ name, text: NOT_HEARD });
  *  setting changes. Tap answers stay the way forward either way. */
 export const micBlocked = (name: string): Line => ({ name, text: MIC_BLOCKED });
 
-/** Grouping's tap-to-place interaction (star -> bucket) has no affordance
+/** Grouping's tap-to-place interaction (object -> bucket) has no affordance
  *  a kid can infer just from looking at it — said in the same breath as
  *  the question and shown as a caption under it (see ExerciseScreen). No
- *  `name`: it's appended to a line that already opens with one. */
-export const groupingInstructions = (): Line => ({
-  text: "לוחצים על כוכב, ואז על הקבוצה.",
+ *  `name`: it's appended to a line that already opens with one.
+ *
+ *  Names the object actually drawn (`firstItem`, the first of the
+ *  exercise's grouping items) — it said "כוכב" for every exercise, while
+ *  the bank's are apples, triangles, flowers, clocks… An object with no
+ *  known name gets the neutral "חפץ" (lib/exercises/grouping-objects.ts). */
+export const groupingInstructions = (firstItem?: string): Line => ({
+  text: `לוחצים על ${groupingObjectName(firstItem)}, ואז על הקבוצה.`,
 });
 
 export const noContent = (name: string): Line => ({
