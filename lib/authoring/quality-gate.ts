@@ -1,5 +1,6 @@
 import type { Exercise } from "@/lib/exercises/types";
 import { ruleById, type RuleId } from "./rubric";
+import { otherObjectsNamed } from "@/lib/exercises/grouping-objects";
 
 /**
  * The question-quality gate: the deterministic half of the authoring rubric
@@ -384,6 +385,61 @@ function checkGenderAgreement(q: string, out: QualityViolation[]): void {
   if (hit) out.push({ rule: "spoken-hebrew", detail: `gender disagreement: "${hit[0].replace(/^[^א-ת]/, "")}"` });
 }
 
+/** Things a question can point at that this app never draws. */
+const FIGURE_WORD = hebrewWords(["דיאגרמה", "דיאגרמת", "דיאגרמות", "תרשים", "גרף", "פיקטוגרמה", "פיקטוגרמת", "טבלה", "טבלת"], "");
+/** Saying the figure SHOWS something ("דיאגרמה שמראה…", "רואים בדיאגרמה…"). */
+const DISPLAY_CLAIM = /(?<![א-ת])ש?(?:מראה|מראים|מראות|מציג|מציגה|מציגים|מוצג|מוצגת|מוצגים|מוצגות|רואים|רואה|נראה|נראים|מופיע|מופיעים)(?![א-ת])/u;
+const PICTURE_CLAIM = /(?<![א-ת])ב(?:ציור|תמונה)(?![א-ת])/u;
+
+/**
+ * shown-is-said: no exercise subtype draws a chart, so a question that says a
+ * chart shows something is describing a picture the child cannot see; and a
+ * question that mentions a chart but gives (nearly) no numbers has no data
+ * at all. QA 2026-09-25: "…דיאגרמת עמודות שמראה כמה ילדים אוהבים כל פרי.
+ * עמודת התפוחים גבוהה מעמודת הבננות" — no numbers anywhere. Data given in
+ * words and numbers ("ספרנו… 8 ילדים אוהבים כלבים") is fine.
+ */
+function checkFigureShown(q: string, out: QualityViolation[]): void {
+  const sentences = q.split(/[.?!\n]+/);
+  const claim = sentences.find((s) => (FIGURE_WORD.test(s) && DISPLAY_CLAIM.test(s)) || PICTURE_CLAIM.test(s));
+  if (claim) {
+    out.push({ rule: "shown-is-said", detail: `refers to a figure the app doesn't show: "${claim.trim().slice(0, 50)}"` });
+    return;
+  }
+  if (FIGURE_WORD.test(q) && numberTokens(q).length < 2) {
+    out.push({ rule: "shown-is-said", detail: "mentions a chart or table but gives no data (fewer than 2 numbers)" });
+  }
+}
+
+/** "הצמח הראשון… השני… הרביעי": a noun that is not a time or step unit. */
+const TIME_STEP_NOUNS = new Set(["שבוע", "יום", "חודש", "שעה", "שנה", "פעם", "שלב", "צעד", "קומה", "מדרגה", "סיבוב", "קפיצה", "תחנה", "שורה", "עמודה", "סיבוב", "בוקר", "ערב", "לילה"]);
+const NOUN_ORDINAL = /(?<![א-ת])ה([א-ת]{2,})\s+ה(?:ראשון|ראשונה|שני|שנייה|שלישי|שלישית|רביעי|רביעית|חמישי|חמישית)(?![א-ת])/gu;
+const ANY_ORDINAL = /(?<![א-ת])ו?ה(?:ראשון|ראשונה|שני|שנייה|שלישי|שלישית|רביעי|רביעית|חמישי|חמישית)(?![א-ת])/gu;
+
+/**
+ * A pattern told as separate OBJECTS in order ("הצמח הראשון גבוה 10, השני 15,
+ * השלישי 20, הרביעי 25 — כמה יהיה הצמח החמישי?") is not a series: nothing
+ * says the fifth plant continues the first four. The same numbers told as
+ * one thing over time ("בשבוע הראשון… בשבוע השני…") are. QA 2026-09-25.
+ */
+function checkObjectSequence(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "pattern_completion") return;
+  const objects = [...q.matchAll(NOUN_ORDINAL)].map((m) => m[1]).filter((n) => !TIME_STEP_NOUNS.has(n));
+  const ordinals = (q.match(ANY_ORDINAL) ?? []).length;
+  if (objects.length > 0 && ordinals >= 4) {
+    out.push({ rule: "sequence-anchored", detail: `the numbers belong to different objects (${objects[0]} first, second, …), not to one thing over time, so nothing says the next one continues them` });
+  }
+}
+
+/** The drawn objects must be the ones the story names. */
+function checkGroupingObject(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "visual_grouping" || !ex.grouping) return;
+  const named = otherObjectsNamed(q, ex.grouping.items[0]);
+  if (named.length > 0) {
+    out.push({ rule: "shown-is-said", detail: `the story names ${named.join(", ")} but the drawn object is ${ex.grouping.items[0]}` });
+  }
+}
+
 function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
   if (ex.subtype !== "pattern_completion") return;
   const s = numberSeries(q).filter((x) => x.step !== null).pop();
@@ -412,6 +468,9 @@ export function checkQuestionQuality(ex: Exercise): QualityResult {
   checkTimeOperands(ex, q, violations);
   checkEquationCopy(ex, q, violations);
   checkGenderAgreement(q, violations);
+  checkFigureShown(q, violations);
+  checkObjectSequence(ex, q, violations);
+  checkGroupingObject(ex, q, violations);
   checkPatternDrift(ex, q, violations);
   return { ok: violations.length === 0, checked: true, violations };
 }

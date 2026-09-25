@@ -21,6 +21,9 @@
  *     labelled clean: 3 are rejected in code (a clock time as an operand,
  *     איזה/איזו gender, an equation blank copied from the story); 1 has no
  *     code rule and is pinned as a known gap.
+ *  1d. THE INDEPENDENT GRADE-א QA SWEEP — 7 verbatim bank rows (topic
+ *     mismatch and unrendered-figure classes), each pinned to the mechanism
+ *     that must reject it; a look-alike for each that must still pass.
  *  2. SERVED CONTENT — anything the product serves or shows the model as
  *     "this is what a good question looks like" (vetted templates, corpus
  *     exemplars) violates the rubric.
@@ -39,6 +42,7 @@ import { checkQuestionQuality } from "../lib/authoring/quality-gate";
 import { TOPIC_SLOTS, CROSS_CUTTING_SLOTS } from "../lib/authoring/rubric";
 import { VETTED_TEMPLATES } from "../lib/authoring/vetted-templates";
 import { operationScope } from "../lib/exercises/operation-scope";
+import { topicFit } from "../lib/exercises/topic-fit";
 import { resolveFreePracticeIntent } from "../lib/voice/freePracticeIntent";
 import { verdict, fixtureExercise, type BankFixture } from "../scripts/build-regression-bank";
 import type { Exercise, Grade } from "../lib/exercises/types";
@@ -124,7 +128,7 @@ interface LivePattern {
   question: string;
   correctAnswer: string;
   tiles?: string[];
-  expect: "series-determinate" | "no-pattern-drift" | "pass";
+  expect: "series-determinate" | "no-pattern-drift" | "sequence-anchored" | "pass";
 }
 const LIVE_RUN_PATTERNS: LivePattern[] = [
  {
@@ -302,8 +306,7 @@ const LIVE_RUN_PATTERNS: LivePattern[] = [
    "22",
    "26"
   ],
-  "expect": "pass"
- },
+  "expect": "sequence-anchored"},
  {
   "ref": "math-g-numbers-0-10000 #1",
   "grade": "ג",
@@ -431,6 +434,67 @@ t("the checks are narrow: correct look-alikes pass", () => {
     rules(ex({ grade: "ג", subtype: "equation_balance", type: "tile_order", question: "לנועה יש 24 מדבקות. היא קיבלה עוד ואז היו לה 30. כמה קיבלה?\n\n24 + ___ = 30", tiles: { items: ["6", "5", "7", "8"], slotCount: 1, joinWith: " " }, correctAnswer: "6" })),
     []
   );
+});
+
+// ---------------------------------------------------------------- 1d. independent QA sweep
+console.log("\nindependent grade-א QA sweep, 2026-09-25 (7 findings, verbatim bank rows)");
+/** The 7 questions a grade-א QA sweep flagged, as they sit in the production
+ *  bank (ids are the rows'). `by` is the mechanism that must reject each —
+ *  topic fit (topic-fit.ts), operation scope (operation-scope.ts) or the
+ *  authoring gate (quality-gate.ts) — so a regression in any one of the
+ *  three fails here. */
+interface QaFinding {
+  ref: string; id: string; topicId: string; grade: Grade;
+  question: string; correctAnswer: string; subtype: Exercise["subtype"]; type: Exercise["type"];
+  choices?: string[]; computation?: Exercise["computation"]; grouping?: Exercise["grouping"]; tiles?: Exercise["tiles"];
+}
+const QA_FINDINGS: QaFinding[] = JSON.parse(readFileSync(new URL("./fixtures/qa-findings-2026-09-25.json", import.meta.url), "utf8"));
+const QA_EXPECT: Record<string, { by: "topic-fit" | "operation-scope" | "gate"; detail: string; why: string }> = {
+  a: { by: "topic-fit", detail: "number_line_placement under לחבר ולחסר", why: "placing a stated number on a line involves no operation" },
+  b: { by: "operation-scope", detail: "mul", why: "× in grade-א geometry" },
+  c: { by: "operation-scope", detail: "mul", why: "'4 × 3' offered as a choice in grade-א geometry" },
+  d: { by: "operation-scope", detail: "div", why: "division in grade-א measurement (the brick-for-clip mismatch is also caught by the gate, below)" },
+  e: { by: "gate", detail: "sequence-anchored", why: "10, 15, 20, 25 told as four different plants, then 'the fifth'" },
+  f: { by: "gate", detail: "shown-is-said", why: "a bar chart 'שמראה' with no numbers" },
+  g: { by: "gate", detail: "shown-is-said", why: "a bar chart 'שמראה' that the app never draws" },
+};
+const qaExercise = (f: QaFinding): Exercise => ({ subject: "math", topic: "t", difficulty: 2, ...f }) as Exercise;
+for (const f of QA_FINDINGS) {
+  const want = QA_EXPECT[f.ref];
+  t(`QA (${f.ref}) ${f.id.slice(0, 8)} ${f.topicId} is rejected by ${want.by}: ${want.why}`, () => {
+    const e = qaExercise(f);
+    if (want.by === "topic-fit") {
+      const fit = topicFit(e, f.topicId);
+      assert.equal(fit.ok, false, "topic fit passed it");
+    } else if (want.by === "operation-scope") {
+      const scope = operationScope(e, f.topicId);
+      assert.equal(scope.ok, false, "operation scope passed it");
+      assert.ok(scope.outOfScope.includes(want.detail as never), JSON.stringify(scope.outOfScope));
+    } else {
+      assert.ok(rules(e).includes(want.detail as never), JSON.stringify(rules(e)));
+    }
+  });
+}
+t("QA (d) also: the story names clips (אטבים) but the drawn object is a brick", () => {
+  const d = QA_FINDINGS.find((f) => f.ref === "d")!;
+  assert.ok(rules(qaExercise(d)).includes("shown-is-said"));
+});
+t("QA: every finding is rejected by at least one of the three mechanisms (none can regress silently)", () => {
+  for (const f of QA_FINDINGS) {
+    const e = qaExercise(f);
+    const caught = !topicFit(e, f.topicId).ok || !operationScope(e, f.topicId).ok || !checkQuestionQuality(e).ok;
+    assert.ok(caught, `${f.ref} ${f.id} is served again`);
+  }
+});
+t("look-alikes that must still pass (real bank rows): the same clips drawn as clips; a plant measured week by week; a chart's data given as numbers; a placement under NUMBERS", () => {
+  const ok = (e: Exercise, topic: string) => topicFit(e, topic).ok && operationScope(e, topic).ok && checkQuestionQuality(e).ok;
+  const base = { subject: "math", topic: "t", difficulty: 2, grade: "א" } as const;
+  // (grade ב: grouping is division, which grade א does not teach)
+  assert.ok(ok({ ...base, grade: "ב", id: "878f438d", type: "grouping", subtype: "visual_grouping", question: "דני מודד את אורך השולחן שלו באמצעות 12 אטבים 📎. הוא רוצה לחלק את האטבים ל-3 קופסאות שוות. כמה אטבים יהיו בכל קופסה?", correctAnswer: "4", grouping: { items: Array(12).fill("📎"), groupCount: 3 } } as Exercise, "math-b-length"));
+  assert.ok(ok({ ...base, id: "70163fb9", type: "tile_order", subtype: "pattern_completion", question: "יעל מודדת את גובה הצמח שלה בכל שבוע. בשבוע הראשון: 10 סנטימטר, בשבוע השני: 12 סנטימטר, בשבוע השלישי: 14 סנטימטר. כמה סנטימטר יהיה הצמח בשבוע הרביעי?", correctAnswer: "16", tiles: { items: ["16", "15", "18", "17"], slotCount: 1, joinWith: " " } } as Exercise, "math-a-length"));
+  assert.ok(ok({ ...base, id: "df84a4cb", type: "tile_order", subtype: "equation_balance", question: "בדיאגרמת העמודות נספרו 12 ילדים שנולדו בחודש מרץ ו-8 ילדים שנולדו בחודש אפריל. כמה ילדים נספרו בסך הכל בשני החודשים? 12 + 8 = ___", correctAnswer: "20", tiles: { items: ["18", "20", "22", "19"], slotCount: 1, joinWith: " " } } as Exercise, "math-a-data"));
+  assert.ok(ok({ ...base, id: "79f7bfb4", type: "number_line", subtype: "number_line_placement", question: "רותם קפצה על ישר המספרים והגיעה למספר 85. היכן נמצא המספר 85 על הציר?", correctAnswer: "85" } as Exercise, "math-a-numbers-0-100"));
+  assert.ok(ok({ ...base, id: "a9-mult", type: "number_line", subtype: "number_line_placement", question: "רועי קופץ קפיצות של 5. הוא כבר קפץ 6 קפיצות. איפה הוא עומד עכשיו על הציר?", correctAnswer: "30" } as Exercise, "math-a-addition-subtraction"));
 });
 
 // ---------------------------------------------------------------- 2. served content

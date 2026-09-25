@@ -44,6 +44,9 @@ export function operationsUsed(ex: Exercise): Set<Operation> {
       for (const [op, name] of Object.entries(OPERATION_NAMES_HE) as [Operation, string][]) {
         if (c.includes(name)) used.add(op);
       }
+      // ...and one offered as a written expression ("4 × 3", "8 : 2").
+      if (/×|\d\s*\*\s*\d/.test(c)) used.add("mul");
+      if (/÷|\d\s+:\s+\d/.test(c)) used.add("div");
     }
   }
   return used;

@@ -14,7 +14,7 @@ import { readFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 process.env.ANTHROPIC_API_KEY ||= "test-key-never-used";
-import { groupingObjectName, NEUTRAL_OBJECT } from "../lib/exercises/grouping-objects";
+import { groupingObjectName, NEUTRAL_OBJECT, otherObjectsNamed } from "../lib/exercises/grouping-objects";
 import { groupingInstructions } from "../lib/guide/lines";
 // The component is compiled for the classic JSX runtime under tsx, which
 // reaches for a global React; provide it, then import the widget.
@@ -74,6 +74,33 @@ t("a variation selector doesn't change the name ('✏' and '✏️')", () => {
 });
 t("the instruction stays plural-neutral and gender-free: 'לוחצים על X, ואז על הקבוצה.'", () => {
   for (const [emoji] of PROD_OBJECTS) assert.match(groupingInstructions(emoji).text, /^לוחצים על [א-ת ]+, ואז על הקבוצה\.$/, emoji);
+});
+
+console.log("\nthe story must name the drawn object (QA 2026-09-25: clips drawn as bricks)");
+t("QA: 'אטבים' drawn as 🧱 → the story names clips, not bricks", () => {
+  assert.deepEqual(otherObjectsNamed("לירון מודד אורכים באמצעות אטבים 🧱. יש לו 10 אטבים. עליו לחלק אותם ל-5 קבוצות שוות.", "🧱"), ["מהדק"]);
+});
+t("the same story with the clip drawn (📎, by alias אטב) is fine", () => {
+  assert.deepEqual(otherObjectsNamed("דני מודד את אורך השולחן שלו באמצעות 12 אטבים 📎. הוא רוצה לחלק את האטבים ל-3 קופסאות שוות.", "📎"), []);
+});
+t("real bank stories with their drawn objects are all fine (no false positives)", () => {
+  const REAL: [string, string][] = [
+    ["חלקי את התפוחים ל-4 קבוצות שוות. כמה תפוחים יהיו בכל קבוצה?", "🍎"],
+    ["לרונית יש 15 פרחים 🌸. היא רוצה לחלק אותם ל-3 אגרטלים באופן שווה.", "🌸"],
+    ["לימור קיבלה 10 בלונים 🎈. היא רוצה לחלק אותם שווה בשווה ל-5 ילדים.", "🎈"],
+    ["רונית קוראת בשעון 🕐🕐🕐🕐. חלקי את השעונים ל-3 קבוצות שוות.", "🕐"],
+    ["בגן הילדים ספרו 18 פרחים 🌸. המורה ביקשה לחלק את כל הפרחים ל-6 אגרטלים.", "🌸"],
+    ["לרונית יש 18 קוביות 🟦. היא רוצה לחלק אותן ל-3 תיבות שוות.", "🟦"],
+    ["רונית מדדה 🍃🍃🍃 עלים. חלקי אותם ל-3 קבוצות שוות.", "🍃"],
+    ["נועה מדדה את השולחן ב-12 צעדים. עזרו לה לחלק את הצעדים ל-3 קבוצות שוות.", "👣"],
+    ["חלקו את המשולשים ל-3 קבוצות שוות. כמה משולשים יהיו בכל קבוצה?", "🔺"],
+    ["בכיתה ספרו 12 תלמידים לפי עונות השנה. חלקו את התלמידים ל-4 קבוצות שוות.", "👦"],
+  ];
+  for (const [story, emoji] of REAL) assert.deepEqual(otherObjectsNamed(story, emoji), [], `${emoji}: ${story}`);
+});
+t("a generic drawn object (a coloured square) or an unknown one never counts as a mismatch", () => {
+  assert.deepEqual(otherObjectsNamed("יש 12 תפוחים. חלקו אותם ל-3 קבוצות.", "🟦"), []);
+  assert.deepEqual(otherObjectsNamed("יש 12 תפוחים. חלקו אותם ל-3 קבוצות.", "🦖"), []);
 });
 
 console.log("\nboth places the instruction appears pass the exercise's object");

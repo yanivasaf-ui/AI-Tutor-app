@@ -58,6 +58,21 @@ export const ARITHMETIC_TOPICS: ReadonlySet<string> = new Set([
   "math-g-arithmetic",
 ]);
 
+/**
+ * The topics whose subject is the OPERATIONS (as opposed to "numbers", which
+ * is about the numbers themselves). Placing a stated number on a number line
+ * ("איפה נמצא המספר 15 על ציר המספרים?") is on-topic for numbers and NOT for
+ * these: nothing is added or subtracted. QA 2026-09-25: exactly that question
+ * was served under "לחבר ולחסר".
+ */
+export const OPERATION_TOPICS: ReadonlySet<string> = new Set(["math-a-addition-subtraction", "math-b-arithmetic", "math-g-arithmetic"]);
+
+/** Words and signs that make a story about doing an operation. */
+const OPERATION_CUE = new RegExp(
+  `\\d\\s*[+\\-−×÷*]\\s*\\d|=|(?<![\u05d0-\u05ea])[הובלמשכ]{0,2}(?:עוד|הוסיפ|נוספ|נשאר|נותר|פחות|יותר|ביחד|בסך|קפיצ|קפצ|נתנ|לקח|קיבל|קנה|איבד|חיבור|חיסור|כפל|חילוק|חלק|חיברנ|חיסרנ)`,
+  "u"
+);
+
 /** Emoji the generator uses to draw shapes. */
 const SHAPE_EMOJI = ["🔺", "🔻", "🔷", "🔶", "🔸", "🔹", "⬛", "⬜", "◼", "◻", "🟦", "🟥", "🟩", "🟨", "🟧", "🟪", "⭕", "🔵", "🔴", "🟢", "🟡", "▲", "△", "□", "■", "◇", "◆"];
 
@@ -219,7 +234,16 @@ function usesMulDiv(ex: Exercise): boolean {
  */
 export function topicFit(ex: Exercise, topicId: string | undefined): FitResult {
   if (!topicId) return { ok: true, checked: false };
-  if (ARITHMETIC_TOPICS.has(topicId)) return { ok: true, checked: true };
+  if (ARITHMETIC_TOPICS.has(topicId)) {
+    if (OPERATION_TOPICS.has(topicId) && ex.subtype === "number_line_placement" && !OPERATION_CUE.test(exerciseText(ex))) {
+      return {
+        ok: false,
+        checked: true,
+        reason: `placing a stated number on a number line involves no operation — off-topic for ${topicId}`,
+      };
+    }
+    return { ok: true, checked: true };
+  }
 
   const re = anchorRegex(topicId);
   if (!re) return { ok: true, checked: false }; // Hebrew topics, unknown ids

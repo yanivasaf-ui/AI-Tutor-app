@@ -711,8 +711,10 @@
    "page": 34
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {
@@ -728,8 +730,10 @@
    "page": 121
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {
@@ -1343,7 +1347,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -1394,7 +1399,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -1564,7 +1570,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -1918,7 +1925,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -2138,8 +2146,10 @@
    "page": 133
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {
@@ -2379,7 +2389,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -3447,7 +3458,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -3481,7 +3493,8 @@
   "expected": {
    "ok": false,
    "rules": [
-    "one-task"
+    "one-task",
+    "shown-is-said"
    ]
   }
  },
@@ -3885,8 +3898,10 @@
    "document": "msemot3_adar_03.docx"
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {
@@ -3937,8 +3952,10 @@
    "document": "msemot3_sivan_tamuz_03.docx"
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {
@@ -4242,8 +4259,10 @@
    "page": 115
   },
   "expected": {
-   "ok": true,
-   "rules": []
+   "ok": false,
+   "rules": [
+    "shown-is-said"
+   ]
   }
  },
  {

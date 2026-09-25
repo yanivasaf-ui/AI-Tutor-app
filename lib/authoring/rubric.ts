@@ -50,7 +50,8 @@ export type RuleId =
   | "internal-consistency"
   | "unambiguous-answer"
   | "series-determinate"
-  | "no-pattern-drift";
+  | "no-pattern-drift"
+  | "shown-is-said";
 
 export interface AuthoringRule {
   id: RuleId;
@@ -110,6 +111,13 @@ export const UNIVERSAL_RULES: readonly AuthoringRule[] = [
   {
     id: "series-determinate",
     he: "סדרה שמבקשים להמשיך חייבת לנבוע מחוק אחד ברור — אותו הפרש בין כל שני מספרים סמוכים — כך שהמספר הבא נקבע ממנה בוודאות.",
+    enforcement: ["deterministic", "review"],
+  },
+  // From an independent grade-א QA sweep (2026-09-25): questions pointed at a
+  // bar chart the app never draws, and clips drawn as bricks.
+  {
+    id: "shown-is-said",
+    he: "מה שהשאלה מזכירה הוא מה שמוצג: אין דיאגרמה, ציור או תמונה על המסך, לכן הנתונים נמסרים במילים ובמספרים בשאלה עצמה; והחפצים המצוירים הם אלה שהשאלה מזכירה.",
     enforcement: ["deterministic", "review"],
   },
   {

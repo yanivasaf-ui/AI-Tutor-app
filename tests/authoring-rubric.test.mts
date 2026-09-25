@@ -25,7 +25,7 @@ function t(name: string, fn: () => void) {
 
 console.log("authoring rubric");
 
-t("the brief's eight universal rules plus the two added after the live run, each once", () => {
+t("the brief's eight universal rules plus the three added after live runs and QA, each once", () => {
   assert.deepEqual(
     UNIVERSAL_RULES.map((r) => r.id).sort(),
     [
@@ -37,6 +37,7 @@ t("the brief's eight universal rules plus the two added after the live run, each
       "one-task",
       "sequence-anchored",
       "series-determinate",
+      "shown-is-said",
       "spoken-hebrew",
       "unambiguous-answer",
     ]
