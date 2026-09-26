@@ -8,14 +8,18 @@
  *               gets through, so the day a fix starts catching it, this test
  *               fails and the entry must be promoted to "caught" deliberately.
  *   caught    — a mechanism here rejects it; the test asserts it stays caught.
- *   incidental— rejected, but by a rule that is NOT about the reported defect
- *               (the defect itself is still undetected). Pinned both ways.
  *   ui        — not a question: a screen/flow defect with no automated check.
  *
- * P1 status is judged by the TOPIC-BOUNDARY mechanisms only (topic-fit.ts +
- * operation-scope.ts). As of this commit none of the five P1 leaks is caught
- * by them — see the BUG B root-cause diagnosis of 2026-09-26 (delivered with
- * this commit's report; implementation awaits review).
+ * P1 status is judged by the TOPIC-BOUNDARY mechanisms (topic-fit.ts,
+ * operation-scope.ts and, since the BUG B fix, the allowed-format table's
+ * structural check format-fit.ts).
+ *
+ * 2026-09-26, BUG B fix: every row the allowed-format table rejects is
+ * "caught" (owner: findings covered by the table move to caught), except the
+ * 6×4 cubes row, which the owner ruled ALLOWED. Where the table rejects a
+ * row for its format but the reported defect has a wider class of its own
+ * (#9 ambiguity, #10 answer in the body, #12 misleading hint), the note says
+ * so: that class has no general detector yet.
  *
  * Run: npx tsx tests/sweep-grade-b.test.mts
  */
@@ -24,6 +28,7 @@ import { readFileSync } from "node:fs";
 process.env.ANTHROPIC_API_KEY ||= "test-key-never-used";
 import { topicFit } from "../lib/exercises/topic-fit";
 import { operationScope } from "../lib/exercises/operation-scope";
+import { formatFit } from "../lib/exercises/format-fit";
 import { checkQuestionQuality } from "../lib/authoring/quality-gate";
 import { groupingInstructions } from "../lib/guide/lines";
 import type { Exercise } from "../lib/exercises/types";
@@ -46,41 +51,43 @@ const sweep = JSON.parse(readFileSync(new URL("./fixtures/sweep-grade-b-2026-09-
   findings: { n: number; severity: string; class: string; title: string; rows: string[] }[];
 };
 const row = (id: string): Exercise => ({ id, topic: "t", difficulty: 2, ...sweep.rows[id] }) as Exercise;
-const topicBoundaryCatches = (e: Exercise) => !topicFit(e, e.topicId).ok || !operationScope(e, e.topicId).ok;
+const tableRejects = (e: Exercise) => !formatFit(e, e.topicId).ok;
+const topicBoundaryCatches = (e: Exercise) => !topicFit(e, e.topicId).ok || !operationScope(e, e.topicId).ok || tableRejects(e);
 const gateRules = (e: Exercise) => checkQuestionQuality(e).violations.map((v) => v.rule);
 
-type Status = "open" | "caught" | "incidental" | "ui";
+type Status = "open" | "caught" | "ui";
 
 /**
  * P1, per row: is it caught by the topic-boundary mechanisms right now?
- * Tracked per row because one finding can hold a caught row and an open one.
- * 2026-09-26 (allowed-format table, operations read from it): the rows that
- * use an operation their topic does not teach are caught by operation scope.
+ * Tracked per row because one finding can hold a caught row and an allowed
+ * one. The allowed-format table rejects every P1 defect row by its FORMAT;
+ * rows using an operation their topic does not teach are caught by
+ * operation scope as well.
  */
 const P1_ROW_CAUGHT: Record<string, boolean> = {
-  "830cac2a-b22c-44fb-b5f9-b21e6ba87c3c": true, // #1 grouping (÷) under numbers: numbers teach no operation
-  "f6f6f191-135b-4c7e-bf86-4402414d8205": false, // #2 +3 sequence under shapes: no operation symbol to catch
-  "9a3529d5-79c8-43d5-b6a1-cf60fbb52285": true, // #2 pick-operation offering × and ÷ under shapes (addition only)
-  "25ceceb3-c77f-46f8-8919-b8ddeec49166": false, // #3 +5 sequence under length
-  "397cdc85-35e0-42a4-9368-a44974f9cd33": false, // #3 +5 sequence under length
+  "830cac2a-b22c-44fb-b5f9-b21e6ba87c3c": true, // #1 grouping under numbers: numbers allow sequences + number line only (G1); ÷ also out of scope
+  "f6f6f191-135b-4c7e-bf86-4402414d8205": true, // #2 +3 sequence under shapes: sequences only under numbers (G4)
+  "9a3529d5-79c8-43d5-b6a1-cf60fbb52285": true, // #2 pick-operation under shapes: shapes = shape pattern + computation with addition (G3); × ÷ also out of scope
+  "25ceceb3-c77f-46f8-8919-b8ddeec49166": true, // #3 +5 sequence under length: sequences only under numbers (G4)
+  "397cdc85-35e0-42a4-9368-a44974f9cd33": true, // #3 +5 sequence under length: same
   "311e3b11-70d8-4e6c-9302-d8d32448bb72": false, // #4 6×4 cubes under volume: ALLOWED (owner ruling), not a defect
-  "4f79a2db-f8f2-44e8-842a-1a1f7327448d": true, // #4 grouping (÷) under volume: volume has no division
-  "1fe552ac-2dc9-4d2a-ae66-6cf8654b5208": false, // #5 root drill under reading
-  "6e55fa84-e891-4c45-8ee6-10e9dc651e15": false, // #5 spelling drill under reading
+  "4f79a2db-f8f2-44e8-842a-1a1f7327448d": true, // #4 grouping under volume: volume has no grouping and no division
+  "1fe552ac-2dc9-4d2a-ae66-6cf8654b5208": true, // #5 root drill under reading: reading topics are comprehension only
+  "6e55fa84-e891-4c45-8ee6-10e9dc651e15": true, // #5 spelling drill under reading: same
 };
 const STATUS: Record<number, { status: Status; note: string }> = {
-  1: { status: "caught", note: "numbers topics teach no operation (allowed-format table), so the ÷ of a grouping is out of scope" },
-  2: { status: "open", note: "the pick-operation row is caught (it offers × and ÷ under a topic that allows addition only); the +3 sequence is still open" },
-  3: { status: "open", note: "length vocabulary (ס״מ, מדד) in a +5 sequence" },
-  4: { status: "caught", note: "the grouping row (÷) is caught — volume has no division; the 6×4 row is ALLOWED by owner ruling (layers × cubes), not a defect" },
-  5: { status: "open", note: "Hebrew topics are not checked at all" },
+  1: { status: "caught", note: "format table: numbers topics allow sequences and the number line, not grouping (G1)" },
+  2: { status: "caught", note: "format table: shapes allow the shape pattern and computation with addition — no sequences (G4), no pick-operation (G3)" },
+  3: { status: "caught", note: "format table: sequences exist only under the numbers topics (G4)" },
+  4: { status: "caught", note: "format table: the grouping row is caught (volume has no grouping or division); the 6×4 row is ALLOWED by owner ruling (layers × cubes), not a defect" },
+  5: { status: "caught", note: "format table: reading topics are comprehension only (no root or spelling drills)" },
   6: { status: "caught", note: "fixed on this branch by 6f61650 (instruction names the drawn object); NOT deployed — production still says כוכב" },
   7: { status: "ui", note: "transient server error surfaced to the child; no automated check" },
-  8: { status: "open", note: "Hebrew content is not checked" },
-  9: { status: "incidental", note: "rejected by one-task (it asks 'כמה קיסמים?' AND 'איזו פעולה?'); the 3+3 / 3×2 ambiguity itself is not detected" },
-  10: { status: "open", note: "no check for the answer printed in the question" },
+  8: { status: "caught", note: "format table: morphology allows the root/pattern format only — comprehension is banned there (G6)" },
+  9: { status: "caught", note: "format table: pick-operation is not a shapes format (also one-task and operation scope); the 3+3 / 3×2 ambiguity as a class has no detector" },
+  10: { status: "caught", note: "format table: time has no number-line format; 'answer printed in the question' as a class has no detector" },
   11: { status: "open", note: "the typo is not detected (the equation-copy false positive that used to reject this row is fixed: the blank is the result, so the story's 5 is coincidence)" },
-  12: { status: "open", note: "Hebrew content is not checked" },
+  12: { status: "caught", note: "format table: standard spelling allows the spelling-choice format only — comprehension is banned there (G6); the misleading hint as a class has no detector" },
   13: { status: "ui", note: "exit dialog after completion; no automated check" },
 };
 
@@ -99,7 +106,7 @@ t("P1 findings are the five topic-boundary leaks; UI findings carry no row", () 
   for (const f of sweep.findings.filter((x) => STATUS[x.n].status === "ui")) assert.deepEqual(f.rows, [], `finding ${f.n}`);
 });
 
-console.log("\nP1 — topic-boundary leaks (judged by topic-fit + operation scope)");
+console.log("\nP1 — topic-boundary leaks (judged by topic-fit + operation scope + the format table)");
 for (const f of sweep.findings.filter((x) => x.severity === "P1")) {
   const s = STATUS[f.n];
   t(`#${f.n} [${s.status}] ${f.title} — ${s.note}`, () => {
@@ -125,16 +132,17 @@ for (const n of [8, 9, 10, 11, 12]) {
   const s = STATUS[n];
   t(`#${n} [${s.status}] ${f.title} — ${s.note}`, () => {
     for (const id of f.rows) {
-      const rules = gateRules(row(id));
-      if (s.status === "open") {
+      if (s.status === "caught") {
+        assert.ok(tableRejects(row(id)), `${id} is no longer rejected by the format table`);
+      } else {
+        const rules = gateRules(row(id));
         assert.deepEqual(rules, [], `${id} is now rejected (${rules}): promote finding #${n}`);
-      } else if (s.status === "incidental") {
-        assert.ok(rules.length > 0, `${id} is no longer rejected at all`);
+        assert.ok(!topicBoundaryCatches(row(id)), `${id} is now caught at the topic boundary: promote finding #${n}`);
       }
     }
   });
 }
-t("#9 is rejected by one-task — pinned so a change is noticed", () => {
+t("#9 is also rejected by one-task — pinned so a change is noticed", () => {
   assert.deepEqual(gateRules(row("9a3529d5-79c8-43d5-b6a1-cf60fbb52285")), ["one-task"]);
 });
 t("#7 and #13 are UI defects: tracked here, no automated check exists yet", () => {
