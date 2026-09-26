@@ -47,6 +47,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { TOPICS, type MapTopic } from "../lib/map/topics";
 import { MATH_BANKABLE, HEBREW_BANKABLE, seedPool } from "../lib/exercises/seed-pool";
+import { formatFit } from "../lib/exercises/format-fit";
 import { generateExercise } from "../lib/exercises/generate";
 import { verifyExercise, specFingerprint, isBankableSubtype } from "../lib/exercises/bank-guard";
 import type { Exercise, ExerciseSubtype } from "../lib/exercises/types";
@@ -290,7 +291,15 @@ async function main() {
   });
 
   if (supabase) {
-    const rows = allNew.map((ex) => ({
+    // Admission: the allowed-format table's structural check, as at every
+    // other door into the bank (saveExercise, insert-seeded-bank.ts).
+    // generateExercise already enforces it; this is the insert's own guard.
+    const admitted = allNew.filter((ex) => {
+      const fit = formatFit(ex, ex.topicId);
+      if (!fit.ok) console.warn(`[seed] refused at insert — ${fit.reason}: ${ex.question.slice(0, 60)}`);
+      return fit.ok;
+    });
+    const rows = admitted.map((ex) => ({
       subject: ex.subject,
       grade: ex.grade,
       type: ex.type,
