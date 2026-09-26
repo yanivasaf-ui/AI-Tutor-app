@@ -20,7 +20,9 @@ import { TOPICS, getTopics, allowedOperations, gradeOperations, type Operation }
 import { curriculumSeed } from "../lib/rag/curriculum-seed";
 import { resolveFreePracticeIntent } from "../lib/voice/freePracticeIntent";
 import { buildJourney } from "../lib/practice/journey";
-import { generateExercise, subtypeFitsOperations } from "../lib/exercises/generate";
+import { generateExercise, formatPool } from "../lib/exercises/generate";
+import { topicRule, allowedFormats } from "../lib/map/topic-formats";
+import { seedPool } from "../lib/exercises/seed-pool";
 import { operationScope, operationsUsed, OperationScopeError } from "../lib/exercises/operation-scope";
 import { findReusableExercise } from "../lib/exercises/store";
 import { getAnthropicClient } from "../lib/llm/anthropic";
@@ -53,18 +55,13 @@ const MATH = TOPICS.filter((x) => x.subject === "math");
 
 // ---------------------------------------------------------------- the declaration
 console.log("the declaration (lib/map/topics.ts)");
-t("every math topic declares its operations; no Hebrew topic does", () => {
-  for (const x of TOPICS) {
-    if (x.subject === "math") assert.ok(x.operations && x.operations.length > 0, x.id);
-    else assert.equal(x.operations, undefined, x.id);
-  }
+t("operations come from the allowed-format table (lib/map/topic-formats.ts), the one source of truth", () => {
+  for (const x of MATH) assert.deepEqual(allowedOperations(x.id, x.grade), [...topicRule(x.id).operations], x.id);
 });
-t("derived from the Ministry names: grade א add/sub only; ב all four; ג all four except 'חיבור, חיסור, אומדן'", () => {
-  for (const x of MATH) {
-    const want: Operation[] = x.grade === "א" || x.id === "math-g-arithmetic" ? ["add", "sub"] : ["add", "sub", "mul", "div"];
-    assert.deepEqual([...x.operations!], want, x.id);
-  }
-  assert.match(MATH.find((x) => x.id === "math-a-addition-subtraction")!.topic, /\(חיבור וחיסור\)/);
+t("grade-level operations: grade א add/sub; grades ב and ג all four (from their operations topics)", () => {
+  assert.deepEqual(gradeOperations("א"), ["add", "sub"]);
+  assert.deepEqual(gradeOperations("ב"), ["add", "sub", "mul", "div"]);
+  assert.deepEqual(MATH.find((x) => x.id === "math-a-addition-subtraction")!.topic.includes("(חיבור וחיסור)"), true);
   assert.match(MATH.find((x) => x.id === "math-b-arithmetic")!.topic, /כפל וחילוק/);
   assert.match(MATH.find((x) => x.id === "math-g-arithmetic")!.topic, /חיבור, חיסור, אומדן/);
 });
@@ -74,6 +71,7 @@ t("gradeOperations is the union over the grade; a topic-less or unknown id falls
   assert.deepEqual(allowedOperations(undefined, "א"), ["add", "sub"]);
   assert.deepEqual(allowedOperations("no-such", "ב"), ["add", "sub", "mul", "div"]);
   assert.deepEqual(allowedOperations("math-g-arithmetic", "ג"), ["add", "sub"]);
+  assert.deepEqual(allowedOperations("math-b-numbers-0-1000", "ב"), [], "a numbers topic teaches no operation");
   // a grade-mismatched id is not trusted for its own ops
   assert.deepEqual(allowedOperations("math-g-multiplication-division", "א"), ["add", "sub"]);
 });
@@ -114,10 +112,10 @@ t("the journey map for each grade is exactly that grade's declared math topics, 
 
 // ---------------------------------------------------------------- generator
 console.log("\nthe generator: shape and prompt follow the declaration");
-t("visual_grouping (division) only fits where division is allowed", () => {
-  assert.equal(subtypeFitsOperations("visual_grouping", ["add", "sub"]), false);
-  assert.equal(subtypeFitsOperations("visual_grouping", ["add", "sub", "mul", "div"]), true);
-  assert.equal(subtypeFitsOperations("fill_in_blank", ["add", "sub"]), true);
+t("the generator's format pool for a topic is exactly the topic's allowed formats (grouping only where division is taught)", () => {
+  for (const x of TOPICS) assert.deepEqual(formatPool(x.subject, x.grade, x.id), [...allowedFormats(x.id)], x.id);
+  assert.ok(!formatPool("math", "א").includes("visual_grouping"), "topic-less grade א: no grouping");
+  assert.ok(formatPool("math", "ב").includes("visual_grouping"), "topic-less grade ב: grouping exists");
 });
 type Call = { messages: { content: string }[] };
 function fakeModel(replies: object[]) {
@@ -145,7 +143,7 @@ await at("across 120 grade-א requests (every topic), the division shape is neve
   for (const c of calls) {
     const p = c.messages[0].content;
     assert.ok(!p.includes(GROUPING_GUIDANCE_MARK), "grade א was asked for a grouping (division) exercise");
-    assert.ok(p.includes("פעולות החשבון שנלמדות כאן: חיבור, חיסור."));
+    assert.ok(!/כפל|חילוק/.test(p.split("פעולות החשבון שנלמדות כאן:")[1]?.split("\n")[0] ?? ""), "a grade-א prompt listed × or ÷ as taught");
     assert.ok(!/חיבור\/חיסור\/כפל\/חילוק/.test(p), "the all-four operation list leaked into a grade-א prompt");
   }
 });
@@ -184,7 +182,8 @@ await at("admission: a grade-א division draft is re-requested, and the retry na
   const out = await generateExercise({ subject: "math", grade: "א", profile: null, topicId: "math-a-geometry", level: 2, forceSubtype: "fill_in_blank" });
   assert.equal(out.question, shapesDraftA.question);
   assert.equal(calls.length, 2);
-  assert.ok(calls[1].messages[0].content.includes("מותר להשתמש רק ב: חיבור, חיסור"));
+  // shapes allow addition only (the counting container, owner G3)
+  assert.ok(calls[1].messages[0].content.includes("מותר להשתמש רק ב: חיבור."));
 });
 await at("admission: if every draft is out of scope it throws OperationScopeError", async () => {
   fakeModel([divisionDraftA]);
@@ -253,8 +252,9 @@ await at("the same kind of row under grade ב is served (division exists there)"
 console.log("\nconsumers that can't be run here read the declaration");
 {
   const seed = readFileSync(new URL("../scripts/seed-exercise-bank.ts", import.meta.url), "utf8");
-  t("the bank seed script filters its forced subtypes by the topic's operations", () => {
-    assert.match(seed, /MATH_BANKABLE\.filter\(\(s\) => subtypeFitsOperations\(s, allowedOperations\(topic\.id, topic\.grade\)\)\)/);
+  t("the bank seed script takes its per-topic pool from seedPool (the allowed-format table)", () => {
+    assert.match(seed, /const pool = seedPool\(topic\);/);
+    for (const x of TOPICS) for (const f of seedPool(x)) assert.ok(allowedFormats(x.id).includes(f), `${x.id}: ${f}`);
   });
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
   t("the route treats an out-of-scope exhaustion like a rubric one (vetted template or fail — never the unchecked bank)", () => {

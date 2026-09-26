@@ -489,8 +489,9 @@ t("QA: every finding is rejected by at least one of the three mechanisms (none c
 t("look-alikes that must still pass (real bank rows): the same clips drawn as clips; a plant measured week by week; a chart's data given as numbers; a placement under NUMBERS", () => {
   const ok = (e: Exercise, topic: string) => topicFit(e, topic).ok && operationScope(e, topic).ok && checkQuestionQuality(e).ok;
   const base = { subject: "math", topic: "t", difficulty: 2, grade: "א" } as const;
-  // (grade ב: grouping is division, which grade א does not teach)
-  assert.ok(ok({ ...base, grade: "ב", id: "878f438d", type: "grouping", subtype: "visual_grouping", question: "דני מודד את אורך השולחן שלו באמצעות 12 אטבים 📎. הוא רוצה לחלק את האטבים ל-3 קופסאות שוות. כמה אטבים יהיו בכל קופסה?", correctAnswer: "4", grouping: { items: Array(12).fill("📎"), groupCount: 3 } } as Exercise, "math-b-length"));
+  // (grade-ב arithmetic: grouping is division, which only the operations
+  // topics that teach it allow — lib/map/topic-formats.ts)
+  assert.ok(ok({ ...base, grade: "ב", id: "878f438d", type: "grouping", subtype: "visual_grouping", question: "דני מודד את אורך השולחן שלו באמצעות 12 אטבים 📎. הוא רוצה לחלק את האטבים ל-3 קופסאות שוות. כמה אטבים יהיו בכל קופסה?", correctAnswer: "4", grouping: { items: Array(12).fill("📎"), groupCount: 3 } } as Exercise, "math-b-arithmetic"));
   assert.ok(ok({ ...base, id: "70163fb9", type: "tile_order", subtype: "pattern_completion", question: "יעל מודדת את גובה הצמח שלה בכל שבוע. בשבוע הראשון: 10 סנטימטר, בשבוע השני: 12 סנטימטר, בשבוע השלישי: 14 סנטימטר. כמה סנטימטר יהיה הצמח בשבוע הרביעי?", correctAnswer: "16", tiles: { items: ["16", "15", "18", "17"], slotCount: 1, joinWith: " " } } as Exercise, "math-a-length"));
   assert.ok(ok({ ...base, id: "df84a4cb", type: "tile_order", subtype: "equation_balance", question: "בדיאגרמת העמודות נספרו 12 ילדים שנולדו בחודש מרץ ו-8 ילדים שנולדו בחודש אפריל. כמה ילדים נספרו בסך הכל בשני החודשים? 12 + 8 = ___", correctAnswer: "20", tiles: { items: ["18", "20", "22", "19"], slotCount: 1, joinWith: " " } } as Exercise, "math-a-data"));
   assert.ok(ok({ ...base, id: "79f7bfb4", type: "number_line", subtype: "number_line_placement", question: "רותם קפצה על ישר המספרים והגיעה למספר 85. היכן נמצא המספר 85 על הציר?", correctAnswer: "85" } as Exercise, "math-a-numbers-0-100"));

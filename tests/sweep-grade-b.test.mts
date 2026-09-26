@@ -50,11 +50,29 @@ const topicBoundaryCatches = (e: Exercise) => !topicFit(e, e.topicId).ok || !ope
 const gateRules = (e: Exercise) => checkQuestionQuality(e).violations.map((v) => v.rule);
 
 type Status = "open" | "caught" | "incidental" | "ui";
+
+/**
+ * P1, per row: is it caught by the topic-boundary mechanisms right now?
+ * Tracked per row because one finding can hold a caught row and an open one.
+ * 2026-09-26 (allowed-format table, operations read from it): the rows that
+ * use an operation their topic does not teach are caught by operation scope.
+ */
+const P1_ROW_CAUGHT: Record<string, boolean> = {
+  "830cac2a-b22c-44fb-b5f9-b21e6ba87c3c": true, // #1 grouping (÷) under numbers: numbers teach no operation
+  "f6f6f191-135b-4c7e-bf86-4402414d8205": false, // #2 +3 sequence under shapes: no operation symbol to catch
+  "9a3529d5-79c8-43d5-b6a1-cf60fbb52285": true, // #2 pick-operation offering × and ÷ under shapes (addition only)
+  "25ceceb3-c77f-46f8-8919-b8ddeec49166": false, // #3 +5 sequence under length
+  "397cdc85-35e0-42a4-9368-a44974f9cd33": false, // #3 +5 sequence under length
+  "311e3b11-70d8-4e6c-9302-d8d32448bb72": false, // #4 6×4 cubes under volume: ALLOWED (owner ruling), not a defect
+  "4f79a2db-f8f2-44e8-842a-1a1f7327448d": true, // #4 grouping (÷) under volume: volume has no division
+  "1fe552ac-2dc9-4d2a-ae66-6cf8654b5208": false, // #5 root drill under reading
+  "6e55fa84-e891-4c45-8ee6-10e9dc651e15": false, // #5 spelling drill under reading
+};
 const STATUS: Record<number, { status: Status; note: string }> = {
-  1: { status: "open", note: "math-b-numbers is an arithmetic topic in topic-fit (anything passes) and grade ב allows division" },
-  2: { status: "open", note: "the sequence uses triangle vocabulary; the vocabulary check cannot tell a costume from the topic" },
+  1: { status: "caught", note: "numbers topics teach no operation (allowed-format table), so the ÷ of a grouping is out of scope" },
+  2: { status: "open", note: "the pick-operation row is caught (it offers × and ÷ under a topic that allows addition only); the +3 sequence is still open" },
   3: { status: "open", note: "length vocabulary (ס״מ, מדד) in a +5 sequence" },
-  4: { status: "open", note: "cube vocabulary; NOTE the product's own גופים curriculum text asks for layers × cubes, so 311e3b11 may be on-curriculum" },
+  4: { status: "caught", note: "the grouping row (÷) is caught — volume has no division; the 6×4 row is ALLOWED by owner ruling (layers × cubes), not a defect" },
   5: { status: "open", note: "Hebrew topics are not checked at all" },
   6: { status: "caught", note: "fixed on this branch by 6f61650 (instruction names the drawn object); NOT deployed — production still says כוכב" },
   7: { status: "ui", note: "transient server error surfaced to the child; no automated check" },
@@ -87,12 +105,11 @@ for (const f of sweep.findings.filter((x) => x.severity === "P1")) {
   t(`#${f.n} [${s.status}] ${f.title} — ${s.note}`, () => {
     for (const id of f.rows) {
       const caught = topicBoundaryCatches(row(id));
-      if (s.status === "open") {
-        assert.equal(caught, false, `${id} is now caught by the topic-boundary mechanisms: promote finding #${f.n} to "caught"`);
-      } else {
-        assert.equal(caught, true, `${id} is served again`);
-      }
+      assert.equal(caught, P1_ROW_CAUGHT[id], caught ? `${id} is now caught: update P1_ROW_CAUGHT and the finding's status` : `${id} is served again`);
     }
+    // A finding is "caught" only when every row that is a defect is caught.
+    const defectRows = f.rows.filter((id) => id !== "311e3b11-70d8-4e6c-9302-d8d32448bb72");
+    assert.equal(s.status === "caught", defectRows.every((id) => P1_ROW_CAUGHT[id]), `finding #${f.n} status disagrees with its rows`);
   });
 }
 

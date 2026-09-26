@@ -221,7 +221,7 @@ await at("the generation prompt carries the block for the requested topic", asyn
   assert.ok(prompt.includes(bare(TOPIC_SLOTS["math-b-arithmetic"].exemplars.exemplars![0].text)));
 });
 
-await at("division exemplars go only to the division-shaped subtype, not to every topic that allows division", async () => {
+await at("division exemplars go only to the division-shaped subtype: not to a computation under length, yes to grouping under arithmetic", async () => {
   const calls: Call[] = [];
   const messages = getAnthropicClient().messages as unknown as { create: (req: Call) => Promise<unknown> };
   messages.create = async (req: Call) => {
@@ -233,9 +233,11 @@ await at("division exemplars go only to the division-shaped subtype, not to ever
   const divText = CROSS_CUTTING_SLOTS.division["ב"].exemplars.exemplars![0].text.replace(/[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]/g, "");
   await generateExercise({ subject: "math", grade: "ב", profile: null, topicId: "math-b-length", level: 2, forceSubtype: "fill_in_blank" }).catch(() => {});
   const plain = calls.length;
-  await generateExercise({ subject: "math", grade: "ב", profile: null, topicId: "math-b-length", level: 2, forceSubtype: "visual_grouping" }).catch(() => {});
+  // Grouping is allowed only where division is taught (the allowed-format table).
+  await generateExercise({ subject: "math", grade: "ב", profile: null, topicId: "math-b-arithmetic", level: 2, forceSubtype: "visual_grouping" }).catch(() => {});
   console.warn = quiet;
-  assert.ok(calls.slice(0, plain).every((c) => !c.messages[0].content.includes(divText)), "a length fill_in_blank was shown division exemplars");
+  assert.ok(plain > 0 && calls.length > plain);
+  assert.ok(calls.slice(0, plain).every((c) => !c.messages[0].content.includes(divText)), "a length computation was shown division exemplars");
   assert.ok(calls[plain].messages[0].content.includes(divText), "a grouping draft was not shown division exemplars");
 });
 

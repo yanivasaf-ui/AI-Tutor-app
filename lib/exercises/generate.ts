@@ -1,6 +1,7 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { search } from "@/lib/rag/store";
 import { allowedOperations, getTopicById, type Operation } from "@/lib/map/topics";
+import { allowedFormats, hasCondition, isServedTopic } from "@/lib/map/topic-formats";
 import {
   balancesEquation,
   computeAnswer,
@@ -125,26 +126,35 @@ const HEBREW_SUBTYPES: ExerciseSubtype[] = [
 const SINGLE_SLOT_TILE_SUBTYPES: ExerciseSubtype[] = ["pattern_completion", "equation_balance", "shape_match"];
 
 /**
- * Whether a math subtype can be built from these operations at all.
- * visual_grouping IS division (equal sharing into groups), so it only
- * exists where division does — the topic's `operations` in
- * lib/map/topics.ts, the same declaration the picker reads. Exported for
- * the bank seed script, which forces subtypes and must skip these too.
+ * The formats generation may choose from.
+ *
+ * With a topic: exactly the topic's allowed formats (lib/map/topic-formats.ts).
+ * This is the root fix for BUG B — the format used to be picked at random,
+ * blind to the topic, which is how "צורות" got arithmetic sequences and
+ * "לקרוא סיפור קצר" got root drills.
+ *
+ * With no topic (free practice with no topic chosen): every format of the
+ * subject, minus grouping where the grade has no division, and minus
+ * root_pattern_mc in grade א (flagged in the locked inventory as ב'-ג').
+ * Exported for tests.
  */
-export function subtypeFitsOperations(subtype: ExerciseSubtype, ops: readonly Operation[]): boolean {
-  if (subtype === "visual_grouping") return ops.includes("div");
-  return true;
+export function formatPool(subject: "math" | "hebrew", grade: Grade, topicId?: string): ExerciseSubtype[] {
+  if (topicId) return [...allowedFormats(topicId)];
+  if (subject === "hebrew") return HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
+  const ops = allowedOperations(undefined, grade);
+  return MATH_SUBTYPES.filter((s) => s !== "visual_grouping" || ops.includes("div"));
 }
 
-/** root_pattern_mc is flagged in the locked inventory as likely ב'-ג' only,
- *  not grade א' — excluded there rather than generated and hoped to be fine.
- *  Math subtypes are limited to what the topic's operations allow (was: any
- *  subtype for any topic, which is how division reached grade א). */
-function pickSubtype(subject: "math" | "hebrew", grade: Grade, ops: readonly Operation[]): ExerciseSubtype {
-  const pool =
-    subject === "math"
-      ? MATH_SUBTYPES.filter((s) => subtypeFitsOperations(s, ops))
-      : HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
+/** Thrown when a caller forces a format the topic does not allow (a
+ *  programming error in the caller, e.g. the seed script): not retried. */
+export class FormatNotAllowedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "FormatNotAllowedError";
+  }
+}
+
+function pickSubtype(pool: readonly ExerciseSubtype[]): ExerciseSubtype {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -210,7 +220,7 @@ export async function generateExercise(opts: Parameters<typeof generateExerciseO
     try {
       return await generateExerciseOnce(request);
     } catch (err) {
-      if (err instanceof NoCurriculumContentError) throw err;
+      if (err instanceof NoCurriculumContentError || err instanceof FormatNotAllowedError) throw err;
       if (err instanceof TopicFitError) {
         request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
       }
@@ -280,6 +290,12 @@ async function generateExerciseOnce(opts: {
     return t;
   }
   const resolvedTopic = resolveTopic();
+  // A topic the format table leaves UNSERVED (no format fits its
+  // curriculum) has nothing to build — the same "no content" answer as a
+  // topic with no curriculum chunk.
+  if (resolvedTopic && !isServedTopic(resolvedTopic.id)) {
+    throw new NoCurriculumContentError(`topic ${resolvedTopic.id} is not served: no exercise format fits its curriculum.`);
+  }
 
   // Retrieval query: a resolved topic takes priority (the kid tapped this
   // exact node) over the profile-based query, which itself beats the
@@ -323,7 +339,14 @@ async function generateExerciseOnce(opts: {
   // What this topic (or, topic-less, this grade) teaches — the one
   // declaration in lib/map/topics.ts the picker reads too.
   const ops = allowedOperations(resolvedTopic?.id, grade);
-  const subtype = opts.forceSubtype ?? pickSubtype(subject, grade, ops);
+  const pool = formatPool(subject, grade, resolvedTopic?.id);
+  if (opts.forceSubtype && resolvedTopic && !pool.includes(opts.forceSubtype)) {
+    throw new FormatNotAllowedError(`${opts.forceSubtype} is not an allowed format for ${resolvedTopic.id} (allowed: ${pool.join(", ") || "none"})`);
+  }
+  const subtype = opts.forceSubtype ?? pickSubtype(pool);
+  // A number line in an operations topic must come from an operation
+  // (owner G5): "רועי קפץ 3 ואז עוד 4 — איפה הוא?" — never a bare placement.
+  const numberLineNeedsOp = subtype === "number_line_placement" && !!resolvedTopic && hasCondition(resolvedTopic.id, "number-line-needs-operation");
   // The authoring rubric for this topic, with what the Ministry corpus filled
   // in (lib/authoring/rubric.ts): the rules, the phrasing mix, real questions.
   // Division/sequence exemplars only for the subtypes that ARE division or
@@ -349,7 +372,8 @@ ${
     ? `קריטי: התרגיל חייב לעסוק בפועל בתוכן הנושא "${resolvedTopic.topic}" — לא רק להיות תרגיל מספרי כללי שמזדמן להיות מתויג תחת הנושא הזה. לדוגמה: בנושא צורות גאומטריות התרחיש חייב לעסוק בצורות עצמן (סוגי צורות, מספר צלעות/זוויות, השוואה ביניהן) ולא בספירה כללית; בנושא כפל וחילוק התרגיל חייב לכלול בפועל פעולת כפל או חילוק (למשל קפיצות של מספר קבוע, חלוקה לקבוצות, כפולות), לא רק מיקום מספר כלשהו על ציר. אם התבנית שנבחרה (למטה) נוטה מטבעה להיות כללית (כמו מיקום על ציר או השלמת רצף), התאימו את התוכן הספציפי — הערך על הציר, ההפרש ברצף, התרחיש של בעיית המילה — כך שינבע ממש מהנושא "${resolvedTopic.topic}", לא ממספר שרירותי.`
     : ""
 }
-${subject === "math" ? `פעולות החשבון שנלמדות כאן: ${operationNames(ops)}. אסור להשתמש בפעולה אחרת — גם לא בתוך הסיפור.` : ""}
+${subject === "math" ? (ops.length ? `פעולות החשבון שנלמדות כאן: ${operationNames(ops)}. אסור להשתמש בפעולה אחרת — גם לא בתוך הסיפור.` : "בנושא הזה לא לומדים פעולות חשבון: אל תבקש/י חיבור, חיסור, כפל או חילוק — התרגיל עוסק במספרים עצמם.") : ""}
+${numberLineNeedsOp ? "המיקום על הציר חייב לנבוע מפעולת חשבון בתוך השאלה (למשל: \"רועי עמד על 3 וקפץ עוד 4. איפה הוא עכשיו?\") — לא למקם מספר שכבר כתוב בשאלה." : ""}
 ${subtypeGuidance(subtype, grade, ops)}
 
 החזר/י אך ורק אובייקט JSON תקין, ללא טקסט נוסף, בפורמט הזה:
