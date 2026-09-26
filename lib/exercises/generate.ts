@@ -16,6 +16,7 @@ import { checkQuestionQuality, qualityRetryHint, QualityGateError } from "@/lib/
 import { reviewMode, reviewQuestion } from "@/lib/authoring/quality-review";
 import { rubricPromptBlock } from "@/lib/authoring/rubric";
 import { operationNames, operationScope, operationScopeRetryHint, OperationScopeError } from "./operation-scope";
+import { formatFit, FormatFitError, FORMAT_FIT_RETRY_HINT } from "./format-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
@@ -223,6 +224,9 @@ export async function generateExercise(opts: Parameters<typeof generateExerciseO
       if (err instanceof NoCurriculumContentError || err instanceof FormatNotAllowedError) throw err;
       if (err instanceof TopicFitError) {
         request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
+      if (err instanceof FormatFitError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, FORMAT_FIT_RETRY_HINT].filter(Boolean).join("\n") };
       }
       if (err instanceof OperationScopeError) {
         request = { ...opts, varietyHint: [opts.varietyHint, operationScopeRetryHint(err)].filter(Boolean).join("\n") };
@@ -551,6 +555,11 @@ ${subtypeGuidance(subtype, grade, ops)}
   // operation-scope.ts). A draft using another is re-requested.
   const scope = operationScope(exercise, resolvedTopic?.id, grade);
   if (!scope.ok) throw new OperationScopeError(scope, exercise.question);
+
+  // The allowed-format table, structurally: the format belongs to the topic,
+  // and a number line in an operations topic comes from an operation.
+  const format = formatFit(exercise, resolvedTopic?.id);
+  if (!format.ok) throw new FormatFitError(format.reason!, exercise.question);
 
   // The authoring rubric (lib/authoring/rubric.ts), after every gate above:
   // is this a good QUESTION — a series framed as one, division framed as

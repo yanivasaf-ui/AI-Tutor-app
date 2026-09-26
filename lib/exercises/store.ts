@@ -5,6 +5,7 @@ import { parseComputation } from "./arithmetic";
 import { topicFit } from "./topic-fit";
 import { checkQuestionQuality } from "@/lib/authoring/quality-gate";
 import { operationScope } from "./operation-scope";
+import { formatFit } from "./format-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -191,6 +192,10 @@ export async function findReusableExercise(
     // Operations the topic doesn't teach (the grade-א division rows) are
     // never served either, escape hatch or not — see operation-scope.ts.
     if (!operationScope(ex, fitTopic, grade).ok) return false;
+    // Nor a format the topic's allowed-format table doesn't list (a +3
+    // sequence under shapes, a root drill under reading) — the 2026-09-14
+    // seed rows that the vocabulary check let through. Never lifted.
+    if (!formatFit(ex, fitTopic).ok) return false;
     if (opts?.ignoreTopicFit) return true;
     return topicFit(ex, fitTopic).ok;
   });
@@ -205,6 +210,9 @@ export async function saveExercise(
   supabase: Client,
   exercise: Omit<Exercise, "id">
 ): Promise<Exercise> {
+  // Admission: nothing enters the bank in a format its topic doesn't allow.
+  const fit = formatFit({ id: "unsaved", ...exercise } as Exercise, exercise.topicId);
+  if (!fit.ok) throw new Error(`refusing to bank an exercise whose format does not fit its topic: ${fit.reason}`);
   const { data, error } = await supabase
     .from("exercises")
     .insert({

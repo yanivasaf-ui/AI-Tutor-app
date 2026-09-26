@@ -1,6 +1,6 @@
 import type { Grade } from "@/lib/exercises/types";
 import type { Subject } from "@/lib/memory/types";
-import { topicRule } from "./topic-formats";
+import { isServedTopic, topicRule } from "./topic-formats";
 
 /**
  * Light topic index for the progress map (UI Revamp Brief Section 4.2).
@@ -101,8 +101,13 @@ export const TOPICS: MapTopic[] = [
   { id: "hebrew-g-metalinguistic", subject: "hebrew", grade: "ג", topic: "פיתוח ידע מטה-לשוני", displayNameKid: "לגלות איך מילים עובדות" },
 ];
 
+/** The topics a kid can be served — every topic the allowed-format table
+ *  (lib/map/topic-formats.ts) does not mark UNSERVED. Map, picker and the
+ *  parent's suggestions all list only these. */
+export const SERVED_TOPICS: MapTopic[] = TOPICS.filter((t) => isServedTopic(t.id));
+
 export function getTopics(subject: Subject, grade: Grade): MapTopic[] {
-  return TOPICS.filter((t) => t.subject === subject && t.grade === grade);
+  return SERVED_TOPICS.filter((t) => t.subject === subject && t.grade === grade);
 }
 
 /**

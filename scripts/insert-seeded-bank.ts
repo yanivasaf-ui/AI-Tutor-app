@@ -14,6 +14,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "../lib/supabase/database.types";
 import type { Exercise } from "../lib/exercises/types";
+import { formatFit } from "../lib/exercises/format-fit";
 
 for (const line of readFileSync(new URL("../.env.local", import.meta.url), "utf8").split("\n")) {
   const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)$/);
@@ -42,8 +43,15 @@ async function main() {
   if (authError || !auth.user) throw new Error(`Sign-in failed: ${authError?.message}`);
   console.log(`[insert] signed in as ${auth.user.email} (${auth.user.id})`);
 
-  const exercises: Exercise[] = JSON.parse(readFileSync(IN_PATH, "utf8"));
-  console.log(`[insert] ${exercises.length} exercises to insert from ${IN_PATH}`);
+  const all: Exercise[] = JSON.parse(readFileSync(IN_PATH, "utf8"));
+  // Admission: only rows whose format fits their topic's allowed-format
+  // table (lib/exercises/format-fit.ts) enter the bank.
+  const exercises = all.filter((ex) => {
+    const fit = formatFit(ex, ex.topicId);
+    if (!fit.ok) console.warn(`[insert] refused: ${fit.reason} — "${ex.question.slice(0, 60)}"`);
+    return fit.ok;
+  });
+  console.log(`[insert] ${exercises.length} of ${all.length} exercises to insert from ${IN_PATH} (${all.length - exercises.length} refused by the format check)`);
 
   const rows = exercises.map((ex) => ({
     subject: ex.subject,

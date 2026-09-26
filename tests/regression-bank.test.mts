@@ -43,6 +43,7 @@ import { TOPIC_SLOTS, CROSS_CUTTING_SLOTS } from "../lib/authoring/rubric";
 import { VETTED_TEMPLATES } from "../lib/authoring/vetted-templates";
 import { operationScope } from "../lib/exercises/operation-scope";
 import { topicFit } from "../lib/exercises/topic-fit";
+import { formatFit } from "../lib/exercises/format-fit";
 import { resolveFreePracticeIntent } from "../lib/voice/freePracticeIntent";
 import { verdict, fixtureExercise, type BankFixture } from "../scripts/build-regression-bank";
 import type { Exercise, Grade } from "../lib/exercises/types";
@@ -449,8 +450,8 @@ interface QaFinding {
   choices?: string[]; computation?: Exercise["computation"]; grouping?: Exercise["grouping"]; tiles?: Exercise["tiles"];
 }
 const QA_FINDINGS: QaFinding[] = JSON.parse(readFileSync(new URL("./fixtures/qa-findings-2026-09-25.json", import.meta.url), "utf8"));
-const QA_EXPECT: Record<string, { by: "topic-fit" | "operation-scope" | "gate"; detail: string; why: string }> = {
-  a: { by: "topic-fit", detail: "number_line_placement under לחבר ולחסר", why: "placing a stated number on a line involves no operation" },
+const QA_EXPECT: Record<string, { by: "format-fit" | "operation-scope" | "gate"; detail: string; why: string }> = {
+  a: { by: "format-fit", detail: "number_line_placement under לחבר ולחסר", why: "placing a stated number on a line involves no operation (owner G5, now a rule of the allowed-format table)" },
   b: { by: "operation-scope", detail: "mul", why: "× in grade-א geometry" },
   c: { by: "operation-scope", detail: "mul", why: "'4 × 3' offered as a choice in grade-א geometry" },
   d: { by: "operation-scope", detail: "div", why: "division in grade-א measurement (the brick-for-clip mismatch is also caught by the gate, below)" },
@@ -463,9 +464,9 @@ for (const f of QA_FINDINGS) {
   const want = QA_EXPECT[f.ref];
   t(`QA (${f.ref}) ${f.id.slice(0, 8)} ${f.topicId} is rejected by ${want.by}: ${want.why}`, () => {
     const e = qaExercise(f);
-    if (want.by === "topic-fit") {
-      const fit = topicFit(e, f.topicId);
-      assert.equal(fit.ok, false, "topic fit passed it");
+    if (want.by === "format-fit") {
+      const fit = formatFit(e, f.topicId);
+      assert.equal(fit.ok, false, "the format check passed it");
     } else if (want.by === "operation-scope") {
       const scope = operationScope(e, f.topicId);
       assert.equal(scope.ok, false, "operation scope passed it");
@@ -482,7 +483,7 @@ t("QA (d) also: the story names clips (אטבים) but the drawn object is a bri
 t("QA: every finding is rejected by at least one of the three mechanisms (none can regress silently)", () => {
   for (const f of QA_FINDINGS) {
     const e = qaExercise(f);
-    const caught = !topicFit(e, f.topicId).ok || !operationScope(e, f.topicId).ok || !checkQuestionQuality(e).ok;
+    const caught = !topicFit(e, f.topicId).ok || !formatFit(e, f.topicId).ok || !operationScope(e, f.topicId).ok || !checkQuestionQuality(e).ok;
     assert.ok(caught, `${f.ref} ${f.id} is served again`);
   }
 });

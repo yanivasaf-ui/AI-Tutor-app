@@ -21,7 +21,7 @@ import { curriculumSeed } from "../lib/rag/curriculum-seed";
 import { resolveFreePracticeIntent } from "../lib/voice/freePracticeIntent";
 import { buildJourney } from "../lib/practice/journey";
 import { generateExercise, formatPool } from "../lib/exercises/generate";
-import { topicRule, allowedFormats } from "../lib/map/topic-formats";
+import { topicRule, allowedFormats, isServedTopic } from "../lib/map/topic-formats";
 import { seedPool } from "../lib/exercises/seed-pool";
 import { operationScope, operationsUsed, OperationScopeError } from "../lib/exercises/operation-scope";
 import { findReusableExercise } from "../lib/exercises/store";
@@ -103,11 +103,12 @@ for (const g of GRADES) {
 
 // ---------------------------------------------------------------- planner
 console.log("\nthe session planner reads the same list");
-t("the journey map for each grade is exactly that grade's declared math topics, in order", () => {
+t("the journey map for each grade is exactly that grade's SERVED math topics, in order (unserved ones hidden)", () => {
   for (const g of GRADES) {
     const ids = buildJourney(getTopics("math", g)).flatMap((s) => (s.kind === "topic" ? [s.topic.id] : []));
-    assert.deepEqual(ids, MATH.filter((x) => x.grade === g).map((x) => x.id));
+    assert.deepEqual(ids, MATH.filter((x) => x.grade === g && isServedTopic(x.id)).map((x) => x.id));
   }
+  assert.ok(!buildJourney(getTopics("math", "ג")).some((s) => s.kind === "topic" && s.topic.id === "math-g-volume"));
 });
 
 // ---------------------------------------------------------------- generator
