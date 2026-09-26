@@ -25,6 +25,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # app/layout.tsx uses Next's generated global `LayoutProps`, which
+      # exists only under .next/types. A clean checkout has no .next, so
+      # generate the route types first or tsc fails with "Cannot find name
+      # 'LayoutProps'". (Reproduced locally with .next moved aside.)
+      - name: Generate Next types
+        run: npx next typegen
       - name: Typecheck
         run: npx tsc --noEmit
       - name: Corpus index and regression bank are current
