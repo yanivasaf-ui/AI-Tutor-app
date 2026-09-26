@@ -115,8 +115,9 @@ await at("the costumed sequence is never served; the on-format length row is", a
     assert.equal(got?.id, onFormat.id);
   }
 });
-await at("the topic-fit escape hatch does not lift it", async () => {
-  assert.equal(await findReusableExercise(client([row(costumed)]), "math", "ב", "kid", "math-b-length", 2, undefined, { ignoreTopicFit: true }), null);
+await at("no call can skip it: findReusableExercise takes no option to relax a check", async () => {
+  assert.equal(findReusableExercise.length, 7, "(supabase, subject, grade, kidId, topicId, difficulty, excludeIds) — no opts");
+  assert.equal(await findReusableExercise(client([row(costumed)]), "math", "ב", "kid", "math-b-length", 2, undefined), null);
 });
 await at("an unscoped request checks each row against its own topic's table", async () => {
   assert.equal(await findReusableExercise(client([row(costumed)]), "math", "ב", "kid", undefined, 2), null);

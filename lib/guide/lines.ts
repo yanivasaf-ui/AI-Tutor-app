@@ -282,6 +282,11 @@ export const noContent = (name: string): Line => ({
 
 export const somethingBroke = (name: string): Line => ({ name, text: "משהו השתבש. אפשר לנסות שוב?" });
 
+/** The server could not produce an exercise that passes every content check
+ *  this time (it will not serve an unchecked one instead). Not a fault the
+ *  child should hear as "something broke" — just "not ready, try again". */
+export const couldNotBuild = (name: string): Line => ({ name, text: "לא הצלחתי להכין תרגיל טוב הפעם. ננסה שוב?" });
+
 /** The exercise question, as the character's line. */
 export const question = (name: string, text: string): Line => ({ name, text });
 

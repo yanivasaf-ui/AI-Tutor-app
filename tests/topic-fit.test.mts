@@ -331,16 +331,8 @@ await at("an unscoped request checks each row against its OWN tag", async () => 
   }
 });
 
-console.log("\nserving: the last-resort escape hatch");
-await at("ignoreTopicFit serves a row the check would drop — the route's fallback so a kid is never left with nothing", async () => {
-  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-time", 2, undefined, { ignoreTopicFit: true });
-  assert.equal(got?.id, leak.id);
-});
-await at("the escape hatch still honours excludeIds — it relaxes the topic check, nothing else", async () => {
-  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-time", 2, [leak.id], { ignoreTopicFit: true });
-  assert.equal(got, null);
-});
-await at("it is OFF by default: the same call without the flag drops the row", async () => {
+console.log("\nserving: there is no escape hatch (owner, 2026-09-26)");
+await at("a leaking row is dropped on every request — findReusableExercise has no option to skip the check", async () => {
   assert.equal(await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-time", 2), null);
 });
 
@@ -401,21 +393,17 @@ t("stripping niqqud keeps the maqaf: a hyphenated word is not fused into its nei
   assert.equal(topicFit(e, "math-g-geometry").ok, true);
 });
 
-console.log("\nthe route: a TopicFitError must not become a 500 while the bank still has something");
+console.log("\nthe route never serves an unchecked row (the old last resort is removed)");
 {
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
-  t("generate is wrapped, and only a TopicFitError is caught (every other failure still surfaces)", () => {
-    assert.match(route, /generated = await generateExercise\(/);
-    assert.match(route, /if \(!\(genErr instanceof TopicFitError\)\) throw genErr;/);
+  const store = readFileSync(new URL("../lib/exercises/store.ts", import.meta.url), "utf8");
+  t("no ignoreTopicFit anywhere: not in the store's signature, not in the route", () => {
+    assert.ok(!/ignoreTopicFit/.test(route));
+    assert.ok(!/ignoreTopicFit/.test(store.replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "")));
   });
-  t("the fallback re-queries the bank with the fit check off, and rethrows when the bank is empty too", () => {
-    assert.match(route, /ignoreTopicFit: true/);
-    assert.match(route, /if \(!fallback\) throw genErr;/);
-  });
-  t("the fallback exercise is served, not saved (nothing off-topic is ever written to the bank)", () => {
-    const block = route.slice(route.indexOf("} catch (genErr) {"), route.indexOf("const generateMs"));
-    assert.ok(!/saveExercise/.test(block), "the unchecked fallback row must never be written back");
-    assert.match(block, /source: "bank-hit-unfiltered"/);
+  t("no 'bank-hit-unfiltered' source: an exhausted TopicFitError goes through produceExercise (retry, template, try_again)", () => {
+    assert.ok(!/bank-hit-unfiltered/.test(route));
+    assert.match(route, /await produceExercise\(/);
   });
 }
 

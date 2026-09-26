@@ -215,10 +215,10 @@ await at("with one violating and one good row, only the good row is served", asy
 await at("only violating rows → null, so the caller generates a gated one", async () => {
   assert.equal(await findReusableExercise(client([row(badRow)]), "math", "ג", "kid", "math-g-multiplication-division", 2), null);
 });
-await at("the topic-fit escape hatch does NOT lift the rubric", async () => {
-  const got = await findReusableExercise(client([row(badRow)]), "math", "ג", "kid", "math-g-multiplication-division", 2, undefined, { ignoreTopicFit: true });
-  assert.equal(got, null);
+await at("no call can relax the rubric at serving (there is no escape hatch)", async () => {
+  assert.equal(await findReusableExercise(client([row(badRow)]), "math", "ג", "kid", "math-g-multiplication-division", 2, undefined), null);
 });
+
 
 // ---------------------------------------------------------------- admission
 console.log("\nadmission: generateExercise refuses a rubric-violating draft and asks again");
@@ -319,16 +319,12 @@ t("no topic, or a topic with no template → null", () => {
 });
 {
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
-  const block = route.slice(route.indexOf("} catch (genErr) {"), route.indexOf("const generateMs"));
-  t("the route catches QualityGateError BEFORE the topic-fit safety net, and serves only a vetted template", () => {
-    const q = block.indexOf("genErr instanceof QualityGateError");
-    const f = block.indexOf("genErr instanceof TopicFitError");
-    assert.ok(q > -1 && f > -1 && q < f);
-    const qBlock = block.slice(q, f);
-    assert.match(qBlock, /vettedTemplate\(topic\)/);
-    assert.match(qBlock, /if \(!template\) throw genErr;/);
-    assert.ok(!/ignoreTopicFit/.test(qBlock), "a rubric failure must never fall back to the unchecked bank");
-    assert.match(qBlock, /source: "vetted-template"/);
+  t("the route produces through produceExercise: a rubric exhaustion gets one live retry, then a vetted template, then try_again — never the unchecked bank", () => {
+    assert.match(route, /await produceExercise\(/);
+    assert.match(route, /\(\) => vettedTemplate\(topic\)/);
+    assert.match(route, /source: "vetted-template"/);
+    assert.match(route, /error: "try_again" \}, \{ status: 503 \}/);
+    assert.ok(!/ignoreTopicFit/.test(route));
   });
 }
 

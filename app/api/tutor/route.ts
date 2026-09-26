@@ -5,7 +5,8 @@ import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
-import { generateExercise, NoCurriculumContentError, TopicFitError } from "@/lib/exercises/generate";
+import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
+import { produceExercise } from "@/lib/exercises/produce";
 import {
   evaluateVerdict,
   generateFeedbackProse,
@@ -15,8 +16,7 @@ import {
 } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
 import { findReusableExercise, findOrSaveExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
-import { QualityGateError } from "@/lib/authoring/quality-gate";
-import { OperationScopeError } from "@/lib/exercises/operation-scope";
+
 import { vettedTemplate } from "@/lib/authoring/vetted-templates";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import {
@@ -468,55 +468,30 @@ async function handleGenerateExercise(
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
     const profileMs = Date.now() - tProfile;
     const tGenerate = Date.now();
-    let generated;
-    try {
-      generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
-    } catch (genErr) {
-      // The authoring rubric (lib/authoring/quality-gate.ts) or the topic's
-      // operation scope (lib/exercises/operation-scope.ts) rejected every
-      // draft. The fallback is a vetted template for this topic — never a
-      // draft that failed, and never the unchecked bank. No template for the
-      // topic: the error propagates as before.
-      if (genErr instanceof QualityGateError || genErr instanceof OperationScopeError) {
-        const template = vettedTemplate(topic);
-        if (!template) throw genErr;
-        const served = await findOrSaveExercise(supabase, template);
-        console.warn(
-          `[exercise-generate] source=vetted-template topic=${topic ?? "(none)"} difficulty=${level} — every draft failed the authoring rubric. ${genErr.message}`
-        );
-        return NextResponse.json({
-          exercise: served,
-          reused: true,
-          practice,
-          source: "vetted-template",
-          timings: { getKidMs, dbLookupMs: findMs, totalMs: Date.now() - t0 },
-        });
-      }
-      // BUG B safety net. The fit check (lib/exercises/topic-fit.ts) can empty
-      // the bank's candidate page for a topic AND reject every generated
-      // draft. Without this, that combination is a 500 and the child is left
-      // with "משהו השתבש" and no exercise — trading the off-topic exercise the
-      // check exists to prevent for no exercise at all, which is worse. So the
-      // last resort is the unfiltered bank: exactly what production served
-      // before the check existed. Nothing is saved, and the ordinary path is
-      // untouched — only a TopicFitError that survived every retry gets here.
-      if (!(genErr instanceof TopicFitError)) throw genErr;
-      const fallback = await findReusableExercise(
-        supabase, subject, grade, kid?.id ?? null, topic, level,
-        sanitizeExcludeIds(excludeIds), { ignoreTopicFit: true }
-      );
-      if (!fallback) throw genErr;
-      console.warn(
-        `[exercise-generate] source=bank-hit-unfiltered topic=${topic ?? "(none)"} difficulty=${level} — no fitting exercise could be generated; served an unchecked bank row rather than failing. ${genErr.message}`
-      );
+    // Generate; if the content checks refuse every draft: one more live
+    // attempt, then a vetted template, then an honest "try again". Never an
+    // unchecked bank row (lib/exercises/produce.ts).
+    const produced = await produceExercise(
+      () => generateExercise({ subject, grade, profile, topicId: topic, level }),
+      () => vettedTemplate(topic)
+    );
+    if (produced.kind === "template") {
+      const served = await findOrSaveExercise(supabase, produced.template);
+      console.warn(`[exercise-generate] source=vetted-template topic=${topic ?? "(none)"} difficulty=${level} — every draft, and one live retry, were rejected. ${produced.reason}`);
       return NextResponse.json({
-        exercise: fallback,
+        exercise: served,
         reused: true,
         practice,
-        source: "bank-hit-unfiltered",
+        source: "vetted-template",
         timings: { getKidMs, dbLookupMs: findMs, totalMs: Date.now() - t0 },
       });
     }
+    if (produced.kind === "try_again") {
+      console.warn(`[exercise-generate] source=try-again topic=${topic ?? "(none)"} difficulty=${level} — no checked exercise could be produced. ${produced.reason}`);
+      return NextResponse.json({ exercise: null, error: "try_again" }, { status: 503 });
+    }
+    if (produced.retried) console.warn(`[exercise-generate] topic=${topic ?? "(none)"} produced on the live retry.`);
+    const generated = produced.exercise;
     const generateMs = Date.now() - tGenerate;
     const tSave = Date.now();
     const saved = await saveExercise(supabase, generated);

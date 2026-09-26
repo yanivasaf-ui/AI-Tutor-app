@@ -140,14 +140,7 @@ export async function findReusableExercise(
   kidId: string | null,
   topicId?: string,
   difficulty?: 1 | 2 | 3,
-  excludeIds?: string[],
-  /** Last-resort escape hatch (see the route's TopicFitError handler): serve
-   *  from the unfiltered candidate page. Only for the case where the fit
-   *  filter emptied the pool AND generation could not produce a fitting
-   *  exercise either — a kid with no exercise at all is a worse outcome than
-   *  the off-topic one this check exists to prevent. Never used on the
-   *  ordinary path, and nothing is written to the bank from it. */
-  opts?: { ignoreTopicFit?: boolean }
+  excludeIds?: string[]
 ): Promise<Exercise | null> {
   const topic = topicId ? getTopicById(topicId) : undefined;
   const topicScoped = topic && topic.subject === subject && topic.grade === grade;
@@ -181,9 +174,8 @@ export async function findReusableExercise(
   // The authoring rubric (lib/authoring/quality-gate.ts) is applied the same
   // way and for the same reason: the bank holds rows written before the
   // gate existed ("כמה זה 60 ÷ 10?" with no sharing frame, a story about
-  // 180 balls drawn as 20). Unlike topic fit it is NOT lifted by
-  // ignoreTopicFit — the last-resort path may serve an off-topic row, never
-  // a badly-authored one.
+  // 180 balls drawn as 20). Every check here applies to every request;
+  // none can be switched off.
   const pool = (data as DbExerciseRow[]).filter((r) => {
     if (excluded?.has(r.id)) return false;
     const ex = rowToExercise(r);
@@ -196,7 +188,9 @@ export async function findReusableExercise(
     // sequence under shapes, a root drill under reading) — the 2026-09-14
     // seed rows that the vocabulary check let through. Never lifted.
     if (!formatFit(ex, fitTopic).ok) return false;
-    if (opts?.ignoreTopicFit) return true;
+    // (There used to be an escape hatch here that skipped the topic check
+    // when nothing else could be served. It is removed: an unchecked row is
+    // never served — the route says "try again" instead, owner 2026-09-26.)
     return topicFit(ex, fitTopic).ok;
   });
   if (pool.length === 0) return null;

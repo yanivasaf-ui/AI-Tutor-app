@@ -238,9 +238,8 @@ const REAL_A_DIVISION: Exercise[] = [
   }),
 ];
 for (const bad of REAL_A_DIVISION) {
-  await at(`REAL ${bad.topicId}: "${bad.question.slice(0, 40)}…" is dropped — escape hatch or not`, async () => {
+  await at(`REAL ${bad.topicId}: "${bad.question.slice(0, 40)}…" is dropped (no call can skip the checks)`, async () => {
     assert.equal(await findReusableExercise(client([row(bad)]), "math", "א", "kid", bad.topicId, 2), null);
-    assert.equal(await findReusableExercise(client([row(bad)]), "math", "א", "kid", bad.topicId, 2, undefined, { ignoreTopicFit: true }), null);
   });
 }
 await at("the same kind of row under grade ב is served (division exists there)", async () => {
@@ -258,8 +257,9 @@ console.log("\nconsumers that can't be run here read the declaration");
     for (const x of TOPICS) for (const f of seedPool(x)) assert.ok(allowedFormats(x.id).includes(f), `${x.id}: ${f}`);
   });
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
-  t("the route treats an out-of-scope exhaustion like a rubric one (vetted template or fail — never the unchecked bank)", () => {
-    assert.match(route, /genErr instanceof QualityGateError \|\| genErr instanceof OperationScopeError/);
+  t("the route treats an out-of-scope exhaustion like every other check rejection (produceExercise — never the unchecked bank)", () => {
+    assert.match(route, /await produceExercise\(/);
+    assert.ok(!/ignoreTopicFit/.test(route));
   });
 }
 

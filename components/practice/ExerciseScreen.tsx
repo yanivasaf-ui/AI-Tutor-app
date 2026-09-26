@@ -145,6 +145,9 @@ export default function ExerciseScreen({
    *  to the API genuinely having nothing for this topic. Different
    *  screens: one offers a retry, the other a way back to the map. */
   const [loadFailed, setLoadFailed] = useState(false);
+  // The server answered "try_again": no exercise passed the content checks
+  // this time. Shown with its own, calmer line (lines.couldNotBuild).
+  const [notReady, setNotReady] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
@@ -386,6 +389,7 @@ export default function ExerciseScreen({
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
+    setNotReady(false);
     setAttempt(1);
     setEvalFailed(false);
     if (prefetched) {
@@ -418,6 +422,12 @@ export default function ExerciseScreen({
         // The one genuine "nothing to practice here" answer — see
         // NoCurriculumContentError in lib/exercises/generate.ts.
         setExercise(null);
+      } else if (res.status === 503 && data?.error === "try_again") {
+        // No exercise passed the checks this time; the server will not serve
+        // an unchecked one. A retry, with honest words (not "something broke").
+        setExercise(null);
+        setLoadFailed(true);
+        setNotReady(true);
       } else {
         // 5xx, any other error status, or a 200 with no exercise in it.
         setExercise(null);
@@ -541,7 +551,7 @@ export default function ExerciseScreen({
   useEffect(() => {
     if (!loadedOnce || loadingExercise || exercise) return;
     setBasePose("thinking");
-    speakAuto(lines.spoken(loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName)));
+    speakAuto(lines.spoken(loadFailed ? (notReady ? lines.couldNotBuild(kidName) : lines.somethingBroke(kidName)) : lines.noContent(kidName)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOnce, loadingExercise, exercise, loadFailed]);
 
@@ -1009,7 +1019,7 @@ export default function ExerciseScreen({
   // keep the `thinking` pose — `encouraging` is the wrong-answer pose, and
   // a server hiccup isn't the kid's mistake.
   if (!exercise) {
-    const l = loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName);
+    const l = loadFailed ? (notReady ? lines.couldNotBuild(kidName) : lines.somethingBroke(kidName)) : lines.noContent(kidName);
     const primary = "min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium";
     const secondary = "min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-medium shadow-sm";
     return (
