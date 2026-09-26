@@ -436,6 +436,15 @@ t("the checks are narrow: correct look-alikes pass", () => {
     []
   );
 });
+t("equation-copy: a blank in the RESULT position is computed, so a story number equal to it is coincidence (sweep 719065d0)", () => {
+  const eq = (question: string, correctAnswer: string) =>
+    rules(ex({ grade: "ב", subtype: "equation_balance", type: "tile_order", question, tiles: { items: [correctAnswer, "1", "2", "9"], slotCount: 1, joinWith: " " }, correctAnswer }));
+  const story = "בכיתה ספרו: תפוחים 5 ילדים, בננות 8 ילדים, תפוזים 3 ילדים. כמה ילדים יותר אוהבים בננות מאשר תפוזים?\n";
+  assert.ok(!eq(story + "8 - 3 = ___", "5").includes("internal-consistency"), "result on the right");
+  assert.ok(!eq(story + "___ = 8 - 3", "5").includes("internal-consistency"), "result on the left");
+  // the same story with the blank as an OPERAND whose value the story states is still a copy
+  assert.ok(eq(story + "8 - ___ = 5", "3").includes("internal-consistency"), "operand blank");
+});
 
 // ---------------------------------------------------------------- 1d. independent QA sweep
 console.log("\nindependent grade-א QA sweep, 2026-09-25 (7 findings, verbatim bank rows)");

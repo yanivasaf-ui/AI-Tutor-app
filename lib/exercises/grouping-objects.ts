@@ -42,11 +42,35 @@ const GENERIC = new Set(["ריבוע", "עיגול", "משולש", "ילד", "י
 
 const bareEmoji = (item: string) => item.replace(/[\uFE0E\uFE0F\u200D]/g, "");
 
+/**
+ * Plurals, spelled out. The old rule guessed them from the ending (drop a
+ * final ה, add ים/ות), which read the verb "לבנות" (to build) as bricks and
+ * missed "קוביות" (plural of "קובייה", one yod fewer). Sweep 2026-09-26,
+ * row 4f79a2db. A noun missing here matches in the singular only.
+ */
+const PLURALS: Readonly<Record<string, readonly string[]>> = {
+  "תפוח": ["תפוחים"], "אגס": ["אגסים"], "בננה": ["בננות"], "תפוז": ["תפוזים"], "תות": ["תותים"],
+  "עגבנייה": ["עגבניות"], "עוגייה": ["עוגיות"], "סוכרייה": ["סוכריות"], "סופגנייה": ["סופגניות"],
+  "פרח": ["פרחים"], "עלה": ["עלים"], "ירח": ["ירחים"], "כוכב": ["כוכבים"],
+  "משולש": ["משולשים"], "ריבוע": ["ריבועים"], "עיגול": ["עיגולים"],
+  "קובייה": ["קוביות"], "לבנה": ["לבנים"], "קופסה": ["קופסאות", "קופסות"], "מתנה": ["מתנות"],
+  "שעון": ["שעונים"], "שעון עצר": ["שעוני עצר"], "שעון חול": ["שעוני חול"],
+  "סרגל": ["סרגלים"], "עיפרון": ["עפרונות", "עיפרונות"], "עפרון": ["עפרונות"], "מהדק": ["מהדקים"], "אטב": ["אטבים"],
+  "ספר": ["ספרים"], "שטר": ["שטרות"], "מטבע": ["מטבעות"],
+  "בלון": ["בלונים"], "כדור": ["כדורים"], "כדורגל": ["כדורגלים"], "ממתק": ["ממתקים"], "ארגז": ["ארגזים"],
+  "ילד": ["ילדים"], "ילדה": ["ילדות"], "טביעת רגל": ["טביעות רגליים", "טביעות רגל"],
+  "דג": ["דגים"], "כלב": ["כלבים"], "חתול": ["חתולים"],
+};
+
+/** A noun's written forms: singular, its plurals, and "יי" also spelled "י"
+ *  (קובייה / קוביה). */
+export function nounForms(noun: string): string[] {
+  const forms = [noun, ...(PLURALS[noun] ?? [])];
+  return [...new Set(forms.flatMap((f) => [f, f.replace(/יי/g, "י")]))];
+}
+
 function nounRegex(noun: string): RegExp {
-  // singular, regular plural, and the -ה → -ות plural (סופגנייה/סופגניות)
-  const stems = noun.endsWith("ה") ? [noun, noun.slice(0, -1)] : [noun];
-  const forms = stems.flatMap((s) => [`${s}(?:ים|ות)?`, `${s}(?:ים|ות)?`]);
-  return new RegExp(`(?<![\u05d0-\u05ea])[הובלמשכ]{0,2}(?:${[...new Set(forms)].join("|")})(?![\u05d0-\u05ea])`, "u");
+  return new RegExp(`(?<![\u05d0-\u05ea])[הובלמשכ]{0,2}(?:${nounForms(noun).join("|")})(?![\u05d0-\u05ea])`, "u");
 }
 
 /**

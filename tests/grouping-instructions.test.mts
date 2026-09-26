@@ -102,6 +102,13 @@ t("a generic drawn object (a coloured square) or an unknown one never counts as 
   assert.deepEqual(otherObjectsNamed("יש 12 תפוחים. חלקו אותם ל-3 קבוצות.", "🟦"), []);
   assert.deepEqual(otherObjectsNamed("יש 12 תפוחים. חלקו אותם ל-3 קבוצות.", "🦖"), []);
 });
+t("sweep 4f79a2db: 'קוביות' names 🧊 (plural of קובייה), and the verb 'לבנות' (to build) is not bricks", () => {
+  assert.deepEqual(otherObjectsNamed("מאיה בונה מגדלים מקוביות. יש לה 12 קוביות 🧊 והיא רוצה לבנות 4 מגדלים שווים. כמה קוביות צריך לשים בכל מגדל?", "🧊"), []);
+  assert.deepEqual(otherObjectsNamed("היא רוצה לבנות 4 מגדלים שווים.", "🍎"), [], "לבנות alone names no object");
+  assert.deepEqual(otherObjectsNamed("יש לו 12 קוביות.", "🍎"), ["קובייה"], "cubes drawn as apples are still a mismatch");
+  assert.deepEqual(otherObjectsNamed("בנה חומה מ-20 לבנים.", "🍎"), ["לבנה"], "the real plural of brick is still recognised");
+  assert.deepEqual(otherObjectsNamed("יש 6 קוביה.", "🍎"), ["קובייה"], "one-yod spelling");
+});
 
 console.log("\nboth places the instruction appears pass the exercise's object");
 const screen = readFileSync(new URL("../components/practice/ExerciseScreen.tsx", import.meta.url), "utf8");

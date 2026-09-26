@@ -79,7 +79,7 @@ const STATUS: Record<number, { status: Status; note: string }> = {
   8: { status: "open", note: "Hebrew content is not checked" },
   9: { status: "incidental", note: "rejected by one-task (it asks 'כמה קיסמים?' AND 'איזו פעולה?'); the 3+3 / 3×2 ambiguity itself is not detected" },
   10: { status: "open", note: "no check for the answer printed in the question" },
-  11: { status: "incidental", note: "rejected by the equation-copy rule as a FALSE POSITIVE (5 = the apples count by coincidence); the typo itself is not detected" },
+  11: { status: "open", note: "the typo is not detected (the equation-copy false positive that used to reject this row is fixed: the blank is the result, so the story's 5 is coincidence)" },
   12: { status: "open", note: "Hebrew content is not checked" },
   13: { status: "ui", note: "exit dialog after completion; no automated check" },
 };
@@ -134,20 +134,20 @@ for (const n of [8, 9, 10, 11, 12]) {
     }
   });
 }
-t("#9 is rejected by one-task, #11 by the (false-positive) equation-copy rule — pinned so a change is noticed", () => {
+t("#9 is rejected by one-task — pinned so a change is noticed", () => {
   assert.deepEqual(gateRules(row("9a3529d5-79c8-43d5-b6a1-cf60fbb52285")), ["one-task"]);
-  assert.deepEqual(gateRules(row("719065d0-f5da-476e-80be-de83ead3542e")), ["internal-consistency"]);
 });
 t("#7 and #13 are UI defects: tracked here, no automated check exists yet", () => {
   assert.equal(STATUS[7].status, "ui");
   assert.equal(STATUS[13].status, "ui");
 });
 
-console.log("\nfalse positives this sweep exposed in the branch's own checks (pinned, to be fixed with the plan)");
-t("4f79a2db (12 🧊 cubes into 4 towers) is flagged shown-is-said because 'לבנות' (to build) reads as the noun 'לבנה' (brick)", () => {
-  const v = checkQuestionQuality(row("4f79a2db-f8f2-44e8-842a-1a1f7327448d")).violations;
-  assert.deepEqual(v.map((x) => x.rule), ["shown-is-said"]);
-  assert.match(v[0].detail, /לבנה/);
+console.log("\nfalse positives this sweep exposed in the branch's own checks (fixed; kept as regressions)");
+t("4f79a2db (12 🧊 cubes into 4 towers): 'לבנות' is to-build, not bricks, and 'קוביות' names the drawn 🧊 — no quality violation", () => {
+  assert.deepEqual(checkQuestionQuality(row("4f79a2db-f8f2-44e8-842a-1a1f7327448d")).violations, []);
+});
+t("719065d0 (8 − 3 = ___, a 5 elsewhere in the story): the blank is the result, so equation-copy does not fire", () => {
+  assert.deepEqual(gateRules(row("719065d0-f5da-476e-80be-de83ead3542e")), []);
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);

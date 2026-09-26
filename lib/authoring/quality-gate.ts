@@ -360,11 +360,21 @@ function checkTimeOperands(ex: Exercise, q: string, out: QualityViolation[]): vo
  * given. Live run: "…תפוחים 12 ילדים, תפוזים 7… כמה ילדים יותר אוהבים
  * תפוחים? 12 - ___ = 5" with the blank's answer 7 — the child copies a
  * number from the story, and the equation is not the quantity asked.
+ *
+ * Only when the blank is an OPERAND. A blank alone on one side of "="
+ * ("8 - 3 = ___") is the result: the child computes it, and the story
+ * stating the same number elsewhere is coincidence — sweep 2026-09-26, row
+ * 719065d0 (5 apple-lovers; 8 − 3 = 5 banana-over-orange).
  */
 function checkEquationCopy(ex: Exercise, q: string, out: QualityViolation[]): void {
   if (ex.subtype !== "equation_balance") return;
   const blank = q.indexOf("___");
   if (blank < 0) return;
+  const lineStart = q.lastIndexOf("\n", blank) + 1;
+  const lineEnd = q.indexOf("\n", blank);
+  const line = q.slice(lineStart, lineEnd < 0 ? undefined : lineEnd);
+  const blankSide = line.split("=").find((side) => side.includes("___"));
+  if (line.includes("=") && blankSide !== undefined && blankSide.replace(/[?.:\s]/g, "") === "___") return;
   const story = q.slice(0, Math.max(q.lastIndexOf("\n", blank), q.lastIndexOf(".", blank), q.lastIndexOf("?", blank)) + 1);
   const answer = Number(ex.correctAnswer.replace(/,/g, ""));
   if (Number.isFinite(answer) && numberTokens(story).some((t) => t.value === answer)) {
