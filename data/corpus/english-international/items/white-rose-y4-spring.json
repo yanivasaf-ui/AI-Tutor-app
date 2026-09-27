@@ -1,0 +1,3559 @@
+[
+ {
+  "id": "white-rose-y4-spring-03087",
+  "text": "Which number is a factor of every whole number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03088",
+  "text": "Do factors always come in pairs?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03089",
+  "text": "Do whole numbers always have an even number of factors?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03090",
+  "text": "For which number are you going to find the factor pairs?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03091",
+  "text": "Which factor pair is the most helpful to solve the calculation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03092",
+  "text": "In what order are you going to multiply these numbers?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03093",
+  "text": "Does it matter which factor pair you use?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03094",
+  "text": "What do you notice when multiplying by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03095",
+  "text": "What is a placeholder? When do you use placeholders?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03096",
+  "text": "What is multiplied by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03097",
+  "text": "What is 10 lots of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03098",
+  "text": "What do you notice when multiplying by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03099",
+  "text": "How can you use multiplying by 10 to help you multiply by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03100",
+  "text": "What happens to the digits when you multiply by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03101",
+  "text": "What is multiplied by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03102",
+  "text": "What is 100 lots of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03103",
+  "text": "What do you notice when dividing by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03104",
+  "text": "Why does this happen?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03105",
+  "text": "What happens to the digits when you divide by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03106",
+  "text": "What is divided by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03107",
+  "text": "What number is one-tenth the size of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03108",
+  "text": "How can you use dividing by 10 to help you divide by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03109",
+  "text": "What happens to the digits in a number when you divide by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03110",
+  "text": "What is divided by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03111",
+  "text": "What number is one-hundredth the size of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03112",
+  "text": "What calculation do you know that would help with this one?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03113",
+  "text": "digit number by a 1-digit number. by 1s and multiplying by 10s?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03114",
+  "text": "How would you explain this method?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03115",
+  "text": "What is the most efficient way to work out × ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03116",
+  "text": "How could you use a number line to work out this calculation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03117",
+  "text": "How does the written method match the representation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03118",
+  "text": "Which column should you start with?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03119",
+  "text": "How could you use counters to represent the multiplication?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03120",
+  "text": "How does the written method match the representation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03121",
+  "text": "Which column should you start with?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03122",
+  "text": "digit number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03123",
+  "text": "How do you partition a 2-digit number into tens and ones?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03124",
+  "text": "digit How else can you partition a 2-digit number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03125",
+  "text": "How can you represent the division using a part-whole model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03126",
+  "text": "digit number, but in this step the focus is on left over?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03127",
+  "text": "What does “remainder” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03128",
+  "text": "How can you partition a 2-digit number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03129",
+  "text": "If you cannot share all the tens equally, what do you need to do?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03130",
+  "text": "If you cannot share all the ones equally, what happens?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03131",
+  "text": "How do you know that 43 ÷ 2 will have a remainder?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03132",
+  "text": "digit numbers in the and ones?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03133",
+  "text": "How else can you partition a 3-digit number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03134",
+  "text": "How can you represent the division using a part-whole model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03135",
+  "text": "How can you be sure that you have listed all the possibilities?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03136",
+  "text": "How could you use a code to help you list the combinations?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03137",
+  "text": "How can you check your answer?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03138",
+  "text": "Does the order in which you make your choices matter?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03139",
+  "text": "What is the most efficient way to work out × ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03140",
+  "text": "What happens if you double one factor and halve the other?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03141",
+  "text": "How could you use factor pairs to help you calculate?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03142",
+  "text": "What unit of measurement would you use to measure ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03143",
+  "text": "Which is the greater length, 1 km or 1 m?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03144",
+  "text": "whole models can be used to explore this relationship m? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03145",
+  "text": "Which is greater, km or m? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03146",
+  "text": "How many metres are there in 1 km?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03147",
+  "text": "Which is greater, km or m ? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03148",
+  "text": "What does “perimeter” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03149",
+  "text": "What is the length of each square? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03150",
+  "text": "What is the length of each side? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03151",
+  "text": "What unit is used for the perimeter of your shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03152",
+  "text": "How can you make sure you do not include one side twice?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03153",
+  "text": "Which shape has the greater/greatest perimeter?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03154",
+  "text": "What is the length of each side? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03155",
+  "text": "What is a rectilinear shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03156",
+  "text": "How many sides does the shape have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03157",
+  "text": "Are any of the sides equal in length?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03158",
+  "text": "What strategies can you use to find the perimeter?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03159",
+  "text": "How can you be sure you have included all the sides?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03160",
+  "text": "How can you check your answer?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03161",
+  "text": "What lengths do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03162",
+  "text": "What is the total horizontal length of the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03163",
+  "text": "What is the total vertical length of the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03164",
+  "text": "Do you need to add or subtract to find the missing length?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03165",
+  "text": "Are you finding a part or a whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03166",
+  "text": "What lengths do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03167",
+  "text": "What is the total horizontal/vertical length of the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03168",
+  "text": "Where is the missing length on the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03169",
+  "text": "How many missing lengths are there on the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03170",
+  "text": "Do you need to add or subtract to find the missing length?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03171",
+  "text": "Are you finding a part or a whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03172",
+  "text": "What is a polygon?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03173",
+  "text": "How do you know if a polygon is regular?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03174",
+  "text": "Is an equilateral triangle a regular shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03175",
+  "text": "Is a rectangle a regular shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03176",
+  "text": "Is the shape irregular? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03177",
+  "text": "How can you work out the perimeter of the shape?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03178",
+  "text": "Are any of the sides the same length?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03179",
+  "text": "What is the length of each side?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03180",
+  "text": "How can you work out the perimeter more efficiently?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03181",
+  "text": "Has the whole been divided into equal parts?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03182",
+  "text": "whole How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03183",
+  "text": "How many equal parts has the whole been divided into for 15 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03184",
+  "text": "Is this a large or small part of the whole? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03185",
+  "text": "How many more parts are needed to make the whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03186",
+  "text": "What fraction comes next after 7 , 7 , 7 ? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03187",
+  "text": "What fraction comes before ? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03188",
+  "text": "What is 1 whole plus another 13 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03189",
+  "text": "What is 3 and the same as?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03190",
+  "text": "What is the sequence counting forwards/backwards in?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03191",
+  "text": "What is a mixed number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03192",
+  "text": "What does each part of a mixed number represent?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03193",
+  "text": "How many wholes are there in the mixed number ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03194",
+  "text": "What is the fractional part of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03195",
+  "text": "How many other ways could you partition the mixed number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03196",
+  "text": "What is each interval worth on the number line?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03197",
+  "text": "What is the whole number before and after ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03198",
+  "text": "Is closer to the previous or the next whole number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03199",
+  "text": "Are the whole numbers the same?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03200",
+  "text": "Which is the greater whole number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03201",
+  "text": "Which is the greater fraction? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03202",
+  "text": "How do you know the mixed numbers are in order?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03203",
+  "text": "How many (for example, thirds) are there in 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03204",
+  "text": "What is the same about mixed numbers and improper fractions?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03205",
+  "text": "Which of these are improper fractions? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03206",
+  "text": "What is the integer in the mixed number ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03207",
+  "text": "What is the fractional part of the mixed number ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03208",
+  "text": "How do you know if a fraction is improper?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03209",
+  "text": "How many fifths are there in 2/3/4 wholes? What do you notice?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03210",
+  "text": "How do you know is an improper fraction?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03211",
+  "text": "How many quarters are there in 154 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03212",
+  "text": "How many quarters are there in 1/2/3 wholes?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03213",
+  "text": "How many groups of 4 are there in 15? What is the remainder?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03214",
+  "text": "What are equivalent fractions?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03215",
+  "text": "What unit fraction is the number line counting in?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03216",
+  "text": "How do you know that is equivalent to ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03217",
+  "text": "Why do the integers have to be in line with each other?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03218",
+  "text": "How do you know that 2 13 cannot be equivalent to 4 26 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03219",
+  "text": "What is as a mixed number/improper fraction?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03220",
+  "text": "How can you split each section into 2/3/4 equal smaller parts?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03221",
+  "text": "Are the denominators the same? Why is this important?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03222",
+  "text": "How can you show the addition in a diagram/bar model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03223",
+  "text": "How could a number line help you?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03224",
+  "text": "Is your answer greater or smaller than 1? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03225",
+  "text": "How do you convert an improper fraction to a mixed number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03226",
+  "text": "Are the denominators the same? Why is this important?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03227",
+  "text": "Do you prefer to use a bar model or a number line? Why?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03228",
+  "text": "Do you have an improper fraction in your answer?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03229",
+  "text": "Are the denominators the same? Why is this important?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03230",
+  "text": "How would a number line help you?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03231",
+  "text": "Is your answer greater or smaller than 1? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03232",
+  "text": "How many are equal to 1 whole/2 wholes/5 wholes?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03233",
+  "text": "How can you show the subtraction as a bar model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03234",
+  "text": "How can you show the subtraction on a number line?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03235",
+  "text": "What is a fraction?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03236",
+  "text": "What is a tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03237",
+  "text": "How can you represent the fraction using a model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03238",
+  "text": "When you are counting up in tenths, what comes after 109 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03239",
+  "text": "How are tenths similar to ones?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03240",
+  "text": "What is a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03241",
+  "text": "What is a tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03242",
+  "text": "How can you represent the decimal using a model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03243",
+  "text": "How are decimals similar to fractions?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03244",
+  "text": "What is a tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03245",
+  "text": "What is a decimal point?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03246",
+  "text": "How many tenths make 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03247",
+  "text": "How many wholes/tenths are in the number ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03248",
+  "text": "How can you show these numbers on a number line?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03249",
+  "text": "How can you work out the missing number in the sequence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03250",
+  "text": "What intervals does the number line go up in?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03251",
+  "text": "How do you count in 0.1s past a whole number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03252",
+  "text": "What number is represented on the place value chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03253",
+  "text": "How many tenths are there in 1 whole/2 wholes/3 wholes?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03254",
+  "text": "digit number is divided by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03255",
+  "text": "How can you show this 2-digit number on a place value chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03256",
+  "text": "How can you show this 2-digit number in a part-whole model?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03257",
+  "text": "digit number by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03258",
+  "text": "What happens to a number when you divide it by 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03259",
+  "text": "How many hundredths are there in 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03260",
+  "text": "How is a hundredth similar to/different from a tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03261",
+  "text": "How can you represent hundredths in a hundred square?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03262",
+  "text": "How many hundredths are equivalent to 1 tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03263",
+  "text": "How can you partition into tenths and hundredths?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03264",
+  "text": "How is a decimal similar to/different from a fraction?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03265",
+  "text": "How many hundredths are there in 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03266",
+  "text": "How can you write 1 hundredth as a decimal number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03267",
+  "text": "Are 100 and 0.01 the same or different?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03268",
+  "text": "Is greater or smaller than ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03269",
+  "text": "How many hundredths are equivalent to 1 tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03270",
+  "text": "What is a hundredth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03271",
+  "text": "How many hundredths are equivalent to 1 tenth?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03272",
+  "text": "How many hundredths are equivalent to 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03273",
+  "text": "Is greater/smaller than ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03274",
+  "text": "What exchanges can you make?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03275",
+  "text": "What happens to a number when you divide it by 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03276",
+  "text": "Does the decimal point ever move?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03277",
+  "text": "If you divide by 10 twice, what do you notice?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03278",
+  "text": "= × , so and are a factor",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03279",
+  "text": "tables they are most confident with.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03280",
+  "text": "The factor pairs of are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03281",
+  "text": "I can use the factor pairs of to find an equivalent",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03282",
+  "text": "is 10 times the size of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03283",
+  "text": "is 100 times the size of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03284",
+  "text": "is one-tenth the size of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03285",
+  "text": "× ones is equal to ones,",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03286",
+  "text": "÷ is equal to ,",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03287",
+  "text": "partitioned into tens and ones is and",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03288",
+  "text": "If I am dividing by , then the greatest possible",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03289",
+  "text": "For every , there are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03290",
+  "text": "Altogether, there are × = possible",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03291",
+  "text": "There are m in 1 km, so there are m in km.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03292",
+  "text": "Each kilometre is m, so km is the same as m.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03293",
+  "text": "The calculation I need to do to work out the perimeter is ...",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03294",
+  "text": "The side measuring and the side measuring are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03295",
+  "text": "Each side is cm.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03296",
+  "text": "The shape is regular/irregular because …",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03297",
+  "text": "There are sides, so I need to add together",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03298",
+  "text": "The whole has been divided into equal parts.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03299",
+  "text": "There are s in 1",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03300",
+  "text": "The sequence is counting forwards/backwards in s.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03301",
+  "text": "There are wholes.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03302",
+  "text": "The difference between the start and end of the number",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03303",
+  "text": "First, I will compare the",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03304",
+  "text": "An improper fraction is a fraction where the numerator",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03305",
+  "text": "There are in 1 whole, so there are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03306",
+  "text": "There are in 1 whole.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03307",
+  "text": "There are equal intervals between consecutive",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03308",
+  "text": "If I divide each part into equal parts, then they will",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03309",
+  "text": "I can divide each part into equal parts to show that",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03310",
+  "text": "When the denominators are the same, to add the fractions",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03311",
+  "text": "If the denominators are the same, to add the fractions I need",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03312",
+  "text": "If the denominators are the same, to subtract the fractions I",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03313",
+  "text": "If a whole is split into 10 equal parts, then each part is",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03314",
+  "text": "The start point is",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03315",
+  "text": "is 10 times the size of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03316",
+  "text": "is one-tenth the size of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03317",
+  "text": "divided by 10 is equal to",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03318",
+  "text": "There are hundredths in tenths.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03319",
+  "text": "hundredths is equivalent to tenths and",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03320",
+  "text": "hundredths as a decimal is",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03321",
+  "text": "There are hundredths in 1 tenth.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-spring-03322",
+  "text": "is equal to ones, tenths and",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

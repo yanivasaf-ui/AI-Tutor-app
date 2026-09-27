@@ -1,0 +1,479 @@
+[
+ {
+  "id": "ny-released-items-2026-g4-03657",
+  "text": "Spring 2026 RELEASED QUESTIONS SESSION 1 MATH GRADE 4 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 125 High St., Boston, MA 02110. Copyright © 2026 by the New York State Education Department.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "group of triangles is shown below. 3 Which two triangles appear to be right triangles? A A and B",
+   "B": "A and D",
+   "C": "C and D",
+   "D": "C and E"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03658",
+  "text": "Which fraction makes the comparison true?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2026-g4-03659",
+  "text": "Which number is a multiple of 4 but not a factor of 36 ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03660",
+  "text": "What is the total distance, in miles, that Henry walks his dog on those days? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2026-g4-03661",
+  "text": "In which model is the fraction of its whole shaded to represent a value equivalent to ?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03662",
+  "text": "81, 27, 9, . . . Which of these number patterns follows the same rule?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "patterns-sequences",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "64, 16, 4, . . .",
+   "B": "54, 18, 6, . . .",
+   "C": "32, 28, 24, . . .",
+   "D": "22, 19, 16, . . . GO ON Session 1 Page 7 Three gures are shown below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03663",
+  "text": "Which statement about all three gures appears to be true?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "Figure X, Figure Y, and Figure Z are all parallelograms.",
+   "B": "Figure X and Figure Z are the only parallelograms.",
+   "C": "Figure X and Figure Y are the only parallelograms.",
+   "D": "Figure Z is the only parallelogram."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03664",
+  "text": "at the book fair as last year. How many books did Steve sell at the book fair this year?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "time",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "5",
+   "B": "18",
+   "C": "30",
+   "D": "45 An unknown is shown in the comparison below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03665",
+  "text": "Which number can replace the unknown to make the comparison true? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03666",
+  "text": "pieces of the puzzle he completed the rst two days is described below. Day 1: 252 pieces completed Day 2: 155 pieces completed Which is closest to the number of puzzle pieces Matteo still needs to complete on Day 3 to meet his goal?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "250",
+   "B": "300",
+   "C": "350",
+   "D": "400 A group of gures is shown below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03667",
+  "text": "Which statement about the gures appears to be true?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "Figures J, K, L, and M are all rectangles.",
+   "B": "Figures M and J are the only rectangles.",
+   "C": "Figures M and K are the only rectangles.",
+   "D": "Figures J, K, and M are the only rectangles. GO ON Session 1 Page 11"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03668",
+  "text": "Which expression is equivalent to ? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03669",
+  "text": "described below. Jen scores 12 points. Jen scores 4 times as many points as Kim. How many points does Kim score?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "3",
+   "B": "8",
+   "C": "16",
+   "D": "48 The two circles shown below are the same size and divided into equal parts. Each"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03670",
+  "text": "circle has part of its whole shaded to represent a fraction. Which expression represents the total value of the parts that are shaded? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03671",
+  "text": "An expression is shown below.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03672",
+  "text": "What is the value of the expression? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03673",
+  "text": "Which angle in the diagram is an obtuse angle?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "angle ABD",
+   "B": "angle ABE",
+   "C": "angle DBE",
+   "D": "angle DBC"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03674",
+  "text": "is shaded to represent a fraction of its whole. What is the sum of the fractions represented by the circles? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03675",
+  "text": "Which fraction is equivalent to?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2026-g4-03676",
+  "text": "The area model shown below represents the expression .",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03677",
+  "text": "What is the value of C in the area model? A B C D",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03678",
+  "text": "Which statement represents this equation?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "twenty-eight is four less than seven",
+   "B": "four times as many as twenty-eight is seven",
+   "C": "twenty-eight is seven more than four",
+   "D": "four times as many as seven is twenty-eight A gure is shown below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03679",
+  "text": "Which two line segments in the gure appear to be perpendicular to each other?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "ny-released-items-2026-g4",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "line segments AG and BC",
+   "B": "line segments FG and EF",
+   "C": "line segments BC and CD",
+   "D": "line segments CD and FG GO ON Session 2 Page 3"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g4-03680",
+  "text": "The model below is made up of three shapes of the same size. Each shape is divided into equal parts and shaded to represent a fraction of its whole. What mixed number is represented by the model? Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03681",
+  "text": "An angle is shown below. What is the measure of the angle? Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03682",
+  "text": "Write a multiplication or division equation that shows the relationship between the value represented by the digit 5 in the number 3,451 and the value represented by the digit 5 in the number 3,526. Be sure to include how place value can be used to determine your answer. Explain your answer.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g4-03683",
+  "text": "Two rectangular gures are shown below. Figure A has an area of 32 square feet. Figure B has an area of 25 square feet. Which gure has the larger perimeter? Be sure to include the perimeters of both gures in your answer. Show your work. Answer",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g4",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "show-working"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

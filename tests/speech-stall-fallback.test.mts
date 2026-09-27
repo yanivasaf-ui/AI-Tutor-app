@@ -144,8 +144,11 @@ let urlCounter = 0;
 
 let fetchStatus = 200;
 let fetchCount = 0;
+/** When set, the server's answer verbatim (the speak route's 503 shapes). */
+let fetchReply: (() => Response) | null = null;
 (globalThis as unknown as { fetch: typeof fetch }).fetch = (async () => {
   fetchCount++;
+  if (fetchReply) return fetchReply();
   if (fetchStatus !== 200) return new Response(JSON.stringify({ error: "tts_failed" }), { status: fetchStatus });
   const body = new ReadableStream<Uint8Array>({
     start(c) {
@@ -157,7 +160,7 @@ let fetchCount = 0;
   return new Response(body, { status: 200, headers: { "Content-Type": "audio/mpeg" } });
 }) as unknown as typeof fetch;
 
-const { speak, __speechTestHooks } = await import("../lib/speech/useSpeech");
+const { speak, prefetchSpeech, __speechTestHooks } = await import("../lib/speech/useSpeech");
 const { getAudioPathLog, __clearAudioPathLogForTests } = await import("../lib/speech/audioPath");
 
 let passed = 0;
@@ -190,6 +193,7 @@ function reset(over?: { ua?: string; touch?: number; opens?: boolean; status?: n
   mediaSourcesEnded = 0;
   mediaSourceOpens = over?.opens ?? true;
   fetchStatus = over?.status ?? 200;
+  fetchReply = null;
   setUA(over?.ua ?? CHROME, over?.touch ?? 0);
 }
 
@@ -316,6 +320,65 @@ await at("the trace records a cache hit as such", async () => {
   await settle(50);
   assert.deepEqual(trace(), ["blob:cache-hit"]);
   assert.equal(fetchCount >= 1, true);
+});
+
+console.log("\nthe speak route's 503s (QA 2026-09-26: Cartesia credit exhausted, 118/177 lines failed)");
+const unavailable = (scope: "session" | "line", reason: string, retryAfter?: number) => () =>
+  new Response(JSON.stringify({ error: "tts_unavailable", scope, reason }), { status: 503, headers: retryAfter ? { "Retry-After": String(retryAfter) } : {} });
+await at("503 scope 'line' (a rate limit that outlived the server's retry): this line falls back, the next still tries Cartesia", async () => {
+  reset();
+  fetchReply = unavailable("line", "rate_limited");
+  speak(fresh(), "exercise", "girl");
+  await settle(60);
+  assert.equal(trace()[0], "speechSynthesis:http-503 (this line only)");
+  assert.equal(__speechTestHooks.isCloudOn(), true);
+  fetchReply = null;
+  const before = fetchCount;
+  speak(fresh(), "exercise", "girl");
+  await settle(80);
+  assert.equal(fetchCount, before + 1, "the next line asks Cartesia again");
+});
+await at("503 scope 'session' with Retry-After (credit exhausted): cloud voice off, no more round trips — then back on by itself", async () => {
+  reset();
+  fetchReply = unavailable("session", "quota", 1);
+  speak(fresh(), "exercise", "girl");
+  await settle(60);
+  assert.match(trace()[0], /^speechSynthesis:http-503 \(cloud voice off for 1s\)$/);
+  assert.equal(__speechTestHooks.isCloudOn(), false);
+  const before = fetchCount;
+  speak(fresh(), "exercise", "girl");
+  prefetchSpeech(fresh(), "girl");
+  await settle(60);
+  assert.equal(fetchCount, before, "no speak and no prefetch round trip while the outage lasts");
+  assert.equal(trace().at(-1), "speechSynthesis:SILENT: speechSynthesis unavailable");
+  fetchReply = null;
+  await settle(1000);
+  speak(fresh(), "exercise", "girl");
+  await settle(80);
+  assert.equal(fetchCount, before + 1, "after Retry-After the cloud voice is tried again");
+  assert.equal(__speechTestHooks.isCloudOn(), true);
+});
+await at("a prefetch that meets the session outage turns the cloud voice off too", async () => {
+  reset();
+  fetchReply = unavailable("session", "quota", 300);
+  prefetchSpeech(fresh(), "girl");
+  await settle(60);
+  assert.equal(__speechTestHooks.isCloudOn(), false);
+});
+await at("503 with no scope (not configured) and 401 still turn the cloud voice off for good", async () => {
+  for (const reply of [() => new Response(JSON.stringify({ error: "tts_not_configured" }), { status: 503 }), () => new Response("{}", { status: 401 })]) {
+    reset();
+    fetchReply = reply;
+    speak(fresh(), "exercise", "girl");
+    await settle(60);
+    assert.equal(__speechTestHooks.isCloudOn(), false);
+    fetchReply = null;
+    await settle(30);
+    const before = fetchCount;
+    speak(fresh(), "exercise", "girl");
+    await settle(40);
+    assert.equal(fetchCount, before, "stays off");
+  }
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);

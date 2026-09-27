@@ -1,0 +1,47 @@
+[
+ {
+  "id": "nrich-shapes-playground-03608",
+  "text": "How long are each of the sides of every shape?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-shapes-playground",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shapes-playground-03609",
+  "text": "What is the perimeter of a hexagon/square/triangle/octagon?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "measurement",
+  "source": "nrich-shapes-playground",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shapes-playground-03610",
+  "text": "What shapes does the problem say Ben drew?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-shapes-playground",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

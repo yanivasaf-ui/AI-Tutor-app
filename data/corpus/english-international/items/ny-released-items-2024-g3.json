@@ -1,0 +1,247 @@
+[
+ {
+  "id": "ny-released-items-2024-g3-03684",
+  "text": "Grade Spring 2024 RELEASED QUESTIONS SESSION 1 MATH GRADE 3 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 14720 Energy Way, Apple Valley, MN 55124. Copyright © 2024 by the New York State Education Department.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2024-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "number is rounded to the nearest ten. The result is 300. Which number could be 2 the number before it was rounded? A 289",
+   "B": "296",
+   "C": "308",
+   "D": "315 GO ON Page 2 Session 1 Which fraction is represented by point P on the number line below?"
+  }
+ },
+ {
+  "id": "ny-released-items-2024-g3-03685",
+  "text": "represents how to find the total number of books the librarian has? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g3-03686",
+  "text": "What is the total area, in square feet, of the ower garden?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03687",
+  "text": "Which fraction is equivalent to ? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03688",
+  "text": "In which model is the fraction of the whole shaded to represent the fraction ?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03689",
+  "text": "Which expression cannot be used to find the area, in square centimeters, of the rectangle? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g3-03690",
+  "text": "Which square appears to be divided into parts that each have an area of of the whole?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03691",
+  "text": "1, 5, 9, 13, . . . What are the next three numbers in the pattern?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "patterns-sequences",
+  "source": "ny-released-items-2024-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "16, 19, 22",
+   "B": "16, 20, 24",
+   "C": "17, 20, 23",
+   "D": "17, 21, 25 GO ON Page 2 Session 2 A bathroom � oor has an area of 36 square feet. Which � gure could represent the"
+  }
+ },
+ {
+  "id": "ny-released-items-2024-g3-03692",
+  "text": "Cecilia is creating holes to plant seeds in her garden. She has corn seeds and bean seeds and will plant all of the seeds. Which set of equations can be used to find the total number of holes, , Cecilia will create if she puts exactly seeds of the same type in each hole?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g3-03693",
+  "text": "It takes Heidi 15 minutes to walk from her home to school. If she leaves her home at 8:35 a.m., what time will Heidi get to school? Answer a.m.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03694",
+  "text": "Write the number 3,194 in expanded form. Answer",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03695",
+  "text": "Gayle earns 32 tickets at an event. She uses all of her tickets to buy 4 prizes and uses the same number of tickets to buy each prize. How many tickets does Gayle use to buy each prize? Answer tickets",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03696",
+  "text": "Ms. Linsey and Mr. Abbott are comparing the sizes of their bulletin boards. Ms. Linsey’ s bulletin board is 6 feet long and 5 feet wide. Mr . Abbott’ s bulletin board is 7 feet long and 4 feet wide. Which bulletin board has the greater area? Be sure to include the area, in square feet, of each bulletin board in your answer. Explain how you found your answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2024-g3-03697",
+  "text": "Ms. Thompson buys 3 packages of clay for a project. Each package weighs 25 pounds. An equal amount of all the clay is given to each of 5 groups of students. How many pounds of clay does each group get? Show your work. Answer pounds of clay",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2024-g3-03698",
+  "text": "The list below describes the distances between Manny’s home, his school, and a park. The distance between his home and his school is mile. The distance between his home and the park is mile. Does Manny live closer to the school or closer to the park? Be sure to include what you know about fractions in your answer. Explain your answer. The distance between Pilar’s home and the same park is mile. Who lives closer to the park, Manny or Pilar? Be sure to include what you know about fractions in your answer. Explain your answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2024-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

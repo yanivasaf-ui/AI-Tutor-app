@@ -1,0 +1,110 @@
+[
+ {
+  "id": "ny-released-items-2025-g3-03719",
+  "text": "Grade Spring 2025 RELEASED QUESTIONS � NOISS3S HlVII\\I E 30W9 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 14720 Energy Way, Apple Valley, MN 55124. Copyright © 2025 by the New York State Education Department.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2025-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g3-03720",
+  "text": "What is the area, in square units, of the rectangle?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2025-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2025-g3-03721",
+  "text": "B C 20 D 21",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2025-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "number line with four points is shown below. 13 What point on the number line represents the fraction ? point A A",
+   "B": "point B",
+   "C": "point C",
+   "D": "point D GO ON Page 6 Session 1 Sarah’s family drives a total of 198 miles over three days. On Day 1, they drive"
+  }
+ },
+ {
+  "id": "ny-released-items-2025-g3-03722",
+  "text": "62 miles. On Day 2, they drive 69 miles. Which value is closest to the number of miles Sarah’s family drives on Day 3 ?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2025-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "60",
+   "B": "70",
+   "C": "130 200 D GO ON Session 1 Page 7 What digit is in the tens place in the number 3,958 ?"
+  },
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2025-g3-03723",
+  "text": "each day for days. Which set of equations can be used to find the total number of glasses of water, , that both Pat and Mary drink on those days?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2025-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2025-g3-03724",
+  "text": "gaps or overlaps. What will be the area, in square units, of the model after it is completely covered with unit squares?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2025-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "14",
+   "B": "15",
+   "C": "27"
+  }
+ }
+]

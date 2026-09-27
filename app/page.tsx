@@ -20,6 +20,8 @@ import type { Grade } from "@/lib/exercises/types";
 import { GRADES } from "@/lib/kids/grade";
 import { activeSuggestion } from "@/lib/practice/state";
 import { releaseSharedMicStream } from "@/lib/stt/provider";
+import KidsLoadError from "@/components/home/KidsLoadError";
+import { kidsScreen, loadKids } from "@/lib/kids/load";
 
 type Kid = KidSummary;
 
@@ -34,30 +36,9 @@ interface KidDashboard {
 /** Whether the kid profile fetch has ever completed for the CURRENT
  *  signed-in user. "pending" gates every render decision that looks at
  *  `kid` — see the 2026-09-14 fix note below for why a plain boolean
- *  (defaulting to false) wasn't enough. */
-type KidLoadState = "pending" | "loaded";
-
-const KIDS_FETCH_RETRY_DELAY_MS = 400;
-
-/** GET /api/kids, tolerating the same fresh-sign-in cookie-propagation
- *  race already found and fixed for /api/stt (lib/stt/provider.ts,
- *  AUTH_RACE_RETRY_DELAY_MS): the server re-reads the session fresh on
- *  every request, and right after a sign-in that read can lose the race
- *  against the just-set auth cookie, returning 401 for a genuinely
- *  signed-in parent. Retried once after a short pause; any other
- *  failure (offline, 5xx) is treated as "no kids found for now" the same
- *  as before — the retry is specifically for the race, not a general
- *  network-resilience layer. */
-async function fetchKids(): Promise<Kid[]> {
-  let res = await fetch("/api/kids?view=kid").catch(() => null);
-  if (res?.status === 401) {
-    await new Promise((resolve) => setTimeout(resolve, KIDS_FETCH_RETRY_DELAY_MS));
-    res = await fetch("/api/kids?view=kid").catch(() => null);
-  }
-  if (!res?.ok) return [];
-  const { kids } = (await res.json()) as { kids: Kid[] };
-  return kids;
-}
+ *  (defaulting to false) wasn't enough. "error" is a fetch that FAILED:
+ *  never the same as "loaded with no kids" (lib/kids/load.ts). */
+type KidLoadState = "pending" | "loaded" | "error";
 
 /** Real parent accounts gate this app (Supabase Auth). Single-page render
  *  branches, deliberately — see the "hard constraints" note in the UI
@@ -87,6 +68,8 @@ export default function Home() {
   const [user, setUser] = useState<{ id: string } | null | undefined>(undefined);
   const [kid, setKid] = useState<Kid | null>(null);
   const [kidLoadState, setKidLoadState] = useState<KidLoadState>("pending");
+  // Bumped by the retry button to re-run the kids fetch.
+  const [kidsAttempt, setKidsAttempt] = useState(0);
   const [view, setView] = useState<"kid" | "dashboard">("kid");
 
   useEffect(() => {
@@ -114,16 +97,24 @@ export default function Home() {
     if (!userId) return;
     let cancelled = false;
     setKidLoadState("pending");
-    fetchKids()
-      .then((kids) => {
+    loadKids<Kid>()
+      .then((result) => {
+        if (cancelled) return;
+        // A FAILED fetch is not "no kids": showing onboarding for it would
+        // let the parent create a duplicate kid. Show the retry screen.
+        if (result.status === "error") {
+          setKidLoadState("error");
+          return;
+        }
         // Always reflect the fetch, not just the found-a-kid case — a kid
         // from a PREVIOUS signed-in user (Supabase can hand this effect a
         // new userId without an intervening logout()) must not linger as
         // stale state once this user's own fetch comes back with none.
-        if (!cancelled) setKid(kids.length > 0 ? kids[0] : null);
+        setKid(result.kids.length > 0 ? result.kids[0] : null);
+        setKidLoadState("loaded");
       })
-      .finally(() => {
-        if (!cancelled) setKidLoadState("loaded");
+      .catch(() => {
+        if (!cancelled) setKidLoadState("error");
       });
     return () => {
       cancelled = true;
@@ -132,7 +123,7 @@ export default function Home() {
     // every onAuthStateChange firing) — otherwise this effect, and the
     // "pending" flip it opens with, re-runs on every such event even when
     // the signed-in user hasn't actually changed.
-  }, [userId]);
+  }, [userId, kidsAttempt]);
 
   async function logout() {
     // Signing out doesn't unload the page (this is a single-page app —
@@ -151,6 +142,18 @@ export default function Home() {
   // Never look at `kid` until its fetch has genuinely settled for THIS
   // user — this is the actual fix; see the file-level note above.
   if (kidLoadState === "pending") return <AppLoadingScreen />;
+  // The fetch failed: retry, never onboarding (see lib/kids/load.ts).
+  if (kidsScreen(kidLoadState, kid !== null) === "retry") {
+    return (
+      <KidsLoadError
+        onRetry={() => {
+          setKidLoadState("pending");
+          setKidsAttempt((n) => n + 1);
+        }}
+        onLogout={logout}
+      />
+    );
+  }
 
   const characterId = kid ? normalizeCharacterId(kid.avatarId) : null;
 

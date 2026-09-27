@@ -1,0 +1,3717 @@
+[
+ {
+  "id": "white-rose-y1-spring-00670",
+  "text": "What number comes after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00671",
+  "text": "What number comes before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00672",
+  "text": "Which numbers sound different? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00673",
+  "text": "Which numbers after 10 do not include “teen”?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00674",
+  "text": "How can you count 20 cubes/counters/pencils/glue sticks?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00675",
+  "text": "What songs do you know that count to 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00676",
+  "text": "How many ways can you make 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00677",
+  "text": "How do you know that you have made 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00678",
+  "text": "Is 10 greater than 9 or less than 9?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00679",
+  "text": "How many ones make 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00680",
+  "text": "If you have one full ten frame, what number have you got?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00681",
+  "text": "What is this piece of base 10 worth? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00682",
+  "text": "How can you show me 11 in three different ways?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00683",
+  "text": "How much more than 10 is 12?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00684",
+  "text": "How can you write the numbers 11, 12 and 13?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00685",
+  "text": "Can you see 11/12/13 anywhere in the classroom?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00686",
+  "text": "Does anyone have a brother or sister who is 11, 12 or 13?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00687",
+  "text": "How many ones are there in 13?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00688",
+  "text": "What is the same and what is different about 11, 12 and 13?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00689",
+  "text": "How can you show me 14/15/16 in three different ways?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00690",
+  "text": "How much more than 10 is 14/15/16?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00691",
+  "text": "How can you write the numbers 14, 15 and 16?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00692",
+  "text": "Can you see 14/15/16 anywhere in the classroom?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00693",
+  "text": "Does anyone have a brother or sister who is 14, 15 or 16?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00694",
+  "text": "How many ones are there in 16?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00695",
+  "text": "What is the same and what is different about 14, 15 and 16?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00696",
+  "text": "How can you show me 17/18/19 in three different ways?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00697",
+  "text": "How much more than 10 is 17/18/19?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00698",
+  "text": "How can you write the numbers 17, 18 and 19?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00699",
+  "text": "Can you see 17/18/19 anywhere in the classroom?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00700",
+  "text": "How many ones are there in 19?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00701",
+  "text": "What is the same and what is different about 17, 18 and 19?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00702",
+  "text": "How many ways can you make 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00703",
+  "text": "How do you know that you have made 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00704",
+  "text": "Is 20 greater than 19 or less than 19?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00705",
+  "text": "How many ones make 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00706",
+  "text": "How many tens make 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00707",
+  "text": "If you have two full ten frames, what number have you got?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00708",
+  "text": "How many pieces of base 10 do you need to make 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00709",
+  "text": "How can you show the number ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00710",
+  "text": "How can you find 1 more?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00711",
+  "text": "How can you find 1 less?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00712",
+  "text": "When you are finding 1 more or 1 less, which digit changes?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00713",
+  "text": "What does each mark on the number line represent?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00714",
+  "text": "Where does the number line start/end?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00715",
+  "text": "How much is each jump on the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00716",
+  "text": "What does each mark on the number line represent?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00717",
+  "text": "Where does the number line start/end?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00718",
+  "text": "How do you find 1 more/less on a number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00719",
+  "text": "What does each jump on the number line represent?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00720",
+  "text": "What does “estimate” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00721",
+  "text": "Can you find halfway?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00722",
+  "text": "What number is halfway on the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00723",
+  "text": "Will halfway on the number line always be 5?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00724",
+  "text": "Can you explain your thinking?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00725",
+  "text": "Where is 15 on the number line? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00726",
+  "text": "Which number is further along the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00727",
+  "text": "Which number is greater? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00728",
+  "text": "Which is the smaller number? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00729",
+  "text": "What does each symbol mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00730",
+  "text": "Can you tell me a number that is less/greater than ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00731",
+  "text": "How did you compare the groups?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00732",
+  "text": "How do you know that group has the most/fewest?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00733",
+  "text": "How do you know that group is the greatest/smallest?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00734",
+  "text": "How can you show the numbers using cubes or counters?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00735",
+  "text": "Do you need to start with the smallest or the greatest number?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00736",
+  "text": "Which number is the greatest/smallest? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00737",
+  "text": "Do all the numbers have tens? How does this help?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00738",
+  "text": "What number did you start with? Then what happened?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00739",
+  "text": "Is it quicker to add 4 to 9 or to add 9 to 4?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00740",
+  "text": "How can you use a number line to count on from ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00741",
+  "text": "How do the counters show the question?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00742",
+  "text": "What is the same and what is different about 4 and 14?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00743",
+  "text": "What do you notice about 14 + 2 and 12 + 4?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00744",
+  "text": "What is the number bond for 5 to 7?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00745",
+  "text": "How many more do you need to make 20?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00746",
+  "text": "How do you know that you have found all the number bonds?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00747",
+  "text": "How do you know that this shows a double?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00748",
+  "text": "How can you make double ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00749",
+  "text": "How can you show the double differently?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00750",
+  "text": "If double 2 is 4, what do you think double 3 is?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00751",
+  "text": "What is the greatest double you can roll on a normal dice?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00752",
+  "text": "What is 12 the double of?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00753",
+  "text": "What does double mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00754",
+  "text": "What is double ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00755",
+  "text": "What is 1 more than ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00756",
+  "text": "wise pattern out + ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00757",
+  "text": "What are and a number bond to?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00758",
+  "text": "What is the same and what is different about 5 and 15?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00759",
+  "text": "What is the number bond for 5 to 8?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00760",
+  "text": "How many objects were there at first?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00761",
+  "text": "How does using counters help you?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00762",
+  "text": "How does using a number line help you?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00763",
+  "text": "Can you think of another way to show the problem?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00764",
+  "text": "What does “difference” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00765",
+  "text": "What strategy can you use to find the difference?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00766",
+  "text": "What pictures/objects can you use to show this?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00767",
+  "text": "How can you complete the sentences?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00768",
+  "text": "How do the counters/bar models help you to subtract?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00769",
+  "text": "Which method will you use to show your thinking? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00770",
+  "text": "Did you count forwards or backwards? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00771",
+  "text": "What is the same and what is different?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00772",
+  "text": "What addition sentences can you write?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00773",
+  "text": "If you know that 12 + 1 = 13, what else do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00774",
+  "text": "Can you see any patterns?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00775",
+  "text": "If you know that 15 − 3 = 12, why can you not say 3 − 15 = 12?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00776",
+  "text": "What number comes next?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00777",
+  "text": "What number comes after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00778",
+  "text": "What numbers sound similar?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00779",
+  "text": "What number comes before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00780",
+  "text": "Is this a group of ten? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00781",
+  "text": "How many ways can you make ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00782",
+  "text": "How many ones make 30?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00783",
+  "text": "How many tens make 30?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00784",
+  "text": "If you have 3 full ten frames, what number have you made?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00785",
+  "text": "How many base 10 pieces make 50?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00786",
+  "text": "How many are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00787",
+  "text": "How did you count them?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00788",
+  "text": "Is there an easier way to count the objects?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00789",
+  "text": "How can you make sure you do not miscount any objects?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00790",
+  "text": "How many ones are there in 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00791",
+  "text": "How many groups of ten are there and how many more?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00792",
+  "text": "How many are there? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00793",
+  "text": "How many ones are there in 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00794",
+  "text": "How many tens are there? How many ones?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00795",
+  "text": "How many are there in each pack/box?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00796",
+  "text": "How many tens are there? How many ones are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00797",
+  "text": "digit numbers as they begin to partition numbers to What is the number?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00798",
+  "text": "What is the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00799",
+  "text": "Does it matter which way round you draw the parts?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00800",
+  "text": "Where does the number line start?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00801",
+  "text": "Where does the number line end?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00802",
+  "text": "Where do the numbers go on a number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00803",
+  "text": "How much is each jump on the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00804",
+  "text": "What does “estimate” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00805",
+  "text": "Can you find halfway on the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00806",
+  "text": "What number is halfway between and ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00807",
+  "text": "Is less than halfway or more than halfway?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00808",
+  "text": "Where is on the number line? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00809",
+  "text": "Which two multiples of 10 is between?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00810",
+  "text": "How can you represent the number ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00811",
+  "text": "How can you find 1 more?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00812",
+  "text": "How can you find 1 less?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00813",
+  "text": "Which object is longer? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00814",
+  "text": "Which object is taller? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00815",
+  "text": "Which object is shorter? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00816",
+  "text": "What is the difference between “longer” and “taller”?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00817",
+  "text": "Can two different objects have the same length?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00818",
+  "text": "What could you use to measure the length/height of this object?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00819",
+  "text": "Where do you need to start/end measuring?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00820",
+  "text": "Which object is longer/taller/shorter? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00821",
+  "text": "How much longer/taller/shorter is the than the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00822",
+  "text": "What does “cm” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00823",
+  "text": "Why is it helpful to have a standard unit of measure?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00824",
+  "text": "Where do you need to begin measuring from?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00825",
+  "text": "Which object is longer/taller/shorter? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00826",
+  "text": "How much longer/taller/shorter is the than the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00827",
+  "text": "Which object do you think is heavier/lighter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00828",
+  "text": "Is a heavier or lighter than a ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00829",
+  "text": "How can you show which object is heavier/lighter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00830",
+  "text": "Are large objects always heavier than small objects?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00831",
+  "text": "How does the balance scale show which object is heavier?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00832",
+  "text": "What does it mean when the scales are balanced?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00833",
+  "text": "How do you know if two objects have the same mass?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00834",
+  "text": "If you add one more cube, what will happen?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00835",
+  "text": "standard unit to measure mass of the object? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00836",
+  "text": "What is the mass of the in cubes?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00837",
+  "text": "What does it mean when the scales are balanced?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00838",
+  "text": "What is the mass of the in cubes?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00839",
+  "text": "Which of the two objects is heavier/lighter? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00840",
+  "text": "How much heavier/lighter is the than the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00841",
+  "text": "Which container do you think can hold more water? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00842",
+  "text": "Does a taller/wider glass always hold more water?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00843",
+  "text": "What does “full”/“empty” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00844",
+  "text": "How are “nearly empty” and “nearly full” different?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00845",
+  "text": "What does “empty”/“nearly empty”/“nearly full”/“full” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00846",
+  "text": "How can you order the volumes from greatest to smallest?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00847",
+  "text": "How can you measure how much liquid fills this container?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00848",
+  "text": "What else can you fill the container with?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00849",
+  "text": "How many cups of sand are needed to fill the container?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00850",
+  "text": "How many marbles are needed to fill the container?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00851",
+  "text": "Which unit of measure is more accurate? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00852",
+  "text": "standard units of measure, and how container? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00853",
+  "text": "What can you use to measure the capacities of the containers?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00854",
+  "text": "How many cups of water can the container hold?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00855",
+  "text": "Which container can hold more marbles?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00856",
+  "text": "Does container A hold more or less water than container B?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00857",
+  "text": "Which container has the greater capacity? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00858",
+  "text": "How many more does container A hold than container B?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00859",
+  "text": "The number that comes after is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00860",
+  "text": "The number that comes before is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00861",
+  "text": "There are cubes.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00862",
+  "text": "The ten frame is full, so I know that I have made",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00863",
+  "text": "There are ones in 10",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00864",
+  "text": "is 1 more than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00865",
+  "text": "is 1 less than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00866",
+  "text": "1 more than is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00867",
+  "text": "The first number on the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00868",
+  "text": "The first number on the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00869",
+  "text": "The last number on the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00870",
+  "text": "is halfway along the number line.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00871",
+  "text": "is closer to than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00872",
+  "text": "is less/greater than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00873",
+  "text": "is equal to",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00874",
+  "text": "ones is greater/less than ones, so is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00875",
+  "text": "First, I had",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00876",
+  "text": "and are a number bond to",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00877",
+  "text": "There are red counters and yellow counters.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00878",
+  "text": "+ = , so double is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00879",
+  "text": "is 1 more than , so I can work out double",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00880",
+  "text": "Double plus 1 is equal to",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00881",
+  "text": "The number bond for to is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00882",
+  "text": "If I know that + = , then I also know that",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00883",
+  "text": "The number that comes after is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00884",
+  "text": "The number that comes before is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00885",
+  "text": "ten frames are full, so I know that I have made",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00886",
+  "text": "There are ones in",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00887",
+  "text": "There are groups of 10 objects and more objects.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00888",
+  "text": "I have tens and ones.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00889",
+  "text": "There are tens.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00890",
+  "text": "The first number on the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00891",
+  "text": "The last number on the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00892",
+  "text": "The number line is going up in",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00893",
+  "text": "Halfway is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00894",
+  "text": "is 1 more than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00895",
+  "text": "is 1 less than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00896",
+  "text": "is longer than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00897",
+  "text": "is taller than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00898",
+  "text": "The length/height of the is cubes.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00899",
+  "text": "The is longer/taller/shorter than the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00900",
+  "text": "The is cubes longer/shorter than the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00901",
+  "text": "The is heavier/lighter than the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00902",
+  "text": "The has the same mass as the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00903",
+  "text": "I know which object is heavier/lighter because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00904",
+  "text": "The mass of the is cubes.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00905",
+  "text": "I know that the is lighter/heavier than the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00906",
+  "text": "The heaviest/lightest object is the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00907",
+  "text": "I think that this container can hold more water because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00908",
+  "text": "The glass is full/empty because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00909",
+  "text": "The glass is nearly empty/nearly full because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00910",
+  "text": "The glass is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00911",
+  "text": "I know that there is water in glass because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00912",
+  "text": "cubes are needed to fill the container.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00913",
+  "text": "The capacity of the container is cups of water.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00914",
+  "text": "I know that container A has a capacity because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "measurement",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-spring-00915",
+  "text": "I need to use the same unit of measure because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

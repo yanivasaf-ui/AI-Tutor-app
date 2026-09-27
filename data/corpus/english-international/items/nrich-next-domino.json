@@ -1,0 +1,77 @@
+[
+ {
+  "id": "nrich-next-domino-03577",
+  "text": "Let's look at the top of the dominoes first.",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-next-domino",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-next-domino-03578",
+  "text": "Can you say the numbers out loud?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-next-domino",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-next-domino-03579",
+  "text": "What comes next?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "patterns-sequences",
+  "source": "nrich-next-domino",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-next-domino-03580",
+  "text": "Can you say the numbers at the bottom of the domino?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-next-domino",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-next-domino-03581",
+  "text": "What comes next?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "patterns-sequences",
+  "source": "nrich-next-domino",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

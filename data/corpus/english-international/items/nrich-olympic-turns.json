@@ -1,0 +1,152 @@
+[
+ {
+  "id": "nrich-olympic-turns-03582",
+  "text": "Which angles are important?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03583",
+  "text": "What would change if that angle was bigger/smaller?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "money",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03584",
+  "text": "Why has the athlete chosen to position their body at that angle?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03585",
+  "text": "Can you estimate that angle?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03586",
+  "text": "Can you measure it?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03587",
+  "text": "Look at a video clip.",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03588",
+  "text": "Are there any angles involved in the sport that are important?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03589",
+  "text": "Are there turns involved?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03590",
+  "text": "How much does the athlete turn?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-olympic-turns-03591",
+  "text": "How do the angles at which they hold their arms, their legs or pieces equipment affect their success?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-olympic-turns",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

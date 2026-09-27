@@ -1,4 +1,4 @@
-import { TOPICS, type MapTopic } from "@/lib/map/topics";
+import { SERVED_TOPICS, type MapTopic } from "@/lib/map/topics";
 import { matchSubject, matchTopic } from "./matchTopic";
 import type { Grade } from "@/lib/exercises/types";
 import type { Subject } from "@/lib/memory/types";
@@ -36,7 +36,7 @@ export function resolveFreePracticeIntent(
   // Voice-experience fix item 2(b): topics are scoped to the kid's own
   // grade everywhere, matching what's read and listed on screen — a topic
   // from another grade is no longer a valid voice match either.
-  const pool = TOPICS.filter((t) => t.grade === kidGrade && (!currentSubject || t.subject === currentSubject));
+  const pool = SERVED_TOPICS.filter((t) => t.grade === kidGrade && (!currentSubject || t.subject === currentSubject));
   const topic = matchTopic(transcript, pool, kidGrade);
   if (topic) return { kind: "topic", topic };
 

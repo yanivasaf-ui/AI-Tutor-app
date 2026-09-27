@@ -1,0 +1,4248 @@
+[
+ {
+  "id": "white-rose-y1-summer-00916",
+  "text": "How can you count the pairs?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00917",
+  "text": "What pairs can you see/find?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00918",
+  "text": "What patterns do you see when you count in 2s?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00919",
+  "text": "When you count in 2s, what numbers will you say/not say?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00920",
+  "text": "How many equal groups of 2 are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00921",
+  "text": "When you count in 10s, what number comes after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00922",
+  "text": "When you count in 10s, what number comes before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00923",
+  "text": "How many groups of 10 are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00924",
+  "text": "How many groups of 10 are there in ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00925",
+  "text": "If you count in 10s from , will you say ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00926",
+  "text": "Which digit stays the same/changes when you count in 10s?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00927",
+  "text": "Will you say when you count in 5s? Why/why not?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00928",
+  "text": "How many 5s are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00929",
+  "text": "When you count in 5s, what number comes after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00930",
+  "text": "When you count in 5s, what number comes before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00931",
+  "text": "What patterns do you notice when you count in 5s?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00932",
+  "text": "What do you notice about counting in 5s and counting in 10s?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00933",
+  "text": "What does “equal” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00934",
+  "text": "How do you know that the groups are equal/unequal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00935",
+  "text": "Do the groups have to look exactly the same to be equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00936",
+  "text": "How many equal groups are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00937",
+  "text": "How can you make the groups equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00938",
+  "text": "Are the groups equal? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00939",
+  "text": "How many are there in each group?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00940",
+  "text": "How many equal groups can you see?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00941",
+  "text": "How many are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00942",
+  "text": "What is a column? Can you show me a column in the array?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00943",
+  "text": "What is a row? Can you show me a row in the array?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00944",
+  "text": "How many equal rows/columns are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00945",
+  "text": "life examples such as bun trays and egg boxes that have How many are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00946",
+  "text": "How can you write a number sentence to match the array?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00947",
+  "text": "What is double ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00948",
+  "text": "How can you show me double ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00949",
+  "text": "Is this a double? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00950",
+  "text": "How many equal groups are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00951",
+  "text": "Is double equal to ? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00952",
+  "text": "Are the groups equal? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00953",
+  "text": "How many are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00954",
+  "text": "What does “sharing” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00955",
+  "text": "How many are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00956",
+  "text": "What is the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00957",
+  "text": "How many parts are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00958",
+  "text": "Are the parts equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00959",
+  "text": "Is this a half? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00960",
+  "text": "How does this show half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00961",
+  "text": "Is this a half or a whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00962",
+  "text": "How many halves make a whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00963",
+  "text": "Are the parts equal? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00964",
+  "text": "How do you know that you have found a half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00965",
+  "text": "How can you find a half of this object/shape?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00966",
+  "text": "Is there more than one way to show half of this shape?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00967",
+  "text": "What is the total/whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00968",
+  "text": "How can you find half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00969",
+  "text": "How many parts do you need to split them into to find half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00970",
+  "text": "How many are there in each part?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00971",
+  "text": "Is this still half when I move the around?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00972",
+  "text": "How can you check that this is still half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00973",
+  "text": "How many are there altogether?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00974",
+  "text": "How many equal groups are there when you are finding half?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00975",
+  "text": "How do you know that the groups are equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00976",
+  "text": "How many are there in each group?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00977",
+  "text": "If 3 is half, how can you find the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00978",
+  "text": "If you know that double 4 is 8, how can you work out half of 8?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00979",
+  "text": "What is the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00980",
+  "text": "How many parts are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00981",
+  "text": "Are the parts equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00982",
+  "text": "How many parts are shaded?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00983",
+  "text": "Is this a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00984",
+  "text": "How do you know that this is/is not a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00985",
+  "text": "How many quarters make a whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00986",
+  "text": "How many parts has the whole been split into?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00987",
+  "text": "Are all the parts equal?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00988",
+  "text": "How many parts do you need to colour to show a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00989",
+  "text": "Can you make a quarter in a different way?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00990",
+  "text": "What is the total/whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00991",
+  "text": "How can you find a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00992",
+  "text": "How many parts do you need to find a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00993",
+  "text": "How many are there in each part?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00994",
+  "text": "Is this still a quarter when I move the around?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00995",
+  "text": "How can you check that this is still a quarter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00996",
+  "text": "When you find a quarter, how many equal groups are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00997",
+  "text": "How many are there in each group?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00998",
+  "text": "If 3 is a quarter of the whole, how can you find the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-00999",
+  "text": "What is a turn?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01000",
+  "text": "How do you make a full turn?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01001",
+  "text": "How do you make a half/quarter turn?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01002",
+  "text": "Does it always matter which direction you turn?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01003",
+  "text": "Can you get to the end position in more than one way?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01004",
+  "text": "Which is your left/right hand/foot?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01005",
+  "text": "How can you get to the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01006",
+  "text": "How can you get from the to the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01007",
+  "text": "Is the to the left or right of the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01008",
+  "text": "Which shape(s) is/are to the left/right of the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "geometry",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01009",
+  "text": "How can you get from the to the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01010",
+  "text": "How could you describe the movement?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01011",
+  "text": "How could you describe “above”?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01012",
+  "text": "How could you show me “below”?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01013",
+  "text": "What is above the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01014",
+  "text": "What is below the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01015",
+  "text": "Is the above or below the ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01016",
+  "text": "Which is at the top/bottom?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01017",
+  "text": "What does “first” mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01018",
+  "text": "When would you use the word “last”?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01019",
+  "text": "When might you use ordinal numbers?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01020",
+  "text": "Is there always fourth?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01021",
+  "text": "Is there always first and last? Why?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01022",
+  "text": "Where is the cube in the tower?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "geometry",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01023",
+  "text": "How can you work out where is?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01024",
+  "text": "What number comes after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01025",
+  "text": "What number comes before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01026",
+  "text": "Do you always need to start counting from 1?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01027",
+  "text": "Which number comes after 9/19/49/59/99?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01028",
+  "text": "Which number comes before 50/60/70/80/90/100?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01029",
+  "text": "Which numbers sound similar?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01030",
+  "text": "How can you show 1 one/10 ones?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01031",
+  "text": "How can you show 1 ten?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01032",
+  "text": "How many tens are there in ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01033",
+  "text": "If you have 7 full ten frames, what number have you made?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01034",
+  "text": "Is there more than one way to count the objects?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01035",
+  "text": "What is the most efficient way to count the objects?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01036",
+  "text": "How many tens are there? How many ones are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01037",
+  "text": "digit numbers from the Spring term, as What is the number?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01038",
+  "text": "What is the whole?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01039",
+  "text": "What are the parts?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01040",
+  "text": "Does it matter which way round the parts are?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01041",
+  "text": "How does partitioning a number help you to read and write it?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01042",
+  "text": "What number comes after/before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01043",
+  "text": "What is the value of the start/end of the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01044",
+  "text": "How much is each jump on the number line? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01045",
+  "text": "What number is halfway along the number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01046",
+  "text": "Should be to the left or right of halfway?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01047",
+  "text": "Is closer to or ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01048",
+  "text": "How can you show the number ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01049",
+  "text": "What does 1 more/less mean?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01050",
+  "text": "How can you find 1 more/less?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01051",
+  "text": "How can you use a number line to find 1 more/less?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01052",
+  "text": "How does this change the number? What digit(s) change?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01053",
+  "text": "Is it only ever the ones digit that changes?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01054",
+  "text": "How can you use base 10 to show the numbers?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01055",
+  "text": "How many tens does each number have?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01056",
+  "text": "Is greater/less than ? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01057",
+  "text": "How can a number line help you to compare numbers?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01058",
+  "text": "Which is greater, 7 tens or 3 tens/70 or 30? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01059",
+  "text": "How can you make both numbers using base 10?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01060",
+  "text": "Which number has more/fewer tens?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01061",
+  "text": "Which number has more/fewer ones?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01062",
+  "text": "Which number is greater? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01063",
+  "text": "Why is it important to look at the tens before the ones?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01064",
+  "text": "How many dots are there on the counter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01065",
+  "text": "What is the value of the counter?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01066",
+  "text": "How can you use counters to represent the value of the coin?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01067",
+  "text": "How can you use coins to match the value of your counters?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01068",
+  "text": "What is the same? What is different?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01069",
+  "text": "What do you notice?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01070",
+  "text": "What is the value of the coin? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01071",
+  "text": "What is the same and what is different about the coins?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01072",
+  "text": "Which coin has the greater value? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01073",
+  "text": "How have you sorted your coins?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01074",
+  "text": "How can you order the coins?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01075",
+  "text": "What is this note?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01076",
+  "text": "What is the same about each note?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01077",
+  "text": "What is different about each note?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01078",
+  "text": "Which note has the highest value? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01079",
+  "text": "Which note has the lowest value? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01080",
+  "text": "How can you count in 2s, 5s or 10s?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01081",
+  "text": "How many coins are there?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01082",
+  "text": "What do you do in the morning/afternoon/evening?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01083",
+  "text": "Which activities do you do before/after school?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01084",
+  "text": "Why have you ordered the pictures before/after each other?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01085",
+  "text": "What comes after/before ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01086",
+  "text": "What day is it today?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01087",
+  "text": "Which day comes before/after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01088",
+  "text": "What day was it yesterday?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01089",
+  "text": "What day will it be tomorrow?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01090",
+  "text": "If today is , what will tomorrow be?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01091",
+  "text": "Which days are at the weekend? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01092",
+  "text": "How many months are there in a year?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01093",
+  "text": "Which month are we in now?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01094",
+  "text": "What month will come next?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01095",
+  "text": "Which month comes before/after ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01096",
+  "text": "Which month is your birthday in?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01097",
+  "text": "Which month do we start school in?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01098",
+  "text": "Which months are the summer holidays in?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01099",
+  "text": "Which is longer/shorter: one hour, one minute or one second?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01100",
+  "text": "How many minutes are there in an hour?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01101",
+  "text": "How many seconds are there in a minute?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01102",
+  "text": "Would you measure the activity in hours, minutes or seconds?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01103",
+  "text": "Who was quicker/slower? How do you know?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01104",
+  "text": "How is a clock similar to/different from a number line?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01105",
+  "text": "Which number is the hour hand pointing to?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01106",
+  "text": "How could you show me o’clock?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01107",
+  "text": "What do you notice about the hand?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01108",
+  "text": "Where will the hour hand be at ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01109",
+  "text": "Where will the minute hand be at ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01110",
+  "text": "Which hour has the hand gone past?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01111",
+  "text": "Which two numbers is the hour hand pointing between?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01112",
+  "text": "Where will the hour hand be at half past ?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01113",
+  "text": "How would you show half past on a clock face?",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01114",
+  "text": "There are in each pair.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01115",
+  "text": "There are groups of ten.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01116",
+  "text": "There are full ten frames.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01117",
+  "text": "There are groups of 5",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01118",
+  "text": "There are 5s.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01119",
+  "text": "There are equal groups of",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01120",
+  "text": "I know that the groups are equal/not equal because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01121",
+  "text": "To make the groups equal, I could …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01122",
+  "text": "There are equal groups.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01123",
+  "text": "There are groups of",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01124",
+  "text": "There are rows.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01125",
+  "text": "There are columns.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01126",
+  "text": "This is double",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01127",
+  "text": "is/is not a double. I know this because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01128",
+  "text": "The groups are equal/not equal because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01129",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01130",
+  "text": "The have/have not been shared equally.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "multiplication-division",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01131",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01132",
+  "text": "The whole is split into equal parts.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01133",
+  "text": "There are halves in a whole.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01134",
+  "text": "This is/is not a half because ...",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01135",
+  "text": "To find a half, I need to split the whole into equal parts.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01136",
+  "text": "If the whole is split into two equal parts, each part is called a",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01137",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01138",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01139",
+  "text": "The whole is split into equal parts.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01140",
+  "text": "There are quarters in a whole.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01141",
+  "text": "To make quarters, I need to split the whole into",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01142",
+  "text": "To show a quarter, I need to colour of the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01143",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01144",
+  "text": "There are altogether.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01145",
+  "text": "This is a turn.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01146",
+  "text": "The has turned a turn.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01147",
+  "text": "I have turned a turn.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01148",
+  "text": "A turn is the same as …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01149",
+  "text": "The moves to the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01150",
+  "text": "The is to the left/right of the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01151",
+  "text": "The moves squares forwards/backwards.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01152",
+  "text": "The is below the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01153",
+  "text": "The is above the",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01154",
+  "text": "The at the top/bottom is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01155",
+  "text": "I know that is because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01156",
+  "text": "The person who wins the race comes",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01157",
+  "text": "The number that comes after is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01158",
+  "text": "The number that comes before is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01159",
+  "text": "ten frames are full, so I know that I have made",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01160",
+  "text": "There are tens.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01161",
+  "text": "There are tens.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01162",
+  "text": "whole The number is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01163",
+  "text": "is the whole.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01164",
+  "text": "I know the number line is going up in s because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01165",
+  "text": "The number halfway along the number line is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01166",
+  "text": "is to the left/right of halfway.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "fractions",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01167",
+  "text": "1 more than is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01168",
+  "text": "1 less than is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01169",
+  "text": "is equal to tens and ones.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01170",
+  "text": "tens is to tens.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01171",
+  "text": "is greater/less than because …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01172",
+  "text": "tens are greater/less than tens.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01173",
+  "text": "When I compare numbers, I need to compare the first.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01174",
+  "text": "is equal to tens and ones.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "place-value",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01175",
+  "text": "There are dots.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01176",
+  "text": "The has a value of",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01177",
+  "text": "This is a pence coin.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01178",
+  "text": "There are 1 penny coins.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01179",
+  "text": "This is a pence coin.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01180",
+  "text": "I know that these coins are pounds/pence because ...",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01181",
+  "text": "One pound note is equal to pound notes/coins.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01182",
+  "text": "I know that a pound note has a higher value than",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01183",
+  "text": "The value of each coin is pence, so I need to count",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01184",
+  "text": "There are coins.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "money",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01185",
+  "text": "Before/after I ,I",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01186",
+  "text": "First, I …",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01187",
+  "text": "The day after is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01188",
+  "text": "The day before is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01189",
+  "text": "Today is , so tomorrow will be",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01190",
+  "text": "There are months in a year.",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01191",
+  "text": "The month before/after is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01192",
+  "text": "It is now, so next month will be",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01193",
+  "text": "A is longer/shorter than a",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01194",
+  "text": "There are seconds in a",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01195",
+  "text": "There are minutes in an",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01196",
+  "text": "I know that is quicker/slower than ,",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "general",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y1-summer-01197",
+  "text": "The hand is pointing to and the minute hand is",
+  "grade": 1,
+  "grade_band": "year-1",
+  "topic": "time",
+  "source": "white-rose-y1-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

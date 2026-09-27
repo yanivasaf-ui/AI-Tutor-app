@@ -1,0 +1,1063 @@
+[
+ {
+  "id": "singapore-placement-3B-00277",
+  "text": "Which is heavier, A or B? ________",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00278",
+  "text": "Fill in “heavier than”, “lighter than” or “as heavy as”.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00279",
+  "text": "Study the scales and write the correct weight.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00280",
+  "text": "Fill in the blanks with kg or g.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00281",
+  "text": "Fill in the blanks with kg or g. (The watermelon weighs about 3 _____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00282",
+  "text": "Fill in the blanks with kg or g. (A boy weighs about 30 ____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00283",
+  "text": "Fill in the blanks with kg or g. (5 eggs weigh 275 _____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00284",
+  "text": "Fill in the blanks with lb or oz.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00285",
+  "text": "Fill in the blanks with lb or oz. (The apple weighs about 6 _____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00286",
+  "text": "Fill in the blanks with lb or oz. (The watermelon weighs about 5 _____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00287",
+  "text": "Fill in the blanks with lb or oz. (28 grams weigh about the same as 1 _____.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00288",
+  "text": "A B B This picture shows how many cups or mugs are used to fill up each jug, A and B. Circle the correct answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "geometry",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00289",
+  "text": "A B B This picture shows how many cups or mugs are used to fill up each jug, A and B. Circle the correct answer. (Which holds more water, Jug A or Jug B? A B)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "geometry",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00290",
+  "text": "A B B This picture shows how many cups or mugs are used to fill up each jug, A and B. Circle the correct answer. (Which can hold more water? 2)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "geometry",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00291",
+  "text": "Write >, <, or = in each",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 10
+ },
+ {
+  "id": "singapore-placement-3B-00292",
+  "text": "Write >, <, or = in each (2 quarts 1 gallon)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00293",
+  "text": "Write >, <, or = in each (4 pints 1 quart)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00294",
+  "text": "Write >, <, or = in each (1 liter 1 quart)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00295",
+  "text": "Fill in the blanks.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-3B-00296",
+  "text": "A tank can hold 8 buckets of water. The capacity of the bucket is 6 liters. What is the capacity of the tank? 3",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00297",
+  "text": "The capacity of a jug is 3 quarts. Kerry needs 6 gallons of juice for a party. How many jugs of juice will she have to make?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00298",
+  "text": "John weighs 64 lb. His brother weighs 16 lb less. Their father’s weight is 2 times their total weight. What is their father’s weight?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00299",
+  "text": "A melon is 5 times as heavy as an orange. If the orange weighs 450 g, find the difference in weight between the orange and the melon. Give your answer in compound units of kilograms and grams. 4",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00300",
+  "text": "John left his house at 11:45 a.m. He took 25 minutes to walk to the store. What time did he arrive at the store?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00301",
+  "text": "David visited some friends. He left at 10:50 a.m. and came back home three and a half hours later. What time did he get home?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00302",
+  "text": "A birthday party started at 11:30 a.m. It ended at 2:15 p.m. How long did the party last?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00303",
+  "text": "John took 2 h 40 min to paint his room. He finished at 11:30 a.m. What time did he begin painting his room? 5",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00304",
+  "text": "Fill in the blanks.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00305",
+  "text": "Fill in the blanks. (7 quarters = $_______)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00306",
+  "text": "Fill in the blanks. (15 nickels = $_______)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00307",
+  "text": "The sum of 6 one-dollar bills, 5 quarters, 8 dimes, 5 nickels, and 14 pennies is $________",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00308",
+  "text": "Solve using mental math:",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00309",
+  "text": "Mr. Green bought some vegetables for $8.50 and fish for $12.95. He had $32.30 left. How much money did he have at first? 6",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00310",
+  "text": "A 10 oz. carton of strawberries at a farmer’s market costs $2. Hallie wants to buy strawberries only if they are less than $3 a pound. Should she buy the strawberries? Why or why not?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00311",
+  "text": "Find the missing numbers for the top or bottom of the fractions.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00312",
+  "text": "Circle the larger fraction. 4 4 2 5",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00313",
+  "text": "Express each of the following fractions in its simplest form. 6 3",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00314",
+  "text": "How many halves are there in 5?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00315",
+  "text": "Find the missing numbers for the top or bottom of the fractions. 30",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00316",
+  "text": "2 1 Melissa ate of a pie. Sara ate of the pie. Who ate a bigger 6 2 portion of the pie?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00317",
+  "text": "Alex has 2 quarters, 1 dime, and 2 nickels. What fraction of his coins are quarters?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00318",
+  "text": "There are 10 apples in a bowl. 2 are red and the rest are green. What fraction of the apples is green?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3B-00319",
+  "text": "This bar graph shows David's savings for five months.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "data",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-3B-00320",
+  "text": "This bar graph shows David's savings for five months. (David saved $_______ in August.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "time",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00321",
+  "text": "This bar graph shows David's savings for five months. (He saved the least money in ______________.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "data",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00322",
+  "text": "This bar graph shows David's savings for five months. (In _____________________ he saved twice as much as in November.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "data",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00323",
+  "text": "This bar graph shows David's savings for five months. (He saved $______ more in October than in July. 55 cm)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00324",
+  "text": "40 cm 30 cm 45 cm",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5
+ },
+ {
+  "id": "singapore-placement-3B-00325",
+  "text": "40 cm 30 cm 45 cm (The perimeter of this figure is ______ m ______ cm)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00326",
+  "text": "40 cm 30 cm 45 cm (Is this figure a rhombus?)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00327",
+  "text": "40 cm 30 cm 45 cm (The figure has _________ right angles, ______ angles greater than a right angle, and ______ angles smaller than a right angle.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00328",
+  "text": "The length of a rectangular field is 60 yd and its width is 25 yd. Sam 25 yd ran around the field three times. How far did he run? 60 yd",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00329",
+  "text": "The length of a rectangular carpet is 13 m and its width is 7 m. What is the area of the rug? 9",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3B-00330",
+  "text": "In the figure, all lines meet at right angles. 15 cm 3 cm 9 cm 12 cm",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5
+ },
+ {
+  "id": "singapore-placement-3B-00331",
+  "text": "In the figure, all lines meet at right angles. 15 cm 3 cm 9 cm 12 cm (Find the area of the figure.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00332",
+  "text": "In the figure, all lines meet at right angles. 15 cm 3 cm 9 cm 12 cm (Find the perimeter of the figure. Answer Key)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3B-00333",
+  "text": "lighter than 18. $8.44",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00334",
+  "text": "heavier than",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00335",
+  "text": "1 kg 650 g 28. Sara",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00336",
+  "text": "224 lb 32.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00337",
+  "text": "1 kg 800 g",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00338",
+  "text": "12:10 p.m. 33. 510 yd",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00339",
+  "text": "2:20 p.m. 34. 91 m2",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00340",
+  "text": "2 h 45 min 35.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3B-00341",
+  "text": "8:50 a.m.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

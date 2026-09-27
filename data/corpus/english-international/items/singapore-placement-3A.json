@@ -1,0 +1,898 @@
+[
+ {
+  "id": "singapore-placement-3A-00222",
+  "text": "Fill in the blanks.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-3A-00223",
+  "text": "Fill in the blanks. (Nine thousand nineteen in standard form is ___________.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00224",
+  "text": "Fill in the blanks. (In 4,598, the digit _____ is in the hundreds place.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00225",
+  "text": "Fill in the blanks. (4,900 is _______ more than 4890.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00226",
+  "text": "Fill in the blanks. (The difference between 700 and 1,000 is ________.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00227",
+  "text": "Fill in the blanks. (When 30 is divided by 4, the quotient is __________ and the remainder is _________.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00228",
+  "text": "Complete the following regular number patterns: 4,623; 4,723; 4,823; ________; _________; _________",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-3A-00229",
+  "text": "Write these numbers in order, beginning with the smallest: 862 8,662 6,862 6,826 _______ _______ _______ _______",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00230",
+  "text": "Round 5,190 to the nearest thousand. _______",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00231",
+  "text": "Round 8,485 to the nearest ten. _______",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00232",
+  "text": "Round 3,968 to the nearest hundred. ________ 1",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00233",
+  "text": "Solve using mental math:",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00234",
+  "text": "Estimate the value of 896 + 438 by rounding each number to the nearest hundred. Then find the exact sum.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00235",
+  "text": "Estimate the value of 896 + 438 by rounding each number to the nearest hundred. Then find the exact sum. (896 + 438 is about ______.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00236",
+  "text": "Estimate the value of 896 + 438 by rounding each number to the nearest hundred. Then find the exact sum. (896 + 438 is exactly ______.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00237",
+  "text": "Estimate the value of 762 – 334 by rounding each number to the nearest hundred. Then find the exact difference.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00238",
+  "text": "Estimate the value of 762 – 334 by rounding each number to the nearest hundred. Then find the exact difference. (762 – 334 is about _______.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00239",
+  "text": "Estimate the value of 762 – 334 by rounding each number to the nearest hundred. Then find the exact difference. (762 – 334 is exactly _______. 2)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00240",
+  "text": "Write an equation and solve. Draw a picture if you need to.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-3A-00241",
+  "text": "Write an equation and solve. Draw a picture if you need to. (15 more than ______ is 48.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00242",
+  "text": "Write an equation and solve. Draw a picture if you need to. (______ less than 132 than is 80.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00243",
+  "text": "Write an equation and solve. Draw a picture if you need to. (120 less than ______ is 300.)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00244",
+  "text": "The difference between two numbers is 456. If the larger number is 854, what is the smaller number?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00245",
+  "text": "There were 156 boys and girls at a park. 97 of them are girls. How many more girls than boys were there? 3",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00246",
+  "text": "A computer costs $1,430. A microwave oven is $850 cheaper than the computer. Mr. Max bought both the computer and the microwave oven. How much did he spend?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "money",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00247",
+  "text": "+ + = 21 + + + = 36 Find the value of × . _________.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00248",
+  "text": "Write >, <, or = in each .",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00249",
+  "text": "Write +, –, x, or ÷ in each",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00250",
+  "text": "Fill in the blanks with a number to make each of the following true.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-3A-00251",
+  "text": "Which of the following is the best estimate for the value of 587 x 8? (Do not find the actual answer.) 580 4,000 4,800 5,000",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-3A-00252",
+  "text": "Which of the following is the best expression to use in order to estimate the value of 4,387 ÷ 7? 4,000 ÷ 7 4,300 ÷ 7 4,200 ÷ 7 4,400 ÷ 7 5",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-3A-00253",
+  "text": "A number is divided by 4. The quotient is 3 and the remainder is 2. Is the number even or odd?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-3A-00254",
+  "text": "Multiply:",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00255",
+  "text": "Divide. Give the quotient and remainder if there is one.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-3A-00256",
+  "text": "Fill in the boxes to complete the equations you would use to check your answer to 22",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-3A-00257",
+  "text": "Fill in the boxes to complete the equations you would use to check your answer to 22 (above. x 9 + 5)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00258",
+  "text": "There are 36 monkeys in a zoo. There are 6 times as many monkeys as tigers. How many more monkeys are there than tigers?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3A-00259",
+  "text": "Mrs. Merry had 197 stickers. She gave 7 stickers to each of the students in her class. She had fewer than 7 stickers left over. How many students does she have? 7",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3A-00260",
+  "text": "A fruit seller had 936 oranges. 16 of them were rotten. He packed the rest into boxes of 8. How many boxes of oranges were there?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3A-00261",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with centimeter, meter, or kilometer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00262",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with centimeter, meter, or kilometer. (The width of a piece of paper. _______________)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00263",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with centimeter, meter, or kilometer. (The length of a swimming pool. _______________)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00264",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with inch, foot, yard, or mile.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00265",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with inch, foot, yard, or mile. (The length of the Columbia River. _______________)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00266",
+  "text": "What measuring unit would you use to measure the following? Fill in the blanks with inch, foot, yard, or mile. (The length of your foot. _______________)",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-3A-00267",
+  "text": "Write >, <, or = in each",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00268",
+  "text": "Fill in the blanks.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00269",
+  "text": "The length of board A is 3 ft 4 inches. The length of board B is 45 inches. Which is longer? How much longer?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-3A-00270",
+  "text": "String A is 85 cm long. String B is twice as long. String C is 30 cm shorter than string B. How long is string C? Give your answer in meters and centimeters. Answer Key",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-3A-00271",
+  "text": "4,923; 5,023; 5,123",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00272",
+  "text": "862; 6,826; 6,862; 8,662 18. 4,800",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00273",
+  "text": "4,000 20. even",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00274",
+  "text": "30 more monkeys",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00275",
+  "text": "$2,010 29.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-3A-00276",
+  "text": "1 m 40 cm",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "singapore-placement-3A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

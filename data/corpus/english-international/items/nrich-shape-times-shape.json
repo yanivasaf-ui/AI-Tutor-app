@@ -1,0 +1,77 @@
+[
+ {
+  "id": "nrich-shape-times-shape-03603",
+  "text": "Where might you start?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-shape-times-shape",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shape-times-shape-03604",
+  "text": "Now that we know that shape, how will that help?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-shape-times-shape",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shape-times-shape-03605",
+  "text": "What does that tell us?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-shape-times-shape",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shape-times-shape-03606",
+  "text": "How do we know?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-shape-times-shape",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-shape-times-shape-03607",
+  "text": "How are you keeping track of what you have done?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-shape-times-shape",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

@@ -1,0 +1,364 @@
+[
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03955",
+  "text": "Circle the numbers that have 8 in the thousands place. 84,623 28,436 683,052 8,325 608,231 6N2 Less Than",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03956",
+  "text": "Tick all the numbers that are less than one million and fifty thousand. 1,400,000 1,049,900 1,060,000 1,030,900 N00080A0424 5N4 Rounded Number",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03957",
+  "text": "There were 15,961 people at a football game. Round this number to the nearest hundred.",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "place-value",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03958",
+  "text": "Jack buys 2 kilograms of pears. He spends £3.28 What is the cost of one kilogram of pears? £ N00080A0524 4P2 Three Translations",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "measurement",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03959",
+  "text": "Point P is located at (5, 8) on the grid. y 10 9 P 8 7 6 5 4 3 2 1 0 1 2 3 4 5 6 7 8 9 10 x Point P is translated 4 units right, 6 units down and 2 units left. What is the location of point P after the three translations? ( , ) N00080A0624 1 4C8 Loaded Truck",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "geometry",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03960",
+  "text": "The mass of the empty truck is 2,250 kilograms. It is then loaded with 8 boxes. The mass of each box is 25 kilograms. What is the total mass of the truck and its load? Show your method kilograms N00080A0724 NCR ref: 5F2a Impropermix",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03961",
+  "text": "Draw four lines to match each improper fraction to its equivalent mixed number. 2 5 5 26 2 4 4 5 27 2 6 5 4 30 2 4 4 4 32 2 7 5 4 2 6 5 N00080A0824 M 0 0 6 7 6 7 – 2 4 J ul y 2 0 2 4 4: 4 3 p m – V er si o n 3",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03962",
+  "text": "K e n b u y s t h e s e t hr e e it e m s. CE RE AL BREAD Mil k 80p £ 2. 5 0 £ 1. 1 5 H e p a y s wit h a £ 2 0 n ot e. H o w m u c h c h a n g e d o e s K e n g et ? Sho w y o ur m et h o d £ 2 m ar k s N 0 0 0 8 0 A 0 9 2 4 P a g e 9 of 2 4 K S 2 it e m arit h m eti c t e m pl at e v er si o n 2. 1 ( 2 0 1 7) 4N5 down the line",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03963",
+  "text": "Here is part of a number line. 0 5 Write the number that the arrow is pointing to. Write the number that is 16 less than 7 N00080A01024 5S1, 5M9b, 5M9c Zoo",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "addition-subtraction",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03964",
+  "text": "Here is some information about four animals in a zoo. Elephant Hippo Rhino Giraffe Mass 6,300kg 1,100kg 2,400kg 1,200kg Height 3.4m 1.5m 1.7m 6.0m Tick the statements that are true. The elephant is exactly three times heavier than the rhino. The hippo is a quarter of the height of the giraffe. The rhino is 20cm taller than the hippo. The tallest animal is also the heaviest. N00080A01124 5F6b threes&fours",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03965",
+  "text": "Tick the number sentence that is correct. Tick one. 4 3 0.304 = 10 + 1000 43 0.43 = 1000 4 3 0.403 = 10 + 1000 3 4 0.034 = 10 + 1000 N00080A01224 NCR ref: 3M4b/4M4a 24hr_little_hours",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03966",
+  "text": "Each clock below shows the time in am or pm. Match each clock to its 24-hour time. One has been done for you. am 12 : 35 04 : 05 pm 07: 20 22 :45 am 19 : 20 pm 21:45 N00080A01324 5F5b M003923_upline – 15 January 2025 11:54 AM – Version 5",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "time",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03967",
+  "text": "Write these numbers in order, starting with the least. 9 99 0.999 0.009 100 100 least N00080A01424 NCR ref: 6A2 5C5c 5C5d y-values a",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03968",
+  "text": "Look at this expression. y+4 Tick the value for y that gives a prime number value for y + 4 y=8 y=9 y = 10 Tick the value for y that gives a square number value for y + 4 y=5 y=6 y=7 N00080A01524 6C8 ragtrade",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "multiplication-division",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03969",
+  "text": "X A factory makes T-shirts and dresses. They pack them in boxes. 50 40 There are 50 T-shirts in a box. How many T-shirts are there in 250 boxes? There are 40 dresses in a box. How many boxes are needed for 3,000 dresses? N00080A01624 6S2 3F1b custard pie",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03970",
+  "text": "These pie charts show the biscuits in two tins. Tin A has 36 biscuits. Tin B has 20 biscuits. plain ginger chocolate chocolate ginger Tin B has more chocolate biscuits than Tin A. Explain why this is incorrect. N00080A01724 6C8 Boxcrisps",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03971",
+  "text": "A shop buys 35 boxes of crisps. Each box contains 48 packets of crisps. On average, the shop sells 56 packets of crisps each day. How many days will it take for all of the crisps to be sold? Show your method days N00080A01824 5M5a 6M5a M004030_km2m – 12 December 2024 11:43 AM – Version 4",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03972",
+  "text": "Convert 5.65 km to metres. m Convert 35.5 cm to metres. m N00080A01924 5M9b towerblock",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "measurement",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03973",
+  "text": "Jacob has some wooden blocks that are all the same size. He uses the blocks to make two towers. Not 22 cm actual size The height of the taller tower is 22 centimetres. What is the height of the smaller tower? Show your method cm N00080A02024 6F5a 001_equilaterfrac",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "measurement",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "show-working",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03974",
+  "text": "This shape is made from equilateral triangles. What fraction of the whole shape is shaded? 5C5a Seven_and_Eights",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "fractions",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03975",
+  "text": "Here is some information about a number: • It has two digits • It is a multiple of 7 • One of the digits is 8 Write all the possible numbers that the number could be. N00080A02124 6G4a, 5G4b Para_rhom",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "general",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "ks2-sats-2025-reasoning-p3-03976",
+  "text": "This diagram shows four identical parallelograms and a rhombus. a 115° Not to scale Calculate the size of angle a. Show your method ° N00080A02224 [ ] Please do not write on this page. N00080A02324 Key stage 2 mathematics Paper 3: reasoning Print version product code: STA/25/8919/p ISBN: 978-1-83507-250-9 Electronic PDF version product code: STA/25/8919/e ISBN: 978-1-83507-271-4 For more copies Additional printed copies of this booklet are not available. It can be downloaded after the test window from www.gov.uk/government/collections/national-curriculum-assessments-practice-materials. © Crown copyright The materials in this booklet are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0, which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/ doc/open-government-licence. If you have any queries regarding these test materials, please contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk. N00080A02424",
+  "grade": 6,
+  "grade_band": "KS2",
+  "topic": "measurement",
+  "source": "ks2-sats-2025-reasoning-p3",
+  "type": "sats-reasoning",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "show-working",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ }
+]

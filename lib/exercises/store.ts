@@ -3,6 +3,9 @@ import type { Database } from "@/lib/supabase/database.types";
 import { getTopicById } from "@/lib/map/topics";
 import { parseComputation } from "./arithmetic";
 import { topicFit } from "./topic-fit";
+import { checkQuestionQuality } from "@/lib/authoring/quality-gate";
+import { operationScope } from "./operation-scope";
+import { formatFit } from "./format-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 type Client = SupabaseClient<Database>;
@@ -137,14 +140,7 @@ export async function findReusableExercise(
   kidId: string | null,
   topicId?: string,
   difficulty?: 1 | 2 | 3,
-  excludeIds?: string[],
-  /** Last-resort escape hatch (see the route's TopicFitError handler): serve
-   *  from the unfiltered candidate page. Only for the case where the fit
-   *  filter emptied the pool AND generation could not produce a fitting
-   *  exercise either — a kid with no exercise at all is a worse outcome than
-   *  the off-topic one this check exists to prevent. Never used on the
-   *  ordinary path, and nothing is written to the bank from it. */
-  opts?: { ignoreTopicFit?: boolean }
+  excludeIds?: string[]
 ): Promise<Exercise | null> {
   const topic = topicId ? getTopicById(topicId) : undefined;
   const topicScoped = topic && topic.subject === subject && topic.grade === grade;
@@ -174,11 +170,28 @@ export async function findReusableExercise(
   // (fit-checked) exercise, which is also how the bank heals. Checked against
   // the topic the kid is IN when scoped (legacy untagged rows have no tag of
   // their own), else against the row's own tag.
+  //
+  // The authoring rubric (lib/authoring/quality-gate.ts) is applied the same
+  // way and for the same reason: the bank holds rows written before the
+  // gate existed ("כמה זה 60 ÷ 10?" with no sharing frame, a story about
+  // 180 balls drawn as 20). Every check here applies to every request;
+  // none can be switched off.
   const pool = (data as DbExerciseRow[]).filter((r) => {
     if (excluded?.has(r.id)) return false;
-    if (opts?.ignoreTopicFit) return true;
+    const ex = rowToExercise(r);
+    if (!checkQuestionQuality(ex).ok) return false;
     const fitTopic = topicScoped ? topic!.id : (r.topic_id ?? undefined);
-    return topicFit(rowToExercise(r), fitTopic).ok;
+    // Operations the topic doesn't teach (the grade-א division rows) are
+    // never served either, escape hatch or not — see operation-scope.ts.
+    if (!operationScope(ex, fitTopic, grade).ok) return false;
+    // Nor a format the topic's allowed-format table doesn't list (a +3
+    // sequence under shapes, a root drill under reading) — the 2026-09-14
+    // seed rows that the vocabulary check let through. Never lifted.
+    if (!formatFit(ex, fitTopic).ok) return false;
+    // (There used to be an escape hatch here that skipped the topic check
+    // when nothing else could be served. It is removed: an unchecked row is
+    // never served — the route says "try again" instead, owner 2026-09-26.)
+    return topicFit(ex, fitTopic).ok;
   });
   if (pool.length === 0) return null;
   const pick = pool[Math.floor(Math.random() * pool.length)];
@@ -191,6 +204,9 @@ export async function saveExercise(
   supabase: Client,
   exercise: Omit<Exercise, "id">
 ): Promise<Exercise> {
+  // Admission: nothing enters the bank in a format its topic doesn't allow.
+  const fit = formatFit({ id: "unsaved", ...exercise } as Exercise, exercise.topicId);
+  if (!fit.ok) throw new Error(`refusing to bank an exercise whose format does not fit its topic: ${fit.reason}`);
   const { data, error } = await supabase
     .from("exercises")
     .insert({
@@ -217,6 +233,22 @@ export async function saveExercise(
     .single();
   if (error || !data) throw new Error(`Failed to save exercise: ${error?.message}`);
   return rowToExercise(data as DbExerciseRow);
+}
+
+/** A vetted template (lib/authoring/vetted-templates.ts) as a bank row: the
+ *  existing row for the same topic and wording when there is one, else a
+ *  new one. Attempts reference exercises by id, so a template has to be a
+ *  row — this keeps it to one row per template rather than one per
+ *  fallback. */
+export async function findOrSaveExercise(supabase: Client, exercise: Omit<Exercise, "id">): Promise<Exercise> {
+  const { data } = await supabase
+    .from("exercises")
+    .select("*")
+    .eq("question", exercise.question)
+    .eq("topic_id", exercise.topicId ?? "")
+    .limit(1);
+  if (data && data.length > 0) return rowToExercise(data[0] as DbExerciseRow);
+  return saveExercise(supabase, exercise);
 }
 
 /** Logs one kid's attempt at one exercise, and updates the exercise's

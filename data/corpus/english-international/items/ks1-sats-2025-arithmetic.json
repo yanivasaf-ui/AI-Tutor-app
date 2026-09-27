@@ -1,0 +1,426 @@
+[
+ {
+  "id": "ks1-sats-2025-arithmetic-03801",
+  "text": "10 | 8 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03802",
+  "text": "45 + 4 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03803",
+  "text": "40 + 12 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03804",
+  "text": "68 | 7 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03805",
+  "text": "30 + 40 + 10 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03806",
+  "text": "8{2= KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03807",
+  "text": "7{5=",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03808",
+  "text": "30 + = 100 KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03809",
+  "text": "33 + 34 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03810",
+  "text": "9 + 29 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03811",
+  "text": "80 | = 50",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03812",
+  "text": "79 | 10 | 10 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03813",
+  "text": "70 + = 85",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03814",
+  "text": "52 | 5 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03815",
+  "text": "1 of 40 = 2",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03816",
+  "text": "60 } 10 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03817",
+  "text": "16 + 75 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03818",
+  "text": "22 } 2 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03819",
+  "text": "69 + 21 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03820",
+  "text": "99 – 17 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03821",
+  "text": "1 of 26 = 2",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03822",
+  "text": "57 + 28 =",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03823",
+  "text": "1 of 24 = 4",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03824",
+  "text": "43 | 17 = KS1 arithmetic template version 2.2 (2017)",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "ks1-sats-2025-arithmetic-03825",
+  "text": "+ 19 = 64 End of test KS1 arithmetic template version 2.2 (2017) [ ] Please do not write on this page. [ ] Please do not write on this page. [ ] Please do not write on this page. Key stage 1 mathematics Paper 1: arithmetic Product code: STA/25/8907/e ISBN: 978-1-83507-259-2 For more copies This document can be downloaded from www.primaryassessmentgateway.education.gov.uk during May 2025, or afterwards from www.gov.uk/government/collections/national-curriculum- assessments-past-test-materials. © Crown copyright The materials in this booklet are Crown copyright. You may re-use them (not including logos) free of charge in any format or medium in accordance with the terms of the Open Government Licence v3.0, which can be found on the National Archives website and accessed via the following link: www.nationalarchives.gov.uk/ doc/open-government-licence. If you have any queries regarding these test materials, please contact the national curriculum assessments helpline on 0300 303 3013 or email assessments@education.gov.uk.",
+  "grade": 2,
+  "grade_band": "KS1",
+  "topic": "general",
+  "source": "ks1-sats-2025-arithmetic",
+  "type": "sats-arithmetic",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ }
+]

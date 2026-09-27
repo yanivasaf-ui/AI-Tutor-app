@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TOPICS, getTopicById } from "@/lib/map/topics";
+import { SERVED_TOPICS, getTopicById } from "@/lib/map/topics";
 
 const SUBJECT_LABELS = { math: "חשבון", hebrew: "עברית" } as const;
 
@@ -80,7 +80,7 @@ export default function SuggestPractice({
           <option value="">בחירת נושא…</option>
           {(["math", "hebrew"] as const).map((s) => (
             <optgroup key={s} label={SUBJECT_LABELS[s]}>
-              {TOPICS.filter((t) => t.subject === s).map((t) => (
+              {SERVED_TOPICS.filter((t) => t.subject === s).map((t) => (
                 <option key={t.id} value={t.id}>
                   {`כיתה ${t.grade}׳ · ${t.topic}`}
                 </option>

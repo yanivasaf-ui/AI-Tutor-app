@@ -1,0 +1,32 @@
+[
+ {
+  "id": "nrich-making-cuboids-03566",
+  "text": "Which would be a good cuboid to start on?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-making-cuboids",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-making-cuboids-03567",
+  "text": "Where do the two rectangles that are the same size go on the net of the cuboid?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "geometry",
+  "source": "nrich-making-cuboids",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

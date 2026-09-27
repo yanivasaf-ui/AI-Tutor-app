@@ -1,0 +1,3878 @@
+[
+ {
+  "id": "white-rose-y3-spring-02334",
+  "text": "What is the multiple of 10 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02335",
+  "text": "What is the multiple of 10 after ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02336",
+  "text": "Is a multiple of 10? How can you tell?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02337",
+  "text": "How many tens are there in ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02338",
+  "text": "What is the same about all multiples of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02339",
+  "text": "tables to explore calculations calculations?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02340",
+  "text": "How is multiplying by 10s different from multiplying by 1s?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02341",
+  "text": "What is the connection between the two calculations?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02342",
+  "text": "What number sentences are shown by the array?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02343",
+  "text": "What is the same and what is different about 8 × 3 and 8 × 4?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02344",
+  "text": "Which digit represents the size of the group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02345",
+  "text": "Which digit refers to the number of groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02346",
+  "text": "What happens if you increase/decrease the number of groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02347",
+  "text": "What happens if you increase/decrease the size of the groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02348",
+  "text": "Do you need to complete the calculations to compare them?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02349",
+  "text": "How can you partition a 2-digit number into tens and ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02350",
+  "text": "What is the product of the tens and the single digit?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02351",
+  "text": "What is the product of the ones and the single digit?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02352",
+  "text": "What do you need to do to find the final answer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02353",
+  "text": "How can you partition a 2-digit number into tens and ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02354",
+  "text": "What is the product of the tens and the single digit?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02355",
+  "text": "What is the product of the ones and the single digit?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02356",
+  "text": "What do you need to do to find the final answer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02357",
+  "text": "What do you do if you have ten or more ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02358",
+  "text": "How is multiplying by 10s different from multiplying by 1s?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02359",
+  "text": "What is partitioned into tens and ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02360",
+  "text": "What is shared into equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02361",
+  "text": "How can you use the part-whole model to work out the division?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02362",
+  "text": "What is divided by ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02363",
+  "text": "digit number. They now begin to look at calculations that ones are both multiples of the number you are dividing by?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02364",
+  "text": "What is shared into equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02365",
+  "text": "What is divided by ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02366",
+  "text": "Do you need to exchange any tens for ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02367",
+  "text": "Is there a remainder?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02368",
+  "text": "What number is 10 times the size of ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02369",
+  "text": "What number is times the size of ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02370",
+  "text": "What length is times as long as ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02371",
+  "text": "What time is times as long as ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02372",
+  "text": "Which is the larger object? How many times larger is it?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02373",
+  "text": "How can you show the problem as a bar model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02374",
+  "text": "How can you show the possibilities in a table?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02375",
+  "text": "In what order should you list the possibilities?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02376",
+  "text": "Starting with , how many combinations can you make?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02377",
+  "text": "How do you know you have found all the ways?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02378",
+  "text": "Where should you start measuring from on your ruler?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02379",
+  "text": "What is the length of in centimetres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02380",
+  "text": "What is the length of in metres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02381",
+  "text": "What is the length of in metres and centimetres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02382",
+  "text": "How many intervals are there between 0 and 1 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02383",
+  "text": "Where is the 5 mm mark on your ruler?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02384",
+  "text": "What is the length of in millimetres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02385",
+  "text": "Would you measure the height of the door in millimetres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02386",
+  "text": "Which is greater in length, 1 mm or 1 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02387",
+  "text": "Is the an exact number of centimetres long?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02388",
+  "text": "How does the 5 mm interval help you to measure the length?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02389",
+  "text": "How many millimetres are there in a centimetre?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02390",
+  "text": "How many centimetres are there in a metre?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02391",
+  "text": "Which is longer, 1 m or 1 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02392",
+  "text": "Which is shorter, 1 cm or 1 mm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02393",
+  "text": "Which is longer, 3 m or 60 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02394",
+  "text": "Which is shorter, 4 cm or 20 mm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02395",
+  "text": "What unit would you use to measure the length of ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02396",
+  "text": "How many centimetres are there in 1 m?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02397",
+  "text": "How can you work out how many centimetres there are in 6 m?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02398",
+  "text": "What is centimetres in metres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02399",
+  "text": "How many centimetres are there in m and cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02400",
+  "text": "How many centimetres are there in m?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02401",
+  "text": "How many millimetres are there in 1 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02402",
+  "text": "How can you work out how many millimetres there are in 4 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02403",
+  "text": "How many millimetres are there in cm and mm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02404",
+  "text": "How do you know mm and cm are equivalent?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02405",
+  "text": "How many millimetres are there in 12 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02406",
+  "text": "How can you compare lengths given in different units?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02407",
+  "text": "Does it matter which unit of measurement you use to compare?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02408",
+  "text": "How many mm/cm are there in cm/m?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02409",
+  "text": "How many centimetres are there in 1 m?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02410",
+  "text": "How many millimetres are there in 1 cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02411",
+  "text": "How did you find the total length?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02412",
+  "text": "Does it matter in which order you add the lengths?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02413",
+  "text": "How many centimetres are there in m and cm?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02414",
+  "text": "What is the difference in length between the two objects?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02415",
+  "text": "How can you check that you have the correct answer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02416",
+  "text": "What does “perimeter” mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02417",
+  "text": "When might someone need to find the perimeter in real life?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02418",
+  "text": "Why are you unable to find the perimeter of this shape?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02419",
+  "text": "D shapes. piece of paper?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02420",
+  "text": "Which of the shapes has the greater perimeter?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02421",
+  "text": "How does the squared grid help you to find the perimeter?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02422",
+  "text": "What does “perimeter” mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02423",
+  "text": "Do you need to measure all the sides? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "geometry",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02424",
+  "text": "How do you know that you have measured all the sides?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "geometry",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02425",
+  "text": "Which method do you prefer, to find the perimeter of a square?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02426",
+  "text": "Can you find the perimeter of a shape with a curved edge? How?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02427",
+  "text": "Are any of the sides equal?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "geometry",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02428",
+  "text": "How can you work out the perimeter of the shape?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02429",
+  "text": "Do the lengths need to have the same unit of measurement?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02430",
+  "text": "How many parts are shaded?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02431",
+  "text": "What is the denominator of the fraction? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02432",
+  "text": "Why is the denominator of this fraction ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02433",
+  "text": "Can you draw a different diagram to show the same fraction?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02434",
+  "text": "How many equal parts is the whole split into?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02435",
+  "text": "How many equal parts are shaded/circled?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02436",
+  "text": "How do you know what the denominator/numerator is?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02437",
+  "text": "unit fraction is made up of a quantity of can you see the numerator?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02438",
+  "text": "Can you draw a diagram/bar model to represent the fraction?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02439",
+  "text": "unit fraction?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02440",
+  "text": "Is the whole split into equal parts?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02441",
+  "text": "How many equal parts has the whole been split into?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02442",
+  "text": "What fraction is shaded?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02443",
+  "text": "What do you notice about the two numerators?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02444",
+  "text": "Are the numerators the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02445",
+  "text": "Are the denominators the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02446",
+  "text": "Which fraction is greater? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02447",
+  "text": "Which fraction is smaller? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02448",
+  "text": "What patterns did you spot when you ordered the fractions?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02449",
+  "text": "Where does the scale start/end?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02450",
+  "text": "What are you measuring? What unit is it measured in?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02451",
+  "text": "Does the height of the container/scale matter?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02452",
+  "text": "What is an interval?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02453",
+  "text": "Are all the intervals equal?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02454",
+  "text": "How do you count the number of intervals?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02455",
+  "text": "Why can you not just count the markers on the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02456",
+  "text": "What fraction comes next in the count? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02457",
+  "text": "What fraction comes before ? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02458",
+  "text": "What do you notice about the start of each number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02459",
+  "text": "What do you notice about the end of each number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02460",
+  "text": "What is the denominator going to be? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02461",
+  "text": "Which fraction is easiest/hardest to estimate? Why?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02462",
+  "text": "What other word does “equivalent” remind you of?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02463",
+  "text": "What are equivalent fractions?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02464",
+  "text": "What are the start and end numbers of each number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02465",
+  "text": "Which fractions are in line with ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02466",
+  "text": "How do you know is equivalent to ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02467",
+  "text": "What are equivalent fractions?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02468",
+  "text": "What does each whole bar model show?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02469",
+  "text": "How many equal parts has the bar model been split into?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02470",
+  "text": "How do you know is equivalent to ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02471",
+  "text": "What is the value at the start of the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02472",
+  "text": "What is the value at the end of the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02473",
+  "text": "How many equal parts is the number line split into?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02474",
+  "text": "What is the value of each interval on the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02475",
+  "text": "What is the same/different about these two number lines?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02476",
+  "text": "What does “mass” mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02477",
+  "text": "What units do you use to measure mass?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02478",
+  "text": "What is the start/end value on the scale?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02479",
+  "text": "How many equal intervals are there on the scale?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02480",
+  "text": "How do you know what the missing numbers are?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02481",
+  "text": "What is mass?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02482",
+  "text": "How many grams are there in 1 kg?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02483",
+  "text": "How many grams is half/a quarter of a kilogram?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02484",
+  "text": "How many grams are there in a kilogram?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02485",
+  "text": "How many grams are there in half a kilogram?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02486",
+  "text": "How many grams are there in one quarter of a kilogram?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02487",
+  "text": "What is equivalent to?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02488",
+  "text": "How many more grams are needed to make 1 kg?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02489",
+  "text": "Which object is heavier/lighter? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02490",
+  "text": "Which is heavier: 1 kg or 100 g?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02491",
+  "text": "Which is heavier: 1 kg and 100 g or 1 kg and 400 g?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02492",
+  "text": "Which is heavier: 500 g or 3 kg and 100 g?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02493",
+  "text": "Which is heavier: 600 g or 12 kg?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02494",
+  "text": "How can you add using kilograms and grams?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02495",
+  "text": "Which part did you work with first? Why?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02496",
+  "text": "What method could you use to add to ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02497",
+  "text": "What method could you use to subtract from ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02498",
+  "text": "How can you show this question using a bar model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02499",
+  "text": "What objects can you use to help complete this calculation?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02500",
+  "text": "Do you need to add or subtract to answer this question?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02501",
+  "text": "What is the difference between capacity and volume?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02502",
+  "text": "What is the capacity of the container? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02503",
+  "text": "How many equal intervals are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02504",
+  "text": "What is each interval worth?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02505",
+  "text": "How can you work out halfway between two marks?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02506",
+  "text": "What unit is the volume/capacity measured in?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02507",
+  "text": "What is the difference between capacity and volume?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02508",
+  "text": "What is the capacity of the container? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02509",
+  "text": "How many millilitres are there in 1 litre?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02510",
+  "text": "How can you work out halfway between two marks on a scale?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02511",
+  "text": "In this question, what unit is the volume/capacity measured in?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02512",
+  "text": "How many millilitres are equivalent to 1 litre?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02513",
+  "text": "How many equal parts are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02514",
+  "text": "What is each interval worth?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02515",
+  "text": "How can you use number bonds to 100 to help?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02516",
+  "text": "What is the difference between capacity and volume?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02517",
+  "text": "Which container do you think has the greater capacity? Why?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02518",
+  "text": "How can you work out the actual capacity of each container?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02519",
+  "text": "What is each interval worth?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02520",
+  "text": "How can you work out halfway between two marks?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02521",
+  "text": "What unit is the volume/capacity measured in?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02522",
+  "text": "How many millilitres are there in litres?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02523",
+  "text": "What units are being used? Can you add/subtract them?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02524",
+  "text": "How could you work out the difference?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02525",
+  "text": "In what order are you going to do the calculations?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02526",
+  "text": "I know is a multiple of 10 because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02527",
+  "text": "multiplied by 10 is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02528",
+  "text": "× ones is equal to ones,",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02529",
+  "text": "÷ is equal to ,",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02530",
+  "text": "lots of is greater than lots of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02531",
+  "text": "lots of is less than lots of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02532",
+  "text": "tens and ones multiplied by is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02533",
+  "text": "tens multiplied by is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02534",
+  "text": "tens and ones multiplied by is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02535",
+  "text": "ones is tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02536",
+  "text": "× ones is equal to ones, so ×",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02537",
+  "text": "÷ is equal to , so tens ÷",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02538",
+  "text": "partitioned into tens and ones is tens and",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02539",
+  "text": "divided by is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02540",
+  "text": "There are groups of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02541",
+  "text": "is times the length of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02542",
+  "text": "multiplied by is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02543",
+  "text": "times the size of is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02544",
+  "text": "For every , there are",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02545",
+  "text": "For each , there are choices of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02546",
+  "text": "The is cm long.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02547",
+  "text": "The is m long.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02548",
+  "text": "The is mm long.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02549",
+  "text": "1 mm is than 1 cm.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02550",
+  "text": "The is cm and mm long.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02551",
+  "text": "m is shorter/longer than cm.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02552",
+  "text": "mm is shorter/longer than cm.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02553",
+  "text": "There are cm in 1 m.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02554",
+  "text": "m cm is equal to cm.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02555",
+  "text": "cm is than cm, so the greater length is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02556",
+  "text": "cm is equal to mm.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02557",
+  "text": "The perimeter of a shape is …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02558",
+  "text": "Perimeter is …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02559",
+  "text": "Opposite sides of a rectangle are",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "geometry",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02560",
+  "text": "The shape is split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "geometry",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02561",
+  "text": "The denominator is because ...",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02562",
+  "text": "There are equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02563",
+  "text": "The whole is split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02564",
+  "text": "is greater than because ...",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02565",
+  "text": "The scale has been split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02566",
+  "text": "The number line has been split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02567",
+  "text": "The number line starts at and ends at",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02568",
+  "text": "The number line has been split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02569",
+  "text": "The number lines start at and end at",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02570",
+  "text": "I know is equivalent to because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02571",
+  "text": "The bar model is split into equal parts.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02572",
+  "text": "I know is equivalent to because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02573",
+  "text": "If 100 is shared into equal parts, then each part is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02574",
+  "text": "The start of the scale is grams.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02575",
+  "text": "The mass is between kg and kg.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02576",
+  "text": "g is equivalent to kg.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02577",
+  "text": "I need more grams to make a kilogram.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02578",
+  "text": "kg is heavier/lighter than kg, so kg and",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02579",
+  "text": "The number of kilograms is the same so I need to compare",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02580",
+  "text": "The total of g/kg and g/kg is g/kg.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02581",
+  "text": "The difference between g/kg and g/kg",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02582",
+  "text": "kg add/subtract kg is equal to kg.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02583",
+  "text": "The scale has been split into equal parts, so each mark",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02584",
+  "text": "The arrow on the scale is pointing to l and ml",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02585",
+  "text": "The volume is between l and l",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02586",
+  "text": "There are ml in 1 litre.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02587",
+  "text": "The capacity of the first container is than the capacity",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02588",
+  "text": "The volume of liquid in the first container is than the",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02589",
+  "text": "There are millilitres in litre.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "measurement",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-spring-02590",
+  "text": "litres add/subtract litres is equal to litres.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-spring",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

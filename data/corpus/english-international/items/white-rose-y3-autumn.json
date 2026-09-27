@@ -1,0 +1,4567 @@
+[
+ {
+  "id": "white-rose-y3-autumn-02031",
+  "text": "What patterns can you see in the Roman number system?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02032",
+  "text": "What letters are used in the Roman number system?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02033",
+  "text": "Is it quicker to count in ones or tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02034",
+  "text": "How many ones make 1 ten?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02035",
+  "text": "How else can you show this number?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02036",
+  "text": "What is the start point? What is the end point?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02037",
+  "text": "How many intervals are there? What is each interval worth?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02038",
+  "text": "What is the number line counting up in? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02039",
+  "text": "Where would be on the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02040",
+  "text": "When counting in 10s, what number comes after 90?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02041",
+  "text": "If you count from zero in 100s, will you say 40?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02042",
+  "text": "When counting in 100s, what comes after 500?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02043",
+  "text": "How many tens are there in 100?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02044",
+  "text": "If there are 10 tens in 100, how many tens are there in 200?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02045",
+  "text": "How does the base 10 show that 100 is 10 times the size of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02046",
+  "text": "What is the value of each of the base 10 pieces?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02047",
+  "text": "Does the order in which you build the number matter?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02048",
+  "text": "How else can you represent the number?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02049",
+  "text": "How many hundreds/tens/ones are there in 465?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02050",
+  "text": "How do you write a number that has zero tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02051",
+  "text": "How do you write a number that has zero ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02052",
+  "text": "What number is equal to 300 + 70 + 9?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02053",
+  "text": "What is the value of the missing part? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02054",
+  "text": "What is the value of the digit 6 in 465?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02055",
+  "text": "Can you partition the number in more than one way?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02056",
+  "text": "How do you write a number that has zero tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02057",
+  "text": "How do you write a number that has zero ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02058",
+  "text": "Is 200 + 100 + 50 + 16 equal to 300 + 60 + 6? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02059",
+  "text": "What number is made of 3 hundreds and 15 tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02060",
+  "text": "How do you know the value of the counter?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02061",
+  "text": "How do you know which column to place the counter in?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02062",
+  "text": "How many hundreds, tens and ones is made up of?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02063",
+  "text": "How can you show this using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02064",
+  "text": "How can you show this using a place value chart?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02065",
+  "text": "Which digit(s) changes when you find 10 more?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02066",
+  "text": "What is the start point? What is the end point?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02067",
+  "text": "How many intervals are there? What is each interval worth?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02068",
+  "text": "What is the number line counting up in? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02069",
+  "text": "Where would be on the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02070",
+  "text": "What number would be halfway along the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02071",
+  "text": "What is the number line counting up in? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02072",
+  "text": "Where would be on the number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02073",
+  "text": "Is closer to or ? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02074",
+  "text": "Why can you only estimate?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02075",
+  "text": "What number is halfway between and ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "fractions",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02076",
+  "text": "How do you know which number is greater?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02077",
+  "text": "Do you start comparing hundreds, tens or ones first? Why?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02078",
+  "text": "What strategy did you use to compare the two numbers?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02079",
+  "text": "Can you show each number using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02080",
+  "text": "What is the same about each number? What is different?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02081",
+  "text": "What is the same about counting in 5s and counting in 50s?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02082",
+  "text": "What is different about counting in 5s and counting in 50s?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02083",
+  "text": "What patterns do you notice?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02084",
+  "text": "Which is the whole and which are the parts?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02085",
+  "text": "What needs to be added to this part to make the whole?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02086",
+  "text": "If you take this part from the whole, what will be left?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02087",
+  "text": "Where would this number go in the part-whole model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02088",
+  "text": "What other number facts do you know if you know this?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02089",
+  "text": "digit number?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02090",
+  "text": "digit number?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02091",
+  "text": "digit number?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02092",
+  "text": "Will more than one column ever change?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02093",
+  "text": "What is the value of the digit in the number ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02094",
+  "text": "How many tens are there in ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02095",
+  "text": "How many tens are you adding/subtracting?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02096",
+  "text": "Will the value in the tens column increase or decrease?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02097",
+  "text": "Which place value columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02098",
+  "text": "What is the inverse of adding/subtracting ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02099",
+  "text": "What is the value of the digit in the number ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02100",
+  "text": "How many hundreds are there in ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02101",
+  "text": "How many hundreds are you adding/subtracting?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02102",
+  "text": "Will the value in the hundreds column increase or decrease?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02103",
+  "text": "Which place value columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02104",
+  "text": "If you know 3 + 4 = 7, what is 300 + 400?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02105",
+  "text": "What is the inverse of adding/subtracting ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02106",
+  "text": "What is the value of the digit in the number ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02107",
+  "text": "Which place value columns have changed/stayed the same? Why?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02108",
+  "text": "If you know 3 + 4 = 7, what else do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02109",
+  "text": "What is the inverse of adding/subtracting ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02110",
+  "text": "What is the next multiple of 10 after ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02111",
+  "text": "How can you partition ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02112",
+  "text": "What number do you add to to make 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02113",
+  "text": "What is the jump from to the next multiple of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02114",
+  "text": "If is a part/jump, what is the other part/jump ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02115",
+  "text": "Which columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02116",
+  "text": "Which method do you prefer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02117",
+  "text": "What is the next multiple of 100 after ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02118",
+  "text": "How can you partition ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02119",
+  "text": "What number do you add to to make 100?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02120",
+  "text": "If is a part/jump, what is the other part/jump?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02121",
+  "text": "Which columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02122",
+  "text": "Does the column always/sometimes/never change?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "money",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02123",
+  "text": "Which method is more efficient? Which method do you prefer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02124",
+  "text": "What is the previous multiple of 10 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02125",
+  "text": "How can you partition ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02126",
+  "text": "What is the jump from to the previous multiple of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02127",
+  "text": "If is a part/jump, what is the other part/jump ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02128",
+  "text": "Which columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02129",
+  "text": "Which method do you prefer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02130",
+  "text": "What is the multiple of 100 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02131",
+  "text": "How can you partition ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02132",
+  "text": "What is the jump from to the previous multiple of 100?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02133",
+  "text": "If is a part/jump, what is the other part/jump?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02134",
+  "text": "Which columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02135",
+  "text": "Which method do you prefer? Which is more efficient?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02136",
+  "text": "What is the multiple of 10/100 after ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02137",
+  "text": "What is the multiple of 10/100 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02138",
+  "text": "What is the jump from to the next/previous multiple?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02139",
+  "text": "If is a part/jump, what is the other part/jump?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02140",
+  "text": "Which columns have changed/stayed the same?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02141",
+  "text": "Which method do you prefer? Which is more efficient?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02142",
+  "text": "How can you represent the question using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02143",
+  "text": "How can you put these numbers into a place value chart?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02144",
+  "text": "Does it matter which columns you add together first?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02145",
+  "text": "Do you have enough ones/tens to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02146",
+  "text": "What do you put in the tens column if there are no tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02147",
+  "text": "How can you put this number into a place value chart?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02148",
+  "text": "Do you need to make both numbers before you can subtract?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02149",
+  "text": "Does it matter which column you subtract from first?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02150",
+  "text": "Do you have enough ones/tens to subtract ones/tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02151",
+  "text": "Do you need to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02152",
+  "text": "Does it matter which column’s numbers you add together first?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02153",
+  "text": "Do you have enough ones to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02154",
+  "text": "Does it matter which column you add together first?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02155",
+  "text": "Do you have enough ones/tens to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02156",
+  "text": "How can you show this question using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02157",
+  "text": "Can you subtract 2 ones from 5 ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02158",
+  "text": "Can you subtract 5 ones from 2 ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02159",
+  "text": "Do you need to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02160",
+  "text": "How can you show an exchange using the written method?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02161",
+  "text": "How can you show this question using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02162",
+  "text": "Can you subtract 2 tens from 5 tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02163",
+  "text": "Can you subtract 5 tens from 2 tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02164",
+  "text": "Do you need to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02165",
+  "text": "Have you put all the digits in the correct columns?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02166",
+  "text": "Do you need to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02167",
+  "text": "How can you show this question using base 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02168",
+  "text": "Have you put all the digits in the correct columns?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02169",
+  "text": "Do you need to make an exchange?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02170",
+  "text": "If you cannot exchange from the tens, what should you do?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02171",
+  "text": "How many squares are there altogether? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02172",
+  "text": "How many full rows of each colour are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02173",
+  "text": "What do you notice about the row with both colours in it?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02174",
+  "text": "What do you notice about the total of the tens?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02175",
+  "text": "What do you notice about the total of the ones?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02176",
+  "text": "What is the jump to the next multiple of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02177",
+  "text": "What is the jump to 100?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02178",
+  "text": "What are the multiples of 10/100 before and after ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02179",
+  "text": "Where would be on this number line?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02180",
+  "text": "Which multiple is closer to?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02181",
+  "text": "How far from is ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02182",
+  "text": "Which calculation is easier/quicker to perform?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02183",
+  "text": "Which calculations can you do mentally?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02184",
+  "text": "Why do we use estimates?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02185",
+  "text": "Is the estimate less than or greater than the actual answer?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02186",
+  "text": "What do you notice about the part-whole models?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02187",
+  "text": "What are the two parts? What is the whole?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02188",
+  "text": "What does “inverse” mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02189",
+  "text": "What is the inverse of add/subtract ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02190",
+  "text": "What does commutative mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02191",
+  "text": "Is addition/subtraction commutative?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02192",
+  "text": "What estimate could you use to check?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02193",
+  "text": "Do you know the whole?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02194",
+  "text": "What parts do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02195",
+  "text": "Which operation do you need to use?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02196",
+  "text": "Which method is more efficient?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02197",
+  "text": "What does this arrow represent on the bar model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "data",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02198",
+  "text": "Where is the whole/total on the bar model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02199",
+  "text": "What is the first step you need to do?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02200",
+  "text": "Do you have to complete the calculations in a specific order?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02201",
+  "text": "How can you tell if groups are equal?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02202",
+  "text": "What does the 2 represent? What does the 8 represent?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02203",
+  "text": "How can you show the groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02204",
+  "text": "What is the same and what is different about the groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02205",
+  "text": "How else can you show the equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02206",
+  "text": "How many ways can you show this?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02207",
+  "text": "Do these two groups look the same? Why or why not?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02208",
+  "text": "How many lots of 2 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02209",
+  "text": "How many lots of 5 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02210",
+  "text": "What does this array show?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02211",
+  "text": "What number sentences can you write to describe this array?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02212",
+  "text": "How does this array show repeated addition and multiplication?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02213",
+  "text": "What is the next multiple of 2?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02214",
+  "text": "What is the multiple of 2 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02215",
+  "text": "How do you know that all multiples of 2 are even?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02216",
+  "text": "What is the next multiple of 5/10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02217",
+  "text": "What is the multiple of 5/10 before ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02218",
+  "text": "What do you notice about the multiples of 5 and 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02219",
+  "text": "When is a multiple of 5 also a multiple of 10?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02220",
+  "text": "Is a multiple of 5/10? How can you tell?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02221",
+  "text": "Are all multiples of 10 even? How do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02222",
+  "text": "How can you share into equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02223",
+  "text": "What is the difference between sharing and grouping?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02224",
+  "text": "Is the question asking you to share or group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02225",
+  "text": "What does your answer mean?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02226",
+  "text": "How many equal groups are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02227",
+  "text": "How many are in each group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02228",
+  "text": "How could you show this multiplication using a bar model?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02229",
+  "text": "How could you use counters to explore the problem?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02230",
+  "text": "How many lots/groups of 3 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02231",
+  "text": "How many will go into each group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02232",
+  "text": "How many groups of 3 can you make?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02233",
+  "text": "How can you show me sharing?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02234",
+  "text": "How can you show me grouping?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02235",
+  "text": "Is the question sharing or grouping?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02236",
+  "text": "How can you show this using an array?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02237",
+  "text": "What would one more lot be?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02238",
+  "text": "What would double the number of lots be?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02239",
+  "text": "If you know this, what else do you know?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02240",
+  "text": "How could you partition the array to show different groups of 3?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02241",
+  "text": "How many equal groups are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02242",
+  "text": "How many are in each group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02243",
+  "text": "How can you write a number sentence to show this?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02244",
+  "text": "How many lots of 4 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02245",
+  "text": "How can you share into 4 equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02246",
+  "text": "How can you put into equal groups of 4?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02247",
+  "text": "What is the difference between sharing and grouping?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02248",
+  "text": "Is this question asking you to share the or group them?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02249",
+  "text": "What does your answer represent?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02250",
+  "text": "How many equal groups are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02251",
+  "text": "How many lots of 4 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02252",
+  "text": "What strategy can you use when multiplying by 4?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02253",
+  "text": "What strategy can you use when dividing by 4?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02254",
+  "text": "How many equal groups are there?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02255",
+  "text": "How many are in each group?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02256",
+  "text": "How can you write a number sentence to show this?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02257",
+  "text": "How many lots of 8 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02258",
+  "text": "How can you share into 8 equal groups?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02259",
+  "text": "How can you put into equal groups of 8?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02260",
+  "text": "What is the difference between sharing and grouping?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02261",
+  "text": "Is this question asking you to share the or group them?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02262",
+  "text": "How many lots of 8 do you have?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02263",
+  "text": "How many groups of 8 are there in ?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02264",
+  "text": "What strategy can you use when multiplying/dividing by 8?",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02265",
+  "text": "The letter represents the number",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02266",
+  "text": "I know is greater than because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02267",
+  "text": "It is often more difficult to convert numbers that require",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02268",
+  "text": "There are tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02269",
+  "text": "The start point is and the end point is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02270",
+  "text": "There are intervals on the number line.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02271",
+  "text": "There are tens in 100 and hundreds in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02272",
+  "text": "There are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02273",
+  "text": "There are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02274",
+  "text": "The start point is and the end point is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02275",
+  "text": "is greater than because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02276",
+  "text": "is less than because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02277",
+  "text": "hundreds is greater than hundreds, so",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02278",
+  "text": "If the whole is and one part is , then the other",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02279",
+  "text": "sided counters, number lines, part is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02280",
+  "text": "ones plus/minus ones is equal to ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02281",
+  "text": "There are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02282",
+  "text": "tens plus/minus tens is equal to tens.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02283",
+  "text": "The tens column will increase/decrease by",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02284",
+  "text": "There are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02285",
+  "text": "hundreds plus/minus hundreds is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02286",
+  "text": "There are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02287",
+  "text": "The next multiple of 10 after is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02288",
+  "text": "The previous multiple of 10 before is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02289",
+  "text": "I need to subtract to get to the previous multiple of 10,",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02290",
+  "text": "The multiple of 100 before is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02291",
+  "text": "I need to subtract to get to the previous multiple of 100,",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02292",
+  "text": "ones plus ones is equal to ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02293",
+  "text": "tens plus tens is equal to tens.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02294",
+  "text": "hundreds plus hundreds is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02295",
+  "text": "Now there are hundreds, tens and ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02296",
+  "text": "If I have ones, I can exchange them for ten and",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02297",
+  "text": "If I have tens, I can exchange them for hundred",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02298",
+  "text": "ones subtract ones is equal to ones.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02299",
+  "text": "hundreds added to hundreds is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02300",
+  "text": "I put in the column because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02301",
+  "text": "hundreds subtract hundreds is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02302",
+  "text": "I will exchange 1 hundred for tens, then 1 ten for",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "place-value",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02303",
+  "text": "I add to get to the next 10, then to get to 100",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02304",
+  "text": "This means is the complement to 100 of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02305",
+  "text": "plus is equal to 100",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02306",
+  "text": "is near to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02307",
+  "text": "If is a part and is a part, then is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02308",
+  "text": "If is the whole and is a part, then is the",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02309",
+  "text": "There are equal groups with in each group.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02310",
+  "text": "There are lots of",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02311",
+  "text": "The next multiple of 2 is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02312",
+  "text": "The previous multiple of 2 is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02313",
+  "text": "I know is even because …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02314",
+  "text": "The next multiple of 5/10 is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02315",
+  "text": "The previous multiple of 5/10 is",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02316",
+  "text": "There are groups of in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02317",
+  "text": "There are groups.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02318",
+  "text": "There are groups.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02319",
+  "text": "There are in each group.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02320",
+  "text": "There are lots of 3",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02321",
+  "text": "There are altogether.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02322",
+  "text": "lots of 3 is equal to",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02323",
+  "text": "If I know × 3 is , then I can find × 3 by …",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02324",
+  "text": "There are equal groups with in each group.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02325",
+  "text": "There are altogether.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02326",
+  "text": "Double is and double is , so 4 lots",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02327",
+  "text": "There are groups of in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02328",
+  "text": "There are groups of 4 in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02329",
+  "text": "There are 4 groups of in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02330",
+  "text": "There are equal groups with in each group.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "general",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02331",
+  "text": "There are altogether.",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02332",
+  "text": "There are groups of in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y3-autumn-02333",
+  "text": "There are 8 groups of in",
+  "grade": 3,
+  "grade_band": "year-3",
+  "topic": "multiplication-division",
+  "source": "white-rose-y3-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

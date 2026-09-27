@@ -150,7 +150,21 @@ export function toSingleNumber(input: string): number | null {
 export type AnswerMatch =
   | { kind: "choice"; value: string }
   | { kind: "value"; value: string }
-  | { kind: "none"; reason: "no-match" | "ambiguous" | "out-of-range" };
+  | {
+      kind: "none";
+      reason: "no-match" | "ambiguous" | "out-of-range";
+      /**
+       * What the child plausibly meant, best first — only ever real
+       * answers to THIS exercise, never a number assembled from the
+       * transcript. The repair ladder (lib/voice/repairLadder.ts) offers
+       * the first one back as "התכוונת ל-12?"; with none it must not
+       * invent one, and asks the child to say it again instead.
+       *
+       * Empty (not absent) when nothing plausible was heard, so a caller
+       * cannot confuse "no candidates" with "field not populated".
+       */
+      candidates: string[];
+    };
 
 /**
  * Match a transcript against multiple-choice options.
@@ -162,19 +176,19 @@ export type AnswerMatch =
  */
 export function matchChoice(transcript: string, choices: string[]): AnswerMatch {
   const t = normalize(transcript);
-  if (!t) return { kind: "none", reason: "no-match" };
+  if (!t) return { kind: "none", reason: "no-match", candidates: [] };
 
   const normalizedChoices = choices.map((c) => ({ raw: c, norm: normalize(c) }));
 
   const exact = normalizedChoices.filter((c) => c.norm === t);
   if (exact.length === 1) return { kind: "choice", value: exact[0].raw };
-  if (exact.length > 1) return { kind: "none", reason: "ambiguous" };
+  if (exact.length > 1) return { kind: "none", reason: "ambiguous", candidates: exact.map((c) => c.raw) };
 
   const tNum = toSingleNumber(transcript);
   if (tNum !== null) {
     const numeric = normalizedChoices.filter((c) => toSingleNumber(c.raw) === tNum);
     if (numeric.length === 1) return { kind: "choice", value: numeric[0].raw };
-    if (numeric.length > 1) return { kind: "none", reason: "ambiguous" };
+    if (numeric.length > 1) return { kind: "none", reason: "ambiguous", candidates: numeric.map((c) => c.raw) };
   }
 
   // Guard against a stray single *letter* ("א") latching onto a long
@@ -191,10 +205,16 @@ export function matchChoice(transcript: string, choices: string[]): AnswerMatch 
       return containsSubsequence(cTokens, tTokens) || containsSubsequence(tTokens, cTokens);
     });
     if (contained.length === 1) return { kind: "choice", value: contained[0].raw };
-    if (contained.length > 1) return { kind: "none", reason: "ambiguous" };
+    if (contained.length > 1) return { kind: "none", reason: "ambiguous", candidates: contained.map((c) => c.raw) };
   }
 
-  return { kind: "none", reason: "no-match" };
+  // Nothing matched by any tier. One last, deliberately weak pass purely
+  // to find something to ASK about: a choice sharing a whole token with
+  // what was heard. Too weak to answer on the child's behalf — which is
+  // exactly why it is offered as a question and never submitted silently.
+  const heard = tokenize(transcript);
+  const overlapping = normalizedChoices.filter((c) => tokenize(c.raw).some((tok) => heard.includes(tok)));
+  return { kind: "none", reason: "no-match", candidates: overlapping.length === 1 ? [overlapping[0].raw] : [] };
 }
 
 /** True when `needle` appears as a contiguous run of whole tokens in
@@ -224,14 +244,51 @@ export function matchNumberLine(
 ): AnswerMatch {
   const tokens = tokenize(transcript);
   const numbers = tokens.filter((t) => /^\d+$/.test(t)).map(Number);
-  if (numbers.length !== 1) return { kind: "none", reason: "no-match" };
+  // No candidates on this type, ever. A number that is off the line or
+  // off its step is not an answer the child could have given by tapping
+  // either, so offering it back would be inventing one.
+  if (numbers.length !== 1) return { kind: "none", reason: "no-match", candidates: [] };
 
   const value = numbers[0];
-  if (value < spec.min || value > spec.max) return { kind: "none", reason: "out-of-range" };
+  if (value < spec.min || value > spec.max) return { kind: "none", reason: "out-of-range", candidates: [] };
 
   const step = spec.step > 0 ? spec.step : 1;
   const offset = value - spec.min;
-  if (offset % step !== 0) return { kind: "none", reason: "out-of-range" };
+  if (offset % step !== 0) return { kind: "none", reason: "out-of-range", candidates: [] };
 
   return { kind: "value", value: String(value) };
+}
+
+
+// ---- Confirming what we thought we heard --------------------------------
+
+/**
+ * "כן" / "לא", for the repair ladder's confirmation step
+ * (lib/voice/repairLadder.ts).
+ *
+ * A deliberately tiny vocabulary: two short, phonetically distinct words
+ * are about the most reliable thing a Hebrew recogniser can be asked for,
+ * which is the whole reason the ladder narrows to a yes/no question
+ * instead of asking a struggling child to repeat a number again. The
+ * common polite variants are included; anything else is `null`, and the
+ * caller treats that as another unclear attempt rather than a guess.
+ *
+ * Tap buttons carry the same two answers, so a child who cannot be heard
+ * at all is never stuck on this step.
+ */
+export type YesNo = "yes" | "no" | null;
+
+const YES_WORDS = new Set(["כן", "נכון", "בדיוק", "אכן", "כן כן", "יס"]);
+const NO_WORDS = new Set(["לא", "לאו", "ממש לא", "לא נכון"]);
+
+export function matchYesNo(transcript: string): YesNo {
+  const norm = normalize(transcript);
+  if (!norm) return null;
+  if (YES_WORDS.has(norm)) return "yes";
+  if (NO_WORDS.has(norm)) return "no";
+  // A single leading word still counts: "כן, שתים עשרה".
+  const first = norm.split(" ")[0];
+  if (YES_WORDS.has(first)) return "yes";
+  if (NO_WORDS.has(first)) return "no";
+  return null;
 }

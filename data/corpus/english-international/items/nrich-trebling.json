@@ -1,0 +1,32 @@
+[
+ {
+  "id": "nrich-trebling-03622",
+  "text": "How does the 1 (or 2) in the ones column of the answer help?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "place-value",
+  "source": "nrich-trebling",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-trebling-03623",
+  "text": "What are the units digits of the multiples of 3?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-trebling",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

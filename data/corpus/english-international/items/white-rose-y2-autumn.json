@@ -1,0 +1,5067 @@
+[
+ {
+  "id": "white-rose-y2-autumn-01198",
+  "text": "What patterns can you see in the Roman number system?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01199",
+  "text": "What letters are used in the Roman number system?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01200",
+  "text": "How many are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01201",
+  "text": "How did you count them?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01202",
+  "text": "What number comes before/after ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01203",
+  "text": "How do you write in words?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01204",
+  "text": "How do you write in numerals?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01205",
+  "text": "What number is made up of 1 ten and ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01206",
+  "text": "How many are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01207",
+  "text": "How did you count them?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01208",
+  "text": "How many are in each group/bundle?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01209",
+  "text": "How many extra are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01210",
+  "text": "How many are there in total?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01211",
+  "text": "How do you write in numerals?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01212",
+  "text": "What number is made up of tens and ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01213",
+  "text": "How many are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01214",
+  "text": "How did you count them?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01215",
+  "text": "What does each piece represent?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01216",
+  "text": "Where can you see the ten?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01217",
+  "text": "Do you need to count each one individually?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01218",
+  "text": "How many are there in each box/pack?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01219",
+  "text": "What number is represented?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01220",
+  "text": "How many tens/ones are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01221",
+  "text": "How does the place value chart show the number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01222",
+  "text": "What do you do if there are no ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01223",
+  "text": "What does the digit represent?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01224",
+  "text": "Which column do you write in?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01225",
+  "text": "How many tens are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01226",
+  "text": "How many ones are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01227",
+  "text": "What is the number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01228",
+  "text": "What is the whole?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01229",
+  "text": "What are the parts?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01230",
+  "text": "Does it matter which way round you draw the parts?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01231",
+  "text": "How many tens are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01232",
+  "text": "How do you write that in words?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01233",
+  "text": "How many ones are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01234",
+  "text": "How do you write that in words?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01235",
+  "text": "How do you write in words?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01236",
+  "text": "How do you write in numerals?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01237",
+  "text": "How many tens are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01238",
+  "text": "How many ones are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01239",
+  "text": "How many straws are there in each bundle?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01240",
+  "text": "If you unbundle one lot of 10, how many tens are there now?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01241",
+  "text": "How many ones are there in each ten?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01242",
+  "text": "How else can you partition the number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01243",
+  "text": "How many tens are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01244",
+  "text": "How many ones are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01245",
+  "text": "How do you write that as a number sentence?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01246",
+  "text": "What number is equal to + ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01247",
+  "text": "How does the part-whole model link to the number sentence?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01248",
+  "text": "How can you write the other partitions as a number sentence?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01249",
+  "text": "What is the value at the start point of the number line?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01250",
+  "text": "What is the value at the end point of the number line?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01251",
+  "text": "How many intervals are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01252",
+  "text": "What is the number line counting up in? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01253",
+  "text": "Where would be on the number line? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01254",
+  "text": "What number is the arrow pointing to? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01255",
+  "text": "What is the value at the start point of the number line?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01256",
+  "text": "What is the value at the end point of the number line?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01257",
+  "text": "How many intervals are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01258",
+  "text": "What is the number line counting up in? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01259",
+  "text": "Where would be on the number line? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01260",
+  "text": "What number is the arrow pointing to? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01261",
+  "text": "Which two intervals is between?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01262",
+  "text": "What number is halfway between and ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "fractions",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01263",
+  "text": "Which multiple of 10 is closer to?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01264",
+  "text": "How did you count the objects?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01265",
+  "text": "Do groups of 10 help you to count? Why?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "multiplication-division",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01266",
+  "text": "Do groups of 10 help you to compare? Why?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "multiplication-division",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01267",
+  "text": "Which shows more? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01268",
+  "text": "Can you show your answers using base 10/counters/cubes?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01269",
+  "text": "Can you show your answers by drawing a picture?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01270",
+  "text": "Is there more than one answer?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01271",
+  "text": "How does a number line help you to compare numbers?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01272",
+  "text": "How does the number line help you order the numbers?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01273",
+  "text": "How does base 10 show that your order is correct?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01274",
+  "text": "Did you look at the tens or ones to help you order?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01275",
+  "text": "How many do you need to count on each time?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01276",
+  "text": "Do you notice any patterns?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01277",
+  "text": "What happens to the ones digit when counting in 10s?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01278",
+  "text": "How many do you need to count on each time?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01279",
+  "text": "When counting forwards, do the numbers get greater or smaller?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01280",
+  "text": "When counting backwards, do the numbers get greater or smaller?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01281",
+  "text": "Do you notice any patterns?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01282",
+  "text": "What is different about counting in 2s and counting in 3s?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01283",
+  "text": "How many have you got?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01284",
+  "text": "How many more do you need to make 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01285",
+  "text": "What is the bond to 10 for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01286",
+  "text": "What number are you starting with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01287",
+  "text": "What do you need to add to make 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01288",
+  "text": "If 4 + 5 = 9, what is the missing number in 4 + = 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01289",
+  "text": "How many have you got?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01290",
+  "text": "How many more do you need to make ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01291",
+  "text": "What is the bond to for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01292",
+  "text": "What number are you starting with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01293",
+  "text": "What do you need to add to make ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01294",
+  "text": "If 4 + 5 = 9, what is the missing number in 14 + = 19?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01295",
+  "text": "If 2 ones plus 3 ones is equal to 5 ones, what is 2 tens plus 3 tens?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01296",
+  "text": "What is the same about the number sentences?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01297",
+  "text": "If 3 + 5 = 8, what is 30 + 50? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01298",
+  "text": "If 6 – 2 = 4, what is 60 – 20? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01299",
+  "text": "Show each number sentence using base 10. What is the same?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01300",
+  "text": "How many tens are there in 100?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01301",
+  "text": "How many tens are there?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01302",
+  "text": "How many more do you need to make 100?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01303",
+  "text": "What is the bond to 100 for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01304",
+  "text": "What number are you starting with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01305",
+  "text": "What do you need to add to make 100?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01306",
+  "text": "If 4 + 6 = 10, what is the missing number in 40 + = 100?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01307",
+  "text": "How many ones are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01308",
+  "text": "How many ones do you need to add/subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01309",
+  "text": "What is ones + ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01310",
+  "text": "What is + ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01311",
+  "text": "What happens to the tens?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01312",
+  "text": "What happens to the ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01313",
+  "text": "What numbers do you need to add together?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01314",
+  "text": "What is the bond to 10 for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01315",
+  "text": "What do you need to add to to make ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01316",
+  "text": "What can you partition into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01317",
+  "text": "How many more do you need to add to 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01318",
+  "text": "What is plus ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01319",
+  "text": "What is ones + ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01320",
+  "text": "digit numbers. If you add more ones, what do you get?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01321",
+  "text": "What is + + ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01322",
+  "text": "Does it matter what order you add the numbers in?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01323",
+  "text": "Can you see any number bonds in the calculation?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01324",
+  "text": "What is the most efficient way to complete the calculation?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01325",
+  "text": "What numbers do you need to add together?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01326",
+  "text": "How many tens are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01327",
+  "text": "What is the multiple of 10 after ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01328",
+  "text": "How many ones are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01329",
+  "text": "What is the bond to 10 for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01330",
+  "text": "How many more do you need to add to get to ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01331",
+  "text": "What is plus ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01332",
+  "text": "What numbers do you need to add together?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01333",
+  "text": "How many tens are there in ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01334",
+  "text": "What do you need to add to get to the next 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01335",
+  "text": "What can you partition into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01336",
+  "text": "How many more do you need to add?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01337",
+  "text": "What is plus ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01338",
+  "text": "How many do you start with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01339",
+  "text": "How many do you need to take away?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01340",
+  "text": "What can you partition into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01341",
+  "text": "How many do you need to subtract to get 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01342",
+  "text": "How many more do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01343",
+  "text": "What is less than ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01344",
+  "text": "How many do you start with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01345",
+  "text": "How many do you need to take away?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01346",
+  "text": "What is the bond to 10 for ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01347",
+  "text": "What is less than 10? So what is less than ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01348",
+  "text": "If you know that 4 + 6 = 10, what is 50 − 6?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01349",
+  "text": "How many do you start with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01350",
+  "text": "How many do you need to take away?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01351",
+  "text": "What is the multiple of 10 before ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01352",
+  "text": "What can you partition into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01353",
+  "text": "How many do you need to subtract to get to the previous 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01354",
+  "text": "How many more do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01355",
+  "text": "So what is less than ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01356",
+  "text": "What number are you starting with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01357",
+  "text": "When you count on 10, what do you get?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01358",
+  "text": "When you count back 10, what do you get?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01359",
+  "text": "What is 10 more/less than ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01360",
+  "text": "What do you notice about the number of tens?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01361",
+  "text": "What do you notice about the number of ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01362",
+  "text": "What number are you starting with?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01363",
+  "text": "Count on/back 10. What do you get?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01364",
+  "text": "What is more/less than ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01365",
+  "text": "What do you notice about the number of tens?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01366",
+  "text": "What do you notice about the number of ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01367",
+  "text": "What numbers are you adding together?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01368",
+  "text": "How many ones are there in each number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01369",
+  "text": "How many ones are there altogether?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01370",
+  "text": "How many tens are there in each number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01371",
+  "text": "How many tens are there altogether?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01372",
+  "text": "How many ones are there in each number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01373",
+  "text": "How many ones are there altogether?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01374",
+  "text": "Can you make an exchange? Why?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01375",
+  "text": "How many tens are there in each number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01376",
+  "text": "How many tens are there altogether?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01377",
+  "text": "Did you include the ten from your exchange?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01378",
+  "text": "What number are you subtracting from?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01379",
+  "text": "What number are you subtracting?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01380",
+  "text": "How many ones do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01381",
+  "text": "How many ones are left?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01382",
+  "text": "How many tens do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01383",
+  "text": "How many tens are left?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01384",
+  "text": "What is the difference between and ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01385",
+  "text": "What number are you subtracting from?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01386",
+  "text": "How many ones do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01387",
+  "text": "What do you do if there are not enough ones?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01388",
+  "text": "What can you exchange 1 ten for?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01389",
+  "text": "How many tens do you need to subtract?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01390",
+  "text": "How many tens are left?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01391",
+  "text": "What is the difference between and ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01392",
+  "text": "Is the question an addition or a subtraction?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01393",
+  "text": "Do you need to make both numbers using base 10?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01394",
+  "text": "What does the number represent in the calculation?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01395",
+  "text": "Do you need to make an exchange? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01396",
+  "text": "What do the symbols > , < and = mean?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01397",
+  "text": "Do you need to work out the answer to each calculation?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01398",
+  "text": "When you add a greater number, is the answer greater or smaller?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01399",
+  "text": "What can you partition into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01400",
+  "text": "How does that help you to work out the missing number?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01401",
+  "text": "Do you need to work out the answer to each calculation?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01402",
+  "text": "How can you check your answer?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01403",
+  "text": "What do you notice about the numbers?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01404",
+  "text": "What is the difference between a 2-D and a 3-D shape?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01405",
+  "text": "What is the name of this shape? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01406",
+  "text": "What 2-D shapes can you see on this 3-D shape?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01407",
+  "text": "How do you know that this shape is a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01408",
+  "text": "Which shape is the odd one out? How do you know?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01409",
+  "text": "What is a side?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01410",
+  "text": "How can you count the sides of a shape accurately?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01411",
+  "text": "How many sides does a have?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01412",
+  "text": "Does a shape with sides always look the same?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01413",
+  "text": "What is the name of a shape with sides?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01414",
+  "text": "What is a vertex?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01415",
+  "text": "How can you count the vertices of a shape accurately?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01416",
+  "text": "How many vertices does a have?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01417",
+  "text": "Does a shape with vertices always look the same?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01418",
+  "text": "What is the name of a shape with vertices?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01419",
+  "text": "What do you notice?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01420",
+  "text": "D shapes. modelling clay?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01421",
+  "text": "How can you change your shape to a different one?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "money",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01422",
+  "text": "How can you accurately draw a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01423",
+  "text": "How do you know you have drawn a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01424",
+  "text": "Is there more than one way to draw a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01425",
+  "text": "Can you draw a polygon without a ruler? Why/why not?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "measurement",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01426",
+  "text": "What does “symmetrical” mean?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01427",
+  "text": "How do you know if a shape is symmetrical?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01428",
+  "text": "How can you use a mirror to help you?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01429",
+  "text": "Is the shape the same on both sides?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01430",
+  "text": "What does “symmetrical” mean?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01431",
+  "text": "How could you complete the shape?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01432",
+  "text": "How do you know if your drawing is symmetrical?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01433",
+  "text": "Why are shapes with diagonal lines more difficult to complete?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01434",
+  "text": "How could marking the vertices and joining them up help you?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01435",
+  "text": "How have you sorted the shapes?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01436",
+  "text": "How do you know this shape is in the correct group?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01437",
+  "text": "How can you use the number of sides/vertices to help you?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01438",
+  "text": "Are there any other ways to sort the shapes?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01439",
+  "text": "Is this the most useful way to sort the shapes? Why/why not?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01440",
+  "text": "What other shape could go in this group?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01441",
+  "text": "What shape could not go in this group?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01442",
+  "text": "What is a face?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01443",
+  "text": "What is a curved surface?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01444",
+  "text": "What is the difference between a face and a curved surface?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01445",
+  "text": "How can you count the faces of a shape efficiently?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01446",
+  "text": "What 2-D shapes can you see on this 3-D shape?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01447",
+  "text": "What 3-D shape do you think these 2-D shapes make?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01448",
+  "text": "How many faces does a have?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01449",
+  "text": "What is an edge?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01450",
+  "text": "How is an edge different from a face?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01451",
+  "text": "How can you count the edges of a shape efficiently?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01452",
+  "text": "How can you make sure that you do not miscount the edges?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01453",
+  "text": "How many edges does a have?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01454",
+  "text": "Do you think a will have more edges than a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01455",
+  "text": "Count the edges of these prisms. What patterns can you see?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01456",
+  "text": "What is a vertex? What are vertices?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01457",
+  "text": "How can you count the vertices of a shape efficiently?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01458",
+  "text": "How can you make sure you do not miscount the vertices?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01459",
+  "text": "How many vertices does a have?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01460",
+  "text": "Do you think a has more vertices than a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01461",
+  "text": "How can you sort these shapes?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01462",
+  "text": "Which group does a go into?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01463",
+  "text": "How do you know this shape is in the correct group?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01464",
+  "text": "Which shape is the odd one out?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01465",
+  "text": "Why do some shapes go into the same groups?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01466",
+  "text": "Is there another way to sort these shapes?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01467",
+  "text": "Which other shapes can go into this group?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01468",
+  "text": "What shapes can you see in the pattern?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01469",
+  "text": "Which shapes are repeating?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01470",
+  "text": "What would be the next shape in the pattern?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01471",
+  "text": "Is the pattern repeating or symmetrical?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01472",
+  "text": "How do you know the next shape is not a ?",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01473",
+  "text": "The letter represents the number",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01474",
+  "text": "I know is greater than because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01475",
+  "text": "It is often more difficult to convert numbers that require",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01476",
+  "text": "There is 1 ten and ones. The number is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01477",
+  "text": "There are groups of 10 and more.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "multiplication-division",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01478",
+  "text": "There are groups of 10 and more.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "multiplication-division",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01479",
+  "text": "There are tens and ones.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01480",
+  "text": "The number is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01481",
+  "text": "is a part and is a part.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01482",
+  "text": "tens in words is and ones in words",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01483",
+  "text": "There are tens. In words, this is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01484",
+  "text": "There are tens and ones.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01485",
+  "text": "There are tens and ones.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01486",
+  "text": "The start point is and the end point is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01487",
+  "text": "The start point is and the end point is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01488",
+  "text": "The start point is and the end point is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01489",
+  "text": "There are objects in set A than in set B.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01490",
+  "text": "is equal to tens and ones.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01491",
+  "text": "tens is than tens.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01492",
+  "text": "is greater than because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01493",
+  "text": "has the most balloons because ...",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01494",
+  "text": "is greater than because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01495",
+  "text": "is less than because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01496",
+  "text": "The greatest number is because ...",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01497",
+  "text": "If I have counters, I need to add more counters",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01498",
+  "text": "If I have counters, I need to add more counters",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01499",
+  "text": "I need to add to to make",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01500",
+  "text": "If I have tens, I need to add more tens to",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01501",
+  "text": "and are a bond to",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01502",
+  "text": "The next 10 is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01503",
+  "text": "The multiple of 10 after is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01504",
+  "text": "whole models for partitioning, are also",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01505",
+  "text": "I need to subtract to get to 10",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01506",
+  "text": "The previous multiple of 10 is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01507",
+  "text": "10 more than is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01508",
+  "text": "10 less than is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01509",
+  "text": "To add/subtract , I need to add/subtract 10 times.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "multiplication-division",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01510",
+  "text": "There are ones altogether.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01511",
+  "text": "There are ones, so I do/do not need to make",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01512",
+  "text": "1 ten is equal to ones.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "place-value",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01513",
+  "text": "I know I need to make an exchange because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01514",
+  "text": "The difference between and is",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01515",
+  "text": "I know this is an addition/subtraction because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01516",
+  "text": "I know I need to make an exchange because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01517",
+  "text": "plus is equal to",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01518",
+  "text": "subtract is equal to",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01519",
+  "text": "is greater/less than",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01520",
+  "text": "is greater than , so + is greater",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01521",
+  "text": "is less than , so − is greater than",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01522",
+  "text": "This shape is a because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01523",
+  "text": "A is a 2-D shape.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01524",
+  "text": "To make a , I need straws and balls of",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01525",
+  "text": "This shape is symmetrical because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01526",
+  "text": "The vertex is squares away from the mirror line.",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01527",
+  "text": "I put the in this group because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01528",
+  "text": "The shapes could have been sorted into and ,",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01529",
+  "text": "is the odd one out because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01530",
+  "text": "My two groups are and",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01531",
+  "text": "The next shape will be a , because …",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "geometry",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y2-autumn-01532",
+  "text": "The shapes that are repeating are , ,…",
+  "grade": 2,
+  "grade_band": "year-2",
+  "topic": "general",
+  "source": "white-rose-y2-autumn",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

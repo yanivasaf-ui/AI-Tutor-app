@@ -1,0 +1,462 @@
+[
+ {
+  "id": "ny-released-items-2026-g3-03631",
+  "text": "Spring 2026 RELEASED QUESTIONS SESSION 1 MATH GRADE 3 Developed and published under contract with the New York State Education Department by NWEA, a division of HMH, 125 High St., Boston, MA 02110. Copyright © 2026 by the New York State Education Department.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "three thousand four hundred sixty",
+   "B": "three thousand four hundred six",
+   "C": "thirty-four thousand sixty",
+   "D": "thirty-four thousand six GO ON Page 2 Session 1"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03632",
+  "text": "How many liters of water will be in the bucket after 5 more liters of water are poured into it?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "10",
+   "B": "15",
+   "C": "20",
+   "D": "25 GO ON Session 1 Page 3 The model shown below represents a whole divided into equal parts."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03633",
+  "text": "represent a fraction. Which shape is shaded to represent a fraction equivalent to the fraction of the model that is shaded?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03634",
+  "text": "collected each month for two months is shown below. The trash collected in September was 59 kilograms. The trash collected in October was 81 kilograms. What is the difference, in kilograms, between the trash collected in September and October?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "20",
+   "B": "22",
+   "C": "32",
+   "D": "38 GO ON Page 4 Session 1 The number pattern shown below continues."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03635",
+  "text": "2, 8, 14, 20, . . . What is the seventh number in the pattern?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "patterns-sequences",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "26",
+   "B": "32",
+   "C": "38",
+   "D": "44 The rectangle shown below is covered completely with unit squares without gaps"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03636",
+  "text": "or overlaps. Which two ways result in nding the area, in square units, of the rectangle? multiply 8 and 6 multiply 9 and 6",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03637",
+  "text": "? ? What number can go into both blanks to make the equation true? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03638",
+  "text": "Which whole model is divided into equal parts and shaded to represent a fraction less than ?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "compare",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03639",
+  "text": "What is the area, in square units, of the part of the grid that is shaded?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "12",
+   "B": "18",
+   "C": "20",
+   "D": "24 GO ON Page 8 Session 1 Which equation can be used to nd the value of the expression ?"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03640",
+  "text": "in square feet, of the rug?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "geometry",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "12",
+   "B": "24",
+   "C": "30",
+   "D": "36 GO ON Session 1 Page 9"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03641",
+  "text": "Which number line shows the fraction in the correct location?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2026-g3-03642",
+  "text": "Nellie made bracelets for 6 of her friends. She used 10 beads for each bracelet. She",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03643",
+  "text": "made 2 bracelets for each friend. How many beads did Nellie use to make all of the bracelets?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "20",
+   "B": "60",
+   "C": "80",
+   "D": "120 GO ON Page 10 Session 1 A division problem is represented by the number line shown below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03644",
+  "text": "Which division problem is represented by the number line?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "7 marbles are placed into 42 groups with 6 marbles in each group.",
+   "B": "6 marbles are placed into 42 groups with 7 marbles in each group.",
+   "C": "42 marbles are placed into 6 groups with 7 marbles in each group.",
+   "D": "42 marbles are placed into 7 groups with 7 marbles in each group. GO ON Session 1 Page 11 A square is cut into parts. Each part has the same area. What fraction of the"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03645",
+  "text": "entire area of the square is each part?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "ny-released-items-2026-g3-03646",
+  "text": "Which value does the digit 6 represent in the number 7,461 ?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "place-value",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03647",
+  "text": "Which expression can be used to �nd the area, in square units, of the entire �oor? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "measurement",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03648",
+  "text": "18 square units without any gaps or overlaps?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "geometry",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "3",
+   "B": "6",
+   "C": "18",
+   "D": "36 Which number sentence is true?"
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03649",
+  "text": "The side lengths of the large garden are shown below. What is the total area, in square feet, of the large garden?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2026-g3",
+  "type": "multiple-choice",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "options": {
+   "A": "29",
+   "B": "32",
+   "C": "49",
+   "D": "54 An equation is shown below."
+  }
+ },
+ {
+  "id": "ny-released-items-2026-g3-03650",
+  "text": "? What number makes this equation true? A B C D",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03651",
+  "text": "Which shape is divided into equal parts that each have an area of of the whole?",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "which-one"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03652",
+  "text": "An incomplete equation is shown below. ? What number makes the equation true? Answer",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03653",
+  "text": "The model shown below represents a whole divided into equal parts. What fraction of the model is shaded? Answer",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "fractions",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03654",
+  "text": "An incomplete equation is shown below. ? How can division be used to find the value of the unknown number? Be sure to include the value of the unknown number in your answer. Explain your answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "multiplication-division",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "number_gap": true
+ },
+ {
+  "id": "ny-released-items-2026-g3-03655",
+  "text": "Information about Pizza A and Pizza B is listed below. The pizzas are the same size. Pizza A is cut into slices that are each of the whole. Pizza B is cut into slices that are each of the whole. Which pizza is cut into larger slices? Explain how you found your answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "general",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "ny-released-items-2026-g3-03656",
+  "text": "Three friends go to a movie theater. They have a total of $40 to spend on tickets and popcorn. Information about the price of tickets and popcorn is shown below. Each movie ticket is $9. Each bucket of popcorn is $4. They will buy 3 movie tickets. They will buy 2 buckets of popcorn. One of the friends says $40 is enough to buy all the movie tickets and buckets of popcorn. Is the friend correct? Explain your answer.",
+  "grade": 3,
+  "grade_band": "grade-3",
+  "topic": "addition-subtraction",
+  "source": "ny-released-items-2026-g3",
+  "type": "constructed-response",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

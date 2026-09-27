@@ -4,6 +4,16 @@ import { Computation, computeAnswer, falseClaimsIn, formatAnswer, lineIsArithmet
 import { Exercise, ExerciseEvaluation } from "./types";
 import type { KidGender } from "@/lib/memory/types";
 import { OPENERS, openerKindFor, type OpenerKind } from "./openers";
+import {
+  MODEL_RULES,
+  effortModeling,
+  shouldModelEffort,
+  STRATEGY_PRAISE_EXAMPLE,
+  REST_CORRECT,
+  restExplanation as constitutionExplanation,
+  restHint,
+  violatesConstitution,
+} from "@/lib/feedback/constitution";
 
 /** Voice-experience fix item 4 (2026-09-15): the feedback prompt below was
  *  written to dodge the child's gender entirely ("לא בלשון זכר ולא בלשון
@@ -55,14 +65,13 @@ function genderInstruction(childGender: KidGender | null | undefined): string {
  */
 export { OPENERS, openerKindFor, type OpenerKind };
 
-const REST_CORRECT = "זה בדיוק נכון.";
-const REST_HINT = "אפשר לנסות שוב, לאט ובשלבים.";
-const restExplanation = (answer: number) => `התשובה הנכונה היא ${formatAnswer(answer)}.`;
+// Every deterministic line below is owned by lib/feedback/constitution.ts.
+// This module composes them with the verified number; it does not author
+// them, and it is not where a wording change belongs.
+const restExplanation = (answer: number) => constitutionExplanation(formatAnswer(answer));
 
-// The whole lines, unchanged in wording — still what a caller that is not
-// using the opener/prose split gets back.
 const SAFE_CORRECT = `${OPENERS.correct} ${REST_CORRECT}`;
-const SAFE_HINT = `${OPENERS.hint} ${REST_HINT}`;
+const safeHint = (gender?: KidGender | null) => `${OPENERS.hint} ${restHint(gender)}`;
 const safeExplanation = (answer: number) => `${OPENERS.explain} ${restExplanation(answer)}`;
 
 /**
@@ -121,7 +130,7 @@ export function isWrongBareNumberAgainstRubric(kidAnswer: string, rubricCorrectA
  */
 export function safeFeedback(
   modelText: string,
-  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null }
+  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null; childGender?: KidGender | null }
 ): string {
   const { verifiedAnswer, correct, secondAttempt, computation } = opts;
   const text = modelText.trim();
@@ -138,7 +147,7 @@ export function safeFeedback(
   }
   if (correct) return SAFE_CORRECT;
   if (secondAttempt && verifiedAnswer !== null) return safeExplanation(verifiedAnswer);
-  return SAFE_HINT;
+  return safeHint(opts.childGender);
 }
 
 /**
@@ -151,7 +160,7 @@ export function safeFeedback(
  */
 export function safeFeedbackAfterOpener(
   modelText: string,
-  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null }
+  opts: { verifiedAnswer: number | null; correct: boolean; secondAttempt: boolean; computation?: Computation | null; childGender?: KidGender | null }
 ): string {
   const { verifiedAnswer, correct, secondAttempt, computation } = opts;
   const text = modelText.trim();
@@ -163,7 +172,7 @@ export function safeFeedbackAfterOpener(
   }
   if (correct) return REST_CORRECT;
   if (secondAttempt && verifiedAnswer !== null) return restExplanation(verifiedAnswer);
-  return REST_HINT;
+  return restHint(opts.childGender);
 }
 
 /**
@@ -369,6 +378,7 @@ export async function generateFeedbackProse(
         correct,
         secondAttempt,
         computation: exercise.computation,
+        childGender: opts?.childGender ?? null,
       }),
     };
   }
@@ -404,8 +414,10 @@ ${correct ? "כל מילה שתכתוב/י חייבת להיות חיובית ו
 הדמות כבר אמרה לתלמיד/ה בקול: "${opener}"
 אתה/את כותב/ת את ההמשך בלבד. אל תחזור/י על הפתיח הזה, אל תפתח/י בברכה או בתיקוף רגשי נוסף — זה כבר נאמר. המשך/המשיכי ישירות לתוכן.
 
+${MODEL_RULES}
+
 כתוב/י את ההמשך בעברית, בטון חם ומעודד — קצר מאוד, ילד/ה בכיתה יסודית קורא/ת את זה. אורך הוא כלל נוקשה כאן, לא המלצה:
-${correct ? `- משפט אחד קצר בלבד, לא יותר. שבח/י על התהליך/המאמץ, לא על תכונה מולדת (למשל "ניסית וזה עבד!" ולא "את/ה כל כך חכם/ה").\n  דוגמה לאורך הנכון בדיוק: "מצאת את זה!"` : `- ${wrongBranch}`}
+${correct ? `- משפט אחד קצר בלבד, לא יותר. שבח/י על מה שנעשה בפועל — נקוב/י בדרך שהתלמיד/ה בחר/ה (למשל "${STRATEGY_PRAISE_EXAMPLE}" או "ניסית וזה עבד!").\n  דוגמה לאורך הנכון בדיוק: "מצאת את זה!"` : `- ${wrongBranch}`}
 ${memorySection}
 החזר/י אך ורק אובייקט JSON תקין:
 {
@@ -439,7 +451,38 @@ ${memorySection}
     correct,
     secondAttempt,
     computation: exercise.computation,
+    childGender,
   });
+
+  // The constitution, enforced rather than requested. MODEL_RULES tells the
+  // model the rules; this is what makes a violation harmless when it writes
+  // one anyway. Deliberately a SEPARATE pass, after the arithmetic gate
+  // above and touching none of it: the two answer different questions (is
+  // this true? / may we say this to a child?) and a line can fail either.
+  // Checked on the accumulated line, because "כל הכבוד! את כל כך חכמה"
+  // only breaks the rule once the opener is in front of it.
+  const violation = violatesConstitution(`${opener} ${feedback}`);
+  if (violation) {
+    console.warn(
+      `[exercise-evaluate] replaced a line that broke the feedback constitution (${violation.rule}): ${JSON.stringify(violation.match)}`
+    );
+    feedback = safeFeedbackAfterOpener("", {
+      verifiedAnswer,
+      correct,
+      secondAttempt,
+      computation: exercise.computation,
+      childGender,
+    });
+  }
+
+  // The character admits the work was hard for it too — rationed by the
+  // constitution (roughly one such moment in three) and only where it is
+  // true: after a hint has already missed. Composed here, after the
+  // arithmetic gate, because it carries no arithmetic and cannot be
+  // affected by it; same position as the verified-answer sentence below.
+  if (shouldModelEffort({ exerciseId: exercise.id, secondAttempt, correct })) {
+    feedback = `${effortModeling(childGender)} ${feedback}`;
+  }
 
   // The verified answer is stated by code, not by the model — and only
   // when the child has already had their hint and missed again.

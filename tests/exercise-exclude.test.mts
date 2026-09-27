@@ -42,16 +42,19 @@ const row = (id: string) => ({
   subject: "math",
   grade: "ב",
   type: "multiple_choice",
-  subtype: null,
+  // A real topic and a format it allows: served rows now pass the
+  // allowed-format check (lib/exercises/format-fit.ts). The test is about
+  // exclusion, not topics.
+  subtype: "pick_operation",
   topic: "חיבור",
-  topic_id: "math-b-addition",
+  topic_id: "math-b-arithmetic",
   passage: null,
   question: `שאלה ${id}`,
-  choices: ["1", "2"],
+  choices: ["חיבור", "חיסור"],
   number_line: null,
   tiles: null,
   grouping: null,
-  correct_answer: "1",
+  correct_answer: "חיבור",
   difficulty: 2,
 });
 

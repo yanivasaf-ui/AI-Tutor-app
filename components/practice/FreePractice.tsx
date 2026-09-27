@@ -7,7 +7,7 @@ import SpeechBubble from "@/components/character/SpeechBubble";
 import MicButton from "@/components/character/MicButton";
 import KidHeader from "@/components/home/KidHeader";
 import TopicIcon from "@/components/practice/TopicIcon";
-import { TOPICS, getTopicById, type MapTopic } from "@/lib/map/topics";
+import { SERVED_TOPICS, getTopicById, type MapTopic } from "@/lib/map/topics";
 import { resolveFreePracticeIntent } from "@/lib/voice/freePracticeIntent";
 import { useGuide } from "@/lib/guide/useGuide";
 import * as lines from "@/lib/guide/lines";
@@ -79,7 +79,7 @@ export default function FreePractice({
   // that version). The suggested topic is pulled out to the top rather
   // than listed twice. Computed before `line` below.
   const topics: MapTopic[] = subject
-    ? TOPICS.filter((t) => t.subject === subject && t.grade === kidGrade && !(suggestionHere && t.id === suggestion!.id))
+    ? SERVED_TOPICS.filter((t) => t.subject === subject && t.grade === kidGrade && !(suggestionHere && t.id === suggestion!.id))
     : [];
   const visibleTopics: MapTopic[] = subject ? [...(suggestionHere ? [suggestion!] : []), ...topics] : [];
 

@@ -1,0 +1,77 @@
+[
+ {
+  "id": "nrich-round-two-dice-03598",
+  "text": "Which numbers can we make?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-round-two-dice",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-round-two-dice-03599",
+  "text": "What will they round to?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "place-value",
+  "source": "nrich-round-two-dice",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-round-two-dice-03600",
+  "text": "Will they round up or down?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "place-value",
+  "source": "nrich-round-two-dice",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-round-two-dice-03601",
+  "text": "Do they round to the same multiple of 10?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "place-value",
+  "source": "nrich-round-two-dice",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "nrich-round-two-dice-03602",
+  "text": "When will this happen?",
+  "grade": null,
+  "grade_band": "KS1-KS2",
+  "topic": "general",
+  "source": "nrich-round-two-dice",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

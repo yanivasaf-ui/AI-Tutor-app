@@ -1,5 +1,7 @@
 import type { CharacterId } from "@/lib/characters";
+import { MIC_BLOCKED, NOT_HEARD, SESSION_COMPLETE, TOPIC_COMPLETE } from "@/lib/feedback/constitution";
 import type { KidGender } from "@/lib/memory/types";
+import { groupingItemsName } from "@/lib/exercises/grouping-objects";
 
 /**
  * Everything the character says, in one place (character-led redesign,
@@ -248,10 +250,9 @@ export const thinking = (c: CharacterId, name: string): Line => ({
   text: self(c, "רגע, אני חושב...", "רגע, אני חושבת..."),
 });
 
-export const notHeard = (name: string): Line => ({
-  name,
-  text: "לא שמעתי טוב. אפשר לומר שוב, או ללחוץ על תשובה.",
-});
+/** Feedback on the child's attempt, so the wording is the constitution's
+ *  (lib/feedback/constitution.ts), not this file's. */
+export const notHeard = (name: string): Line => ({ name, text: NOT_HEARD });
 
 /** SpeechRecognition's "not-allowed"/"service-not-allowed" — the OS or
  *  browser refused microphone access, as opposed to genuinely hearing
@@ -259,17 +260,20 @@ export const notHeard = (name: string): Line => ({
  *  invites trying again louder, which does nothing when the mic is
  *  blocked — every retry would fail the same way until a permission
  *  setting changes. Tap answers stay the way forward either way. */
-export const micBlocked = (name: string): Line => ({
-  name,
-  text: "אין גישה למיקרופון. אפשר ללחוץ על תשובה בעצם.",
-});
+export const micBlocked = (name: string): Line => ({ name, text: MIC_BLOCKED });
 
-/** Grouping's tap-to-place interaction (star -> bucket) has no affordance
+/** Grouping's tap-to-place interaction (object -> bucket) has no affordance
  *  a kid can infer just from looking at it — said in the same breath as
  *  the question and shown as a caption under it (see ExerciseScreen). No
- *  `name`: it's appended to a line that already opens with one. */
-export const groupingInstructions = (): Line => ({
-  text: "לוחצים על כוכב, ואז על הקבוצה.",
+ *  `name`: it's appended to a line that already opens with one.
+ *
+ *  Names the objects actually drawn (`items`, the exercise's grouping
+ *  items — all of them) — it said "כוכב" for every exercise, while the
+ *  bank's are apples, triangles, flowers, clocks… Items with no known name,
+ *  or a pool of different things, get the neutral "ציור"; a pool of Hebrew
+ *  letters gets "אות" (lib/exercises/grouping-objects.ts). */
+export const groupingInstructions = (items?: readonly string[] | string): Line => ({
+  text: `לוחצים על ${groupingItemsName(items)}, ואז על הקבוצה.`,
 });
 
 export const noContent = (name: string): Line => ({
@@ -278,6 +282,16 @@ export const noContent = (name: string): Line => ({
 });
 
 export const somethingBroke = (name: string): Line => ({ name, text: "משהו השתבש. אפשר לנסות שוב?" });
+
+/** The server could not produce an exercise that passes every content check
+ *  this time (it will not serve an unchecked one instead). Not a fault the
+ *  child should hear as "something broke" — just "not ready, try again". */
+export const couldNotBuild = (name: string): Line => ({ name, text: "אופס, לא הצלחתי להכין תרגיל. ננסה שוב?" });
+/** The answer could not be checked (the check failed twice before any
+ *  verdict). Not "something broke", and never a wrong answer: the child's
+ *  answer is kept and "לנסות שוב" checks the same answer again.
+ *  QA-approved wording (2026-09-27). */
+export const couldNotCheck = (name: string): Line => ({ name, text: "אופס, משהו לא עבד לי. ננסה שוב?" });
 
 /** The exercise question, as the character's line. */
 export const question = (name: string, text: string): Line => ({ name, text });
@@ -289,14 +303,8 @@ export const feedback = (name: string, text: string): Line =>
 
 // ---- Tier-2 celebrations -----------------------------------------------
 
-export const topicComplete = (name: string): Line => ({
-  name,
-  text: "סיימנו תחנה! התחנה הבאה במפה נפתחה.",
-});
+export const topicComplete = (name: string): Line => ({ name, text: TOPIC_COMPLETE });
 
-export const sessionComplete = (name: string): Line => ({
-  name,
-  text: "איזו עבודה מצוינת היום — רבע שעה שלמה! אפשר לעצור כאן, או להמשיך עוד קצת.",
-});
+export const sessionComplete = (name: string): Line => ({ name, text: SESSION_COMPLETE });
 
 export const goodbye = (name: string): Line => ({ name, text: "להתראות! נתראה מחר." });

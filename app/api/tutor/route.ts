@@ -5,7 +5,8 @@ import {
   buildTutorSystemPrompt,
   looksOffCurriculumOrEmotional,
 } from "@/lib/prompts/tutor-system-prompt";
-import { generateExercise, NoCurriculumContentError, TopicFitError } from "@/lib/exercises/generate";
+import { generateExercise, NoCurriculumContentError } from "@/lib/exercises/generate";
+import { produceExercise } from "@/lib/exercises/produce";
 import {
   evaluateVerdict,
   generateFeedbackProse,
@@ -14,7 +15,9 @@ import {
   type LockedVerdict,
 } from "@/lib/exercises/evaluate";
 import { Exercise } from "@/lib/exercises/types";
-import { findReusableExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
+import { findReusableExercise, findOrSaveExercise, saveExercise, recordAttempt, sanitizeExcludeIds } from "@/lib/exercises/store";
+
+import { vettedTemplate } from "@/lib/authoring/vetted-templates";
 import { getKid, getSubjectProfile, updateSubjectProfile } from "@/lib/memory/store";
 import {
   factsFromAnswer,
@@ -32,7 +35,8 @@ import { saveParentFlag } from "@/lib/dashboard/store";
 import { updateSubjectProfileFromExchange } from "@/lib/memory/update";
 import { Subject, emptySubjectProfile } from "@/lib/memory/types";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import { synthesizeSpeech, TtsNotConfiguredError, MAX_TTS_CHARS } from "@/lib/tts/cartesia";
+import { MAX_TTS_CHARS } from "@/lib/tts/cartesia";
+import { speakWithFallback } from "@/lib/tts/speak";
 import type { CharacterId } from "@/lib/characters";
 import { getTopicById } from "@/lib/map/topics";
 import { getPracticeState, savePracticeState } from "@/lib/practice/store";
@@ -465,35 +469,30 @@ async function handleGenerateExercise(
     const profile = kid ? await getSubjectProfile(supabase, kid.id, subject as Subject) : null;
     const profileMs = Date.now() - tProfile;
     const tGenerate = Date.now();
-    let generated;
-    try {
-      generated = await generateExercise({ subject, grade, profile, topicId: topic, level });
-    } catch (genErr) {
-      // BUG B safety net. The fit check (lib/exercises/topic-fit.ts) can empty
-      // the bank's candidate page for a topic AND reject every generated
-      // draft. Without this, that combination is a 500 and the child is left
-      // with "משהו השתבש" and no exercise — trading the off-topic exercise the
-      // check exists to prevent for no exercise at all, which is worse. So the
-      // last resort is the unfiltered bank: exactly what production served
-      // before the check existed. Nothing is saved, and the ordinary path is
-      // untouched — only a TopicFitError that survived every retry gets here.
-      if (!(genErr instanceof TopicFitError)) throw genErr;
-      const fallback = await findReusableExercise(
-        supabase, subject, grade, kid?.id ?? null, topic, level,
-        sanitizeExcludeIds(excludeIds), { ignoreTopicFit: true }
-      );
-      if (!fallback) throw genErr;
-      console.warn(
-        `[exercise-generate] source=bank-hit-unfiltered topic=${topic ?? "(none)"} difficulty=${level} — no fitting exercise could be generated; served an unchecked bank row rather than failing. ${genErr.message}`
-      );
+    // Generate; if the content checks refuse every draft: one more live
+    // attempt, then a vetted template, then an honest "try again". Never an
+    // unchecked bank row (lib/exercises/produce.ts).
+    const produced = await produceExercise(
+      () => generateExercise({ subject, grade, profile, topicId: topic, level }),
+      () => vettedTemplate(topic)
+    );
+    if (produced.kind === "template") {
+      const served = await findOrSaveExercise(supabase, produced.template);
+      console.warn(`[exercise-generate] source=vetted-template topic=${topic ?? "(none)"} difficulty=${level} — every draft, and one live retry, were rejected. ${produced.reason}`);
       return NextResponse.json({
-        exercise: fallback,
+        exercise: served,
         reused: true,
         practice,
-        source: "bank-hit-unfiltered",
+        source: "vetted-template",
         timings: { getKidMs, dbLookupMs: findMs, totalMs: Date.now() - t0 },
       });
     }
+    if (produced.kind === "try_again") {
+      console.warn(`[exercise-generate] source=try-again topic=${topic ?? "(none)"} difficulty=${level} — no checked exercise could be produced. ${produced.reason}`);
+      return NextResponse.json({ exercise: null, error: "try_again" }, { status: 503 });
+    }
+    if (produced.retried) console.warn(`[exercise-generate] topic=${topic ?? "(none)"} produced on the live retry.`);
+    const generated = produced.exercise;
     const generateMs = Date.now() - tGenerate;
     const tSave = Date.now();
     const saved = await saveExercise(supabase, generated);
@@ -585,7 +584,12 @@ async function handleAnswerExercise(
         justFinishedTopic: boolean;
         kid: Awaited<typeof kidPromise>;
       }> => {
-        const kid = await kidPromise;
+        // A failed kid lookup must not break the stream after the verdict
+        // was sent (QA 2026-09-26: "משהו השתבש" replaced a correct verdict).
+        const kid = await kidPromise.catch((err) => {
+          console.error("[exercise-answer] kid lookup failed after the verdict:", err instanceof Error ? err.message : err);
+          return null;
+        });
         const topicMeta = topicId ? getTopicById(topicId) : undefined;
         if (!kid || !topicMeta || topicMeta.subject !== exercise.subject) {
           return { justFinishedTopic: false, kid };
@@ -609,6 +613,18 @@ async function handleAnswerExercise(
         }
       })();
 
+      // The deterministic remainder the gate uses, for when the prose (or
+      // anything else after the verdict) fails.
+      const deterministic = () => ({
+        feedback: safeFeedbackAfterOpener("", {
+          verifiedAnswer: verdict.verifiedAnswer,
+          correct: verdict.correct,
+          secondAttempt: verdict.secondAttempt,
+          computation: exercise.computation,
+        }),
+        errorNote: undefined as string | undefined,
+      });
+
       const prosePromise = (async () => {
         try {
           return await generateFeedbackProse(exercise, answer, verdict, {
@@ -620,19 +636,17 @@ async function handleAnswerExercise(
           // prose call must not cost the child their feedback, so fall
           // through to the same deterministic remainder the gate uses.
           console.error("[exercise-evaluate] prose failed, using deterministic line:", err);
-          return {
-            feedback: safeFeedbackAfterOpener("", {
-              verifiedAnswer: verdict.verifiedAnswer,
-              correct: verdict.correct,
-              secondAttempt: verdict.secondAttempt,
-              computation: exercise.computation,
-            }),
-            errorNote: undefined as string | undefined,
-          };
+          return deterministic();
         }
       })();
 
-      const [{ practice, justFinishedTopic, kid }, prose] = await Promise.all([practicePromise, prosePromise]);
+      // Both halves catch their own failures; this is the last guard, so
+      // that nothing after the verdict can cut the stream and leave the
+      // child with a broken turn instead of their feedback.
+      const [{ practice, justFinishedTopic, kid }, prose] = await Promise.all([practicePromise, prosePromise]).catch((err) => {
+        console.error("[exercise-answer] after-verdict step failed, sending the deterministic line:", err instanceof Error ? err.message : err);
+        return [{ practice: undefined, justFinishedTopic: false, kid: null }, deterministic()] as const;
+      });
 
       // Line 2 — the gated prose, plus the level the answer moved.
       send({ type: "prose", feedback: prose.feedback, errorNote: prose.errorNote, practice });
@@ -727,8 +741,9 @@ async function handleAnswerExercise(
  * Requires a signed-in parent, unlike the other actions: every call here
  * spends Cartesia credit, so an open endpoint would be a free TTS proxy
  * for anyone who found the URL. Status codes are part of the client
- * contract (lib/speech/useSpeech.ts): 401/503 switch the client to the
- * browser voice for the session; 502 falls back for that one line.
+ * contract (lib/speech/useSpeech.ts): 401, and a 503 with scope "session",
+ * switch the client to the browser voice (for a 503 with Retry-After, until
+ * then); a 503 with scope "line" falls back for that one line. No 502.
  *
  * Never logs the text — lines address the kid by name.
  */
@@ -750,25 +765,28 @@ async function handleSpeak(
     return NextResponse.json({ error: "character must be boy or girl" }, { status: 400 });
   }
 
-  let upstream: Response;
+  // Every failure is classified and logged by stage in lib/tts/speak.ts;
+  // the client gets a 503 its voice fallback consumes — never a 502.
+  let result: Awaited<ReturnType<typeof speakWithFallback>>;
   try {
-    upstream = await synthesizeSpeech(text, character, signal, {
+    result = await speakWithFallback(text, character, signal, {
       prefetch: prefetch === true,
       live: live === true,
     });
   } catch (err) {
-    if (err instanceof TtsNotConfiguredError) {
-      return NextResponse.json({ error: "tts_not_configured" }, { status: 503 });
-    }
-    console.error("[tts] cartesia request failed:", err instanceof Error ? err.message : err);
-    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+    // The client cancelled this line (a newer line, barge-in). Nobody is
+    // listening; answer quietly rather than log a failure.
+    if (signal.aborted) return new Response(null, { status: 499 });
+    throw err;
   }
-
-  if (!upstream.ok || !upstream.body) {
-    const detail = await upstream.text().catch(() => "");
-    console.error("[tts] cartesia error:", upstream.status, detail.slice(0, 300));
-    return NextResponse.json({ error: "tts_failed" }, { status: 502 });
+  if (!result.ok) {
+    const { scope, reason, retryAfterSec } = result.failure;
+    return NextResponse.json(
+      { error: reason === "not_configured" ? "tts_not_configured" : "tts_unavailable", scope, reason },
+      { status: 503, headers: retryAfterSec ? { "Retry-After": String(retryAfterSec) } : undefined }
+    );
   }
+  const upstream = result.response;
 
   return new Response(upstream.body, {
     headers: {

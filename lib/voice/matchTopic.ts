@@ -44,9 +44,15 @@ const SYNONYMS: Record<string, string> = {
   מחולק: "חילוק",
   חלקי: "חילוק",
   חילוקים: "חילוק",
+  // 2026-09-25: "חלוקה"/"כפולות" are how kids name these, and found nothing
+  // at grades ב/ג where the topic exists — the picker saying "no such
+  // topic" while the generator served division was the acceptance case.
+  חלוקה: "חילוק",
+  חלוקות: "חילוק",
   לכפול: "כפל",
   כפול: "כפל",
   כפולה: "כפל",
+  כפולות: "כפל",
   פלוס: "חיבור",
   ועוד: "חיבור",
   להוסיף: "חיבור",

@@ -1,5 +1,6 @@
 import type { Grade } from "@/lib/exercises/types";
 import type { Subject } from "@/lib/memory/types";
+import { isServedTopic, topicRule } from "./topic-formats";
 
 /**
  * Light topic index for the progress map (UI Revamp Brief Section 4.2).
@@ -35,6 +36,16 @@ import type { Subject } from "@/lib/memory/types";
  * ...) — nothing here addresses the kid directly the way a second-person
  * verb would.
  */
+/** The four arithmetic operations, as the product names them. */
+export type Operation = "add" | "sub" | "mul" | "div";
+
+export const OPERATION_NAMES_HE: Readonly<Record<Operation, string>> = {
+  add: "חיבור",
+  sub: "חיסור",
+  mul: "כפל",
+  div: "חילוק",
+};
+
 export interface MapTopic {
   id: string;
   subject: Subject;
@@ -45,6 +56,7 @@ export interface MapTopic {
    *  that. */
   displayNameKid: string;
 }
+
 
 export const TOPICS: MapTopic[] = [
   { id: "math-a-numbers-0-100", subject: "math", grade: "א", topic: "הכרת המספרים הטבעיים בתחום ה-0 עד ה-100", displayNameKid: "מספרים עד 100" },
@@ -89,8 +101,13 @@ export const TOPICS: MapTopic[] = [
   { id: "hebrew-g-metalinguistic", subject: "hebrew", grade: "ג", topic: "פיתוח ידע מטה-לשוני", displayNameKid: "לגלות איך מילים עובדות" },
 ];
 
+/** The topics a kid can be served — every topic the allowed-format table
+ *  (lib/map/topic-formats.ts) does not mark UNSERVED. Map, picker and the
+ *  parent's suggestions all list only these. */
+export const SERVED_TOPICS: MapTopic[] = TOPICS.filter((t) => isServedTopic(t.id));
+
 export function getTopics(subject: Subject, grade: Grade): MapTopic[] {
-  return TOPICS.filter((t) => t.subject === subject && t.grade === grade);
+  return SERVED_TOPICS.filter((t) => t.subject === subject && t.grade === grade);
 }
 
 /**
@@ -103,4 +120,22 @@ export function getTopics(subject: Subject, grade: Grade): MapTopic[] {
  */
 export function getTopicById(id: string): MapTopic | undefined {
   return TOPICS.find((t) => t.id === id);
+}
+
+/** Every operation any math topic in this grade allows — what a request
+ *  with no topic may use. */
+export function gradeOperations(grade: Grade): Operation[] {
+  const ops = new Set<Operation>();
+  for (const t of TOPICS) if (t.subject === "math" && t.grade === grade) for (const o of topicRule(t.id).operations) ops.add(o);
+  return (Object.keys(OPERATION_NAMES_HE) as Operation[]).filter((o) => ops.has(o));
+}
+
+/** The operations an exercise for this topic (or, with no usable topic,
+ *  this grade) may use — read from the allowed-format table
+ *  (lib/map/topic-formats.ts), the one source of truth. A numbers topic
+ *  allows none (it is about the numbers themselves). */
+export function allowedOperations(topicId: string | undefined, grade: Grade): Operation[] {
+  const t = topicId ? getTopicById(topicId) : undefined;
+  if (t && t.subject === "math" && t.grade === grade) return [...topicRule(t.id).operations];
+  return gradeOperations(grade);
 }

@@ -1,6 +1,7 @@
 import { getAnthropicClient, TUTOR_MODEL } from "@/lib/llm/anthropic";
 import { search } from "@/lib/rag/store";
-import { getTopicById } from "@/lib/map/topics";
+import { allowedOperations, getTopicById, type Operation } from "@/lib/map/topics";
+import { allowedFormats, hasCondition, isServedTopic } from "@/lib/map/topic-formats";
 import {
   balancesEquation,
   computeAnswer,
@@ -11,6 +12,11 @@ import {
 } from "./arithmetic";
 import { SubjectProfile } from "@/lib/memory/types";
 import { topicFit } from "./topic-fit";
+import { checkQuestionQuality, qualityRetryHint, QualityGateError } from "@/lib/authoring/quality-gate";
+import { reviewMode, reviewQuestion } from "@/lib/authoring/quality-review";
+import { rubricPromptBlock } from "@/lib/authoring/rubric";
+import { operationNames, operationScope, operationScopeRetryHint, OperationScopeError } from "./operation-scope";
+import { formatFit, FormatFitError, FORMAT_FIT_RETRY_HINT } from "./format-fit";
 import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData, GroupingData, Grade } from "./types";
 
 /**
@@ -21,9 +27,9 @@ import { Exercise, ExerciseSubtype, ExerciseType, NumberLineData, TileOrderData,
  * sentence_order) additionally requires the model to return a numberLine or
  * tiles payload alongside the question — see the parsing logic below.
  */
-const SUBTYPE_GUIDANCE: Record<ExerciseSubtype, string> = {
+export const SUBTYPE_GUIDANCE: Readonly<Record<ExerciseSubtype, string>> = {
   fill_in_blank:
-    'תרגיל חישוב בסיסי (חיבור/חיסור/כפל/חילוק, לפי המתאים לכיתה). type חייב להיות "open". חובה: השאלה חייבת להציג את התרגיל עצמו בספרות ובסימן הפעולה (למשל "כמה זה 10 × 4?"), לא כבעיה מילולית. החזר/י שדה נוסף computation: {"operands": [המספרים לפי סדר הופעתם בשאלה], "operators": [סימני הפעולה ביניהם, אחד מתוך + - * /]} — לדוגמה לשאלה "10 × 4" החזר/י {"operands": [10, 4], "operators": ["*"]}. אל תחשב/י את התוצאה: האפליקציה מחשבת אותה בעצמה מהשדה הזה, ושדה correctAnswer שלך יוחלף. מותר לשרשר רק + ו- (למשל 87 - 39 + 24); כפל או חילוק חייבים להיות פעולה אחת בלבד. בחילוק — רק חלוקה ללא שארית. התוצאה חייבת להיות מספר שלם ולא שלילי.',
+    'תרגיל חישוב בסיסי (חיבור/חיסור/כפל/חילוק, לפי המתאים לכיתה). type חייב להיות "open". מבנה השאלה — שני חלקים, בסדר הזה: (1) משפט פתיחה קצר אחד שמעגן את התרגיל בנושא הנלמד (למשל "בדיאגרמת העמודות ספרו כמה ילדים אוהבים כל פרי." או "לרועי יש 5 משולשים."); (2) התרגיל עצמו, בספרות ובסימן הפעולה, במפורש (למשל "כמה זה 5 + 4 + 3?"). חובה: החלק השני מופיע תמיד ככתבו — משפט הפתיחה מוסיף הקשר בלבד, הוא לא מחליף את התרגיל ולא מסתיר אותו, והתלמיד/ה צריך/ה רק לחשב ולא להסיק איזו פעולה לבחור. משפט אחד לפתיחה, לא בעיה מילולית שצריך לפענח. אם לא נמסר נושא תוכן (תרגול חופשי), אפשר להסתפק בתרגיל עצמו בלי משפט פתיחה. החזר/י שדה נוסף computation: {"operands": [המספרים לפי סדר הופעתם בשאלה], "operators": [סימני הפעולה ביניהם, אחד מתוך + - * /]} — לדוגמה לשאלה "10 × 4" החזר/י {"operands": [10, 4], "operators": ["*"]}. אל תחשב/י את התוצאה: האפליקציה מחשבת אותה בעצמה מהשדה הזה, ושדה correctAnswer שלך יוחלף. מותר לשרשר רק + ו- (למשל 87 - 39 + 24); כפל או חילוק חייבים להיות פעולה אחת בלבד. בחילוק — רק חלוקה ללא שארית. התוצאה חייבת להיות מספר שלם ולא שלילי.',
   pick_operation:
     'בעיית מילה קצרה. השאלה מבקשת מהתלמיד/ה לבחור איזו פעולה חשבונית פותרת אותה — לא לחשב את התוצאה עצמה. type חייב להיות "multiple_choice", 4 אפשרויות מתוך פעולות חשבון (חיבור/חיסור/כפל/חילוק, הרלוונטיות בלבד).',
   explain_thinking:
@@ -120,13 +126,36 @@ const HEBREW_SUBTYPES: ExerciseSubtype[] = [
  *  every tile instead. */
 const SINGLE_SLOT_TILE_SUBTYPES: ExerciseSubtype[] = ["pattern_completion", "equation_balance", "shape_match"];
 
-/** root_pattern_mc is flagged in the locked inventory as likely ב'-ג' only,
- *  not grade א' — excluded there rather than generated and hoped to be fine. */
-function pickSubtype(subject: "math" | "hebrew", grade: Grade): ExerciseSubtype {
-  const pool =
-    subject === "math"
-      ? MATH_SUBTYPES
-      : HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
+/**
+ * The formats generation may choose from.
+ *
+ * With a topic: exactly the topic's allowed formats (lib/map/topic-formats.ts).
+ * This is the root fix for BUG B — the format used to be picked at random,
+ * blind to the topic, which is how "צורות" got arithmetic sequences and
+ * "לקרוא סיפור קצר" got root drills.
+ *
+ * With no topic (free practice with no topic chosen): every format of the
+ * subject, minus grouping where the grade has no division, and minus
+ * root_pattern_mc in grade א (flagged in the locked inventory as ב'-ג').
+ * Exported for tests.
+ */
+export function formatPool(subject: "math" | "hebrew", grade: Grade, topicId?: string): ExerciseSubtype[] {
+  if (topicId) return [...allowedFormats(topicId)];
+  if (subject === "hebrew") return HEBREW_SUBTYPES.filter((s) => !(s === "root_pattern_mc" && grade === "א"));
+  const ops = allowedOperations(undefined, grade);
+  return MATH_SUBTYPES.filter((s) => s !== "visual_grouping" || ops.includes("div"));
+}
+
+/** Thrown when a caller forces a format the topic does not allow (a
+ *  programming error in the caller, e.g. the seed script): not retried. */
+export class FormatNotAllowedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "FormatNotAllowedError";
+  }
+}
+
+function pickSubtype(pool: readonly ExerciseSubtype[]): ExerciseSubtype {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -137,9 +166,16 @@ function pickSubtype(subject: "math" | "hebrew", grade: Grade): ExerciseSubtype 
  *  groups of 5) than א/ב's curriculum calls for. Prompt guidance only —
  *  not code-enforced, same trust-the-prompt pattern already used for "4
  *  choices" on multiple_choice (see NumberLineData's doc comment). */
-function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade): string {
+function subtypeGuidance(subtype: ExerciseSubtype, grade: Grade, ops: readonly Operation[]): string {
   const maxGroupingItems = grade === "ג" ? 20 : 12;
-  return SUBTYPE_GUIDANCE[subtype].replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems));
+  return SUBTYPE_GUIDANCE[subtype]
+    .replace("{MAX_GROUPING_ITEMS}", String(maxGroupingItems))
+    // The operation list in fill_in_blank/pick_operation is the topic's own,
+    // not all four "as fits the grade" (the model's guess).
+    .replaceAll("חיבור/חיסור/כפל/חילוק", operationNames(ops).replaceAll(", ", "/"))
+    // pick_operation offers one choice per operation: two where only
+    // חיבור/חיסור exist, not four padded out with ones the grade lacks.
+    .replace("4 אפשרויות מתוך פעולות חשבון", `${ops.length} אפשרויות מתוך פעולות חשבון`);
 }
 
 /** The kid's adaptive level on this topic (lib/practice/state.ts), as a
@@ -185,9 +221,18 @@ export async function generateExercise(opts: Parameters<typeof generateExerciseO
     try {
       return await generateExerciseOnce(request);
     } catch (err) {
-      if (err instanceof NoCurriculumContentError) throw err;
+      if (err instanceof NoCurriculumContentError || err instanceof FormatNotAllowedError) throw err;
       if (err instanceof TopicFitError) {
         request = { ...opts, varietyHint: [opts.varietyHint, TOPIC_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
+      if (err instanceof FormatFitError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, FORMAT_FIT_RETRY_HINT].filter(Boolean).join("\n") };
+      }
+      if (err instanceof OperationScopeError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, operationScopeRetryHint(err)].filter(Boolean).join("\n") };
+      }
+      if (err instanceof QualityGateError) {
+        request = { ...opts, varietyHint: [opts.varietyHint, qualityRetryHint(err.violations)].filter(Boolean).join("\n") };
       }
       lastError = err;
       console.warn(
@@ -249,6 +294,12 @@ async function generateExerciseOnce(opts: {
     return t;
   }
   const resolvedTopic = resolveTopic();
+  // A topic the format table leaves UNSERVED (no format fits its
+  // curriculum) has nothing to build — the same "no content" answer as a
+  // topic with no curriculum chunk.
+  if (resolvedTopic && !isServedTopic(resolvedTopic.id)) {
+    throw new NoCurriculumContentError(`topic ${resolvedTopic.id} is not served: no exercise format fits its curriculum.`);
+  }
 
   // Retrieval query: a resolved topic takes priority (the kid tapped this
   // exact node) over the profile-based query, which itself beats the
@@ -289,7 +340,24 @@ async function generateExerciseOnce(opts: {
 
   const contextBlock = retrieved.map((c) => `- [${c.topic}] ${c.text}`).join("\n");
   const avoidTopics = profile?.topicsCovered.slice(-4).join(", ") || "";
-  const subtype = opts.forceSubtype ?? pickSubtype(subject, grade);
+  // What this topic (or, topic-less, this grade) teaches — the one
+  // declaration in lib/map/topics.ts the picker reads too.
+  const ops = allowedOperations(resolvedTopic?.id, grade);
+  const pool = formatPool(subject, grade, resolvedTopic?.id);
+  if (opts.forceSubtype && resolvedTopic && !pool.includes(opts.forceSubtype)) {
+    throw new FormatNotAllowedError(`${opts.forceSubtype} is not an allowed format for ${resolvedTopic.id} (allowed: ${pool.join(", ") || "none"})`);
+  }
+  const subtype = opts.forceSubtype ?? pickSubtype(pool);
+  // A number line in an operations topic must come from an operation
+  // (owner G5): "רועי קפץ 3 ואז עוד 4 — איפה הוא?" — never a bare placement.
+  const numberLineNeedsOp = subtype === "number_line_placement" && !!resolvedTopic && hasCondition(resolvedTopic.id, "number-line-needs-operation");
+  // The authoring rubric for this topic, with what the Ministry corpus filled
+  // in (lib/authoring/rubric.ts): the rules, the phrasing mix, real questions.
+  // Division/sequence exemplars only for the subtypes that ARE division or
+  // a sequence — shown to every topic that allows division, they pulled
+  // stories toward sharing where the topic is length or time.
+  const corpusCue = { division: subtype === "visual_grouping", sequences: subtype === "pattern_completion" };
+  const rubricBlock = subject === "math" ? rubricPromptBlock(resolvedTopic?.id, grade, corpusCue) : "";
 
   const prompt = `את/ה בונה תרגיל אחד לתלמיד/ה בכיתה ${grade}, בנושא ${subject === "math" ? "חשבון" : "עברית"}.
 
@@ -299,6 +367,7 @@ ${contextBlock}
 ${profile ? `רמה משוערת נוכחית של התלמיד/ה: ${profile.estimatedLevel || "ברירת מחדל לפי כיתה"}` : ""}
 ${avoidTopics ? `נושאים שתורגלו לאחרונה (עדיף לגוון, לא חובה להימנע לגמרי): ${avoidTopics}` : ""}
 ${LEVEL_GUIDANCE[level]}
+${rubricBlock}
 ${opts.varietyHint ?? ""}
 
 בחר/י את אחד הנושאים לעיל ובנה/י תרגיל אחד קצר, ברור, ומתאים לגיל, לפי התבנית הבאה בדיוק:
@@ -307,7 +376,9 @@ ${
     ? `קריטי: התרגיל חייב לעסוק בפועל בתוכן הנושא "${resolvedTopic.topic}" — לא רק להיות תרגיל מספרי כללי שמזדמן להיות מתויג תחת הנושא הזה. לדוגמה: בנושא צורות גאומטריות התרחיש חייב לעסוק בצורות עצמן (סוגי צורות, מספר צלעות/זוויות, השוואה ביניהן) ולא בספירה כללית; בנושא כפל וחילוק התרגיל חייב לכלול בפועל פעולת כפל או חילוק (למשל קפיצות של מספר קבוע, חלוקה לקבוצות, כפולות), לא רק מיקום מספר כלשהו על ציר. אם התבנית שנבחרה (למטה) נוטה מטבעה להיות כללית (כמו מיקום על ציר או השלמת רצף), התאימו את התוכן הספציפי — הערך על הציר, ההפרש ברצף, התרחיש של בעיית המילה — כך שינבע ממש מהנושא "${resolvedTopic.topic}", לא ממספר שרירותי.`
     : ""
 }
-${subtypeGuidance(subtype, grade)}
+${subject === "math" ? (ops.length ? `פעולות החשבון שנלמדות כאן: ${operationNames(ops)}. אסור להשתמש בפעולה אחרת — גם לא בתוך הסיפור.` : "בנושא הזה לא לומדים פעולות חשבון: אל תבקש/י חיבור, חיסור, כפל או חילוק — התרגיל עוסק במספרים עצמם.") : ""}
+${numberLineNeedsOp ? "המיקום על הציר חייב לנבוע מפעולת חשבון בתוך השאלה (למשל: \"רועי עמד על 3 וקפץ עוד 4. איפה הוא עכשיו?\") — לא למקם מספר שכבר כתוב בשאלה." : ""}
+${subtypeGuidance(subtype, grade, ops)}
 
 החזר/י אך ורק אובייקט JSON תקין, ללא טקסט נוסף, בפורמט הזה:
 {
@@ -315,7 +386,7 @@ ${subtypeGuidance(subtype, grade)}
   "topic": "שם הנושא מהרשימה לעיל",
   "passage": "רק אם התבנית דורשת קטע קריאה (comprehension) - הקטע עצמו, אחרת השמט שדה זה",
   "question": "נוסח השאלה, בעברית, מתאים לילד/ה",
-  "choices": ["רק אם type הוא multiple_choice - 4 אפשרויות"],
+  "choices": ["רק אם type הוא multiple_choice - 4 אפשרויות, אלא אם התבנית למעלה קובעת מספר אחר"],
   "numberLine": "רק אם type הוא number_line - {min, max, step}, אחרת השמט שדה זה",
   "tiles": "רק אם type הוא tile_order - {items: [...]}, אחרת השמט שדה זה",
   "grouping": "רק אם type הוא grouping - {items: [...], groupCount: מספר}, אחרת השמט שדה זה",
@@ -478,6 +549,27 @@ ${subtypeGuidance(subtype, grade)}
   const fit = topicFit(exercise, resolvedTopic?.id);
   if (!fit.ok) {
     throw new TopicFitError(`${subtype ?? type} draft is off-topic for ${resolvedTopic?.id}: ${fit.reason}. Question: "${exercise.question}"`);
+  }
+
+  // Topic integrity: only the operations this topic teaches (lib/exercises/
+  // operation-scope.ts). A draft using another is re-requested.
+  const scope = operationScope(exercise, resolvedTopic?.id, grade);
+  if (!scope.ok) throw new OperationScopeError(scope, exercise.question);
+
+  // The allowed-format table, structurally: the format belongs to the topic,
+  // and a number line in an operations topic comes from an operation.
+  const format = formatFit(exercise, resolvedTopic?.id);
+  if (!format.ok) throw new FormatFitError(format.reason!, exercise.question);
+
+  // The authoring rubric (lib/authoring/rubric.ts), after every gate above:
+  // is this a good QUESTION — a series framed as one, division framed as
+  // sharing, one task, one unambiguous answer. Deterministic, no model
+  // call. The judgment half (quality-review.ts) runs only when switched on.
+  const quality = checkQuestionQuality(exercise);
+  if (!quality.ok) throw new QualityGateError(quality.violations, exercise.question);
+  if (subject === "math" && reviewMode() === "inline") {
+    const review = await reviewQuestion(exercise, rubricPromptBlock(resolvedTopic?.id, grade, { ...corpusCue, rules: false }));
+    if (!review.ok) throw new QualityGateError(review.violations, exercise.question);
   }
   return exercise;
 }

@@ -46,6 +46,8 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { TOPICS, type MapTopic } from "../lib/map/topics";
+import { MATH_BANKABLE, HEBREW_BANKABLE, seedPool } from "../lib/exercises/seed-pool";
+import { formatFit } from "../lib/exercises/format-fit";
 import { generateExercise } from "../lib/exercises/generate";
 import { verifyExercise, specFingerprint, isBankableSubtype } from "../lib/exercises/bank-guard";
 import type { Exercise, ExerciseSubtype } from "../lib/exercises/types";
@@ -76,21 +78,9 @@ const CONCURRENCY = Number(arg("concurrency", "8"));
 const TOPIC_FILTER = arg("topics")?.split(",");
 const LEVEL_FILTER = arg("levels")?.split(",").map(Number);
 
-// Ordered by how topic-agnostic each subtype's guard is, not alphabetically
-// or by "tier": pick_operation (any word problem, just needs 4 distinct
-// choices) and visual_grouping (any countable-items scenario) pass the
-// guard for nearly any topic's content. fill_in_blank/pattern_completion/
-// equation_balance need the topic's own content to already BE a bare
-// numeric expression or sequence — true for "numbers"/"addition" topics,
-// false for "geometry"/"time"/"length" ones, where the model has no
-// {operands,operators} to extract and burns its whole retry budget
-// failing the same way repeatedly (observed directly: math-a-geometry
-// with the old fill_in_blank-first order spent 20+ min and 100+ LLM calls
-// on ONE level-1 slot without a single acceptance). Leading with the
-// robust subtypes means every topic banks SOMETHING quickly even when the
-// pickier subtypes never fit it.
-const MATH_BANKABLE: ExerciseSubtype[] = ["pick_operation", "visual_grouping", "number_line_placement", "fill_in_blank", "pattern_completion", "equation_balance"];
-const HEBREW_BANKABLE: ExerciseSubtype[] = ["comprehension", "spelling_correction_mc", "root_pattern_mc", "word_build", "sentence_order", "vowel_select_mc", "phonemic_visual_mc"];
+// The format lists and the per-topic pool live in lib/exercises/seed-pool.ts
+// (seedPool): only the formats the topic's allowed-format table permits,
+// none for an unserved topic. See that module for why (BUG B).
 for (const s of [...MATH_BANKABLE, ...HEBREW_BANKABLE]) {
   if (!isBankableSubtype(s)) throw new Error(`${s} is listed as bankable but bank-guard.ts disagrees — fix the mismatch before running.`);
 }
@@ -204,7 +194,13 @@ function nameIn(ex: Exercise): string | null {
 }
 
 async function fillSlot(topic: MapTopic, difficulty: 1 | 2 | 3, slot: SlotState): Promise<Exercise[]> {
-  const pool = topic.subject === "math" ? MATH_BANKABLE : HEBREW_BANKABLE;
+  // Only the bankable formats this topic's allowed-format table permits
+  // (lib/exercises/seed-pool.ts) — never every format through every topic.
+  const pool = seedPool(topic);
+  if (pool.length === 0) {
+    console.warn(`[seed] ${topic.id} L${difficulty}: no bankable format is allowed for this topic — skipped (served by live generation only, or unserved).`);
+    return [];
+  }
   const need = Math.max(0, TARGET_PER_SLOT - slot.count);
   if (need === 0) return [];
   const accepted: Exercise[] = [];
@@ -295,7 +291,15 @@ async function main() {
   });
 
   if (supabase) {
-    const rows = allNew.map((ex) => ({
+    // Admission: the allowed-format table's structural check, as at every
+    // other door into the bank (saveExercise, insert-seeded-bank.ts).
+    // generateExercise already enforces it; this is the insert's own guard.
+    const admitted = allNew.filter((ex) => {
+      const fit = formatFit(ex, ex.topicId);
+      if (!fit.ok) console.warn(`[seed] refused at insert — ${fit.reason}: ${ex.question.slice(0, 60)}`);
+      return fit.ok;
+    });
+    const rows = admitted.map((ex) => ({
       subject: ex.subject,
       grade: ex.grade,
       type: ex.type,

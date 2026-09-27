@@ -10,6 +10,7 @@ import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
+import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT } from "@/lib/feedback/constitution";
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
@@ -18,7 +19,9 @@ import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/char
 import * as lines from "@/lib/guide/lines";
 import { OPENERS } from "@/lib/exercises/openers";
 import type { Line } from "@/lib/guide/lines";
-import { matchChoice, matchNumberLine } from "@/lib/voice/matchAnswer";
+import { matchChoice, matchNumberLine, matchYesNo } from "@/lib/voice/matchAnswer";
+import * as repair from "@/lib/voice/repairLadder";
+import { buildRung, nextRung, type Rung } from "@/lib/exercises/hintLadder";
 import { clearEndOfSpeech, msSinceEndOfSpeech, recordTiming } from "@/lib/voice/timing";
 import { getTopicById } from "@/lib/map/topics";
 import { SUBJECT_THEME } from "@/lib/theme/subjectTheme";
@@ -27,6 +30,8 @@ import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
 import { createSilenceNudge, type SilenceNudge } from "@/lib/voice/silenceNudge";
 import { silenceNudgeActions } from "@/lib/guide/nudges";
 import { createNextPrefetcher, type NextPrefetcher } from "@/lib/exercises/nextPrefetch";
+import { checkWithRecovery, nextWithRetry } from "@/lib/practice/recovery";
+import { leaveNeedsConfirm } from "@/lib/practice/leave";
 import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
@@ -41,6 +46,10 @@ const NEXT_PREFETCH_DELAY_MS = 2500;
 /** This screen's character, in the speech owner model — only it lip-syncs
  *  to lines said here. */
 const OWNER = "exercise";
+/** The quiet second chance before a failure is shown: a failed next-exercise
+ *  fetch, and an answer check that failed before any verdict. One each. */
+const NEXT_RETRY_MS = 800;
+const CHECK_RETRY_MS = 600;
 
 interface Props {
   subject: "math" | "hebrew";
@@ -138,13 +147,26 @@ export default function ExerciseScreen({
   const [evaluation, setEvaluation] = useState<ExerciseEvaluation | null>(null);
   const [loadingExercise, setLoadingExercise] = useState(false);
   const [loadedOnce, setLoadedOnce] = useState(false);
-  /** The last load failed (network, 5xx, unreadable response) — as opposed
-   *  to the API genuinely having nothing for this topic. Different
-   *  screens: one offers a retry, the other a way back to the map. */
+  /** The next exercise could not be had — after one silent retry (network,
+   *  5xx, unreadable response, or the server's "try_again": nothing passed
+   *  the content checks) — as opposed to the API genuinely having nothing
+   *  for this topic. Different screens: one offers a retry, the other a way
+   *  back to the map. Never the generic "something broke" (QA 2026-09-26):
+   *  the calm lines.couldNotBuild, and the session and progress are kept. */
   const [loadFailed, setLoadFailed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
+  /** The two-repair ladder for voice answers (lib/voice/repairLadder.ts).
+   *  Entirely pre-verdict: it never records an attempt and never touches
+   *  the 1|2 answer counter or mastery state. */
+  const [repairState, setRepairState] = useState<repair.RepairState>(repair.IDLE);
+  /** The deterministic hint ladder (lib/exercises/hintLadder.ts). Opened
+   *  ONLY by an explicit request for a hint; it never reads or writes the
+   *  attempt counter and never reaches the verdict. */
+  const [hint, setHint] = useState<Rung | null>(null);
+  const [winAnswer, setWinAnswer] = useState("");
+  const [winDone, setWinDone] = useState<"right" | "wrong" | null>(null);
   /** The OS/browser refused microphone access on the last attempt — a
    *  more specific dead end than noMatch's generic "didn't hear you"
    *  (2026-09-12 iPhone QA: "voice input fails"). Cleared the moment
@@ -159,9 +181,13 @@ export default function ExerciseScreen({
   const [confirmingLeave, setConfirmingLeave] = useState(false);
   /** 1 on a fresh question, 2 on the retry after a hint. */
   const [attempt, setAttempt] = useState<1 | 2>(1);
-  /** The last evaluation is the "something broke" stand-in, not a real
-   *  judgement — a retry after it doesn't use up the kid's second try. */
-  const [evalFailed, setEvalFailed] = useState(false);
+  /** The answer could not be checked — twice, before any verdict. Not a
+   *  judgement and never shown as a wrong answer: the answer is kept, and
+   *  "לנסות שוב" checks the SAME answer again (lastAnswerRef). A verdict
+   *  that did arrive is never replaced by an error (QA 2026-09-26: a
+   *  correct answer turned into "משהו השתבש", then the question repeated). */
+  const [checkFailed, setCheckFailed] = useState(false);
+  const lastAnswerRef = useRef<{ value: string; opts?: { viaVoice?: boolean } } | null>(null);
   /** The kid's level on this topic, from the server. Null until known,
    *  and while the first-visit diagnostic is still placing them. */
   const [practice, setPractice] = useState<PracticeSummary | null>(null);
@@ -241,6 +267,11 @@ export default function ExerciseScreen({
   useEffect(() => {
     speakAutoRef.current = speakAuto;
   }, [speakAuto]);
+  /** Latest-value refs for the repair ladder's confirmation handler: it is
+   *  a stable callback wired into buttons, and reading either of these
+   *  from the render closure would answer a previous exercise. */
+  const exerciseRef = useRef<Exercise | null>(null);
+  const submitAnswerRef = useRef<(value: string, opts?: { viaVoice?: boolean }) => void>(() => {});
   useEffect(() => {
     const nudge = createSilenceNudge({
       onNudge: () => {
@@ -311,7 +342,7 @@ export default function ExerciseScreen({
    *  render below) since the interaction isn't otherwise self-explanatory
    *  (2026-09-12 iPhone QA: grouping was an unexplained dead end). */
   function questionSpeech(ex: Exercise) {
-    return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions().text : null]
+    return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions(ex.grouping?.items).text : null]
       .filter(Boolean)
       .join(" ");
   }
@@ -359,11 +390,17 @@ export default function ExerciseScreen({
     setEvaluation(null);
     setAnswer("");
     setNoMatch(false);
+    // A new question starts the repair ladder over: two tries are two
+    // tries at THIS question, not a running total for the session.
+    setRepairState(repair.reset());
+    setHint(null);
+    setWinAnswer("");
+    setWinDone(null);
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
     setAttempt(1);
-    setEvalFailed(false);
+    setCheckFailed(false);
     if (prefetched) {
       setExercise(prefetched);
       // The prefetch's own practice snapshot predates the answer just given;
@@ -374,35 +411,46 @@ export default function ExerciseScreen({
       setLoadedOnce(true);
       return;
     }
-    try {
-      const res = await fetch("/api/tutor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId }),
-      });
-      // A body that isn't JSON (a platform error page, a cut-off response)
-      // is a failure, not an empty topic.
-      const data = (await res.json().catch(() => null)) as {
-        exercise?: Exercise | null;
-        error?: string;
-        practice?: PracticeSummary;
-      } | null;
-      if (res.ok && data?.exercise) {
-        setExercise(data.exercise);
-        setPractice((p) => data.practice ?? (p && { ...p, change: null }));
-      } else if (res.status === 404 && data?.error === "no_content") {
+    // One fetch of the next exercise. "failed" is a fault (network, 5xx, a
+    // body that isn't JSON); "not_ready" is the server's honest try_again.
+    type Next = { kind: "ok"; exercise: Exercise; practice?: PracticeSummary } | { kind: "none" } | { kind: "not_ready" } | { kind: "failed" };
+    const fetchNext = async (): Promise<Next> => {
+      try {
+        const res = await fetch("/api/tutor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId }),
+        });
+        // A body that isn't JSON (a platform error page, a cut-off response)
+        // is a failure, not an empty topic.
+        const data = (await res.json().catch(() => null)) as {
+          exercise?: Exercise | null;
+          error?: string;
+          practice?: PracticeSummary;
+        } | null;
+        if (res.ok && data?.exercise) return { kind: "ok", exercise: data.exercise, practice: data.practice };
         // The one genuine "nothing to practice here" answer — see
         // NoCurriculumContentError in lib/exercises/generate.ts.
-        setExercise(null);
-      } else {
-        // 5xx, any other error status, or a 200 with no exercise in it.
-        setExercise(null);
-        setLoadFailed(true);
+        if (res.status === 404 && data?.error === "no_content") return { kind: "none" };
+        // No exercise passed the checks; the server already retried.
+        if (res.status === 503 && data?.error === "try_again") return { kind: "not_ready" };
+        return { kind: "failed" };
+      } catch {
+        // fetch itself threw: offline, DNS, connection dropped.
+        return { kind: "failed" };
       }
-    } catch {
-      // fetch itself threw: offline, DNS, connection dropped.
-      setExercise(null);
-      setLoadFailed(true);
+    };
+    try {
+      // A fault gets one quiet second chance before the child sees anything.
+      const next = await nextWithRetry(fetchNext, NEXT_RETRY_MS);
+      if (next.kind === "ok") {
+        setExercise(next.exercise);
+        const fresh = next.practice;
+        setPractice((p) => fresh ?? (p && { ...p, change: null }));
+      } else {
+        setExercise(null);
+        setLoadFailed(next.kind !== "none");
+      }
     } finally {
       setLoadingExercise(false);
       setLoadedOnce(true);
@@ -471,21 +519,26 @@ export default function ExerciseScreen({
   useEffect(() => {
     topicStatsRef.current = { attempted: 0, correct: 0 };
     loadNextExercise();
-    // Voice-experience fix item 1: "רגע, אני חושב/ת" and "רגע, אני מכין/ה
-    // לנו תרגיל" are said on every single answer and every single new
-    // exercise — the two most frequent lines on this whole screen, and
-    // both fully known the moment the screen opens (character + kidName,
-    // nothing else). Warmed here so by the time either is actually
-    // needed, speak() finds it already cached instead of paying
-    // Cartesia's round trip live, right in the middle of the loop the
-    // founder reported as slow.
+    // Voice-experience fix item 1: "רגע, אני חושב/ת" is said on every
+    // single answer given by voice — the most frequent spoken line on
+    // this whole screen, and fully known the moment the screen opens
+    // (character + kidName, nothing else). Warmed here so by the time it
+    // is actually needed, speak() finds it already cached instead of
+    // paying Cartesia's round trip live, right in the middle of the loop
+    // the founder reported as slow.
     // Keyed on spoken(), not .text: speak() (via useGuide/speakAuto, below
     // and at line ~598) always reads the "name, text" spoken form, which
     // differs from .text alone for every line with a `name` set — both of
     // these carry one. Prefetching under the wrong key left the cache
     // permanently missed: paid for on every load, never actually hit.
     prefetchSpeech(lines.spoken(lines.thinking(character, kidName)), character);
-    prefetchSpeech(lines.spoken(lines.buildingExercise(character, kidName)), character);
+    // buildingExercise is NOT warmed, deliberately. It is only ever
+    // rendered as text in the loading bubble below (~line 835) — no
+    // speak() path anywhere reads it — so warming it bought a Cartesia
+    // request on every mount of this screen and cached an audio clip that
+    // nothing could ever play. Removing the prefetch changes nothing a
+    // child sees or hears; the line still appears on screen exactly as
+    // before. If it is ever given a voice, warm it again here.
     // feat: verdict-first evaluation — the three deterministic openers.
     // Exactly one of them is said on every single answer, and they never
     // vary, so warming all three here is what makes the opener audible at
@@ -508,11 +561,11 @@ export default function ExerciseScreen({
   }, [exercise]);
 
   // No exercise: say which dead end this is, out loud — "nothing here yet"
-  // and "something broke" are different situations with different ways out.
+  // and "couldn't build one" are different situations with different ways out.
   useEffect(() => {
     if (!loadedOnce || loadingExercise || exercise) return;
     setBasePose("thinking");
-    speakAuto(lines.spoken(loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName)));
+    speakAuto(lines.spoken(loadFailed ? lines.couldNotBuild(kidName) : lines.noContent(kidName)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOnce, loadingExercise, exercise, loadFailed]);
 
@@ -534,6 +587,7 @@ export default function ExerciseScreen({
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
+    setCheckFailed(false);
     answerInFlightRef.current = true;
     setNoMatch(false);
     setBasePose("thinking");
@@ -562,7 +616,8 @@ export default function ExerciseScreen({
       speakAuto(text, { live: true });
     };
 
-    try {
+    // One check of the answer: the verdict line, then the prose line.
+    const check = async () => {
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -610,8 +665,7 @@ export default function ExerciseScreen({
             if (sinceEnd !== null) recordTiming("verdict", sinceEnd);
             opener = msg.opener ?? "";
             const correct = msg.correct === true;
-            setEvalFailed(false);
-            setEvaluation({ correct, feedback: opener });
+              setEvaluation({ correct, feedback: opener });
             // Kid-scene reskin: count DISTINCT exercises, not submissions —
             // a retry (attempt 2) is still the same exercise, so only a
             // fresh question (attempt 1) advances "attempted"; "correct"
@@ -673,27 +727,141 @@ export default function ExerciseScreen({
         }
       }
       if (!sawVerdict) throw new Error("no verdict in stream");
-    } catch {
-      setEvalFailed(true);
-      setEvaluation({ correct: false, feedback: lines.somethingBroke(kidName).text });
-      setBasePose("encouraging");
-      speakAuto(lines.spoken(lines.somethingBroke(kidName)));
+    };
+
+    try {
+      // lib/practice/recovery.ts: a failure before the verdict is retried
+      // once with the same answer; a verdict that arrived stands — never
+      // replaced by an error, never re-asked (only the prose was lost).
+      const outcome = await checkWithRecovery(check, {
+        sawVerdict: () => sawVerdict,
+        stillCurrent: () => gen === proseGenRef.current,
+        retryMs: CHECK_RETRY_MS,
+      });
+      if (outcome === "unchecked") {
+        // No verdict, twice. Not a judgement: keep the answer, say so
+        // calmly, and let "לנסות שוב" check the same answer again.
+        lastAnswerRef.current = { value, opts };
+        setCheckFailed(true);
+        setBasePose("thinking");
+        speakAuto(lines.spoken(lines.couldNotCheck(kidName)));
+      }
     } finally {
       answerInFlightRef.current = false;
       setSubmitting(false);
     }
   }
 
+  // Kept current every render (see the refs' declaration above).
+  exerciseRef.current = exercise;
+  submitAnswerRef.current = submitAnswer;
+
+  /**
+   * The child asked for a hint — by tapping רמז or saying it. Advances the
+   * ladder one rung and says it. Deliberately the ONLY way in: nothing
+   * about answering, right or wrong, opens this, so the attempt counter
+   * and the verdict behave exactly as they did before it existed.
+   */
+  const requestHint = useCallback(() => {
+    const ex = exerciseRef.current;
+    if (!ex) return;
+    setHint((prev) => {
+      const kind = nextRung(ex, prev?.kind ?? null);
+      if (kind === null) return prev; // the ladder is spent; it never wraps
+      const rung = buildRung(ex, kind, kidGender) ?? buildRung(ex, nextRung(ex, kind) ?? "solve", kidGender);
+      if (rung) speakAutoRef.current(rung.say);
+      setBasePose("explaining");
+      return rung ?? prev;
+    });
+  }, [kidGender]);
+
+  /** Local, code-only comparison for the small win. Numbers compared as
+   *  numbers so "05" and "5" agree; nothing here is the grading path. */
+  function answerMatchesLocally(given: string, expected: string): boolean {
+    const g = given.trim();
+    if (!g) return false;
+    const gn = Number(g);
+    const en = Number(expected);
+    return Number.isFinite(gn) && Number.isFinite(en) ? gn === en : g === expected.trim();
+  }
+
+  /**
+   * The small win, checked HERE and nowhere else. It is a question the
+   * child answers, but it is not the exercise: it never goes to the
+   * server, never records an attempt, and never reaches mastery state or
+   * the verdict. Getting it wrong costs nothing — the point is to end on
+   * something that worked.
+   */
+  const checkSmallWin = useCallback(() => {
+    const practice = hint?.practice;
+    if (!practice) return;
+    const right = answerMatchesLocally(winAnswer, practice.answer);
+    setWinDone(right ? "right" : "wrong");
+    setBasePose(right ? "celebration" : "encouraging");
+    speakAutoRef.current(right ? `${OPENERS.correct} ${REST_CORRECT}` : `התשובה היא ${practice.answer}.`);
+  }, [hint, winAnswer]);
+
   /** Character asks the kid to repeat — spoken, not just printed, since a
    *  kid who needs voice input is often a kid who can't read the hint.
    *  ROADMAP.md Phase 1A: "if STT confidence is low, the character asks
    *  'מה? לא שמעתי, אפשר שוב?' instead of guessing." */
-  const askToRepeat = useCallback(() => {
-    turnStartedAtRef.current = null; // this turn didn't complete
-    setNoMatch(true);
-    setBasePose("encouraging");
-    speakAuto(lines.spoken(lines.notHeard(kidName)));
-  }, [speakAuto, kidName]);
+  const askToRepeat = useCallback(
+    (input?: { candidates: readonly string[]; reason: repair.RepairReason; exerciseId: string }) => {
+      turnStartedAtRef.current = null; // this turn didn't complete
+      setNoMatch(true);
+      setBasePose("encouraging");
+      if (!input) {
+        // No matcher context (a provider-level "heard nothing"): the plain
+        // re-ask, unchanged from before the ladder existed.
+        speakAuto(lines.spoken(lines.notHeard(kidName)));
+        return;
+      }
+      setRepairState((prev) => {
+        const next = repair.onUnclear(prev, { candidates: input.candidates, reason: input.reason, gender: kidGender });
+        repair.logRepair({
+          exerciseId: input.exerciseId,
+          reason: input.reason,
+          unclearCount: next.unclearCount,
+          outcome:
+            next.stage.kind === "confirming" ? "confirm" : next.stage.kind === "retrying" ? "retry" : "tap-offer",
+          candidate: next.stage.kind === "confirming" ? next.stage.candidate : undefined,
+        });
+        // Every stage carries something to say — the ladder never goes quiet.
+        speakAutoRef.current(next.stage.kind === "idle" ? lines.spoken(lines.notHeard(kidName)) : next.stage.say);
+        return next;
+      });
+    },
+    [speakAuto, kidName, kidGender]
+  );
+
+  /** כן / לא to "התכוונת ל-12?", from either the voice or the buttons —
+   *  the two paths are the same path. A "כן" submits the candidate as the
+   *  child's OWN answer: they confirmed it, so this is not the tutor
+   *  answering for them. */
+  const answerConfirmation = useCallback(
+    (answer: "yes" | "no") => {
+      setRepairState((prev) => {
+        const out = repair.onConfirmation(prev, answer);
+        if (out.action === "ignore") return prev;
+        const candidate = prev.stage.kind === "confirming" ? prev.stage.candidate : undefined;
+        repair.logRepair({
+          exerciseId: exerciseRef.current?.id ?? "(none)",
+          reason: "ambiguous",
+          unclearCount: prev.unclearCount,
+          outcome: out.action === "submit" ? "confirmed-submit" : "rejected",
+          candidate,
+        });
+        if (out.action === "submit") {
+          setNoMatch(false);
+          submitAnswerRef.current(out.value, { viaVoice: true });
+        } else {
+          speakAutoRef.current(out.state.stage.kind === "idle" ? "" : out.state.stage.say);
+        }
+        return out.state;
+      });
+    },
+    []
+  );
 
   /** Distinguishes "the OS refused microphone access" from genuinely
    *  hearing nothing (2026-09-12 iPhone QA: "voice input fails" — the
@@ -725,16 +893,42 @@ export default function ExerciseScreen({
   function handleVoiceResult(transcript: string) {
     if (!exercise) return;
 
+    // While a confirmation is on screen, the next thing said is read as
+    // כן/לא, not as an answer — the child was asked a yes/no question.
+    // Anything else counts as another unclear attempt, which is what moves
+    // the ladder to its last rung rather than asking a third time.
+    // "רמז" is a request for help, not an answer — checked before any
+    // matching so it can never be graded as one.
+    if (/^\s*רמז\s*[?!.]?\s*$/.test(transcript)) {
+      requestHint();
+      return;
+    }
+
+    if (repair.isConfirming(repairState)) {
+      const yn = matchYesNo(transcript);
+      if (yn) {
+        answerConfirmation(yn);
+        return;
+      }
+      askToRepeat({ candidates: [], reason: "no-match", exerciseId: exercise.id });
+      return;
+    }
+
     if (exercise.type === "multiple_choice" && exercise.choices) {
       const matchStartedAt = performance.now();
       const match = matchChoice(transcript, exercise.choices);
       recordTiming("match", performance.now() - matchStartedAt);
       if (match.kind === "choice") {
         setNoMatch(false);
+        setRepairState(repair.reset());
         submitAnswer(match.value, { viaVoice: true });
         return;
       }
-      askToRepeat();
+      if (match.kind === "none") {
+        askToRepeat({ candidates: match.candidates, reason: match.reason, exerciseId: exercise.id });
+      } else {
+        askToRepeat();
+      }
       return;
     }
 
@@ -742,10 +936,15 @@ export default function ExerciseScreen({
       const match = matchNumberLine(transcript, exercise.numberLine);
       if (match.kind === "value") {
         setNoMatch(false);
+        setRepairState(repair.reset());
         submitAnswer(match.value, { viaVoice: true });
         return;
       }
-      askToRepeat();
+      if (match.kind === "none") {
+        askToRepeat({ candidates: match.candidates, reason: match.reason, exerciseId: exercise.id });
+      } else {
+        askToRepeat();
+      }
       return;
     }
 
@@ -799,7 +998,16 @@ export default function ExerciseScreen({
   const topBar = (
     <div className="pt-2 pb-1">
       <div className="flex justify-between items-center">
-        <button onClick={() => setConfirmingLeave(true)} className="min-h-11 px-1 text-sm text-white/80">
+        <button
+          onClick={() =>
+            // Ask only when something would be lost (lib/practice/leave.ts):
+            // never after a finished exercise, never with none on screen.
+            leaveNeedsConfirm({ hasExercise: !!exercise, loading: loadingExercise, evaluation, attempt })
+              ? setConfirmingLeave(true)
+              : onBackToMap()
+          }
+          className="min-h-11 px-1 text-sm text-white/80"
+        >
           ← {backLabel}
         </button>
         <div className="flex items-center gap-3">
@@ -844,12 +1052,12 @@ export default function ExerciseScreen({
     );
   }
 
-  // No exercise. A failed load gets "something broke" and a retry; a
+  // No exercise. A failed load gets "couldn't build one" and a retry; a
   // genuinely empty topic gets "nothing here yet" and the way back. Both
   // keep the `thinking` pose — `encouraging` is the wrong-answer pose, and
   // a server hiccup isn't the kid's mistake.
   if (!exercise) {
-    const l = loadFailed ? lines.somethingBroke(kidName) : lines.noContent(kidName);
+    const l = loadFailed ? lines.couldNotBuild(kidName) : lines.noContent(kidName);
     const primary = "min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium";
     const secondary = "min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-medium shadow-sm";
     return (
@@ -887,7 +1095,12 @@ export default function ExerciseScreen({
   if (submitting) main = { line: lines.thinking(character, kidName), tone: "default" };
   else if (evaluation)
     main = { line: lines.feedback(kidName, evaluation.feedback), tone: evaluation.correct ? "success" : "warm" };
+  else if (checkFailed) main = { line: lines.couldNotCheck(kidName), tone: "warm" };
   else if (micDenied && !listening) main = { line: lines.micBlocked(kidName), tone: "warm" };
+  else if (repairState.stage.kind !== "idle" && !listening)
+    // The ladder always has something to say, and it is more useful than
+    // the generic "didn't hear you" it replaces.
+    main = { line: lines.feedback(kidName, repairState.stage.say), tone: "warm" };
   else if (noMatch && !listening) main = { line: lines.notHeard(kidName), tone: "warm" };
   else main = { line: lines.question(kidName, exercise.question), detail: exercise.passage, tone: "default" };
   const showQuestionReminder = submitting || ((noMatch || micDenied) && !listening && !evaluation) || (!!evaluation && !evaluation.correct);
@@ -899,7 +1112,7 @@ export default function ExerciseScreen({
   const micApplies = exercise.type !== "tile_order" && exercise.type !== "grouping";
   // Second miss on the same question: the feedback is the full
   // explanation, and the way on is a new (easier) exercise, not a retry.
-  const finalMiss = !!evaluation && !evaluation.correct && attempt === 2 && !evalFailed;
+  const finalMiss = !!evaluation && !evaluation.correct && attempt === 2;
 
   return (
     <div
@@ -965,7 +1178,7 @@ export default function ExerciseScreen({
 
           {!evaluation && exercise.type === "grouping" && (
             <p className="text-center text-base text-[var(--color-ink-soft)] px-2 -mt-1">
-              {lines.groupingInstructions().text}
+              {lines.groupingInstructions(exercise.grouping?.items).text}
             </p>
           )}
 
@@ -1062,15 +1275,92 @@ export default function ExerciseScreen({
             </div>
           )}
 
+          {/* The hint ladder. One tap = one rung, and the button retires
+              when the ladder is spent rather than repeating its last rung. */}
+          {!evaluation && !repair.isConfirming(repairState) && (
+            <div className="flex flex-col gap-3 pt-1">
+              {hint && (
+                <div className="rounded-[var(--radius-card)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-teal-soft)]/30 px-4 py-3 text-lg text-[var(--color-ink)]">
+                  {hint.say}
+                </div>
+              )}
+              {hint?.practice && winDone === null && (
+                <div className="flex gap-2 justify-center">
+                  <input
+                    value={winAnswer}
+                    onChange={(e) => setWinAnswer(e.target.value)}
+                    inputMode="numeric"
+                    dir="ltr"
+                    aria-label={hint.practice.question}
+                    className="h-14 w-32 text-center text-xl rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/40 bg-[var(--color-surface)]"
+                  />
+                  <button
+                    onClick={checkSmallWin}
+                    className="min-h-14 px-6 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-bold"
+                  >
+                    בדיקה
+                  </button>
+                </div>
+              )}
+              {nextRung(exercise, hint?.kind ?? null) !== null && (
+                <button
+                  onClick={requestHint}
+                  disabled={submitting}
+                  className="self-center min-h-12 px-6 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/50 bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-bold disabled:opacity-40"
+                >
+                  רמז
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* The repair ladder's confirmation. Two large buttons carrying
+              the same כן/לא the voice path accepts, so a child who cannot
+              be heard at all is never stuck on a question about whether
+              they were heard. */}
+          {repair.isConfirming(repairState) && !evaluation && (
+            <div className="flex gap-4 justify-center pt-1">
+              <button
+                onClick={() => answerConfirmation("yes")}
+                disabled={submitting}
+                className="min-h-16 min-w-32 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-bold disabled:opacity-40"
+              >
+                {CONFIRM_YES}
+              </button>
+              <button
+                onClick={() => answerConfirmation("no")}
+                disabled={submitting}
+                className="min-h-16 min-w-32 px-8 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/50 bg-[var(--color-surface)] text-[var(--color-ink)] text-xl font-bold disabled:opacity-40"
+              >
+                {CONFIRM_NO}
+              </button>
+            </div>
+          )}
+
           {evaluation && !evaluation.correct && !finalMiss && (
             <button
               onClick={() => {
-                if (!evalFailed) setAttempt(2);
+                setAttempt(2);
                 setEvaluation(null);
                 setBasePose("explaining");
                 speakQuestionAndMaybeReadout(exercise);
               }}
               className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-warm)]/40 text-lg text-[var(--color-ink)]"
+            >
+              לנסות שוב
+            </button>
+          )}
+
+          {/* The answer could not be checked (twice, before any verdict):
+              check the SAME answer again. Nothing was judged, nothing is
+              lost, and the question is not re-asked. */}
+          {checkFailed && !evaluation && !submitting && lastAnswerRef.current && (
+            <button
+              onClick={() => {
+                const last = lastAnswerRef.current;
+                if (last) void submitAnswer(last.value, last.opts);
+              }}
+              className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-medium"
             >
               לנסות שוב
             </button>
@@ -1161,9 +1451,11 @@ export default function ExerciseScreen({
             // which always increments it first.
             text:
               topicStatsRef.current.attempted > 0
-                ? `כל הכבוד! סיימת את כל ${topicStatsRef.current.attempted} התרגילים בנושא${
-                    topicLabel ? ` "${topicLabel}"` : ""
-                  }. ענית נכון על ${topicStatsRef.current.correct} מתוך ${topicStatsRef.current.attempted}.`
+                ? topicSummary({
+                    attempted: topicStatsRef.current.attempted,
+                    correct: topicStatsRef.current.correct,
+                    topicLabel: topicLabel ? `"${topicLabel}"` : undefined,
+                  })
                 : lines.topicComplete(kidName).text,
           }}
           actions={[

@@ -1,0 +1,866 @@
+[
+ {
+  "id": "singapore-placement-2A-00110",
+  "text": "Fill in the blanks with the numbers.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 7
+ },
+ {
+  "id": "singapore-placement-2A-00111",
+  "text": "Fill in the blanks with the numbers. (204 = _______ hundreds _______ tens _______ ones)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "place-value",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00112",
+  "text": "Fill in the blanks with the numbers. (Nine hundred seventy-one = _______)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00113",
+  "text": "Fill in the blanks with the numbers. (Five hundred seven = _______)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00114",
+  "text": "Fill in the blanks with the numbers. (500 = _______ tens)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "place-value",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00115",
+  "text": "Arrange the following numbers in order, beginning with the smallest. 310, 130, 301, 103 _______, _______, _______, _______",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2A-00116",
+  "text": "Write >, <, or = in each",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00117",
+  "text": "Complete the following regular number patterns.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2A-00118",
+  "text": "Add or subtract mentally:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00119",
+  "text": "Add or subtract:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 16,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00120",
+  "text": "Write the addition problem you would use to check if your answer to problem 6",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2A-00121",
+  "text": "Write the addition problem you would use to check if your answer to problem 6 (is correct. 6 0 0 – 2 7 6 + .)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00122",
+  "text": "Add 32, 28, and 85.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00123",
+  "text": "Select True or False",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2A-00124",
+  "text": "Select True or False (689 + 30 < 659 + 60 True False)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00125",
+  "text": "Select True or False (123 + 456 + 789 = 429 + 186 + 753 True False)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00126",
+  "text": "Select True or False (234 < 23 tens True False)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "place-value",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00127",
+  "text": "Select True or False (139 + 27 > 274 – 82 True False)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00128",
+  "text": "John has 243 red marbles. He has 48 more blue marbles than red marbles. How many blue marbles does he have? He has ______ blue marbles.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2A-00129",
+  "text": "After John spent $458, he had $295 left. How much money did he have at first? He had $______ at first. 3",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "money",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-2A-00130",
+  "text": "Peter has 290 red and blue marbles altogether. 162 of them are red.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-2A-00131",
+  "text": "Peter has 290 red and blue marbles altogether. 162 of them are red. (How many blue marbles does he have? He has ______ blue marbles.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00132",
+  "text": "Peter has 290 red and blue marbles altogether. 162 of them are red. (How many more red marbles than blue marbles does he have? He has _______ more red marbles.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00133",
+  "text": "There are 129 girls, 206 boys, and 72 adults at a park. Write an equation and then fill in the answer for each of the following.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-2A-00134",
+  "text": "There are 129 girls, 206 boys, and 72 adults at a park. Write an equation and then fill in the answer for each of the following. (How many people were at the park? There were _______ people at the park.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00135",
+  "text": "There are 129 girls, 206 boys, and 72 adults at a park. Write an equation and then fill in the answer for each of the following. (How many children were at the park? There were _______ children at the park.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00136",
+  "text": "There are 129 girls, 206 boys, and 72 adults at a park. Write an equation and then fill in the answer for each of the following. (How many more children than adults were at the park? There were _______ more children than adults at the park. 4)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many",
+   "complete-fill",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00137",
+  "text": "The screwdriver is _______ cm longer than the pliers.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00138",
+  "text": "The total length of the screwdriver and pliers is _______ cm.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00139",
+  "text": "If you measure the length of your book in inches and in centimeters, which will be greater, the number of inches or the number of centimeters? _____________",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-2A-00140",
+  "text": "Fill in the blanks with cm or m.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2A-00141",
+  "text": "Fill in the blanks with cm or m. (The height of the man is about 165 _____.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00142",
+  "text": "Fill in the blanks with cm or m. (Lily used 35 _____ of ribbon to make a bow.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00143",
+  "text": "Fill in the blanks with cm or m. (The length of a pool is 10 ____.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00144",
+  "text": "Fill in the blanks with in., ft or yd.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-2A-00145",
+  "text": "Fill in the blanks with in., ft or yd. (The height of the door is about 3 _____.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00146",
+  "text": "Fill in the blanks with in., ft or yd. (A caterpillar is about 2 _____ long.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00147",
+  "text": "Fill in the blanks with in., ft or yd. (The kitchen is 20 _____ wide. 5)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00148",
+  "text": "Lily had a piece of ribbon 120 cm long. She cut it into three pieces. The first piece was 35 cm long, and she used it to make a bow. The second piece was 63 cm long, and she used it to wrap around the present.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5
+ },
+ {
+  "id": "singapore-placement-2A-00149",
+  "text": "Lily had a piece of ribbon 120 cm long. She cut it into three pieces. The first piece was 35 cm long, and she used it to make a bow. The second piece was 63 cm long, and she used it to wrap around the present. (What was the total length of ribbon that she used? She used _______ cm of ribbon.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00150",
+  "text": "Lily had a piece of ribbon 120 cm long. She cut it into three pieces. The first piece was 35 cm long, and she used it to make a bow. The second piece was 63 cm long, and she used it to wrap around the present. (How much longer was the second piece than the first piece? It was _______ cm longer.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "measurement",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00151",
+  "text": "3 x 8 = ______ 24 ÷ 3 = ______ 8 x 3 = ______ 24 ÷ ______ = 3",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00152",
+  "text": "Multiply:",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00153",
+  "text": "Write >, <, or = in each",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00154",
+  "text": "Write a multiplication or division equation for each problem, and then write the answer in the blank.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 11
+ },
+ {
+  "id": "singapore-placement-2A-00155",
+  "text": "Write a multiplication or division equation for each problem, and then write the answer in the blank. (Jason put 30 marbles equally into 3 jars. How many marbles are in each jar? Each jar has _______ marbles.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00156",
+  "text": "Write a multiplication or division equation for each problem, and then write the answer in the blank. (Mr. Chen buys 2 copies of newspapers a day. How many copies of newspapers does he buy in a week? He buys _______ copies of newspapers in a week.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00157",
+  "text": "Write a multiplication or division equation for each problem, and then write the answer in the blank. (Mrs. Smith bought 5 hamburgers for her children. Each hamburger cost $2. How much did she spend altogether? She spent $_____ altogether.)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00158",
+  "text": "Write a multiplication or division equation for each problem, and then write the answer in the blank. (Sam saved $3 a week. How many weeks did it take him to save $18? It took him _______ weeks. Answer Key)",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "multiplication-division",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-2A-00159",
+  "text": "centimeters",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00160",
+  "text": "103, 130, 301, 310 17.",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00161",
+  "text": "3 x 8 = 24 24 ÷ 3 = 8",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-2A-00162",
+  "text": "324 + 276",
+  "grade": 2,
+  "grade_band": "grade-2",
+  "topic": "general",
+  "source": "singapore-placement-2A",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

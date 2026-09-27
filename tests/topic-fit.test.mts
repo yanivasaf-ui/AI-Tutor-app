@@ -294,17 +294,22 @@ function row(e: Exercise) {
   };
 }
 const client = (rows: ReturnType<typeof row>[]) => ({ rpc: async () => ({ data: rows, error: null }) }) as never;
-const leak = LEAKS.find(([n]) => n.startsWith("math-g-gematria: 'כמה זה 5 + 3?'"))![1];
-const good = GOOD.find(([n]) => n.startsWith("math-g-gematria: letter values"))![1];
+// Grade-ג time: a topic whose allowed formats include a computation, so the
+// vocabulary check is what separates the two (gematria, used here before,
+// is explain-only under the allowed-format table since 2026-09-26).
+// CONSTRUCTED: the leak is the bare-sum class found in the bank; the good
+// row is the same computation with the topic's own content.
+const leak = bare("math-g-time", "כמה זה 5 + 3?", [5, 3], ["+"]);
+const good = { ...bare("math-g-time", "השיעור התחיל בשעה 9 ונמשך 2 שעות. כמה זה 9 + 2?", [9, 2], ["+"]), id: "good-time" } as Exercise;
 
 await at("with one leak and one good row, only the good row is ever served", async () => {
   for (let i = 0; i < 300; i++) {
-    const got = await findReusableExercise(client([row(leak), row(good)]), "math", "ג", "kid", "math-g-gematria", 2);
+    const got = await findReusableExercise(client([row(leak), row(good)]), "math", "ג", "kid", "math-g-time", 2);
     assert.equal(got?.id, good.id, `served ${got?.id}`);
   }
 });
 await at("when EVERY candidate is a leak there is nothing reusable — null, so the caller generates a fresh one", async () => {
-  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2);
+  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-time", 2);
   assert.equal(got, null);
 });
 await at("the same rows in an arithmetic topic are served normally (no over-reach)", async () => {
@@ -315,7 +320,7 @@ await at("the same rows in an arithmetic topic are served normally (no over-reac
 await at("a LEGACY untagged row (topic_id null) is judged against the topic the kid is in", async () => {
   const legacy = { ...row(leak), topic_id: null };
   for (let i = 0; i < 100; i++) {
-    const got = await findReusableExercise(client([legacy, row(good)]), "math", "ג", "kid", "math-g-gematria", 2);
+    const got = await findReusableExercise(client([legacy, row(good)]), "math", "ג", "kid", "math-g-time", 2);
     assert.equal(got?.id, good.id, "an untagged off-topic row was served");
   }
 });
@@ -326,17 +331,9 @@ await at("an unscoped request checks each row against its OWN tag", async () => 
   }
 });
 
-console.log("\nserving: the last-resort escape hatch");
-await at("ignoreTopicFit serves a row the check would drop — the route's fallback so a kid is never left with nothing", async () => {
-  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2, undefined, { ignoreTopicFit: true });
-  assert.equal(got?.id, leak.id);
-});
-await at("the escape hatch still honours excludeIds — it relaxes the topic check, nothing else", async () => {
-  const got = await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2, [leak.id], { ignoreTopicFit: true });
-  assert.equal(got, null);
-});
-await at("it is OFF by default: the same call without the flag drops the row", async () => {
-  assert.equal(await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-gematria", 2), null);
+console.log("\nserving: there is no escape hatch (owner, 2026-09-26)");
+await at("a leaking row is dropped on every request — findReusableExercise has no option to skip the check", async () => {
+  assert.equal(await findReusableExercise(client([row(leak)]), "math", "ג", "kid", "math-g-time", 2), null);
 });
 
 // ---------- admission ----------
@@ -352,8 +349,8 @@ function fakeModel(replies: object[]) {
   };
   return calls;
 }
-const leakyDraft = { type: "open", topic: "גימטריה", question: "כמה זה 5 + 3?", computation: { operands: [5, 3], operators: ["+"] }, correctAnswer: "8" };
-const goodDraft = { type: "open", topic: "גימטריה", question: "ערך האות א' הוא 1 וערך האות ב' הוא 2. כמה זה 1 + 2?", computation: { operands: [1, 2], operators: ["+"] }, correctAnswer: "3" };
+const leakyDraft = { type: "open", topic: "מדידת זמן", question: "כמה זה 5 + 3?", computation: { operands: [5, 3], operators: ["+"] }, correctAnswer: "8" };
+const goodDraft = { type: "open", topic: "מדידת זמן", question: "הסרט התחיל בשעה 4 ונמשך 2 שעות. כמה זה 4 + 2?", computation: { operands: [4, 2], operators: ["+"] }, correctAnswer: "6" };
 const gen = (topicId: string) =>
   generateExercise({ subject: "math", grade: "ג", profile: null, topicId, level: 2, forceSubtype: "fill_in_blank" });
 const quiet = console.warn;
@@ -361,7 +358,7 @@ console.warn = () => {};
 
 await at("an off-topic draft is not returned: it is re-requested, and the retry says WHY", async () => {
   const calls = fakeModel([leakyDraft, goodDraft]);
-  const out = await gen("math-g-gematria");
+  const out = await gen("math-g-time");
   assert.equal(out.question, goodDraft.question);
   assert.equal(calls.length, 2, "exactly one retry");
   assert.ok(!calls[0].messages[0].content.includes("הקודם נדחה"), "the first ask carries no correction");
@@ -369,13 +366,13 @@ await at("an off-topic draft is not returned: it is re-requested, and the retry 
 });
 await at("if every attempt is off-topic it THROWS: nothing leaky is ever returned (or saved)", async () => {
   const calls = fakeModel([leakyDraft]);
-  await assert.rejects(gen("math-g-gematria"), (err: unknown) => err instanceof TopicFitError);
+  await assert.rejects(gen("math-g-time"), (err: unknown) => err instanceof TopicFitError);
   assert.equal(calls.length, 3, "bounded by the existing MAX_GENERATION_ATTEMPTS");
 });
 await at("the returned exercise is stamped with the topic AND actually fits it", async () => {
   fakeModel([goodDraft]);
-  const out = await gen("math-g-gematria");
-  assert.equal(out.topicId, "math-g-gematria");
+  const out = await gen("math-g-time");
+  assert.equal(out.topicId, "math-g-time");
   assert.equal(topicFit(out, out.topicId).ok, true);
 });
 await at("an arithmetic topic still accepts the same bare sum on the first try (the gate does not over-reach)", async () => {
@@ -386,21 +383,27 @@ await at("an arithmetic topic still accepts the same bare sum on the first try (
 });
 console.warn = quiet;
 
-console.log("\nthe route: a TopicFitError must not become a 500 while the bank still has something");
+console.log("\nniqqud is the same words (2026-09-25: 24 good drafts rejected for their niqqud)");
+t("a pointed volume question fits math-b-volume ('תֵּיבָה' is the anchor 'תיבה')", () => {
+  const e = { id: "n1", subject: "math", grade: "ב", type: "open", topic: "t", question: "דָּנִי בָּנָה תֵּיבָה מִ-12 קֻבִּיּוֹת. כַּמָּה קֻבִּיּוֹת בְּכָל שִׁכְבָה?", correctAnswer: "4" } as Exercise;
+  assert.equal(topicFit(e, "math-b-volume").ok, true);
+});
+t("stripping niqqud keeps the maqaf: a hyphenated word is not fused into its neighbour", () => {
+  const e = { id: "n2", subject: "math", grade: "ג", type: "open", topic: "t", question: "משולש שׁווה־צלעות: כמה צלעות שוות יש לו?", correctAnswer: "3" } as Exercise;
+  assert.equal(topicFit(e, "math-g-geometry").ok, true);
+});
+
+console.log("\nthe route never serves an unchecked row (the old last resort is removed)");
 {
   const route = readFileSync(new URL("../app/api/tutor/route.ts", import.meta.url), "utf8");
-  t("generate is wrapped, and only a TopicFitError is caught (every other failure still surfaces)", () => {
-    assert.match(route, /generated = await generateExercise\(/);
-    assert.match(route, /if \(!\(genErr instanceof TopicFitError\)\) throw genErr;/);
+  const store = readFileSync(new URL("../lib/exercises/store.ts", import.meta.url), "utf8");
+  t("no ignoreTopicFit anywhere: not in the store's signature, not in the route", () => {
+    assert.ok(!/ignoreTopicFit/.test(route));
+    assert.ok(!/ignoreTopicFit/.test(store.replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "")));
   });
-  t("the fallback re-queries the bank with the fit check off, and rethrows when the bank is empty too", () => {
-    assert.match(route, /ignoreTopicFit: true/);
-    assert.match(route, /if \(!fallback\) throw genErr;/);
-  });
-  t("the fallback exercise is served, not saved (nothing off-topic is ever written to the bank)", () => {
-    const block = route.slice(route.indexOf("} catch (genErr) {"), route.indexOf("const generateMs"));
-    assert.ok(!/saveExercise/.test(block), "the unchecked fallback row must never be written back");
-    assert.match(block, /source: "bank-hit-unfiltered"/);
+  t("no 'bank-hit-unfiltered' source: an exhausted TopicFitError goes through produceExercise (retry, template, try_again)", () => {
+    assert.ok(!/bank-hit-unfiltered/.test(route));
+    assert.match(route, /await produceExercise\(/);
   });
 }
 

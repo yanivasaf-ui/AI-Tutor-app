@@ -1,0 +1,3090 @@
+[
+ {
+  "id": "white-rose-y4-summer-03323",
+  "text": "How many tenths make 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03324",
+  "text": "What is the number bond of to 10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03325",
+  "text": "What is the number bond of tenths to 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03326",
+  "text": "whole models and bar models can also be used. 3 tenths?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03327",
+  "text": "How many hundredths make 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03328",
+  "text": "What is the number bond of to 100?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03329",
+  "text": "What is the number bond of hundredths to 1 whole?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "patterns-sequences",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03330",
+  "text": "How many ones/tenths/hundredths are there in the number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03331",
+  "text": "How do you write this number as a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03332",
+  "text": "How would you read the number out loud?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03333",
+  "text": "What is the value of in the number ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03334",
+  "text": "What is the role of zero in the number 4.06?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03335",
+  "text": "How many ones/tenths/hundredths are there in the number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03336",
+  "text": "How do you write this number as a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03337",
+  "text": "How many other ways can you partition the number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03338",
+  "text": "What is the role of zero in the number 3.06?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03339",
+  "text": "Which place value column do you compare first? Why?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03340",
+  "text": "How many ones/tenths/hundredths does the number have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03341",
+  "text": "Which number is greater/smaller? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03342",
+  "text": "What is the same/different about the ones/tenths/hundredths?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03343",
+  "text": "Which number is the greatest/smallest? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "which-one",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03344",
+  "text": "Which place value column did you compare first? Why?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03345",
+  "text": "How can you represent the number on a place value chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03346",
+  "text": "What is the same/different about the digits of the numbers?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03347",
+  "text": "Why have you chosen to order the decimal numbers this way?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03348",
+  "text": "Which whole numbers does lie between?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03349",
+  "text": "How many hundredths are the same as 14 / 12 / 34 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03350",
+  "text": "What is the decimal equivalent of 14 / 12 / 34 ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03351",
+  "text": "How would you write the fraction as a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03352",
+  "text": "Are and equivalent fractions?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03353",
+  "text": "How many pounds are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03354",
+  "text": "How many pence are there in £1?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03355",
+  "text": "How do you write the amount as a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03356",
+  "text": "How do you write £ and p as a decimal?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03357",
+  "text": "How do you write £2 and 50p/£2 and 5p in decimal form?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03358",
+  "text": "How many pounds are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03359",
+  "text": "How many pence are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03360",
+  "text": "How many pence are there in £1/£2/£10?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03361",
+  "text": "How do you write 343p using a pound sign?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03362",
+  "text": "How can you partition the amount into pounds and pence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03363",
+  "text": "How can you convert the amounts into pounds and pence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03364",
+  "text": "What is the value of each digit in the number?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03365",
+  "text": "What place value column is the in?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03366",
+  "text": "How many pounds and pence are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03367",
+  "text": "Which digit tells you which amount is greater?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03368",
+  "text": "What amount could go in between these amounts?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03369",
+  "text": "What does “ascending”/“descending” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03370",
+  "text": "Are the amounts in the same units? Why does this matter?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03371",
+  "text": "What is the multiple of 10p before p?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03372",
+  "text": "What does “estimate” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03373",
+  "text": "What does “approximately” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03374",
+  "text": "What is £ . in pounds and pence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03375",
+  "text": "How can you use a number line to help estimate?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03376",
+  "text": "How many pounds are there altogether?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03377",
+  "text": "How many pence are there altogether?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03378",
+  "text": "How can you use partitioning to help with the calculation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03379",
+  "text": "How can a number line help you to add/subtract the amounts?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03380",
+  "text": "Are you going to count on or count back on the number line?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "place-value",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03381",
+  "text": "whole model allows them to partition an Does it matter which method you use?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03382",
+  "text": "Do you need to exchange any pounds for pence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03383",
+  "text": "How can you use estimation to check your calculation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03384",
+  "text": "How many pounds are there? How many pence are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03385",
+  "text": "Is it helpful to partition the amount into pounds and pence?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03386",
+  "text": "How could you use estimation to check your calculation?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03387",
+  "text": "How many days are there in a week?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03388",
+  "text": "How many days are there in the month of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03389",
+  "text": "How many days/weeks/months are there in a year?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03390",
+  "text": "What do you need to do to convert to ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03391",
+  "text": "How are leap years different from ordinary years?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03392",
+  "text": "What activity lasts approximately one second/minute/hour?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03393",
+  "text": "How many minutes are there in hour(s)?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03394",
+  "text": "How many seconds are there in minute(s)?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03395",
+  "text": "Why is it important to know whether a time is am or pm?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03396",
+  "text": "Does an analogue clock show whether it is am or pm?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03397",
+  "text": "How will you find the start/end time of the activity?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03398",
+  "text": "hour digital clocks. Use of a of the activity?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03399",
+  "text": "How many hours are there between noon and midnight?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03400",
+  "text": "Is earlier or later than ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03401",
+  "text": "hour digital clock?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03402",
+  "text": "hour clock times are always clock and on a 12-hour digital clock?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03403",
+  "text": "hour clock? Why/why not?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03404",
+  "text": "How many digits does a time on a 24-hour clock have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03405",
+  "text": "hour clock format by digital clock and a 12-hour digital clock?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03406",
+  "text": "How do you convert to a 12-hour clock time?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03407",
+  "text": "hour clock time to a 12-hour clock time. clock time?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03408",
+  "text": "hour clock time?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03409",
+  "text": "What is a full turn?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03410",
+  "text": "What is the difference between a half turn and a quarter turn?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03411",
+  "text": "Which way do the hands move around a clock?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03412",
+  "text": "What does “clockwise”/“anticlockwise” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03413",
+  "text": "What is an angle?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03414",
+  "text": "What type of angle is created by a quarter turn?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03415",
+  "text": "What type of angle is made by this turn?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03416",
+  "text": "Are all right/acute/obtuse angles the same amount of turn?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03417",
+  "text": "What is the difference between an acute and an obtuse angle?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03418",
+  "text": "What type of angle is this? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03419",
+  "text": "Which of these two angles is greater? How do you know?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "explain-reasoning",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03420",
+  "text": "Are all acute angles less than obtuse angles?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03421",
+  "text": "How can you work out which angle is the greatest/smallest?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03422",
+  "text": "What are the properties of a triangle?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03423",
+  "text": "How many equal sides/angles does this triangle have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03424",
+  "text": "Why is this a triangle?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03425",
+  "text": "What type of triangle is this?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03426",
+  "text": "What is a polygon?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03427",
+  "text": "What does “quad” mean? What is a quadrilateral?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03428",
+  "text": "What is the difference between these two quadrilaterals?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03429",
+  "text": "How many right angles are there?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03430",
+  "text": "Does the quadrilateral have any pairs of equal/parallel sides?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03431",
+  "text": "What are the properties of this quadrilateral?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03432",
+  "text": "What is the same/different about a rectangle and a square?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03433",
+  "text": "What is the difference between a rhombus and a parallelogram?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03434",
+  "text": "What is a polygon?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03435",
+  "text": "What is a polygon with sides called?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03436",
+  "text": "What is the same and what is different about these polygons?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03437",
+  "text": "What is a line of symmetry?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03438",
+  "text": "Are lines of symmetry always horizontal or vertical?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "true-false-always"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03439",
+  "text": "How many lines of symmetry does this shape have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03440",
+  "text": "How many lines of symmetry does a regular have?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03441",
+  "text": "What is a line of symmetry?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03442",
+  "text": "How far away from the mirror line is each square/vertex?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03443",
+  "text": "Can there be more than one line of symmetry?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03444",
+  "text": "How could you represent this data?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03445",
+  "text": "What do you notice about the scale of the bar chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03446",
+  "text": "What else does the data tell you?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03447",
+  "text": "What scale will you use for your bar chart? Why?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03448",
+  "text": "What does each represent in the pictogram?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03449",
+  "text": "What symbol will you use for your pictogram? Why?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03450",
+  "text": "What does each symbol represent on the pictogram?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03451",
+  "text": "What questions could you ask about the pictogram?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03452",
+  "text": "What do you notice about the scale of the bar chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03453",
+  "text": "What do you know? What can you find out?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03454",
+  "text": "What is the total number of ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03455",
+  "text": "How many more/fewer people chose than ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "how-many",
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03456",
+  "text": "How is a line graph different from a bar chart?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03457",
+  "text": "What do the horizontal and vertical axes represent?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03458",
+  "text": "What is the best way to represent the data?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03459",
+  "text": "What times do you know exact values for?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "multiplication-division",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03460",
+  "text": "How would you estimate the time it was when ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03461",
+  "text": "What do you know? What can you find out?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03462",
+  "text": "What do the two axes represent?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03463",
+  "text": "What is the best way to show this data?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03464",
+  "text": "What scale will you use for the axes?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03465",
+  "text": "How can you accurately plot this point?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03466",
+  "text": "How are you going to join your points together?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03467",
+  "text": "What questions can you ask about your graph?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03468",
+  "text": "What is the name of the horizontal/vertical axis?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03469",
+  "text": "axis is horizontal and the y-axis is vertical. and the y-axis?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03470",
+  "text": "In what order do you read the coordinates of a point?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03471",
+  "text": "What are the coordinates of the point?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03472",
+  "text": "Why are there two values in a pair of coordinates?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03473",
+  "text": "value coming the lines?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03474",
+  "text": "How far along the x-axis is the point ( , )?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03475",
+  "text": "How far up the y-axis is the point ( , )?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03476",
+  "text": "Where does the point ( , ) go on the grid?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03477",
+  "text": "D shapes on a coordinate grid. horizontally/vertically the point is?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03478",
+  "text": "Do you plot a point on the line or in the space between the lines?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03479",
+  "text": "Does the order of the numbers in a pair of coordinates matter?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03480",
+  "text": "What polygon have you made? How can you tell?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03481",
+  "text": "Is there more than one place the vertex could be?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03482",
+  "text": "What does “isosceles” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03483",
+  "text": "How can you tell that the quadrilateral is a ?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03484",
+  "text": "What are the coordinates of point A?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03485",
+  "text": "What does “translation” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03486",
+  "text": "What does “translation” mean?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03487",
+  "text": "What is the same and what is different about the two shapes?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03488",
+  "text": "Has this point been translated up or down?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03489",
+  "text": "Which vertex in shape B corresponds to this vertex in shape A?",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "key-question",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03490",
+  "text": "There are ones, tenths and hundredths.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03491",
+  "text": "There are ones, tenths and hundredths,",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03492",
+  "text": "The number is",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03493",
+  "text": "To compare numbers, I need to start by comparing the digits in",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03494",
+  "text": "There are ones, tenths and hundredths.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03495",
+  "text": "There are pence in £1",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03496",
+  "text": "There are pence in pounds.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03497",
+  "text": "There are pounds and pence.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03498",
+  "text": "p is closer to p than p.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03499",
+  "text": "The approximate total cost is p+ p= p.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03500",
+  "text": "£ . is closer to £ than £",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03501",
+  "text": "I can partition £ . into pounds and",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "money",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03502",
+  "text": "There are days in the month of",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03503",
+  "text": "There are days in a week, so in weeks there are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03504",
+  "text": "1 day = hours, so in days there are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03505",
+  "text": "1 hour = minutes, so in hours there are",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03506",
+  "text": "To convert to the 24-hour digital clock, I add to the",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03507",
+  "text": "To convert from a 24-hour clock time, I subtract from",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03508",
+  "text": "I am now facing",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "time",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03509",
+  "text": "A quarter turn is called a angle.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03510",
+  "text": "An angle less than a quarter turn is called an angle.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "fractions",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03511",
+  "text": "All angles are greater than angles.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03512",
+  "text": "All angles are less than angles.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03513",
+  "text": "A quadrilateral is a with sides.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03514",
+  "text": "The shape has pairs of parallel lines and pairs",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03515",
+  "text": "In a regular polygon, all are equal in length and all",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "measurement",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03516",
+  "text": "The vertex is squares from the line of symmetry, so",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "geometry",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03517",
+  "text": "The scale of the bar chart is going up in s.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "data",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03518",
+  "text": "The difference between and is",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03519",
+  "text": "There are more than",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "addition-subtraction",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03520",
+  "text": "The temperature at is °C.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03521",
+  "text": "The horizontal axis represents and the vertical axis",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03522",
+  "text": "The first value in a pair of coordinates is the -value",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03523",
+  "text": "value, then they are on the",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03524",
+  "text": "The first value in a pair of coordinates tells me how far along",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03525",
+  "text": "axis the point is.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03526",
+  "text": "The second value in a pair of coordinates tells me how far up",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "white-rose-y4-summer-03527",
+  "text": "axis the point is.",
+  "grade": 4,
+  "grade_band": "year-4",
+  "topic": "general",
+  "source": "white-rose-y4-summer",
+  "type": "sentence-stem",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ }
+]

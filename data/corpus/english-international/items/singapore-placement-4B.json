@@ -1,0 +1,775 @@
+[
+ {
+  "id": "singapore-placement-4B-00390",
+  "text": "Write the whole or decimal number that each letter represents. A B C D 0 1 2 3 4 5 A: ______ B: ______ C: ______ D: ______",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4B-00391",
+  "text": "Express each of the following as a decimal number. 16 8",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-4B-00392",
+  "text": "Arrange in increasing order.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00393",
+  "text": "Express each decimal number as a fraction or mixed number in its simplest form.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4B-00394",
+  "text": "Give the answer correct to 1 decimal place.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 12
+ },
+ {
+  "id": "singapore-placement-4B-00395",
+  "text": "Jasmine saved $31.85. Her brother saved $19.65 less than she did. How much money did both of them save?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "addition-subtraction",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-4B-00396",
+  "text": "A painter mixed 12.5 quarts of white paint with 16.7 quarts of green paint. He poured the mixture equally into 4 cans. He used one can to paint a wall. How many quarts of paint does he have left? 3",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-4B-00397",
+  "text": "0.3 of all the apples a grocer had were sold. If he had 49 apples left, how many apples did he have at first?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "how-many"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 3
+ },
+ {
+  "id": "singapore-placement-4B-00398",
+  "text": "Name one of the following geometric constructions in the drawing, using only the labeled points. B Angle: _______________ A Ray: ______________ C Line: ______________ Line segment: _______________ 3",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-4B-00399",
+  "text": "A turn is _____ right angles and is ____ degrees. 4",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00400",
+  "text": "Find the measure of the marked unknown angle.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4B-00401",
+  "text": "Find the measure of the marked unknown angle. (ABCD is a rectangle A B 18° m∠x = ______________ x D C)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00402",
+  "text": "Name a pair of parallel lines. B A D E C",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00403",
+  "text": "Name a pair of perpendicular lines. G F",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00404",
+  "text": "The figure at the right is a parallelogram. Is the dashed line a line of symmetry?",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-4B-00405",
+  "text": "Complete the symmetric figure with the dotted line as the line of symmetry.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "complete-fill"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4B-00406",
+  "text": "Which of the following shapes must also always be a parallelogram? Circle them. Square Quadrilateral Trapezoid Rhombus Rectangle Polygon",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "true-false-always",
+   "represent-model"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2
+ },
+ {
+  "id": "singapore-placement-4B-00407",
+  "text": "Which of the following types of triangles have line symmetry? Scalene Isosceles Equilateral 5",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 1
+ },
+ {
+  "id": "singapore-placement-4B-00408",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 10
+ },
+ {
+  "id": "singapore-placement-4B-00409",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (Quadrilateral GDEF has _____ right angles, ______ obtuse angles, and ______ acute angles.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00410",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (Which quadrilateral is a trapezoid but not a parallelogram? _______)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00411",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (Which quadrilateral is a rhombus? _______.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00412",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (Lines are drawn from A to H, from G to E, and from B to D, forming triangles. If GE = 14 in, what is the perimeter of triangle GFE? _______ in.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00413",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (Which of the triangles are: Scalene: _______________________ Isosceles: ______________________ Equilateral: _____________________ Have one obtuse angle: _______________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00414",
+  "text": "This figure ACDEF is a pentagon and is made up of the three quadrilaterals, ABHG, BCDH, and GDEF. One is a trapezoid but not a parallelogram, and two are parallelograms. GA = AB = DE = 6 in., BC = 3 in., CD = 7 in., EF = 12 in. 3 in. A C B 6 in. 7 in. G H D F E 12 in. (The perimeter of the figure ACDEF is __________ in. 6)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00415",
+  "text": "A rectangular swimming pool measures 24 m by 16 m.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 5
+ },
+ {
+  "id": "singapore-placement-4B-00416",
+  "text": "A rectangular swimming pool measures 24 m by 16 m. (Find the area of the pool.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00417",
+  "text": "A rectangular swimming pool measures 24 m by 16 m. (A concrete path 2 m wide is paved around the swimming pool. What is the area of the path?)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00418",
+  "text": "In the figure, all lines meet at right angles. 12 cm 6 cm 7 cm 15 cm 4 cm 24 cm",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 6
+ },
+ {
+  "id": "singapore-placement-4B-00419",
+  "text": "In the figure, all lines meet at right angles. 12 cm 6 cm 7 cm 15 cm 4 cm 24 cm (Find the area of the figure. __________)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00420",
+  "text": "In the figure, all lines meet at right angles. 12 cm 6 cm 7 cm 15 cm 4 cm 24 cm (Find the perimeter. __________ 7)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00421",
+  "text": "Valerie recorded the weights of some mature dogs of a certain small breed that were brought to the veterinarian clinic to the nearest quarter of a pound. Weight in pounds 1 3 3 1 3 3 1 1 5 5 3 6 4 5 4 5 5 5 4 4 4 4 4 4 2 2 1 3 1 1 1 3 3 1 3 4 5 6 4 5 6 5 4 5 5 4 4 4 2 2 4 4 2 4 1 1 3 1 3 1 3 5 6 5 6 6 4 6 5 5 6 4 2 4 2 4 4 4",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 8
+ },
+ {
+  "id": "singapore-placement-4B-00422",
+  "text": "Valerie recorded the weights of some mature dogs of a certain small breed that were brought to the veterinarian clinic to the nearest quarter of a pound. Weight in pounds 1 3 3 1 3 3 1 1 5 5 3 6 4 5 4 5 5 5 4 4 4 4 4 4 2 2 1 3 1 1 1 3 3 1 3 4 5 6 4 5 6 5 4 5 5 4 4 4 2 2 4 4 2 4 1 1 3 1 3 1 3 5 6 5 6 6 4 6 5 5 6 4 2 4 2 4 4 4 (Create a line plot from the data. 3 4 4 4 4 5 5 5 5 6 6 6 6 7)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00423",
+  "text": "Valerie recorded the weights of some mature dogs of a certain small breed that were brought to the veterinarian clinic to the nearest quarter of a pound. Weight in pounds 1 3 3 1 3 3 1 1 5 5 3 6 4 5 4 5 5 5 4 4 4 4 4 4 2 2 1 3 1 1 1 3 3 1 3 4 5 6 4 5 6 5 4 5 5 4 4 4 2 2 4 4 2 4 1 1 3 1 3 1 3 5 6 5 6 6 4 6 5 5 6 4 2 4 2 4 4 4 (What is the most common weight?)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is",
+   "compare",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00424",
+  "text": "Valerie recorded the weights of some mature dogs of a certain small breed that were brought to the veterinarian clinic to the nearest quarter of a pound. Weight in pounds 1 3 3 1 3 3 1 1 5 5 3 6 4 5 4 5 5 5 4 4 4 4 4 4 2 2 1 3 1 1 1 3 3 1 3 4 5 6 4 5 6 5 4 5 5 4 4 4 2 2 4 4 2 4 1 1 3 1 3 1 3 5 6 5 6 6 4 6 5 5 6 4 2 4 2 4 4 4 (What is the difference between the heaviest and lightest weight recorded?)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is",
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00425",
+  "text": "Valerie recorded the weights of some mature dogs of a certain small breed that were brought to the veterinarian clinic to the nearest quarter of a pound. Weight in pounds 1 3 3 1 3 3 1 1 5 5 3 6 4 5 4 5 5 5 4 4 4 4 4 4 2 2 1 3 1 1 1 3 3 1 3 4 5 6 4 5 6 5 4 5 5 4 4 4 2 2 4 4 2 4 1 1 3 1 3 1 3 5 6 5 6 6 4 6 5 5 6 4 2 4 2 4 4 4 (1 What fraction of the dogs weighed 6 lb? 8)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "fractions",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "estimate-round"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00426",
+  "text": "What is the volume of this solid? _______ cubic units",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "what-is"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 2,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00427",
+  "text": "Find the volume of each rectangular prism.",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "marks": 4
+ },
+ {
+  "id": "singapore-placement-4B-00428",
+  "text": "Find the volume of each rectangular prism. (10 cm 8m 20 cm 5m 52 cm 3m Answer Key)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "measurement",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00429",
+  "text": "A: 0.2 B: 1.5 C: 3.05 D: 3.85 16. Square, Rhombus, Rectangle",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00430",
+  "text": "4.08 17. Isosceles, Equilateral",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true,
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00431",
+  "text": "Note: Students may have a different",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-4B-00432",
+  "text": "Note: Students may have a different (0.16 order of vertices in their answers.)",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "compare"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00433",
+  "text": "4 5 25 Isosceles: AHG, ABH, BDH 51 1 Equilateral: none",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00434",
+  "text": "6 1 obtuse angle: BCD 125 500",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "sub_part": true
+ },
+ {
+  "id": "singapore-placement-4B-00435",
+  "text": "21.9 quarts",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ },
+ {
+  "id": "singapore-placement-4B-00436",
+  "text": "Angle: BAC or CAB Ray: AB or AC Line: AB or BA 3 Line segment: Ab, BA, AC, or CA",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "geometry",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing"
+ },
+ {
+  "id": "singapore-placement-4B-00437",
+  "text": "3; 270° 3",
+  "grade": 4,
+  "grade_band": "grade-4",
+  "topic": "general",
+  "source": "singapore-placement-4B",
+  "type": "assessment-item",
+  "phrasing_pattern": [
+   "direct-compute"
+  ],
+  "language": "en",
+  "section": "english-international",
+  "usage": "inspiration/reference only - not child-facing",
+  "figure_dependent": true
+ }
+]

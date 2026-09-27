@@ -1,0 +1,635 @@
+import type { Exercise } from "@/lib/exercises/types";
+import { ruleById, type RuleId } from "./rubric";
+import { otherObjectsNamed } from "@/lib/exercises/grouping-objects";
+
+/**
+ * The question-quality gate: the deterministic half of the authoring rubric
+ * (lib/authoring/rubric.ts), checked in code before a math question can
+ * reach a child.
+ *
+ * WHERE IT RUNS (same two places topic-fit.ts runs, for the same reason):
+ *  - ADMISSION — lib/exercises/generate.ts, after every existing gate. A
+ *    failing draft is thrown as QualityGateError and generateExercise()
+ *    asks again with the broken rules named. After the last attempt the
+ *    route serves a vetted template instead, or fails; nothing failing
+ *    this gate is saved.
+ *  - SERVING — lib/exercises/store.ts drops failing bank rows from the
+ *    candidate page, so rows already in the table from before this gate
+ *    are never handed out either.
+ *
+ * WHAT IT CATCHES: the shapes code can see reliably — a numeric series
+ * with no time/step frame, a series told as a count, division without a
+ * sharing or grouping frame, a grouping story whose stated total is not
+ * the number of objects drawn, more than one question at once, an answer
+ * the question doesn't actually ask for or that isn't uniquely on offer.
+ *
+ * WHAT IT DOES NOT: whether the Hebrew sounds like a child's, whether the
+ * scenario is concrete, most consistency between a story and its numbers.
+ * Those are judgment, left to the model review (./quality-review.ts).
+ *
+ * Math only, with three exceptions that run for every subject: the
+ * multiple-choice options check (options the child cannot tell apart make
+ * any question unanswerable), a repeated word in a quoted list, and a hint
+ * that contradicts the answer. Hebrew exercises are returned
+ * `checked: false` — the rest of the rubric is written for math questions,
+ * and saying "checked" there would claim checks that never ran.
+ *
+ * No runtime imports beyond this directory's rubric data: store.ts reads
+ * this, and must not pull the Anthropic SDK in behind it.
+ */
+
+export interface QualityViolation {
+  rule: RuleId;
+  /** What was wrong, specifically, for the log line and the retry hint. */
+  detail: string;
+}
+
+export interface QualityResult {
+  ok: boolean;
+  /** False when nothing was checked (non-math). */
+  checked: boolean;
+  violations: QualityViolation[];
+}
+
+/** A draft that fails the gate. Its own type so the retry loop can name the
+ *  broken rules in the next request, and the route can tell "the rubric
+ *  rejected every draft" from a real fault. */
+export class QualityGateError extends Error {
+  readonly violations: QualityViolation[];
+  constructor(violations: QualityViolation[], question: string) {
+    super(`question fails the authoring rubric (${violations.map((v) => v.rule).join(", ")}): "${question}"`);
+    this.name = "QualityGateError";
+    this.violations = violations;
+  }
+}
+
+// ---------------------------------------------------------------- Hebrew
+
+const HE = "א-ת";
+/** One-letter prefixes a Hebrew word can carry (ה ו ב ל מ ש כ). */
+const PFX = "הובלמשכ";
+const NIQQUD = /[֑-ׇֽֿׁׂׅׄ]/g;
+
+/** A regex that matches any of `words` as a whole Hebrew word, with up to
+ *  two one-letter prefixes and an optional plural/feminine tail. `\b` does
+ *  not work against Hebrew (see lib/feedback/constitution.ts). */
+function hebrewWords(words: readonly string[], tail = "(?:ים|ות|ה|ת)?"): RegExp {
+  const alts = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+  return new RegExp(`(?:^|[^${HE}])[${PFX}]{0,2}(?:${alts})${tail}(?![${HE}])`, "u");
+}
+
+function plain(text: string): string {
+  return text.replace(NIQQUD, "").replace(/[״“”]/g, '"').replace(/[׳‘’]/g, "'");
+}
+
+// ---------------------------------------------------------------- numbers
+
+interface NumberToken {
+  value: number;
+  start: number;
+  end: number;
+}
+
+/** Numbers as a child reads them. "8,400" is one number (a comma followed
+ *  by exactly three digits); "3, 6, 9" is three. */
+function numberTokens(text: string): NumberToken[] {
+  const out: NumberToken[] = [];
+  const re = /\d{1,3}(?:,\d{3})+(?!\d)|\d+/g;
+  for (let m = re.exec(text); m; m = re.exec(text)) {
+    out.push({ value: Number(m[0].replace(/,/g, "")), start: m.index, end: m.index + m[0].length });
+  }
+  return out;
+}
+
+export interface NumberSeries {
+  terms: number[];
+  /** Common difference, or null when the run is a list, not a progression. */
+  step: number | null;
+  start: number;
+  end: number;
+}
+
+/**
+ * Runs of three or more numbers separated only by commas — the written
+ * shape of a series ("3, 6, 9, 12" or "3,6,9,12, ___"). A run is a
+ * progression when it has one nonzero common difference.
+ */
+export function numberSeries(text: string): NumberSeries[] {
+  const toks = numberTokens(text);
+  const runs: NumberToken[][] = [];
+  let run: NumberToken[] = [];
+  for (const tok of toks) {
+    const prev = run[run.length - 1];
+    if (prev && /^\s*,\s*$/.test(text.slice(prev.end, tok.start))) {
+      run.push(tok);
+    } else {
+      if (run.length >= 3) runs.push(run);
+      run = [tok];
+    }
+  }
+  if (run.length >= 3) runs.push(run);
+  return runs.map((r) => {
+    const terms = r.map((x) => x.value);
+    const d = terms[1] - terms[0];
+    const progression = d !== 0 && terms.every((v, i) => i === 0 || v - terms[i - 1] === d);
+    return { terms, step: progression ? d : null, start: r[0].start, end: r[r.length - 1].end };
+  });
+}
+
+// ---------------------------------------------------------------- frames
+
+/** A series that unfolds over time or steps: day after day, jump after
+ *  jump, floor after floor. */
+const TIME_STEP_FRAME = hebrewWords([
+  "יום", "ימים", "בוקר", "שבוע", "שבועות", "חודש", "חודשים", "שנה", "שנים", "שעה", "שעות", "דקה", "דקות", "פעם", "פעמים",
+  "שלב", "שלבים", "צעד", "צעדים", "קומה", "קומות", "שורה", "שורות", "תחנה", "תחנות", "סיבוב", "סיבובים",
+  "קפיצ", "קופצ", "קופץ", "קפץ", "קפצה", "מדלג", "דילג",
+  "ראשון", "ראשונה", "שני", "שנייה", "שלישי", "שלישית", "רביעי", "רביעית", "אחרי", "לפני", "בהתחלה",
+], "(?:ים|ות|ה|ת|ם|ן)?");
+/** A series explicitly presented as a pattern to continue. Enough to frame
+ *  a bare series — but not to redeem one told as a count ("יש לה: 3, 6, 9.
+ *  מה הבא?" is still a count of things that exist now). */
+const PATTERN_FRAME = hebrewWords([
+  "רצף", "סדר", "דפוס", "חוקיות", "תבנית", "המשיכו", "המשך", "תמשיכו", "השלימו", "השלם", "השלימי", "הבא",
+], "(?:ים|ות|ה|ת|ם|ן)?");
+
+/** A quantity frame right before a series: "יש לה: 3, 6, 9" reads as a
+ *  count of things that exist now, which is the bug the rule names. */
+const COUNT_FRAME = new RegExp(
+  `(?:^|[^${HE}])(?:יש|יהיו|היו|הנה|אלה|אלו|ספר|ספרה|ספרו|אספ|קיבל|קיבלה|קנה|קנתה)(?![${HE}])[^.?!]{0,40}$`,
+  "u"
+);
+
+/** Equal-sharing words: the partitive frame ("שווה בשווה ל-3 ילדים"),
+ *  including the Ministry books' defective spelling ("שוה בשוה"). */
+const EQUAL_SHARE = hebrewWords(["שווה", "שוות", "שווים", "בשווה", "שוה", "שוים", "בשוה"], "");
+/** "each"-framing: "כמה יקבל כל ילד", "בכל סל". */
+const PER_EACH = hebrewWords(["כל"], "");
+/** The quotitive frame: groups of a known size — "בקבוצות של 3", or the
+ *  Ministry books' terse "10 בקבוצה. כמה קבוצות?". */
+const QUOTITIVE = new RegExp(`[${HE}]+\\s+של\\s*-?\\s*\\d+|\\d+\\s+ב[${HE}]{2,}`, "u");
+/** Named groups: a count attached to a noun ("ל-3 סלים", "4 קבוצות",
+ *  "שלושה ילדים") — what a bare "כמה זה 60 ÷ 10?" never has. Which of the
+ *  story's counts is the group count is not parsed; the grouping check
+ *  below does that where the payload says it. */
+const NAMED_GROUPS = new RegExp(
+  `(?:^|[^${HE}])(?:[לב]\\s*-?\\s*)?(?:\\d+|שתי|שני|שלוש|שלושה|ארבע|ארבעה|חמש|חמישה|שש|שישה|שבע|שבעה|שמונה|תשע|תשעה|עשר|עשרה)\\s+[${HE}]{2,}`,
+  "u"
+);
+/** "how many will each receive": יקבל/תקבל/יקבלו/תקבלנה. */
+const PER_GROUP_ASK = hebrewWords(["יקבל", "תקבל", "יקבלו", "תקבלנה"], "");
+/** Division by name: חילוק, לחלק, חלקו, מחלק/ת/ים, נחלק, ... */
+const DIVISION_WORD = hebrewWords(["חילוק", "לחלק", "חלקו", "חלקי", "מחלק", "מחלקת", "מחלקים", "נחלק", "תחלק", "יחלק", "יחולקו", "חולקו"], "");
+
+function usesDivision(ex: Exercise, text: string): boolean {
+  if (ex.subtype === "visual_grouping") return true;
+  if (ex.computation?.operators.includes("/")) return true;
+  if (ex.subtype === "pick_operation" && /חילוק/.test(ex.correctAnswer)) return true;
+  return /÷/.test(text) || DIVISION_WORD.test(text);
+}
+
+// ---------------------------------------------------------------- checks
+
+function checkSeries(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const progressions = numberSeries(q).filter((s) => s.step !== null);
+  for (const s of progressions) {
+    const before = q.slice(0, s.start).replace(/[:\s]+$/, "");
+    if (COUNT_FRAME.test(before)) {
+      // Told as a count ("יש לה: 3, 6, 9, 12"). Only a time/step frame in
+      // the SAME sentence, before the series ("ביום הראשון, השני והשלישי
+      // היו לה: 3, 6, 9"), makes it a series; a later "כמה יהיו בפעם
+      // הבאה?" does not undo having shown it as one amount.
+      const sentence = before.split(/[.?!]/).pop() ?? "";
+      if (!TIME_STEP_FRAME.test(sentence)) {
+        out.push({ rule: "no-series-as-count", detail: `the series ${s.terms.join(", ")} is introduced as a count of things that exist now` });
+      }
+    } else if (!TIME_STEP_FRAME.test(q) && !PATTERN_FRAME.test(q)) {
+      out.push({ rule: "sequence-anchored", detail: `the series ${s.terms.join(", ")} has no time/step frame and is not presented as a pattern` });
+    }
+  }
+}
+
+function checkDivision(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (!usesDivision(ex, q)) return;
+  const quotitive = QUOTITIVE.test(q);
+  const sharing = EQUAL_SHARE.test(q) || PER_EACH.test(q) || quotitive;
+  const named = NAMED_GROUPS.test(q) || quotitive;
+  if (!sharing || !named) {
+    const missing = [!sharing && "no equal-sharing or grouping frame", !named && "no named groups"].filter(Boolean).join(" and ");
+    out.push({ rule: "division-sharing-frame", detail: `division with ${missing}` });
+  }
+}
+
+const HEBREW_NUMBER_WORDS: Record<string, number> = {
+  שתי: 2, שני: 2, שניים: 2, שתיים: 2, שלוש: 3, שלושה: 3, ארבע: 4, ארבעה: 4, חמש: 5, חמישה: 5,
+  שש: 6, שישה: 6, שבע: 7, שבעה: 7, שמונה: 8, תשע: 9, תשעה: 9, עשר: 10, עשרה: 10,
+};
+
+function statedNumbers(q: string): Set<number> {
+  const s = new Set(numberTokens(q).map((t) => t.value));
+  for (const w of q.split(/[^א-ת]+/)) {
+    const bare = w.replace(new RegExp(`^[${PFX}]`), "");
+    const n = HEBREW_NUMBER_WORDS[w] ?? HEBREW_NUMBER_WORDS[bare];
+    if (n) s.add(n);
+  }
+  return s;
+}
+
+function checkGrouping(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const g = ex.grouping;
+  if (ex.subtype !== "visual_grouping" || !g) return;
+  const total = g.items.length;
+  const perGroup = g.groupCount > 0 ? total / g.groupCount : NaN;
+  if (new Set(g.items).size > 1) {
+    out.push({ rule: "internal-consistency", detail: `the objects drawn are not all the same (${[...new Set(g.items)].join(" ")})` });
+  }
+  const stated = statedNumbers(q);
+  if (!stated.has(g.groupCount)) {
+    out.push({ rule: "division-sharing-frame", detail: `the question never says how many groups (${g.groupCount})` });
+  }
+  const strays = [...stated].filter((n) => n !== total && n !== g.groupCount && n !== perGroup);
+  if (strays.length > 0 && !stated.has(total)) {
+    out.push({
+      rule: "internal-consistency",
+      detail: `the question says ${strays.join(", ")} but ${total} objects are drawn`,
+    });
+  }
+  // The answer is a per-group count, so some sentence has to ASK for one:
+  // "כמה" together with "each" or "receive" — a bare "כמה" elsewhere ("רונן
+  // מודד כמה דקות עברו") asks nothing.
+  const asksPerGroup = q.split(/[.?!]/).some((sentence) => /כמה/.test(sentence) && (PER_EACH.test(sentence) || PER_GROUP_ASK.test(sentence)));
+  if (!asksPerGroup) {
+    out.push({ rule: "unambiguous-answer", detail: "the question never asks how many go in each group" });
+  }
+}
+
+function checkOneTask(q: string, out: QualityViolation[]): void {
+  const questions = (q.match(/\?/g) ?? []).length;
+  if (questions > 1) out.push({ rule: "one-task", detail: `${questions} questions in one` });
+}
+
+/** Formats where niqqud IS the distinction between options: choosing the
+ *  vowels, and roots/patterns (מְסַפֵּר / מִסְפָּר are different words). */
+const NIQQUD_DISTINGUISHES = new Set(["vowel_select_mc", "root_pattern_mc"]);
+
+/**
+ * The options of a multiple-choice question must be ones the child can
+ * tell apart. Every subject (QA 2026-09-26, grade ג: four "גן החיות"
+ * options, three byte-identical and one missing a holam dot — the question
+ * was unanswerable and the first tap was graded wrong).
+ *   - no option twice (compared in Unicode NFC, spaces collapsed);
+ *   - outside the formats where niqqud is the point, no two options that
+ *     are the same letters: a spelling or reading question cannot hinge on
+ *     a vowel dot (עטפו / עטפוּ, קַיִץ / קַיֵץ);
+ *   - the correct answer is exactly one of them.
+ */
+function checkChoices(ex: Exercise, out: QualityViolation[]): void {
+  if (ex.type !== "multiple_choice" || !ex.choices) return;
+  const norm = ex.choices.map((c) => c.normalize("NFC").trim().replace(/\s+/g, " "));
+  if (new Set(norm).size !== norm.length) {
+    out.push({ rule: "unambiguous-answer", detail: "the same choice is offered twice" });
+  } else if (!NIQQUD_DISTINGUISHES.has(ex.subtype ?? "")) {
+    const letters = norm.map((c) => c.replace(NIQQUD, ""));
+    if (new Set(letters).size !== letters.length) {
+      out.push({ rule: "unambiguous-answer", detail: "two choices differ only in niqqud — the child sees the same word twice" });
+    }
+  }
+  const answer = ex.correctAnswer.normalize("NFC").trim().replace(/\s+/g, " ");
+  const hits = norm.filter((c) => c === answer).length;
+  if (hits !== 1) {
+    out.push({ rule: "unambiguous-answer", detail: `the correct answer appears ${hits} times among the choices` });
+  }
+}
+
+/** Does the text right after a written series leave an empty TERM slot —
+ *  "3, 6, 9, ?" / "3, 6, 9, ___" / "3, 6, 9..."? A "?" glued to the last
+ *  number ("איזה מהמספרים הבאים…: 7, 15, 23, 12?") ends a question about a
+ *  list, not a series; the regression bank has exactly that Ministry item. */
+const ASKS_NEXT = /^(?:\s*,\s*(?:\?|_{2,})|\s*(?:\.{2,}|…))/;
+
+/**
+ * A written series the child is asked to continue must have ONE rule: a
+ * constant difference (the only kind pattern_completion builds). "0, 2, 3, ?"
+ * — answer 5, from the live run — has none, so no answer follows from it.
+ *
+ * Limit, deliberately: only series WRITTEN as a series ("a, b, c"). A
+ * sequence told in prose ("ביום ראשון 1,000… ביום שני 1,500…") is not
+ * parsed — its terms and its step read alike — and is left to review.
+ */
+function checkSeriesDeterminate(ex: Exercise, q: string, out: QualityViolation[]): void {
+  for (const s of numberSeries(q)) {
+    if (s.step !== null) continue;
+    // Not "any continue-word in the text": "הבאים/הבאות" ("the following")
+    // introduces lists of candidates in the Ministry books.
+    const asksNext = ex.subtype === "pattern_completion" || ASKS_NEXT.test(q.slice(s.end));
+    if (asksNext) {
+      out.push({ rule: "series-determinate", detail: `the series ${s.terms.join(", ")} has no single rule, so its next term is not determined` });
+    }
+  }
+}
+
+/** Shapes as the generator draws them: emoji and geometric symbols. */
+const SHAPE_SYMBOL = /\p{Extended_Pictographic}|[\u25a0-\u25ff]/gu;
+
+/**
+ * A pattern request must stay a pattern. In the live run, 8 of 9
+ * shape_match drafts came back as plain word problems ("בספרייה היו 2,345
+ * ספרים… כמה ספרים יש עכשיו?") with no tiles at all — well-formed, on
+ * topic, and not the exercise that was asked for.
+ *  - shape_match: shape tiles to choose from (no letters or digits), and
+ *    the pattern itself — at least 3 shapes — in the question.
+ *  - pattern_completion: number tiles, and at least 3 terms in the
+ *    question (in a written series or in prose).
+ */
+function checkPatternDrift(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const tiles = ex.tiles?.items ?? [];
+  if (ex.subtype === "shape_match") {
+    const shapeTiles = tiles.length > 0 && tiles.every((t) => !/[\p{L}\p{N}]/u.test(t));
+    const shown = (q.match(SHAPE_SYMBOL) ?? []).length;
+    if (!shapeTiles || shown < 3) {
+      out.push({
+        rule: "no-pattern-drift",
+        detail: !shapeTiles ? "a shape pattern with no shape tiles to choose from" : `a shape pattern that shows ${shown} shapes`,
+      });
+    }
+  }
+  if (ex.subtype === "pattern_completion") {
+    const numberTiles = tiles.length > 0 && tiles.every((t) => /^\d[\d,]*$/.test(t.trim()));
+    const terms = new Set(numberTokens(q).map((t) => t.value)).size;
+    if (!numberTiles || terms < 3) {
+      out.push({
+        rule: "no-pattern-drift",
+        detail: !numberTiles ? "a number pattern with no number tiles to choose from" : `a number pattern that shows ${terms} numbers — not a pattern to continue`,
+      });
+    }
+  }
+}
+
+/**
+ * A clock time used as an operand ("3:15 + 45", "10:30 − 9:00") is not an
+ * expression a child can evaluate as written: it needs a conversion the
+ * question never gives. Live run 2026-09-25: a pick_operation whose correct
+ * choice was "3:15 + 45".
+ */
+const TIME_OPERAND = /\d{1,2}:\d{2}\s*[+\-−×÷*/]|[+\-−×÷*/]\s*\d{1,2}:\d{2}/;
+
+function checkTimeOperands(ex: Exercise, q: string, out: QualityViolation[]): void {
+  const shown = [q, ex.correctAnswer, ...(ex.choices ?? [])];
+  const hit = shown.find((s) => TIME_OPERAND.test(s));
+  if (hit) out.push({ rule: "unambiguous-answer", detail: `a clock time is used as a number in an operation: "${hit.slice(0, 40)}"` });
+}
+
+/**
+ * equation_balance: the blank must not be a number the story has already
+ * given. Live run: "…תפוחים 12 ילדים, תפוזים 7… כמה ילדים יותר אוהבים
+ * תפוחים? 12 - ___ = 5" with the blank's answer 7 — the child copies a
+ * number from the story, and the equation is not the quantity asked.
+ *
+ * Only when the blank is an OPERAND. A blank alone on one side of "="
+ * ("8 - 3 = ___") is the result: the child computes it, and the story
+ * stating the same number elsewhere is coincidence — sweep 2026-09-26, row
+ * 719065d0 (5 apple-lovers; 8 − 3 = 5 banana-over-orange).
+ */
+function checkEquationCopy(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "equation_balance") return;
+  const blank = q.indexOf("___");
+  if (blank < 0) return;
+  const lineStart = q.lastIndexOf("\n", blank) + 1;
+  const lineEnd = q.indexOf("\n", blank);
+  const line = q.slice(lineStart, lineEnd < 0 ? undefined : lineEnd);
+  const blankSide = line.split("=").find((side) => side.includes("___"));
+  if (line.includes("=") && blankSide !== undefined && blankSide.replace(/[?.:\s]/g, "") === "___") return;
+  const story = q.slice(0, Math.max(q.lastIndexOf("\n", blank), q.lastIndexOf(".", blank), q.lastIndexOf("?", blank)) + 1);
+  const answer = Number(ex.correctAnswer.replace(/,/g, ""));
+  if (Number.isFinite(answer) && numberTokens(story).some((t) => t.value === answer)) {
+    out.push({ rule: "internal-consistency", detail: `the blank's answer (${ex.correctAnswer}) is a number the story already states` });
+  }
+}
+
+/** Nouns whose grammatical gender decides "איזה" (m.) / "איזו" (f.). A small
+ *  lexicon of the words the generator's stories use, not a grammar. */
+const MASCULINE = ["פרי", "פירות", "צבע", "חפץ", "מספר", "ילד", "משולש", "מלבן", "ריבוע", "עיגול", "שעון", "יום", "חודש", "קו", "גוף", "מגדל", "ספר", "כדור", "משחק", "סרגל"];
+const FEMININE = ["צורה", "חיה", "עוגה", "שעה", "דקה", "פעולה", "קבוצה", "כיתה", "קובייה", "תיבה", "שכבה", "שורה", "עמודה", "דרך", "מילה", "אות", "ספרה", "שאלה", "תשובה", "ילדה", "בעיה", "עגלה"];
+const IZO_MASC = new RegExp(`(?:^|[^${HE}])איזו\\s+(?:${MASCULINE.join("|")})(?![${HE}])`, "u");
+const IZE_FEM = new RegExp(`(?:^|[^${HE}])איזה\\s+(?:${FEMININE.join("|")})(?![${HE}])`, "u");
+
+// ------------------------------------------- content classes (QA 2026-09-26)
+
+/** An area stated in square units ("9 סמ"ר", "9 סנטימטר רבוע"). */
+const AREA = /(\d+)\s*(?:סמ"ר|סנטימטר[-\s]רבוע|סנטימטרים רבועים)/gu;
+const SQUARE_AREA_FRAME = new RegExp(`(?:^|[^${HE}])ה?ריבוע(?:ים)?(?![${HE}])[^.?!]{0,40}(?:שטח|בשטח|בגודל|בגדלים|בגודל של)`, "u");
+
+/**
+ * A square's area is a whole number squared (grade ג works in whole grid
+ * units). "ריבועים בגדלים 4, 9, 14, 19 סמ"ר" (sweep 1405203b) describes
+ * squares that cannot exist. Only when the areas are said to be SQUARES'
+ * and no other shape is in the question (a rectangle made of unit squares
+ * is a different thing).
+ */
+function checkSquareAreas(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (!SQUARE_AREA_FRAME.test(q) || /מלבן|משולש|שטיח|חדר|לוח|דף/u.test(q)) return;
+  const areas = [...q.matchAll(AREA)].map((m) => Number(m[1]));
+  if (/^\d+$/.test(ex.correctAnswer.trim()) && /(?:שטח|בגודל)[^.?!]*\?/u.test(q)) areas.push(Number(ex.correctAnswer));
+  const impossible = areas.filter((a) => !Number.isInteger(Math.sqrt(a)));
+  if (impossible.length) {
+    out.push({ rule: "internal-consistency", detail: `a square cannot have area ${impossible.join(", ")} (not a whole number squared)` });
+  }
+}
+
+/**
+ * Two options that are the SAME computation — "3 + 5" and "5 + 3", or
+ * "3 + 3" and "3 × 2" — are two correct answers (sweep 9a3529d5, the
+ * toothpick triangle; bank 5e3330c2). Compared by a canonical form: sums
+ * and products are unordered, and a sum of k equal terms is that term × k.
+ * Differences and quotients keep their order.
+ */
+function canonicalComputation(choice: string): string | null {
+  const c = choice.replace(/[−–]/g, "-").replace(/[x*]/g, "×").replace(/\//g, "÷").trim();
+  if (!/^\d+(?:\s*[-+×÷]\s*\d+)+$/.test(c)) return null;
+  const nums = c.split(/\s*[-+×÷]\s*/).map(Number);
+  const ops = [...new Set(c.match(/[-+×÷]/g) ?? [])];
+  if (ops.length !== 1) return c.replace(/\s+/g, "");
+  const [op] = ops;
+  if (op === "+" && nums.every((n) => n === nums[0])) return `×:${[nums[0], nums.length].sort((a, b) => a - b).join(",")}`;
+  if (op === "+") return `+:${[...nums].sort((a, b) => a - b).join(",")}`;
+  if (op === "×") return `×:${[...nums].sort((a, b) => a - b).join(",")}`;
+  return `${op}:${nums.join(",")}`;
+}
+function checkEquivalentChoices(ex: Exercise, out: QualityViolation[]): void {
+  if (ex.type !== "multiple_choice" || !ex.choices) return;
+  const seen = new Map<string, string>();
+  for (const choice of ex.choices) {
+    const key = canonicalComputation(choice);
+    if (!key) continue;
+    const twin = seen.get(key);
+    if (twin !== undefined && twin.trim() !== choice.trim()) {
+      out.push({ rule: "unambiguous-answer", detail: `"${twin}" and "${choice}" are the same computation — two correct answers` });
+      return;
+    }
+    seen.set(key, choice);
+  }
+}
+
+/** A run of quoted words separated by commas or "ו" — a word list. */
+const QUOTE = `['"׳״‘’“”]`;
+const QUOTED_LIST = new RegExp(`${QUOTE}[^'"׳״‘’“”\\n]{1,24}${QUOTE}(?:\\s*(?:,|ו)\\s*${QUOTE}[^'"׳״‘’“”\\n]{1,24}${QUOTE})+`, "gu");
+
+/** The same word twice in a list the child reads ("'לצייר', 'ציורים',
+ *  'ציור', 'ציור'" — bank 78c0e1d1): a copy error. */
+function checkQuotedListRepeat(q: string, out: QualityViolation[]): void {
+  for (const list of q.match(QUOTED_LIST) ?? []) {
+    const items = [...list.matchAll(new RegExp(`${QUOTE}([^'"׳״‘’“”\\n]{1,24})${QUOTE}`, "gu"))].map((m) => m[1].trim());
+    const dup = items.find((w, i) => items.indexOf(w) !== i);
+    if (dup) {
+      out.push({ rule: "internal-consistency", detail: `the word list repeats "${dup}"` });
+      return;
+    }
+  }
+}
+
+/** A hint that there IS an error to find, in a question whose answer is
+ *  "all correct" (bank a2b1e746: "רמז: חפשו אות שצריכה להיות אחרת" →
+ *  "כל המילים נכתבו נכון"). The hint leads the child away from the answer. */
+const ALL_CORRECT = /(?:^|[^א-ת])(?:כל|כולן|כולם)(?![א-ת])[^.?!]{0,20}נכו[ןנ]/u;
+const ERROR_HINT = /(?:רמז|חפשו|חפשי|חפש)[^.?!)]{0,40}(?:(?:שצריכה|שצריך|שצריכות|שצריכים) להיות אחר|טעות|שגוי)/u;
+function checkHintContradictsAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ALL_CORRECT.test(plain(ex.correctAnswer)) && ERROR_HINT.test(q)) {
+    out.push({ rule: "internal-consistency", detail: "the hint says there is an error to find, but the answer is that everything is correct" });
+  }
+}
+
+/**
+ * A number line in a clock story whose answer is printed in the question:
+ * "השיעור … הסתיים בשעה 11:00. היכן נמצא זמן סיום השיעור (11:00) על ציר
+ * הזמן?" with 8–12 on the line (QA 2026-09-26, bank f55c6c4b) — no clock,
+ * no skill; the child copies 11. Also a duration the story already states
+ * ("היא ציירה 75 דקות. היכן נמצא המספר 75"). Any topic: a topic-less
+ * request can still draw a number line.
+ */
+const CLOCK_TIME = /(?<!\d)(\d{1,2}):(\d{2})(?!\d)/gu;
+function checkClockAnswerPrinted(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "number_line_placement" && ex.type !== "number_line") return;
+  const clocks = [...q.matchAll(CLOCK_TIME)];
+  if (clocks.length === 0) return;
+  const answer = ex.correctAnswer.trim();
+  if (!/^\d+$/.test(answer)) return;
+  const hourStated = clocks.some((m) => Number(m[1]) === Number(answer));
+  const durationStated = new RegExp(`(?<!\\d)${answer}\\s*(?:דקות|דקה|שעות|שעה)(?![א-ת])`, "u").test(q);
+  if (hourStated || durationStated) {
+    out.push({ rule: "unambiguous-answer", detail: `the answer (${answer}) is printed in the question — a clock time placed on a line tests nothing` });
+  }
+}
+
+/** "איזו פרי" / "איזה צורה": the wrong one of איזה/איזו for a known noun. */
+function checkGenderAgreement(q: string, out: QualityViolation[]): void {
+  const hit = q.match(IZO_MASC) ?? q.match(IZE_FEM);
+  if (hit) out.push({ rule: "spoken-hebrew", detail: `gender disagreement: "${hit[0].replace(/^[^א-ת]/, "")}"` });
+}
+
+/** Things a question can point at that this app never draws. */
+const FIGURE_WORD = hebrewWords(["דיאגרמה", "דיאגרמת", "דיאגרמות", "תרשים", "גרף", "פיקטוגרמה", "פיקטוגרמת", "טבלה", "טבלת"], "");
+/** Saying the figure SHOWS something ("דיאגרמה שמראה…", "רואים בדיאגרמה…"). */
+const DISPLAY_CLAIM = /(?<![א-ת])ש?(?:מראה|מראים|מראות|מציג|מציגה|מציגים|מוצג|מוצגת|מוצגים|מוצגות|רואים|רואה|נראה|נראים|מופיע|מופיעים)(?![א-ת])/u;
+const PICTURE_CLAIM = /(?<![א-ת])ב(?:ציור|תמונה)(?![א-ת])/u;
+
+/**
+ * shown-is-said: no exercise subtype draws a chart, so a question that says a
+ * chart shows something is describing a picture the child cannot see; and a
+ * question that mentions a chart but gives (nearly) no numbers has no data
+ * at all. QA 2026-09-25: "…דיאגרמת עמודות שמראה כמה ילדים אוהבים כל פרי.
+ * עמודת התפוחים גבוהה מעמודת הבננות" — no numbers anywhere. Data given in
+ * words and numbers ("ספרנו… 8 ילדים אוהבים כלבים") is fine.
+ */
+function checkFigureShown(q: string, out: QualityViolation[]): void {
+  const sentences = q.split(/[.?!\n]+/);
+  const claim = sentences.find((s) => (FIGURE_WORD.test(s) && DISPLAY_CLAIM.test(s)) || PICTURE_CLAIM.test(s));
+  if (claim) {
+    out.push({ rule: "shown-is-said", detail: `refers to a figure the app doesn't show: "${claim.trim().slice(0, 50)}"` });
+    return;
+  }
+  if (FIGURE_WORD.test(q) && numberTokens(q).length < 2) {
+    out.push({ rule: "shown-is-said", detail: "mentions a chart or table but gives no data (fewer than 2 numbers)" });
+  }
+}
+
+/** "הצמח הראשון… השני… הרביעי": a noun that is not a time or step unit. */
+const TIME_STEP_NOUNS = new Set(["שבוע", "יום", "חודש", "שעה", "שנה", "פעם", "שלב", "צעד", "קומה", "מדרגה", "סיבוב", "קפיצה", "תחנה", "שורה", "עמודה", "סיבוב", "בוקר", "ערב", "לילה"]);
+const NOUN_ORDINAL = /(?<![א-ת])ה([א-ת]{2,})\s+ה(?:ראשון|ראשונה|שני|שנייה|שלישי|שלישית|רביעי|רביעית|חמישי|חמישית)(?![א-ת])/gu;
+const ANY_ORDINAL = /(?<![א-ת])ו?ה(?:ראשון|ראשונה|שני|שנייה|שלישי|שלישית|רביעי|רביעית|חמישי|חמישית)(?![א-ת])/gu;
+
+/**
+ * A pattern told as separate OBJECTS in order ("הצמח הראשון גבוה 10, השני 15,
+ * השלישי 20, הרביעי 25 — כמה יהיה הצמח החמישי?") is not a series: nothing
+ * says the fifth plant continues the first four. The same numbers told as
+ * one thing over time ("בשבוע הראשון… בשבוע השני…") are. QA 2026-09-25.
+ */
+function checkObjectSequence(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "pattern_completion") return;
+  const objects = [...q.matchAll(NOUN_ORDINAL)].map((m) => m[1]).filter((n) => !TIME_STEP_NOUNS.has(n));
+  const ordinals = (q.match(ANY_ORDINAL) ?? []).length;
+  if (objects.length > 0 && ordinals >= 4) {
+    out.push({ rule: "sequence-anchored", detail: `the numbers belong to different objects (${objects[0]} first, second, …), not to one thing over time, so nothing says the next one continues them` });
+  }
+}
+
+/** The drawn objects must be the ones the story names. */
+function checkGroupingObject(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "visual_grouping" || !ex.grouping) return;
+  const named = otherObjectsNamed(q, ex.grouping.items[0]);
+  if (named.length > 0) {
+    out.push({ rule: "shown-is-said", detail: `the story names ${named.join(", ")} but the drawn object is ${ex.grouping.items[0]}` });
+  }
+}
+
+function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "pattern_completion") return;
+  const s = numberSeries(q).filter((x) => x.step !== null).pop();
+  if (!s || s.step === null) return;
+  const expected = s.terms[s.terms.length - 1] + s.step;
+  if (Number(ex.correctAnswer.replace(/,/g, "")) !== expected) {
+    out.push({ rule: "unambiguous-answer", detail: `the series continues to ${expected}, not ${ex.correctAnswer}` });
+  }
+}
+
+/**
+ * Checks one exercise against the deterministic rules. Pure and cheap —
+ * no model call — so it runs on every draft and every served bank row.
+ */
+export function checkQuestionQuality(ex: Exercise): QualityResult {
+  const violations: QualityViolation[] = [];
+  // The rules every subject gets: options the child can tell apart, no
+  // repeated word in a list, no hint that contradicts the answer. Hebrew
+  // is otherwise not checked by this rubric (checked: false).
+  const q = plain(ex.question);
+  checkChoices(ex, violations);
+  checkQuotedListRepeat(q, violations);
+  checkHintContradictsAnswer(ex, q, violations);
+  if (ex.subject !== "math") return { ok: violations.length === 0, checked: false, violations };
+  checkSeries(ex, q, violations);
+  checkDivision(ex, q, violations);
+  checkGrouping(ex, q, violations);
+  checkOneTask(q, violations);
+  checkPatternAnswer(ex, q, violations);
+  checkSeriesDeterminate(ex, q, violations);
+  checkTimeOperands(ex, q, violations);
+  checkEquationCopy(ex, q, violations);
+  checkGenderAgreement(q, violations);
+  checkFigureShown(q, violations);
+  checkObjectSequence(ex, q, violations);
+  checkGroupingObject(ex, q, violations);
+  checkPatternDrift(ex, q, violations);
+  checkSquareAreas(ex, q, violations);
+  checkEquivalentChoices(ex, violations);
+  checkClockAnswerPrinted(ex, q, violations);
+  return { ok: violations.length === 0, checked: true, violations };
+}
+
+/**
+ * The next request's corrective line after a rejected draft: each broken
+ * rule, in the rubric's own Hebrew, with what went wrong. Internal model
+ * instruction, never shown to a child.
+ */
+export function qualityRetryHint(violations: QualityViolation[]): string {
+  const rules = [...new Set(violations.map((v) => v.rule))].map((id) => `- ${ruleById(id).he}`);
+  return `התרגיל הקודם נדחה כי הפר את כללי כתיבת השאלות:\n${rules.join("\n")}\nכתבו תרגיל חדש שעומד בכללים האלה.`;
+}
