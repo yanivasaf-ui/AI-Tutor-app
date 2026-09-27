@@ -18,8 +18,9 @@
  * "caught" (owner: findings covered by the table move to caught), except the
  * 6×4 cubes row, which the owner ruled ALLOWED. Where the table rejects a
  * row for its format but the reported defect has a wider class of its own
- * (#9 ambiguity, #10 answer in the body, #12 misleading hint), the note says
- * so: that class has no general detector yet.
+ * (#10 answer in the body), the note says so: that class has no general
+ * detector yet. #9's ambiguity and #12's misleading hint are detected by
+ * the gate since 2026-09-27.
  *
  * Run: npx tsx tests/sweep-grade-b.test.mts
  */
@@ -84,10 +85,10 @@ const STATUS: Record<number, { status: Status; note: string }> = {
   6: { status: "caught", note: "fixed on this branch by 6f61650 (instruction names the drawn object); NOT deployed — production still says כוכב" },
   7: { status: "ui", note: "transient server error surfaced to the child; no automated check" },
   8: { status: "caught", note: "format table: morphology allows the root/pattern format only — comprehension is banned there (G6)" },
-  9: { status: "caught", note: "format table: pick-operation is not a shapes format (also one-task and operation scope); the 3+3 / 3×2 ambiguity as a class has no detector" },
+  9: { status: "caught", note: "format table: pick-operation is not a shapes format (also one-task and operation scope); since 2026-09-27 the gate also detects the ambiguity itself (3 + 3 and 3 × 2 are the same computation)" },
   10: { status: "caught", note: "format table: time has no number-line format; 'answer printed in the question' as a class has no detector" },
   11: { status: "open", note: "the typo is not detected (the equation-copy false positive that used to reject this row is fixed: the blank is the result, so the story's 5 is coincidence)" },
-  12: { status: "caught", note: "format table: standard spelling allows the spelling-choice format only — comprehension is banned there (G6); the misleading hint as a class has no detector" },
+  12: { status: "caught", note: "format table: standard spelling allows the spelling-choice format only — comprehension is banned there (G6); since 2026-09-27 the gate also detects the misleading hint itself" },
   13: { status: "ui", note: "exit dialog after completion; no automated check" },
 };
 
@@ -142,8 +143,13 @@ for (const n of [8, 9, 10, 11, 12]) {
     }
   });
 }
-t("#9 is also rejected by one-task — pinned so a change is noticed", () => {
-  assert.deepEqual(gateRules(row("9a3529d5-79c8-43d5-b6a1-cf60fbb52285")), ["one-task"]);
+t("#9 is also rejected by one-task and, since 2026-09-27, by the same-computation rule — pinned so a change is noticed", () => {
+  assert.deepEqual(gateRules(row("9a3529d5-79c8-43d5-b6a1-cf60fbb52285")), ["one-task", "unambiguous-answer"]);
+  assert.match(checkQuestionQuality(row("9a3529d5-79c8-43d5-b6a1-cf60fbb52285")).violations[1].detail, /same computation/);
+});
+t("#12's misleading hint is detected by the gate itself since 2026-09-27", () => {
+  const id = sweep.findings.find((f) => f.n === 12)!.rows[0];
+  assert.match(checkQuestionQuality(row(id)).violations.map((v) => v.detail).join(" | "), /hint says there is an error/);
 });
 t("#7 and #13 are UI defects: tracked here, no automated check exists yet", () => {
   assert.equal(STATUS[7].status, "ui");

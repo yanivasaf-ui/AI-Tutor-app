@@ -27,9 +27,10 @@ import { otherObjectsNamed } from "@/lib/exercises/grouping-objects";
  * scenario is concrete, most consistency between a story and its numbers.
  * Those are judgment, left to the model review (./quality-review.ts).
  *
- * Math only, with one exception: the multiple-choice options check
- * (checkChoices) runs for every subject, since options the child cannot
- * tell apart make any question unanswerable. Hebrew exercises are returned
+ * Math only, with three exceptions that run for every subject: the
+ * multiple-choice options check (options the child cannot tell apart make
+ * any question unanswerable), a repeated word in a quoted list, and a hint
+ * that contradicts the answer. Hebrew exercises are returned
  * `checked: false` — the rest of the rubric is written for math questions,
  * and saying "checked" there would claim checks that never ran.
  *
@@ -412,6 +413,91 @@ const FEMININE = ["צורה", "חיה", "עוגה", "שעה", "דקה", "פעו�
 const IZO_MASC = new RegExp(`(?:^|[^${HE}])איזו\\s+(?:${MASCULINE.join("|")})(?![${HE}])`, "u");
 const IZE_FEM = new RegExp(`(?:^|[^${HE}])איזה\\s+(?:${FEMININE.join("|")})(?![${HE}])`, "u");
 
+// ------------------------------------------- content classes (QA 2026-09-26)
+
+/** An area stated in square units ("9 סמ"ר", "9 סנטימטר רבוע"). */
+const AREA = /(\d+)\s*(?:סמ"ר|סנטימטר[-\s]רבוע|סנטימטרים רבועים)/gu;
+const SQUARE_AREA_FRAME = new RegExp(`(?:^|[^${HE}])ה?ריבוע(?:ים)?(?![${HE}])[^.?!]{0,40}(?:שטח|בשטח|בגודל|בגדלים|בגודל של)`, "u");
+
+/**
+ * A square's area is a whole number squared (grade ג works in whole grid
+ * units). "ריבועים בגדלים 4, 9, 14, 19 סמ"ר" (sweep 1405203b) describes
+ * squares that cannot exist. Only when the areas are said to be SQUARES'
+ * and no other shape is in the question (a rectangle made of unit squares
+ * is a different thing).
+ */
+function checkSquareAreas(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (!SQUARE_AREA_FRAME.test(q) || /מלבן|משולש|שטיח|חדר|לוח|דף/u.test(q)) return;
+  const areas = [...q.matchAll(AREA)].map((m) => Number(m[1]));
+  if (/^\d+$/.test(ex.correctAnswer.trim()) && /(?:שטח|בגודל)[^.?!]*\?/u.test(q)) areas.push(Number(ex.correctAnswer));
+  const impossible = areas.filter((a) => !Number.isInteger(Math.sqrt(a)));
+  if (impossible.length) {
+    out.push({ rule: "internal-consistency", detail: `a square cannot have area ${impossible.join(", ")} (not a whole number squared)` });
+  }
+}
+
+/**
+ * Two options that are the SAME computation — "3 + 5" and "5 + 3", or
+ * "3 + 3" and "3 × 2" — are two correct answers (sweep 9a3529d5, the
+ * toothpick triangle; bank 5e3330c2). Compared by a canonical form: sums
+ * and products are unordered, and a sum of k equal terms is that term × k.
+ * Differences and quotients keep their order.
+ */
+function canonicalComputation(choice: string): string | null {
+  const c = choice.replace(/[−–]/g, "-").replace(/[x*]/g, "×").replace(/\//g, "÷").trim();
+  if (!/^\d+(?:\s*[-+×÷]\s*\d+)+$/.test(c)) return null;
+  const nums = c.split(/\s*[-+×÷]\s*/).map(Number);
+  const ops = [...new Set(c.match(/[-+×÷]/g) ?? [])];
+  if (ops.length !== 1) return c.replace(/\s+/g, "");
+  const [op] = ops;
+  if (op === "+" && nums.every((n) => n === nums[0])) return `×:${[nums[0], nums.length].sort((a, b) => a - b).join(",")}`;
+  if (op === "+") return `+:${[...nums].sort((a, b) => a - b).join(",")}`;
+  if (op === "×") return `×:${[...nums].sort((a, b) => a - b).join(",")}`;
+  return `${op}:${nums.join(",")}`;
+}
+function checkEquivalentChoices(ex: Exercise, out: QualityViolation[]): void {
+  if (ex.type !== "multiple_choice" || !ex.choices) return;
+  const seen = new Map<string, string>();
+  for (const choice of ex.choices) {
+    const key = canonicalComputation(choice);
+    if (!key) continue;
+    const twin = seen.get(key);
+    if (twin !== undefined && twin.trim() !== choice.trim()) {
+      out.push({ rule: "unambiguous-answer", detail: `"${twin}" and "${choice}" are the same computation — two correct answers` });
+      return;
+    }
+    seen.set(key, choice);
+  }
+}
+
+/** A run of quoted words separated by commas or "ו" — a word list. */
+const QUOTE = `['"׳״‘’“”]`;
+const QUOTED_LIST = new RegExp(`${QUOTE}[^'"׳״‘’“”\\n]{1,24}${QUOTE}(?:\\s*(?:,|ו)\\s*${QUOTE}[^'"׳״‘’“”\\n]{1,24}${QUOTE})+`, "gu");
+
+/** The same word twice in a list the child reads ("'לצייר', 'ציורים',
+ *  'ציור', 'ציור'" — bank 78c0e1d1): a copy error. */
+function checkQuotedListRepeat(q: string, out: QualityViolation[]): void {
+  for (const list of q.match(QUOTED_LIST) ?? []) {
+    const items = [...list.matchAll(new RegExp(`${QUOTE}([^'"׳״‘’“”\\n]{1,24})${QUOTE}`, "gu"))].map((m) => m[1].trim());
+    const dup = items.find((w, i) => items.indexOf(w) !== i);
+    if (dup) {
+      out.push({ rule: "internal-consistency", detail: `the word list repeats "${dup}"` });
+      return;
+    }
+  }
+}
+
+/** A hint that there IS an error to find, in a question whose answer is
+ *  "all correct" (bank a2b1e746: "רמז: חפשו אות שצריכה להיות אחרת" →
+ *  "כל המילים נכתבו נכון"). The hint leads the child away from the answer. */
+const ALL_CORRECT = /(?:^|[^א-ת])(?:כל|כולן|כולם)(?![א-ת])[^.?!]{0,20}נכו[ןנ]/u;
+const ERROR_HINT = /(?:רמז|חפשו|חפשי|חפש)[^.?!)]{0,40}(?:(?:שצריכה|שצריך|שצריכות|שצריכים) להיות אחר|טעות|שגוי)/u;
+function checkHintContradictsAnswer(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ALL_CORRECT.test(plain(ex.correctAnswer)) && ERROR_HINT.test(q)) {
+    out.push({ rule: "internal-consistency", detail: "the hint says there is an error to find, but the answer is that everything is correct" });
+  }
+}
+
 /** "איזו פרי" / "איזה צורה": the wrong one of איזה/איזו for a known noun. */
 function checkGenderAgreement(q: string, out: QualityViolation[]): void {
   const hit = q.match(IZO_MASC) ?? q.match(IZE_FEM);
@@ -489,11 +575,14 @@ function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): v
  */
 export function checkQuestionQuality(ex: Exercise): QualityResult {
   const violations: QualityViolation[] = [];
-  // The one rule every subject gets: options the child can tell apart.
-  // Hebrew is otherwise not checked by this rubric (checked: false).
-  checkChoices(ex, violations);
-  if (ex.subject !== "math") return { ok: violations.length === 0, checked: false, violations };
+  // The rules every subject gets: options the child can tell apart, no
+  // repeated word in a list, no hint that contradicts the answer. Hebrew
+  // is otherwise not checked by this rubric (checked: false).
   const q = plain(ex.question);
+  checkChoices(ex, violations);
+  checkQuotedListRepeat(q, violations);
+  checkHintContradictsAnswer(ex, q, violations);
+  if (ex.subject !== "math") return { ok: violations.length === 0, checked: false, violations };
   checkSeries(ex, q, violations);
   checkDivision(ex, q, violations);
   checkGrouping(ex, q, violations);
@@ -507,6 +596,8 @@ export function checkQuestionQuality(ex: Exercise): QualityResult {
   checkObjectSequence(ex, q, violations);
   checkGroupingObject(ex, q, violations);
   checkPatternDrift(ex, q, violations);
+  checkSquareAreas(ex, q, violations);
+  checkEquivalentChoices(ex, violations);
   return { ok: violations.length === 0, checked: true, violations };
 }
 
