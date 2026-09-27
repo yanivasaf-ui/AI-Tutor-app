@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import Character from "@/components/character/Character";
 import SpeechBubble from "@/components/character/SpeechBubble";
@@ -23,6 +24,12 @@ import type { CharacterId } from "@/lib/characters";
  *
  * Own file since the entry flow: every kid screen's header (KidHeader)
  * opens it, not just the map.
+ *
+ * Rendered through a portal on document.body (QA 2026-09-27): KidHeader
+ * sits inside a `relative z-10` wrapper on ModeChoice and FreePractice,
+ * which traps any z-index inside it — the main content (the next `z-10`
+ * sibling) painted over the gate, and a tap on אישור landed on the journey
+ * card behind it. At the body the gate's z-50 is measured against the page.
  */
 export default function ParentGate({
   character,
@@ -40,6 +47,9 @@ export default function ParentGate({
   const [answer, setAnswer] = useState("");
   const [wrong, setWrong] = useState(false);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const line = lines.parentGate(kidName);
   const guide = useGuide({ owner: "gate", character, pose: "idle", line });
 
@@ -52,7 +62,8 @@ export default function ParentGate({
     }
   }
 
-  return (
+  if (!mounted) return null;
+  return createPortal(
     <motion.div
       role="dialog"
       aria-modal="true"
@@ -95,6 +106,7 @@ export default function ParentGate({
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }
