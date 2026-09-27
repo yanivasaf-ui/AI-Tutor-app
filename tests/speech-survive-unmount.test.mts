@@ -21,8 +21,8 @@ import assert from "node:assert/strict";
 
 // Minimal browser stub — just enough for useSpeech.ts's module-load guard
 // (`if (typeof window !== "undefined") window.addEventListener(...)`) and
-// its speakCloud() path (`character && state.cloud && typeof window !==
-// "undefined"`) to engage. No Audio/speechSynthesis: this suite never lets
+// its speakCloud() path (`character && typeof window !== "undefined" &&
+// cloudUsable()`) to engage. No Audio/speechSynthesis: this suite never lets
 // a fetch settle, so playback code is never reached.
 (globalThis as unknown as { window: { addEventListener: () => void } }).window = { addEventListener: () => {} };
 

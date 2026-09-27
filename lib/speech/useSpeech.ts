@@ -52,10 +52,12 @@ interface SpeechState {
   /** Who is saying the current utterance. null = an ownerless request
    *  (a bare 🔊 tap), which every on-screen character may lip-sync to. */
   owner: string | null;
-  /** Cartesia is usable this session. Starts true; flips false for the
-   *  rest of the session if the server says it isn't configured (503) or
-   *  the session isn't signed in (401), so we stop paying a doomed round
-   *  trip before every fallback line. */
+  /** Cartesia is usable right now. Starts true; flips false when the
+   *  server says the account can't synthesize (503 scope "session": not
+   *  configured, credit exhausted, key rejected) or the session isn't
+   *  signed in (401), so we stop paying a doomed round trip before every
+   *  fallback line. With a Retry-After it comes back on by itself after
+   *  that long (see cloudUsable); without one it stays off. */
   cloud: boolean;
 }
 
@@ -82,6 +84,39 @@ let currentOwner: string | null = null;
  *  ownerless stopSpeaking(), voice barge-in, or another speak()) cancels it
  *  normally — this only exempts the specific bogus self-cancellation. */
 let protectedUtteranceId: number | null = null;
+
+/** When the cloud voice was switched off WITH a Retry-After (an account
+ *  outage, e.g. credit exhausted — QA 2026-09-26), the time it may be tried
+ *  again. null while it is on, or off for good (not configured, signed out). */
+let cloudRetryAt: number | null = null;
+
+/** Is Cartesia worth asking right now? Turns it back on once a timed
+ *  outage has passed, so restored credit is heard without a reload. */
+function cloudUsable(): boolean {
+  if (!state.cloud && cloudRetryAt !== null && Date.now() >= cloudRetryAt) {
+    cloudRetryAt = null;
+    emit({ cloud: true });
+  }
+  return state.cloud;
+}
+
+/**
+ * The server's "can't speak this" answers (401, 503). Returns "session"
+ * when the cloud voice is now off (for Retry-After seconds, or for good),
+ * "line" when only this line failed and the next may still work.
+ */
+async function cloudUnavailable(res: Response): Promise<"session" | "line"> {
+  if (res.status !== 401) {
+    const body = (await res.json().catch(() => null)) as { scope?: string } | null;
+    if (body?.scope === "line") return "line";
+    const retry = Number(res.headers.get("Retry-After"));
+    cloudRetryAt = Number.isFinite(retry) && retry > 0 ? Date.now() + retry * 1000 : null;
+  } else {
+    cloudRetryAt = null;
+  }
+  emit({ cloud: false });
+  return "session";
+}
 
 function emit(patch: Partial<SpeechState>) {
   state = { ...state, ...patch };
@@ -256,7 +291,7 @@ const prefetchLimiter = createLimiter(PREFETCH_MAX_IN_FLIGHT);
  * first come first served. Live speaks (speakCloud) never go through it.
  */
 export function prefetchSpeech(text: string, character: CharacterId) {
-  if (!text || typeof window === "undefined") return;
+  if (!text || typeof window === "undefined" || !cloudUsable()) return;
   const key = `${character}|${text}`;
   if (audioCache.has(key) || prefetching.has(key)) return;
   // Marked at enqueue, not at start, so a line asked for twice while it
@@ -264,8 +299,9 @@ export function prefetchSpeech(text: string, character: CharacterId) {
   prefetching.add(key);
   void prefetchLimiter
     .run(async () => {
-      // A live speak may have cached this line while it was waiting.
-      if (audioCache.has(key)) return;
+      // A live speak may have cached this line while it was waiting, or
+      // the cloud voice gone off.
+      if (audioCache.has(key) || !cloudUsable()) return;
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), prefetchTimeoutMs);
       try {
@@ -280,6 +316,10 @@ export function prefetchSpeech(text: string, character: CharacterId) {
         });
         // The slot is held until the BODY is read, not just the headers:
         // that is when Cartesia stops counting this request.
+        if (res.status === 401 || res.status === 503) {
+          await cloudUnavailable(res);
+          return;
+        }
         const blob = res.ok ? await res.blob() : null;
         if (blob) cachePut(key, URL.createObjectURL(blob));
       } catch {
@@ -532,7 +572,10 @@ export const __speechTestHooks = {
     stallMs = STALL_TIMEOUT_MS;
     wholeClipWaitMs = 6000;
     prefetchTimeoutMs = PREFETCH_TIMEOUT_MS;
+    cloudRetryAt = null;
+    if (!state.cloud) emit({ cloud: true });
   },
+  isCloudOn: () => state.cloud,
   isMseDisabled: () => mseDisabledForSession,
 };
 
@@ -578,8 +621,14 @@ async function speakCloud(
     if (pendingFetch === ctrl) pendingFetch = null;
     if (id !== utteranceId) return true;
     if (res.status === 401 || res.status === 503) {
-      emit({ cloud: false });
-      logAudioPath("speechSynthesis", `http-${res.status} (cloud voice off for the session)`);
+      const scope = await cloudUnavailable(res);
+      if (id !== utteranceId) return true;
+      logAudioPath(
+        "speechSynthesis",
+        scope === "line"
+          ? `http-${res.status} (this line only)`
+          : `http-${res.status} (cloud voice off ${cloudRetryAt ? `for ${Math.round((cloudRetryAt - Date.now()) / 1000)}s` : "for the session"})`
+      );
       return false;
     }
     if (!res.ok) {
@@ -799,7 +848,7 @@ export function speak(
   stopPlayback();
   if (state.speaking) emit({ speaking: false, owner: null });
 
-  if (character && state.cloud && typeof window !== "undefined") {
+  if (character && typeof window !== "undefined" && cloudUsable()) {
     speakCloud(text, character, owner, id, opts?.onEnd, opts?.live)
       .then((handled) => {
         // speakCloud has already traced why it declined.
