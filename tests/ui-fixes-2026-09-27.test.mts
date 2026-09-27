@@ -34,6 +34,18 @@ t("…which matters: KidHeader is mounted inside a `relative z-10` wrapper besid
   }
 });
 
+console.log("\nfix 2 — the station load shows visible motion");
+t("the exercise-load screen shows the loading dots under the 'I'm preparing' line", () => {
+  const screen = src("components/practice/ExerciseScreen.tsx");
+  const load = screen.slice(screen.indexOf("if (loadingExercise || (!exercise && !loadedOnce)) {"), screen.indexOf("// No exercise."));
+  assert.match(load, /lines\.buildingExercise\(character, kidName\)/);
+  assert.match(load, /<LoadingDots tone="light" label=\{l\.text\} \/>/);
+});
+t("the dots are a status for screen readers, and still under reduced motion", () => {
+  assert.match(src("components/character/LoadingDots.tsx"), /role="status" aria-label=\{label\}/);
+  assert.match(src("app/globals.css"), /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*\.animate-bounce \{\s*animation: none;/);
+});
+
 console.log(`\n${passed} passed, ${failures.length} failed`);
 if (failures.length > 0) {
   console.error("failed: " + failures.join(" | "));

@@ -21,6 +21,7 @@ import { GRADES } from "@/lib/kids/grade";
 import { activeSuggestion } from "@/lib/practice/state";
 import { releaseSharedMicStream } from "@/lib/stt/provider";
 import KidsLoadError from "@/components/home/KidsLoadError";
+import LoadingDots from "@/components/character/LoadingDots";
 import { kidsScreen, loadKids } from "@/lib/kids/load";
 
 type Kid = KidSummary;
@@ -191,15 +192,7 @@ export default function Home() {
 function AppLoadingScreen() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-canvas)]">
-      <div className="flex gap-2" role="status" aria-label="טוען...">
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            className="w-3 h-3 rounded-full bg-[var(--color-teal)] animate-bounce"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
-      </div>
+      <LoadingDots />
     </div>
   );
 }

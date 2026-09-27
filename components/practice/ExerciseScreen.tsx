@@ -32,6 +32,7 @@ import { silenceNudgeActions } from "@/lib/guide/nudges";
 import { createNextPrefetcher, type NextPrefetcher } from "@/lib/exercises/nextPrefetch";
 import { checkWithRecovery, nextWithRetry } from "@/lib/practice/recovery";
 import { leaveNeedsConfirm } from "@/lib/practice/leave";
+import LoadingDots from "@/components/character/LoadingDots";
 import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
@@ -1047,6 +1048,9 @@ export default function ExerciseScreen({
         <div className="flex flex-col items-center justify-center flex-1 gap-4 py-10">
           <Character character={character} pose={pose} size={220} />
           <SpeechBubble text={l.text} lead={l.name} tail="top" tailAlign="center" owner={OWNER} character={character} className="w-full max-w-md" />
+          {/* Visible motion for the wait (QA 2026-09-27: a station load
+              showed a still screen for 8–10s). */}
+          <LoadingDots tone="light" label={l.text} />
         </div>
       </div>
     );
