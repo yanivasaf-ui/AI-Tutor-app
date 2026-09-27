@@ -180,9 +180,40 @@ t("multiple choice: the answer must be on offer exactly once", () => {
 t("niqqud does not hide a violation (checked on the letters)", () => {
   assert.deepEqual(rules(ex({ question: "הִנֵּה כַּמָּה צְדָפִים יֵשׁ לָהּ: 3, 6, 9, 12" })), ["no-series-as-count"]);
 });
-t("Hebrew exercises are not checked — and say so (checked: false)", () => {
+t("Hebrew exercises are not checked by the math rubric — and say so (checked: false)", () => {
   const r = checkQuestionQuality(ex({ subject: "hebrew", question: "יש לה: 3, 6, 9, 12" }));
   assert.deepEqual(r, { ok: true, checked: false, violations: [] });
+});
+
+console.log("\nmultiple-choice options the child can tell apart — every subject (QA 2026-09-26)");
+const heMc = (subtype: Exercise["subtype"], choices: string[], correctAnswer: string) =>
+  checkQuestionQuality(ex({ subject: "hebrew", type: "multiple_choice", subtype, question: "בחרו את הכתיב הנכון", choices, correctAnswer }));
+t("REAL 9b36c671 (grade ג): three byte-identical 'גן החיות' options and one missing a holam — rejected", () => {
+  const r = heMc("spelling_correction_mc", ["גַן הַחַיוֹת", "גַן הַחַיות", "גַן הַחַיוֹת", "גַן הַחַיוֹת"], "גַן הַחַיות");
+  assert.equal(r.ok, false);
+  assert.equal(r.checked, false, "the rest of the rubric still does not run on Hebrew");
+  assert.deepEqual(r.violations.map((v) => v.detail), ["the same choice is offered twice"]);
+});
+t("REAL 645a243f: הסיקו / הסיקוּ / הסיקּו — differ only in a dot, rejected", () => {
+  const r = heMc("spelling_correction_mc", ["הסיקו", "הסיקוּ", "הסיקּו", "הסיקוא"], "הסיקו");
+  assert.deepEqual(r.violations.map((v) => v.detail), ["two choices differ only in niqqud — the child sees the same word twice"]);
+});
+t("REAL fe39ca81: קַיִץ / קַיֵץ in a spelling question — rejected", () => {
+  assert.equal(heMc("spelling_correction_mc", ["קַיִץ", "קַיִיץ", "קַיֵץ", "קַיִיִץ"], "קַיִץ").ok, false);
+});
+t("identical after Unicode normalization (precomposed vs. decomposed) is identical", () => {
+  assert.equal(heMc("comprehension", ["שָׁלוֹם".normalize("NFC"), "שָׁלוֹם".normalize("NFD"), "בית", "גן"], "בית").ok, false);
+});
+t("where niqqud IS the point, niqqud-only differences are the question: vowel choice and root/pattern pass", () => {
+  assert.ok(heMc("vowel_select_mc", ["שָׁלוֹם", "שֶׁלוֹם", "שִׁלוּם", "שׁוּלָם"], "שָׁלוֹם").ok);
+  assert.ok(heMc("root_pattern_mc", ["מְסַפֵּר", "סִפְרִיָּה", "מִסְפָּר", "כּוֹתֵב"], "כּוֹתֵב").ok, "מְסַפֵּר and מִסְפָּר are different words");
+  assert.equal(heMc("vowel_select_mc", ["שָׁלוֹם", "שָׁלוֹם", "שִׁלוּם", "שׁוּלָם"], "שָׁלוֹם").ok, false, "but never the same option twice");
+});
+t("a clean Hebrew spelling question passes", () => {
+  assert.ok(heMc("spelling_correction_mc", ["ראתה", "ראאתה", "ראיתה", "רעתה"], "ראתה").ok);
+});
+t("serving drops such a row (the same gate store.ts runs)", () => {
+  assert.ok(/if \(!checkQuestionQuality\(ex\)\.ok\) return false;/.test(readFileSync(new URL("../lib/exercises/store.ts", import.meta.url), "utf8")));
 });
 t("the retry hint names each broken rule once, in the rubric's Hebrew", () => {
   const hint = qualityRetryHint([

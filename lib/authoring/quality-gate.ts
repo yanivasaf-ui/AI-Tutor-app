@@ -27,9 +27,11 @@ import { otherObjectsNamed } from "@/lib/exercises/grouping-objects";
  * scenario is concrete, most consistency between a story and its numbers.
  * Those are judgment, left to the model review (./quality-review.ts).
  *
- * Math only. Hebrew exercises are returned `checked: false` — the rubric
- * is written for math questions, and saying "ok" there would claim a
- * check that never ran.
+ * Math only, with one exception: the multiple-choice options check
+ * (checkChoices) runs for every subject, since options the child cannot
+ * tell apart make any question unanswerable. Hebrew exercises are returned
+ * `checked: false` — the rest of the rubric is written for math questions,
+ * and saying "checked" there would claim checks that never ran.
  *
  * No runtime imports beyond this directory's rubric data: store.ts reads
  * this, and must not pull the Anthropic SDK in behind it.
@@ -265,13 +267,34 @@ function checkOneTask(q: string, out: QualityViolation[]): void {
   if (questions > 1) out.push({ rule: "one-task", detail: `${questions} questions in one` });
 }
 
+/** Formats where niqqud IS the distinction between options: choosing the
+ *  vowels, and roots/patterns (מְסַפֵּר / מִסְפָּר are different words). */
+const NIQQUD_DISTINGUISHES = new Set(["vowel_select_mc", "root_pattern_mc"]);
+
+/**
+ * The options of a multiple-choice question must be ones the child can
+ * tell apart. Every subject (QA 2026-09-26, grade ג: four "גן החיות"
+ * options, three byte-identical and one missing a holam dot — the question
+ * was unanswerable and the first tap was graded wrong).
+ *   - no option twice (compared in Unicode NFC, spaces collapsed);
+ *   - outside the formats where niqqud is the point, no two options that
+ *     are the same letters: a spelling or reading question cannot hinge on
+ *     a vowel dot (עטפו / עטפוּ, קַיִץ / קַיֵץ);
+ *   - the correct answer is exactly one of them.
+ */
 function checkChoices(ex: Exercise, out: QualityViolation[]): void {
   if (ex.type !== "multiple_choice" || !ex.choices) return;
-  const norm = ex.choices.map((c) => c.trim());
+  const norm = ex.choices.map((c) => c.normalize("NFC").trim().replace(/\s+/g, " "));
   if (new Set(norm).size !== norm.length) {
     out.push({ rule: "unambiguous-answer", detail: "the same choice is offered twice" });
+  } else if (!NIQQUD_DISTINGUISHES.has(ex.subtype ?? "")) {
+    const letters = norm.map((c) => c.replace(NIQQUD, ""));
+    if (new Set(letters).size !== letters.length) {
+      out.push({ rule: "unambiguous-answer", detail: "two choices differ only in niqqud — the child sees the same word twice" });
+    }
   }
-  const hits = norm.filter((c) => c === ex.correctAnswer.trim()).length;
+  const answer = ex.correctAnswer.normalize("NFC").trim().replace(/\s+/g, " ");
+  const hits = norm.filter((c) => c === answer).length;
   if (hits !== 1) {
     out.push({ rule: "unambiguous-answer", detail: `the correct answer appears ${hits} times among the choices` });
   }
@@ -465,14 +488,16 @@ function checkPatternAnswer(ex: Exercise, q: string, out: QualityViolation[]): v
  * no model call — so it runs on every draft and every served bank row.
  */
 export function checkQuestionQuality(ex: Exercise): QualityResult {
-  if (ex.subject !== "math") return { ok: true, checked: false, violations: [] };
-  const q = plain(ex.question);
   const violations: QualityViolation[] = [];
+  // The one rule every subject gets: options the child can tell apart.
+  // Hebrew is otherwise not checked by this rubric (checked: false).
+  checkChoices(ex, violations);
+  if (ex.subject !== "math") return { ok: violations.length === 0, checked: false, violations };
+  const q = plain(ex.question);
   checkSeries(ex, q, violations);
   checkDivision(ex, q, violations);
   checkGrouping(ex, q, violations);
   checkOneTask(q, violations);
-  checkChoices(ex, violations);
   checkPatternAnswer(ex, q, violations);
   checkSeriesDeterminate(ex, q, violations);
   checkTimeOperands(ex, q, violations);
