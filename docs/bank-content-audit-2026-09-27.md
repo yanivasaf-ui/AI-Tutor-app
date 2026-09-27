@@ -33,8 +33,13 @@ Each "after" passes every serving check (format table, operation scope, topic fi
 | `8e543fef` | גימטרייה ג / grouping | (f) | division as counting 18 letters | format table (explain only) |
 | `804ae2af` | לספור ולסדר ג / grouping | (f) | pictogram: "divide the apples into 3 groups to organize the data" | format table |
 
+### The trivial clock question and its siblings (QA: ב השעון)
+
+`f55c6c4b` (math-b-time): "השיעור התחיל בשעה 8:00 והסתיים בשעה 11:00. היכן נמצא זמן סיום השיעור (11:00) על ציר הזמן?", line 8–12, answer 11. Five more rows have the same shape: `6e09b0fa` (8:00 → 8), `7e349d67` (5:00 → 5), `59346614` (45 דקות → 45), `e01de77d` (150 דקות → 150), `a49f8c04` (75 דקות → 75). All six are number lines under time topics, which have no number-line format: refused by the format table, removed by the format cleanup (query C), and now also rejected by the gate's printed-clock-answer rule. Not rewritten: a time question without a clock drawing has no honest number-line version; the time topics' own formats (computation, pick-operation, equation) replace it.
+
 ## New gate rules (generation retries, serving drops)
 
+- (a, clock) a number line in a clock story whose answer is printed in the question — the hour of a stated time, or a stated duration;
 - (b) a square's stated area is a whole number squared (only when the areas are said to be squares' and no other shape is in the question);
 - (c) two options that are the same computation (`3 + 5`/`5 + 3`, `3 + 3`/`3 × 2`); different computations with the same value (`8 − 5`/`6 − 3`) are not flagged;
 - (e) the same word twice in a comma-separated quoted list — every subject;

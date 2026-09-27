@@ -498,6 +498,28 @@ function checkHintContradictsAnswer(ex: Exercise, q: string, out: QualityViolati
   }
 }
 
+/**
+ * A number line in a clock story whose answer is printed in the question:
+ * "השיעור … הסתיים בשעה 11:00. היכן נמצא זמן סיום השיעור (11:00) על ציר
+ * הזמן?" with 8–12 on the line (QA 2026-09-26, bank f55c6c4b) — no clock,
+ * no skill; the child copies 11. Also a duration the story already states
+ * ("היא ציירה 75 דקות. היכן נמצא המספר 75"). Any topic: a topic-less
+ * request can still draw a number line.
+ */
+const CLOCK_TIME = /(?<!\d)(\d{1,2}):(\d{2})(?!\d)/gu;
+function checkClockAnswerPrinted(ex: Exercise, q: string, out: QualityViolation[]): void {
+  if (ex.subtype !== "number_line_placement" && ex.type !== "number_line") return;
+  const clocks = [...q.matchAll(CLOCK_TIME)];
+  if (clocks.length === 0) return;
+  const answer = ex.correctAnswer.trim();
+  if (!/^\d+$/.test(answer)) return;
+  const hourStated = clocks.some((m) => Number(m[1]) === Number(answer));
+  const durationStated = new RegExp(`(?<!\\d)${answer}\\s*(?:דקות|דקה|שעות|שעה)(?![א-ת])`, "u").test(q);
+  if (hourStated || durationStated) {
+    out.push({ rule: "unambiguous-answer", detail: `the answer (${answer}) is printed in the question — a clock time placed on a line tests nothing` });
+  }
+}
+
 /** "איזו פרי" / "איזה צורה": the wrong one of איזה/איזו for a known noun. */
 function checkGenderAgreement(q: string, out: QualityViolation[]): void {
   const hit = q.match(IZO_MASC) ?? q.match(IZE_FEM);
@@ -598,6 +620,7 @@ export function checkQuestionQuality(ex: Exercise): QualityResult {
   checkPatternDrift(ex, q, violations);
   checkSquareAreas(ex, q, violations);
   checkEquivalentChoices(ex, violations);
+  checkClockAnswerPrinted(ex, q, violations);
   return { ok: violations.length === 0, checked: true, violations };
 }
 
