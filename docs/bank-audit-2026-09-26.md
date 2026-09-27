@@ -52,3 +52,9 @@ Of these, 677 fail on format membership (the rows query C lists by id) and 11 ar
 
 Serving already drops every violating row (findReusableExercise runs formatFit), so these rows stop reaching children without any data change. Topics left with few or no servable bank rows fall back to live generation:
 math-g-gematria 0 (explain-only; explain_thinking is not bankable), math-g-volume and hebrew-g-oral-expression 0 (unserved), math-b-geometry 4, math-a-length 5, most Hebrew topics 6.
+
+## The cleanup script (2026-09-27)
+
+`scripts/format-cleanup.ts` holds the 688 ids, materialized from a fresh read-only run of this selection (count 688; md5 of the sorted ids `5150c3b5300b11ae995146ec1890dea6`, matched byte for byte). `--precheck` / `--readback` are read-only SELECTs; `--sql` is one guarded transaction that raises — rolling everything back — unless the fingerprint matches, exactly 688 rows exist and still fail the table, **no `exercise_attempts` row references them**, and the DELETE removes exactly 688.
+
+**Not run.** `exercise_attempts.exercise_id` is `ON DELETE CASCADE`: deleting these rows would erase **55 of the 81 attempt records, for all 3 kids with history**. The script refuses on that guard as written. Keeping or archiving that history is an owner decision. Serving already drops every one of these rows, so nothing reaches a child while it waits.
