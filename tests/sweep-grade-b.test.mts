@@ -123,7 +123,7 @@ for (const f of sweep.findings.filter((x) => x.severity === "P1")) {
 console.log("\nP2 / P3");
 t(`#6 [${STATUS[6].status}] ${STATUS[6].note}`, () => {
   for (const id of sweep.findings.find((f) => f.n === 6)!.rows) {
-    const text = groupingInstructions(row(id).grouping?.items[0]).text;
+    const text = groupingInstructions(row(id).grouping?.items).text;
     assert.ok(!/כוכב/.test(text), `${id}: "${text}"`);
   }
 });

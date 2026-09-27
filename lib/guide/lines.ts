@@ -1,7 +1,7 @@
 import type { CharacterId } from "@/lib/characters";
 import { MIC_BLOCKED, NOT_HEARD, SESSION_COMPLETE, TOPIC_COMPLETE } from "@/lib/feedback/constitution";
 import type { KidGender } from "@/lib/memory/types";
-import { groupingObjectName } from "@/lib/exercises/grouping-objects";
+import { groupingItemsName } from "@/lib/exercises/grouping-objects";
 
 /**
  * Everything the character says, in one place (character-led redesign,
@@ -267,12 +267,13 @@ export const micBlocked = (name: string): Line => ({ name, text: MIC_BLOCKED });
  *  the question and shown as a caption under it (see ExerciseScreen). No
  *  `name`: it's appended to a line that already opens with one.
  *
- *  Names the object actually drawn (`firstItem`, the first of the
- *  exercise's grouping items) — it said "כוכב" for every exercise, while
- *  the bank's are apples, triangles, flowers, clocks… An object with no
- *  known name gets the neutral "חפץ" (lib/exercises/grouping-objects.ts). */
-export const groupingInstructions = (firstItem?: string): Line => ({
-  text: `לוחצים על ${groupingObjectName(firstItem)}, ואז על הקבוצה.`,
+ *  Names the objects actually drawn (`items`, the exercise's grouping
+ *  items — all of them) — it said "כוכב" for every exercise, while the
+ *  bank's are apples, triangles, flowers, clocks… Items with no known name,
+ *  or a pool of different things, get the neutral "חפץ"; a pool of Hebrew
+ *  letters gets "אות" (lib/exercises/grouping-objects.ts). */
+export const groupingInstructions = (items?: readonly string[] | string): Line => ({
+  text: `לוחצים על ${groupingItemsName(items)}, ואז על הקבוצה.`,
 });
 
 export const noContent = (name: string): Line => ({

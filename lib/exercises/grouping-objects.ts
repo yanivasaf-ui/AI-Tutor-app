@@ -96,7 +96,21 @@ export function otherObjectsNamed(story: string, drawn: string): string[] {
 /** The neutral name, for an object with no entry. */
 export const NEUTRAL_OBJECT = "חפץ";
 
-/** The Hebrew name of a grouping object, from its first drawn item. */
+/**
+ * The name for the objects a grouping exercise draws, from ALL of them: the
+ * shared name when every item has the same one ("תפוח"), "אות" when they
+ * are all Hebrew letters (a gematria row draws 18 different letters), and
+ * the neutral "חפץ" when they differ — never the first item's name for a
+ * pool that holds other things too.
+ */
+export function groupingItemsName(items: readonly string[] | string | undefined): string {
+  if (items === undefined || typeof items === "string") return groupingObjectName(items);
+  if (items.length === 0) return NEUTRAL_OBJECT;
+  const names = new Set(items.map(groupingObjectName));
+  return names.size === 1 ? [...names][0] : NEUTRAL_OBJECT;
+}
+
+/** The Hebrew name of one grouping object. */
 export function groupingObjectName(item: string | undefined): string {
   if (!item) return NEUTRAL_OBJECT;
   // Variation selectors and joiners turn "✏" into "✏️"; the name is the same.

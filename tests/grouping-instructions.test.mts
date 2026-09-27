@@ -112,10 +112,32 @@ t("sweep 4f79a2db: 'קוביות' names 🧊 (plural of קובייה), and the v
 
 console.log("\nboth places the instruction appears pass the exercise's object");
 const screen = readFileSync(new URL("../components/practice/ExerciseScreen.tsx", import.meta.url), "utf8");
-t("the spoken script and the caption both call groupingInstructions with the first grouping item", () => {
+t("the spoken script and the caption both call groupingInstructions with ALL the grouping items", () => {
   const calls = screen.match(/lines\.groupingInstructions\([^)]*\)/g) ?? [];
   assert.equal(calls.length, 2, "expected the spoken script and the caption");
-  for (const c of calls) assert.match(c, /grouping\?\.items\[0\]/, c);
+  for (const c of calls) assert.match(c, /grouping\?\.items\)$/, c);
+});
+
+console.log("\nnamed from the whole pool, not its first item (2026-09-27)");
+t("a pool of one object is named by it; a pool of different things is the neutral 'חפץ'", () => {
+  assert.equal(groupingInstructions(Array(6).fill("🍎")).text, "לוחצים על תפוח, ואז על הקבוצה.");
+  assert.equal(groupingInstructions(["🍎", "🍏", "🍎"]).text, "לוחצים על תפוח, ואז על הקבוצה.", "two apple emoji are both apples");
+  assert.equal(groupingInstructions(["🍎", "🍎", "🌸"]).text, "לוחצים על חפץ, ואז על הקבוצה.");
+  assert.equal(groupingInstructions([]).text, "לוחצים על חפץ, ואז על הקבוצה.");
+});
+t("REAL 8e543fef (גימטרייה): 18 different letters → 'אות'", () => {
+  const letters = "אבגדהוזחטיכלמנסעפצ".split("");
+  assert.equal(groupingInstructions(letters).text, "לוחצים על אות, ואז על הקבוצה.");
+});
+t("the surfaces QA saw say the drawn object, never 'כוכב'", () => {
+  const seen: [where: string, items: string[], name: string][] = [
+    ["ב מספרים עד 1,000", Array(12).fill("🍎"), "תפוח"],
+    ["ב גופים (קוביות)", Array(12).fill("🧊"), "קובייה"],
+    ["ב גופים / ג שטח (ריבועים)", Array(8).fill("🟦"), "ריבוע"],
+    ["ג שטח", Array(6).fill("⬜"), "ריבוע"],
+    ["ג גימטרייה", Array(9).fill("⬛"), "ריבוע"],
+  ];
+  for (const [where, items, name] of seen) assert.equal(groupingInstructions(items).text, `לוחצים על ${name}, ואז על הקבוצה.`, where);
 });
 
 console.log("\none render per object type: the widget draws the object the caption names");

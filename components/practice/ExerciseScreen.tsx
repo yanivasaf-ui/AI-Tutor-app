@@ -341,7 +341,7 @@ export default function ExerciseScreen({
    *  render below) since the interaction isn't otherwise self-explanatory
    *  (2026-09-12 iPhone QA: grouping was an unexplained dead end). */
   function questionSpeech(ex: Exercise) {
-    return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions(ex.grouping?.items[0]).text : null]
+    return [`${kidName},`, ex.passage, ex.question, ex.type === "grouping" ? lines.groupingInstructions(ex.grouping?.items).text : null]
       .filter(Boolean)
       .join(" ");
   }
@@ -1168,7 +1168,7 @@ export default function ExerciseScreen({
 
           {!evaluation && exercise.type === "grouping" && (
             <p className="text-center text-base text-[var(--color-ink-soft)] px-2 -mt-1">
-              {lines.groupingInstructions(exercise.grouping?.items[0]).text}
+              {lines.groupingInstructions(exercise.grouping?.items).text}
             </p>
           )}
 
