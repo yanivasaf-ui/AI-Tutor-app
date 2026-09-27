@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createKid, getKid, listKids, setKidAvatar, setKidGender, setKidGrade } from "@/lib/memory/store";
+import { clearGradeDependentSummaries, createKid, getKid, listKids, setKidAvatar, setKidGender, setKidGrade } from "@/lib/memory/store";
 import { pickOpenerFact, recentKidFacts } from "@/lib/memory/kidMemory";
 import { getParentFlags, getRecentAttempts, getSubjectStats } from "@/lib/dashboard/store";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -169,6 +169,11 @@ export async function PATCH(req: NextRequest) {
     }
     if (isGrade(body.grade) && !(await setKidGrade(supabase, id, body.grade))) {
       throw new Error("grade update failed");
+    }
+    // A real grade change makes the stored level/summary stale (they were
+    // written for the old grade): clear them so they are rebuilt.
+    if (isGrade(body.grade) && body.grade !== kid.grade && !(await clearGradeDependentSummaries(supabase, id))) {
+      throw new Error("summary reset after grade change failed");
     }
     if (isGender(body.gender) && !(await setKidGender(supabase, id, body.gender))) {
       throw new Error("gender update failed");
