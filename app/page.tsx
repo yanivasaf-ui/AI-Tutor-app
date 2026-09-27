@@ -6,6 +6,7 @@ import SpeechBubble from "@/components/character/SpeechBubble";
 import KidHome, { type KidSummary } from "@/components/home/KidHome";
 import ScopedChat from "@/components/chat/ScopedChat";
 import SuggestPractice from "@/components/parent/SuggestPractice";
+import GradePrompt from "@/components/parent/GradePrompt";
 import MuteToggle from "@/components/character/MuteToggle";
 import { CHARACTERS, normalizeCharacterId, type CharacterId, type CharacterPose } from "@/lib/characters";
 import { useGuide } from "@/lib/guide/useGuide";
@@ -713,6 +714,9 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                     </span>
                   )}
                 </div>
+
+                {/* A kid with no grade yet: ask the parent, inline, until one is set. */}
+                {kid.grade == null && <GradePrompt kidId={kid.id} kidName={kid.name} onSaved={load} />}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   {(["math", "hebrew"] as const).map((subject) => {

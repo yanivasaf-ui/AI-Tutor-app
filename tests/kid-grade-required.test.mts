@@ -11,6 +11,13 @@ import { readFileSync } from "node:fs";
 import { validateNewKid } from "../lib/kids/newKid";
 import { GRADES } from "../lib/kids/grade";
 import { TOPICS } from "../lib/map/topics";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import React from "react";
+(globalThis as unknown as { React: typeof React }).React = React;
+const promptModule = await import("../components/parent/GradePrompt");
+const unwrap = (m: unknown): unknown => (m && typeof m === "object" && "default" in m ? unwrap((m as { default: unknown }).default) : m);
+const GradePrompt = unwrap(promptModule) as typeof promptModule.default;
 
 let passed = 0;
 const failures: string[] = [];
@@ -75,6 +82,24 @@ t("onboarding sends the chosen grade, with no fallback, and never saves a new ki
   assert.match(page, /if \(mode !== "repick" && !grade\) return;/);
   assert.match(page, /body: JSON\.stringify\(\{ name: trimmed, avatarId: picked, grade, gender \}\)/);
   assert.match(page, /\{grade && \(\s*<button onClick=\{save\}/, "the start button appears only once a grade is picked");
+});
+
+console.log("\nexisting kids with no grade: the parent is asked, inline");
+t("the prompt names the kid and offers exactly the product's grades", () => {
+  const html = renderToStaticMarkup(createElement(GradePrompt, { kidId: "k1", kidName: "דנה", onSaved: () => {} }));
+  assert.match(html, /באיזו כיתה דנה\?/);
+  assert.deepEqual([...html.matchAll(/<button[^>]*>(כיתה [אבג]׳)<\/button>/g)].map((m) => m[1]), ["כיתה א׳", "כיתה ב׳", "כיתה ג׳"]);
+  assert.match(html, /בינתיים התרגילים הם של כיתה א׳/, "says what happens until then");
+});
+t("it saves through PATCH /api/kids with the kid's id and the grade, then reloads the dashboard", () => {
+  const c = src("components/parent/GradePrompt.tsx");
+  assert.match(c, /fetch\("\/api\/kids", \{\s*method: "PATCH",[\s\S]{0,120}body: JSON\.stringify\(\{ id: kidId, grade \}\)/);
+  assert.match(c, /if \(!res\.ok\) throw new Error[\s\S]{0,40}onSaved\(\);/);
+});
+t("the dashboard shows it only for a kid whose grade is missing — and nothing else changes for the kid", () => {
+  const page = src("app/page.tsx");
+  assert.match(page, /\{kid\.grade == null && <GradePrompt kidId=\{kid\.id\} kidName=\{kid\.name\} onSaved=\{load\} \/>\}/);
+  assert.match(src("lib/kids/grade.ts"), /return kid\.grade \?\? readLegacyStoredGrade\(kid\.id\) \?\? "א";/, "the kid's fallback until then is unchanged");
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed`);
