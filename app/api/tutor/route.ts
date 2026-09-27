@@ -584,7 +584,12 @@ async function handleAnswerExercise(
         justFinishedTopic: boolean;
         kid: Awaited<typeof kidPromise>;
       }> => {
-        const kid = await kidPromise;
+        // A failed kid lookup must not break the stream after the verdict
+        // was sent (QA 2026-09-26: "משהו השתבש" replaced a correct verdict).
+        const kid = await kidPromise.catch((err) => {
+          console.error("[exercise-answer] kid lookup failed after the verdict:", err instanceof Error ? err.message : err);
+          return null;
+        });
         const topicMeta = topicId ? getTopicById(topicId) : undefined;
         if (!kid || !topicMeta || topicMeta.subject !== exercise.subject) {
           return { justFinishedTopic: false, kid };
@@ -608,6 +613,18 @@ async function handleAnswerExercise(
         }
       })();
 
+      // The deterministic remainder the gate uses, for when the prose (or
+      // anything else after the verdict) fails.
+      const deterministic = () => ({
+        feedback: safeFeedbackAfterOpener("", {
+          verifiedAnswer: verdict.verifiedAnswer,
+          correct: verdict.correct,
+          secondAttempt: verdict.secondAttempt,
+          computation: exercise.computation,
+        }),
+        errorNote: undefined as string | undefined,
+      });
+
       const prosePromise = (async () => {
         try {
           return await generateFeedbackProse(exercise, answer, verdict, {
@@ -619,19 +636,17 @@ async function handleAnswerExercise(
           // prose call must not cost the child their feedback, so fall
           // through to the same deterministic remainder the gate uses.
           console.error("[exercise-evaluate] prose failed, using deterministic line:", err);
-          return {
-            feedback: safeFeedbackAfterOpener("", {
-              verifiedAnswer: verdict.verifiedAnswer,
-              correct: verdict.correct,
-              secondAttempt: verdict.secondAttempt,
-              computation: exercise.computation,
-            }),
-            errorNote: undefined as string | undefined,
-          };
+          return deterministic();
         }
       })();
 
-      const [{ practice, justFinishedTopic, kid }, prose] = await Promise.all([practicePromise, prosePromise]);
+      // Both halves catch their own failures; this is the last guard, so
+      // that nothing after the verdict can cut the stream and leave the
+      // child with a broken turn instead of their feedback.
+      const [{ practice, justFinishedTopic, kid }, prose] = await Promise.all([practicePromise, prosePromise]).catch((err) => {
+        console.error("[exercise-answer] after-verdict step failed, sending the deterministic line:", err instanceof Error ? err.message : err);
+        return [{ practice: undefined, justFinishedTopic: false, kid: null }, deterministic()] as const;
+      });
 
       // Line 2 — the gated prose, plus the level the answer moved.
       send({ type: "prose", feedback: prose.feedback, errorNote: prose.errorNote, practice });

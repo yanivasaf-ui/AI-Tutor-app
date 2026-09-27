@@ -286,6 +286,11 @@ export const somethingBroke = (name: string): Line => ({ name, text: "משהו �
  *  this time (it will not serve an unchecked one instead). Not a fault the
  *  child should hear as "something broke" — just "not ready, try again". */
 export const couldNotBuild = (name: string): Line => ({ name, text: "לא הצלחתי להכין תרגיל טוב הפעם. ננסה שוב?" });
+/** The answer could not be checked (the check failed twice before any
+ *  verdict). Not "something broke", and never a wrong answer: the child's
+ *  answer is kept and "לנסות שוב" checks the same answer again.
+ *  UDI REVIEW (2026-09-27). */
+export const couldNotCheck = (name: string): Line => ({ name, text: "לא הצלחתי לבדוק את התשובה. ננסה שוב?" });
 
 /** The exercise question, as the character's line. */
 export const question = (name: string, text: string): Line => ({ name, text });

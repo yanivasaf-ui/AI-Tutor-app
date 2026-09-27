@@ -103,9 +103,10 @@ await at("the route produces through produceExercise and answers try_again with 
     assert.ok(!gone.test(store.replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "")), `store still has ${gone}`);
   }
 });
-await at("the screen turns a 503 try_again into its own retry state, with the calm line (not 'משהו השתבש')", () => {
-  assert.match(screen, /res\.status === 503 && data\?\.error === "try_again"[\s\S]{0,300}setNotReady\(true\)/);
-  assert.equal((screen.match(/notReady \? lines\.couldNotBuild\(kidName\) : lines\.somethingBroke\(kidName\)/g) ?? []).length, 2, "both the spoken line and the bubble");
+await at("the screen turns a 503 try_again into the retry state, with the calm line (not 'משהו השתבש')", () => {
+  assert.match(screen, /if \(res\.status === 503 && data\?\.error === "try_again"\) return \{ kind: "not_ready" \};/);
+  // 2026-09-27: every failed load now uses the calm line (not only try_again)
+  assert.equal((screen.match(/loadFailed \? lines\.couldNotBuild\(kidName\) : lines\.noContent\(kidName\)/g) ?? []).length, 2, "both the spoken line and the bubble");
   assert.match(screen, /\{loadFailed && \(\s*<button onClick=\{\(\) => loadNextExercise\(\)\}/, "the retry button shows for try_again too (loadFailed is set)");
 });
 await at("the try-again line passes the feedback constitution and differs from 'something broke'", () => {

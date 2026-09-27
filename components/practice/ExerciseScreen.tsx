@@ -30,6 +30,7 @@ import type { PracticeMode, PracticeSummary } from "@/lib/practice/state";
 import { createSilenceNudge, type SilenceNudge } from "@/lib/voice/silenceNudge";
 import { silenceNudgeActions } from "@/lib/guide/nudges";
 import { createNextPrefetcher, type NextPrefetcher } from "@/lib/exercises/nextPrefetch";
+import { checkWithRecovery, nextWithRetry } from "@/lib/practice/recovery";
 import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
@@ -44,6 +45,10 @@ const NEXT_PREFETCH_DELAY_MS = 2500;
 /** This screen's character, in the speech owner model — only it lip-syncs
  *  to lines said here. */
 const OWNER = "exercise";
+/** The quiet second chance before a failure is shown: a failed next-exercise
+ *  fetch, and an answer check that failed before any verdict. One each. */
+const NEXT_RETRY_MS = 800;
+const CHECK_RETRY_MS = 600;
 
 interface Props {
   subject: "math" | "hebrew";
@@ -141,13 +146,13 @@ export default function ExerciseScreen({
   const [evaluation, setEvaluation] = useState<ExerciseEvaluation | null>(null);
   const [loadingExercise, setLoadingExercise] = useState(false);
   const [loadedOnce, setLoadedOnce] = useState(false);
-  /** The last load failed (network, 5xx, unreadable response) — as opposed
-   *  to the API genuinely having nothing for this topic. Different
-   *  screens: one offers a retry, the other a way back to the map. */
+  /** The next exercise could not be had — after one silent retry (network,
+   *  5xx, unreadable response, or the server's "try_again": nothing passed
+   *  the content checks) — as opposed to the API genuinely having nothing
+   *  for this topic. Different screens: one offers a retry, the other a way
+   *  back to the map. Never the generic "something broke" (QA 2026-09-26):
+   *  the calm lines.couldNotBuild, and the session and progress are kept. */
   const [loadFailed, setLoadFailed] = useState(false);
-  // The server answered "try_again": no exercise passed the content checks
-  // this time. Shown with its own, calmer line (lines.couldNotBuild).
-  const [notReady, setNotReady] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [listening, setListening] = useState(false);
   const [noMatch, setNoMatch] = useState(false);
@@ -175,9 +180,13 @@ export default function ExerciseScreen({
   const [confirmingLeave, setConfirmingLeave] = useState(false);
   /** 1 on a fresh question, 2 on the retry after a hint. */
   const [attempt, setAttempt] = useState<1 | 2>(1);
-  /** The last evaluation is the "something broke" stand-in, not a real
-   *  judgement — a retry after it doesn't use up the kid's second try. */
-  const [evalFailed, setEvalFailed] = useState(false);
+  /** The answer could not be checked — twice, before any verdict. Not a
+   *  judgement and never shown as a wrong answer: the answer is kept, and
+   *  "לנסות שוב" checks the SAME answer again (lastAnswerRef). A verdict
+   *  that did arrive is never replaced by an error (QA 2026-09-26: a
+   *  correct answer turned into "משהו השתבש", then the question repeated). */
+  const [checkFailed, setCheckFailed] = useState(false);
+  const lastAnswerRef = useRef<{ value: string; opts?: { viaVoice?: boolean } } | null>(null);
   /** The kid's level on this topic, from the server. Null until known,
    *  and while the first-visit diagnostic is still placing them. */
   const [practice, setPractice] = useState<PracticeSummary | null>(null);
@@ -389,9 +398,8 @@ export default function ExerciseScreen({
     setTopicCelebration(false);
     setBasePose("thinking");
     setLoadFailed(false);
-    setNotReady(false);
     setAttempt(1);
-    setEvalFailed(false);
+    setCheckFailed(false);
     if (prefetched) {
       setExercise(prefetched);
       // The prefetch's own practice snapshot predates the answer just given;
@@ -402,41 +410,46 @@ export default function ExerciseScreen({
       setLoadedOnce(true);
       return;
     }
-    try {
-      const res = await fetch("/api/tutor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId }),
-      });
-      // A body that isn't JSON (a platform error page, a cut-off response)
-      // is a failure, not an empty topic.
-      const data = (await res.json().catch(() => null)) as {
-        exercise?: Exercise | null;
-        error?: string;
-        practice?: PracticeSummary;
-      } | null;
-      if (res.ok && data?.exercise) {
-        setExercise(data.exercise);
-        setPractice((p) => data.practice ?? (p && { ...p, change: null }));
-      } else if (res.status === 404 && data?.error === "no_content") {
+    // One fetch of the next exercise. "failed" is a fault (network, 5xx, a
+    // body that isn't JSON); "not_ready" is the server's honest try_again.
+    type Next = { kind: "ok"; exercise: Exercise; practice?: PracticeSummary } | { kind: "none" } | { kind: "not_ready" } | { kind: "failed" };
+    const fetchNext = async (): Promise<Next> => {
+      try {
+        const res = await fetch("/api/tutor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "generate_exercise", subject, grade, kidId, topic: topicId }),
+        });
+        // A body that isn't JSON (a platform error page, a cut-off response)
+        // is a failure, not an empty topic.
+        const data = (await res.json().catch(() => null)) as {
+          exercise?: Exercise | null;
+          error?: string;
+          practice?: PracticeSummary;
+        } | null;
+        if (res.ok && data?.exercise) return { kind: "ok", exercise: data.exercise, practice: data.practice };
         // The one genuine "nothing to practice here" answer — see
         // NoCurriculumContentError in lib/exercises/generate.ts.
-        setExercise(null);
-      } else if (res.status === 503 && data?.error === "try_again") {
-        // No exercise passed the checks this time; the server will not serve
-        // an unchecked one. A retry, with honest words (not "something broke").
-        setExercise(null);
-        setLoadFailed(true);
-        setNotReady(true);
-      } else {
-        // 5xx, any other error status, or a 200 with no exercise in it.
-        setExercise(null);
-        setLoadFailed(true);
+        if (res.status === 404 && data?.error === "no_content") return { kind: "none" };
+        // No exercise passed the checks; the server already retried.
+        if (res.status === 503 && data?.error === "try_again") return { kind: "not_ready" };
+        return { kind: "failed" };
+      } catch {
+        // fetch itself threw: offline, DNS, connection dropped.
+        return { kind: "failed" };
       }
-    } catch {
-      // fetch itself threw: offline, DNS, connection dropped.
-      setExercise(null);
-      setLoadFailed(true);
+    };
+    try {
+      // A fault gets one quiet second chance before the child sees anything.
+      const next = await nextWithRetry(fetchNext, NEXT_RETRY_MS);
+      if (next.kind === "ok") {
+        setExercise(next.exercise);
+        const fresh = next.practice;
+        setPractice((p) => fresh ?? (p && { ...p, change: null }));
+      } else {
+        setExercise(null);
+        setLoadFailed(next.kind !== "none");
+      }
     } finally {
       setLoadingExercise(false);
       setLoadedOnce(true);
@@ -547,11 +560,11 @@ export default function ExerciseScreen({
   }, [exercise]);
 
   // No exercise: say which dead end this is, out loud — "nothing here yet"
-  // and "something broke" are different situations with different ways out.
+  // and "couldn't build one" are different situations with different ways out.
   useEffect(() => {
     if (!loadedOnce || loadingExercise || exercise) return;
     setBasePose("thinking");
-    speakAuto(lines.spoken(loadFailed ? (notReady ? lines.couldNotBuild(kidName) : lines.somethingBroke(kidName)) : lines.noContent(kidName)));
+    speakAuto(lines.spoken(loadFailed ? lines.couldNotBuild(kidName) : lines.noContent(kidName)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadedOnce, loadingExercise, exercise, loadFailed]);
 
@@ -573,6 +586,7 @@ export default function ExerciseScreen({
   async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
+    setCheckFailed(false);
     answerInFlightRef.current = true;
     setNoMatch(false);
     setBasePose("thinking");
@@ -601,7 +615,8 @@ export default function ExerciseScreen({
       speakAuto(text, { live: true });
     };
 
-    try {
+    // One check of the answer: the verdict line, then the prose line.
+    const check = async () => {
       const res = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -649,8 +664,7 @@ export default function ExerciseScreen({
             if (sinceEnd !== null) recordTiming("verdict", sinceEnd);
             opener = msg.opener ?? "";
             const correct = msg.correct === true;
-            setEvalFailed(false);
-            setEvaluation({ correct, feedback: opener });
+              setEvaluation({ correct, feedback: opener });
             // Kid-scene reskin: count DISTINCT exercises, not submissions —
             // a retry (attempt 2) is still the same exercise, so only a
             // fresh question (attempt 1) advances "attempted"; "correct"
@@ -712,11 +726,25 @@ export default function ExerciseScreen({
         }
       }
       if (!sawVerdict) throw new Error("no verdict in stream");
-    } catch {
-      setEvalFailed(true);
-      setEvaluation({ correct: false, feedback: lines.somethingBroke(kidName).text });
-      setBasePose("encouraging");
-      speakAuto(lines.spoken(lines.somethingBroke(kidName)));
+    };
+
+    try {
+      // lib/practice/recovery.ts: a failure before the verdict is retried
+      // once with the same answer; a verdict that arrived stands — never
+      // replaced by an error, never re-asked (only the prose was lost).
+      const outcome = await checkWithRecovery(check, {
+        sawVerdict: () => sawVerdict,
+        stillCurrent: () => gen === proseGenRef.current,
+        retryMs: CHECK_RETRY_MS,
+      });
+      if (outcome === "unchecked") {
+        // No verdict, twice. Not a judgement: keep the answer, say so
+        // calmly, and let "לנסות שוב" check the same answer again.
+        lastAnswerRef.current = { value, opts };
+        setCheckFailed(true);
+        setBasePose("thinking");
+        speakAuto(lines.spoken(lines.couldNotCheck(kidName)));
+      }
     } finally {
       answerInFlightRef.current = false;
       setSubmitting(false);
@@ -1014,12 +1042,12 @@ export default function ExerciseScreen({
     );
   }
 
-  // No exercise. A failed load gets "something broke" and a retry; a
+  // No exercise. A failed load gets "couldn't build one" and a retry; a
   // genuinely empty topic gets "nothing here yet" and the way back. Both
   // keep the `thinking` pose — `encouraging` is the wrong-answer pose, and
   // a server hiccup isn't the kid's mistake.
   if (!exercise) {
-    const l = loadFailed ? (notReady ? lines.couldNotBuild(kidName) : lines.somethingBroke(kidName)) : lines.noContent(kidName);
+    const l = loadFailed ? lines.couldNotBuild(kidName) : lines.noContent(kidName);
     const primary = "min-h-16 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-xl font-medium";
     const secondary = "min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] text-[var(--color-ink)] text-lg font-medium shadow-sm";
     return (
@@ -1057,6 +1085,7 @@ export default function ExerciseScreen({
   if (submitting) main = { line: lines.thinking(character, kidName), tone: "default" };
   else if (evaluation)
     main = { line: lines.feedback(kidName, evaluation.feedback), tone: evaluation.correct ? "success" : "warm" };
+  else if (checkFailed) main = { line: lines.couldNotCheck(kidName), tone: "warm" };
   else if (micDenied && !listening) main = { line: lines.micBlocked(kidName), tone: "warm" };
   else if (repairState.stage.kind !== "idle" && !listening)
     // The ladder always has something to say, and it is more useful than
@@ -1073,7 +1102,7 @@ export default function ExerciseScreen({
   const micApplies = exercise.type !== "tile_order" && exercise.type !== "grouping";
   // Second miss on the same question: the feedback is the full
   // explanation, and the way on is a new (easier) exercise, not a retry.
-  const finalMiss = !!evaluation && !evaluation.correct && attempt === 2 && !evalFailed;
+  const finalMiss = !!evaluation && !evaluation.correct && attempt === 2;
 
   return (
     <div
@@ -1301,12 +1330,27 @@ export default function ExerciseScreen({
           {evaluation && !evaluation.correct && !finalMiss && (
             <button
               onClick={() => {
-                if (!evalFailed) setAttempt(2);
+                setAttempt(2);
                 setEvaluation(null);
                 setBasePose("explaining");
                 speakQuestionAndMaybeReadout(exercise);
               }}
               className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-surface)] border-2 border-[var(--color-warm)]/40 text-lg text-[var(--color-ink)]"
+            >
+              לנסות שוב
+            </button>
+          )}
+
+          {/* The answer could not be checked (twice, before any verdict):
+              check the SAME answer again. Nothing was judged, nothing is
+              lost, and the question is not re-asked. */}
+          {checkFailed && !evaluation && !submitting && lastAnswerRef.current && (
+            <button
+              onClick={() => {
+                const last = lastAnswerRef.current;
+                if (last) void submitAnswer(last.value, last.opts);
+              }}
+              className="self-center min-h-14 px-8 rounded-[var(--radius-button)] bg-[var(--color-teal)] text-white text-lg font-medium"
             >
               לנסות שוב
             </button>
