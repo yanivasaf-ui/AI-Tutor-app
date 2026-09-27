@@ -31,6 +31,7 @@ import { createSilenceNudge, type SilenceNudge } from "@/lib/voice/silenceNudge"
 import { silenceNudgeActions } from "@/lib/guide/nudges";
 import { createNextPrefetcher, type NextPrefetcher } from "@/lib/exercises/nextPrefetch";
 import { checkWithRecovery, nextWithRetry } from "@/lib/practice/recovery";
+import { leaveNeedsConfirm } from "@/lib/practice/leave";
 import type { KidGender } from "@/lib/memory/types";
 
 const SESSION_TARGET_MS = 15 * 60 * 1000;
@@ -997,7 +998,16 @@ export default function ExerciseScreen({
   const topBar = (
     <div className="pt-2 pb-1">
       <div className="flex justify-between items-center">
-        <button onClick={() => setConfirmingLeave(true)} className="min-h-11 px-1 text-sm text-white/80">
+        <button
+          onClick={() =>
+            // Ask only when something would be lost (lib/practice/leave.ts):
+            // never after a finished exercise, never with none on screen.
+            leaveNeedsConfirm({ hasExercise: !!exercise, loading: loadingExercise, evaluation, attempt })
+              ? setConfirmingLeave(true)
+              : onBackToMap()
+          }
+          className="min-h-11 px-1 text-sm text-white/80"
+        >
           ← {backLabel}
         </button>
         <div className="flex items-center gap-3">
