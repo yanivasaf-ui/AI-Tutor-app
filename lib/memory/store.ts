@@ -124,6 +124,21 @@ export async function setKidGrade(supabase: Client, id: string, grade: Grade): P
   return !error;
 }
 
+/**
+ * After a grade change: clear what was written for the OLD grade — the
+ * model-written level and summary of every subject profile the kid has.
+ * They are rebuilt from the next exchange, under the new grade. Only
+ * existing rows are touched (update, not upsert). QA 2026-09-27: the
+ * parent dashboard still said "מתאים לכיתה ב" after the grade changed.
+ */
+export async function clearGradeDependentSummaries(supabase: Client, kidId: string): Promise<boolean> {
+  const { error } = await supabase
+    .from("subject_profiles")
+    .update({ estimated_level: "", recent_summary: "" })
+    .eq("kid_id", kidId);
+  return !error;
+}
+
 export async function setKidGender(supabase: Client, id: string, gender: KidGender): Promise<boolean> {
   const { error } = await supabase.from("kids").update({ gender }).eq("id", id);
   return !error;

@@ -17,10 +17,12 @@ import { authErrorMessage } from "@/lib/auth/errors";
 import type { ParentFlag, RecentAttempt, SubjectStats } from "@/lib/dashboard/types";
 import type { KidGender, SubjectProfile } from "@/lib/memory/types";
 import type { Grade } from "@/lib/exercises/types";
+import { summaryForDisplay } from "@/lib/dashboard/summary";
 import { GRADES } from "@/lib/kids/grade";
 import { activeSuggestion } from "@/lib/practice/state";
 import { releaseSharedMicStream } from "@/lib/stt/provider";
 import KidsLoadError from "@/components/home/KidsLoadError";
+import LoadingDots from "@/components/character/LoadingDots";
 import { kidsScreen, loadKids } from "@/lib/kids/load";
 
 type Kid = KidSummary;
@@ -191,15 +193,7 @@ export default function Home() {
 function AppLoadingScreen() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-canvas)]">
-      <div className="flex gap-2" role="status" aria-label="טוען...">
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            className="w-3 h-3 rounded-full bg-[var(--color-teal)] animate-bounce"
-            style={{ animationDelay: `${i * 0.15}s` }}
-          />
-        ))}
-      </div>
+      <LoadingDots />
     </div>
   );
 }
@@ -644,6 +638,7 @@ interface DashboardKid {
   id: string;
   name: string;
   avatarId: string | null;
+  grade: Grade | null;
   subjects: Partial<Record<"math" | "hebrew", SubjectProfile>>;
 }
 
@@ -721,6 +716,8 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                   {(["math", "hebrew"] as const).map((subject) => {
                     const profile = kid.subjects?.[subject];
                     const stats = d?.subjectStats.find((s) => s.subject === subject);
+                    // Never a summary that names another grade (see lib/dashboard/summary.ts).
+                    const summary = summaryForDisplay(profile?.recentSummary, kid.grade);
                     return (
                       <div key={subject} className="border rounded-2xl p-3">
                         <h3 className="font-semibold text-[var(--color-ink)] mb-1">{SUBJECT_LABELS[subject]}</h3>
@@ -732,7 +729,7 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
                         ) : (
                           <p className="text-sm text-slate-400 mb-1">אין עדיין תרגילים</p>
                         )}
-                        {profile?.recentSummary && <p className="text-sm text-[var(--color-ink-soft)]">{profile.recentSummary}</p>}
+                        {summary && <p className="text-sm text-[var(--color-ink-soft)]">{summary}</p>}
                         {profile?.topicsCovered && profile.topicsCovered.length > 0 && (
                           <p className="text-xs text-slate-400 mt-1">נושאים: {profile.topicsCovered.join(", ")}</p>
                         )}
