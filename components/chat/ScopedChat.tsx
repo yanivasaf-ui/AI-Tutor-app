@@ -133,7 +133,7 @@ export default function ScopedChat({
       </div>
 
       {failed && (
-        <p className="text-sm text-[var(--color-ink-soft)]">משהו השתבש בשיחה, אבל אפשר להמשיך.</p>
+        <p className="text-sm text-[var(--color-ink-soft)]">אופס, משהו לא עבד לי. ננסה שוב?</p>
       )}
 
       {done ? (
