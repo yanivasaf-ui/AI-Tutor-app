@@ -47,7 +47,7 @@ Each "after" passes every serving check (format table, operation scope, topic fi
 
 ## Gaps (not improvised)
 
-1. **(a) number lines in the length topics.** "The tree is 45 cm. Where is 45 on the line?" names its own answer. Everywhere else such rows are refused (numbers topics: placing a named number *is* the skill; operations topics: G5; other topics: no number-line format). In math-a-length (5 rows) and math-b-length (1 row) the table allows the number line, and G2 made a-length "measurement only (ruler / number line)". Refusing them would leave a-length with no bank rows. Owner decision needed.
+1. **(a) number lines in the length topics — owner decision (2026-09-27): ALLOW.** Answer-in-stem does not apply to number-line placement in the length topics: the stated measurement is the task input, matching the G2 ruler/number-line ruling. Those rows stay served; no code or gate change.
 2. **(a) "N things … how many things?"** has no general code rule: the pattern also matches honest comparisons whose answer happens to equal a story number (e.g. `1de8ced9`, 18 − 9 = 9). All instances found are already out of serving.
 3. **(d) gender** has no code rule: name-and-pronoun matching gave 13 false positives out of 19 (pronouns referring to objects). The audit was that match plus a manual review.
 4. **(e) typos** have no general detector (no Hebrew spell-checker in the stack). `עניבים` was found by searching fruit contexts.
