@@ -98,7 +98,8 @@ export async function createKid(
   parentId: string,
   name: string,
   avatarId: string | null,
-  grade: Grade | null,
+  /** Required: a kid is never created without a grade. */
+  grade: Grade,
   gender: KidGender | null
 ): Promise<KidProfile> {
   const { data, error } = await supabase
