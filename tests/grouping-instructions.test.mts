@@ -65,8 +65,8 @@ t("'כוכב' is said only for a star", () => {
   for (const [emoji] of PROD_OBJECTS) assert.ok(!/כוכב/.test(groupingInstructions(emoji).text), emoji);
 });
 t("an object with no name gets the neutral wording, never a wrong name", () => {
-  for (const unknown of ["🦖", "🛸", "#", "?", "12", ""]) assert.equal(groupingInstructions(unknown).text, "לוחצים על חפץ, ואז על הקבוצה.", unknown);
-  assert.equal(groupingInstructions(undefined).text, "לוחצים על חפץ, ואז על הקבוצה.");
+  for (const unknown of ["🦖", "🛸", "#", "?", "12", ""]) assert.equal(groupingInstructions(unknown).text, "לוחצים על ציור, ואז על הקבוצה.", unknown);
+  assert.equal(groupingInstructions(undefined).text, "לוחצים על ציור, ואז על הקבוצה.");
 });
 t("a variation selector doesn't change the name ('✏' and '✏️')", () => {
   assert.equal(groupingObjectName("✏"), groupingObjectName("✏️"));
@@ -119,11 +119,11 @@ t("the spoken script and the caption both call groupingInstructions with ALL the
 });
 
 console.log("\nnamed from the whole pool, not its first item (2026-09-27)");
-t("a pool of one object is named by it; a pool of different things is the neutral 'חפץ'", () => {
+t("a pool of one object is named by it; a pool of different things is the neutral 'ציור'", () => {
   assert.equal(groupingInstructions(Array(6).fill("🍎")).text, "לוחצים על תפוח, ואז על הקבוצה.");
   assert.equal(groupingInstructions(["🍎", "🍏", "🍎"]).text, "לוחצים על תפוח, ואז על הקבוצה.", "two apple emoji are both apples");
-  assert.equal(groupingInstructions(["🍎", "🍎", "🌸"]).text, "לוחצים על חפץ, ואז על הקבוצה.");
-  assert.equal(groupingInstructions([]).text, "לוחצים על חפץ, ואז על הקבוצה.");
+  assert.equal(groupingInstructions(["🍎", "🍎", "🌸"]).text, "לוחצים על ציור, ואז על הקבוצה.");
+  assert.equal(groupingInstructions([]).text, "לוחצים על ציור, ואז על הקבוצה.");
 });
 t("REAL 8e543fef (גימטרייה): 18 different letters → 'אות'", () => {
   const letters = "אבגדהוזחטיכלמנסעפצ".split("");

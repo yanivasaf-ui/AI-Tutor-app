@@ -270,7 +270,7 @@ export const micBlocked = (name: string): Line => ({ name, text: MIC_BLOCKED });
  *  Names the objects actually drawn (`items`, the exercise's grouping
  *  items — all of them) — it said "כוכב" for every exercise, while the
  *  bank's are apples, triangles, flowers, clocks… Items with no known name,
- *  or a pool of different things, get the neutral "חפץ"; a pool of Hebrew
+ *  or a pool of different things, get the neutral "ציור"; a pool of Hebrew
  *  letters gets "אות" (lib/exercises/grouping-objects.ts). */
 export const groupingInstructions = (items?: readonly string[] | string): Line => ({
   text: `לוחצים על ${groupingItemsName(items)}, ואז על הקבוצה.`,
@@ -286,12 +286,12 @@ export const somethingBroke = (name: string): Line => ({ name, text: "משהו �
 /** The server could not produce an exercise that passes every content check
  *  this time (it will not serve an unchecked one instead). Not a fault the
  *  child should hear as "something broke" — just "not ready, try again". */
-export const couldNotBuild = (name: string): Line => ({ name, text: "לא הצלחתי להכין תרגיל טוב הפעם. ננסה שוב?" });
+export const couldNotBuild = (name: string): Line => ({ name, text: "אופס, לא הצלחתי להכין תרגיל. ננסה שוב?" });
 /** The answer could not be checked (the check failed twice before any
  *  verdict). Not "something broke", and never a wrong answer: the child's
  *  answer is kept and "לנסות שוב" checks the same answer again.
- *  UDI REVIEW (2026-09-27). */
-export const couldNotCheck = (name: string): Line => ({ name, text: "לא הצלחתי לבדוק את התשובה. ננסה שוב?" });
+ *  QA-approved wording (2026-09-27). */
+export const couldNotCheck = (name: string): Line => ({ name, text: "אופס, משהו לא עבד לי. ננסה שוב?" });
 
 /** The exercise question, as the character's line. */
 export const question = (name: string, text: string): Line => ({ name, text });

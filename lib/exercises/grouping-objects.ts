@@ -7,7 +7,7 @@
  *
  * The names are for the objects the bank actually holds plus the common
  * ones the prompt suggests; anything else — an emoji not listed, a Hebrew
- * letter, an unknown symbol — gets the neutral "חפץ" rather than a wrong
+ * letter, an unknown symbol — gets the neutral "ציור" rather than a wrong
  * or invented name. Singular, since the instruction says "לוחצים על X".
  */
 
@@ -94,13 +94,13 @@ export function otherObjectsNamed(story: string, drawn: string): string[] {
 }
 
 /** The neutral name, for an object with no entry. */
-export const NEUTRAL_OBJECT = "חפץ";
+export const NEUTRAL_OBJECT = "ציור";
 
 /**
  * The name for the objects a grouping exercise draws, from ALL of them: the
  * shared name when every item has the same one ("תפוח"), "אות" when they
  * are all Hebrew letters (a gematria row draws 18 different letters), and
- * the neutral "חפץ" when they differ — never the first item's name for a
+ * the neutral "ציור" when they differ — never the first item's name for a
  * pool that holds other things too.
  */
 export function groupingItemsName(items: readonly string[] | string | undefined): string {
