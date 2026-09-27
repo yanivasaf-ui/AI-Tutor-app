@@ -6,6 +6,7 @@ import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { updatePracticeState } from "@/lib/practice/store";
 import { getTopicById } from "@/lib/map/topics";
 import { isGrade } from "@/lib/kids/grade";
+import { validateNewKid } from "@/lib/kids/newKid";
 import type { KidGender, Subject } from "@/lib/memory/types";
 
 function isGender(v: unknown): v is KidGender {
@@ -83,30 +84,11 @@ export async function POST(req: NextRequest) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "not authenticated" }, { status: 401 });
 
-  const body = await req.json();
-  const { name, avatarId, grade, gender } = body as {
-    name?: string;
-    avatarId?: string | null;
-    grade?: string | null;
-    gender?: string | null;
-  };
-  if (!name || !name.trim()) {
-    return NextResponse.json({ error: "name is required" }, { status: 400 });
-  }
-  if (grade != null && !isGrade(grade)) {
-    return NextResponse.json({ error: "grade must be א, ב or ג" }, { status: 400 });
-  }
-  if (gender != null && !isGender(gender)) {
-    return NextResponse.json({ error: "gender must be boy or girl" }, { status: 400 });
-  }
-  const kid = await createKid(
-    supabase,
-    user.id,
-    name.trim(),
-    avatarId ?? null,
-    isGrade(grade) ? grade : null,
-    isGender(gender) ? gender : null
-  );
+  // A kid is never created without a grade (lib/kids/newKid.ts).
+  const input = validateNewKid(await req.json().catch(() => null));
+  if (!input.ok) return NextResponse.json({ error: input.error }, { status: 400 });
+  const { name, avatarId, grade, gender } = input.kid;
+  const kid = await createKid(supabase, user.id, name, avatarId, grade, gender);
   return NextResponse.json({ kid });
 }
 

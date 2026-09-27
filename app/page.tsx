@@ -411,6 +411,8 @@ function Onboarding({
 
   async function save() {
     if (!picked || saving) return;
+    // A new kid is never saved without a grade (the server refuses it too).
+    if (mode !== "repick" && !grade) return;
     setSaving(true);
     setError(null);
     try {
@@ -427,7 +429,7 @@ function Onboarding({
         const res = await fetch("/api/kids", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: trimmed, avatarId: picked, grade: grade ?? "א", gender }),
+          body: JSON.stringify({ name: trimmed, avatarId: picked, grade, gender }),
         });
         if (!res.ok) throw new Error("failed");
         const data = await res.json();
