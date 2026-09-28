@@ -8,6 +8,7 @@ import MicButton from "@/components/character/MicButton";
 import MuteToggle from "@/components/character/MuteToggle";
 import CelebrationOverlay from "@/components/celebration/CelebrationOverlay";
 import NumberLineWidget from "@/components/exercises/NumberLineWidget";
+import NumericPad from "@/components/exercises/NumericPad";
 import TileOrderWidget from "@/components/exercises/TileOrderWidget";
 import { emitManipulation } from "@/lib/character/manipulation";
 import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT } from "@/lib/feedback/constitution";
@@ -1331,6 +1332,31 @@ export default function ExerciseScreen({
                 שלח
               </button>
             </div>
+          )}
+
+          {/* Kids-App UX Benchmark item 5: an in-app numeric pad, only for
+              open exercises whose own generation prompt guarantees a
+              non-negative whole-number answer (fill_in_blank — see
+              lib/exercises/generate.ts's SUBTYPE_GUIDANCE). Every other
+              "open" exercise (explain_thinking's qualitative reasoning,
+              comprehension's short-text-answer form) is NOT numeric and
+              keeps the free-text input above as its only input surface —
+              deriving this from subtype, never from exercise.type alone,
+              is exactly what keeps this item from misfiring on those. An
+              exercise generated before `subtype` existed (optional on the
+              type) also falls through to text-only, the conservative
+              default. The pad is purely an alternate way to fill the SAME
+              `answer` state the input above already uses — it changes no
+              submission path and the text input/mic stay fully available
+              alongside it. */}
+          {!evaluation && exercise.type === "open" && exercise.subtype === "fill_in_blank" && (
+            <NumericPad
+              value={answer}
+              onDigit={(d) => setAnswer((a) => a + d)}
+              onBackspace={() => setAnswer((a) => a.slice(0, -1))}
+              onConfirm={() => submitAnswer(answer)}
+              disabled={submitting}
+            />
           )}
 
           {!evaluation && micApplies && (
