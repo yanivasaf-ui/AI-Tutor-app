@@ -1,13 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { GroupingData } from "@/lib/exercises/types";
+import GhostHand from "@/components/exercises/GhostHand";
+import { hasSeenFirstUseDemo, markFirstUseDemoSeen } from "@/lib/exercises/firstUseDemo";
 
 interface Props {
   data: GroupingData;
   disabled: boolean;
   onSubmit: (value: string) => void;
+  /** Kids-App UX Benchmark item 6: whose first-use ghost-hand demo to
+   *  check/mark (lib/exercises/firstUseDemo.ts) — required because the
+   *  demo is keyed per kid, never a shared/global flag. */
+  kidId: string;
 }
+
+/** Grouping's own interaction is two steps (pick up an item, then drop it
+ *  in a bucket), so its demo is two phases shown back to back — half the
+ *  benchmark's "~2 seconds" each, same total. */
+const DEMO_PHASE_MS = 1000;
 
 /**
  * Math #2, visual counting/grouping — the one genuinely new interaction
@@ -41,7 +52,7 @@ interface Props {
  * silently dropped every placement when actions fired without a paint in
  * between. Both were only caught by actually tapping through the UI.
  */
-export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
+export default function GroupingWidget({ data, disabled, onSubmit, kidId }: Props) {
   const [state, setState] = useState<{ assignments: (number | null)[]; selectedItem: number | null }>({
     assignments: Array(data.items.length).fill(null),
     selectedItem: null,
@@ -52,8 +63,35 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
   const placedCount = assignments.filter((a) => a !== null).length;
   const allAssigned = placedCount === assignments.length;
 
+  // Kids-App UX Benchmark item 6: presentation-only, two phases back to
+  // back ("item" then "bucket" — see DEMO_PHASE_MS above), same
+  // never-lose-a-real-tap shape as NumberLineWidget/TileOrderWidget's
+  // single-phase version. This state never touches assignments/
+  // selectedItem/onSubmit — dismissDemo() below only ever clears itself.
+  const [demoPhase, setDemoPhase] = useState<"idle" | "item" | "bucket">("idle");
+  useEffect(() => {
+    if (!hasSeenFirstUseDemo(kidId, "grouping")) setDemoPhase("item");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (demoPhase === "idle") return;
+    const timer = setTimeout(() => {
+      if (demoPhase === "item") {
+        setDemoPhase("bucket");
+      } else {
+        setDemoPhase("idle");
+        markFirstUseDemoSeen(kidId, "grouping");
+      }
+    }, DEMO_PHASE_MS);
+    return () => clearTimeout(timer);
+  }, [demoPhase, kidId]);
+  function dismissDemo() {
+    if (demoPhase !== "idle") setDemoPhase("idle");
+  }
+
   function pickUpItem(itemIndex: number) {
     if (disabled) return;
+    dismissDemo();
     setState((prev) => ({
       ...prev,
       selectedItem: prev.selectedItem === itemIndex ? null : itemIndex,
@@ -62,6 +100,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
 
   function dropInBucket(bucketIndex: number) {
     if (disabled) return;
+    dismissDemo();
     setState((prev) => {
       if (prev.selectedItem === null) return prev;
       const next = [...prev.assignments];
@@ -72,6 +111,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
 
   function removeFromBucket(itemIndex: number) {
     if (disabled) return;
+    dismissDemo();
     setState((prev) => {
       const next = [...prev.assignments];
       next[itemIndex] = null;
@@ -95,6 +135,7 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
    *  typed number trivially satisfies that. */
   function handleManualSubmit() {
     if (disabled || !manualCount.trim()) return;
+    dismissDemo();
     onSubmit(manualCount.trim());
   }
 
@@ -109,10 +150,13 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
           <div
             key={bucketIndex}
             onClick={() => dropInBucket(bucketIndex)}
-            className={`min-h-16 rounded-2xl border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
+            className={`relative min-h-16 rounded-2xl border-2 border-dashed p-2 flex flex-wrap gap-1 items-center justify-center cursor-pointer ${
               selectedItem !== null ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)]" : "border-[var(--color-teal)]/40 bg-[var(--color-surface)]"
             }`}
           >
+            {/* Ghost-hand demo, phase 2 of 2: the first bucket, once the
+                "item" phase (below) has shown picking one up. */}
+            {demoPhase === "bucket" && bucketIndex === 0 && <GhostHand />}
             {data.items.map((item, i) =>
               assignments[i] === bucketIndex ? (
                 <button
@@ -139,10 +183,13 @@ export default function GroupingWidget({ data, disabled, onSubmit }: Props) {
               key={i}
               onClick={() => pickUpItem(i)}
               disabled={disabled}
-              className={`text-2xl leading-none h-14 w-14 rounded-full border-2 flex items-center justify-center ${
+              className={`relative text-2xl leading-none h-14 w-14 rounded-full border-2 flex items-center justify-center ${
                 selectedItem === i ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)] scale-110" : "border-[var(--color-teal)]/30 bg-[var(--color-surface)]"
               }`}
             >
+              {/* Ghost-hand demo, phase 1 of 2: the first item, before
+                  the "bucket" phase shows where it goes. */}
+              {demoPhase === "item" && i === 0 && <GhostHand />}
               {item}
             </button>
           ) : null

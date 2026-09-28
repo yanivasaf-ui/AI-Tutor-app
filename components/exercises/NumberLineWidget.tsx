@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { NumberLineData } from "@/lib/exercises/types";
 import type { ManipulationKind } from "@/lib/character/manipulation";
+import GhostHand from "@/components/exercises/GhostHand";
+import { hasSeenFirstUseDemo, markFirstUseDemoSeen } from "@/lib/exercises/firstUseDemo";
 
 interface Props {
   data: NumberLineData;
@@ -9,7 +12,15 @@ interface Props {
   onSubmit: (value: string) => void;
   /** Local, cosmetic "I saw that" hook (see lib/character/manipulation.ts). */
   onManipulate?: (kind: ManipulationKind) => void;
+  /** Kids-App UX Benchmark item 6: whose first-use ghost-hand demo to
+   *  check/mark (lib/exercises/firstUseDemo.ts) — required because the
+   *  demo is keyed per kid, never a shared/global flag. */
+  kidId: string;
 }
+
+/** How long the ghost hand is shown, in ms — the benchmark's own "~2
+ *  seconds". */
+const DEMO_DURATION_MS = 2000;
 
 /**
  * Kids-App UX Benchmark, build-first item 4: the previous version rendered
@@ -34,9 +45,36 @@ interface Props {
 const TICK_COLUMN_WIDTH = 76;
 const MIN_HIT_TARGET = 76;
 
-export default function NumberLineWidget({ data, disabled, onSubmit, onManipulate }: Props) {
+export default function NumberLineWidget({ data, disabled, onSubmit, onManipulate, kidId }: Props) {
   const ticks: number[] = [];
   for (let v = data.min; v <= data.max; v += data.step) ticks.push(v);
+
+  // Kids-App UX Benchmark item 6: presentation-only — this state never
+  // touches onSubmit/onManipulate or any placement/answer logic below,
+  // and GhostHand itself is pointer-events-none, so a real tap during the
+  // ~2s window reaches the real tick button exactly as if this weren't
+  // rendered at all (nothing to "lose"). Checked once on mount, per kid
+  // per widget kind, never per exercise.
+  const [showDemo, setShowDemo] = useState(false);
+  useEffect(() => {
+    if (!hasSeenFirstUseDemo(kidId, "number_line")) setShowDemo(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (!showDemo) return;
+    const timer = setTimeout(() => {
+      setShowDemo(false);
+      markFirstUseDemoSeen(kidId, "number_line");
+    }, DEMO_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [showDemo, kidId]);
+  // A real tap anywhere in the widget dismisses the (purely cosmetic)
+  // overlay right away rather than letting it linger for the rest of the
+  // window — the tap itself already succeeded via the button's own
+  // onClick below; this only ever clears this local boolean.
+  function dismissDemo() {
+    if (showDemo) setShowDemo(false);
+  }
 
   return (
     // overflow-x-auto, never flex-wrap: a long set scrolls horizontally
@@ -52,6 +90,7 @@ export default function NumberLineWidget({ data, disabled, onSubmit, onManipulat
               key={v}
               type="button"
               onClick={() => {
+                dismissDemo();
                 // The answer goes first: the acknowledgment is decoration
                 // and must never be able to delay or block it.
                 onSubmit(String(v));
@@ -62,6 +101,11 @@ export default function NumberLineWidget({ data, disabled, onSubmit, onManipulat
               className="relative flex-none flex flex-col items-center justify-center gap-1.5 rounded-2xl hover:bg-[var(--color-teal-soft)]/60 disabled:opacity-50 disabled:hover:bg-transparent"
               style={{ width: TICK_COLUMN_WIDTH, minHeight: MIN_HIT_TARGET }}
             >
+              {/* Ghost-hand demo: only on the FIRST tick, only while
+                  showing. This button is already `position: relative`
+                  (className above), which is all GhostHand needs to align
+                  to it. */}
+              {showDemo && i === 0 && <GhostHand />}
               {/* The rail: a full-width line segment in every column, edge
                   to edge with no gap between adjacent buttons — that's what
                   makes the whole set read as ONE continuous line rather

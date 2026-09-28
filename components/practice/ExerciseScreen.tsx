@@ -1303,15 +1303,15 @@ export default function ExerciseScreen({
           )}
 
           {!evaluation && exercise.type === "number_line" && exercise.numberLine && (
-            <NumberLineWidget data={exercise.numberLine} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} />
+            <NumberLineWidget data={exercise.numberLine} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} kidId={kidId} />
           )}
 
           {!evaluation && exercise.type === "tile_order" && exercise.tiles && (
-            <TileOrderWidget data={exercise.tiles} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} />
+            <TileOrderWidget data={exercise.tiles} disabled={submitting} onSubmit={submitAnswer} onManipulate={emitManipulation} kidId={kidId} />
           )}
 
           {!evaluation && exercise.type === "grouping" && exercise.grouping && (
-            <GroupingWidget data={exercise.grouping} disabled={submitting} onSubmit={submitAnswer} />
+            <GroupingWidget data={exercise.grouping} disabled={submitting} onSubmit={submitAnswer} kidId={kidId} />
           )}
 
           {!evaluation && exercise.type === "open" && (

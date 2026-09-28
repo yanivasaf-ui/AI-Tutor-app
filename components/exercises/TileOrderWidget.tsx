@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { TileOrderData } from "@/lib/exercises/types";
 import { manipulationEvent, type ManipulationKind } from "@/lib/character/manipulation";
+import GhostHand from "@/components/exercises/GhostHand";
+import { hasSeenFirstUseDemo, markFirstUseDemoSeen } from "@/lib/exercises/firstUseDemo";
 
 interface Props {
   data: TileOrderData;
@@ -10,7 +12,15 @@ interface Props {
   onSubmit: (value: string) => void;
   /** Local, cosmetic "I saw that" hook (see lib/character/manipulation.ts). */
   onManipulate?: (kind: ManipulationKind) => void;
+  /** Kids-App UX Benchmark item 6: whose first-use ghost-hand demo to
+   *  check/mark (lib/exercises/firstUseDemo.ts) — required because the
+   *  demo is keyed per kid, never a shared/global flag. */
+  kidId: string;
 }
+
+/** How long the ghost hand is shown, in ms — the benchmark's own "~2
+ *  seconds". */
+const DEMO_DURATION_MS = 2000;
 
 /**
  * Tier 2 shared tap-to-place primitive, ordering variant — covers
@@ -24,8 +34,29 @@ interface Props {
  * Tracks placement by index into data.items, not by value, so repeated
  * letters/words (e.g. two identical letters in a word) stay distinguishable.
  */
-export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate }: Props) {
+export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate, kidId }: Props) {
   const [placed, setPlaced] = useState<(number | null)[]>(Array(data.slotCount).fill(null));
+
+  // Kids-App UX Benchmark item 6: presentation-only, same shape as
+  // NumberLineWidget's — see its comments for why this never risks
+  // "losing" a real tap and why it's checked once, per kid per widget
+  // kind, never per exercise.
+  const [showDemo, setShowDemo] = useState(false);
+  useEffect(() => {
+    if (!hasSeenFirstUseDemo(kidId, "tile_order")) setShowDemo(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (!showDemo) return;
+    const timer = setTimeout(() => {
+      setShowDemo(false);
+      markFirstUseDemoSeen(kidId, "tile_order");
+    }, DEMO_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [showDemo, kidId]);
+  function dismissDemo() {
+    if (showDemo) setShowDemo(false);
+  }
 
   const usedIndices = new Set(placed.filter((i): i is number => i !== null));
   const allFilled = placed.every((p) => p !== null);
@@ -46,6 +77,7 @@ export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate
 
   function placeInNextSlot(itemIndex: number) {
     if (disabled) return;
+    dismissDemo();
     // Functional update — reading `placed`/`usedIndices` from the render
     // closure instead would go stale when two taps land before a
     // re-render (e.g. a fast double-tap), letting both compute the same
@@ -63,6 +95,7 @@ export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate
 
   function removeFromSlot(slotIndex: number) {
     if (disabled) return;
+    dismissDemo();
     setPlaced((prev) => {
       if (prev[slotIndex] === null) return prev;
       const next = [...prev];
@@ -101,8 +134,12 @@ export default function TileOrderWidget({ data, disabled, onSubmit, onManipulate
             onClick={() => placeInNextSlot(i)}
             disabled={disabled || usedIndices.has(i)}
             dir={isNumericItem(item) ? "ltr" : undefined}
-            className="h-14 min-w-14 px-4 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-teal)]/40 font-medium text-xl text-[var(--color-ink)] hover:bg-[var(--color-teal-soft)] disabled:opacity-30 disabled:cursor-default"
+            className="relative h-14 min-w-14 px-4 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-teal)]/40 font-medium text-xl text-[var(--color-ink)] hover:bg-[var(--color-teal-soft)] disabled:opacity-30 disabled:cursor-default"
           >
+            {/* Ghost-hand demo: the first bank item only — "bank-item-
+                then-slot" is one tap, same single-tap shape as
+                NumberLineWidget's ticks. */}
+            {showDemo && i === 0 && <GhostHand />}
             {item}
           </button>
         ))}

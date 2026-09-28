@@ -185,7 +185,18 @@ t("the number line submits the answer BEFORE it acknowledges the tap", () => {
 });
 t("the number line still commits on a single tap (this change adds no pre-commit phase)", () => {
   assert.match(line, /onSubmit\(String\(v\)\)/);
-  assert.ok(!/useState/.test(line), "the number line has no manipulation state; a tap commits");
+  // Kids-App UX Benchmark item 6 gave this widget a useState (whether its
+  // once-per-kid first-use ghost-hand demo is showing) — legitimate and
+  // unrelated to committing an answer, so a blanket "no useState anywhere"
+  // check (this test's own original shape) is no longer the right proxy
+  // for the invariant that actually matters here: no piece of state may
+  // GATE the tap handler's onSubmit call behind a condition (that would be
+  // a real pre-commit/selection phase, the thing this test exists to
+  // catch — see GroupingWidget's selectedItem for what that looks like).
+  // The onClick body itself, from its opening brace to onSubmit, must
+  // contain no `if` — onSubmit is reached unconditionally on every tap.
+  const onClickBody = line.slice(line.indexOf("onClick={() => {"), line.indexOf("onSubmit(String(v))"));
+  assert.ok(!/\bif\s*\(/.test(onClickBody), "onSubmit must be reached unconditionally — no if-gate before it, i.e. no pre-commit/selection phase");
 });
 t("the tile widget derives the reaction from committed state, in an effect, via the tested function", () => {
   assert.match(tile, /useEffect\(\(\) => \{[\s\S]*manipulationEvent\(prevFilled\.current, filledCount, placed\.length\)/);

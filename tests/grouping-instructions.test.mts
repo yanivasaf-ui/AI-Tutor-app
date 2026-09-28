@@ -144,7 +144,7 @@ console.log("\none render per object type: the widget draws the object the capti
 for (const [emoji, , name] of PROD_OBJECTS.filter(([e]) => ["🍎", "🔺", "🌸", "⏰", "📏", "א"].includes(e))) {
   t(`${emoji}: the rendered pool shows ${emoji}, and the caption above it says "${name}"`, () => {
     const items = Array(6).fill(emoji);
-    const html = renderToStaticMarkup(createElement(GroupingWidget, { data: { items, groupCount: 3 }, disabled: false, onSubmit: () => {} }));
+    const html = renderToStaticMarkup(createElement(GroupingWidget, { data: { items, groupCount: 3 }, disabled: false, onSubmit: () => {}, kidId: "test-kid" }));
     // Each pooled object is its own element: >emoji<. (Counting the bare
     // character would also count "א" inside other Hebrew words.)
     assert.equal(html.split(`>${emoji}<`).length - 1, 6, "the six objects are on screen");
