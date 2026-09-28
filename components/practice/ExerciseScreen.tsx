@@ -193,6 +193,19 @@ export default function ExerciseScreen({
    *  judged. Reset only on a fresh question — it must survive the retry
    *  that follows the wrong verdict, which is the one moment it matters. */
   const [wrongChoiceIndex, setWrongChoiceIndex] = useState<number | null>(null);
+  /** Kids-App UX Benchmark item 3: which multiple-choice option is being
+   *  read aloud RIGHT NOW during the grades-א/ב automatic readout (see
+   *  readChoicesInOrder) — a restrained highlight, not a reward pulse.
+   *  Set at the moment that choice's own speak() call starts; cleared by
+   *  the effect below the instant OWNER stops speaking for ANY reason
+   *  (that utterance finished, was superseded by a new question/retry/
+   *  hint/nudge, the mic barge-in cancelled it, or the device was muted —
+   *  every one of those already flips the existing `speaking` flag to
+   *  false, which is the one signal reliable enough to hang this on:
+   *  speak()'s own `onEnd` contract explicitly does NOT fire when an
+   *  utterance is superseded/cancelled, only on genuine completion, so it
+   *  alone cannot be trusted to clear a stale highlight). */
+  const [speakingChoiceIndex, setSpeakingChoiceIndex] = useState<number | null>(null);
   /** The answer could not be checked — twice, before any verdict. Not a
    *  judgement and never shown as a wrong answer: the answer is kept, and
    *  "לנסות שוב" checks the SAME answer again (lastAnswerRef). A verdict
@@ -221,6 +234,15 @@ export default function ExerciseScreen({
 
   const { speaking } = useSpeech(OWNER);
   const bubbleRef = useRef<HTMLDivElement>(null);
+
+  // Kids-App UX Benchmark item 3: the moment this owner's audio stops for
+  // ANY reason (completed, superseded by a new question/retry/hint/nudge,
+  // mic barge-in, mute), the choice-readout highlight is no longer true and
+  // must go dark — see speakingChoiceIndex's own comment for why `speaking`
+  // (not speak()'s onEnd) is what this has to watch.
+  useEffect(() => {
+    if (!speaking) setSpeakingChoiceIndex(null);
+  }, [speaking]);
 
   // Latency instrumentation (ROADMAP.md's ~2s budget). turnStartedAt is
   // set when the kid releases the mic and cleared once the character
@@ -374,6 +396,11 @@ export default function ExerciseScreen({
     if (readoutGenRef.current !== gen || i >= choices.length) return;
     setTimeout(() => {
       if (readoutGenRef.current !== gen) return;
+      // Kids-App UX Benchmark item 3: set at the moment this specific
+      // choice's speak() call starts. Cleared by the `speaking`-watching
+      // effect above, not here — onEnd never fires for a cancelled/
+      // superseded utterance, so it cannot be the thing clearing this.
+      setSpeakingChoiceIndex(i);
       speak(choices[i], OWNER, character, { onEnd: () => readChoicesInOrder(choices, gen, i + 1) });
     }, READOUT_PAUSE_MS);
   }
@@ -414,6 +441,7 @@ export default function ExerciseScreen({
     setAttempt(1);
     setCheckFailed(false);
     setWrongChoiceIndex(null);
+    setSpeakingChoiceIndex(null);
     if (prefetched) {
       setExercise(prefetched);
       // The prefetch's own practice snapshot predates the answer just given;
@@ -1216,6 +1244,26 @@ export default function ExerciseScreen({
                 <motion.button
                   key={i}
                   whileTap={{ scale: 0.96 }}
+                  // Kids-App UX Benchmark item 3: a restrained lift on the
+                  // option currently being read aloud (grades א/ב's
+                  // automatic readout, see readChoicesInOrder) — never a
+                  // reward pulse (no confetti/sound), and no fake
+                  // word-level sync, just "this whole line is the one
+                  // playing right now". framer-motion's own `animate`
+                  // prop, not a Tailwind transform class: this element
+                  // already has `whileTap`, and framer-motion owns the
+                  // `transform` CSS property for any element it animates
+                  // at all — a class-based transform alongside it would
+                  // be silently overwritten at rest. `animate` composes
+                  // correctly with `whileTap` by design, and inherits
+                  // reduced-motion handling for free from the app-wide
+                  // <MotionConfig reducedMotion="user"> in
+                  // components/MotionRoot.tsx (opacity/color still
+                  // transitions; the y/scale transform is skipped) — so
+                  // the glow below is never the ONLY cue lost for those
+                  // users, just the lift.
+                  animate={{ y: speakingChoiceIndex === i ? -2 : 0, scale: speakingChoiceIndex === i ? 1.015 : 1 }}
+                  transition={{ duration: 0.2 }}
                   onClick={() => submitAnswer(choice, { choiceIndex: i })}
                   // Kids-App UX Benchmark item 2: the one option already
                   // judged wrong on this exercise stays visible but
@@ -1223,7 +1271,11 @@ export default function ExerciseScreen({
                   // faded styling every other disabled state on this
                   // button already has, so this needs no new copy.
                   disabled={submitting || wrongChoiceIndex === i}
-                  className="min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] text-2xl font-medium text-[var(--color-ink)] px-5 disabled:opacity-50 flex items-center justify-center gap-2 relative"
+                  className={`min-h-16 rounded-[var(--radius-button)] border-2 text-2xl font-medium text-[var(--color-ink)] px-5 disabled:opacity-50 flex items-center justify-center gap-2 relative transition-[box-shadow,background-color,border-color] duration-200 ${
+                    speakingChoiceIndex === i
+                      ? "border-[var(--color-teal)] bg-[var(--color-teal-soft)] shadow-md"
+                      : "border-[var(--color-teal)]/30 bg-[var(--color-surface)]"
+                  }`}
                   dir={/^[\d+\-*/=.,\s]+$/.test(choice) ? "ltr" : undefined}
                 >
                   {/* Voice-experience fix item 3: grade ג+ gets no automatic
