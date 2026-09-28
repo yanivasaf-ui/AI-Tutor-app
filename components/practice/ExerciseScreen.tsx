@@ -14,6 +14,7 @@ import { topicSummary, CONFIRM_YES, CONFIRM_NO, REST_CORRECT } from "@/lib/feedb
 import GroupingWidget from "@/components/exercises/GroupingWidget";
 import { speak, stopSpeaking, useSpeech, hasSeenGesture, prefetchSpeech } from "@/lib/speech/useSpeech";
 import { isAutoSpeakOn } from "@/lib/speech/autoSpeak";
+import { playWrongCue } from "@/lib/speech/cue";
 import { useCelebration } from "@/lib/celebration/useCelebration";
 import { useTalkingPose, type CharacterId, type CharacterPose } from "@/lib/characters";
 import * as lines from "@/lib/guide/lines";
@@ -182,13 +183,23 @@ export default function ExerciseScreen({
   const [confirmingLeave, setConfirmingLeave] = useState(false);
   /** 1 on a fresh question, 2 on the retry after a hint. */
   const [attempt, setAttempt] = useState<1 | 2>(1);
+  /** Kids-App UX Benchmark item 2: the index of the multiple-choice button
+   *  the server judged wrong on attempt 1 — faded and untappable once the
+   *  child retries, so the same mistake can't be tapped again. Only a
+   *  literal button TAP sets this (submitAnswer's choiceIndex opt); a
+   *  voice-confirmed answer never carries one, so voice attempts are never
+   *  affected. Set on the verdict itself (never optimistically on tap), so
+   *  an unchecked network error can't retire a choice the server never
+   *  judged. Reset only on a fresh question — it must survive the retry
+   *  that follows the wrong verdict, which is the one moment it matters. */
+  const [wrongChoiceIndex, setWrongChoiceIndex] = useState<number | null>(null);
   /** The answer could not be checked — twice, before any verdict. Not a
    *  judgement and never shown as a wrong answer: the answer is kept, and
    *  "לנסות שוב" checks the SAME answer again (lastAnswerRef). A verdict
    *  that did arrive is never replaced by an error (QA 2026-09-26: a
    *  correct answer turned into "משהו השתבש", then the question repeated). */
   const [checkFailed, setCheckFailed] = useState(false);
-  const lastAnswerRef = useRef<{ value: string; opts?: { viaVoice?: boolean } } | null>(null);
+  const lastAnswerRef = useRef<{ value: string; opts?: { viaVoice?: boolean; choiceIndex?: number } } | null>(null);
   /** The kid's level on this topic, from the server. Null until known,
    *  and while the first-visit diagnostic is still placing them. */
   const [practice, setPractice] = useState<PracticeSummary | null>(null);
@@ -272,7 +283,7 @@ export default function ExerciseScreen({
    *  a stable callback wired into buttons, and reading either of these
    *  from the render closure would answer a previous exercise. */
   const exerciseRef = useRef<Exercise | null>(null);
-  const submitAnswerRef = useRef<(value: string, opts?: { viaVoice?: boolean }) => void>(() => {});
+  const submitAnswerRef = useRef<(value: string, opts?: { viaVoice?: boolean; choiceIndex?: number }) => void>(() => {});
   useEffect(() => {
     const nudge = createSilenceNudge({
       onNudge: () => {
@@ -402,6 +413,7 @@ export default function ExerciseScreen({
     setLoadFailed(false);
     setAttempt(1);
     setCheckFailed(false);
+    setWrongChoiceIndex(null);
     if (prefetched) {
       setExercise(prefetched);
       // The prefetch's own practice snapshot predates the answer just given;
@@ -585,7 +597,7 @@ export default function ExerciseScreen({
    * marked wrong. The prose follows the opener gaplessly — queued on the
    * opener's own onEnd rather than a timer.
    */
-  async function submitAnswer(value: string, opts?: { viaVoice?: boolean }) {
+  async function submitAnswer(value: string, opts?: { viaVoice?: boolean; choiceIndex?: number }) {
     if (!exercise || !value.trim() || submitting) return;
     setSubmitting(true);
     setCheckFailed(false);
@@ -690,6 +702,18 @@ export default function ExerciseScreen({
               }
             } else {
               setBasePose("encouraging");
+              // Kids-App UX Benchmark item 2: a gentle, wordless signal for
+              // a wrong answer, gated on the server's own verdict (never on
+              // the tap itself) — an unchecked network error or a
+              // voice-repair "no match" never reaches here. See
+              // lib/speech/cue.ts for the mute-behaviour decision.
+              playWrongCue();
+              // Only a literal multiple-choice TAP carries a choiceIndex
+              // (the button's onClick below); a voice-confirmed answer
+              // never does, so voice attempts never retire a choice.
+              if (exercise.type === "multiple_choice" && opts?.choiceIndex !== undefined) {
+                setWrongChoiceIndex(opts.choiceIndex);
+              }
             }
 
             // The opener is a scripted line and prefetched, so this is
@@ -1192,8 +1216,13 @@ export default function ExerciseScreen({
                 <motion.button
                   key={i}
                   whileTap={{ scale: 0.96 }}
-                  onClick={() => submitAnswer(choice)}
-                  disabled={submitting}
+                  onClick={() => submitAnswer(choice, { choiceIndex: i })}
+                  // Kids-App UX Benchmark item 2: the one option already
+                  // judged wrong on this exercise stays visible but
+                  // untappable on the retry — disabled reuses the same
+                  // faded styling every other disabled state on this
+                  // button already has, so this needs no new copy.
+                  disabled={submitting || wrongChoiceIndex === i}
                   className="min-h-16 rounded-[var(--radius-button)] border-2 border-[var(--color-teal)]/30 bg-[var(--color-surface)] text-2xl font-medium text-[var(--color-ink)] px-5 disabled:opacity-50 flex items-center justify-center gap-2 relative"
                   dir={/^[\d+\-*/=.,\s]+$/.test(choice) ? "ltr" : undefined}
                 >
