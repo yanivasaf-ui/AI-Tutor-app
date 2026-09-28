@@ -677,7 +677,7 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
   return (
     <div className="min-h-screen bg-[var(--color-canvas)] flex flex-col items-center p-6">
       <div className="w-full max-w-2xl">
-        <div className="flex items-center justify-between mb-1">
+        <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-[var(--color-ink)]">לוח בקרה להורים</h1>
           <div className="flex items-center gap-4">
             <button onClick={onBack} className="text-sm text-[var(--color-teal)] hover:underline">
@@ -688,7 +688,6 @@ function ParentDashboard({ onBack, onLogout }: { onBack: () => void; onLogout: (
             </button>
           </div>
         </div>
-        <p className="text-sm text-[var(--color-ink-soft)] mb-6">אב טיפוס פנימי — לא לשימוש חיצוני</p>
 
         {loading && <p className="text-[var(--color-ink-soft)] text-sm">טוען...</p>}
         {!loading && kids.length === 0 && <p className="text-[var(--color-ink-soft)] text-sm">אין עדיין ילדים רשומים.</p>}
